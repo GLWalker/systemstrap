@@ -27,3 +27,11 @@ SystemStrap actively intercepts WordPress Global Styles (`wp_enqueue_global_styl
 ***
 
 **SystemStrap provides a predictable, highly-optimized foundation for modern WordPress development.**
+
+## Third-Party Resources & Attributions
+
+SystemStrap is built on the shoulders of open-source giants:
+
+* **Splide.js:** A lightweight, accessible, and flexible slider/carousel script ([MIT License](https://github.com/Splidejs/splide/blob/master/LICENSE)).
+* **Placeholder Images:** Structural UI placeholder graphics provided via [BetterPlaceholder](https://betterplaceholder.com/) and Wikimedia Commons ([CC0 Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)).
+* **Fonts (Porting Soon):** Utilizing [SIL Open Font Licensed](https://scripts.sil.org/OFL) typography families to ensure compliance and pristine typography.
