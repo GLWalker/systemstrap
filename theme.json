@@ -372,9 +372,9 @@
 			"link-color": "var(--wp--preset--color--primary)",
 			"link-hover-color": "var(--wp--preset--color--primary-40)",
 			"link-hover-color-rgb": "var(--wp--preset--color--primary-shadow-rgb)",
-			"wp--preset--font-family--body": "var:preset|font-family|system",
-			"wp--preset--font-family--heading": "var:preset|font-family|open-sans",
-			"wp--preset--font-family--display": "var:preset|font-family|lato",
+			"wp--preset--font-family--body": "var:preset|font-family|inter",
+			"wp--preset--font-family--heading": "var:preset|font-family|montserrat",
+			"wp--preset--font-family--display": "var:preset|font-family|roboto",
 			"wp--preset--font-family--monospace": "var:preset|font-family|monospace",
 			"wp--preset--font-family--single-title": "var:preset|font-family|display",
 			"button-font-family": "var(--wp--custom--wp--preset--font-family--heading)",
@@ -611,6 +611,167 @@
 					"slug": "system"
 				},
 				{
+					"fontFamily": "Inter, sans-serif",
+					"name": "Inter",
+					"slug": "inter",
+					"fontFace": [
+						{
+							"fontFamily": "Inter",
+							"fontStyle": "normal",
+							"fontWeight": "100 900",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/inter/Inter-VariableFont_slnt,wght.woff2"
+							]
+						}
+					]
+				},
+				{
+					"fontFamily": "Montserrat, sans-serif",
+					"name": "Montserrat",
+					"slug": "montserrat",
+					"fontFace": [
+						{
+							"fontFamily": "Montserrat",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/montserrat/montserrat_normal_400.ttf"
+							]
+						},
+						{
+							"fontFamily": "Montserrat",
+							"fontStyle": "normal",
+							"fontWeight": "500",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/montserrat/montserrat_normal_500.ttf"
+							]
+						},
+						{
+							"fontFamily": "Montserrat",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/montserrat/montserrat_normal_700.ttf"
+							]
+						}
+					]
+				},
+				{
+					"fontFamily": "Roboto, sans-serif",
+					"name": "Roboto",
+					"slug": "roboto",
+					"fontFace": [
+						{
+							"fontFamily": "Roboto",
+							"fontStyle": "normal",
+							"fontWeight": "300",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/roboto/roboto_normal_300.ttf"
+							]
+						},
+						{
+							"fontFamily": "Roboto",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/roboto/roboto_normal_400.ttf"
+							]
+						},
+						{
+							"fontFamily": "Roboto",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/roboto/roboto_normal_700.ttf"
+							]
+						}
+					]
+				},
+				{
+					"fontFamily": "Nunito Sans, sans-serif",
+					"name": "Nunito Sans",
+					"slug": "nunito-sans",
+					"fontFace": [
+						{
+							"fontFamily": "Nunito Sans",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/nunito/nunito-sans_normal_400.ttf"
+							]
+						},
+						{
+							"fontFamily": "Nunito Sans",
+							"fontStyle": "normal",
+							"fontWeight": "500",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/nunito/nunito-sans_normal_500.ttf"
+							]
+						},
+						{
+							"fontFamily": "Nunito Sans",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/nunito/nunito-sans_normal_700.ttf"
+							]
+						}
+					]
+				},
+				{
+					"fontFamily": "Lato",
+					"name": "Lato",
+					"slug": "lato",
+					"fontFace": [
+						{
+							"fontFamily": "Lato",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/lato/lato_normal_400.ttf"
+							]
+						},
+						{
+							"fontFamily": "Lato",
+							"fontStyle": "italic",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/lato/lato_italic_400.ttf"
+							]
+						},
+						{
+							"fontFamily": "Lato",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/lato/lato_normal_700.ttf"
+							]
+						},
+						{
+							"fontFamily": "Lato",
+							"fontStyle": "italic",
+							"fontWeight": "700",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/lato/lato_italic_700.ttf"
+							]
+						}
+					]
+				},
+				{
 					"fontFamily": "\"Open Sans\",sans-serif",
 					"name": "Open Sans",
 					"slug": "open-sans",
@@ -661,49 +822,6 @@
 							"fontWeight": "700",
 							"src": [
 								"file:./assets/fonts/open-sans/memQYaGs126MiZpBA-UFUIcVXSCEkx2cmqvXlWq8tWZ0Pw86hd0RkyFjaVIUwaERZjA.woff2"
-							]
-						}
-					]
-				},
-				{
-					"fontFamily": "Lato",
-					"name": "Lato",
-					"slug": "lato",
-					"fontFace": [
-						{
-							"fontFamily": "Lato",
-							"fontStyle": "normal",
-							"fontWeight": "400",
-							"fontDisplay": "swap",
-							"src": [
-								"file:./assets/fonts/lato/lato_normal_400.ttf"
-							]
-						},
-						{
-							"fontFamily": "Lato",
-							"fontStyle": "italic",
-							"fontWeight": "400",
-							"fontDisplay": "swap",
-							"src": [
-								"file:./assets/fonts/lato/lato_italic_400.ttf"
-							]
-						},
-						{
-							"fontFamily": "Lato",
-							"fontStyle": "normal",
-							"fontWeight": "700",
-							"fontDisplay": "swap",
-							"src": [
-								"file:./assets/fonts/lato/lato_normal_700.ttf"
-							]
-						},
-						{
-							"fontFamily": "Lato",
-							"fontStyle": "italic",
-							"fontWeight": "700",
-							"fontDisplay": "swap",
-							"src": [
-								"file:./assets/fonts/lato/lato_italic_700.ttf"
 							]
 						}
 					]

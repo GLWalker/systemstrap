@@ -1,0 +1,23 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "Roboto & Nunito",
+	"settings": {
+		"custom": {
+			"wp--preset--font-family--body": "var:preset|font-family|roboto",
+			"wp--preset--font-family--heading": "var:preset|font-family|nunito-sans"
+		}
+	},
+	"styles": {
+		"typography": {
+			"fontFamily": "var:preset|font-family|roboto"
+		},
+		"blocks": {
+			"core/heading": {
+				"typography": {
+					"fontFamily": "var:preset|font-family|nunito-sans"
+				}
+			}
+		}
+	}
+}
