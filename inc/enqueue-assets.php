@@ -98,7 +98,7 @@ if ( ! function_exists( 'strap_enqueue_assets' ) ) {
 		);
 	}
 }
-add_action( 'wp_enqueue_scripts', 'strap_enqueue_assets' );
+add_action( 'wp_enqueue_scripts', 'strap_enqueue_assets', 8 );
 
 /**
  * Completely remove inline default styles/markup for WordPress core palettes, 
@@ -162,10 +162,13 @@ function strap_intercept_global_styles() {
 	}
 
 	// Register and enqueue the filtered styles properly
-	// Force dependencies to ensure Site Editor CSS is printed absolute last
-	$global_deps = array( 'strap-main-styles' );
-	if ( is_child_theme() ) {
-		$global_deps[] = 'strap-child-style';
+	// Force dependencies to ensure Site Editor CSS is printed absolute last on the frontend
+	$global_deps = array();
+	if ( ! is_admin() ) {
+		$global_deps[] = 'strap-main-styles';
+		if ( is_child_theme() ) {
+			$global_deps[] = 'strap-child-style';
+		}
 	}
 	
 	wp_register_style( 'global-styles', false, $global_deps );
