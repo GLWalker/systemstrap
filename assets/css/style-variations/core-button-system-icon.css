@@ -1,0 +1,71 @@
+/* ==========================================================================
+   Core Button: System Icon
+   A universal, circular, icon-only button style.
+   ========================================================================== */
+
+.wp-block-button.is-style-system-btn-icon .wp-block-button__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50% !important; /* Force a perfect circle */
+    padding: 0 !important;
+
+    background: rgba(var(--wp--preset--color--secondary-bg-rgb), .5);
+
+    color: var(--wp--preset--color--secondary-color);
+    border: var(--wp--custom--border-width, 1px) solid transparent;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+}
+
+/* Hover State */
+html body .wp-block-button.is-style-system-btn-icon a.wp-block-button__link:hover,
+html body .wp-block-button.is-style-system-btn-icon a.wp-block-button__link:focus,
+html body .wp-block-button.is-style-system-btn-icon a.wp-block-button__link:active,
+html body .wp-block-button.is-style-system-btn-icon button.wp-block-button__link:hover,
+html body .wp-block-button.is-style-system-btn-icon button.wp-block-button__link:focus,
+html body .wp-block-button.is-style-system-btn-icon button.wp-block-button__link:active {
+
+     background-color: rgba(var(--wp--preset--color--secondary-bg-rgb), .75);
+    color: var(--wp--preset--color--contrast) !important;
+    border-color: rgba(var(--wp--preset--color--border-color-rgb), 0.2) !important;
+}
+
+/*
+ * Icon Masks (Dynamically inherit text color)
+ * We use -webkit-mask for robust cross-browser support.
+ */
+.system-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: currentColor; /* Inherit the text color */
+    mask-size: contain;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+}
+
+/* Left Chevron */
+.system-icon-left {
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m15 18-6-6 6-6'/%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m15 18-6-6 6-6'/%3E%3C/svg%3E");
+}
+
+/* Right Chevron */
+.system-icon-right {
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 18 6-6-6-6'/%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 18 6-6-6-6'/%3E%3C/svg%3E");
+}
+
+/* Contract: When placed inside a container with a custom color/background */
+.has-background .wp-block-button.is-style-system-btn-icon .wp-block-button__link {
+    background-color: inherit;
+}
+.has-text-color .wp-block-button.is-style-system-btn-icon .wp-block-button__link {
+    color: inherit;
+}

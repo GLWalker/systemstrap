@@ -1,0 +1,50 @@
+/* Container */
+.wp-block-tag-cloud.is-style-system-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--wp--preset--spacing--10);
+    align-items: center;
+    margin-bottom: var(--wp--preset--spacing--20);
+}
+
+/* The Pills */
+.wp-block-tag-cloud.is-style-system-tags a.tag-cloud-link {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--wp--preset--color--secondary-bg);
+    color: var(--wp--preset--color--secondary-color);
+    padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--20);
+    border-radius: var(--wp--preset--spacing--20, 50rem); /* Pill shape */
+    border: var(--wp--custom--border-width, 1px) solid transparent;
+    font-size: var(--wp--preset--font-size--small) !important; /* Override inline sizes */
+    line-height: 1 !important;
+    text-decoration: none;
+    transition: all 0.15s ease-in-out;
+}
+
+/* Hover State */
+.wp-block-tag-cloud.is-style-system-tags a.tag-cloud-link:hover,
+.wp-block-tag-cloud.is-style-system-tags a.tag-cloud-link:focus {
+    background-color: var(--wp--preset--color--tertiary-bg);
+    color: var(--wp--preset--color--contrast);
+    border-color: rgba(var(--wp--preset--color--border-color-rgb), .2);
+}
+
+/* Tag Count Number */
+.wp-block-tag-cloud.is-style-system-tags a.tag-cloud-link .tag-link-count {
+    margin-left: 0.35em;
+    font-size: 0.85em;
+    opacity: 0.8;
+}
+
+/* Contract: When placed inside a container with a background */
+.has-background .wp-block-tag-cloud.is-style-system-tags a.tag-cloud-link {
+    background-color: rgba(var(--wp--preset--color--base-rgb), 0.5); /* Frosty white over color */
+    color: var(--wp--preset--color--inherit);
+    border-color: rgba(var(--wp--preset--color--border-color-rgb), 0.1);
+}
+.has-background .wp-block-tag-cloud.is-style-system-tags a.tag-cloud-link:hover,
+.has-background .wp-block-tag-cloud.is-style-system-tags a.tag-cloud-link:focus {
+    background-color: rgba(var(--wp--preset--color--base-rgb), 0.8);
+    color: var(--wp--preset--color--contrast);
+}

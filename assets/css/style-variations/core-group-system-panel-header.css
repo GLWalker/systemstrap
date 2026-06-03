@@ -1,0 +1,23 @@
+/* 
+ * System Panel Header Variation
+ */
+
+.wp-block-group.is-style-system-panel-header {
+    padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30) !important;
+    background: var(--system-ui-surface-subtle);
+    border-bottom: var(--wp--custom--border-width, 1px) solid var(--system-ui-border-color);
+    margin: 0 !important;
+    border-radius: 0 !important; /* Auto-clipped perfectly by outer panel overflow: hidden */
+    width: 100%;
+}
+
+.wp-block-group.is-style-system-panel.has-background .wp-block-group.is-style-system-panel-header {
+    border-bottom-color: var(--system-ui-border-color-on-background);
+}
+
+/* Vaporize inner margins to guarantee perfectly balanced padding */
+.wp-block-group.is-style-system-panel-header > *,
+.wp-block-group.is-style-system-panel-header .block-editor-block-list__layout > * {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}

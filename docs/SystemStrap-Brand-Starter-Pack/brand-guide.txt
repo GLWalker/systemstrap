@@ -1,0 +1,46 @@
+
+SystemStrap Brand Starter Pack
+==============================
+
+Core Brand Traits
+-----------------
+- Modern SaaS
+- Structural UI Framework
+- Minimal / Premium
+- Developer-Centric
+- Modular / Composable
+
+Geometry System
+----------------
+- Rounded architectural framing
+- Open-corner structural motif
+- Minimal negative-space balancing
+- Soft but technical geometry
+
+Suggested Typography
+--------------------
+Primary:
+- Inter
+- Geist
+- Manrope
+
+Suggested Palette
+-----------------
+Primary Ink: #111827
+Slate: #374151
+Soft Gray: #9CA3AF
+Background: #F9FAFB
+
+Usage Notes
+------------
+- Use monochrome branding whenever possible.
+- Preserve open-corner spacing.
+- Avoid gradients or glossy effects.
+- Keep logo breathing room equal to inner panel width.
+
+Recommended Asset Usage
+------------------------
+master-mark.svg        -> Primary branding
+wordmark-horizontal.svg -> Website/docs/header
+favicon.svg            -> Browser/admin/favicon
+inverse-mark.svg       -> Dark backgrounds

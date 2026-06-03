@@ -1,0 +1,123 @@
+/* 
+ * System List Variation for Latest Posts
+ * Replaces default layout while utilizing the System UI contract 
+ */
+
+/* Container */
+.wp-block-latest-posts.is-style-system-list {
+    list-style: none;
+}
+
+/* Base LIs */
+.wp-block-latest-posts.is-style-system-list > li {
+    padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30) !important;
+    
+    
+    
+    /* Media object layout inside the LI */
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: var(--wp--preset--spacing--30);
+    gap: var(--wp--preset--spacing--30);
+}
+
+/* Border Collapsing & Radii Merging */
+
+
+
+/* Content wrapper (the LI itself acts as the outer flex, inner content wraps in a column if needed) */
+.wp-block-latest-posts.is-style-system-list > li > div[itemprop="item"] {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wp--preset--spacing--10);
+    flex-grow: 1;
+}
+
+/* Featured Image (Media Object Thumbnail) */
+.wp-block-latest-posts.is-style-system-list > li .wp-block-latest-posts__featured-image {
+    flex-shrink: 0;
+    margin: 0;
+    overflow: hidden;
+    border-radius: calc(var(--wp--custom--border-radius) / 1.5);
+    border: var(--wp--custom--border-width, 1px) solid rgba(var(--wp--preset--color--border-color-rgb), .2);
+}
+
+.wp-block-latest-posts.is-style-system-list > li .wp-block-latest-posts__featured-image img {
+    display: block;
+    object-fit: cover;
+}
+
+/* Post Title */
+.wp-block-latest-posts.is-style-system-list > li .wp-block-latest-posts__post-title {
+    font-size: 1.1em;
+    font-weight: 600;
+    line-height: 1.3;
+    text-decoration: none;
+    color: inherit;
+    /* Stretch the link across the entire LI for accessibility */
+}
+
+/* Stretch pseudo element over the LI so the entire row is clickable if desired */
+.wp-block-latest-posts.is-style-system-list > li .wp-block-latest-posts__post-title::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+/* Make sure inner links sit above the pseudo element */
+.wp-block-latest-posts.is-style-system-list > li a:not(.wp-block-latest-posts__post-title) {
+    position: relative;
+    z-index: 2;
+}
+
+/* Post Meta (Author, Date) */
+.wp-block-latest-posts.is-style-system-list > li .wp-block-latest-posts__post-author,
+.wp-block-latest-posts.is-style-system-list > li .wp-block-latest-posts__post-date {
+    font-size: 0.85em;
+    color: var(--wp--preset--color--contrast);
+    opacity: 0.7;
+}
+
+/* Excerpt */
+.wp-block-latest-posts.is-style-system-list > li .wp-block-latest-posts__post-excerpt {
+    font-size: 0.9em;
+    line-height: 1.5;
+    margin-top: var(--wp--preset--spacing--10);
+    color: var(--wp--preset--color--contrast);
+    opacity: 0.85;
+}
+
+/* Read More */
+.wp-block-latest-posts.is-style-system-list > li .wp-block-latest-posts__read-more {
+    font-size: 0.85em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    margin-top: var(--wp--preset--spacing--10);
+    display: inline-block;
+}
+
+/* Hover States on LI */
+.wp-block-latest-posts.is-style-system-list:not(.is-not-action) > li:hover {
+    background: var(--system-ui-hover-bg-subtle);
+}
+
+/* Has-background overrides */
+.wp-block-latest-posts.is-style-system-list.has-background > li {
+    background: transparent;
+    border-color: var(--system-ui-border-color-on-background);
+}
+.wp-block-latest-posts.is-style-system-list.has-background > li + li {
+    border-top: 0; /* ensure it stays collapsed */
+}
+.wp-block-latest-posts.is-style-system-list.has-background:not(.is-not-action) > li:hover {
+    background: var(--system-ui-hover-bg-on-background-adaptive);
+}
+
+/* Increased Visibility Inside Parent with Background */
+.has-background .wp-block-latest-posts.is-style-system-list:not(.has-background) > li {
+    border-color: var(--system-ui-border-color-on-background);
+}

@@ -1,0 +1,275 @@
+
+/* System UI Global Tokens */
+:root {
+    /* Surfaces */
+    --system-ui-surface: rgba(var(--wp--preset--color--base-rgb), .1);
+    --system-ui-surface-subtle: rgba(var(--wp--preset--color--secondary-bg-rgb), .1);
+    --system-ui-active-bg: rgba(var(--wp--preset--color--base-rgb), .1);
+
+    /* Borders */
+    --system-ui-border-color: rgba(var(--wp--preset--color--border-color-rgb), .5);
+    --system-ui-border-color-on-background: var(--wp--preset--color--current-mix);
+    --system-ui-active-border-color: var(--wp--preset--color--current-mix);
+
+    /* Hovers */
+    --system-ui-hover-bg: rgba(var(--wp--preset--color--secondary-bg-rgb), .15);
+    --system-ui-hover-bg-subtle: rgba(var(--wp--preset--color--secondary-bg-rgb), .15);
+    --system-ui-hover-bg-on-background: rgba(var(--wp--preset--color--secondary-bg-rgb), .1);
+
+    /* Experimental Adaptive Hover */
+    --system-ui-hover-bg-on-background-adaptive: color-mix(in srgb, currentColor 5%, transparent);
+}
+
+
+
+/* ==========================================================================
+   WordPress Block Styles
+   ========================================================================== */
+
+/* 1. Global & Structural Blocks */
+.wp-site-blocks,
+.site-header,
+.site-footer,
+.site-main,
+.wp-block-template-part {
+    margin: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    width: 100%;
+}
+
+header.wp-block-template-part {
+    margin-top: 0 !important;
+}
+
+/* Safety Net for SVG Icons in Flex Containers */
+.wp-block-icon {
+    flex-shrink: 0;
+    line-height: 1;
+}
+/* If the icon lacks a specific size, prevent it from exploding */
+.wp-block-icon > svg:not([width]) {
+    width: 2rem;
+    height: auto;
+}
+
+
+
+
+
+.site-header.is-position-sticky {
+    top: calc(0px + var(--wp-admin--admin-bar--position-offset, 0));
+    position: sticky;
+    z-index: 10;
+}
+
+/* 3. Typography & Headings */
+
+
+.entry-title,
+.wp-block-post-title,
+.wp-block-query-title,
+.entry-content,
+.entry-summary,
+.wp-block-post-excerpt,
+.wp-block-post-excerpt__excerpt,
+.wp-block-post-content {
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+    box-sizing: border-box;
+    word-break: break-word;
+}
+
+
+
+.post-template-no-title .entry-header,
+.page-template-no-title .entry-header {
+    display: none !important;
+}
+
+/* 4. Layout & Images */
+
+@media (min-width: 768px) {
+    .media-object .wp-block-post-featured-image {
+        margin-right: var(--wp--preset--spacing--30, 1rem) !important;
+    }
+}
+
+/* 5. Specific Block Fixes */
+/* Safe, predictable scoping using spacing variables */
+
+
+.wp-block-archives-list.list-group>li,
+.wp-block-categories-list.list-group>li {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+}
+
+
+/* 7. Badges & Pills */
+.badge .is-layout-flow {
+    margin-block-start: 0;
+}
+
+.is-style-pill a {
+    --badge-padding-x: var(--wp--preset--font-size--x-small, .75rem);
+    --badge-padding-y: calc(var(--wp--preset--font-size--x-small, .75rem) * .5);
+    --badge-font-size: var(--wp--preset--font-size--x-small, .75rem);
+    --badge-font-weight: 500;
+    --badge-border-radius: var(--wp--custom--border-radius, .375rem);
+
+    display: inline-block;
+    padding: var(--badge-padding-y) var(--badge-padding-x);
+    font-size: var(--badge-font-size);
+    font-weight: var(--badge-font-weight);
+    line-height: 1;
+    	text-decoration: underline;
+}
+
+
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.is-style-pill a {
+    background-color: var(--wp--preset--color--secondary, #ACAEB0);
+    color: var(--wp--preset--color--base, #ffffff);
+    margin-bottom: calc(var(--wp--preset--font-size--medium, 1rem) * .5);
+}
+
+.is-style-pill a:hover {
+    background-color: var(--wp--preset--color--primary, #2D4054);
+    color: var(--wp--preset--color--base, #ffffff);
+}
+
+.wp-block-paragraph.badge {
+    margin: .2rem !important;
+}
+
+/* ==========================================================================
+   8. Button Block Variations & Enhancements
+   ========================================================================== */
+
+.wp-block-button__link,
+.wp-block-search__button {
+    transition: all 0.2s ease-in-out;
+}
+
+/* Fallback default primary hover if no color class is selected (Solid Buttons) */
+.wp-block-button:not(:is(.is-style-system-btn-icon, .is-style-button-link, [class*="outline"])) .wp-block-button__link:not([class*="has-background"]):not(.has-text-color):not(:disabled),
+.wp-block-search__button:not([class*="has-background"]):not(.has-text-color):not(:disabled) {
+    box-shadow: inset 0 .0625rem 0 rgba(255, 255, 255, 0.15), 0 .0625rem .0625rem rgba(0, 0, 0, 0.075);
+}
+.wp-block-button:not(:is(.is-style-system-btn-icon, .is-style-button-link, [class*="outline"])) .wp-block-button__link:not([class*="has-background"]):not(.has-text-color):not(:disabled):hover,
+.wp-block-search__button:not([class*="has-background"]):not(.has-text-color):not(:disabled):hover {
+    background-color: var(--wp--preset--color--primary-50) !important;
+    box-shadow: inset 0 .0625rem 0 rgba(255, 255, 255, 0.15), 0 .0625rem .0625rem rgba(0, 0, 0, 0.075);
+    transform: translateY(-1px);
+}
+.wp-block-button:not(:is(.is-style-system-btn-icon, .is-style-button-link, [class*="outline"])) .wp-block-button__link:not([class*="has-background"]):not(.has-text-color):not(:disabled):focus,
+.wp-block-search__button:not([class*="has-background"]):not(.has-text-color):not(:disabled):focus {
+    box-shadow: 0 0 0 .25rem rgba(var(--wp--preset--color--primary-rgb), 0.5);
+}
+.wp-block-button:not(:is(.is-style-system-btn-icon, .is-style-button-link, [class*="outline"])) .wp-block-button__link:not([class*="has-background"]):not(.has-text-color):not(:disabled):active,
+.wp-block-search__button:not([class*="has-background"]):not(.has-text-color):not(:disabled):active {
+    background-color: var(--wp--preset--color--primary-20) !important;
+    box-shadow: inset 0 .1875rem .3125rem rgba(0, 0, 0, 0.125);
+    transform: translateY(0);
+}
+
+/* Fallback default hover for Outline Buttons */
+.wp-block-button:is([class*="outline"]) .wp-block-button__link:not([class*="has-background"]):not(.has-text-color):not(:disabled):hover {
+    background-color: var(--wp--preset--color--primary) !important;
+    color: var(--wp--preset--color--primary-text) !important;
+    box-shadow: inset 0 .0625rem 0 rgba(255, 255, 255, 0.15), 0 .0625rem .0625rem rgba(0, 0, 0, 0.075);
+    transform: translateY(-1px);
+}
+.wp-block-button:is([class*="outline"]) .wp-block-button__link:not([class*="has-background"]):not(.has-text-color):not(:disabled):focus {
+    box-shadow: 0 0 0 .25rem rgba(var(--wp--preset--color--primary-rgb), 0.5);
+}
+.wp-block-button:is([class*="outline"]) .wp-block-button__link:not([class*="has-background"]):not(.has-text-color):not(:disabled):active {
+    background-color: var(--wp--preset--color--primary-20) !important;
+    color: var(--wp--preset--color--primary-text) !important;
+    box-shadow: inset 0 .1875rem .3125rem rgba(0, 0, 0, 0.125);
+    transform: translateY(0);
+}
+
+/* Override WP core bloated button padding with our sleek spacing scale across all button variations */
+.wp-block-button__link,
+.wp-element-button {
+    padding-top: calc(var(--wp--preset--font-size--small) * .5);
+    padding-bottom: calc(var(--wp--preset--font-size--small) * .5);
+    padding-left: var(--wp--preset--font-size--medium);
+    padding-right: var(--wp--preset--font-size--medium);
+    border-width: var(--wp--custom--border-width, 1px);
+}
+
+/* Link Button */
+.wp-block-button.is-style-button-link .wp-block-button__link {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    color: inherit;
+    text-decoration: none;
+}
+.wp-block-button.is-style-button-link .wp-block-button__link:hover {
+    text-decoration: underline;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Base outline logic for custom outline variations */
+.wp-block-button.is-style-button-pill-outline .wp-block-button__link,
+.wp-block-button.is-style-button-square-outline .wp-block-button__link {
+    background-color: transparent !important;
+    border: var(--wp--custom--border-width, 1px) solid currentColor !important;
+    color: inherit;
+}
+
+/* Pill & Square Shape Overrides */
+.wp-block-button.is-style-button-pill .wp-block-button__link,
+.wp-block-button.is-style-button-pill-outline .wp-block-button__link {
+    border-radius: 50rem !important;
+}
+
+.wp-block-button.is-style-button-square .wp-block-button__link,
+.wp-block-button.is-style-button-square-outline .wp-block-button__link {
+    border-radius: 0 !important;
+}
+
+/* ==========================================================================
+   Shared System List Component
+   ========================================================================== */
+:where(.is-style-system-list) {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0 !important;
+    border-radius: var(--wp--custom--border-radius);
+}
+
+:where(.is-style-system-list) > li {
+    position: relative;
+    margin: 0 !important;
+    color: var(--wp--preset--color--inherit);
+    border: var(--wp--custom--border-width, 1px) solid rgba(var(--wp--preset--color--border-color-rgb), .5);
+    background: rgba(var(--wp--preset--color--base-rgb), .2);
+    box-shadow: var(--wp--custom--shadow);
+    border-radius: var(--wp--custom--border-radius);
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+
+:where(.is-style-system-list) > li + li {
+    border-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+:where(.is-style-system-list) > li:has(+ li) {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}

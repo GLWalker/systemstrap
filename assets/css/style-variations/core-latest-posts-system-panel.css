@@ -1,0 +1,144 @@
+/*
+ * System Panel Variation for Latest Posts
+ * Uses gap spacing, independent cards, and respects native grid/alignment.
+ */
+
+/* Container */
+.wp-block-latest-posts.is-style-system-panel {
+    padding: 0 !important;
+    list-style: none;
+}
+.wp-block-latest-posts.is-style-system-panel:not(.is-grid) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wp--style--block-gap, var(--wp--preset--spacing--30));
+}
+
+/* Base LIs */
+.wp-block-latest-posts.is-style-system-panel > li {
+    position: relative;
+    color: var(--wp--preset--color--inherit);
+
+    border: var(--wp--custom--border-width, 1px) solid var(--system-ui-border-color);
+    background: var(--system-ui-surface);
+    box-shadow: var(--wp--custom--shadow);
+    border-radius: var(--wp--custom--border-radius);
+
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+
+    /* Allow native flow to handle floats (image alignments) */
+    display: flow-root;
+    padding: var(--wp--preset--spacing--30);
+}
+
+/* Enforce zero margin ONLY in column mode (where flex gap handles spacing) */
+.wp-block-latest-posts.is-style-system-panel:not(.is-grid) > li {
+    margin: 0 !important;
+}
+
+/* Content wrapper (Restore block display so floats work natively) */
+.wp-block-latest-posts.is-style-system-panel > li > div[itemprop="item"] {
+    display: block;
+}
+
+/* Featured Image */
+.wp-block-latest-posts.is-style-system-panel > li .wp-block-latest-posts__featured-image {
+    margin-bottom: var(--wp--preset--spacing--20);
+    overflow: hidden;
+    border-radius: calc(var(--wp--custom--border-radius) / 1.5);
+    border: var(--wp--custom--border-width, 1px) solid rgba(var(--wp--preset--color--border-color-rgb), .2);
+}
+
+/* Native Image Alignment Margins */
+.wp-block-latest-posts.is-style-system-panel > li .wp-block-latest-posts__featured-image.alignleft {
+    margin-right: var(--wp--preset--spacing--30);
+    margin-bottom: var(--wp--preset--spacing--20);
+}
+.wp-block-latest-posts.is-style-system-panel > li .wp-block-latest-posts__featured-image.alignright {
+    margin-left: var(--wp--preset--spacing--30);
+    margin-bottom: var(--wp--preset--spacing--20);
+}
+.wp-block-latest-posts.is-style-system-panel > li .wp-block-latest-posts__featured-image.aligncenter {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.wp-block-latest-posts.is-style-system-panel > li .wp-block-latest-posts__featured-image img {
+    display: block;
+    object-fit: cover;
+    width: 100%;
+}
+
+/* Post Title */
+.wp-block-latest-posts.is-style-system-panel > li .wp-block-latest-posts__post-title {
+    font-size: 1.1em;
+    font-weight: 600;
+    line-height: 1.3;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    margin-bottom: var(--wp--preset--spacing--10);
+}
+
+/* Stretch pseudo element over the LI so the entire row is clickable if desired */
+.wp-block-latest-posts.is-style-system-panel > li .wp-block-latest-posts__post-title::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+/* Make sure inner links sit above the pseudo element */
+.wp-block-latest-posts.is-style-system-panel > li a:not(.wp-block-latest-posts__post-title) {
+    position: relative;
+    z-index: 2;
+}
+
+/* Post Meta (Author, Date) */
+.wp-block-latest-posts.is-style-system-panel > li .wp-block-latest-posts__post-author,
+.wp-block-latest-posts.is-style-system-panel > li .wp-block-latest-posts__post-date {
+    font-size: 0.85em;
+    color: var(--wp--preset--color--contrast);
+    opacity: 0.7;
+    display: block;
+    margin-bottom: 0.25em;
+}
+
+/* Excerpt */
+.wp-block-latest-posts.is-style-system-panel > li .wp-block-latest-posts__post-excerpt {
+    font-size: 0.9em;
+    line-height: 1.5;
+    margin-top: var(--wp--preset--spacing--10);
+    color: inherit;
+    opacity: 0.85;
+}
+
+/* Read More */
+.wp-block-latest-posts.is-style-system-panel > li .wp-block-latest-posts__read-more {
+    font-size: 0.85em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    margin-top: var(--wp--preset--spacing--10);
+    display: inline-block;
+}
+
+/* Hover States on LI */
+.wp-block-latest-posts.is-style-system-panel:not(.is-not-action) > li:hover {
+    background: var(--system-ui-hover-bg-subtle);
+}
+
+/* Has-background overrides */
+.wp-block-latest-posts.is-style-system-panel.has-background > li {
+    background: transparent;
+    border-color: var(--system-ui-border-color-on-background);
+}
+.wp-block-latest-posts.is-style-system-panel.has-background:not(.is-not-action) > li:hover {
+    background: var(--system-ui-hover-bg-on-background-adaptive);
+}
+
+/* Increased Visibility Inside Parent with Background */
+.has-background .wp-block-latest-posts.is-style-system-panel:not(.has-background) > li {
+    border-color: var(--system-ui-border-color-on-background);
+}

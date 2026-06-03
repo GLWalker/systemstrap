@@ -1,0 +1,8 @@
+<?php
+/** 
+ * Title: BS Offcanvas 
+ * Slug: systemstrap/bs-offcanvas 
+ * Categories: bootstrap-components 
+ */
+?>
+ <!-- wp:buttons --> <div class="wp-block-buttons"><!-- wp:button {"dataBsToggle":"offcanvas","dataBsTarget":"#spOffcanvas","ariaControls":"spOffcanvas"} --> <div class="wp-block-button" data-bs-toggle="offcanvas" data-bs-target="#spOffcanvas" aria-controls="spOffcanvas"><a class="wp-block-button__link wp-element-button">Launch Offcanvas</a></div> <!-- /wp:button --> </div> <!-- /wp:buttons --> <!-- wp:group {"className":"offcanvas offcanvas-start","layout":{"type":"default"},"tabindex":"-1","ariaLabelledby":"spOffcanvasLabel"} --> <div id="spOffcanvas" class="wp-block-group offcanvas offcanvas-start" tabindex="-1" aria-labelledby="spOffcanvasLabel"><!-- wp:group {"className":"offcanvas-header","layout":{"type":"default"}} --> <div class="wp-block-group offcanvas-header"><!-- wp:heading {"level":5,"className":"offcanvas-title"} --> <h5 class="wp-block-heading offcanvas-title" id="spOffcanvasLabel">Offcanvas</h5> <!-- /wp:heading --> <!-- wp:paragraph {"className":"close"} --> <p class="close"> &nbsp; </p> <!-- /wp:paragraph --> </div> <!-- /wp:group --> <!-- wp:group {"className":"offcanvas-body","layout":{"type":"default"}} --> <div class="wp-block-group offcanvas-body"><!-- wp:paragraph --> <p>Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.</p> <!-- /wp:paragraph --> </div> <!-- /wp:group --> </div> <!-- /wp:group -->

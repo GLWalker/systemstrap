@@ -1,0 +1,24 @@
+/* 
+ * System Panel Footer Variation
+ */
+
+.wp-block-group.is-style-system-panel-footer {
+    padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30) !important;
+    background: var(--system-ui-hover-bg-on-background);
+    border-top: var(--wp--custom--border-width, 1px) solid var(--system-ui-border-color);
+    margin: 0 !important;
+    border-radius: 0 !important; /* Auto-clipped perfectly by outer panel overflow: hidden */
+    width: 100%;
+    font-size: var(--wp--preset--font-size--small);
+}
+
+.wp-block-group.is-style-system-panel.has-background .wp-block-group.is-style-system-panel-footer {
+    border-top-color: var(--system-ui-border-color-on-background);
+}
+
+/* Vaporize inner margins to guarantee perfectly balanced padding */
+.wp-block-group.is-style-system-panel-footer > *,
+.wp-block-group.is-style-system-panel-footer .block-editor-block-list__layout > * {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}

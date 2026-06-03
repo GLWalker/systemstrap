@@ -1,0 +1,115 @@
+/* 
+ * System List Variation 
+ * Replaces Bootstrap List Group while utilizing the System UI contract 
+ */
+
+/* Container */
+
+
+/* Base Items */
+.wp-block-list.is-style-system-list > li {
+    padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
+    
+    overflow: hidden;
+    
+}
+
+/* Handle UL vs OL logic */
+ul.wp-block-list.is-style-system-list > li {
+    list-style-type: none;
+    display: block;
+}
+
+ol.wp-block-list.is-style-system-list > li {
+    list-style-type: decimal;
+    list-style-position: inside;
+    display: list-item;
+}
+
+/* Fix Gutenberg Editor wrapping issues with list-style inside */
+ol.wp-block-list.is-style-system-list > li > .rich-text,
+ol.wp-block-list.is-style-system-list > li > div {
+    display: inline;
+}
+
+/* Border Collapsing & Radii Merging (ROOT items only) */
+
+
+
+/* Recursive Nesting via Negative Margins */
+/* Break nested lists out of the parent's padding */
+.wp-block-list.is-style-system-list li > ul,
+.wp-block-list.is-style-system-list li > ol {
+    margin-top: var(--wp--preset--spacing--20);
+    margin-bottom: calc(var(--wp--preset--spacing--20) * -1);
+    margin-left: calc(var(--wp--preset--spacing--30) * -1);
+    margin-right: calc(var(--wp--preset--spacing--30) * -1);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Nested Items */
+.wp-block-list.is-style-system-list li > ul > li,
+.wp-block-list.is-style-system-list li > ol > li {
+    padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
+    border-top: var(--wp--custom--border-width, 1px) solid var(--system-ui-border-color);
+    margin: 0;
+    list-style-position: inside;
+}
+
+/* Indentation Levels */
+.wp-block-list.is-style-system-list li > ul > li,
+.wp-block-list.is-style-system-list li > ol > li {
+    padding-left: calc(var(--wp--preset--spacing--30) + 1.5rem);
+}
+.wp-block-list.is-style-system-list li > ul > li > ul > li,
+.wp-block-list.is-style-system-list li > ol > li > ol > li {
+    padding-left: calc(var(--wp--preset--spacing--30) + 3rem);
+}
+.wp-block-list.is-style-system-list li > ul > li > ul > li > ul > li,
+.wp-block-list.is-style-system-list li > ol > li > ol > li > ol > li {
+    padding-left: calc(var(--wp--preset--spacing--30) + 4.5rem);
+}
+
+/* Ensure inner lists override default ul styles */
+ul.wp-block-list.is-style-system-list li > ul > li {
+    list-style-type: none; /* Can add bullets back if preferred */
+}
+
+/* Interactive Hover State (Requires 'is-action' class) */
+.wp-block-list.is-style-system-list.is-action > li:hover {
+    background: var(--system-ui-hover-bg);
+    z-index: 1; /* Keep border overlaps clean on hover */
+}
+
+/* Inner hover for nested lists */
+.wp-block-list.is-style-system-list.is-action li > ul > li:hover,
+.wp-block-list.is-style-system-list.is-action li > ol > li:hover {
+    background: var(--system-ui-hover-bg);
+}
+
+/* Has-background overrides (Contract) */
+.wp-block-list.is-style-system-list.has-background > li {
+    background: transparent;
+    border-color: var(--system-ui-border-color-on-background);
+}
+.wp-block-list.is-style-system-list.is-action.has-background > li:hover,
+.wp-block-list.is-style-system-list.is-action.has-background li > ul > li:hover,
+.wp-block-list.is-style-system-list.is-action.has-background li > ol > li:hover {
+    background: var(--system-ui-hover-bg-on-background);
+}
+
+/* Increased Visibility Inside Parent with Background */
+.has-background > .wp-block-list.is-style-system-list:not(.has-background) > li {
+    border-color: rgba(var(--wp--preset--color--border-color-rgb), .7);
+}
+.has-background > .wp-block-list.is-style-system-list:not(.has-background) li > ul > li,
+.has-background > .wp-block-list.is-style-system-list:not(.has-background) li > ol > li {
+    border-top-color: rgba(var(--wp--preset--color--border-color-rgb), .7);
+}
+.has-background > .wp-block-list.is-style-system-list.is-action:not(.has-background) > li:hover,
+.has-background > .wp-block-list.is-style-system-list.is-action:not(.has-background) li > ul > li:hover,
+.has-background > .wp-block-list.is-style-system-list.is-action:not(.has-background) li > ol > li:hover {
+    background: var(--system-ui-hover-bg-on-background);
+}

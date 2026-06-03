@@ -1,0 +1,123 @@
+/* Container */
+.wp-block-calendar.is-style-system-panel {
+    position: relative;
+    z-index: 1; /* Establish stacking context for the background color extraction hack */
+    border: var(--wp--custom--border-width, 1px) solid var(--system-ui-border-color);
+    background: var(--system-ui-surface);
+    border-radius: var(--wp--custom--border-radius);
+    transition: border-color 0.15s ease-in-out;
+    box-shadow: var(--wp--custom--shadow);
+    overflow: hidden;
+    padding: 0 !important; /* Wall to wall coverage */
+}
+
+/* HACK: WP Core applies background colors to the inner table instead of the wrapper for calendars.
+   We use an absolutely positioned pseudo-element to stretch the table's background color across the entire panel! */
+.wp-block-calendar.is-style-system-panel .wp-calendar-table {
+    margin: 0;
+    width: 100%;
+    border-collapse: collapse;
+    border: none !important;
+    position: static !important;
+}
+
+.wp-block-calendar.is-style-system-panel .wp-calendar-table::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: inherit; /* Pulls the color WP applied to the table */
+    z-index: -1; /* Sends it to the back of the panel */
+    pointer-events: none;
+}
+
+/* Has Background Overrides for borders */
+.wp-block-calendar.is-style-system-panel.has-background,
+.wp-block-calendar.is-style-system-panel:has(.wp-calendar-table.has-background) {
+    border-color: var(--system-ui-border-color-on-background) !important;
+}
+
+.wp-block-calendar.is-style-system-panel.has-background caption,
+.wp-block-calendar.is-style-system-panel:has(.wp-calendar-table.has-background) caption {
+    border-bottom-color: var(--system-ui-border-color-on-background) !important;
+}
+
+.wp-block-calendar.is-style-system-panel.has-background nav,
+.wp-block-calendar.is-style-system-panel.has-background .wp-calendar-nav,
+.wp-block-calendar.is-style-system-panel:has(.wp-calendar-table.has-background) nav,
+.wp-block-calendar.is-style-system-panel:has(.wp-calendar-table.has-background) .wp-calendar-nav {
+    border-top-color: var(--system-ui-border-color-on-background) !important;
+}
+
+/* Caption (Month/Year) - Header */
+.wp-block-calendar.is-style-system-panel .wp-calendar-table caption {
+    caption-side: top !important;
+    text-align: center !important;
+    font-weight: 600 !important;
+    font-size: var(--wp--preset--font-size--medium, 1.1em) !important;
+    color: var(--wp--preset--color--inherit);
+    padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30) !important;
+    border-bottom: var(--wp--custom--border-width, 1px) solid rgba(var(--wp--preset--color--border-color-rgb), .2) !important;
+    /* Overlay dimming. Sits on top of the table::before pseudo-element to shade it properly */
+    background-color: rgba(var(--wp--preset--color--contrast-rgb), .05) !important;
+}
+
+/* Day Headers */
+.wp-block-calendar.is-style-system-panel th {
+    background-color: rgba(var(--wp--preset--color--contrast-rgb), .05) !important;
+    font-family: var(--wp--custom--wp--preset--font-family--heading, inherit) !important;
+    font-weight: 600 !important;
+    font-size: var(--wp--preset--font-size--small) !important;
+    color: var(--wp--preset--color--contrast) !important;
+    padding: var(--wp--preset--spacing--20) !important;
+    border: var(--wp--custom--border-width, 1px) solid rgba(var(--wp--preset--color--border-color-rgb), .2) !important;
+    text-align: center !important;
+}
+
+/* Day Cells (Squares) */
+.wp-block-calendar.is-style-system-panel td {
+    padding: var(--wp--preset--spacing--20) !important;
+    border: var(--wp--custom--border-width, 1px) solid rgba(var(--wp--preset--color--border-color-rgb), .2) !important;
+    text-align: center !important;
+    background-color: transparent !important;
+}
+
+/* Increased Visibility for Inner Grid when inside or having a background */
+.has-background .wp-block-calendar.is-style-system-panel th,
+.wp-block-calendar.is-style-system-panel.has-background th,
+.wp-block-calendar.is-style-system-panel:has(.wp-calendar-table.has-background) th,
+.has-background .wp-block-calendar.is-style-system-panel td,
+.wp-block-calendar.is-style-system-panel.has-background td,
+.wp-block-calendar.is-style-system-panel:has(.wp-calendar-table.has-background) td {
+    border-width: calc(var(--wp--custom--border-width, 1px) + 1px) !important;
+    border-color: rgba(var(--wp--preset--color--contrast-rgb), .1) !important;
+}
+
+/* Fix outer borders to not double up with the container border */
+.wp-block-calendar.is-style-system-panel th:first-child,
+.wp-block-calendar.is-style-system-panel td:first-child {
+    border-left: none !important;
+}
+.wp-block-calendar.is-style-system-panel th:last-child,
+.wp-block-calendar.is-style-system-panel td:last-child {
+    border-right: none !important;
+}
+.wp-block-calendar.is-style-system-panel tbody tr:last-child td {
+    border-bottom: none !important;
+}
+
+/* Navigation - Footer */
+.wp-block-calendar.is-style-system-panel nav,
+.wp-block-calendar.is-style-system-panel .wp-calendar-nav {
+    margin: 0 !important;
+    padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30) !important;
+    border-top: var(--wp--custom--border-width, 1px) solid rgba(var(--wp--preset--color--border-color-rgb), .2) !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    font-size: var(--wp--preset--font-size--small) !important;
+    font-weight: 500 !important;
+    /* Overlay dimming. Sits on top of the table::before pseudo-element to shade it properly */
+    background-color: rgba(var(--wp--preset--color--contrast-rgb), .05) !important;
+}

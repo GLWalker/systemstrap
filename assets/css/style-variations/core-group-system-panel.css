@@ -1,0 +1,122 @@
+/* 
+ * System Panel Container
+ * Acts like a Bootstrap Card. Contains powerful native flush logic.
+ */
+
+/* Core Panel Wrapper */
+.wp-block-group.is-style-system-panel {
+    border: var(--wp--custom--border-width, 1px) solid var(--system-ui-border-color);
+    background: var(--system-ui-surface);
+    border-radius: var(--wp--custom--border-radius);
+    box-shadow: var(--wp--custom--shadow);
+    padding: 0 !important; 
+    overflow: hidden; /* Auto-clips radii of inner flush items perfectly */
+    transition: border-color 0.15s ease-in-out;
+}
+
+.wp-block-group.is-style-system-panel.has-background {
+    border-color: var(--system-ui-border-color-on-background);
+    background-color: transparent;
+}
+
+/* ========================================================= */
+/* Global Child Normalization                                */
+/* ========================================================= */
+/* Vaporize native Gutenberg block gaps and margins on direct children */
+.wp-block-group.is-style-system-panel > * {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    max-width: none !important; /* Overrides Gutenberg constrained layout widths */
+}
+
+/* Auto-pad raw text and non-flush components to act as Card Body */
+.wp-block-group.is-style-system-panel > *:not(.is-style-system-list):not(.is-style-system-accordion):not(.is-style-system-details):not(.is-style-system-panel-header):not(.is-style-system-panel-footer):not(.wp-block-image):not(.wp-block-cover) {
+    padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
+}
+
+/* Force Image Caps to naturally span 100% without using dangerous .alignfull rules */
+.wp-block-group.is-style-system-panel > .wp-block-image,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-image {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+.wp-block-group.is-style-system-panel > .wp-block-image img,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-image img {
+    width: 100%;
+}
+
+/* ========================================================= */
+/* Flush Logic for System Lists                              */
+/* ========================================================= */
+.wp-block-group.is-style-system-panel .is-style-system-list > li,
+.wp-block-group.is-style-system-panel .is-style-system-list > a {
+    border-left: 0 !important;
+    border-right: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    border-top: 0 !important;
+}
+
+/* If the list is the last child of the panel, kill the bottom border of its last item */
+.wp-block-group.is-style-system-panel > *:last-child .is-style-system-list > li:last-child,
+.wp-block-group.is-style-system-panel > *:has(+ .block-list-appender) .is-style-system-list > li:last-child,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:last-child .is-style-system-list > li:last-child,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:has(+ .block-list-appender) .is-style-system-list > li:last-child,
+.wp-block-group.is-style-system-panel > *:last-child .is-style-system-list > a:last-child,
+.wp-block-group.is-style-system-panel > *:has(+ .block-list-appender) .is-style-system-list > a:last-child,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:last-child .is-style-system-list > a:last-child,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:has(+ .block-list-appender) .is-style-system-list > a:last-child {
+    border-bottom: 0 !important;
+}
+
+/* ========================================================= */
+/* Flush Logic for System Accordions                         */
+/* ========================================================= */
+.wp-block-group.is-style-system-panel .is-style-system-accordion .wp-block-accordion-item {
+    border-left: 0 !important;
+    border-right: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    border-top: 0 !important;
+}
+
+/* If the accordion is the last child of the panel, kill the bottom border of its last item */
+.wp-block-group.is-style-system-panel > *:last-child .is-style-system-accordion .wp-block-accordion-item:last-child,
+.wp-block-group.is-style-system-panel > *:has(+ .block-list-appender) .is-style-system-accordion .wp-block-accordion-item:last-child,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:last-child .is-style-system-accordion .wp-block-accordion-item:last-child,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:has(+ .block-list-appender) .is-style-system-accordion .wp-block-accordion-item:last-child {
+    border-bottom: 0 !important;
+}
+
+/* ========================================================= */
+/* Flush Logic for System Details                            */
+/* ========================================================= */
+.wp-block-group.is-style-system-panel .is-style-system-details {
+    border-left: 0 !important;
+    border-right: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    border-top: 0 !important;
+    margin: 0 !important;
+}
+
+/* If details is the last child of the panel, kill its bottom border */
+.wp-block-group.is-style-system-panel > *:last-child .is-style-system-details,
+.wp-block-group.is-style-system-panel > *:has(+ .block-list-appender) .is-style-system-details,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:last-child .is-style-system-details,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:has(+ .block-list-appender) .is-style-system-details {
+    border-bottom: 0 !important;
+}
+
+/* ========================================================= */
+/* Strip Double Borders at Footer Junctions                  */
+/* ========================================================= */
+/* If a Footer immediately follows any flush component, kill its top border so it natively merges */
+.wp-block-group.is-style-system-panel > *:has(> .is-style-system-list) + .is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel > *:has(> .is-style-system-accordion) + .is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel > *:has(> .is-style-system-details) + .is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:has(.is-style-system-list) + * > .is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:has(.is-style-system-accordion) + * > .is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:has(.is-style-system-details) + * > .is-style-system-panel-footer {
+    border-top: 0 !important;
+}
