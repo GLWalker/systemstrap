@@ -1,29 +1,29 @@
-# SystemStrap: The Modern FSE Foundation
+# SystemStrap: A Modern FSE Foundation
 
-Welcome to **SystemStrap**—a WordPress Block Theme engineered from the ground up for developers who are tired of monolithic stylesheets, unpredictable cascading overrides, and easily broken child themes. 
+Welcome to **SystemStrap**—a high-performance WordPress Block Theme designed for developers who want a predictable, modular, and scalable foundation for Full Site Editing (FSE).
 
-SystemStrap isn’t just a theme; it’s a meticulously designed **Structural UI Architecture** built specifically for the modern WordPress Full Site Editing (FSE) ecosystem.
+SystemStrap focuses on a strict **Structural UI Architecture** to ensure visual consistency and robust child-theme compatibility.
 
-## Why You Need to Use This for Your Next Project
+## Key Features
 
-### 1. Zero Bloat: Modular CSS Variation Routing
-We threw the 10,000-line `style.css` in the trash. SystemStrap leverages strict, block-level CSS variations (`assets/css/style-variations/`). The browser **only** loads the CSS for the specific blocks rendered on the page. It's incredibly fast, highly scoped, and natively injected right into the Gutenberg canvas via `add_editor_style()`.
+### 1. Modular CSS Variation Routing
+Instead of a monolithic `style.css`, SystemStrap leverages block-level CSS variations (`assets/css/style-variations/`). The browser only loads the CSS for the specific blocks rendered on the page, resulting in highly scoped and performant code that natively integrates with the Gutenberg canvas via `add_editor_style()`.
 
-### 2. The Unified "Structural System UI" Contract
-Say goodbye to disjointed aesthetics. We’ve established a strict global design contract (`main-styles.css`) that unifies every card, accordion, panel, and list in the theme. 
-* **Ultra-Subtle Frosted Surfaces:** A highly calibrated `rgba(.1)` base token powers all structural blocks.
-* **Calm Interaction Model:** Unified `.15` hover states across all components, eliminating jarring color jumps and guaranteeing an elegant, premium feel.
-* **Context-Aware Adaptive Logic:** Blocks natively detect when they are placed inside colored containers and seamlessly adapt their borders and hovers without developer intervention.
+### 2. Unified "Structural System UI"
+We’ve established a strict global design contract (`main-styles.css`) that unifies cards, accordions, panels, and lists:
+* **Frosted Surfaces:** A calibrated `rgba(.1)` base token powers all structural blocks.
+* **Calm Interaction Model:** Unified `.15` hover states across all components for a consistent, premium feel.
+* **Context-Aware Logic:** Blocks natively detect when they are placed inside colored containers and seamlessly adapt their borders and hovers.
 
 ### 3. Bulletproof Child Theme Architecture
-Most parent themes break the moment a child theme forgets to enqueue a stylesheet. SystemStrap is indestructible. 
-* Core system variables are locked into `main-styles.css` and forcefully enqueued by the parent. 
-* Child theme `style.css` files are dynamically detected and automatically routed into both the front-end and the Gutenberg Editor exactly where they belong.
-* **Result:** Child themes can safely override colors and typography without ever destroying the underlying Structural UI logic.
+SystemStrap is built to ensure parent-child theme stability:
+* Core system variables are locked into `main-styles.css` and explicitly enqueued by the parent. 
+* Child theme `style.css` files are dynamically detected and automatically routed into both the front-end and the Gutenberg Editor.
+* Child themes can safely override colors and typography without accidentally destroying the underlying Structural UI logic.
 
-### 4. Absolute Control Over WordPress Core Output
-Tired of WordPress injecting default palettes, duotones, and useless inline styles? SystemStrap actively intercepts and neutralizes WordPress Global Styles (`wp_enqueue_global_styles`), dynamically rewriting background/text contrast classes before they ever hit the DOM, ensuring your Site Editor CSS *always* loads dead last. 
+### 4. Controlled Global Styles
+SystemStrap actively intercepts WordPress Global Styles (`wp_enqueue_global_styles`), rewriting background/text contrast classes to ensure predictable rendering and making sure Site Editor CSS always loads last.
 
 ***
 
-**Stop fighting the Block Editor. Start building on a foundation that actually scales.**
+**SystemStrap provides a predictable, highly-optimized foundation for modern WordPress development.**
