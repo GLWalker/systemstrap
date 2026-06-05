@@ -1,13 +1,10 @@
 <?php
 /**
- 
- * Title: Content Offcanvas
- 
- * Slug: systemstrap/content-offcanvas
- 
+ * Title: Offcanvas Right Main
+ * Slug: systemstrap/offcanvas-right
+ * Inserter: no
  */
 ?>
-
 
 <!-- wp:group {"className":"offcanvas-header","layout":{"type":"default"}} -->
 <div class="wp-block-group offcanvas-header"><!-- wp:heading {"level":5,"className":"offcanvas-title"} -->

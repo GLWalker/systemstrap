@@ -11,6 +11,10 @@
     width: 100%;
 }
 
+.wp-block-group.is-style-system-panel.is-style-system-modal .wp-block-group.is-style-system-panel-header {
+    padding: var(--wp--preset--spacing--30) var(--wp--preset--spacing--50) !important;
+}
+
 .wp-block-group.is-style-system-panel.has-background .wp-block-group.is-style-system-panel-header {
     border-bottom-color: var(--system-ui-border-color-on-background);
 }

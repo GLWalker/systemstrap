@@ -1494,6 +1494,26 @@
 		},
 		{
 			"area": "uncategorized",
+			"name": "part-buddypress-activity",
+			"title": "BuddyPress Activity Part"
+		},
+		{
+			"area": "uncategorized",
+			"name": "part-buddypress-members",
+			"title": "BuddyPress Members Part"
+		},
+		{
+			"area": "uncategorized",
+			"name": "part-buddypress-groups",
+			"title": "BuddyPress Groups Part"
+		},
+		{
+			"area": "uncategorized",
+			"name": "part-buddypress-blogs",
+			"title": "BuddyPress Blogs Part"
+		},
+		{
+			"area": "uncategorized",
 			"name": "part-page",
 			"title": "Page Part"
 		},

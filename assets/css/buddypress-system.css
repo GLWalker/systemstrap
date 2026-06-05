@@ -1,0 +1,61 @@
+/* ==========================================================================
+   Phase 2: BuddyPress System (Premium Panels & UI Tokens)
+   ========================================================================== */
+
+/* 1. Heavy Panels & Boxed Divs */
+body #buddypress table.profile-fields,
+body #buddypress div.dir-search,
+body #buddypress .activity-list li,
+body #buddypress .item-list li,
+body #buddypress .profile,
+body #buddypress #item-header-cover-image {
+    background: var(--system-ui-surface);
+    border: var(--wp--custom--border-width, 1px) solid var(--system-ui-border-color);
+    border-radius: var(--wp--custom--border-radius);
+    box-shadow: var(--wp--custom--shadow);
+    padding: var(--wp--preset--spacing--30);
+}
+
+body #buddypress .activity-list li .activity-content {
+    margin-top: var(--wp--preset--spacing--20);
+}
+
+/* 2. Enhanced System Forms */
+body #buddypress input[type="text"],
+body #buddypress input[type="password"],
+body #buddypress input[type="email"],
+body #buddypress textarea,
+body #buddypress select {
+    background: var(--system-ui-surface-subtle);
+    border-color: var(--system-ui-border-color);
+}
+
+body #buddypress input[type="text"]:focus,
+body #buddypress input[type="password"]:focus,
+body #buddypress textarea:focus {
+    border-color: var(--system-ui-active-border-color);
+    box-shadow: 0 0 0 var(--wp--custom--focus-ring-width, 2px) var(--system-ui-border-color-on-background);
+}
+
+/* 3. System Interactive States (Tabs) */
+body #buddypress div.item-list-tabs ul li a:hover,
+body #buddypress.buddypress-wrap .bp-navs ul.bp-priority-object-nav-nav-items li a:hover,
+body #buddypress.buddypress-wrap .bp-navs ul.bp-priority-subnav-nav-items li a:hover,
+body #buddypress.buddypress-wrap:not(.bp-single-vert-nav) .bp-priority-nav > ul > li > a:hover {
+    background: var(--system-ui-hover-bg) !important;
+    border-radius: var(--wp--custom--border-radius) !important;
+}
+
+body #buddypress div.item-list-tabs ul li.current a,
+body #buddypress div.item-list-tabs ul li.selected a,
+body #buddypress.buddypress-wrap .bp-navs ul.bp-priority-object-nav-nav-items li.current a,
+body #buddypress.buddypress-wrap .bp-navs ul.bp-priority-object-nav-nav-items li.selected a,
+body #buddypress.buddypress-wrap .bp-navs ul.bp-priority-subnav-nav-items li.current a,
+body #buddypress.buddypress-wrap .bp-navs ul.bp-priority-subnav-nav-items li.selected a,
+body #buddypress.buddypress-wrap:not(.bp-single-vert-nav) .bp-priority-nav > ul > li.current > a,
+body #buddypress.buddypress-wrap:not(.bp-single-vert-nav) .bp-priority-nav > ul > li.selected > a {
+    background: var(--wp--preset--color--primary) !important;
+    color: var(--wp--preset--color--base) !important;
+    border-color: var(--system-ui-border-color-on-background) !important;
+    border-radius: var(--wp--custom--border-radius) !important;
+}

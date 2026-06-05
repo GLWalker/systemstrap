@@ -19,6 +19,7 @@ require_once get_template_directory() . '/inc/block-filters.php';
 require_once get_template_directory() . '/inc/block-replacements.php';
 require_once get_template_directory() . '/inc/block-styles.php';
 require_once get_template_directory() . '/inc/block-categories.php';
+require_once get_template_directory() . '/inc/dialog-renderer.php';
 
 /**
  * SystemStrap Theme Setup

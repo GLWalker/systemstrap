@@ -60,6 +60,24 @@ if ( ! function_exists( 'strap_enqueue_assets' ) ) {
 			$version
 		);
 
+		// BuddyPress Custom Styles
+		if ( function_exists( 'buddypress' ) ) {
+			wp_enqueue_style(
+				'strap-buddypress-base',
+				get_template_directory_uri() . '/assets/css/buddypress-base.css',
+				array( 'bp-nouveau' ), // Ensures it loads AFTER BuddyPress core CSS
+				$version
+			);
+
+			// Note: This can be wrapped in a customizer toggle in the future.
+			wp_enqueue_style(
+				'strap-buddypress-system',
+				get_template_directory_uri() . '/assets/css/buddypress-system.css',
+				array( 'strap-buddypress-base' ), // Loads strictly after the base reset
+				$version
+			);
+		}
+
 		// Child Theme Styles (Loaded after main-styles)
 		if ( is_child_theme() ) {
 			wp_enqueue_style(
@@ -95,6 +113,22 @@ if ( ! function_exists( 'strap_enqueue_assets' ) ) {
 			array('splide-core'),
 			$version,
 			true
+		);
+
+		// AJAX Search JS
+		wp_enqueue_script(
+			'strap-ajax-search',
+			get_template_directory_uri() . '/assets/js/ajax-search.js',
+			array(),
+			$version,
+			true
+		);
+		wp_localize_script(
+			'strap-ajax-search',
+			'systemStrapAjax',
+			array(
+				'rest_url' => esc_url_raw( rest_url( 'wp/v2/posts' ) ),
+			)
 		);
 	}
 }

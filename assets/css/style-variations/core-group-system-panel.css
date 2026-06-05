@@ -34,6 +34,11 @@
     padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
 }
 
+/* Override chunkier padding when panel is used as a modal */
+.wp-block-group.is-style-system-panel.is-style-system-modal > *:not(.is-style-system-list):not(.is-style-system-accordion):not(.is-style-system-details):not(.is-style-system-panel-header):not(.is-style-system-panel-footer):not(.wp-block-image):not(.wp-block-cover) {
+    padding: var(--wp--preset--spacing--40);
+}
+
 /* Force Image Caps to naturally span 100% without using dangerous .alignfull rules */
 .wp-block-group.is-style-system-panel > .wp-block-image,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-image {

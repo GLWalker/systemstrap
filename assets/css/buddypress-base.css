@@ -1,0 +1,103 @@
+/* ==========================================================================
+   Phase 1: BuddyPress Base (SystemStrap Native Layer)
+   ========================================================================== */
+
+/* 1. Global Typography & Spacing Resets */
+body #buddypress,
+body.buddypress-page #buddypress {
+    font-family: var(--wp--preset--font-family--base);
+    color: var(--wp--preset--color--inherit);
+}
+
+body #buddypress h1,
+body #buddypress h2,
+body #buddypress h3,
+body #buddypress h4,
+body #buddypress h5,
+body #buddypress h6 {
+    font-family: var(--wp--preset--font-family--heading);
+    color: var(--wp--preset--color--inherit);
+}
+
+/* 2. Strip Opinionated BP Backgrounds & Borders */
+body #buddypress table,
+body #buddypress table.profile-fields,
+body #buddypress div.dir-search,
+body #buddypress .activity-list li,
+body #buddypress .item-list li,
+body #buddypress .profile,
+body #buddypress #item-header-cover-image {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    margin-bottom: var(--wp--preset--spacing--30);
+}
+
+/* 3. Base Buttons (SystemStrap Style) */
+body #buddypress a.button,
+body #buddypress button,
+body #buddypress input[type="submit"],
+body #buddypress input[type="button"],
+body #buddypress input[type="reset"],
+body #buddypress ul.button-nav li a {
+    font-family: var(--wp--preset--font-family--base);
+    background: transparent;
+    color: var(--wp--preset--color--inherit);
+    border: var(--wp--custom--border-width, 1px) solid rgba(var(--wp--preset--color--border-color-rgb), 0.5);
+    border-radius: var(--wp--custom--border-radius);
+    padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
+    box-shadow: none;
+    background-image: none;
+    text-decoration: none;
+    text-transform: none;
+}
+
+body #buddypress a.button:hover,
+body #buddypress button:hover,
+body #buddypress input[type="submit"]:hover {
+    background: rgba(var(--wp--preset--color--secondary-bg-rgb), 0.1);
+}
+
+/* 4. Base Form Inputs */
+body #buddypress input[type="text"],
+body #buddypress input[type="password"],
+body #buddypress input[type="email"],
+body #buddypress textarea,
+body #buddypress select {
+    font-family: var(--wp--preset--font-family--base);
+    background: transparent;
+    border: var(--wp--custom--border-width, 1px) solid rgba(var(--wp--preset--color--border-color-rgb), 0.5);
+    border-radius: var(--wp--custom--border-radius);
+    padding: 0.5rem 1rem;
+    color: var(--wp--preset--color--inherit);
+    box-shadow: none;
+}
+
+/* 5. Nav Tabs Reset (Beating Priority-Nav & Customizer Inline Styles) */
+body #buddypress div.item-list-tabs ul li a,
+body #buddypress.buddypress-wrap .bp-navs ul.bp-priority-object-nav-nav-items li a,
+body #buddypress.buddypress-wrap .bp-navs ul.bp-priority-subnav-nav-items li a,
+body #buddypress.buddypress-wrap:not(.bp-single-vert-nav) .bp-priority-nav > ul > li > a {
+    border: none !important;
+    background: transparent !important;
+    color: var(--wp--preset--color--inherit) !important;
+    font-family: var(--wp--preset--font-family--heading) !important;
+    box-shadow: none !important;
+}
+
+body #buddypress div.item-list-tabs ul,
+body #buddypress.buddypress-wrap .bp-navs ul.bp-priority-object-nav-nav-items,
+body #buddypress.buddypress-wrap .bp-navs ul.bp-priority-subnav-nav-items {
+    border-bottom: var(--wp--custom--border-width, 1px) solid rgba(var(--wp--preset--color--border-color-rgb), 0.5) !important;
+}
+
+/* 6. Restore Badges */
+body #buddypress div.item-list-tabs ul li a span.count,
+body #buddypress.buddypress-wrap .bp-navs ul li a span.count {
+    display: inline-block !important;
+    background: var(--wp--preset--color--primary) !important;
+    color: var(--wp--preset--color--base) !important;
+    border-radius: 50px !important;
+    padding: 0.1em 0.5em !important;
+    margin-left: 0.5em !important;
+}

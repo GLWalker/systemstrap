@@ -597,3 +597,47 @@ function strap_audio_block_filter( string $block_content, array $block ): string
 		'<figure itemscope itemtype="https://schema.org/AudioObject"'
 	);
 }
+/* ==========================================================================
+   BuddyPress Semantic HTML / ARIA Filters
+   ========================================================================== */
+/**
+ * Filter: Adds aria-label and semantic roles to BuddyPress patterns.
+ */
+add_filter( 'render_block_core/group', 'strap_buddypress_semantic_block_filter', 10, 2 );
+function strap_buddypress_semantic_block_filter( string $block_content, array $block ): string {
+	$class_name = strap_get_class_name( $block );
+
+	if ( str_contains( $class_name, 'buddypress-activity-pattern' ) ) {
+		return strap_replace_block_content(
+			$block_content,
+			'class',
+			'role="feed" aria-label="Activity Feed" class'
+		);
+	}
+
+	if ( str_contains( $class_name, 'buddypress-members-pattern' ) ) {
+		return strap_replace_block_content(
+			$block_content,
+			'class',
+			'aria-label="Members Directory" class'
+		);
+	}
+
+	if ( str_contains( $class_name, 'buddypress-groups-pattern' ) ) {
+		return strap_replace_block_content(
+			$block_content,
+			'class',
+			'aria-label="Groups Directory" class'
+		);
+	}
+
+	if ( str_contains( $class_name, 'buddypress-blogs-pattern' ) ) {
+		return strap_replace_block_content(
+			$block_content,
+			'class',
+			'aria-label="Sites Directory" class'
+		);
+	}
+
+	return $block_content;
+}

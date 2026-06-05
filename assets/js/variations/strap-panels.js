@@ -114,6 +114,94 @@ wp.blocks.registerBlockVariation("core/group", {
 });
 
 wp.blocks.registerBlockVariation("core/group", {
+	name: "strap-panel-modal",
+	title: "Modal Panel Basic",
+	category: "systemstrap",
+	description: "System Panel layout optimized for modals",
+	icon: SystemPanelIcon,
+	keywords: ["SystemStrap", "group", "Modal Panel Basic", "card", "modal", "panel"],
+	attributes: {
+		className: "is-style-system-panel is-style-system-modal",
+		backgroundColor: "base",
+		layout: {
+			type: "default",
+		},
+		metadata: {
+			name: "System Modal",
+		},
+	},
+	innerBlocks: [
+		[
+			"core/group",
+			{
+				className: "is-style-system-panel-header",
+				layout: {
+					type: "default"
+				}
+			},
+			[
+				[
+					"core/heading",
+					{
+						level: 2,
+						content: "Modal Header",
+						style: {
+							typography: {
+								textAlign: "left"
+							}
+						},
+						metadata: {
+							name: "Modal Heading"
+						}
+					}
+				]
+			]
+		],
+		[
+			"core/group",
+			{
+				layout: {
+					type: "constrained"
+				}
+			},
+			[
+				[
+					"core/paragraph",
+					{
+						content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+						style: {
+							typography: {
+								textAlign: "left"
+							}
+						},
+						metadata: {
+							name: "Modal Text"
+						}
+					}
+				]
+			]
+		],
+		[
+			"core/group",
+			{
+				className: "is-style-system-panel-footer",
+				layout: {
+					type: "default"
+				}
+			},
+			[
+				[
+					"core/paragraph",
+					{
+						content: " "
+					}
+				]
+			]
+		]
+	],
+});
+
+wp.blocks.registerBlockVariation("core/group", {
 	name: "strap-panel-image",
 	title: "Panel Block Image",
 	category: "systemstrap",

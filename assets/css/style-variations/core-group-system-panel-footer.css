@@ -12,6 +12,10 @@
     font-size: var(--wp--preset--font-size--small);
 }
 
+.wp-block-group.is-style-system-panel.is-style-system-modal .wp-block-group.is-style-system-panel-footer {
+    padding: var(--wp--preset--spacing--30) var(--wp--preset--spacing--50) !important;
+}
+
 .wp-block-group.is-style-system-panel.has-background .wp-block-group.is-style-system-panel-footer {
     border-top-color: var(--system-ui-border-color-on-background);
 }

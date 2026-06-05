@@ -60,16 +60,30 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Move slides into the new list wrapper
             slides.forEach(slide => {
-                list.appendChild(slide);
+                // Safari Nuclear Fix: Wrap the complex Gutenberg block in a pure DOM element
+                const wrapper = document.createElement('div');
+                wrapper.className = 'splide__slide system-slide-wrapper';
+                wrapper.appendChild(slide);
+                list.appendChild(wrapper);
             });
             
             // Append track to the original container
             container.appendChild(track);
         }
 
-        // Ensure all slides have the required class
-        slides.forEach(slide => {
-            slide.classList.add('splide__slide');
+        // Ensure all slides have the required class (if it was a native list)
+        if (isList) {
+            slides.forEach(slide => {
+                slide.classList.add('splide__slide');
+            });
+        }
+
+        // Safari Fix: Remove lazy loading from images inside the carousel before Splide measures them
+        const images = carousel.querySelectorAll('img');
+        images.forEach(img => {
+            if (img.getAttribute('loading') === 'lazy') {
+                img.removeAttribute('loading');
+            }
         });
 
         // 3. Determine Splide Settings
@@ -78,25 +92,14 @@ document.addEventListener('DOMContentLoaded', () => {
         let splideOptions = {
             type: 'slide',
             rewind: true,
-            gap: sliderGap,
             pagination: true,
             arrows: false,
             drag: true,
+            autoWidth: isAuto ? true : false, // Safely use autoWidth for multi-item sliders
         };
 
-        if (isAuto) {
-            // "Auto" style shows 3 on desktop, 2 on tablet, 1 on mobile
-            splideOptions.perPage = 3;
-            splideOptions.breakpoints = {
-                899: {
-                    perPage: 2,
-                },
-                599: {
-                    perPage: 1,
-                }
-            };
-        } else {
-            // Standard carousel shows 1 item at a time (e.g. hero sliders)
+        if (!isAuto) {
+            // Standard carousel shows 1 item at a time
             splideOptions.perPage = 1;
         }
 

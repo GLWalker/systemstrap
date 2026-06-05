@@ -50,6 +50,7 @@
 	max-width: 100%;
 	margin-top: 0 !important;
 	margin-bottom: 0 !important;
+	min-width: 0 !important; /* Safari flex fix */
 }
 
 /* Auto item sizing for editor fallback */
@@ -64,6 +65,7 @@
 	max-width: calc((100% - (var(--wp--preset--spacing--30) * 2)) / 3);
 	margin-top: 0 !important;
 	margin-bottom: 0 !important;
+	min-width: 0 !important; /* Safari flex fix */
 }
 
 
@@ -71,16 +73,73 @@
    Splide.js Overrides & Styling
    ========================================================================== */
 
-/* Fix padding for box-shadows inside the track */
+/* Ensure the track strictly hides overflow to prevent Safari bleed */
 .splide__track {
-    padding-bottom: 1rem !important; /* Allows drop shadows on cards to not be clipped */
-    margin-bottom: -1rem;
+    overflow: hidden !important;
 }
 
-/* Style and position the default pagination dots */
-.splide__pagination {
-    bottom: var(--wp--preset--spacing--40, 1.5rem);
+/* Fix Safari Flexbox bugs where slides overflow their calculated boundaries */
+.splide__slide {
+    min-width: 0 !important; /* CRITICAL SAFARI FIX: Allows flex items to shrink below their intrinsic content size */
+    min-height: 0 !important;
+    box-sizing: border-box !important;
+    flex-shrink: 0 !important;
+    max-width: 100%;
+    transform: translateZ(0); /* Force hardware acceleration in Safari to stop rendering glitches and enforce clipping */
+    
+    /* Safely contain Gutenberg blocks by forcing a block context (Safari ignores overflow: hidden on flex items) */
+    display: block !important;
+    overflow: hidden !important;
 }
+
+/* Ensure inner Gutenberg blocks completely fill the safe slide wrapper without bleeding */
+.splide__slide.system-slide-wrapper > * {
+    width: auto !important; /* Safari autoWidth Google Fix */
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+}
+
+/* ==========================================================================
+   Responsive Slide Sizing (For Splide autoWidth: true)
+   ========================================================================== */
+/* Apply native CSS gaps to the Splide list to replace JS calculated gaps */
+.is-style-system-carousel-auto .splide__list,
+.is-style-system-carousel-multi .splide__list {
+    gap: var(--wp--preset--spacing--30, 1.5rem) !important;
+}
+
+/* Auto / Multi Carousel (3 items desktop, 2 tablet, 1 mobile) */
+.is-style-system-carousel-auto .splide__slide,
+.is-style-system-carousel-multi .splide__slide {
+    width: calc((100% - (var(--wp--preset--spacing--30, 1.5rem) * 2)) / 3) !important;
+}
+
+@media (max-width: 899px) {
+    .is-style-system-carousel-auto .splide__slide,
+    .is-style-system-carousel-multi .splide__slide {
+        width: calc((100% - var(--wp--preset--spacing--30, 1.5rem)) / 2) !important;
+    }
+}
+
+@media (max-width: 599px) {
+    .is-style-system-carousel-auto .splide__slide,
+    .is-style-system-carousel-multi .splide__slide {
+        width: 100% !important;
+    }
+}
+
+/* ==========================================================================
+   Pagination Formatting
+   ========================================================================== */
+/* Natively pad the splide container to perfectly house both dots and buttons on the same line, with a gap above them */
+.splide {
+    padding-bottom: calc(var(--carousel-button-size, 44px) + var(--carousel-nav-gap, 1rem)) !important;
+}
+.splide__pagination {
+    bottom: calc((var(--carousel-button-size, 44px) - 10px) / 2) !important; /* Vertically center the 10px dots in the button space */
+}
+
 
 .splide .splide__pagination__page {
     width: 10px;
@@ -121,7 +180,7 @@
 
 /* 1. True Default (Bottom Position) */
 .system-carousel-wrapper {
-    padding-bottom: calc(var(--carousel-button-size) + var(--carousel-nav-gap));
+    padding-bottom: 0 !important; /* Space is now handled natively by .splide */
 }
 .system-carousel-wrapper .system-carousel-nav-buttons {
     position: absolute !important;
@@ -132,6 +191,11 @@
     max-width: var(--wp--style--global--content-size, 1040px) !important; /* Match content bounds */
     justify-content: flex-end !important; /* Push buttons to the right edge of bounds */
     margin: 0 !important;
+    z-index: 10;
+    pointer-events: none; /* Let clicks pass through empty space to pagination dots */
+}
+.system-carousel-wrapper .system-carousel-nav-buttons .wp-block-button {
+    pointer-events: auto; /* Re-enable clicks on the actual buttons */
 }
 
 /* 2. Top Position */
@@ -157,7 +221,7 @@
 }
 .has-nav-center .system-carousel-nav-buttons {
     position: absolute !important;
-    top: 50% !important;
+    top: calc(50% - ((var(--carousel-button-size, 44px) + var(--carousel-nav-gap, 1rem)) / 2)) !important;
     bottom: auto !important;
     left: 50% !important;
     transform: translate(-50%, -50%) !important;
@@ -179,7 +243,7 @@
 }
 .has-nav-center-out .system-carousel-nav-buttons {
     position: absolute !important;
-    top: 50% !important;
+    top: calc(50% - ((var(--carousel-button-size, 44px) + var(--carousel-nav-gap, 1rem)) / 2)) !important;
     bottom: auto !important;
     left: 50% !important;
     transform: translate(-50%, -50%) !important;

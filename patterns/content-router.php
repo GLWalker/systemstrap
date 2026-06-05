@@ -13,7 +13,8 @@ $checked_files = []; // Cache for locate_template() calls
 // Strengthened BP detection: Broader check for user context + general BP pages
 if (function_exists('bp_current_component')) {
   // Broader check: Ensure we're in a user context, active component, or any BP page
-  if (bp_is_user() || bp_is_current_component() || buddypress()) {
+  // FIX: replaced bp_is_current_component() with bp_current_component() to prevent ArgumentCountError
+  if (bp_is_user() || bp_current_component() || function_exists('buddypress')) {
     $component = sanitize_key(bp_current_component());
     if ($component) {
       $bp_component = $component; // Sanitized component (e.g., 'profile')
@@ -41,17 +42,11 @@ if (empty($bp_template_file)) {
   }
 }
 
-// Helper to generate slug and className
-function get_part_slug_and_class($template_file)
-{
-  $slug = str_replace(['parts/part-', '.html'], '', $template_file);
-  $class_name = (strpos($slug, 'page') !== false)
-    ? 'site-main main-page'
-    : "site-main main-{$slug}";
-  return [$slug, $class_name];
-}
-
-[$slug, $class_name] = get_part_slug_and_class($bp_template_file);
+// FIX: Inline the logic instead of declaring a function to avoid 'Cannot redeclare' fatal error
+$slug = str_replace(['parts/part-', '.html'], '', $bp_template_file);
+$class_name = (strpos($slug, 'page') !== false)
+  ? 'site-main main-page'
+  : "site-main main-{$slug}";
 
 // Output the dynamic template part block
 $block_attrs = [
