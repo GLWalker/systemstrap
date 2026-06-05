@@ -74,30 +74,94 @@ body #buddypress select {
 }
 
 /* 5. Nav Tabs Reset (Beating Priority-Nav & Customizer Inline Styles) */
-body #buddypress div.item-list-tabs ul li a,
-body #buddypress.buddypress-wrap .bp-navs ul.bp-priority-object-nav-nav-items li a,
-body #buddypress.buddypress-wrap .bp-navs ul.bp-priority-subnav-nav-items li a,
-body #buddypress.buddypress-wrap:not(.bp-single-vert-nav) .bp-priority-nav > ul > li > a {
+body #buddypress div.item-list-tabs > ul > li > a,
+body #buddypress.buddypress-wrap .bp-navs > ul > li > a {
     border: none !important;
     background: transparent !important;
-    color: var(--wp--preset--color--inherit) !important;
+    color: var(--wp--preset--color--inherit, inherit) !important;
     font-family: var(--wp--preset--font-family--heading) !important;
     box-shadow: none !important;
+    border-radius: var(--wp--custom--border-radius, 8px) !important;
+    transition: all 0.2s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.45rem !important;
+    max-width: none !important;
+    white-space: nowrap !important;
+    line-height: 1.2 !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
 }
 
-body #buddypress div.item-list-tabs ul,
-body #buddypress.buddypress-wrap .bp-navs ul.bp-priority-object-nav-nav-items,
-body #buddypress.buddypress-wrap .bp-navs ul.bp-priority-subnav-nav-items {
-    border-bottom: var(--wp--custom--border-width, 1px) solid rgba(var(--wp--preset--color--border-color-rgb), 0.5) !important;
+body #buddypress div.item-list-tabs > ul,
+body #buddypress.buddypress-wrap .bp-navs > ul {
+    border-bottom: var(--wp--custom--border-width, 1px) solid rgba(var(--wp--preset--color--border-color-rgb, 200, 200, 200), 0.5) !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 0.5rem !important;
+    overflow: visible !important;
+}
+
+body #buddypress div.item-list-tabs > ul > li,
+body #buddypress.buddypress-wrap .bp-navs > ul > li {
+    min-width: 0 !important;
+    flex: 0 0 auto !important;
+    overflow: visible !important;
+}
+
+/* Ensure only the label gets ellipsis, not the badge */
+body #buddypress div.item-list-tabs > ul > li > a > span:not(.count),
+body #buddypress.buddypress-wrap .bp-navs > ul > li > a > span:not(.count) {
+    min-width: 0 !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
 }
 
 /* 6. Restore Badges */
-body #buddypress div.item-list-tabs ul li a span.count,
-body #buddypress.buddypress-wrap .bp-navs ul li a span.count {
-    display: inline-block !important;
+body #buddypress div.item-list-tabs > ul > li > a > span.count,
+body #buddypress.buddypress-wrap .bp-navs > ul > li > a > span.count {
     background: var(--wp--preset--color--primary) !important;
-    color: var(--wp--preset--color--base) !important;
-    border-radius: 50px !important;
-    padding: 0.1em 0.5em !important;
-    margin-left: 0.5em !important;
+    color: var(--wp--preset--color--base, #fff) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 0 0 auto !important;
+    min-width: 1.45em !important;
+    height: 1.45em !important;
+    padding: 0 0.45em !important;
+    border-radius: 999px !important;
+    font-size: 0.75em !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+    vertical-align: middle !important;
+    position: static !important;
+    transform: none !important;
+    margin: 0 !important;
+    margin-inline-start: 0.35rem !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+}
+
+/* Prevent BuddyPress from hiding empty badges, and inject '0' automatically */
+body #buddypress div.item-list-tabs > ul > li > a > span.count:empty,
+body #buddypress.buddypress-wrap .bp-navs > ul > li > a > span.count:empty,
+body #buddypress div.item-list-tabs > ul > li > a > span.no-count,
+body #buddypress.buddypress-wrap .bp-navs > ul > li > a > span.no-count {
+    display: inline-flex !important; 
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: auto !important; /* Let it naturally size around the injected 0 */
+    min-width: 1.45em !important;
+    height: 1.45em !important; 
+    padding: 0 0.45em !important; 
+    margin: 0 !important;
+    margin-inline-start: 0.35rem !important;
+    transition: none !important; 
+}
+
+body #buddypress div.item-list-tabs > ul > li > a > span.count:empty::after,
+body #buddypress.buddypress-wrap .bp-navs > ul > li > a > span.count:empty::after,
+body #buddypress div.item-list-tabs > ul > li > a > span.no-count::after,
+body #buddypress.buddypress-wrap .bp-navs > ul > li > a > span.no-count::after {
+    content: "0";
 }

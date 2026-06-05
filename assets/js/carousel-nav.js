@@ -12,13 +12,21 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
+    // Initialize Global Registry
+    window.systemCarousels = window.systemCarousels || {};
+
     const carousels = document.querySelectorAll('.is-style-system-carousel, .is-style-system-carousel-auto, .is-style-system-carousel-multi');
 
     carousels.forEach(carousel => {
         // Prevent double initialization
         if (carousel.classList.contains('is-initialized')) return;
 
-        // 1. Identify the container holding the actual slides
+        // 1. Dynamic ID Generation (Styleable Token)
+        if (!carousel.id) {
+            carousel.id = 'system-carousel-' + Math.random().toString(36).substr(2, 9);
+        }
+
+        // 2. Identify the container holding the actual slides
         let container = carousel;
         let innerContainer = carousel.querySelector('.wp-block-group__inner-container');
         
@@ -40,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let computedGap = getComputedStyle(carousel).gap;
         let sliderGap = (computedGap && computedGap !== 'normal' && computedGap !== '') ? computedGap : '1.5rem';
 
-        // 2. Build the Splide DOM structure
+        // 3. Build the Splide DOM structure
         carousel.classList.add('splide', 'is-initialized');
 
         const track = document.createElement('div');
@@ -86,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // 3. Determine Splide Settings
+        // 4. Determine Splide Settings
         const isAuto = carousel.classList.contains('is-style-system-carousel-auto') || carousel.classList.contains('is-style-system-carousel-multi');
         
         let splideOptions = {
@@ -103,11 +111,14 @@ document.addEventListener('DOMContentLoaded', () => {
             splideOptions.perPage = 1;
         }
 
-        // 4. Mount Splide
+        // 5. Mount Splide
         const splideInstance = new Splide(carousel, splideOptions);
         splideInstance.mount();
 
-        // 5. Bind custom Gutenberg navigation arrows if present
+        // 6. Register in Global API
+        window.systemCarousels[carousel.id] = splideInstance;
+
+        // 7. Bind custom Gutenberg navigation arrows if present
         const parentWrapper = carousel.parentElement ? carousel.parentElement.closest('.wp-block-group') : null;
         if (parentWrapper) {
             const prevBtn = parentWrapper.querySelector('.carousel-prev');

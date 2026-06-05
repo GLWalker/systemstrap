@@ -60,24 +60,6 @@ if ( ! function_exists( 'strap_enqueue_assets' ) ) {
 			$version
 		);
 
-		// BuddyPress Custom Styles
-		if ( function_exists( 'buddypress' ) ) {
-			wp_enqueue_style(
-				'strap-buddypress-base',
-				get_template_directory_uri() . '/assets/css/buddypress-base.css',
-				array( 'bp-nouveau' ), // Ensures it loads AFTER BuddyPress core CSS
-				$version
-			);
-
-			// Note: This can be wrapped in a customizer toggle in the future.
-			wp_enqueue_style(
-				'strap-buddypress-system',
-				get_template_directory_uri() . '/assets/css/buddypress-system.css',
-				array( 'strap-buddypress-base' ), // Loads strictly after the base reset
-				$version
-			);
-		}
-
 		// Child Theme Styles (Loaded after main-styles)
 		if ( is_child_theme() ) {
 			wp_enqueue_style(
@@ -133,6 +115,33 @@ if ( ! function_exists( 'strap_enqueue_assets' ) ) {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'strap_enqueue_assets', 8 );
+
+/**
+ * Enqueue BuddyPress Specific Assets
+ * Hooked at priority 99 to guarantee it loads AFTER all BuddyPress 
+ * template packs (Nouveau or Legacy) without relying on strict dependency handles.
+ */
+function strap_enqueue_buddypress_assets() {
+	if ( function_exists( 'is_buddypress' ) && is_buddypress() ) {
+		$theme_version = wp_get_theme()->get( 'Version' );
+		$version       = is_string( $theme_version ) ? $theme_version : false;
+
+		wp_enqueue_style(
+			'strap-buddypress-base',
+			get_template_directory_uri() . '/assets/css/buddypress-base.css',
+			array( 'strap-main-styles' ), 
+			$version
+		);
+
+		wp_enqueue_style(
+			'strap-buddypress-system',
+			get_template_directory_uri() . '/assets/css/buddypress-system.css',
+			array( 'strap-buddypress-base' ), 
+			$version
+		);
+	}
+}
+add_action( 'wp_enqueue_scripts', 'strap_enqueue_buddypress_assets', 99 );
 
 /**
  * Completely remove inline default styles/markup for WordPress core palettes, 
@@ -200,6 +209,11 @@ function strap_intercept_global_styles() {
 	$global_deps = array();
 	if ( ! is_admin() ) {
 		$global_deps[] = 'strap-main-styles';
+		
+		if ( function_exists( 'is_buddypress' ) && is_buddypress() ) {
+			$global_deps[] = 'strap-buddypress-system';
+		}
+
 		if ( is_child_theme() ) {
 			$global_deps[] = 'strap-child-style';
 		}
