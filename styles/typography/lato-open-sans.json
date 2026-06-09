@@ -4,8 +4,8 @@
 	"title": "Lato & Open Sans",
 	"settings": {
 		"custom": {
-			"wp--preset--font-family--body": "var:preset|font-family|open-sans",
-			"wp--preset--font-family--heading": "var:preset|font-family|lato"
+			"font-family--body": "var:preset|font-family|open-sans",
+			"font-family--heading": "var:preset|font-family|lato"
 		}
 	},
 	"styles": {

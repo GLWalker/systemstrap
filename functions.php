@@ -42,20 +42,3 @@ function strap_theme_setup() {
 	add_editor_style( $editor_styles );
 }
 add_action( 'after_setup_theme', 'strap_theme_setup' );
-
-/**
- * Disable BuddyPress Nouveau Priority Nav
- * This prevents the Javascript from hijacking tabs, measuring widths,
- * and slicing badges that don't fit perfectly.
- */
-//add_filter( 'bp_nouveau_single_item_supports_priority_nav', '__return_false' );
-
-add_filter( 'bp_nouveau_enqueue_styles', function( $styles ) {
-    unset( $styles['bp-nouveau-priority-nav'] );
-    return $styles;
-}, 20 );
-
-add_filter( 'bp_nouveau_register_scripts', function( $scripts ) {
-    unset( $scripts['bp-nouveau-priority-menu'] );
-    return $scripts;
-}, 20 );

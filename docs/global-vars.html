@@ -113,7 +113,8 @@
         --wp--custom--wp-preset-font-family-display: var(--wp--preset--font-family--lato);
         --wp--custom--wp-preset-font-family-monospace: var(--wp--preset--font-family--monospace);
         --wp--custom--wp-preset-font-family-single-title: var(--wp--preset--font-family--display);
-        --wp--custom--button-font-family: var(--wp--custom--wp--preset--font-family--heading);
+        --wp--custom--font-family--button: var(--wp--custom--font-family--heading);
+        --wp--custom--font-family--nav: var(--wp--custom--font-family--heading);
         --wp--custom--focus-ring-color: rgba(var(--wp--preset--color--primary-shadow-rgb), 0.25);
         --wp--custom--focus-ring-rgb: var(--wp--preset--color--primary-shadow-rgb);
         --wp--custom--form-valid-color: var(--wp--preset--color--success);
@@ -326,7 +327,7 @@
     h5,
     h6 {
         color: var(--heading-color);
-        font-family: var(--wp--custom--wp--preset--font-family--heading);
+        font-family: var(--wp--custom--font-family--heading);
         font-weight: var(--wp--custom--heading-font-weight);
         line-height: 1.2;
         margin-top: 0;
@@ -380,7 +381,7 @@
     :root :where(.wp-element-caption, .wp-block-audio figcaption, .wp-block-embed figcaption, .wp-block-gallery figcaption, .wp-block-image figcaption, .wp-block-table figcaption, .wp-block-video figcaption) {
         background-color: var(--wp--preset--color--secondary-bg);
         color: var(--wp--preset--color--secondary-color);
-        font-family: var(--wp--custom--button-font-family);
+        font-family: var(--wp--custom--font-family--button);
         font-size: var(--wp--preset--font-size--medium);
         font-weight: var(--wp--custom--button-font-weight);
         line-height: 1.5;

@@ -17,15 +17,14 @@ if ( ! function_exists( 'strap_enqueue_assets' ) ) {
 		$theme_version = wp_get_theme()->get( 'Version' );
 		$version       = is_string( $theme_version ) ? $theme_version : false;
 
-		// Reset Styles (Zero Slot)
+		// Reset Styles
 		if ( ! is_admin() ) {
-			wp_register_style(
+			wp_enqueue_style(
 				'strap-reset',
 				get_template_directory_uri() . '/assets/css/strap-reset.css',
 				array(),
 				$version
 			);
-			array_unshift( wp_styles()->queue, 'strap-reset' );
 		}
 
 		// Main Styles
@@ -112,39 +111,42 @@ if ( ! function_exists( 'strap_enqueue_assets' ) ) {
 				'rest_url' => esc_url_raw( rest_url( 'wp/v2/posts' ) ),
 			)
 		);
+
+		// Dropdown Boundary Detection JS
+		wp_enqueue_script(
+			'strap-dropdown-boundary',
+			get_template_directory_uri() . '/assets/js/dropdown-boundary.js',
+			array(),
+			$version,
+			true
+		);
 	}
 }
 add_action( 'wp_enqueue_scripts', 'strap_enqueue_assets', 8 );
 
 /**
- * Enqueue BuddyPress Specific Assets
- * Hooked at priority 99 to guarantee it loads AFTER all BuddyPress 
- * template packs (Nouveau or Legacy) without relying on strict dependency handles.
+ * Enqueue BuddyPress Lightweight Theme Sync
+ * Hooked at priority 99 to guarantee it loads AFTER all BuddyPress
+ * template packs (Nouveau or Legacy). This ONLY syncs typography and buttons.
  */
-function strap_enqueue_buddypress_assets() {
+function strap_enqueue_buddypress_sync() {
 	if ( function_exists( 'is_buddypress' ) && is_buddypress() ) {
 		$theme_version = wp_get_theme()->get( 'Version' );
 		$version       = is_string( $theme_version ) ? $theme_version : false;
 
 		wp_enqueue_style(
-			'strap-buddypress-base',
-			get_template_directory_uri() . '/assets/css/buddypress-base.css',
-			array( 'strap-main-styles' ), 
-			$version
-		);
-
-		wp_enqueue_style(
-			'strap-buddypress-system',
-			get_template_directory_uri() . '/assets/css/buddypress-system.css',
-			array( 'strap-buddypress-base' ), 
+			'strap-buddypress-sync',
+			get_template_directory_uri() . '/assets/css/buddypress-theme-sync.css',
+			array( 'strap-main-styles' ),
 			$version
 		);
 	}
 }
-add_action( 'wp_enqueue_scripts', 'strap_enqueue_buddypress_assets', 99 );
+add_action( 'wp_enqueue_scripts', 'strap_enqueue_buddypress_sync', 999 );
+
 
 /**
- * Completely remove inline default styles/markup for WordPress core palettes, 
+ * Completely remove inline default styles/markup for WordPress core palettes,
  * gradients, and duotones before they are parsed by global styles.
  */
 add_filter(
@@ -209,16 +211,12 @@ function strap_intercept_global_styles() {
 	$global_deps = array();
 	if ( ! is_admin() ) {
 		$global_deps[] = 'strap-main-styles';
-		
-		if ( function_exists( 'is_buddypress' ) && is_buddypress() ) {
-			$global_deps[] = 'strap-buddypress-system';
-		}
 
 		if ( is_child_theme() ) {
 			$global_deps[] = 'strap-child-style';
 		}
 	}
-	
+
 	wp_register_style( 'global-styles', false, $global_deps );
 	wp_add_inline_style( 'global-styles', $css );
 	wp_enqueue_style( 'global-styles' );

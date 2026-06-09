@@ -1,0 +1,330 @@
+/**
+ * BuddyPress Theme Sync
+ * A lightweight reset that only targets typography, buttons, and colors.
+ * This ensures BuddyPress natively inherits the SystemStrap design system 
+ * without fighting BuddyPress's structural JS or layout engines.
+ */
+
+/* 1. Global Typography */
+body #buddypress {
+    font-family: var(--wp--custom--font-family--body, var(--wp--preset--font-family--body, inherit)) !important;
+    color: var(--wp--preset--color--contrast, inherit) !important;
+    font-size: var(--wp--custom--body-font-size, 1rem) !important;
+    font-weight: var(--wp--custom--body-font-weight, 400) !important;
+    line-height: var(--wp--custom--line-height--body, 1.6) !important;
+}
+
+/* 2. Headings */
+body #buddypress h1,
+body #buddypress h2,
+body #buddypress h3,
+body #buddypress h4,
+body #buddypress h5,
+body #buddypress h6 {
+    font-family: var(--wp--custom--font-family--heading, var(--wp--preset--font-family--heading, inherit)) !important;
+    color: var(--wp--custom--heading-color, var(--wp--preset--color--contrast)) !important;
+    font-weight: var(--wp--custom--heading-font-weight, 500) !important;
+    line-height: 1.2 !important;
+    margin-bottom: var(--wp--preset--spacing--20, 1rem) !important;
+}
+
+/* 3. Links */
+body #buddypress a {
+    color: var(--wp--custom--link-color, var(--wp--preset--color--primary)) !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease !important;
+}
+
+body #buddypress a:hover,
+body #buddypress a:focus {
+    color: var(--wp--custom--link-hover-color, var(--wp--preset--color--secondary)) !important;
+}
+
+/* 4. Buttons (Comprehensive) */
+body #buddypress .button,
+body #buddypress input[type="submit"],
+body #buddypress input[type="button"],
+body #buddypress input[type="reset"],
+body #buddypress .submit input[type="submit"] {
+    font-family: var(--wp--custom--font-family--button, var(--wp--custom--font-family--heading, inherit)) !important;
+    font-size: var(--wp--preset--font-size--small, 0.875rem) !important;
+    font-weight: var(--wp--custom--button-font-weight, 400) !important;
+    line-height: 1.5 !important;
+    border-radius: var(--wp--custom--border-radius, 8px) !important;
+    padding: var(--wp--preset--spacing--10, 0.5rem) var(--wp--preset--spacing--20, 1rem) !important;
+    background-color: var(--wp--preset--color--primary) !important;
+    color: var(--wp--preset--color--base, #fff) !important;
+    border: var(--wp--custom--border-width, 1px) var(--wp--custom--border-style, solid) transparent !important;
+    box-shadow: var(--wp--custom--shadow, none) !important;
+    transition: all 0.2s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    text-align: center !important;
+}
+
+body #buddypress .button:focus,
+body #buddypress input[type="submit"]:focus,
+body #buddypress input[type="button"]:focus,
+body #buddypress input[type="reset"]:focus {
+    box-shadow: 0 0 0 var(--wp--custom--focus-ring-width, .25rem) var(--wp--custom--focus-ring-color, rgba(0,0,0,0.25)) !important;
+    outline: none !important;
+}
+
+body #buddypress .button:hover,
+body #buddypress input[type="submit"]:hover,
+body #buddypress input[type="button"]:hover,
+body #buddypress input[type="reset"]:hover {
+    background-color: var(--wp--preset--color--secondary) !important;
+    color: var(--wp--preset--color--base, #fff) !important;
+}
+
+/* Secondary/Outline buttons */
+body #buddypress .button.outline,
+body #buddypress .button.alt {
+    background-color: transparent !important;
+    color: var(--wp--preset--color--contrast, inherit) !important;
+    border-color: var(--wp--preset--color--border-color, #ccc) !important;
+}
+
+body #buddypress .button.outline:hover,
+body #buddypress .button.alt:hover {
+    background-color: var(--wp--preset--color--primary) !important;
+    color: var(--wp--preset--color--base, #fff) !important;
+    border-color: var(--wp--preset--color--primary) !important;
+}
+
+/* Disabled Buttons */
+body #buddypress .button:disabled,
+body #buddypress input[type="submit"]:disabled,
+body #buddypress input[type="button"]:disabled,
+body #buddypress .button.disabled,
+body #buddypress .button.pending {
+    background-color: var(--wp--custom--disabled-bg, #e9ecef) !important;
+    color: var(--wp--preset--color--contrast, inherit) !important;
+    border-color: transparent !important;
+    opacity: var(--wp--custom--disabled-opacity, 0.75) !important;
+    filter: var(--wp--custom--disabled-filter, grayscale(75%)) !important;
+    cursor: not-allowed !important;
+    pointer-events: none !important;
+    box-shadow: none !important;
+}
+
+/* Activity Meta Buttons (Prevent global .button from turning them into solid heavy blocks) */
+body #buddypress .activity-meta .button {
+    background-color: transparent !important;
+    color: var(--wp--preset--color--contrast, inherit) !important;
+    padding: 0.25rem 0.5rem !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+body #buddypress .activity-meta .button:hover {
+    background-color: rgba(0, 0, 0, 0.05) !important;
+    color: var(--wp--preset--color--primary) !important;
+}
+
+/* 5. Badges */
+body #buddypress .bp-navs span.count,
+body #buddypress .item-list-tabs span.count,
+body #buddypress .activity-meta span.count,
+body #buddypress .button span.count,
+body #buddypress button span.count {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-color: var(--wp--preset--color--primary) !important;
+    color: var(--wp--preset--color--base, #fff) !important;
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    padding: 0.2rem 0.5rem !important;
+    border-radius: var(--wp--custom--border-radius-pill, 50rem) !important;
+    margin-left: 0.35rem !important;
+    line-height: 1 !important;
+    min-width: 1.5em !important;
+    height: 1.5em !important; /* Force height so it stays perfectly round/pill */
+    box-sizing: border-box !important;
+}
+
+/* Badges nested inside primary-colored backgrounds (Active Tabs) */
+body #buddypress .button span.count,
+body #buddypress button span.count,
+body #buddypress div.item-list-tabs ul li.current a span.count,
+body #buddypress div.item-list-tabs ul li.selected a span.count,
+body #buddypress.buddypress-wrap .bp-navs ul li.current a span.count,
+body #buddypress.buddypress-wrap .bp-navs ul li.selected a span.count {
+    background-color: rgba(0, 0, 0, 0.25) !important;
+    color: var(--wp--preset--color--base, #fff) !important;
+}
+
+/* Badges nested inside Activity Action Buttons (Make them clean and transparent) */
+body #buddypress .activity-meta a span.count {
+    background-color: transparent !important;
+    color: inherit !important;
+    padding: 0 !important;
+    min-width: auto !important;
+    height: auto !important;
+    margin-left: 0.25rem !important;
+}
+
+/* Prevent BuddyPress from hiding empty badges, and inject '0' automatically */
+body #buddypress .bp-navs span.count:empty,
+body #buddypress .item-list-tabs span.count:empty,
+body #buddypress .activity-meta span.count:empty,
+body #buddypress .bp-navs span.no-count,
+body #buddypress .item-list-tabs span.no-count,
+body #buddypress .activity-meta span.no-count {
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: inline-flex !important;
+}
+
+body #buddypress .bp-navs span.count:empty::after,
+body #buddypress .item-list-tabs span.count:empty::after,
+body #buddypress .activity-meta span.count:empty::after,
+body #buddypress .bp-navs span.no-count::after,
+body #buddypress .item-list-tabs span.no-count::after,
+body #buddypress .activity-meta span.no-count::after {
+    content: "0";
+}
+
+/* 6. Tabs Container Reset (Strip native BuddyPress backgrounds) */
+body #buddypress div.item-list-tabs ul li,
+body #buddypress div.item-list-tabs ul li a,
+body #buddypress.buddypress-wrap .bp-navs ul li,
+body #buddypress.buddypress-wrap .bp-navs ul li a {
+    background: transparent !important;
+    border: none !important;
+}
+
+/* Style Active Tabs like Buttons */
+body #buddypress div.item-list-tabs ul li.current a,
+body #buddypress div.item-list-tabs ul li.selected a,
+body #buddypress.buddypress-wrap .bp-navs ul li.current a,
+body #buddypress.buddypress-wrap .bp-navs ul li.selected a {
+    background-color: var(--wp--preset--color--primary) !important;
+    color: var(--wp--preset--color--base, #fff) !important;
+    border-radius: var(--wp--custom--border-radius, 8px) !important;
+    border: none !important;
+}
+
+/* 7. Forms (Comprehensive) */
+body #buddypress label {
+    font-family: var(--wp--custom--font-family--heading, inherit) !important;
+    font-weight: var(--wp--custom--heading-font-weight, 500) !important;
+    color: var(--wp--preset--color--contrast, inherit) !important;
+    display: inline-block !important;
+    margin-bottom: var(--wp--preset--spacing--10, 0.5rem) !important;
+}
+
+/* Text-based Inputs */
+body #buddypress input[type="text"],
+body #buddypress input[type="email"],
+body #buddypress input[type="password"],
+body #buddypress input[type="url"],
+body #buddypress input[type="tel"],
+body #buddypress input[type="number"],
+body #buddypress input[type="search"],
+body #buddypress input[type="date"],
+body #buddypress input[type="time"],
+body #buddypress textarea,
+body #buddypress select {
+    font-family: var(--wp--custom--font-family--body, inherit) !important;
+    font-size: var(--wp--custom--body-font-size, 1rem) !important;
+    line-height: var(--wp--custom--line-height--body, 1.6) !important;
+    border-radius: var(--wp--custom--border-radius, 8px) !important;
+    border: var(--wp--custom--border-width, 1px) var(--wp--custom--border-style, solid) var(--wp--preset--color--border-color, #ccc) !important;
+    padding: var(--wp--preset--spacing--10, 0.5rem) var(--wp--preset--spacing--20, 1rem) !important;
+    color: var(--wp--preset--color--contrast, inherit) !important;
+    background-color: var(--wp--preset--color--base, #fff) !important;
+    box-shadow: var(--wp--custom--shadow, none) !important;
+    transition: all 0.2s ease !important;
+    box-sizing: border-box !important;
+}
+
+/* 100% Width only for standard forms */
+body #buddypress .standard-form input[type="text"],
+body #buddypress .standard-form input[type="email"],
+body #buddypress .standard-form input[type="password"],
+body #buddypress .standard-form input[type="url"],
+body #buddypress .standard-form input[type="tel"],
+body #buddypress .standard-form input[type="number"],
+body #buddypress .standard-form textarea,
+body #buddypress .standard-form select {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* Search inputs keep native auto width */
+body #buddypress input[type="search"] {
+    width: auto !important;
+}
+
+/* Select specific tweaks */
+body #buddypress select {
+    appearance: auto !important;
+    padding-right: var(--wp--preset--spacing--30, 1.5rem) !important;
+    cursor: pointer !important;
+}
+
+body #buddypress textarea {
+    min-height: 120px !important;
+    resize: vertical !important;
+}
+
+/* Input Focus States */
+body #buddypress input[type="text"]:focus,
+body #buddypress input[type="email"]:focus,
+body #buddypress input[type="password"]:focus,
+body #buddypress input[type="url"]:focus,
+body #buddypress input[type="tel"]:focus,
+body #buddypress input[type="number"]:focus,
+body #buddypress input[type="search"]:focus,
+body #buddypress input[type="date"]:focus,
+body #buddypress input[type="time"]:focus,
+body #buddypress textarea:focus,
+body #buddypress select:focus {
+    border-color: var(--wp--preset--color--primary) !important;
+    box-shadow: 0 0 0 var(--wp--custom--focus-ring-width, .25rem) var(--wp--custom--focus-ring-color, rgba(0,0,0,0.25)) !important;
+    outline: none !important;
+}
+
+/* Input Disabled/Readonly */
+body #buddypress input[type="text"]:disabled,
+body #buddypress input[type="text"][readonly],
+body #buddypress input[type="email"]:disabled,
+body #buddypress input[type="password"]:disabled,
+body #buddypress textarea:disabled,
+body #buddypress select:disabled {
+    background-color: var(--wp--custom--disabled-bg, #e9ecef) !important;
+    opacity: var(--wp--custom--disabled-opacity, 0.75) !important;
+    cursor: not-allowed !important;
+}
+
+/* 8. Nouveau Search Form Fixes */
+body #buddypress .dir-search form,
+body #buddypress .bp-dir-search-form {
+    display: flex !important;
+    align-items: stretch !important;
+}
+
+body #buddypress .dir-search input[type="search"],
+body #buddypress .dir-search input[type="text"],
+body #buddypress .bp-dir-search-form input[type="search"],
+body #buddypress .bp-dir-search-form input[type="text"] {
+    margin-bottom: 0 !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+body #buddypress .dir-search button[type="submit"],
+body #buddypress .dir-search input[type="submit"],
+body #buddypress .bp-dir-search-form button[type="submit"],
+body #buddypress .bp-dir-search-form input[type="submit"] {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    margin: 0 !important;
+    height: auto !important;
+}

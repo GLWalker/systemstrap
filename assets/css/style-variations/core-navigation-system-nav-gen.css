@@ -1,0 +1,172 @@
+/*
+ * System Nav Gen Variation
+ * GeneratePress-style structural navigation.
+ * Plain, adaptive, works horizontally or vertically.
+ */
+
+/* Root */
+.wp-block-navigation.is-style-system-nav-gen {
+	width: 100%;
+	color: inherit;
+}
+
+/* Top-level container */
+.wp-block-navigation.is-style-system-nav-gen > .wp-block-navigation__container,
+.wp-block-navigation.is-style-system-nav-gen .wp-block-navigation__responsive-container-content > .wp-block-navigation__container {
+	gap: 0 !important;
+	align-items: stretch !important;
+}
+
+/* Horizontal */
+.wp-block-navigation.is-style-system-nav-gen:not(.is-vertical) > .wp-block-navigation__container,
+.wp-block-navigation.is-style-system-nav-gen:not(.is-vertical) .wp-block-navigation__responsive-container-content > .wp-block-navigation__container {
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+/* Vertical */
+.wp-block-navigation.is-style-system-nav-gen.is-vertical > .wp-block-navigation__container,
+.wp-block-navigation.is-style-system-nav-gen.is-vertical .wp-block-navigation__responsive-container-content > .wp-block-navigation__container {
+	flex-direction: column;
+	width: 100%;
+}
+
+/* Top-level items */
+.wp-block-navigation.is-style-system-nav-gen > .wp-block-navigation__container > .wp-block-navigation-item,
+.wp-block-navigation.is-style-system-nav-gen .wp-block-navigation__responsive-container-content > .wp-block-navigation__container > .wp-block-navigation-item {
+	position: relative;
+	display: flex !important;
+	align-items: stretch !important;
+	gap: 0 !important;
+	border-radius: 0;
+	color: inherit;
+}
+
+/* Vertical items stretch full width */
+.wp-block-navigation.is-style-system-nav-gen.is-vertical > .wp-block-navigation__container > .wp-block-navigation-item,
+.wp-block-navigation.is-style-system-nav-gen.is-vertical .wp-block-navigation__responsive-container-content > .wp-block-navigation__container > .wp-block-navigation-item {
+	width: 100% !important;
+}
+
+/* Top-level links */
+.wp-block-navigation.is-style-system-nav-gen > .wp-block-navigation__container > .wp-block-navigation-item > .wp-block-navigation-item__content,
+.wp-block-navigation.is-style-system-nav-gen .wp-block-navigation__responsive-container-content > .wp-block-navigation__container > .wp-block-navigation-item > .wp-block-navigation-item__content {
+	display: flex !important;
+	align-items: center !important;
+	justify-content: flex-start !important;
+	flex: 1 1 auto !important;
+	min-width: 0 !important;
+
+	padding: var(--wp--preset--spacing--30, 1rem) var(--wp--preset--spacing--40, 1.5rem);
+
+	color: inherit;
+	background: transparent;
+	text-decoration: none;
+	border: 0;
+	border-radius: 0;
+	box-shadow: none;
+}
+
+/* Top-level submenu toggle */
+.wp-block-navigation.is-style-system-nav-gen > .wp-block-navigation__container > .wp-block-navigation-item > .wp-block-navigation-submenu__toggle,
+.wp-block-navigation.is-style-system-nav-gen .wp-block-navigation__responsive-container-content > .wp-block-navigation__container > .wp-block-navigation-item > .wp-block-navigation-submenu__toggle {
+	display: inline-flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	flex: 0 0 auto !important;
+	position: static !important; /* Force into flex flow, overriding WP absolute positioning */
+	opacity: 1 !important;       /* Prevent WP from hiding the button */
+	visibility: visible !important;
+
+	padding: var(--wp--preset--spacing--30, 1rem) var(--wp--preset--spacing--30, 1rem);
+
+	color: inherit;
+	background: transparent;
+	border: 0;
+	border-radius: 0;
+	box-shadow: none;
+	cursor: pointer !important;
+	overflow: visible !important;
+}
+
+/* Submenu icon (The SVG inside the toggle button) */
+.wp-block-navigation.is-style-system-nav-gen .wp-block-navigation-submenu__toggle svg {
+	display: block !important;
+	visibility: visible !important;
+	opacity: 1 !important;
+
+	width: 1.2rem !important;
+	height: 1.2rem !important;
+
+	fill: none !important;
+	stroke: currentColor !important;
+	stroke-width: 1.5 !important;
+}
+
+/* Hover/current state: top-level only */
+.wp-block-navigation.is-style-system-nav-gen > .wp-block-navigation__container > .wp-block-navigation-item:hover,
+.wp-block-navigation.is-style-system-nav-gen > .wp-block-navigation__container > .wp-block-navigation-item.current-menu-item,
+.wp-block-navigation.is-style-system-nav-gen > .wp-block-navigation__container > .wp-block-navigation-item.current-menu-ancestor,
+.wp-block-navigation.is-style-system-nav-gen > .wp-block-navigation__container > .wp-block-navigation-item:has(> a[aria-current="page"]),
+.wp-block-navigation.is-style-system-nav-gen .wp-block-navigation__responsive-container-content > .wp-block-navigation__container > .wp-block-navigation-item:hover,
+.wp-block-navigation.is-style-system-nav-gen .wp-block-navigation__responsive-container-content > .wp-block-navigation__container > .wp-block-navigation-item.current-menu-item,
+.wp-block-navigation.is-style-system-nav-gen .wp-block-navigation__responsive-container-content > .wp-block-navigation__container > .wp-block-navigation-item.current-menu-ancestor,
+.wp-block-navigation.is-style-system-nav-gen .wp-block-navigation__responsive-container-content > .wp-block-navigation__container > .wp-block-navigation-item:has(> a[aria-current="page"]) {
+	background-color: color-mix(in srgb, currentColor 8%, transparent) !important;
+}
+
+/* Dropdown panels */
+.wp-block-navigation.is-style-system-nav-gen .wp-block-navigation__submenu-container {
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: stretch !important;
+
+	width: 200px !important;
+	min-width: 200px !important;
+	max-width: 200px !important;
+
+	padding: 0;
+	gap: 0 !important;
+
+	color: inherit;
+	border: 1px solid var(--system-ui-border-color, rgba(0,0,0,.15));
+	border-radius: 0;
+	box-shadow: var(--wp--custom--shadow, 0 8px 24px rgba(0,0,0,.18));
+}
+
+/* Submenu items */
+.wp-block-navigation.is-style-system-nav-gen .wp-block-navigation__submenu-container .wp-block-navigation-item {
+	width: 100% !important;
+	color: inherit;
+}
+
+.wp-block-navigation.is-style-system-nav-gen .wp-block-navigation__submenu-icon {
+    width: unset !important;
+    margin-left: calc(var(--wp--preset--spacing--30, 1rem) * -1) !important;
+}
+
+.wp-block-navigation.is-style-system-nav-gen .wp-block-navigation__submenu-container .wp-block-navigation-item__content {
+	display: block !important;
+	width: 100% !important;
+	box-sizing: border-box !important;
+
+	padding: var(--wp--preset--spacing--20, .5rem) var(--wp--preset--spacing--40, 1.5rem);
+	font-size: var(--wp--preset--font-size--small, .875rem);
+
+	color: inherit;
+	background: transparent;
+	text-decoration: none;
+	border-radius: 0;
+}
+
+/* Mobile/offcanvas */
+.wp-block-navigation.is-style-system-nav-gen .wp-block-navigation__responsive-dialog {
+	background-color: var(--system-ui-surface, #fff);
+	border-radius: 0;
+	box-shadow: var(--wp--custom--shadow);
+}
+
+.wp-block-navigation.is-style-system-nav-gen .wp-block-navigation__responsive-container.is-menu-open {
+	background-color: rgba(0, 0, 0, 0.4);
+	backdrop-filter: blur(4px);
+}

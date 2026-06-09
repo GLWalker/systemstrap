@@ -4,8 +4,8 @@
 	"title": "Roboto & Nunito",
 	"settings": {
 		"custom": {
-			"wp--preset--font-family--body": "var:preset|font-family|roboto",
-			"wp--preset--font-family--heading": "var:preset|font-family|nunito-sans"
+			"font-family--body": "var:preset|font-family|roboto",
+			"font-family--heading": "var:preset|font-family|nunito-sans"
 		}
 	},
 	"styles": {

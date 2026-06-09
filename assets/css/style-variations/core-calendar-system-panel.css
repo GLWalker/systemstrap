@@ -67,7 +67,7 @@
 /* Day Headers */
 .wp-block-calendar.is-style-system-panel th {
     background-color: rgba(var(--wp--preset--color--contrast-rgb), .05) !important;
-    font-family: var(--wp--custom--wp--preset--font-family--heading, inherit) !important;
+    font-family: var(--wp--custom--font-family--heading, inherit) !important;
     font-weight: 600 !important;
     font-size: var(--wp--preset--font-size--small) !important;
     color: var(--wp--preset--color--contrast) !important;
