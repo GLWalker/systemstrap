@@ -7,11 +7,11 @@
 
 /* 1. Global Typography */
 body #buddypress {
-    font-family: var(--wp--custom--font-family--body, var(--wp--preset--font-family--body, inherit)) !important;
+    font-family: var(--wp--custom--font-family-body, var(--wp--preset--font-family--body, inherit)) !important;
     color: var(--wp--preset--color--contrast, inherit) !important;
     font-size: var(--wp--custom--body-font-size, 1rem) !important;
-    font-weight: var(--wp--custom--body-font-weight, 400) !important;
-    line-height: var(--wp--custom--line-height--body, 1.6) !important;
+    font-weight: var(--wp--custom--font-weight-body) !important;
+    line-height: var(--wp--custom--line-height-body, 1.6) !important;
 }
 
 /* 2. Headings */
@@ -21,9 +21,9 @@ body #buddypress h3,
 body #buddypress h4,
 body #buddypress h5,
 body #buddypress h6 {
-    font-family: var(--wp--custom--font-family--heading, var(--wp--preset--font-family--heading, inherit)) !important;
+    font-family: var(--wp--custom--font-family-heading, var(--wp--preset--font-family--heading, inherit)) !important;
     color: var(--wp--custom--heading-color, var(--wp--preset--color--contrast)) !important;
-    font-weight: var(--wp--custom--heading-font-weight, 500) !important;
+    font-weight: var(--wp--custom--font-weight-heading) !important;
     line-height: 1.2 !important;
     margin-bottom: var(--wp--preset--spacing--20, 1rem) !important;
 }
@@ -46,17 +46,17 @@ body #buddypress input[type="submit"],
 body #buddypress input[type="button"],
 body #buddypress input[type="reset"],
 body #buddypress .submit input[type="submit"] {
-    font-family: var(--wp--custom--font-family--button, var(--wp--custom--font-family--heading, inherit)) !important;
+    font-family: var(--wp--custom--font-family-button, var(--wp--custom--font-family-heading, inherit)) !important;
     font-size: var(--wp--preset--font-size--small, 0.875rem) !important;
-    font-weight: var(--wp--custom--button-font-weight, 400) !important;
+    font-weight: var(--wp--custom--font-weight-button) !important;
     line-height: 1.5 !important;
-    border-radius: var(--wp--custom--border-radius, 8px) !important;
+    border-radius: var(--wp--custom--btn-border-radius) !important;
     padding: var(--wp--preset--spacing--10, 0.5rem) var(--wp--preset--spacing--20, 1rem) !important;
     background-color: var(--wp--preset--color--primary) !important;
     color: var(--wp--preset--color--base, #fff) !important;
     border: var(--wp--custom--border-width, 1px) var(--wp--custom--border-style, solid) transparent !important;
     box-shadow: var(--wp--custom--shadow, none) !important;
-    transition: all 0.2s ease !important;
+    transition: var(--wp--custom--btn-transition) !important;
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -138,7 +138,7 @@ body #buddypress button span.count {
     background-color: var(--wp--preset--color--primary) !important;
     color: var(--wp--preset--color--base, #fff) !important;
     font-size: 0.75rem !important;
-    font-weight: 700 !important;
+    font-weight: var(--wp--custom--font-weight-button) !important;
     padding: 0.2rem 0.5rem !important;
     border-radius: var(--wp--custom--border-radius-pill, 50rem) !important;
     margin-left: 0.35rem !important;
@@ -206,14 +206,14 @@ body #buddypress.buddypress-wrap .bp-navs ul li.current a,
 body #buddypress.buddypress-wrap .bp-navs ul li.selected a {
     background-color: var(--wp--preset--color--primary) !important;
     color: var(--wp--preset--color--base, #fff) !important;
-    border-radius: var(--wp--custom--border-radius, 8px) !important;
+    border-radius: var(--wp--custom--btn-border-radius) !important;
     border: none !important;
 }
 
 /* 7. Forms (Comprehensive) */
 body #buddypress label {
-    font-family: var(--wp--custom--font-family--heading, inherit) !important;
-    font-weight: var(--wp--custom--heading-font-weight, 500) !important;
+    font-family: var(--wp--custom--font-family-heading, inherit) !important;
+    font-weight: var(--wp--custom--font-weight-heading) !important;
     color: var(--wp--preset--color--contrast, inherit) !important;
     display: inline-block !important;
     margin-bottom: var(--wp--preset--spacing--10, 0.5rem) !important;
@@ -231,16 +231,16 @@ body #buddypress input[type="date"],
 body #buddypress input[type="time"],
 body #buddypress textarea,
 body #buddypress select {
-    font-family: var(--wp--custom--font-family--body, inherit) !important;
+    font-family: var(--wp--custom--font-family-body, inherit) !important;
     font-size: var(--wp--custom--body-font-size, 1rem) !important;
-    line-height: var(--wp--custom--line-height--body, 1.6) !important;
-    border-radius: var(--wp--custom--border-radius, 8px) !important;
+    line-height: var(--wp--custom--line-height-body, 1.6) !important;
+    border-radius: var(--wp--custom--form-border-radius) !important;
     border: var(--wp--custom--border-width, 1px) var(--wp--custom--border-style, solid) var(--wp--preset--color--border-color, #ccc) !important;
     padding: var(--wp--preset--spacing--10, 0.5rem) var(--wp--preset--spacing--20, 1rem) !important;
     color: var(--wp--preset--color--contrast, inherit) !important;
     background-color: var(--wp--preset--color--base, #fff) !important;
     box-shadow: var(--wp--custom--shadow, none) !important;
-    transition: all 0.2s ease !important;
+    transition: var(--wp--custom--form-transition) !important;
     box-sizing: border-box !important;
 }
 

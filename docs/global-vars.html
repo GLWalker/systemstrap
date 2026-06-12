@@ -113,8 +113,8 @@
         --wp--custom--wp-preset-font-family-display: var(--wp--preset--font-family--lato);
         --wp--custom--wp-preset-font-family-monospace: var(--wp--preset--font-family--monospace);
         --wp--custom--wp-preset-font-family-single-title: var(--wp--preset--font-family--display);
-        --wp--custom--font-family--button: var(--wp--custom--font-family--heading);
-        --wp--custom--font-family--nav: var(--wp--custom--font-family--heading);
+        --wp--custom--font-family-button: var(--wp--custom--font-family-heading);
+        --wp--custom--font-family-nav: var(--wp--custom--font-family-heading);
         --wp--custom--focus-ring-color: rgba(var(--wp--preset--color--primary-shadow-rgb), 0.25);
         --wp--custom--focus-ring-rgb: var(--wp--preset--color--primary-shadow-rgb);
         --wp--custom--form-valid-color: var(--wp--preset--color--success);
@@ -302,7 +302,7 @@
         color: var(--wp--preset--color--contrast);
         font-family: var(--wp--preset--font-family--body);
         font-size: var(--wp--preset--font-size--medium);
-        font-weight: var(--wp--custom--body-font-weight);
+        font-weight: 400;
         letter-spacing: 0.02rem;
         line-height: 1.5;
         --wp--style--root--padding-top: 0px;
@@ -327,8 +327,8 @@
     h5,
     h6 {
         color: var(--heading-color);
-        font-family: var(--wp--custom--font-family--heading);
-        font-weight: var(--wp--custom--heading-font-weight);
+        font-family: var(--wp--custom--font-family-heading);
+        font-weight: 500;
         line-height: 1.2;
         margin-top: 0;
         margin-bottom: var(--wp--preset--spacing--30);
@@ -381,9 +381,9 @@
     :root :where(.wp-element-caption, .wp-block-audio figcaption, .wp-block-embed figcaption, .wp-block-gallery figcaption, .wp-block-image figcaption, .wp-block-table figcaption, .wp-block-video figcaption) {
         background-color: var(--wp--preset--color--secondary-bg);
         color: var(--wp--preset--color--secondary-color);
-        font-family: var(--wp--custom--font-family--button);
+        font-family: var(--wp--custom--font-family-button);
         font-size: var(--wp--preset--font-size--medium);
-        font-weight: var(--wp--custom--button-font-weight);
+        font-weight: 400;
         line-height: 1.5;
     }
 

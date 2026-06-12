@@ -29,9 +29,8 @@
     max-width: none !important; /* Overrides Gutenberg constrained layout widths */
 }
 
-/* Auto-pad raw text and non-flush components to act as Card Body */
 .wp-block-group.is-style-system-panel > *:not(.is-style-system-list):not(.is-style-system-accordion):not(.is-style-system-details):not(.is-style-system-panel-header):not(.is-style-system-panel-footer):not(.wp-block-image):not(.wp-block-cover) {
-    padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
+    padding: var(--wp--preset--spacing--20);
 }
 
 /* Override chunkier padding when panel is used as a modal */

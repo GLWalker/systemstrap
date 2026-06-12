@@ -55,7 +55,7 @@
 .wp-block-calendar.is-style-system-panel .wp-calendar-table caption {
     caption-side: top !important;
     text-align: center !important;
-    font-weight: 600 !important;
+    font-weight: var(--wp--custom--font-weight-heading) !important;
     font-size: var(--wp--preset--font-size--medium, 1.1em) !important;
     color: var(--wp--preset--color--inherit);
     padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30) !important;
@@ -67,8 +67,8 @@
 /* Day Headers */
 .wp-block-calendar.is-style-system-panel th {
     background-color: rgba(var(--wp--preset--color--contrast-rgb), .05) !important;
-    font-family: var(--wp--custom--font-family--heading, inherit) !important;
-    font-weight: 600 !important;
+    font-family: var(--wp--custom--font-family-heading, inherit) !important;
+    font-weight: var(--wp--custom--font-weight-heading) !important;
     font-size: var(--wp--preset--font-size--small) !important;
     color: var(--wp--preset--color--contrast) !important;
     padding: var(--wp--preset--spacing--20) !important;
@@ -117,7 +117,7 @@
     display: flex !important;
     justify-content: space-between !important;
     font-size: var(--wp--preset--font-size--small) !important;
-    font-weight: 500 !important;
+    font-weight: var(--wp--custom--font-weight-heading) !important;
     /* Overlay dimming. Sits on top of the table::before pseudo-element to shade it properly */
     background-color: rgba(var(--wp--preset--color--contrast-rgb), .05) !important;
 }

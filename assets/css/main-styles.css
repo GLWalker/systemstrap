@@ -65,6 +65,10 @@ header.wp-block-template-part {
 
 /* 3. Typography & Headings */
 
+.has-single-title-font-family {
+    font-family: var(--wp--custom--font-family-single-title, inherit) !important;
+}
+
 
 .entry-title,
 .wp-block-post-title,
@@ -116,7 +120,7 @@ header.wp-block-template-part {
     --badge-padding-x: var(--wp--preset--font-size--x-small, .75rem);
     --badge-padding-y: calc(var(--wp--preset--font-size--x-small, .75rem) * .5);
     --badge-font-size: var(--wp--preset--font-size--x-small, .75rem);
-    --badge-font-weight: 500;
+    --badge-font-weight: var(--wp--custom--font-weight-button);
     --badge-border-radius: var(--wp--custom--border-radius, .375rem);
 
     display: inline-block;
@@ -155,7 +159,12 @@ header.wp-block-template-part {
 
 .wp-block-button__link,
 .wp-block-search__button {
-    transition: all 0.2s ease-in-out;
+    transition: var(--wp--custom--btn-transition);
+    transform: var(--wp--custom--btn-transform);
+}
+.wp-block-button__link:hover,
+.wp-block-search__button:hover {
+    transform: var(--wp--custom--btn-hover-transform);
 }
 
 /* Fallback default primary hover if no color class is selected (Solid Buttons) */
@@ -259,7 +268,9 @@ header.wp-block-template-part {
 .wp-block-navigation-submenu:not(.has-background) > .wp-block-navigation__submenu-container,
 .wp-block-navigation-submenu:not(.has-background) > .block-editor-inner-blocks .wp-block-navigation__submenu-container {
     background-color: var(--wp--preset--color--base);
-    border: 1px solid var(--system-ui-border-color);
+    border: var(--wp--custom--dropdown-border-width) solid var(--wp--custom--dropdown-border-color);
+    border-radius: var(--wp--custom--dropdown-border-radius);
+    padding: var(--wp--preset--spacing--10, 0.5rem) 0;
 }
 
 /* Global Submenu Hover - Adaptive */
@@ -271,7 +282,9 @@ header.wp-block-template-part {
 .wp-block-navigation-submenu:not(.has-background) > .block-editor-inner-blocks,
 .wp-block-navigation-submenu:not(.has-background) .wp-block-navigation__submenu-container.block-editor-inner-blocks {
     background-color: var(--wp--preset--color--base) !important;
-    border: 1px solid var(--system-ui-border-color) !important;
+    border: var(--wp--custom--dropdown-border-width) solid var(--wp--custom--dropdown-border-color) !important;
+    border-radius: var(--wp--custom--dropdown-border-radius) !important;
+    padding: var(--wp--preset--spacing--10, 0.5rem) 0 !important;
 }
 
 .wp-block-navigation-submenu:not(.has-text-color) > .block-editor-inner-blocks,
@@ -326,4 +339,90 @@ header.wp-block-template-part {
 :where(.is-style-system-list) > li:has(+ li) {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
+}
+
+/* ==========================================================================
+   Hardcode Core Accordion Fixes
+   ========================================================================== */
+.wp-block-accordion .wp-block-accordion-heading__toggle {
+    font-size: var(--wp--preset--font-size--medium, 1rem) !important;
+    text-decoration: none !important;
+}
+
+/* Ensure latest posts titles reliably inherit the correct heading properties */
+.wp-block-latest-posts .wp-block-latest-posts__post-title,
+.wp-block-latest-posts__post-title {
+    font-family: var(--wp--custom--font-family-heading);
+    font-weight: var(--wp--custom--font-weight-heading);
+}
+
+
+/* Apply the single title custom font ONLY to H1 post titles on single templates */
+h1.wp-block-post-title.entry-title {
+    font-family: var(--wp--custom--font-family-single-title);
+}
+
+/* ==========================================================================
+   Global Form Controls
+   ========================================================================== */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+input[type="number"],
+textarea,
+select,
+.wp-block-search__input {
+    border-width: var(--wp--custom--form-border-width);
+    border-style: solid;
+    border-color: var(--wp--custom--form-border-color);
+    border-radius: var(--wp--custom--form-border-radius);
+    box-shadow: var(--wp--preset--shadow--form-control-shadow, none);
+    transition: var(--wp--custom--form-transition);
+}
+
+/* Focus State */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus,
+.wp-block-search__input:focus {
+    outline: none;
+    border-color: var(--wp--custom--form-focus-border-color);
+    box-shadow: var(--wp--preset--shadow--form-focus, none);
+}
+
+/* ==========================================================================
+   System Badge Component
+   ========================================================================== */
+
+/* Block-level Badges and Inline Highlights */
+.system-badge,
+.has-system-badge mark.has-inline-color {
+    display: inline-block;
+    padding: var(--wp--custom--badge-padding-y) var(--wp--custom--badge-padding-x);
+    font-size: var(--wp--custom--badge-font-size);
+    font-weight: var(--wp--custom--badge-font-weight);
+    line-height: 1;
+    color: var(--wp--preset--color--base, #fff); /* Default contrast */
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: var(--wp--custom--badge-border-radius);
+    background-color: var(--wp--preset--color--primary, #0d6efd); /* Default bg */
+    border: none;
+    text-decoration: none;
+}
+
+/* Ensure empty badges collapse nicely */
+.system-badge:empty,
+.has-system-badge mark.has-inline-color:empty {
+    display: none;
 }

@@ -11,16 +11,29 @@
 }
 
 html {
-    font-family: sans-serif;
-    font-size: var(--wp--custom--body-font-size, 16px);
     overflow-x: hidden; /* Prevent sideways shift from .alignfull blocks */
 }
 
 body {
     margin: 0;
+    font-family: sans-serif;
+    font-size: var(--wp--custom--body-font-size, 16px);
+    font-weight: 400;
+    line-height: 1.5;
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     overflow-x: hidden; /* Prevent sideways shift from .alignfull blocks */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
 }
 
 abbr[title] {
@@ -57,7 +70,7 @@ ul ol {
 }
 
 dt {
-    font-weight: 700;
+    font-weight: var(--wp--custom--font-weight-bold);
 }
 
 dd {
@@ -391,7 +404,7 @@ figcaption,
     outline-offset: 2px;
 
     padding: 0.75rem 1rem;
-    font-weight: 700;
+    font-weight: var(--wp--custom--font-weight-bold);
     font-size: 1rem;
     line-height: 1.5;
     border-radius: 0.375rem;
@@ -438,7 +451,7 @@ p.has-drop-cap.has-background {
     overflow: hidden;
 }
 
-:where(p, h1, h2, h3, h4, h5, h6, blockquote, pre, ul, ol, dl).has-background {
+:where(p, h1, h2, h3, h4, h5, h6, blockquote, pre, ul, ol, dl):not(.wp-block-accordion-heading).has-background {
     padding: var(--wp--preset--spacing--30);
 }
 
@@ -468,4 +481,10 @@ p.has-text-align-right[style*="writing-mode:vertical-rl"] {
 ::-moz-selection {
     background-color: var(--wp--custom--highlight-bg, #0073aa);
     color: var(--wp--custom--highlight-color, #ffffff);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wp-element-button {
+    transition: none;
+  }
 }

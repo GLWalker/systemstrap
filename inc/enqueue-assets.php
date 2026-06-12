@@ -144,6 +144,26 @@ function strap_enqueue_buddypress_sync() {
 }
 add_action( 'wp_enqueue_scripts', 'strap_enqueue_buddypress_sync', 999 );
 
+/**
+ * Conditionally enqueue scripts for Accordion Tabs variation.
+ * Hooked to render_block to ensure it loads even if the block is nested inside a pattern or template part.
+ */
+function strap_enqueue_accordion_tabs( $block_content, $block ) {
+	if ( 
+		isset( $block['attrs']['className'] ) && 
+		( strpos( $block['attrs']['className'], 'is-style-system-tabs' ) !== false ) 
+	) {
+		wp_enqueue_script(
+			'strap-accordion-tabs',
+			get_template_directory_uri() . '/assets/js/accordion-tabs.js',
+			array(),
+			wp_get_theme()->get( 'Version' ),
+			true
+		);
+	}
+	return $block_content;
+}
+add_filter( 'render_block', 'strap_enqueue_accordion_tabs', 10, 2 );
 
 /**
  * Completely remove inline default styles/markup for WordPress core palettes,

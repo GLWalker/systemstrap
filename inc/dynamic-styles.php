@@ -75,24 +75,49 @@ if ( ! function_exists( 'strap_generate_dynamic_colors' ) ) {
 				$shadow_rgb_string = $generator->hex_to_rgb( $palette[ $shadow_index ] );
 				$shadow_rgb_raw    = str_replace( [ 'rgb(', 'rgba(', ')' ], '', $shadow_rgb_string );
 				$css              .= sprintf( "\t--wp--preset--color--%s-shadow-rgb: %s;\n", $slug, $shadow_rgb_raw );
-				
-				// Generate dynamic button CSS for this color
+
+				// Generate dynamic component CSS for this color
 				$button_css .= "
+/* System Badge Contrast Routing */
+.system-badge.has-{$slug}-background-color,
+.has-system-badge mark.has-{$slug}-background-color {
+    color: var(--wp--preset--color--{$slug}-text) !important;
+}
+
+/* Latest Posts Widget Fix */
+ul.wp-block-latest-posts.has-{$slug}-background-color {
+    background-color: transparent !important;
+}
+ul.wp-block-latest-posts.has-{$slug}-background-color > li {
+    background-color: var(--wp--preset--color--{$slug}) !important;
+    color: var(--wp--preset--color--{$slug}-text, inherit) !important;
+}
+
+.wp-block-button__link.has-{$slug}-background-color {
+    --local-btn-highlight-rgb: var(--wp--preset--color--{$slug}-text-rgb);
+    --local-btn-shadow-rgb: var(--wp--preset--color--{$slug}-shadow-rgb);
+}
+.wp-block-button.is-style-outline .wp-block-button__link.has-{$slug}-color,
+.wp-block-button.is-style-button-pill-outline .wp-block-button__link.has-{$slug}-color,
+.wp-block-button.is-style-button-square-outline .wp-block-button__link.has-{$slug}-color {
+    --local-btn-highlight-rgb: var(--wp--preset--color--{$slug}-text-rgb);
+    --local-btn-shadow-rgb: var(--wp--preset--color--{$slug}-shadow-rgb);
+}
+
 .wp-block-button__link.has-{$slug}-background-color:not(:disabled) {
-    box-shadow: inset 0 .0625rem 0 rgba(var(--wp--preset--color--{$slug}-text-rgb), 0.15), 0 .0625rem .0625rem rgba(0, 0, 0, 0.075);
+    box-shadow: var(--wp--preset--shadow--btn-resting, none);
 }
 .wp-block-button__link.has-{$slug}-background-color:not(:disabled):hover {
     background-color: var(--wp--preset--color--{$slug}-50) !important;
-    box-shadow: inset 0 .0625rem 0 rgba(var(--wp--preset--color--{$slug}-text-rgb), 0.15), 0 .0625rem .0625rem rgba(0, 0, 0, 0.075);
-    transform: translateY(-1px);
+    border-color: var(--wp--custom--btn-hover-border-color) !important;
+    box-shadow: var(--wp--preset--shadow--btn-hover, none);
 }
 .wp-block-button__link.has-{$slug}-background-color:not(:disabled):focus {
     box-shadow: 0 0 0 .25rem rgba(var(--wp--preset--color--{$slug}-rgb), 0.5);
 }
 .wp-block-button__link.has-{$slug}-background-color:not(:disabled):active {
     background-color: var(--wp--preset--color--{$slug}-20) !important;
-    box-shadow: inset 0 .1875rem .3125rem rgba(0, 0, 0, 0.125);
-    transform: translateY(0);
+    box-shadow: var(--wp--preset--shadow--btn-active, none);
 }
 
 .wp-block-button.is-style-outline .wp-block-button__link.has-{$slug}-color:not(:disabled):hover,
@@ -100,8 +125,8 @@ if ( ! function_exists( 'strap_generate_dynamic_colors' ) ) {
 .wp-block-button.is-style-button-square-outline .wp-block-button__link.has-{$slug}-color:not(:disabled):hover {
     background-color: var(--wp--preset--color--{$slug}) !important;
     color: var(--wp--preset--color--{$slug}-text) !important;
-    box-shadow: inset 0 .0625rem 0 rgba(var(--wp--preset--color--{$slug}-text-rgb), 0.15), 0 .0625rem .0625rem rgba(0, 0, 0, 0.075);
-    transform: translateY(-1px);
+    border-color: var(--wp--custom--btn-hover-border-color) !important;
+    box-shadow: var(--wp--preset--shadow--btn-hover, none);
 }
 .wp-block-button.is-style-outline .wp-block-button__link.has-{$slug}-color:not(:disabled):focus,
 .wp-block-button.is-style-button-pill-outline .wp-block-button__link.has-{$slug}-color:not(:disabled):focus,
@@ -114,8 +139,7 @@ if ( ! function_exists( 'strap_generate_dynamic_colors' ) ) {
     background-color: var(--wp--preset--color--{$slug}-20) !important;
     color: var(--wp--preset--color--{$slug}-text) !important;
     border-color: var(--wp--preset--color--{$slug}-20) !important;
-    box-shadow: inset 0 .1875rem .3125rem rgba(0, 0, 0, 0.125);
-    transform: translateY(0);
+    box-shadow: var(--wp--preset--shadow--btn-active, none);
 }
 ";
 			}

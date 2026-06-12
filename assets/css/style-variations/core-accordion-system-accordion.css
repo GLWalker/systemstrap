@@ -38,7 +38,7 @@
     margin-bottom: 0 !important; /* Vaporize native block wrapper gap */
 }
 .wp-block-accordion.is-style-system-accordion .wp-block-accordion-heading__toggle {
-    padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
+    padding: var(--wp--preset--spacing--20) 1.25rem;
     color: var(--wp--preset--color--inherit);
     background: var(--wp--preset--color--inherit);
     border-bottom: var(--wp--custom--border-width, 1px) solid transparent;
@@ -46,6 +46,8 @@
     transition: background-color 0.15s ease-in-out;
     width: 100%;
     text-align: left;
+    font-family: var(--wp--custom--font-family-heading);
+    font-weight: var(--wp--custom--font-weight-heading);
 }
 
 /* Sync toggle inner radii with the outer item container when stacked */
@@ -91,8 +93,8 @@
 /* Panel inside Open State */
 .wp-block-accordion.is-style-system-accordion .wp-block-accordion-item.is-open .wp-block-accordion-panel {
     margin-top: 0 !important; /* Vaporize native block wrapper gap */
-    padding-left: var(--wp--preset--spacing--30);
-    padding-right: var(--wp--preset--spacing--30);
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
     padding-top: var(--wp--preset--spacing--20);
     padding-bottom: var(--wp--preset--spacing--20);
     animation: fadeIn 0.3s ease-in-out;

@@ -41,12 +41,12 @@
 	gap: 0 !important;
     
     /* Button Aesthetics */
-	border-radius: var(--wp--custom--border-radius, .375rem);
+	border-radius: var(--wp--custom--btn-border-radius);
     background-color: var(--wp--preset--color--primary, #0d6efd);
     color: var(--wp--preset--color--primary-text, #fff);
-    box-shadow: inset 0 .0625rem 0 rgba(255, 255, 255, 0.15), 0 .0625rem .0625rem rgba(0, 0, 0, 0.075);
-    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--border-color, transparent);
-    transition: all 0.2s ease-in-out;
+    box-shadow: var(--wp--preset--shadow--btn-resting, none);
+    border: var(--wp--custom--btn-border-width) solid var(--wp--custom--btn-border-color);
+    transition: var(--wp--custom--btn-transition);
 }
 
 /* Vertical items stretch full width */
@@ -130,13 +130,25 @@
 .wp-block-navigation.is-style-system-nav-button .wp-block-navigation__responsive-container-content > .wp-block-navigation__container > .wp-block-navigation-item:has(> a[aria-current="page"]) {
     /* Base default hover (Primary color darkened by 15%) */
     background-color: color-mix(in srgb, var(--wp--preset--color--primary, #0d6efd) 85%, black) !important;
-    box-shadow: inset 0 .0625rem 0 rgba(255, 255, 255, 0.15), 0 .0625rem .0625rem rgba(0, 0, 0, 0.075);
+    border-color: var(--wp--custom--btn-hover-border-color) !important;
+    box-shadow: var(--wp--preset--shadow--btn-hover, none);
+    transform: var(--wp--custom--btn-hover-transform);
 }
 
 .wp-block-navigation.is-style-system-nav-button > .wp-block-navigation__container > .wp-block-navigation-item:active,
 .wp-block-navigation.is-style-system-nav-button .wp-block-navigation__responsive-container-content > .wp-block-navigation__container > .wp-block-navigation-item:active {
     background-color: color-mix(in srgb, var(--wp--preset--color--primary, #0d6efd) 75%, black) !important;
-    box-shadow: inset 0 .1875rem .3125rem rgba(0, 0, 0, 0.125);
+    border-color: var(--wp--custom--btn-hover-border-color) !important;
+    box-shadow: var(--wp--preset--shadow--btn-active, none);
+    transform: translateY(0);
+}
+
+/* Accessibility: Keyboard Focus */
+.wp-block-navigation.is-style-system-nav-button .wp-block-navigation-item__content:focus-visible,
+.wp-block-navigation.is-style-system-nav-button .wp-block-navigation-submenu__toggle:focus-visible {
+    outline: 2px solid currentColor !important;
+    outline-offset: -2px !important;
+    border-radius: inherit;
 }
 
 /* Dropdown panels */
@@ -152,12 +164,12 @@
     /* Space dropdown away from nav item */
     margin-top: var(--wp--preset--spacing--20, 20px) !important;
 
-	padding: 0;
+	padding: var(--wp--preset--spacing--10, 0.5rem) 0 !important;
 	gap: 0 !important;
 
-	border: 1px solid var(--system-ui-border-color, rgba(0,0,0,.15));
-	border-radius: var(--wp--custom--border-radius, .375rem);
-	box-shadow: var(--wp--custom--shadow, 0 8px 24px rgba(0,0,0,.18));
+	border: var(--wp--custom--dropdown-border-width) solid var(--wp--custom--dropdown-border-color);
+	border-radius: var(--wp--custom--dropdown-border-radius);
+	box-shadow: var(--wp--custom--dropdown-shadow);
 }
 
 /* Invisible bridge to prevent hover state from closing when moving mouse over the gap */
@@ -177,35 +189,13 @@
     margin-bottom: var(--wp--preset--spacing--20, 20px) !important;
 }
 
-/* Base pointer (pointing UP) */
-.wp-block-navigation.is-style-system-nav-button .wp-block-navigation__submenu-container::after {
-    content: "";
-    position: absolute;
-    top: -6px; /* Half of 12px box */
-    left: 20px;
-    width: 12px;
-    height: 12px;
-    background-color: inherit;
-    border-left: 1px solid var(--system-ui-border-color, rgba(0,0,0,.15));
-    border-top: 1px solid var(--system-ui-border-color, rgba(0,0,0,.15));
-    transform: rotate(45deg);
-    z-index: 1;
-}
-
-/* Pointer adjustments for boundary flips */
-.wp-block-navigation.is-style-system-nav-button .wp-block-navigation-item.has-child .wp-block-navigation__submenu-container.is-align-right::after {
-    left: auto;
-    right: 20px;
-}
-
-.wp-block-navigation.is-style-system-nav-button .wp-block-navigation-item.has-child .wp-block-navigation__submenu-container.is-align-top::after {
+/* Move the invisible bridge to the bottom when dropping UP */
+.wp-block-navigation.is-style-system-nav-button .wp-block-navigation-item.has-child .wp-block-navigation__submenu-container.is-align-top::before {
     top: auto;
-    bottom: -6px;
-    border-top: none;
-    border-left: none;
-    border-right: 1px solid var(--system-ui-border-color, rgba(0,0,0,.15));
-    border-bottom: 1px solid var(--system-ui-border-color, rgba(0,0,0,.15));
+    bottom: calc(var(--wp--preset--spacing--20, 20px) * -1);
 }
+
+
 
 /* Submenu items */
 .wp-block-navigation.is-style-system-nav-button .wp-block-navigation__submenu-container .wp-block-navigation-item {

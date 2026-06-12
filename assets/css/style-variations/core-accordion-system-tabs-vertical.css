@@ -1,0 +1,140 @@
+/*
+ * System Tabs Vertical Variation for core/accordion
+ * Converts standard accordion layout into vertical tabs.
+ */
+
+.wp-block-accordion.is-style-system-tabs-vertical {
+	display: grid;
+	grid-template-columns: max-content 1fr;
+	gap: var(--wp--preset--spacing--30, 1.5rem);
+	align-items: start;
+}
+
+/* Fallback / Editor styles */
+.wp-block-accordion.is-style-system-tabs-vertical > .wp-block-accordion-item {
+	display: contents; /* Let them flow or sit stacked in editor */
+}
+.wp-block-accordion.is-style-system-tabs-vertical .wp-block-accordion-heading {
+	display: inline-flex;
+}
+
+/* Fix WP core injecting block-gap as margin-top onto the second grid child */
+.wp-block-accordion.is-style-system-tabs-vertical .system-tabs__panels {
+	margin-top: 0 !important;
+}
+
+/* Frontend JS-Enhanced Tablist */
+.wp-block-accordion.is-style-system-tabs-vertical .system-tabs__tablist {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--10, .5rem);
+	border-right: 2px solid color-mix(in srgb, currentColor 10%, transparent);
+	padding-right: var(--wp--preset--spacing--20, 1rem);
+}
+
+.wp-block-accordion.is-style-system-tabs-vertical .system-tabs__tab,
+.wp-block-accordion.is-style-system-tabs-vertical .system-tabs__tab * {
+	text-decoration: none !important;
+}
+
+.wp-block-accordion.is-style-system-tabs-vertical .system-tabs__tab {
+	color: inherit;
+	border: 1px solid var(--system-ui-border-color, transparent);
+	border-radius: var(--wp--custom--border-radius, 8px);
+	border-bottom-right-radius: 0;
+	border-top-right-radius: 0;
+	padding: var(--wp--preset--spacing--10, .5rem) var(--wp--preset--spacing--20, 1rem);
+	cursor: pointer;
+	min-inline-size: 2.5rem;
+	min-block-size: 2.5rem;
+	display: inline-flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: .5rem;
+	font-family: var(--wp--custom--font-family-heading);
+	font-weight: var(--wp--custom--font-weight-heading);
+	transition: background-color 0.2s ease, transform 0.1s ease, filter 0.2s ease, border-color 0.2s ease;
+	text-align: left;
+}
+
+.wp-block-accordion.is-style-system-tabs-vertical .system-tabs__tab:not(.has-background):not([style*="background"]) {
+	background: var(--system-ui-surface, rgba(0,0,0,0.03));
+}
+
+.wp-block-accordion.is-style-system-tabs-vertical .system-tabs__tab:not(.has-background):not([style*="background"]):hover {
+	background-color: color-mix(in srgb, var(--system-ui-hover-bg), currentColor 5%);
+}
+
+.wp-block-accordion.is-style-system-tabs-vertical .system-tabs__tab.has-background:hover,
+.wp-block-accordion.is-style-system-tabs-vertical .system-tabs__tab[style*="background"]:hover {
+	filter: brightness(0.95);
+}
+
+.wp-block-accordion.is-style-system-tabs-vertical .system-tabs__tab[aria-selected="true"] {
+	position: relative;
+}
+
+.wp-block-accordion.is-style-system-tabs-vertical .system-tabs__tab:not(.has-background):not([style*="background"])[aria-selected="true"] {
+	background-color: var(--system-ui-hover-bg); /* Match accordion active shade */
+}
+
+.wp-block-accordion.is-style-system-tabs-vertical .system-tabs__tab.has-background[aria-selected="true"],
+.wp-block-accordion.is-style-system-tabs-vertical .system-tabs__tab[style*="background"][aria-selected="true"] {
+    filter: brightness(0.9);
+}
+
+.wp-block-accordion.is-style-system-tabs-vertical .system-tabs__tab[aria-selected="true"]::after {
+	content: '';
+	position: absolute;
+	right: calc( (var(--wp--preset--spacing--20, 1rem) * -1) - var(--wp--custom--border-width, 2px) );
+	top: 0;
+	height: 100%;
+	width: var(--wp--custom--border-width, 2px);
+	background: currentColor;
+	border-radius: var(--wp--custom--border-radius, 2px);
+}
+
+.wp-block-accordion.is-style-system-tabs-vertical .system-tabs__panel {
+	color: inherit;
+	border: none;
+	background: transparent;
+	padding: var(--wp--preset--spacing--20, 1rem);
+}
+.wp-block-accordion.is-style-system-tabs-vertical .system-tabs__panel:not(.has-background):not([style*="background"]) {
+	background: var(--system-ui-surface, transparent);
+}
+
+/* Prevent inner blocks from adding extra top space inside the panel */
+.wp-block-accordion.is-style-system-tabs-vertical .system-tabs__panel > *:first-child {
+	margin-top: 0 !important;
+}
+
+@media (max-width: 700px) {
+	.wp-block-accordion.is-style-system-tabs-vertical {
+		grid-template-columns: 1fr;
+	}
+	
+	.wp-block-accordion.is-style-system-tabs-vertical .system-tabs__tablist {
+		flex-direction: row;
+		flex-wrap: wrap;
+		border-right: none;
+		padding-right: 0;
+		border-bottom: 2px solid color-mix(in srgb, currentColor 10%, transparent);
+		padding-bottom: var(--wp--preset--spacing--10, .5rem);
+	}
+
+	.wp-block-accordion.is-style-system-tabs-vertical .system-tabs__tab {
+		border-radius: var(--wp--custom--border-radius, 8px);
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+
+	.wp-block-accordion.is-style-system-tabs-vertical .system-tabs__tab[aria-selected="true"]::after {
+		right: auto;
+		top: auto;
+		bottom: calc( (var(--wp--preset--spacing--10, .5rem) * -1) - var(--wp--custom--border-width, 2px) );
+		left: 0;
+		width: 100%;
+		height: var(--wp--custom--border-width, 2px);
+	}
+}

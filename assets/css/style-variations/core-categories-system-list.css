@@ -25,7 +25,7 @@
 
 /* Anchor tags inside LIs */
 .wp-block-categories.is-style-system-list li > a {
-    padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
+    padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--20);
     flex-grow: 1;
     text-decoration: none;
     color: inherit;
@@ -34,16 +34,16 @@
 
 /* Recursive Indentation Levels */
 .wp-block-categories.is-style-system-list li > ul > li > a {
-    padding-left: calc(var(--wp--preset--spacing--30) + 1.5rem);
+    padding-left: calc(var(--wp--preset--spacing--20) + 1.5rem);
 }
 .wp-block-categories.is-style-system-list li > ul > li > ul > li > a {
-    padding-left: calc(var(--wp--preset--spacing--30) + 3rem);
+    padding-left: calc(var(--wp--preset--spacing--20) + 3rem);
 }
 .wp-block-categories.is-style-system-list li > ul > li > ul > li > ul > li > a {
-    padding-left: calc(var(--wp--preset--spacing--30) + 4.5rem);
+    padding-left: calc(var(--wp--preset--spacing--20) + 4.5rem);
 }
 .wp-block-categories.is-style-system-list li > ul > li > ul > li > ul > li > ul > li > a {
-    padding-left: calc(var(--wp--preset--spacing--30) + 6rem);
+    padding-left: calc(var(--wp--preset--spacing--20) + 6rem);
 }
 .wp-block-categories.is-style-system-list li > ul > li > ul > li > ul > li > ul > li > ul > li > a {
     padding-left: calc(var(--wp--preset--spacing--30) + 7.5rem);
@@ -64,14 +64,14 @@
 /* System Badge Styling */
 .wp-block-categories.is-style-system-list li > .system-badge {
     display: inline-block;
-    padding: 0.25em 0.65em;
-    font-size: 0.75em;
-    font-weight: 700;
+    padding: var(--wp--custom--badge-padding-y) var(--wp--custom--badge-padding-x);
+    font-size: var(--wp--custom--badge-font-size);
+    font-weight: var(--wp--custom--badge-font-weight);
     line-height: 1;
     color: inherit;
     background-color: rgba(var(--wp--preset--color--contrast-rgb), .05);
     border: var(--wp--custom--border-width, 1px) solid rgba(var(--wp--preset--color--border-color-rgb), .2);
-    border-radius: calc(var(--wp--custom--border-radius) / 1.5);
+    border-radius: var(--wp--custom--badge-border-radius);
     margin-right: var(--wp--preset--spacing--30);
 }
 

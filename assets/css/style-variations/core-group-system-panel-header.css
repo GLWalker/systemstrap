@@ -3,12 +3,14 @@
  */
 
 .wp-block-group.is-style-system-panel-header {
-    padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30) !important;
+    padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--20) !important;
     background: var(--system-ui-surface-subtle);
     border-bottom: var(--wp--custom--border-width, 1px) solid var(--system-ui-border-color);
     margin: 0 !important;
     border-radius: 0 !important; /* Auto-clipped perfectly by outer panel overflow: hidden */
     width: 100%;
+    font-family: var(--wp--custom--font-family-heading, inherit);
+    font-weight: var(--wp--custom--font-weight-heading, inherit);
 }
 
 .wp-block-group.is-style-system-panel.is-style-system-modal .wp-block-group.is-style-system-panel-header {

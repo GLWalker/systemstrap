@@ -115,6 +115,14 @@
 	background-color: color-mix(in srgb, currentColor 8%, transparent) !important;
 }
 
+/* Accessibility: Keyboard Focus */
+.wp-block-navigation.is-style-system-nav-gen .wp-block-navigation-item__content:focus-visible,
+.wp-block-navigation.is-style-system-nav-gen .wp-block-navigation-submenu__toggle:focus-visible {
+    outline: 2px solid currentColor !important;
+    outline-offset: -2px !important;
+    border-radius: inherit;
+}
+
 /* Dropdown panels */
 .wp-block-navigation.is-style-system-nav-gen .wp-block-navigation__submenu-container {
 	display: flex !important;
@@ -125,13 +133,13 @@
 	min-width: 200px !important;
 	max-width: 200px !important;
 
-	padding: 0;
+	padding: var(--wp--preset--spacing--10, 0.5rem) 0 !important;
 	gap: 0 !important;
 
 	color: inherit;
-	border: 1px solid var(--system-ui-border-color, rgba(0,0,0,.15));
-	border-radius: 0;
-	box-shadow: var(--wp--custom--shadow, 0 8px 24px rgba(0,0,0,.18));
+	border: var(--wp--custom--dropdown-border-width) solid var(--wp--custom--dropdown-border-color);
+	border-radius: var(--wp--custom--dropdown-border-radius);
+	box-shadow: var(--wp--custom--dropdown-shadow);
 }
 
 /* Submenu items */
