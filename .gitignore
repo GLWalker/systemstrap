@@ -10,3 +10,4 @@ tests/
 .idea/
 .vscode/
 *.py
+.backups/
