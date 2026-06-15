@@ -96,7 +96,7 @@
 
 .wp-block-accordion.is-style-system-tabs-vertical .system-tabs__panel {
 	color: inherit;
-	border: none;
+	border: var(--wp--custom--border-width, 1px) solid var(--system-ui-border-color);
 	background: transparent;
 	padding: var(--wp--preset--spacing--20, 1rem);
 }
@@ -137,4 +137,50 @@
 		width: 100%;
 		height: var(--wp--custom--border-width, 2px);
 	}
+}
+
+/* Editor fallback: keep vertical tab accordions easy to edit even when frontend JS conversion is absent */
+.editor-styles-wrapper .wp-block-accordion.is-style-system-tabs-vertical {
+	display: block;
+	grid-template-columns: none;
+	gap: 0;
+	padding: 0;
+}
+
+.editor-styles-wrapper .wp-block-accordion.is-style-system-tabs-vertical::before {
+	content: "System Vertical Tabs Accordion";
+	display: block;
+	margin-bottom: var(--wp--preset--spacing--10, 0.5rem);
+	padding: 0.35rem 0.65rem;
+	border: 1px solid var(--system-ui-border-color, rgba(0, 0, 0, 0.12));
+	border-radius: var(--wp--custom--border-radius, 8px);
+	background: var(--system-ui-surface, rgba(0, 0, 0, 0.03));
+	color: inherit;
+	font-family: var(--wp--custom--font-family-heading);
+	font-size: var(--wp--preset--font-size--x-small, 0.75rem);
+	font-weight: var(--wp--custom--font-weight-heading);
+	letter-spacing: 0.02em;
+	text-transform: uppercase;
+}
+
+.editor-styles-wrapper .wp-block-accordion.is-style-system-tabs-vertical > .wp-block-accordion-item {
+	display: block;
+	border: var(--wp--custom--border-width, 1px) solid var(--system-ui-border-color);
+	border-radius: var(--wp--custom--border-radius, 8px);
+	margin-top: 0 !important;
+	overflow: hidden;
+}
+
+.editor-styles-wrapper .wp-block-accordion.is-style-system-tabs-vertical .wp-block-accordion-heading {
+	display: block;
+}
+
+.editor-styles-wrapper .wp-block-accordion.is-style-system-tabs-vertical .wp-block-accordion-heading__toggle {
+	display: block;
+	width: 100%;
+	text-align: left;
+}
+
+.editor-styles-wrapper .wp-block-accordion.is-style-system-tabs-vertical .wp-block-accordion-panel {
+	border-top: var(--wp--custom--border-width, 1px) solid var(--system-ui-border-color);
 }
