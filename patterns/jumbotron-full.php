@@ -1,12 +1,8 @@
 <?php
 /**
- 
- * Title: Full Width Jumbotron
- 
+ * Title: Jumbotron Full
  * Slug: systemstrap/jumbotron-full
- 
- * Categories: call-to-action
- 
+ * Categories: systemstrap, call-to-action
  */
 ?>
 

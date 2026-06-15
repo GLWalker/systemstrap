@@ -2,7 +2,7 @@
 /**
  * Title: Modal Search
  * Slug: systemstrap/modal-search
- * Inserter: no
+ * Categories: systemstrap
  */
 ?>
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"var:preset|spacing|50"}}},"layout":{"type":"constrained"}} -->

@@ -2,7 +2,7 @@
 /**
  * Title: Modal Search Full
  * Slug: systemstrap/modal-search-full
- * Inserter: no
+ * Categories: systemstrap
  */
 ?>
 <!-- wp:group {"metadata":{"name":"System Modal"},"className":"is-style-system-panel is-style-system-modal","backgroundColor":"base","layout":{"type":"default"}} -->
@@ -14,7 +14,7 @@
 
 <!-- wp:group {"layout":{"type":"constrained"}} -->
 <div class="wp-block-group strap-ajax-search-wrapper">
-<!-- wp:search {"label":"Search","showLabel":false,"width":100,"widthUnit":"%","buttonText":"Search","buttonPosition":"button-inside","buttonUseIcon":true,"className":"strap-ajax-search-form"} /-->
+<!-- wp:search {"label":"Search","showLabel":false,"width":100,"widthUnit":"%","buttonText":"Search","buttonPosition":"button-inside","buttonUseIcon":true,"className":"strap-ajax-search-form","style":{"border":{"width":"0px"}}} /-->
 
 <!-- wp:heading {"level":4,"className":"strap-ajax-search-title"} -->
 <h4 class="wp-block-heading strap-ajax-search-title" style="display:none; margin-top: var(--wp--preset--spacing--30);">Search Results:</h4>

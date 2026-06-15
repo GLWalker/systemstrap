@@ -1,12 +1,8 @@
 <?php
 /**
- 
- * Title: Media Splash
- 
+ * Title: Featured Media Splash
  * Slug: systemstrap/featured-media-splash
- 
- * Categories: featured,call-to-action
- 
+ * Categories: systemstrap, featured, call-to-action
  */
 ?>
 

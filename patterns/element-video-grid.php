@@ -1,12 +1,8 @@
 <?php
 /**
- 
- * Title: Video Grid
- 
+ * Title: Element Video Grid
  * Slug: systemstrap/element-video-grid
- 
- * Categories: media, featured
- 
+ * Categories: systemstrap, media, featured
  */
 ?>
 

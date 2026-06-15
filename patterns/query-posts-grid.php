@@ -1,12 +1,8 @@
 <?php
 /**
- 
- * Title: List of posts in media-object like grid
- 
- * Slug: systemstrap/query-post-grid
- 
- * Categories: query
- 
+ * Title: Query Posts Grid
+ * Slug: systemstrap/query-posts-grid
+ * Categories: systemstrap, query
  */
 ?>
 

@@ -280,3 +280,31 @@ function strap_enqueue_editor_iframe_styles() {
 	}
 }
 add_action( 'enqueue_block_assets', 'strap_enqueue_editor_iframe_styles' );
+
+/**
+ * Enqueue pagination block styles only when pagination blocks render.
+ *
+ * The theme's auto-registered block-style path is retained, but these explicit
+ * render-time enqueues guarantee frontend loading for pagination surfaces in
+ * this runtime.
+ *
+ * @param string $block_content Rendered block content.
+ * @param array  $block         Parsed block data.
+ * @return string
+ */
+function strap_enqueue_pagination_block_styles( $block_content, $block ) {
+	if ( empty( $block['blockName'] ) ) {
+		return $block_content;
+	}
+
+	if ( str_starts_with( $block['blockName'], 'core/query-pagination' ) ) {
+		wp_enqueue_style( 'core-query-pagination-system-pagination' );
+	}
+
+	if ( str_starts_with( $block['blockName'], 'core/comments-pagination' ) ) {
+		wp_enqueue_style( 'core-comments-pagination-system-pagination' );
+	}
+
+	return $block_content;
+}
+add_filter( 'render_block', 'strap_enqueue_pagination_block_styles', 10, 2 );

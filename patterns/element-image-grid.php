@@ -1,12 +1,8 @@
 <?php
 /**
- 
- * Title: Image Grid
- 
+ * Title: Element Image Grid
  * Slug: systemstrap/element-image-grid
- 
- * Categories: media, featured
- 
+ * Categories: systemstrap, media, featured
  */
 ?>
 

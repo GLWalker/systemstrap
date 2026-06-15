@@ -1,12 +1,8 @@
 <?php
 /**
- 
  * Title: Featured Archives Splash
- 
  * Slug: systemstrap/featured-archives-splash
- 
- * Categories: featured
- 
+ * Categories: systemstrap, featured
  */
 ?>
 

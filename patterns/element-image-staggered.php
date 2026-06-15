@@ -1,12 +1,8 @@
 <?php
 /**
- 
- * Title: Staggered Images
- 
+ * Title: Element Image Staggered
  * Slug: systemstrap/element-image-staggered
- 
- * Categories: media, featured
- 
+ * Categories: systemstrap, media, featured
  */
 ?>
 

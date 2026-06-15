@@ -69,6 +69,16 @@ header.wp-block-template-part {
     font-family: var(--wp--custom--font-family-single-title, inherit) !important;
 }
 
+.wp-block-site-title.site-title,
+.wp-block-site-title.site-title a {
+    font-family: var(--wp--custom--font-family-heading);
+    font-size: var(--wp--preset--font-size--x-large);
+    font-style: normal;
+    font-weight: var(--wp--custom--font-weight-heading);
+    line-height: 1.2;
+    text-decoration: none;
+}
+
 
 .entry-title,
 .wp-block-post-title,
@@ -245,6 +255,7 @@ header.wp-block-template-part {
 .wp-block-button.is-style-button-square-outline .wp-block-button__link {
     border-radius: 0 !important;
 }
+
 /* ==========================================================================
    9. Navigation & Menu Block Variations & Enhancements
    ========================================================================== */

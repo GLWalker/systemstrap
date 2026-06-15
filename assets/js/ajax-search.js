@@ -117,57 +117,120 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         function renderResults(posts) {
-            let html = '';
-            
+            resultsList.innerHTML = '';
+
             posts.forEach((post, index) => {
-                // Format the date
                 const date = new Date(post.date).toLocaleDateString(undefined, {
                     year: 'numeric',
                     month: 'short',
                     day: 'numeric'
                 });
 
-                // Strip HTML from excerpt and limit length
-                let excerpt = post.excerpt.rendered.replace(/(<([^>]+)>)/gi, "");
+                let excerpt = getPlainText(post.excerpt && post.excerpt.rendered ? post.excerpt.rendered : '');
                 if (excerpt.length > 120) {
                     excerpt = excerpt.substring(0, 120) + '...';
                 }
 
-                html += `
-                <div class="strap-search-result-item" style="animation: strap-zoom-in 0.3s ease-out both; animation-delay: ${index * 0.05}s;">
-                    <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom: 0.5rem; gap: 1rem;">
-                        <h5 style="margin:0; font-size: var(--wp--preset--font-size--medium);"><a href="${post.link}" style="text-decoration:none; color:inherit;">${post.title.rendered}</a></h5>
-                        <small style="opacity:0.6; white-space:nowrap; font-size: var(--wp--preset--font-size--small);">${date}</small>
-                    </div>
-                    <p style="margin: 0; font-size: var(--wp--preset--font-size--small); opacity: 0.8;">${excerpt}</p>
-                    <hr style="margin: var(--wp--preset--spacing--30) 0; opacity: 0.1;">
-                </div>
-                `;
+                resultsList.appendChild(createResultNode(post, date, excerpt, index));
             });
-
-            resultsList.innerHTML = html;
         }
 
         function updatePaginationButtons() {
             if (btnPrev) {
-                if (currentPage <= 1) {
-                    btnPrev.style.opacity = '0.3';
-                    btnPrev.style.pointerEvents = 'none';
-                } else {
-                    btnPrev.style.opacity = '1';
-                    btnPrev.style.pointerEvents = 'auto';
-                }
+                const isDisabled = currentPage <= 1;
+                setPaginationState(btnPrev, isDisabled);
             }
 
             if (btnNext) {
-                if (currentPage >= totalPages || totalPages === 0) {
-                    btnNext.style.opacity = '0.3';
-                    btnNext.style.pointerEvents = 'none';
-                } else {
-                    btnNext.style.opacity = '1';
-                    btnNext.style.pointerEvents = 'auto';
-                }
+                const isDisabled = currentPage >= totalPages || totalPages === 0;
+                setPaginationState(btnNext, isDisabled);
             }
+        }
+
+        function setPaginationState(buttonWrapper, isDisabled) {
+            const buttonLink = buttonWrapper ? buttonWrapper.querySelector('.wp-block-button__link') : null;
+
+            if (!buttonWrapper || !buttonLink) {
+                return;
+            }
+
+            buttonWrapper.classList.toggle('is-disabled', isDisabled);
+            buttonLink.setAttribute('aria-disabled', isDisabled ? 'true' : 'false');
+            buttonLink.tabIndex = isDisabled ? -1 : 0;
+        }
+
+        function createResultNode(post, date, excerpt, index) {
+            const item = document.createElement('div');
+            item.className = 'strap-search-result-item';
+            item.style.animation = 'strap-zoom-in 0.3s ease-out both';
+            item.style.animationDelay = `${index * 0.05}s`;
+
+            const header = document.createElement('div');
+            header.style.display = 'flex';
+            header.style.justifyContent = 'space-between';
+            header.style.alignItems = 'baseline';
+            header.style.marginBottom = '0.5rem';
+            header.style.gap = '1rem';
+
+            const heading = document.createElement('h5');
+            heading.style.margin = '0';
+            heading.style.fontSize = 'var(--wp--preset--font-size--medium)';
+
+            const link = document.createElement('a');
+            link.style.textDecoration = 'none';
+            link.style.color = 'inherit';
+            link.textContent = getPlainText(post.title && post.title.rendered ? post.title.rendered : '');
+
+            const safeHref = getSafeUrl(post.link);
+            if (safeHref) {
+                link.href = safeHref;
+            }
+
+            heading.appendChild(link);
+
+            const dateNode = document.createElement('small');
+            dateNode.style.opacity = '0.6';
+            dateNode.style.whiteSpace = 'nowrap';
+            dateNode.style.fontSize = 'var(--wp--preset--font-size--small)';
+            dateNode.textContent = date;
+
+            header.appendChild(heading);
+            header.appendChild(dateNode);
+
+            const excerptNode = document.createElement('p');
+            excerptNode.style.margin = '0';
+            excerptNode.style.fontSize = 'var(--wp--preset--font-size--small)';
+            excerptNode.style.opacity = '0.8';
+            excerptNode.textContent = excerpt;
+
+            const divider = document.createElement('hr');
+            divider.style.margin = 'var(--wp--preset--spacing--30) 0';
+            divider.style.opacity = '0.1';
+
+            item.appendChild(header);
+            item.appendChild(excerptNode);
+            item.appendChild(divider);
+
+            return item;
+        }
+
+        function getPlainText(value) {
+            const parser = document.createElement('div');
+            parser.innerHTML = value || '';
+            return parser.textContent || parser.innerText || '';
+        }
+
+        function getSafeUrl(value) {
+            try {
+                const url = new URL(value, window.location.origin);
+                if (url.protocol === 'http:' || url.protocol === 'https:') {
+                    return url.toString();
+                }
+            } catch (error) {
+                return '';
+            }
+
+            return '';
         }
     });
 });

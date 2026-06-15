@@ -1,8 +1,8 @@
 <?php
 /**
- * Title: Offcanvas Right Main
+ * Title: Offcanvas Right
  * Slug: systemstrap/offcanvas-right
- * Inserter: no
+ * Categories: systemstrap
  */
 ?>
 

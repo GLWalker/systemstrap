@@ -1,4 +1,26 @@
 /* Dialog / Offcanvas Base Styles */
+button.wp-block-icon[data-strap-dialog-target] {
+    appearance: none;
+    -webkit-appearance: none;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    color: inherit;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font: inherit;
+    line-height: 1;
+    padding: 0;
+}
+
+button.wp-block-icon[data-strap-dialog-target]>svg:not([width]) {
+    width: 2rem;
+    height: auto;
+}
+
 dialog.strap-dialog {
     padding: 0;
     margin: 0;
@@ -11,21 +33,27 @@ dialog.strap-dialog {
 
 /* The backdrop only shows when open using showModal() */
 dialog.strap-dialog::backdrop {
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(4px);
+    background: rgba(17, 24, 39, 0.44);
+    backdrop-filter: blur(3px);
     animation: strap-fade-in 0.3s ease forwards;
 }
 
 @keyframes strap-fade-in {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 /* Offcanvas Content Container */
 .strap-dialog-content {
-    background-color: color-mix(in srgb, var(--wp--preset--color--base) 85%, transparent);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
+    background-color: var(--wp--preset--color--base);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--system-ui-border-color, rgba(255, 255, 255, 0.12));
     color: var(--wp--preset--color--contrast, #000);
     height: 100vh;
     width: 100vw;
@@ -33,7 +61,7 @@ dialog.strap-dialog::backdrop {
     overflow-y: auto;
     overflow-x: hidden;
     position: relative;
-    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    box-shadow: 0 1.5rem 3rem rgba(15, 23, 42, 0.18);
     padding: var(--wp--preset--spacing--30) var(--wp--preset--spacing--20);
 }
 
@@ -41,23 +69,47 @@ dialog.strap-dialog::backdrop {
 .strap-dialog-pos-start {
     margin-right: auto;
 }
+
+.strap-dialog-pos-start .strap-dialog-content {
+    border-left: 0;
+    box-shadow: 1.5rem 0 3rem rgba(15, 23, 42, 0.18);
+}
+
 .strap-dialog-pos-start[open] .strap-dialog-content {
     animation: strap-slide-right 0.3s ease forwards;
 }
+
 @keyframes strap-slide-right {
-    from { transform: translateX(-100%); }
-    to { transform: translateX(0); }
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
 }
 
 .strap-dialog-pos-end {
     margin-left: auto;
 }
+
+.strap-dialog-pos-end .strap-dialog-content {
+    border-right: 0;
+    box-shadow: -1.5rem 0 3rem rgba(15, 23, 42, 0.18);
+}
+
 .strap-dialog-pos-end[open] .strap-dialog-content {
     animation: strap-slide-left 0.3s ease forwards;
 }
+
 @keyframes strap-slide-left {
-    from { transform: translateX(100%); }
-    to { transform: translateX(0); }
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
 }
 
 .strap-dialog-pos-top {
@@ -67,12 +119,24 @@ dialog.strap-dialog::backdrop {
     max-width: 100vw;
     width: 100vw;
 }
+
+.strap-dialog-pos-top .strap-dialog-content {
+    border-top: 0;
+    box-shadow: 0 1.25rem 2.75rem rgba(15, 23, 42, 0.16);
+}
+
 .strap-dialog-pos-top[open] .strap-dialog-content {
     animation: strap-slide-down 0.3s ease forwards;
 }
+
 @keyframes strap-slide-down {
-    from { transform: translateY(-100%); }
-    to { transform: translateY(0); }
+    from {
+        transform: translateY(-100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
 }
 
 .strap-dialog-pos-bottom {
@@ -82,12 +146,24 @@ dialog.strap-dialog::backdrop {
     max-width: 100vw;
     width: 100vw;
 }
+
+.strap-dialog-pos-bottom .strap-dialog-content {
+    border-bottom: 0;
+    box-shadow: 0 -1.25rem 2.75rem rgba(15, 23, 42, 0.16);
+}
+
 .strap-dialog-pos-bottom[open] .strap-dialog-content {
     animation: strap-slide-up 0.3s ease forwards;
 }
+
 @keyframes strap-slide-up {
-    from { transform: translateY(100%); }
-    to { transform: translateY(0); }
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
 }
 
 .strap-dialog-pos-center {
@@ -111,7 +187,8 @@ dialog.strap-dialog::backdrop {
     border-radius: inherit;
     height: auto;
     width: 99vw;
-    max-width: 1200px; /* Sensible upper cap */
+    max-width: 1200px;
+    /* Sensible upper cap */
     /* Let the user's pattern handle background/padding edge-to-edge */
     background: transparent;
     backdrop-filter: none;
@@ -131,16 +208,25 @@ dialog.strap-dialog::backdrop {
         width: 80vw;
     }
 }
+
 .strap-dialog-pos-center[open] .strap-dialog-content {
     animation: strap-zoom-in 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
+
 @keyframes strap-zoom-in {
-    from { transform: scale(0.95); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 /* Helper to ensure offcanvas header/body sections space out nicely */
-.strap-dialog-content > .wp-block-group {
+.strap-dialog-content>.wp-block-group {
     margin-bottom: var(--wp--preset--spacing--20);
 }
 
@@ -159,23 +245,80 @@ dialog.strap-dialog::backdrop {
     right: var(--wp--preset--spacing--30, 1rem) !important;
 }
 
+/* Compact pagination chrome for modal AJAX search controls */
+.strap-ajax-search-wrapper .wp-block-buttons {
+    gap: var(--wp--preset--spacing--10, 0.5rem);
+}
+
+.strap-ajax-search-wrapper .wp-block-button {
+    margin: 0;
+}
+
+.strap-ajax-search-wrapper .wp-block-button__link {
+    --strap-modal-pagination-control-size: 2.4rem;
+
+    align-items: center;
+    background: color-mix(in srgb, var(--wp--preset--color--base) 91%, rgba(var(--wp--preset--color--contrast-rgb, 0, 0, 0), 0.03));
+    border: 1px solid rgba(var(--wp--preset--color--contrast-rgb, 0, 0, 0), 0.12);
+    border-radius: 999px;
+    box-shadow: 0 0.2rem 0.65rem rgba(15, 23, 42, 0.06);
+    color: inherit;
+    display: inline-flex;
+    font-size: var(--wp--preset--font-size--small);
+    font-weight: var(--wp--custom--font-weight-button, 600);
+    justify-content: center;
+    line-height: 1;
+    min-height: var(--strap-modal-pagination-control-size);
+    min-width: var(--strap-modal-pagination-control-size);
+    padding: 0.55rem 0.8rem;
+    text-decoration: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.strap-ajax-search-wrapper .wp-block-button__link:hover {
+    background: color-mix(in srgb, var(--wp--preset--color--primary) 8%, var(--wp--preset--color--base));
+    border-color: rgba(var(--wp--preset--color--primary-rgb, 0, 0, 0), 0.22);
+    box-shadow: 0 0.35rem 0.85rem rgba(15, 23, 42, 0.09);
+    color: inherit;
+    transform: translateY(-1px);
+}
+
+.strap-ajax-search-wrapper .wp-block-button__link:focus-visible {
+    box-shadow: 0 0 0 0.2rem rgba(var(--wp--preset--color--primary-rgb, 37, 99, 235), 0.18), 0 0.35rem 0.85rem rgba(15, 23, 42, 0.09);
+    outline: none;
+}
+
+.strap-ajax-search-wrapper .wp-block-button.is-disabled .wp-block-button__link,
+.strap-ajax-search-wrapper .wp-block-button__link[aria-disabled="true"] {
+    background: rgba(var(--wp--preset--color--contrast-rgb, 0, 0, 0), 0.08);
+    border-color: rgba(var(--wp--preset--color--contrast-rgb, 0, 0, 0), 0.08);
+    box-shadow: none;
+    color: rgba(var(--wp--preset--color--contrast-rgb, 0, 0, 0), 0.45);
+    cursor: default;
+    pointer-events: none;
+    transform: none;
+}
+
 /* Custom Sleek Scrollbar for Dialog Content */
 .strap-dialog-content::-webkit-scrollbar {
     width: 6px;
 }
+
 .strap-dialog-content::-webkit-scrollbar-track {
     background: transparent;
 }
+
 .strap-dialog-content::-webkit-scrollbar-thumb {
     background-color: rgba(var(--wp--preset--color--contrast-rgb, 0, 0, 0), 0.2);
     border-radius: 10px;
 }
+
 .strap-dialog-content:hover::-webkit-scrollbar-thumb {
     background-color: rgba(var(--wp--preset--color--contrast-rgb, 0, 0, 0), 0.4);
 }
 
 /* Staggered Entrance Animation for Dialog Children */
-.strap-dialog[open] .strap-dialog-content > *:not(.strap-dialog-close-btn) {
+.strap-dialog[open] .strap-dialog-content>*:not(.strap-dialog-close-btn) {
     opacity: 0;
     animation: strap-staggered-fade-up 0.4s ease forwards;
 }
@@ -187,18 +330,36 @@ dialog.strap-dialog::backdrop {
 }
 
 /* Stagger delays for up to 6 immediate children (ignoring close btn which is child 1) */
-.strap-dialog[open] .strap-dialog-content > *:nth-child(2) { animation-delay: 0.1s; }
-.strap-dialog[open] .strap-dialog-content > *:nth-child(3) { animation-delay: 0.15s; }
-.strap-dialog[open] .strap-dialog-content > *:nth-child(4) { animation-delay: 0.2s; }
-.strap-dialog[open] .strap-dialog-content > *:nth-child(5) { animation-delay: 0.25s; }
-.strap-dialog[open] .strap-dialog-content > *:nth-child(6) { animation-delay: 0.3s; }
-.strap-dialog[open] .strap-dialog-content > *:nth-child(7) { animation-delay: 0.35s; }
+.strap-dialog[open] .strap-dialog-content>*:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.strap-dialog[open] .strap-dialog-content>*:nth-child(3) {
+    animation-delay: 0.15s;
+}
+
+.strap-dialog[open] .strap-dialog-content>*:nth-child(4) {
+    animation-delay: 0.2s;
+}
+
+.strap-dialog[open] .strap-dialog-content>*:nth-child(5) {
+    animation-delay: 0.25s;
+}
+
+.strap-dialog[open] .strap-dialog-content>*:nth-child(6) {
+    animation-delay: 0.3s;
+}
+
+.strap-dialog[open] .strap-dialog-content>*:nth-child(7) {
+    animation-delay: 0.35s;
+}
 
 @keyframes strap-staggered-fade-up {
     from {
         opacity: 0;
         transform: translateY(15px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);

@@ -2,7 +2,6 @@
 /**
  * Title: Content Search
  * Slug: systemstrap/content-search
- * Block Types: core/template-part/uncategorized
  * Inserter: no
  */
 ?>

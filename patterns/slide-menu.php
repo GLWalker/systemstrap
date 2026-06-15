@@ -1,12 +1,8 @@
 <?php
 /**
- 
  * Title: Slide Menu
- 
  * Slug: systemstrap/slide-menu
- 
- * Categories: carousel
- 
+ * Categories: systemstrap, carousel
  */
 ?>
 

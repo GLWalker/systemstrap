@@ -27,6 +27,17 @@ require_once get_template_directory() . '/inc/dialog-renderer.php';
 function strap_theme_setup() {
 	// Enable support for editor styles so Gutenberg parses and scopes them natively
 	add_theme_support( 'editor-styles' );
+	add_theme_support(
+		'custom-logo',
+		array(
+			'height'               => 90,
+			'width'                => 90,
+			'flex-height'          => true,
+			'flex-width'           => true,
+			'header-text'          => array( 'site-title', 'site-description' ),
+			'unlink-homepage-logo' => true,
+		)
+	);
 
 	$editor_styles = array(
 		'assets/css/strap-reset.css',

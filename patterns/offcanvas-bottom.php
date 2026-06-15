@@ -1,8 +1,8 @@
 <?php
 /**
- * Title: Offcanvas Bottom Main
+ * Title: Offcanvas Bottom
  * Slug: systemstrap/offcanvas-bottom
- * Inserter: no
+ * Categories: systemstrap
  */
 ?>
 

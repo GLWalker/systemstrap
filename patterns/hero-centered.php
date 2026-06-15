@@ -1,12 +1,8 @@
 <?php
 /**
- 
- * Title: Centered Hero
- 
+ * Title: Hero Centered
  * Slug: systemstrap/hero-centered
- 
- * Categories: call-to-action
- 
+ * Categories: systemstrap, call-to-action
  */
 ?>
 

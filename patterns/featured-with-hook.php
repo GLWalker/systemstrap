@@ -1,12 +1,8 @@
 <?php
 /**
- 
- * Title: Featured with Hook
- 
+ * Title: Featured With Hook
  * Slug: systemstrap/featured-with-hook
- 
- * Categories: featured
- 
+ * Categories: systemstrap, featured
  */
 ?>
 

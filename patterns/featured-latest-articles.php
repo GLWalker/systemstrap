@@ -1,12 +1,8 @@
 <?php
 /**
- 
  * Title: Featured Latest Articles
- 
  * Slug: systemstrap/featured-latest-articles
- 
- * Categories: featured
- 
+ * Categories: systemstrap, featured
  */
 ?>
 

@@ -1,9 +1,8 @@
 <?php
 /**
-
- * Title: Offcanvas Left Main
+ * Title: Offcanvas Left
  * Slug: systemstrap/offcanvas-left
- * Inserter: no
+ * Categories: systemstrap
  */
 ?>
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"var:preset|spacing|50"}}},"layout":{"type":"constrained"}} -->

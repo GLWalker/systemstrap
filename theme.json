@@ -1718,11 +1718,6 @@
 		},
 		{
 			"area": "uncategorized",
-			"name": "part-page",
-			"title": "Page Part"
-		},
-		{
-			"area": "uncategorized",
 			"name": "part-comments",
 			"title": "Comments Part"
 		},

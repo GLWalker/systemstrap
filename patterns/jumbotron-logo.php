@@ -1,12 +1,8 @@
 <?php
 /**
- 
- * Title: Jumbotron with Logo
- 
+ * Title: Jumbotron Logo
  * Slug: systemstrap/jumbotron-logo
- 
- * Categories: call-to-action
- 
+ * Categories: systemstrap, call-to-action
  */
 ?>
 

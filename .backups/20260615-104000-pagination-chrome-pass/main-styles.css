@@ -1,0 +1,438 @@
+
+/* System UI Global Tokens */
+:root {
+    /* Surfaces */
+    --system-ui-surface: rgba(var(--wp--preset--color--base-rgb), .1);
+    --system-ui-surface-subtle: rgba(var(--wp--preset--color--secondary-bg-rgb), .1);
+    --system-ui-active-bg: rgba(var(--wp--preset--color--base-rgb), .1);
+
+    /* Borders */
+    --system-ui-border-color: rgba(var(--wp--preset--color--border-color-rgb), .5);
+    --system-ui-border-color-on-background: var(--wp--preset--color--current-mix);
+    --system-ui-active-border-color: var(--wp--preset--color--current-mix);
+
+    /* Hovers */
+    --system-ui-hover-bg: rgba(var(--wp--preset--color--secondary-bg-rgb), .15);
+    --system-ui-hover-bg-subtle: rgba(var(--wp--preset--color--secondary-bg-rgb), .15);
+    --system-ui-hover-bg-on-background: rgba(var(--wp--preset--color--secondary-bg-rgb), .1);
+
+    /* Experimental Adaptive Hover */
+    --system-ui-hover-bg-on-background-adaptive: color-mix(in srgb, currentColor 5%, transparent);
+}
+
+
+
+/* ==========================================================================
+   WordPress Block Styles
+   ========================================================================== */
+
+/* 1. Global & Structural Blocks */
+.wp-site-blocks,
+.site-header,
+.site-footer,
+.site-main,
+.wp-block-template-part {
+    margin: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    width: 100%;
+}
+
+header.wp-block-template-part {
+    margin-top: 0 !important;
+}
+
+/* Safety Net for SVG Icons in Flex Containers */
+.wp-block-icon {
+    flex-shrink: 0;
+    line-height: 1;
+}
+/* If the icon lacks a specific size, prevent it from exploding */
+.wp-block-icon > svg:not([width]) {
+    width: 2rem;
+    height: auto;
+}
+
+
+
+
+
+.site-header.is-position-sticky {
+    top: calc(0px + var(--wp-admin--admin-bar--position-offset, 0));
+    position: sticky;
+    z-index: 10;
+}
+
+/* 3. Typography & Headings */
+
+.has-single-title-font-family {
+    font-family: var(--wp--custom--font-family-single-title, inherit) !important;
+}
+
+.wp-block-site-title.site-title,
+.wp-block-site-title.site-title a {
+    font-family: var(--wp--custom--font-family-heading);
+    font-size: var(--wp--preset--font-size--x-large);
+    font-style: normal;
+    font-weight: var(--wp--custom--font-weight-heading);
+    line-height: 1.2;
+    text-decoration: none;
+}
+
+
+.entry-title,
+.wp-block-post-title,
+.wp-block-query-title,
+.entry-content,
+.entry-summary,
+.wp-block-post-excerpt,
+.wp-block-post-excerpt__excerpt,
+.wp-block-post-content {
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+    box-sizing: border-box;
+    word-break: break-word;
+}
+
+
+
+.post-template-no-title .entry-header,
+.page-template-no-title .entry-header {
+    display: none !important;
+}
+
+/* 4. Layout & Images */
+
+@media (min-width: 768px) {
+    .media-object .wp-block-post-featured-image {
+        margin-right: var(--wp--preset--spacing--30, 1rem) !important;
+    }
+}
+
+/* 5. Specific Block Fixes */
+/* Safe, predictable scoping using spacing variables */
+
+
+.wp-block-archives-list.list-group>li,
+.wp-block-categories-list.list-group>li {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+}
+
+
+/* 7. Badges & Pills */
+.badge .is-layout-flow {
+    margin-block-start: 0;
+}
+
+.is-style-pill a {
+    --badge-padding-x: var(--wp--preset--font-size--x-small, .75rem);
+    --badge-padding-y: calc(var(--wp--preset--font-size--x-small, .75rem) * .5);
+    --badge-font-size: var(--wp--preset--font-size--x-small, .75rem);
+    --badge-font-weight: var(--wp--custom--font-weight-button);
+    --badge-border-radius: var(--wp--custom--border-radius, .375rem);
+
+    display: inline-block;
+    padding: var(--badge-padding-y) var(--badge-padding-x);
+    font-size: var(--badge-font-size);
+    font-weight: var(--badge-font-weight);
+    line-height: 1;
+    	text-decoration: underline;
+}
+
+
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.is-style-pill a {
+    background-color: var(--wp--preset--color--secondary, #ACAEB0);
+    color: var(--wp--preset--color--base, #ffffff);
+    margin-bottom: calc(var(--wp--preset--font-size--medium, 1rem) * .5);
+}
+
+.is-style-pill a:hover {
+    background-color: var(--wp--preset--color--primary, #2D4054);
+    color: var(--wp--preset--color--base, #ffffff);
+}
+
+.wp-block-paragraph.badge {
+    margin: .2rem !important;
+}
+
+/* ==========================================================================
+   8. Button Block Variations & Enhancements
+   ========================================================================== */
+
+.wp-block-button__link,
+.wp-block-search__button {
+    transition: var(--wp--custom--btn-transition);
+    transform: var(--wp--custom--btn-transform);
+}
+.wp-block-button__link:hover,
+.wp-block-search__button:hover {
+    transform: var(--wp--custom--btn-hover-transform);
+}
+
+/* Fallback default primary hover if no color class is selected (Solid Buttons) */
+.wp-block-button:not(:is(.is-style-system-btn-icon, .is-style-button-link, [class*="outline"])) .wp-block-button__link:not([class*="has-background"]):not(.has-text-color):not(:disabled),
+.wp-block-search__button:not([class*="has-background"]):not(.has-text-color):not(:disabled) {
+    box-shadow: inset 0 .0625rem 0 rgba(255, 255, 255, 0.15), 0 .0625rem .0625rem rgba(0, 0, 0, 0.075);
+}
+.wp-block-button:not(:is(.is-style-system-btn-icon, .is-style-button-link, [class*="outline"])) .wp-block-button__link:not([class*="has-background"]):not(.has-text-color):not(:disabled):hover,
+.wp-block-search__button:not([class*="has-background"]):not(.has-text-color):not(:disabled):hover {
+    background-color: var(--wp--preset--color--primary-50) !important;
+    box-shadow: inset 0 .0625rem 0 rgba(255, 255, 255, 0.15), 0 .0625rem .0625rem rgba(0, 0, 0, 0.075);
+}
+.wp-block-button:not(:is(.is-style-system-btn-icon, .is-style-button-link, [class*="outline"])) .wp-block-button__link:not([class*="has-background"]):not(.has-text-color):not(:disabled):focus,
+.wp-block-search__button:not([class*="has-background"]):not(.has-text-color):not(:disabled):focus {
+    box-shadow: 0 0 0 .25rem rgba(var(--wp--preset--color--primary-rgb), 0.5);
+}
+.wp-block-button:not(:is(.is-style-system-btn-icon, .is-style-button-link, [class*="outline"])) .wp-block-button__link:not([class*="has-background"]):not(.has-text-color):not(:disabled):active,
+.wp-block-search__button:not([class*="has-background"]):not(.has-text-color):not(:disabled):active {
+    background-color: var(--wp--preset--color--primary-20) !important;
+    box-shadow: inset 0 .1875rem .3125rem rgba(0, 0, 0, 0.125);
+}
+
+/* Fallback default hover for Outline Buttons */
+.wp-block-button:is([class*="outline"]) .wp-block-button__link:not([class*="has-background"]):not(.has-text-color):not(:disabled):hover {
+    background-color: var(--wp--preset--color--primary) !important;
+    color: var(--wp--preset--color--primary-text) !important;
+    box-shadow: inset 0 .0625rem 0 rgba(255, 255, 255, 0.15), 0 .0625rem .0625rem rgba(0, 0, 0, 0.075);
+}
+.wp-block-button:is([class*="outline"]) .wp-block-button__link:not([class*="has-background"]):not(.has-text-color):not(:disabled):focus {
+    box-shadow: 0 0 0 .25rem rgba(var(--wp--preset--color--primary-rgb), 0.5);
+}
+.wp-block-button:is([class*="outline"]) .wp-block-button__link:not([class*="has-background"]):not(.has-text-color):not(:disabled):active {
+    background-color: var(--wp--preset--color--primary-20) !important;
+    color: var(--wp--preset--color--primary-text) !important;
+    box-shadow: inset 0 .1875rem .3125rem rgba(0, 0, 0, 0.125);
+}
+
+/* Override WP core bloated button padding with our sleek spacing scale across all button variations */
+.wp-block-button__link,
+.wp-element-button {
+    padding-top: calc(var(--wp--preset--font-size--small) * .5);
+    padding-bottom: calc(var(--wp--preset--font-size--small) * .5);
+    padding-left: var(--wp--preset--font-size--medium);
+    padding-right: var(--wp--preset--font-size--medium);
+    border-width: var(--wp--custom--border-width, 1px);
+}
+
+/* Link Button */
+.wp-block-button.is-style-button-link .wp-block-button__link {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    color: inherit;
+    text-decoration: none;
+}
+.wp-block-button.is-style-button-link .wp-block-button__link:hover {
+    text-decoration: underline;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Base outline logic for custom outline variations */
+.wp-block-button.is-style-button-pill-outline .wp-block-button__link,
+.wp-block-button.is-style-button-square-outline .wp-block-button__link {
+    background-color: transparent !important;
+    border: var(--wp--custom--border-width, 1px) solid currentColor !important;
+    color: inherit;
+}
+
+/* Pill & Square Shape Overrides */
+.wp-block-button.is-style-button-pill .wp-block-button__link,
+.wp-block-button.is-style-button-pill-outline .wp-block-button__link {
+    border-radius: 50rem !important;
+}
+
+.wp-block-button.is-style-button-square .wp-block-button__link,
+.wp-block-button.is-style-button-square-outline .wp-block-button__link {
+    border-radius: 0 !important;
+}
+/* ==========================================================================
+   9. Navigation & Menu Block Variations & Enhancements
+   ========================================================================== */
+
+.wp-block-navigation,
+.wp-block-navigation .wp-block-navigation-item,
+.wp-block-navigation .wp-block-navigation-item__content,
+.wp-block-navigation .wp-block-navigation-submenu__toggle {
+	color: inherit;
+}
+
+/* Override WordPress's hardcoded default submenu colors */
+/* We target the .wp-block-navigation-submenu (the LI) to check if a user applied a custom color */
+
+/* Default Submenu Colors */
+.wp-block-navigation-submenu:not(.has-text-color) > .wp-block-navigation__submenu-container,
+.wp-block-navigation-submenu:not(.has-text-color) > .block-editor-inner-blocks .wp-block-navigation__submenu-container {
+    color: var(--wp--preset--color--contrast);
+}
+
+.wp-block-navigation-submenu:not(.has-background) > .wp-block-navigation__submenu-container,
+.wp-block-navigation-submenu:not(.has-background) > .block-editor-inner-blocks .wp-block-navigation__submenu-container {
+    background-color: var(--wp--preset--color--base);
+    border: var(--wp--custom--dropdown-border-width) solid var(--wp--custom--dropdown-border-color);
+    border-radius: var(--wp--custom--dropdown-border-radius);
+    padding: var(--wp--preset--spacing--10, 0.5rem) 0;
+}
+
+/* Global Submenu Hover - Adaptive */
+.wp-block-navigation .wp-block-navigation__submenu-container .wp-block-navigation-item:hover {
+    background: color-mix(in srgb, currentColor 8%, transparent) !important;
+}
+
+/* EDITOR SPECIFIC FIX: Prevent the editor from forcefully inheriting top-level backgrounds */
+.wp-block-navigation-submenu:not(.has-background) > .block-editor-inner-blocks,
+.wp-block-navigation-submenu:not(.has-background) .wp-block-navigation__submenu-container.block-editor-inner-blocks {
+    background-color: var(--wp--preset--color--base) !important;
+    border: var(--wp--custom--dropdown-border-width) solid var(--wp--custom--dropdown-border-color) !important;
+    border-radius: var(--wp--custom--dropdown-border-radius) !important;
+    padding: var(--wp--preset--spacing--10, 0.5rem) 0 !important;
+}
+
+.wp-block-navigation-submenu:not(.has-text-color) > .block-editor-inner-blocks,
+.wp-block-navigation-submenu:not(.has-text-color) .wp-block-navigation__submenu-container.block-editor-inner-blocks {
+    color: var(--wp--preset--color--contrast) !important;
+}
+
+/* ==========================================================================
+   Global Dropdown Enhancements (Boundaries & Carets)
+   ========================================================================== */
+
+/* Boundary Alignments (applied by dropdown-boundary.js) */
+.wp-block-navigation-item.has-child .wp-block-navigation__submenu-container.is-align-right {
+    left: auto !important;
+    right: 0 !important;
+}
+
+.wp-block-navigation-item.has-child .wp-block-navigation__submenu-container.is-align-top {
+    top: auto !important;
+    bottom: 100% !important;
+    margin-top: 0 !important;
+}
+
+/* ==========================================================================
+   Shared System List Component
+   ========================================================================== */
+:where(.is-style-system-list) {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0 !important;
+    border-radius: var(--wp--custom--border-radius);
+}
+
+:where(.is-style-system-list) > li {
+    position: relative;
+    margin: 0 !important;
+    color: var(--wp--preset--color--inherit);
+    border: var(--wp--custom--border-width, 1px) solid rgba(var(--wp--preset--color--border-color-rgb), .5);
+    background: rgba(var(--wp--preset--color--base-rgb), .2);
+    box-shadow: var(--wp--custom--shadow);
+    border-radius: var(--wp--custom--border-radius);
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+
+:where(.is-style-system-list) > li + li {
+    border-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+:where(.is-style-system-list) > li:has(+ li) {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+/* ==========================================================================
+   Hardcode Core Accordion Fixes
+   ========================================================================== */
+.wp-block-accordion .wp-block-accordion-heading__toggle {
+    font-size: var(--wp--preset--font-size--medium, 1rem) !important;
+    text-decoration: none !important;
+}
+
+/* Ensure latest posts titles reliably inherit the correct heading properties */
+.wp-block-latest-posts .wp-block-latest-posts__post-title,
+.wp-block-latest-posts__post-title {
+    font-family: var(--wp--custom--font-family-heading);
+    font-weight: var(--wp--custom--font-weight-heading);
+}
+
+
+/* Apply the single title custom font ONLY to H1 post titles on single templates */
+h1.wp-block-post-title.entry-title {
+    font-family: var(--wp--custom--font-family-single-title);
+}
+
+/* ==========================================================================
+   Global Form Controls
+   ========================================================================== */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+input[type="number"],
+textarea,
+select,
+.wp-block-search__input {
+    border-width: var(--wp--custom--form-border-width);
+    border-style: solid;
+    border-color: var(--wp--custom--form-border-color);
+    border-radius: var(--wp--custom--form-border-radius);
+    box-shadow: var(--wp--preset--shadow--form-control-shadow, none);
+    transition: var(--wp--custom--form-transition);
+}
+
+/* Focus State */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus,
+.wp-block-search__input:focus {
+    outline: none;
+    border-color: var(--wp--custom--form-focus-border-color);
+    box-shadow: var(--wp--preset--shadow--form-focus, none);
+}
+
+/* ==========================================================================
+   System Badge Component
+   ========================================================================== */
+
+/* Block-level Badges and Inline Highlights */
+.system-badge,
+.has-system-badge mark.has-inline-color {
+    display: inline-block;
+    padding: var(--wp--custom--badge-padding-y) var(--wp--custom--badge-padding-x);
+    font-size: var(--wp--custom--badge-font-size);
+    font-weight: var(--wp--custom--badge-font-weight);
+    line-height: 1;
+    color: var(--wp--preset--color--base, #fff); /* Default contrast */
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: var(--wp--custom--badge-border-radius);
+    background-color: var(--wp--preset--color--primary, #0d6efd); /* Default bg */
+    border: none;
+    text-decoration: none;
+}
+
+/* Ensure empty badges collapse nicely */
+.system-badge:empty,
+.has-system-badge mark.has-inline-color:empty {
+    display: none;
+}

@@ -1,12 +1,8 @@
 <?php
 /**
- 
- * Title: Featured Color Palets
- 
+ * Title: Featured Colors
  * Slug: systemstrap/featured-colors
- 
- * Categories: featured
- 
+ * Categories: systemstrap, featured
  */
 ?>
 

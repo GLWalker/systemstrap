@@ -1,12 +1,8 @@
 <?php
 /**
- 
- * Title: List of posts in media-object wrapped in is-style-system-panel
- 
+ * Title: Query Media Object
  * Slug: systemstrap/query-media-object
- 
- * Categories: query
- 
+ * Categories: systemstrap, query
  */
 ?>
 

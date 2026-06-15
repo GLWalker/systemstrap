@@ -10,6 +10,95 @@
 // Exit if accessed directly.
 defined('ABSPATH') || exit;
 
+if (!function_exists('strap_add_schema_to_title_markup')) {
+
+    /**
+     * Adds schema attributes to rendered site/post title markup.
+     *
+     * @param string $markup Rendered block HTML.
+     * @param string $class_name Optional class name to preserve on the outer title element.
+     * @return string
+     */
+    function strap_add_schema_to_title_markup($markup, $class_name = '')
+    {
+        if (empty($markup) || !class_exists('WP_HTML_Tag_Processor')) {
+            return $markup;
+        }
+
+        $processor = new WP_HTML_Tag_Processor($markup);
+        if ($processor->next_tag()) {
+            $tag_name = $processor->get_tag();
+            if (in_array($tag_name, ['H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'P'], true)) {
+                $processor->set_attribute('itemprop', 'headline');
+                if (!empty($class_name)) {
+                    $processor->add_class($class_name);
+                }
+            }
+        }
+
+        if ($processor->next_tag(['tag_name' => 'A'])) {
+            $processor->set_attribute('itemprop', 'url');
+        }
+
+        return $processor->get_updated_html();
+    }
+}
+
+if (!function_exists('strap_add_schema_to_tagline_markup')) {
+
+    /**
+     * Adds schema attributes to rendered site tagline markup.
+     *
+     * @param string $markup Rendered block HTML.
+     * @param string $class_name Optional class name to preserve on the outer tagline element.
+     * @return string
+     */
+    function strap_add_schema_to_tagline_markup($markup, $class_name = '')
+    {
+        if (empty($markup) || !class_exists('WP_HTML_Tag_Processor')) {
+            return $markup;
+        }
+
+        $processor = new WP_HTML_Tag_Processor($markup);
+        if ($processor->next_tag()) {
+            $processor->set_attribute('itemprop', 'description');
+            if (!empty($class_name)) {
+                $processor->add_class($class_name);
+            }
+        }
+
+        return $processor->get_updated_html();
+    }
+}
+
+if (!function_exists('strap_render_post_title_with_hooks')) {
+
+    /**
+     * Temporarily inject title hooks while delegating markup generation to core.
+     *
+     * @param array    $attributes Block attributes.
+     * @param string   $content    Original block content.
+     * @param WP_Block $block      Block instance.
+     * @return string
+     */
+    function strap_render_post_title_with_hooks($attributes, $content, $block)
+    {
+        $title_filter = static function ($title, $post_id = 0) use ($block) {
+            if (!isset($block->context['postId']) || (int) $post_id !== (int) $block->context['postId']) {
+                return $title;
+            }
+
+            return strap_do_block_action('strap_hook_start_title') . $title . strap_do_block_action('strap_hook_end_title');
+        };
+
+        add_filter('the_title', $title_filter, 10, 2);
+        $markup = render_block_core_post_title($attributes, $content, $block);
+        remove_filter('the_title', $title_filter, 10);
+
+        return $markup;
+    }
+}
+
 if (!function_exists('strap_render_block_core_site_title')) {
 
     remove_action('init', 'register_block_core_site_title');
@@ -27,50 +116,13 @@ if (!function_exists('strap_render_block_core_site_title')) {
 
     function strap_render_block_core_site_title($attributes)
     {
-        $site_title = get_bloginfo('name');
-        if (!$site_title) {
+        $markup = render_block_core_site_title($attributes);
+
+        if (!$markup) {
             return '';
         }
 
-        // Prepare classes array
-        $classes = ['site-title'];
-
-        if (!empty($attributes['textAlign'])) {
-            $classes[] = "has-text-align-{$attributes['textAlign']}";
-        }
-        if (isset($attributes['style']['elements']['link']['color']['text'])) {
-            $classes[] = 'has-link-color';
-        }
-
-        // Set tag name based on 'level' attribute
-        //   $tag_name = isset($attributes['level']) && $attributes['level'] === 0 ? 'p' : 'h' . (int) $attributes['level'];
-
-        $tag_name = (is_home() || (is_front_page() && 'page' === get_option('show_on_front'))) ? 'h1' : 'p';
-
-        // Check if the site title should be a link
-        if ($attributes['isLink']) {
-            $aria_current = (is_home() || (is_front_page() && 'page' === get_option('show_on_front'))) ? ' aria-current="page"' : '';
-            $link_target = !empty($attributes['linkTarget']) ? $attributes['linkTarget'] : '_self';
-
-            $site_title = sprintf(
-                '<a href="%1$s" target="%2$s" rel="home" itemprop="url" %3$s title="%4$s">%4$s</a>',
-                esc_url(home_url()),
-                esc_attr($link_target),
-                $aria_current,
-                esc_html($site_title)
-            );
-        }
-
-        // Get wrapper attributes
-        $wrapper_attributes = get_block_wrapper_attributes(['class' => implode(' ', $classes)]);
-
-        return sprintf(
-            '<%1$s %2$s itemprop="headline">%3$s</%1$s>',
-            $tag_name,
-            $wrapper_attributes,
-            // Escape if not a link
-            $attributes['isLink'] ? $site_title : esc_html($site_title)
-        );
+        return strap_add_schema_to_title_markup($markup, 'site-title');
     }
     /**
      * Registers the `core/site-title` block on the server.
@@ -103,30 +155,13 @@ if (!function_exists('strap_render_block_core_site_tagline')) {
 
     function strap_render_block_core_site_tagline($attributes)
     {
-        $site_tagline = get_bloginfo('description');
-        if (!$site_tagline) {
-            return;
+        $markup = render_block_core_site_tagline($attributes);
+
+        if (!$markup) {
+            return '';
         }
 
-        $classes = array();
-        $classes[] = 'site-description';
-
-        $tag_name           = 'p';
-        $classes[]   = empty($attributes['textAlign']) ? '' : "has-text-align-{$attributes['textAlign']}";
-        //$wrapper_attributes = get_block_wrapper_attributes(array('class' => $align_class_name));
-
-        $wrapper_attributes = get_block_wrapper_attributes(array('class' => implode(' ', $classes)));
-
-        if (isset($attributes['level']) && 0 !== $attributes['level']) {
-            $tag_name = 'h' . (int) $attributes['level'];
-        }
-
-        return sprintf(
-            '<%1$s %2$s itemprop="description">%3$s</%1$s>',
-            $tag_name,
-            $wrapper_attributes,
-            $site_tagline
-        );
+        return strap_add_schema_to_tagline_markup($markup, 'site-description');
     }
     /**
      * Registers the `core/site-tagline` block on the server.
@@ -162,38 +197,13 @@ if (!function_exists('strap_render_block_core_post_title')) {
             return '';
         }
 
-        $title = strap_do_block_action('strap_hook_start_title') . get_the_title() . strap_do_block_action('strap_hook_end_title');
+        $markup = strap_render_post_title_with_hooks($attributes, $content, $block);
 
-        if (!$title) {
+        if (!$markup) {
             return '';
         }
 
-        $tag_name = 'h2';
-        if (isset($attributes['level'])) {
-            $tag_name = 0 === $attributes['level'] ? 'p' : 'h' . (int) $attributes['level'];
-        }
-
-        if (isset($attributes['isLink']) && $attributes['isLink']) {
-            $rel = !empty($attributes['rel']) ? 'rel="' . esc_attr($attributes['rel']) . '"' : 'rel="bookmark"';
-            $title = sprintf('<a itemprop="url" href="%1$s" target="%2$s" %3$s>%4$s</a>', esc_url(get_the_permalink($block->context['postId'])), esc_attr($attributes['linkTarget']), $rel, $title);
-        }
-
-        $classes = ['entry-title'];
-        if (isset($attributes['textAlign'])) {
-            $classes[] = 'has-text-align-' . $attributes['textAlign'];
-        }
-        if (isset($attributes['style']['elements']['link']['color']['text'])) {
-            $classes[] = 'has-link-color';
-        }
-
-        $wrapper_attributes = get_block_wrapper_attributes(['class' => implode(' ', $classes)]);
-
-        return sprintf(
-            '<%1$s %2$s itemprop="headline">%3$s</%1$s>',
-            $tag_name,
-            $wrapper_attributes,
-            $title
-        );
+        return strap_add_schema_to_title_markup($markup, 'entry-title');
     }
 
     /**
@@ -262,7 +272,7 @@ if (!function_exists('strap_render_block_core_post_date')) {
         $wrapper_attributes = get_block_wrapper_attributes(['class' => implode(' ', $classes)]);
 
         if (isset($attributes['isLink']) && $attributes['isLink']) {
-            $formatted_date = sprintf('<a href="%1$s">%2$s</a>', get_the_permalink($post_ID), $formatted_date);
+            $formatted_date = sprintf('<a href="%1$s" itemprop="url">%2$s</a>', get_the_permalink($post_ID), $formatted_date);
         }
 
         return sprintf(
@@ -315,12 +325,21 @@ if (!function_exists('strap_render_block_core_post_author_name')) {
             return '';
         }
 
-        $author_name = get_the_author_meta('display_name', $author_id);
+        $author_name_text = get_the_author_meta('display_name', $author_id);
 
         if (isset($attributes['isLink']) && $attributes['isLink']) {
-            $author_name = sprintf('<a href="%1$s" target="%2$s" class="wp-block-post-author-name__link url fn n" title="View all posts by ' . $author_name . ' " rel="author" itemprop="url" aria-label="Author: ' . $author_name . '">%3$s</a>', get_author_posts_url($author_id), esc_attr($attributes['linkTarget']), '<span class="author-name" itemprop="name">' . $author_name . '</span>');
+            $author_name = sprintf(
+                '<a href="%1$s" target="%2$s" class="wp-block-post-author-name__link url fn n" title="%3$s" rel="author" itemprop="url"><span class="author-name" itemprop="name">%4$s</span></a>',
+                esc_url(get_author_posts_url($author_id)),
+                esc_attr($attributes['linkTarget']),
+                esc_attr(sprintf(__('View all posts by %s', 'systemstrap'), $author_name_text)),
+                esc_html($author_name_text)
+            );
         } else {
-            $author_name = '<span class="author-name" itemprop="name" aria-label="Author: ' . $author_name . '">' . get_the_author_meta('display_name', $author_id) . '</span>';
+            $author_name = sprintf(
+                '<span class="author-name" itemprop="name">%s</span>',
+                esc_html($author_name_text)
+            );
         }
 
         $classes = ['author vcard'];
@@ -388,18 +407,32 @@ if (!function_exists('strap_render_block_core_comment_author_name')) {
         }
 
         $wrapper_attributes = get_block_wrapper_attributes(array('class' => implode(' ', $classes)));
-        $comment_author     = get_comment_author($comment);
-        $link               = get_comment_author_url($comment);
+        $comment_author_text = get_comment_author($comment);
+        $link                = get_comment_author_url($comment);
 
         if (!empty($link) && !empty($attributes['isLink']) && !empty($attributes['linkTarget'])) {
-            $comment_author = sprintf('<a rel="external nofollow ugc" href="%1s" target="%2s" >%3s</a>', esc_url($link), esc_attr($attributes['linkTarget']), $comment_author);
+            $comment_author = sprintf(
+                '<cite class="fn"><a rel="external nofollow ugc" href="%1$s" target="%2$s" itemprop="url"><span itemprop="name">%3$s</span></a></cite>',
+                esc_url($link),
+                esc_attr($attributes['linkTarget']),
+                esc_html($comment_author_text)
+            );
+        } else {
+            $comment_author = sprintf(
+                '<cite class="fn"><span itemprop="name">%s</span></cite>',
+                esc_html($comment_author_text)
+            );
         }
+
         if ('0' === $comment->comment_approved && !$show_pending_links) {
-            $comment_author = wp_kses($comment_author, array());
+            $comment_author = wp_kses($comment_author, array(
+                'cite' => array('class' => true),
+                'span' => array('itemprop' => true),
+            ));
         }
 
         return sprintf(
-            '<div %1$s itemprop="author" itemtype="https://schema.org/Person" itemscope><cite itemprop="name" class="fn">%2$s</cite></div>',
+            '<div %1$s itemprop="author" itemtype="https://schema.org/Person" itemscope>%2$s</div>',
             $wrapper_attributes,
             $comment_author
         );
@@ -461,14 +494,14 @@ if (!function_exists('strap_render_block_core_comment_date')) {
         $link               = get_comment_link($comment);
 
         if (!empty($attributes['isLink'])) {
-            $formatted_date = sprintf('<a href="%1s">%2s</a>', esc_url($link), $formatted_date);
+            $formatted_date = sprintf('<a href="%1$s" itemprop="url">%2$s</a>', esc_url($link), esc_html($formatted_date));
         }
 
         return sprintf(
             '<div %1$s><time class="entry-date published" datetime="%2$s" itemprop="datePublished">%3$s</time></div>',
             $wrapper_attributes,
             esc_attr(get_comment_date('c', $comment)),
-            $formatted_date
+            !empty($attributes['isLink']) ? $formatted_date : esc_html($formatted_date)
         );
     }
 
@@ -536,14 +569,19 @@ if (!function_exists('strap_render_block_core_latest_posts')) {
         $counter = 1;
 
         foreach ($recent_posts as $post) {
-            $post_link = esc_url(get_permalink($post));
-            $title     = get_the_title($post);
+            $post_link      = esc_url(get_permalink($post));
+            $title          = get_the_title($post);
+            $article_schema = 'post' === get_post_type($post) ? 'BlogPosting' : 'CreativeWork';
 
             if (!$title) {
                 $title = __('(no title)');
             }
 
-            $list_items_markup .= '<li role="menuitem" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><meta itemprop="name" content="' . $title . '" /><meta itemprop="position" content="' . $counter . '"><div itemprop="item" itemscope itemtype="https://schema.org/BlogPosting"><meta itemprop="mainEntityOfPage" content="' . $post_link . '">';
+            $list_items_markup .= '<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">';
+            $list_items_markup .= '<meta itemprop="position" content="' . esc_attr((string) $counter) . '" />';
+            $list_items_markup .= '<article itemprop="item" itemscope itemtype="https://schema.org/' . esc_attr($article_schema) . '">';
+            $list_items_markup .= '<meta itemprop="mainEntityOfPage" content="' . esc_url($post_link) . '" />';
+            $list_items_markup .= '<meta itemprop="headline" content="' . esc_attr($title) . '" />';
 
             if ($attributes['displayFeaturedImage'] && has_post_thumbnail($post)) {
 
@@ -581,28 +619,27 @@ if (!function_exists('strap_render_block_core_latest_posts')) {
                 $featured_image_url = get_the_post_thumbnail_url($post);
 
                 $list_items_markup .= sprintf(
-                    '<figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" class="%1$s"><meta itemprop="url" content="' . $featured_image_url . '">%2$s</figure>',
+                    '<figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" class="%1$s"><meta itemprop="url" content="%2$s">%3$s</figure>',
                     esc_attr($image_classes),
+                    esc_url($featured_image_url),
                     $featured_image
                 );
             }
 
             $list_items_markup .= sprintf(
-                '<a itemprop="url" class="wp-block-latest-posts__post-title" href="%1$s"><span class="title" itemprop="headline name">%2$s</span></a>',
+                '<a itemprop="url" class="wp-block-latest-posts__post-title" href="%1$s"><span class="title" itemprop="headline">%2$s</span></a>',
                 esc_url($post_link),
-                $title
+                esc_html($title)
             );
 
             if (isset($attributes['displayAuthor']) && $attributes['displayAuthor']) {
                 $author_display_name = get_the_author_meta('display_name', $post->post_author);
 
-                /* translators: byline. %s: current author. */
-                $byline = sprintf(__('by <span class="author-name" itemprop="name"> %s</span>'), $author_display_name);
-
                 if (!empty($author_display_name)) {
                     $list_items_markup .= sprintf(
-                        '<div class="wp-block-latest-posts__post-author author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope>%1$s</div>',
-                        $byline
+                        '<div class="wp-block-latest-posts__post-author author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope><span class="byline">%1$s</span> <span class="author-name" itemprop="name">%2$s</span></div>',
+                        esc_html__('by', 'systemstrap'),
+                        esc_html($author_display_name)
                     );
                 }
             }
@@ -611,7 +648,7 @@ if (!function_exists('strap_render_block_core_latest_posts')) {
                 $list_items_markup .= sprintf(
                     '<time itemprop="datePublished" datetime="%1$s" class="wp-block-latest-posts__post-date">%2$s</time>',
                     esc_attr(get_the_date('c', $post)),
-                    get_the_date('', $post)
+                    esc_html(get_the_date('', $post))
                 );
             }
 
@@ -645,7 +682,7 @@ if (!function_exists('strap_render_block_core_latest_posts')) {
                 }
 
                 $list_items_markup .= sprintf(
-                    '<div class="wp-block-latest-posts__post-excerpt" itemprop="text">%1$s</div>',
+                    '<div class="wp-block-latest-posts__post-excerpt" itemprop="description">%1$s</div>',
                     $trimmed_excerpt
                 );
             }
@@ -662,12 +699,12 @@ if (!function_exists('strap_render_block_core_latest_posts')) {
                 }
 
                 $list_items_markup .= sprintf(
-                    '<div class="wp-block-latest-posts__post-full-content">%1$s</div>',
+                    '<div class="wp-block-latest-posts__post-full-content" itemprop="articleBody">%1$s</div>',
                     wp_kses_post($post_content)
                 );
             }
 
-            $list_items_markup .= "</div></li>\n";
+            $list_items_markup .= "</article></li>\n";
             $counter++;
         }
 
@@ -693,7 +730,7 @@ if (!function_exists('strap_render_block_core_latest_posts')) {
         $wrapper_attributes = get_block_wrapper_attributes(array('class' => implode(' ', $classes)));
 
         return sprintf(
-            '<ul role="menu" itemscope itemtype="https://schema.org/ItemList" itemListOrder="http://schema.org/ItemListOrderAscending" %1$s>%2$s</ul>',
+            '<ul role="list" itemscope itemtype="https://schema.org/ItemList" itemListOrder="https://schema.org/ItemListOrderAscending" %1$s>%2$s</ul>',
             $wrapper_attributes,
             $list_items_markup
         );
@@ -801,8 +838,9 @@ if (!function_exists('strap_render_block_core_post_template')) {
                 return $context;
             };
 
-            $post_link = esc_url(get_permalink($post_id));
-            $title     = get_the_title($post_id);
+            $post_link      = esc_url(get_permalink($post_id));
+            $title          = get_the_title($post_id);
+            $article_schema = 'post' === $post_type ? 'BlogPosting' : 'CreativeWork';
 
             if (!$title) {
                 $title = __('(no title)');
@@ -820,12 +858,12 @@ if (!function_exists('strap_render_block_core_post_template')) {
 
             $inner_block_directives = $enhanced_pagination ? ' data-wp-key="post-template-item-' . $post_id . '"' : '';
 
-            $content .= '<li' . $inner_block_directives . ' itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="' . esc_attr($post_classes) . '">
-
-            <article class="h-100" itemprop="item" itemscope itemtype="https://schema.org/BlogPosting"><meta itemprop="name" content="' . $title . '" />
-            <meta itemprop="position" content="' . $counter . '">
-            <meta itemprop="mainEntityOfPage" content="' . $post_link . '">' . $block_content . '</article>
-            </li>';
+            $content .= '<li' . $inner_block_directives . ' itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="' . esc_attr($post_classes) . '">';
+            $content .= '<meta itemprop="position" content="' . esc_attr((string) $counter) . '" />';
+            $content .= '<article class="h-100" itemprop="item" itemscope itemtype="https://schema.org/' . esc_attr($article_schema) . '">';
+            $content .= '<meta itemprop="headline" content="' . esc_attr($title) . '" />';
+            $content .= '<meta itemprop="mainEntityOfPage" content="' . esc_url($post_link) . '" />';
+            $content .= $block_content . '</article></li>';
 
             $counter++;
         }
@@ -838,7 +876,7 @@ if (!function_exists('strap_render_block_core_post_template')) {
         wp_reset_postdata();
 
         return sprintf(
-            '<ul role="region" itemscope itemtype="https://schema.org/ItemList" itemListOrder="http://schema.org/ItemListOrderAscending" %1$s>%2$s</ul>',
+            '<ul role="list" itemscope itemtype="https://schema.org/ItemList" itemListOrder="https://schema.org/ItemListOrderAscending" %1$s>%2$s</ul>',
             $wrapper_attributes,
             $content
         );
@@ -877,6 +915,7 @@ if (!function_exists('strap_render_block_core_latest_comments')) {
 
         $list_items_markup = '';
         if ( ! empty( $comments ) ) {
+            $counter = 1;
             foreach ( $comments as $comment ) {
                 $comment_author_url = get_comment_author_url( $comment );
                 $comment_author     = get_comment_author( $comment );
@@ -884,13 +923,15 @@ if (!function_exists('strap_render_block_core_latest_comments')) {
                 $post_title         = get_the_title( $comment->comment_post_ID );
                 $post_link          = get_permalink( $comment->comment_post_ID );
 
-                $list_items_markup .= '<li role="menuitem" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><article itemprop="item" itemscope itemtype="https://schema.org/Comment">';
+                $list_items_markup .= '<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">';
+                $list_items_markup .= '<meta itemprop="position" content="' . esc_attr((string) $counter) . '" />';
+                $list_items_markup .= '<article itemprop="item" itemscope itemtype="https://schema.org/Comment">';
 
                 if ( $display_avatar ) {
                     $avatar = get_avatar( $comment, 40, '', $comment_author, array( 'class' => 'wp-block-latest-comments__comment-avatar' ) );
                     if ( $avatar ) {
                         $list_items_markup .= sprintf(
-                            '<div class="wp-block-latest-comments__comment-avatar-wrapper" itemprop="author" itemscope itemtype="https://schema.org/Person">%1$s</div>',
+                            '<div class="wp-block-latest-comments__comment-avatar-wrapper">%1$s</div>',
                             $avatar
                         );
                     }
@@ -901,18 +942,27 @@ if (!function_exists('strap_render_block_core_latest_comments')) {
 
                 // Author Row Wrapper
                 $list_items_markup .= '<div class="wp-block-latest-comments__comment-author-row">';
-                $list_items_markup .= sprintf(
-                    '<a class="wp-block-latest-comments__comment-author" href="%1$s" itemprop="url"><span itemprop="name">%2$s</span></a>',
-                    esc_url( $comment_author_url ? $comment_author_url : $comment_link ),
-                    $comment_author
-                );
+                $list_items_markup .= '<span class="wp-block-latest-comments__comment-author-person" itemprop="author" itemscope itemtype="https://schema.org/Person">';
+                if ( $comment_author_url ) {
+                    $list_items_markup .= sprintf(
+                        '<a class="wp-block-latest-comments__comment-author" href="%1$s" itemprop="url"><span itemprop="name">%2$s</span></a>',
+                        esc_url( $comment_author_url ),
+                        esc_html( $comment_author )
+                    );
+                } else {
+                    $list_items_markup .= sprintf(
+                        '<span class="wp-block-latest-comments__comment-author"><span itemprop="name">%s</span></span>',
+                        esc_html( $comment_author )
+                    );
+                }
+                $list_items_markup .= '</span>';
 
                 // "on Post Title"
                 $list_items_markup .= '<span class="wp-block-latest-comments__comment-on"> on </span>';
                 $list_items_markup .= sprintf(
                     '<a class="wp-block-latest-comments__comment-link" href="%1$s">%2$s</a>',
                     esc_url( $post_link ),
-                    $post_title
+                    esc_html( $post_title )
                 );
                 $list_items_markup .= '</div>'; // End Author Row
 
@@ -921,7 +971,7 @@ if (!function_exists('strap_render_block_core_latest_comments')) {
                     $list_items_markup .= sprintf(
                         '<time itemprop="dateCreated" datetime="%1$s" class="wp-block-latest-comments__comment-date">%2$s</time>',
                         esc_attr( get_comment_date( 'c', $comment ) ),
-                        get_comment_date( '', $comment )
+                        esc_html( get_comment_date( '', $comment ) )
                     );
                 }
 
@@ -937,13 +987,14 @@ if (!function_exists('strap_render_block_core_latest_comments')) {
                     if ( ! empty( $excerpt ) ) {
                         $list_items_markup .= sprintf(
                             '<div class="wp-block-latest-comments__comment-excerpt" itemprop="text"><p>%1$s</p></div>',
-                            $excerpt
+                            esc_html( $excerpt )
                         );
                     }
                 }
 
                 $list_items_markup .= '</div>'; // End content wrapper
                 $list_items_markup .= '</article></li>';
+                $counter++;
             }
         }
 
@@ -951,7 +1002,7 @@ if (!function_exists('strap_render_block_core_latest_comments')) {
         $wrapper_attributes = get_block_wrapper_attributes(array('class' => implode(' ', $classes)));
 
         return sprintf(
-            '<ul role="menu" itemscope itemtype="https://schema.org/ItemList" %1$s>%2$s</ul>',
+            '<ul role="list" itemscope itemtype="https://schema.org/ItemList" %1$s>%2$s</ul>',
             $wrapper_attributes,
             $list_items_markup
         );
