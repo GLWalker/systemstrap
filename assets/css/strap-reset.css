@@ -11,7 +11,8 @@
 }
 
 html {
-    overflow-x: hidden; /* Prevent sideways shift from .alignfull blocks */
+    overflow-x: hidden;
+    /* Prevent sideways shift from .alignfull blocks */
 }
 
 body {
@@ -22,7 +23,18 @@ body {
     line-height: 1.5;
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    overflow-x: hidden; /* Prevent sideways shift from .alignfull blocks */
+    overflow-x: hidden;
+    /* Prevent sideways shift from .alignfull blocks */
+}
+
+/*
+ * Global Image Reset
+ * Ensures images scale fluidly down, but never blow out past intrinsic dimensions
+ */
+img {
+    height: auto;
+    max-width: 100%;
+    width: auto; /* Overrides any rogue 100% width injections */
 }
 
 h1,
@@ -357,7 +369,6 @@ progress {
     height: auto;
 }
 
-
 figcaption,
 .wp-element-caption {
     font-size: var(--wp--preset--font-size--small, .875rem);
@@ -411,8 +422,6 @@ figcaption,
     z-index: 100000;
 }
 
-
-
 .wp-block-spacer {
     clear: both;
 }
@@ -451,7 +460,7 @@ p.has-drop-cap.has-background {
     overflow: hidden;
 }
 
-:where(p, h1, h2, h3, h4, h5, h6, blockquote, pre, ul, ol, dl):not(.wp-block-accordion-heading).has-background {
+:where(p, h1, h2, h3, h4, h5, h6, blockquote, pre, ul, ol, dl).has-background {
     padding: var(--wp--preset--spacing--30);
 }
 
@@ -484,7 +493,7 @@ p.has-text-align-right[style*="writing-mode:vertical-rl"] {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .wp-element-button {
-    transition: none;
-  }
+    .wp-element-button {
+        transition: none;
+    }
 }

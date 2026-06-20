@@ -1,0 +1,133 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "Brite Layout",
+	"settings": {
+		"custom": {
+			"border-width": "2px",
+			"btn-border-width": "2px",
+			"form-border-width": "2px",
+			"btn-border-color": "var(--wp--preset--color--border-color)",
+			"btn-hover-border-color": "var(--wp--preset--color--border-color)",
+			"btn-icon-border-color": "var(--wp--preset--color--border-color)",
+			"btn-icon-hover-border-color": "var(--wp--preset--color--border-color)",
+			"form-border-color": "var(--wp--preset--color--border-color)",
+			"system-ui-border-color": "var(--wp--preset--color--border-color)",
+			"btn-icon-transform": "translate(-3px, -3px)",
+			"btn-icon-hover-transform": "translate(0, 0)",
+			"shadow": "3px 3px 0 0 var(--wp--preset--color--border-color)",
+			"shadow-sm": "3px 3px 0 0 var(--wp--preset--color--border-color)",
+			"btn-transform": "translate(-3px, -3px)",
+			"btn-hover-transform": "translate(0, 0)",
+			"dropdown-shadow": "3px 3px 0 0 var(--wp--preset--color--border-color)",
+			"font-weight-nav": "500",
+			"font-weight-button": "500"
+		},
+		"shadow": {
+			"presets": [
+				{
+					"name": "Small",
+					"shadow": "0 .125rem .25rem rgba(0, 0, 0, .075)",
+					"slug": "sm"
+				},
+				{
+					"name": "Medium",
+					"shadow": "0 .5rem 1rem rgba(0, 0, 0, .15)",
+					"slug": "md"
+				},
+				{
+					"name": "Large",
+					"shadow": "0 1rem 3rem rgba(0, 0, 0, .175)",
+					"slug": "lg"
+				},
+				{
+					"name": "Inset",
+					"shadow": "inset 0 1px 2px rgba(0, 0, 0, .075)",
+					"slug": "inset"
+				},
+				{
+					"name": "Top",
+					"shadow": "0 -1rem 1rem -1rem rgba(var(--wp--preset--color--contrast-rgb), 0.4)",
+					"slug": "top"
+				},
+				{
+					"name": "Right",
+					"shadow": "1rem 0 1rem -1rem rgba(var(--wp--preset--color--contrast-rgb), 0.4)",
+					"slug": "right"
+				},
+				{
+					"name": "Bottom",
+					"shadow": "0 1rem 1rem -1rem rgba(var(--wp--preset--color--contrast-rgb), 0.4)",
+					"slug": "bottom"
+				},
+				{
+					"name": "Left",
+					"shadow": "-1rem 0 1rem -1rem rgba(var(--wp--preset--color--contrast-rgb), 0.4)",
+					"slug": "left"
+				},
+				{
+					"name": "Top Right",
+					"shadow": "0 -1rem 1rem -1rem rgba(var(--wp--preset--color--contrast-rgb), 0.4), 1rem 0 1rem -1rem rgba(var(--wp--preset--color--contrast-rgb), 0.4)",
+					"slug": "top-right"
+				},
+				{
+					"name": "Top Bottom",
+					"shadow": "0 -1rem 1rem -1rem rgba(var(--wp--preset--color--contrast-rgb), 0.4), 0 1rem 1rem -1rem rgba(var(--wp--preset--color--contrast-rgb), 0.4)",
+					"slug": "top-bottom"
+				},
+				{
+					"name": "All Sides",
+					"shadow": "0 -1rem 1rem -1rem rgba(var(--wp--preset--color--contrast-rgb), 0.4), 1rem 0 1rem -1rem rgba(var(--wp--preset--color--contrast-rgb), 0.4), 0 1rem 1rem -1rem rgba(var(--wp--preset--color--contrast-rgb), 0.4), -1rem 0 1rem -1rem rgba(var(--wp--preset--color--contrast-rgb), 0.4)",
+					"slug": "all-sides"
+				},
+				{
+					"name": "Inset All Sides",
+					"shadow": "0 0 .625rem 0 rgba(0,0,0,0.4) inset",
+					"slug": "inset-all-sides"
+				},
+				{
+					"name": "Form Focus",
+					"slug": "form-focus",
+					"shadow": "var(--wp--preset--shadow--form-control-shadow, none), 3px 3px 0 0 var(--wp--preset--color--border-color)"
+				},
+				{
+					"name": "Form Shadow",
+					"shadow": "inset 0 .0625rem .125rem rgba(0, 0, 0, 0.075)",
+					"slug": "form-control-shadow"
+				},
+				{
+					"name": "Button Resting",
+					"slug": "btn-resting",
+					"shadow": "3px 3px 0 0 var(--wp--preset--color--border-color)"
+				},
+				{
+					"name": "Button Hover",
+					"slug": "btn-hover",
+					"shadow": "none"
+				},
+				{
+					"name": "Button Active",
+					"slug": "btn-active",
+					"shadow": "none"
+				},
+				{
+					"name": "Button Icon Resting",
+					"slug": "btn-icon-resting",
+					"shadow": "3px 3px 0 0 var(--wp--preset--color--border-color)"
+				},
+				{
+					"name": "Button Icon Hover",
+					"slug": "btn-icon-hover",
+					"shadow": "none"
+				}
+			]
+		}
+	},
+	"styles": {
+		"elements": {
+			"button": {
+				"css": "& { margin: 3px 0 0 3px; }"
+			}
+		}
+	}
+}

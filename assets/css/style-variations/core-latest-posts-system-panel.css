@@ -71,9 +71,6 @@
 
 /* Post Title */
 .wp-block-latest-posts.is-style-system-panel > li .wp-block-latest-posts__post-title {
-    font-size: 1.1em;
-    font-family: var(--wp--custom--font-family-heading);
-    font-weight: var(--wp--custom--font-weight-heading);
     line-height: 1.2;
     text-decoration: none;
     color: inherit;
@@ -98,7 +95,6 @@
 /* Post Meta (Author, Date) */
 .wp-block-latest-posts.is-style-system-panel > li .wp-block-latest-posts__post-author,
 .wp-block-latest-posts.is-style-system-panel > li .wp-block-latest-posts__post-date {
-    font-size: 0.85em;
     color: var(--wp--preset--color--contrast);
     opacity: 0.7;
     display: block;
@@ -107,7 +103,6 @@
 
 /* Excerpt */
 .wp-block-latest-posts.is-style-system-panel > li .wp-block-latest-posts__post-excerpt {
-    font-size: 0.9em;
     line-height: 1.5;
     margin-top: var(--wp--preset--spacing--10);
     color: inherit;
@@ -116,10 +111,6 @@
 
 /* Read More */
 .wp-block-latest-posts.is-style-system-panel > li .wp-block-latest-posts__read-more {
-    font-size: 0.85em;
-    font-weight: var(--wp--custom--font-weight-heading);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
     text-decoration: none;
     margin-top: var(--wp--preset--spacing--10);
     display: inline-block;

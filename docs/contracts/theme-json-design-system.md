@@ -6,7 +6,7 @@ This file is a CONTRACT.
 
 ## Contract Version
 
-Current Version: 1.0
+Current Version: 1.1
 
 Last Updated: 2026-06-15
 
@@ -15,6 +15,10 @@ Last Updated: 2026-06-15
 ### 1.0
 
 Initial theme.json design-system contract.
+
+### 1.1
+
+Delegated detailed runtime color, contrast, and global-styles extension behavior to `color-runtime.md`. Updated the global-styles section to match the current Core-preserving mutation architecture and removed the outdated PHP-side default-preset stripping description.
 
 ## Purpose
 
@@ -50,6 +54,7 @@ The design-system layer is currently implemented through these files:
 - `wp-content/themes/systemstrap/inc/enqueue-assets.php`
 - `wp-content/themes/systemstrap/inc/block-styles.php`
 - `wp-content/themes/systemstrap/assets/css/main-styles.css`
+- `wp-content/themes/systemstrap/assets/css/buddypress-blocks.css`
 - `wp-content/themes/systemstrap/assets/css/strap-reset.css`
 - `wp-content/themes/systemstrap/assets/css/style-variations/*.css`
 - `wp-content/themes/systemstrap/assets/js/variations/*.js`
@@ -120,6 +125,8 @@ The theme currently owns these color registries:
 - `link`
 
 The color design system MUST be treated as theme-owned rather than default-core-owned.
+
+Detailed governance for runtime color derivation, contrast routing, `global-styles` mutation, and compatibility behavior belongs to `color-runtime.md`.
 
 ### Palette contract
 
@@ -399,6 +406,17 @@ If the theme is a child theme, `style.css` is added to that editor style list.
 
 These files are part of editor parity and MUST remain design-system-aware.
 
+When BuddyPress is active, `inc/enqueue-assets.php` also enqueues `strap-buddypress-sync` on `enqueue_block_editor_assets`.
+
+This editor-side enqueue exists so the BuddyPress block base stylesheet dependency graph remains valid inside the Site Editor and block editor.
+
+The current editor BuddyPress contract is:
+
+- register `strap-buddypress-sync` early on `init`
+- enqueue `strap-buddypress-sync` in the editor only when BuddyPress exists
+- keep BuddyPress frontend theme-pack dependencies out of the editor path
+- preserve the same handle name across frontend and editor so `wp_enqueue_block_style()` dependencies remain stable
+
 ### Frontend style enqueue contract
 
 `inc/enqueue-assets.php` currently enqueues:
@@ -413,34 +431,53 @@ If the theme is a child theme, `strap-child-style` is enqueued after `strap-main
 
 This load order is part of the current design-system runtime because the token layer is consumed by `main-styles.css` and subsequent variation styles.
 
+When BuddyPress is active on the frontend, the current stylesheet runtime also includes:
+
+- BuddyPress plugin/theme-pack CSS such as `bp-nouveau` or `bp-legacy-css`
+- `strap-buddypress-sync`
+- `strap-buddypress-blocks`
+- BuddyPress block style variations registered through `wp_enqueue_block_style()`
+
+The current frontend queue contract in `strap_reorder_frontend_style_queue()` is:
+
+1. `strap-reset`
+2. BuddyPress plugin/theme-pack CSS
+3. `strap-buddypress-sync`
+4. `strap-buddypress-blocks`
+5. Core block library styles
+6. `global-styles`
+7. `strap-main-styles`
+8. `strap-child-style`
+9. BuddyPress block style variations
+10. remaining SystemStrap theme CSS
+11. `wp-block-custom-css` and `global-styles-custom-css`
+12. everything else
+
+This order is part of the current design-system runtime and MUST NOT be changed casually.
+
+The current rationale is:
+
+- reset rules must run first
+- BuddyPress plugin CSS must establish its baseline before SystemStrap extends it
+- BuddyPress theme sync and BuddyPress block base styles must land before Core global/theme layers so later token-aware theme styling can still win
+- theme and variation styles must load before user-authored Custom CSS
+- user-authored Custom CSS must remain the final override surface
+
 ## Global Styles Interception Contract
 
-`inc/enqueue-assets.php` modifies WordPress global styles at runtime through two mechanisms.
-
-### Default preset stripping contract
-
-The theme currently filters `wp_theme_json_data_default` and empties the default core arrays for:
-
-- `palette`
-- `duotone`
-- `gradients`
-
-This behavior is part of the token-ownership contract.
-
-SystemStrap MUST NOT silently restore default core palettes, gradients, or duotones while the theme owns those registries in `theme.json`.
+`inc/enqueue-assets.php` modifies WordPress global styles at runtime.
 
 ### Global stylesheet rewrite contract
 
-The theme currently intercepts `wp_enqueue_global_styles` and rebuilds the global stylesheet through `strap_intercept_global_styles()`.
+The theme currently preserves WordPress's native `wp_enqueue_global_styles()` lifecycle and mutates the generated inline CSS on the `global-styles` handle through `strap_intercept_global_styles()`.
 
 This routine currently:
 
-- removes WordPress global-styles enqueue actions from both frontend hooks
-- regenerates CSS through `wp_get_global_stylesheet()`
+- reads the current inline CSS stored on the `global-styles` handle
 - rewrites background utility classes to inject contrast-aware text colors for theme-owned background slugs
-- registers a replacement `global-styles` handle
-- adds the rewritten stylesheet inline
-- enqueues the rewritten stylesheet after theme styles
+- writes the modified CSS back onto the same handle
+
+Detailed governance for the color-runtime behavior of this mutation belongs to `color-runtime.md`.
 
 The current background text-color rewrite contract includes:
 
@@ -448,6 +485,30 @@ The current background text-color rewrite contract includes:
 - accent background text-color fallback for `primary`, `secondary`, `success`, `info`, `warning`, `danger`, `light`, and `dark`
 
 This interception is part of the design system because color legibility is not left to default WordPress output.
+
+### Late custom CSS contract
+
+WordPress currently merges top-level Global Styles Custom CSS into the `global-styles` handle.
+
+Under the SystemStrap runtime, that default behavior is not sufficient because it causes user-authored Custom CSS to print before:
+
+- `strap-main-styles`
+- BuddyPress block style variations
+- later theme-owned variation chrome
+
+`inc/enqueue-assets.php` therefore currently peels the top-level custom CSS back off the `global-styles` inline payload through `strap_enqueue_global_styles_custom_css_last()`, then re-enqueues that CSS on a dedicated late handle named `global-styles-custom-css`.
+
+SystemStrap preserves native Global Styles generation, but re-emits top-level Custom CSS last so user-authored CSS remains the final cascade layer over theme and variation styles.
+
+The current contract is:
+
+- preserve WordPress's native `global-styles` lifecycle
+- do NOT remove `wp_enqueue_global_styles()`
+- extract only the trailing top-level Custom CSS payload
+- re-emit that payload on `global-styles-custom-css`
+- keep `global-styles-custom-css` in the final custom-CSS queue bucket
+
+This late custom CSS contract exists so user-authored CSS from the Site Editor remains the final cascade layer on the frontend.
 
 ## CSS Token Consumption Contract
 
@@ -497,6 +558,19 @@ Current pagination chrome for core pagination blocks is block-scoped through thi
 
 These files are conditional block styles, not global stylesheet rules, and MUST remain in the block-style loading path unless the loading contract is explicitly replaced.
 
+`inc/block-styles.php` also conditionally maps `assets/css/buddypress-blocks.css` to BuddyPress block surfaces through `wp_enqueue_block_style()`.
+
+That BuddyPress stylesheet is part of the current design-system implementation because it consumes canonical tokens while preserving frontend/editor parity for BuddyPress block-owned UI.
+
+It is a conditional block stylesheet, not a global reset and not a style-variation choice.
+
+The current BuddyPress block base-style contract includes:
+
+- widget body copy generally stepping down to the small typography scale
+- widget titles and key member/group names retaining the medium typography scale
+- widget-scoped button and meta text stepping down to the x-small scale where the current sidebar density requires it
+- base navigation typography living in the BuddyPress sync/base layer so BuddyPress nav style variations inherit from a stable tokenized baseline
+
 `inc/enqueue-assets.php` currently adds a render-time enqueue safeguard for:
 
 - `core/query-pagination*`
@@ -540,7 +614,7 @@ Patterns MUST use the token families already present in `theme.json` when those 
 
 The theme MUST NOT introduce any of the following regressions into the covered design-system layer:
 
-- re-enabling default core palette, gradient, or duotone families while theme-owned replacements remain active
+- changing the theme-owned color settings in `theme.json` without updating `color-runtime.md` when runtime color behavior is affected
 - renaming preset slugs or custom-token families without updating their runtime consumers and this contract
 - bypassing `theme.json` tokens in favor of repeated hard-coded literals where an existing equivalent token family already exists
 - changing global-styles interception order in a way that causes WordPress output to override `strap-main-styles` unexpectedly

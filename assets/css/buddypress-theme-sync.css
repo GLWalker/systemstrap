@@ -1,328 +1,583 @@
 /**
  * BuddyPress Theme Sync
  * A lightweight reset that only targets typography, buttons, and colors.
- * This ensures BuddyPress natively inherits the SystemStrap design system 
+ * This ensures BuddyPress natively inherits the SystemStrap design system
  * without fighting BuddyPress's structural JS or layout engines.
  */
 
 /* 1. Global Typography */
-body #buddypress {
-    font-family: var(--wp--custom--font-family-body, var(--wp--preset--font-family--body, inherit)) !important;
-    color: var(--wp--preset--color--contrast, inherit) !important;
-    font-size: var(--wp--custom--body-font-size, 1rem) !important;
-    font-weight: var(--wp--custom--font-weight-body) !important;
-    line-height: var(--wp--custom--line-height-body, 1.6) !important;
+body .main-buddypress {
+    color: var(--wp--preset--color--contrast, inherit);
 }
 
 /* 2. Headings */
-body #buddypress h1,
-body #buddypress h2,
-body #buddypress h3,
-body #buddypress h4,
-body #buddypress h5,
-body #buddypress h6 {
-    font-family: var(--wp--custom--font-family-heading, var(--wp--preset--font-family--heading, inherit)) !important;
-    color: var(--wp--custom--heading-color, var(--wp--preset--color--contrast)) !important;
-    font-weight: var(--wp--custom--font-weight-heading) !important;
-    line-height: 1.2 !important;
-    margin-bottom: var(--wp--preset--spacing--20, 1rem) !important;
+body .main-buddypress h1,
+body .main-buddypress h2,
+body .main-buddypress h3,
+body .main-buddypress h4,
+body .main-buddypress h5,
+body .main-buddypress h6 {
+    font-family: var(--wp--preset--font-family--heading, var(--wp--preset--font-family--heading, inherit));
+    color: var(--wp--custom--heading-color, var(--wp--preset--color--contrast));
+    font-weight: var(--wp--custom--font-weight-heading);
+    line-height: 1.2;
+    margin-bottom: var(--wp--preset--spacing--20, 1rem);
 }
 
 /* 3. Links */
-body #buddypress a {
-    color: var(--wp--custom--link-color, var(--wp--preset--color--primary)) !important;
-    text-decoration: none !important;
-    transition: all 0.2s ease !important;
+body .main-buddypress a {
+    color: var(--wp--custom--link-color, var(--wp--preset--color--primary));
+    text-decoration: none;
+    transition: all 0.2s ease;
 }
 
-body #buddypress a:hover,
-body #buddypress a:focus {
-    color: var(--wp--custom--link-hover-color, var(--wp--preset--color--secondary)) !important;
+body .main-buddypress a:hover,
+body .main-buddypress a:focus {
+    color: var(--wp--custom--link-hover-color, var(--wp--preset--color--secondary));
 }
 
 /* 4. Buttons (Comprehensive) */
-body #buddypress .button,
-body #buddypress input[type="submit"],
-body #buddypress input[type="button"],
-body #buddypress input[type="reset"],
-body #buddypress .submit input[type="submit"] {
-    font-family: var(--wp--custom--font-family-button, var(--wp--custom--font-family-heading, inherit)) !important;
-    font-size: var(--wp--preset--font-size--small, 0.875rem) !important;
-    font-weight: var(--wp--custom--font-weight-button) !important;
-    line-height: 1.5 !important;
-    border-radius: var(--wp--custom--btn-border-radius) !important;
-    padding: var(--wp--preset--spacing--10, 0.5rem) var(--wp--preset--spacing--20, 1rem) !important;
-    background-color: var(--wp--preset--color--primary) !important;
-    color: var(--wp--preset--color--base, #fff) !important;
-    border: var(--wp--custom--border-width, 1px) var(--wp--custom--border-style, solid) transparent !important;
-    box-shadow: var(--wp--custom--shadow, none) !important;
-    transition: var(--wp--custom--btn-transition) !important;
+body .main-buddypress .button,
+body .main-buddypress button,
+body .main-buddypress input[type="submit"],
+body .main-buddypress input[type="button"],
+body .main-buddypress input[type="reset"],
+body .main-buddypress .submit input[type="submit"] {
+    font-family: var(--wp--preset--font-family--button, var(--wp--preset--font-family--heading, inherit));
+    font-size: var(--wp--preset--font-size--medium);
+    font-weight: var(--wp--custom--font-weight-button);
+    line-height: 1.5;
+    border-radius: var(--wp--custom--btn-border-radius);
+    padding-top: calc(var(--wp--preset--font-size--medium) * .5);
+    padding-bottom: calc(var(--wp--preset--font-size--medium) * .5);
+    padding-left: var(--wp--preset--font-size--medium);
+    padding-right: var(--wp--preset--font-size--medium);
+    background-color: var(--wp--preset--color--primary);
+    color: var(--wp--preset--color--primary-text, #fff);
+    border: var(--wp--custom--btn-border-width, 1px) solid var(--wp--custom--btn-border-color);
+    box-shadow: inset 0 .0625rem 0 rgba(255, 255, 255, 0.15), 0 .0625rem .0625rem rgba(0, 0, 0, 0.075);
+    transition: var(--wp--custom--btn-transition);
+    transform: var(--wp--custom--btn-transform, none);
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    cursor: pointer !important;
-    text-decoration: none !important;
-    text-align: center !important;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
 }
 
-body #buddypress .button:focus,
-body #buddypress input[type="submit"]:focus,
-body #buddypress input[type="button"]:focus,
-body #buddypress input[type="reset"]:focus {
-    box-shadow: 0 0 0 var(--wp--custom--focus-ring-width, .25rem) var(--wp--custom--focus-ring-color, rgba(0,0,0,0.25)) !important;
-    outline: none !important;
+body .main-buddypress input[type="submit"],
+body .main-buddypress input[type="button"],
+body .main-buddypress input[type="reset"],
+body .main-buddypress .dir-search button[type="submit"],
+body .main-buddypress .dir-search input[type="submit"],
+body .main-buddypress .bp-dir-search-form button[type="submit"],
+body .main-buddypress .bp-dir-search-form input[type="submit"] {
+    background-color: var(--wp--preset--color--primary) !important;
+    color: var(--wp--preset--color--primary-text) !important;
+    border: var(--wp--custom--btn-border-width, 1px) solid var(--wp--custom--btn-border-color) !important;
+    border-radius: var(--wp--custom--btn-border-radius) !important;
+    box-shadow: inset 0 .0625rem 0 rgba(var(--wp--preset--color--primary-text-rgb), 0.15), 0 .0625rem .0625rem rgba(0, 0, 0, 0.075) !important;
 }
 
-body #buddypress .button:hover,
-body #buddypress input[type="submit"]:hover,
-body #buddypress input[type="button"]:hover,
-body #buddypress input[type="reset"]:hover {
-    background-color: var(--wp--preset--color--secondary) !important;
-    color: var(--wp--preset--color--base, #fff) !important;
+body .main-buddypress .button:focus,
+body .main-buddypress button:focus,
+body .main-buddypress input[type="submit"]:focus,
+body .main-buddypress input[type="button"]:focus,
+body .main-buddypress input[type="reset"]:focus {
+    box-shadow: 0 0 0 .25rem rgba(var(--wp--preset--color--primary-rgb), 0.5);
+    outline: none;
+}
+
+body .main-buddypress .button:hover,
+body .main-buddypress button:hover,
+body .main-buddypress input[type="submit"]:hover,
+body .main-buddypress input[type="button"]:hover,
+body .main-buddypress input[type="reset"]:hover {
+    background-color: var(--wp--preset--color--primary-50);
+    color: var(--wp--preset--color--primary-text, #fff);
+    box-shadow: inset 0 .0625rem 0 rgba(255, 255, 255, 0.15), 0 .0625rem .0625rem rgba(0, 0, 0, 0.075);
+    transform: var(--wp--custom--btn-hover-transform);
+}
+
+body .main-buddypress .dir-search button[type="submit"]:hover,
+body .main-buddypress .dir-search input[type="submit"]:hover,
+body .main-buddypress .bp-dir-search-form button[type="submit"]:hover,
+body .main-buddypress .bp-dir-search-form input[type="submit"]:hover {
+    background-color: var(--wp--preset--color--primary-50) !important;
+    color: var(--wp--preset--color--primary-text) !important;
+    border-color: var(--wp--preset--color--primary-50) !important;
+}
+
+body .main-buddypress .button:active,
+body .main-buddypress button:active,
+body .main-buddypress input[type="submit"]:active,
+body .main-buddypress input[type="button"]:active,
+body .main-buddypress input[type="reset"]:active {
+    background-color: var(--wp--preset--color--primary-20);
+    color: var(--wp--preset--color--primary-text, #fff);
+    box-shadow: inset 0 .1875rem .3125rem rgba(0, 0, 0, 0.125);
 }
 
 /* Secondary/Outline buttons */
-body #buddypress .button.outline,
-body #buddypress .button.alt {
-    background-color: transparent !important;
-    color: var(--wp--preset--color--contrast, inherit) !important;
-    border-color: var(--wp--preset--color--border-color, #ccc) !important;
+body .main-buddypress .button.outline,
+body .main-buddypress .button.alt {
+    background-color: transparent;
+    color: inherit;
+    border: var(--wp--custom--btn-border-width, 1px) solid currentColor;
 }
 
-body #buddypress .button.outline:hover,
-body #buddypress .button.alt:hover {
-    background-color: var(--wp--preset--color--primary) !important;
-    color: var(--wp--preset--color--base, #fff) !important;
-    border-color: var(--wp--preset--color--primary) !important;
+body .main-buddypress .button.outline:hover,
+body .main-buddypress .button.alt:hover {
+    background-color: var(--wp--preset--color--primary);
+    color: var(--wp--preset--color--primary-text, #fff);
+    border-color: var(--wp--preset--color--primary);
+    box-shadow: inset 0 .0625rem 0 rgba(255, 255, 255, 0.15), 0 .0625rem .0625rem rgba(0, 0, 0, 0.075);
+}
+
+body .main-buddypress .button.outline:focus,
+body .main-buddypress .button.alt:focus {
+    box-shadow: 0 0 0 .25rem rgba(var(--wp--preset--color--primary-rgb), 0.5);
+}
+
+body .main-buddypress .button.outline:active,
+body .main-buddypress .button.alt:active {
+    background-color: var(--wp--preset--color--primary-20);
+    color: var(--wp--preset--color--primary-text, #fff);
+    box-shadow: inset 0 .1875rem .3125rem rgba(0, 0, 0, 0.125);
 }
 
 /* Disabled Buttons */
-body #buddypress .button:disabled,
-body #buddypress input[type="submit"]:disabled,
-body #buddypress input[type="button"]:disabled,
-body #buddypress .button.disabled,
-body #buddypress .button.pending {
-    background-color: var(--wp--custom--disabled-bg, #e9ecef) !important;
-    color: var(--wp--preset--color--contrast, inherit) !important;
-    border-color: transparent !important;
-    opacity: var(--wp--custom--disabled-opacity, 0.75) !important;
-    filter: var(--wp--custom--disabled-filter, grayscale(75%)) !important;
-    cursor: not-allowed !important;
-    pointer-events: none !important;
-    box-shadow: none !important;
+body .main-buddypress .button:disabled,
+body .main-buddypress button:disabled,
+body .main-buddypress input[type="submit"]:disabled,
+body .main-buddypress input[type="button"]:disabled,
+body .main-buddypress .button.disabled,
+body .main-buddypress .button.pending {
+    background-color: var(--wp--custom--disabled-bg, #e9ecef);
+    color: var(--wp--preset--color--contrast, inherit);
+    border-color: transparent;
+    opacity: var(--wp--custom--disabled-opacity, 0.75);
+    filter: var(--wp--custom--disabled-filter, grayscale(75%));
+    cursor: not-allowed;
+    pointer-events: none;
+    box-shadow: none;
 }
 
 /* Activity Meta Buttons (Prevent global .button from turning them into solid heavy blocks) */
-body #buddypress .activity-meta .button {
-    background-color: transparent !important;
-    color: var(--wp--preset--color--contrast, inherit) !important;
-    padding: 0.25rem 0.5rem !important;
-    box-shadow: none !important;
-    border: none !important;
+body .main-buddypress .activity-meta .button {
+    background-color: transparent;
+    color: inherit;
+    padding: 0.25rem 0.5rem;
+    box-shadow: none;
+    border: none;
 }
 
-body #buddypress .activity-meta .button:hover {
-    background-color: rgba(0, 0, 0, 0.05) !important;
-    color: var(--wp--preset--color--primary) !important;
+body .main-buddypress .activity-meta .button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--wp--preset--color--primary);
 }
 
 /* 5. Badges */
-body #buddypress .bp-navs span.count,
-body #buddypress .item-list-tabs span.count,
-body #buddypress .activity-meta span.count,
-body #buddypress .button span.count,
-body #buddypress button span.count {
+body .main-buddypress .bp-navs span.count,
+body .main-buddypress .buddypress_object_nav .bp-navs ul li .count,
+body .main-buddypress .item-list-tabs span.count,
+body .main-buddypress .activity-meta span.count,
+body .main-buddypress .button span.count,
+body .main-buddypress button span.count {
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    background-color: var(--wp--preset--color--primary) !important;
-    color: var(--wp--preset--color--base, #fff) !important;
-    font-size: 0.75rem !important;
-    font-weight: var(--wp--custom--font-weight-button) !important;
-    padding: 0.2rem 0.5rem !important;
-    border-radius: var(--wp--custom--border-radius-pill, 50rem) !important;
-    margin-left: 0.35rem !important;
-    line-height: 1 !important;
+    background-color: var(--wp--preset--color--primary);
+    color: var(--wp--preset--color--primary-text, #fff);
+    font-size: 0.75rem;
+    font-weight: var(--wp--custom--font-weight-button);
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--wp--custom--border-radius-pill, 50rem);
+    margin-left: 0.35rem;
+    line-height: 1;
     min-width: 1.5em !important;
-    height: 1.5em !important; /* Force height so it stays perfectly round/pill */
+    height: 1.5em !important;
+    /* Force height so it stays perfectly round/pill */
     box-sizing: border-box !important;
 }
 
 /* Badges nested inside primary-colored backgrounds (Active Tabs) */
-body #buddypress .button span.count,
-body #buddypress button span.count,
-body #buddypress div.item-list-tabs ul li.current a span.count,
-body #buddypress div.item-list-tabs ul li.selected a span.count,
-body #buddypress.buddypress-wrap .bp-navs ul li.current a span.count,
-body #buddypress.buddypress-wrap .bp-navs ul li.selected a span.count {
-    background-color: rgba(0, 0, 0, 0.25) !important;
-    color: var(--wp--preset--color--base, #fff) !important;
+body .main-buddypress .button span.count,
+body .main-buddypress button span.count,
+body .main-buddypress .buddypress_object_nav .bp-navs ul li.current a .count,
+body .main-buddypress .buddypress_object_nav .bp-navs ul li.selected a .count,
+body .main-buddypress .buddypress_object_nav .bp-navs ul li.dynamic a .count,
+body .main-buddypress .buddypress_object_nav .bp-navs ul li.dynamic.current a .count,
+body .main-buddypress .buddypress_object_nav .bp-navs ul li.dynamic.selected a .count,
+body .main-buddypress div.item-list-tabs ul li.current a span.count,
+body .main-buddypress div.item-list-tabs ul li.selected a span.count,
+body.buddypress.buddypress-wrap .bp-navs ul li.current a span.count,
+body.buddypress.buddypress-wrap .bp-navs ul li.selected a span.count {
+    background-color: rgba(var(--wp--preset--color--primary-rgb), 0.16);
+    border-color: rgba(var(--wp--preset--color--primary-rgb), 0.28);
+    color: inherit;
+}
+
+body .main-buddypress .buddypress_object_nav .bp-navs ul li.dynamic a:hover .count {
+    background-color: var(--wp--preset--color--primary);
+    border-color: var(--wp--preset--color--primary);
+    color: var(--wp--preset--color--primary-text);
 }
 
 /* Badges nested inside Activity Action Buttons (Make them clean and transparent) */
-body #buddypress .activity-meta a span.count {
-    background-color: transparent !important;
-    color: inherit !important;
-    padding: 0 !important;
+body .main-buddypress .activity-meta a span.count {
+    background-color: transparent;
+    color: inherit;
+    padding: 0;
     min-width: auto !important;
     height: auto !important;
-    margin-left: 0.25rem !important;
+    margin-left: 0.25rem;
 }
 
 /* Prevent BuddyPress from hiding empty badges, and inject '0' automatically */
-body #buddypress .bp-navs span.count:empty,
-body #buddypress .item-list-tabs span.count:empty,
-body #buddypress .activity-meta span.count:empty,
-body #buddypress .bp-navs span.no-count,
-body #buddypress .item-list-tabs span.no-count,
-body #buddypress .activity-meta span.no-count {
+body .main-buddypress .bp-navs span.count:empty,
+body .main-buddypress .item-list-tabs span.count:empty,
+body .main-buddypress .activity-meta span.count:empty,
+body .main-buddypress .bp-navs span.no-count,
+body .main-buddypress .item-list-tabs span.no-count,
+body .main-buddypress .activity-meta span.no-count {
     visibility: visible !important;
     opacity: 1 !important;
     display: inline-flex !important;
 }
 
-body #buddypress .bp-navs span.count:empty::after,
-body #buddypress .item-list-tabs span.count:empty::after,
-body #buddypress .activity-meta span.count:empty::after,
-body #buddypress .bp-navs span.no-count::after,
-body #buddypress .item-list-tabs span.no-count::after,
-body #buddypress .activity-meta span.no-count::after {
+body .main-buddypress .bp-navs span.count:empty::after,
+body .main-buddypress .item-list-tabs span.count:empty::after,
+body .main-buddypress .activity-meta span.count:empty::after,
+body .main-buddypress .bp-navs span.no-count::after,
+body .main-buddypress .item-list-tabs span.no-count::after,
+body .main-buddypress .activity-meta span.no-count::after {
     content: "0";
 }
 
 /* 6. Tabs Container Reset (Strip native BuddyPress backgrounds) */
-body #buddypress div.item-list-tabs ul li,
-body #buddypress div.item-list-tabs ul li a,
-body #buddypress.buddypress-wrap .bp-navs ul li,
-body #buddypress.buddypress-wrap .bp-navs ul li a {
-    background: transparent !important;
-    border: none !important;
+body .main-buddypress div.item-list-tabs ul li,
+body .main-buddypress div.item-list-tabs ul li a,
+body.buddypress.buddypress-wrap .bp-navs ul li,
+body.buddypress.buddypress-wrap .bp-navs ul li a {
+    background: transparent;
+    border: none;
 }
 
 /* Style Active Tabs like Buttons */
-body #buddypress div.item-list-tabs ul li.current a,
-body #buddypress div.item-list-tabs ul li.selected a,
-body #buddypress.buddypress-wrap .bp-navs ul li.current a,
-body #buddypress.buddypress-wrap .bp-navs ul li.selected a {
-    background-color: var(--wp--preset--color--primary) !important;
-    color: var(--wp--preset--color--base, #fff) !important;
-    border-radius: var(--wp--custom--btn-border-radius) !important;
-    border: none !important;
+body .main-buddypress div.item-list-tabs ul li.current a,
+body .main-buddypress div.item-list-tabs ul li.selected a,
+body.buddypress.buddypress-wrap .bp-navs ul li.current a,
+body.buddypress.buddypress-wrap .bp-navs ul li.selected a {
+    background-color: var(--wp--preset--color--primary);
+    color: var(--wp--preset--color--primary-text, #fff);
+    border-radius: var(--wp--custom--btn-border-radius);
+    border: none;
+}
+
+/* 6b. BuddyPress Directory Nav Surfaces */
+body .main-buddypress .main-navs.dir-navs .component-navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+body .main-buddypress .main-navs.dir-navs .component-navigation > li {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    margin: 0;
+    list-style: none;
+    color: inherit;
+}
+
+body .main-buddypress .main-navs.dir-navs .component-navigation > li > a {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex: 1 1 auto;
+    gap: var(--wp--preset--spacing--10, 0.5rem);
+    width: 100%;
+    min-width: 0;
+    padding: var(--wp--preset--spacing--20, 0.5rem) var(--wp--preset--spacing--30, 1rem);
+    background: rgba(var(--wp--preset--color--contrast-rgb), 0.04);
+    color: inherit;
+    font-family: var(--wp--preset--font-family--navigation, var(--wp--preset--font-family--heading, inherit));
+    font-size: var(--wp--preset--font-size--medium);
+    font-weight: var(--wp--custom--font-weight-nav, 500);
+    line-height: 1.5;
+    text-decoration: none;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    transition: background-color 0.15s ease-in-out;
+}
+
+body .main-buddypress .main-navs.dir-navs .component-navigation > li > a:hover,
+body .main-buddypress .main-navs.dir-navs .component-navigation > li > a:focus {
+    background: rgba(var(--wp--preset--color--contrast-rgb), 0.08);
+    color: inherit;
+}
+
+body .main-buddypress .main-navs.dir-navs .component-navigation > li.selected,
+body .main-buddypress .main-navs.dir-navs .component-navigation > li.current {
+    background: rgba(var(--wp--preset--color--contrast-rgb), 0.1);
+}
+
+body .main-buddypress .main-navs.dir-navs .component-navigation > li.selected > a,
+body .main-buddypress .main-navs.dir-navs .component-navigation > li.current > a {
+    background: rgba(var(--wp--preset--color--contrast-rgb), 0.02);
+    color: inherit;
+}
+
+body .main-buddypress .main-navs.dir-navs .component-navigation > li > a .count {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 0 0 auto;
+    min-width: 1.5em !important;
+    height: 1.5em !important;
+    margin-left: auto;
+    padding: var(--wp--custom--badge-padding-y, 0.35em) var(--wp--custom--badge-padding-x, 0.65em);
+    border: var(--wp--custom--border-width, 1px) solid rgba(var(--wp--preset--color--border-color-rgb), 0.35);
+    border-radius: var(--wp--custom--badge-border-radius, 0.25rem);
+    background: var(--wp--preset--color--primary);
+    color: var(--wp--preset--color--primary-text, #fff);
+    font-size: var(--wp--preset--font-size--x-small);
+    font-weight: var(--wp--custom--badge-font-weight, 600);
+    line-height: 1;
+    box-sizing: border-box;
+}
+
+body .main-buddypress .main-navs.dir-navs .component-navigation > li.selected > a .count,
+body .main-buddypress .main-navs.dir-navs .component-navigation > li.current > a .count,
+body.buddypress.buddypress-wrap .bp-navs ul li.current a .count,
+body.buddypress.buddypress-wrap .bp-navs ul li.selected a .count {
+    background: rgba(var(--wp--preset--color--primary-rgb), 0.16);
+    border-color: rgba(var(--wp--preset--color--primary-rgb), 0.28);
+    color: inherit;
+}
+
+/* 6c. Generic BuddyPress Navigation & Loop Polish */
+body .main-buddypress .bp-navs.tabbed-links ul,
+body .main-buddypress .bp-navs.tabbed-links ol {
+    border-bottom: var(--wp--custom--border-width, 1px) var(--wp--custom--border-style, solid) var(--system-ui-border-color);
+}
+
+body .main-buddypress .bp-navs.tabbed-links ul li.current,
+body .main-buddypress .bp-navs.tabbed-links ol li.current,
+body .main-buddypress .bp-navs.tabbed-links ul li.selected,
+body .main-buddypress .bp-navs.tabbed-links ol li.selected {
+    border-color: var(--system-ui-border-color) var(--system-ui-border-color) var(--wp--preset--color--base, #fff);
+    border-style: solid;
+    border-width: var(--wp--custom--border-width, 1px);
+    border-top-left-radius: var(--wp--custom--border-radius);
+    border-top-right-radius: var(--wp--custom--border-radius);
+}
+
+body .main-buddypress .bp-navs.tabbed-links ul li.current a,
+body .main-buddypress .bp-navs.tabbed-links ol li.current a,
+body .main-buddypress .bp-navs.tabbed-links ul li.selected a,
+body .main-buddypress .bp-navs.tabbed-links ol li.selected a {
+    background: var(--wp--preset--color--base, #fff);
+    color: var(--wp--preset--color--contrast, inherit);
+}
+
+body .main-buddypress .bp-pagination {
+    color: rgba(var(--wp--preset--color--contrast-rgb), 0.72);
+    font-size: var(--wp--preset--font-size--small);
+}
+
+body .main-buddypress .bp-list,
+body .main-buddypress ul.item-list {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+body .main-buddypress .bp-list > li,
+body .main-buddypress ul.item-list > li {
+    border-bottom: var(--wp--custom--border-width, 1px) var(--wp--custom--border-style, solid) rgba(var(--wp--preset--color--contrast-rgb), 0.12);
+}
+
+body .main-buddypress .bp-list > li:last-child,
+body .main-buddypress ul.item-list > li:last-child {
+    border-bottom: 0;
+}
+
+body .main-buddypress .bp-list li .list-title a {
+    text-decoration: underline;
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.12em;
+    font-size: var(--wp--preset--font-size--large);
+}
+
+body .main-buddypress .bp-list li .list-title a:hover,
+body .main-buddypress .bp-list li .list-title a:focus {
+    text-decoration-color: rgba(var(--wp--preset--color--contrast-rgb), 0.45);
+}
+
+body .main-buddypress .bp-list li .meta,
+body .main-buddypress .bp-list li .item-meta,
+body .main-buddypress .bp-list li .activity-header .time-since,
+body .main-buddypress .bp-list li .activity-header .time-since:hover {
+    color: rgba(var(--wp--preset--color--contrast-rgb), 0.72);
+    font-size: var(--wp--preset--font-size--small);
+}
+
+body .main-buddypress .bp-list li:not(.mini) .item-avatar {
+    margin-right: var(--wp--preset--spacing--30, 1.5rem);
+}
+
+body .main-buddypress .bp-list li:not(.mini) .item-avatar img.avatar {
+    display: block;
+    margin: 0 auto var(--wp--preset--spacing--20, 1rem);
+    max-width: min(80%, 8rem);
+}
+
+body .main-buddypress .bp-list li.mini .item-avatar img.avatar {
+    display: block;
+    margin: 0 auto;
+    max-width: 3.125rem;
+    max-height: 3.125rem;
+}
+
+body .main-buddypress .activity-list.bp-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wp--preset--spacing--30, 1.5rem);
+}
+
+body .main-buddypress .activity-list.bp-list .activity-item {
+    padding: var(--wp--preset--spacing--20, 1rem);
+    border: var(--wp--custom--border-width, 1px) var(--wp--custom--border-style, solid) var(--system-ui-border-color);
+    border-radius: var(--wp--custom--border-radius);
+    background: var(--system-ui-surface);
+    box-shadow: var(--wp--custom--shadow, none);
+}
+
+body .main-buddypress .activity-list.bp-list .activity-item:not(:first-child) {
+    margin-top: 0;
 }
 
 /* 7. Forms (Comprehensive) */
-body #buddypress label {
-    font-family: var(--wp--custom--font-family-heading, inherit) !important;
-    font-weight: var(--wp--custom--font-weight-heading) !important;
-    color: var(--wp--preset--color--contrast, inherit) !important;
-    display: inline-block !important;
-    margin-bottom: var(--wp--preset--spacing--10, 0.5rem) !important;
+body .main-buddypress label {
+    font-family: var(--wp--preset--font-family--heading, inherit);
+    font-weight: var(--wp--custom--font-weight-heading);
+    display: inline-block;
+    margin-bottom: var(--wp--preset--spacing--10, 0.5rem);
 }
 
 /* Text-based Inputs */
-body #buddypress input[type="text"],
-body #buddypress input[type="email"],
-body #buddypress input[type="password"],
-body #buddypress input[type="url"],
-body #buddypress input[type="tel"],
-body #buddypress input[type="number"],
-body #buddypress input[type="search"],
-body #buddypress input[type="date"],
-body #buddypress input[type="time"],
-body #buddypress textarea,
-body #buddypress select {
-    font-family: var(--wp--custom--font-family-body, inherit) !important;
-    font-size: var(--wp--custom--body-font-size, 1rem) !important;
-    line-height: var(--wp--custom--line-height-body, 1.6) !important;
-    border-radius: var(--wp--custom--form-border-radius) !important;
-    border: var(--wp--custom--border-width, 1px) var(--wp--custom--border-style, solid) var(--wp--preset--color--border-color, #ccc) !important;
-    padding: var(--wp--preset--spacing--10, 0.5rem) var(--wp--preset--spacing--20, 1rem) !important;
-    color: var(--wp--preset--color--contrast, inherit) !important;
-    background-color: var(--wp--preset--color--base, #fff) !important;
-    box-shadow: var(--wp--custom--shadow, none) !important;
-    transition: var(--wp--custom--form-transition) !important;
-    box-sizing: border-box !important;
+body .main-buddypress input[type="text"],
+body .main-buddypress input[type="email"],
+body .main-buddypress input[type="password"],
+body .main-buddypress input[type="url"],
+body .main-buddypress input[type="tel"],
+body .main-buddypress input[type="number"],
+body .main-buddypress input[type="search"],
+body .main-buddypress input[type="date"],
+body .main-buddypress input[type="time"],
+body .main-buddypress textarea,
+body .main-buddypress select {
+    font-family: var(--wp--preset--font-family--body, inherit);
+    font-size: var(--wp--preset--font-size--medium);
+    line-height: var(--wp--custom--line-height-body, 1.6);
+    border-radius: var(--wp--custom--form-border-radius);
+    border: var(--wp--custom--border-width, 1px) var(--wp--custom--border-style, solid) var(--wp--preset--color--border-color);
+    padding: var(--wp--preset--spacing--10, 0.5rem) var(--wp--preset--spacing--20, 1rem);
+    color: var(--wp--preset--color--contrast, inherit);
+    background-color: var(--wp--preset--color--base, #fff);
+    box-shadow: var(--wp--custom--shadow, none);
+    transition: var(--wp--custom--form-transition);
+    box-sizing: border-box;
 }
 
 /* 100% Width only for standard forms */
-body #buddypress .standard-form input[type="text"],
-body #buddypress .standard-form input[type="email"],
-body #buddypress .standard-form input[type="password"],
-body #buddypress .standard-form input[type="url"],
-body #buddypress .standard-form input[type="tel"],
-body #buddypress .standard-form input[type="number"],
-body #buddypress .standard-form textarea,
-body #buddypress .standard-form select {
+body .main-buddypress .standard-form input[type="text"],
+body .main-buddypress .standard-form input[type="email"],
+body .main-buddypress .standard-form input[type="password"],
+body .main-buddypress .standard-form input[type="url"],
+body .main-buddypress .standard-form input[type="tel"],
+body .main-buddypress .standard-form input[type="number"],
+body .main-buddypress .standard-form textarea,
+body .main-buddypress .standard-form select {
     width: 100% !important;
     max-width: 100% !important;
 }
 
 /* Search inputs keep native auto width */
-body #buddypress input[type="search"] {
+body .main-buddypress input[type="search"] {
     width: auto !important;
 }
 
 /* Select specific tweaks */
-body #buddypress select {
+body .main-buddypress select {
     appearance: auto !important;
     padding-right: var(--wp--preset--spacing--30, 1.5rem) !important;
     cursor: pointer !important;
 }
 
-body #buddypress textarea {
+body .main-buddypress textarea {
     min-height: 120px !important;
     resize: vertical !important;
 }
 
 /* Input Focus States */
-body #buddypress input[type="text"]:focus,
-body #buddypress input[type="email"]:focus,
-body #buddypress input[type="password"]:focus,
-body #buddypress input[type="url"]:focus,
-body #buddypress input[type="tel"]:focus,
-body #buddypress input[type="number"]:focus,
-body #buddypress input[type="search"]:focus,
-body #buddypress input[type="date"]:focus,
-body #buddypress input[type="time"]:focus,
-body #buddypress textarea:focus,
-body #buddypress select:focus {
-    border-color: var(--wp--preset--color--primary) !important;
-    box-shadow: 0 0 0 var(--wp--custom--focus-ring-width, .25rem) var(--wp--custom--focus-ring-color, rgba(0,0,0,0.25)) !important;
+body .main-buddypress input[type="text"]:focus,
+body .main-buddypress input[type="email"]:focus,
+body .main-buddypress input[type="password"]:focus,
+body .main-buddypress input[type="url"]:focus,
+body .main-buddypress input[type="tel"]:focus,
+body .main-buddypress input[type="number"]:focus,
+body .main-buddypress input[type="search"]:focus,
+body .main-buddypress input[type="date"]:focus,
+body .main-buddypress input[type="time"]:focus,
+body .main-buddypress textarea:focus,
+body .main-buddypress select:focus {
+    border-color: var(--wp--custom--form-focus-border-color, var(--wp--preset--color--primary-50)) !important;
+    box-shadow: 0 0 0 var(--wp--custom--focus-ring-width, .25rem) var(--wp--custom--focus-ring-color) !important;
     outline: none !important;
 }
 
 /* Input Disabled/Readonly */
-body #buddypress input[type="text"]:disabled,
-body #buddypress input[type="text"][readonly],
-body #buddypress input[type="email"]:disabled,
-body #buddypress input[type="password"]:disabled,
-body #buddypress textarea:disabled,
-body #buddypress select:disabled {
-    background-color: var(--wp--custom--disabled-bg, #e9ecef) !important;
-    opacity: var(--wp--custom--disabled-opacity, 0.75) !important;
-    cursor: not-allowed !important;
+body .main-buddypress input[type="text"]:disabled,
+body .main-buddypress input[type="text"][readonly],
+body .main-buddypress input[type="email"]:disabled,
+body .main-buddypress input[type="password"]:disabled,
+body .main-buddypress textarea:disabled,
+body .main-buddypress select:disabled {
+    background-color: var(--wp--custom--disabled-bg, #e9ecef);
+    opacity: var(--wp--custom--disabled-opacity, 0.75);
+    cursor: not-allowed;
 }
 
 /* 8. Nouveau Search Form Fixes */
-body #buddypress .dir-search form,
-body #buddypress .bp-dir-search-form {
+body .main-buddypress .dir-search form,
+body .main-buddypress .bp-dir-search-form {
     display: flex !important;
     align-items: stretch !important;
 }
 
-body #buddypress .dir-search input[type="search"],
-body #buddypress .dir-search input[type="text"],
-body #buddypress .bp-dir-search-form input[type="search"],
-body #buddypress .bp-dir-search-form input[type="text"] {
+body .main-buddypress .dir-search input[type="search"],
+body .main-buddypress .dir-search input[type="text"],
+body .main-buddypress .bp-dir-search-form input[type="search"],
+body .main-buddypress .bp-dir-search-form input[type="text"] {
     margin-bottom: 0 !important;
     border-top-right-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
 }
 
-body #buddypress .dir-search button[type="submit"],
-body #buddypress .dir-search input[type="submit"],
-body #buddypress .bp-dir-search-form button[type="submit"],
-body #buddypress .bp-dir-search-form input[type="submit"] {
+body .main-buddypress .dir-search button[type="submit"],
+body .main-buddypress .dir-search input[type="submit"],
+body .main-buddypress .bp-dir-search-form button[type="submit"],
+body .main-buddypress .bp-dir-search-form input[type="submit"] {
     border-top-left-radius: 0 !important;
     border-bottom-left-radius: 0 !important;
     margin: 0 !important;

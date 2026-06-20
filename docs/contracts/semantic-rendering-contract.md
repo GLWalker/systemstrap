@@ -252,11 +252,16 @@ The first rendered tag of the template part receives semantics derived from clas
 
 - `hentry`
     - the first tag MUST receive `itemscope`.
-    - the first tag MUST receive `itemtype="https://schema.org/CreativeWork"`.
+    - the first tag MUST receive `itemtype="https://schema.org/BlogPosting"` when the queried singular object is a standard post.
+    - the first tag MUST receive `itemtype="https://schema.org/CreativeWork"` for non-post singular content.
+    - this inner content-object typing MUST remain distinct from the outer `site-main` page-surface typing.
+    - SystemStrap MUST NOT flatten both the outer page wrapper and the inner `hentry` wrapper to the same generic `WebPage` type merely for symmetry.
 - `entry-meta`
     - the first tag MUST receive `aria-label="Entry meta"`.
 - `post-navigation`
     - the first tag MUST receive `aria-label="Post navigation"`.
+- `comments-header`
+    - the wrapper MUST collapse entirely when the nested comments title output is empty.
 
 ### Excerpt and content contract
 
@@ -283,7 +288,7 @@ SystemStrap MUST NOT reintroduce `role="menu"` or `role="menuitem"` for standard
 - the rendered `<ul>` MUST receive `role="list"`.
 - categories MUST receive `aria-label="Categories"`.
 - archives MUST receive `aria-label="Archives"`.
-- each rendered `<a>` MUST receive `itemprop="url"`.
+- SystemStrap MUST NOT attach generic `itemprop="url"` metadata to categories or archives widget links when they are not nested inside their own scoped item.
 
 ### Widget badge replacement contract
 
@@ -292,6 +297,10 @@ SystemStrap MUST NOT reintroduce `role="menu"` or `role="menuitem"` for standard
 - `<span class="system-badge">123</span>`
 
 This is a runtime output replacement, not an editor-only style rule.
+
+This replacement MUST apply only to list-style rendered output.
+
+SystemStrap MUST NOT inject HTML badge elements into `<select>` or `<option>`-based dropdown output.
 
 ### Alert, toolbar, button-group, breadcrumb, and disabled-button contract
 
@@ -314,9 +323,13 @@ SystemStrap uses generic `render_block` interception for these surfaces.
 
 SystemStrap MUST NOT add `role="button"` to a native anchor or button merely because it looks like a button.
 
-### Site title and tagline replacement contract
+### Site title and tagline filter contract
 
-`inc/block-replacements.php` unregisters the default server renderers for `core/site-title` and `core/site-tagline` and re-registers theme replacements that delegate to core renderers and then modify semantic schema output.
+`inc/block-filters.php` intercepts `render_block_core/site-title` and `render_block_core/site-tagline` after WordPress core has already produced the base markup.
+
+- the theme MUST preserve the core renderer for both blocks.
+- semantic augmentation MUST occur after render through `strap_add_schema_to_title_markup()` and `strap_add_schema_to_tagline_markup()`.
+- SystemStrap MUST NOT reintroduce full server replacement for these two blocks unless a core change makes post-render mutation impossible.
 
 - `core/site-title`
     - the outer heading or paragraph tag MUST receive `itemprop="headline"`.
@@ -326,26 +339,24 @@ SystemStrap MUST NOT add `role="button"` to a native anchor or button merely bec
     - the outer tag MUST receive `itemprop="description"`.
     - the outer tag MUST receive the `site-description` class.
 
-The theme MUST continue delegating base markup generation to the core renderers for these blocks unless WordPress core makes that impossible.
+### Post title filter contract
 
-### Post title replacement contract
+`inc/block-filters.php` intercepts `render_block_core/post-title` after WordPress core has already produced the base markup.
 
-`core/post-title` is server-replaced.
-
-- the replacement MUST delegate to the core post-title renderer.
-- title hook injection MUST occur through the temporary `the_title` filter used in `strap_render_post_title_with_hooks()`.
-- the title content for the current block context MUST be wrapped with:
-    - `strap_hook_start_title`
-    - `strap_hook_end_title`
+- the theme MUST preserve the core renderer for `core/post-title`.
+- semantic augmentation MUST occur after render through `strap_add_schema_to_title_markup()`.
+- SystemStrap MUST NOT reintroduce title hook injection into this block unless a new documented runtime requirement depends on it.
 - the outer heading or paragraph tag MUST receive `itemprop="headline"`.
 - the outer heading or paragraph tag MUST receive the `entry-title` class.
 - the inner anchor, when present, MUST receive `itemprop="url"`.
 
-### Post date replacement contract
+### Post date filter contract
 
-`core/post-date` is server-replaced.
+`inc/block-filters.php` intercepts `render_block_core/post-date` after WordPress core has already produced the base markup.
 
-- the wrapper MUST remain the block wrapper returned by `get_block_wrapper_attributes()`.
+- the theme MUST preserve the core renderer for `core/post-date`.
+- semantic augmentation MUST occur after render.
+- the wrapper MUST retain the core block wrapper and MUST additionally receive the `posted-on` class.
 - the rendered `<time>` MUST carry either:
     - `itemprop="datePublished"`, or
     - `itemprop="dateModified"`
@@ -356,9 +367,13 @@ The theme MUST continue delegating base markup generation to the core renderers 
     - the visible date text MUST be linked to the post permalink.
     - that link MUST receive `itemprop="url"`.
 
-### Post author replacement contract
+### Post author filter contract
 
-`core/post-author-name` is server-replaced.
+`inc/block-filters.php` intercepts `render_block_core/post-author-name` after WordPress core has already produced the base markup.
+
+- the theme MUST preserve the core renderer for `core/post-author-name`.
+- semantic augmentation MUST occur after render.
+- the filter MUST preserve Core support for both post-context authors and author-archive fallback context.
 
 - the wrapper MUST include `author vcard`.
 - the wrapper MUST receive `itemprop="author"`.
@@ -369,9 +384,13 @@ The theme MUST continue delegating base markup generation to the core renderers 
     - the author link MUST receive `itemprop="url"`.
     - the author link MUST retain `rel="author"`.
 
-### Comment author and comment date replacement contract
+### Comment author and comment date filter contract
 
-`core/comment-author-name` and `core/comment-date` are server-replaced.
+`inc/block-filters.php` intercepts `render_block_core/comment-author-name` and `render_block_core/comment-date` after WordPress core has already produced the base markup.
+
+- the theme MUST preserve the core renderer for both blocks.
+- semantic augmentation MUST occur after render.
+- comment author post-processing MUST preserve the pending-comment safety rule by reducing disallowed linked markup through `wp_kses()` when pending links are not allowed.
 
 - comment author wrapper
     - MUST include `comment-author vcard`.
@@ -393,6 +412,10 @@ The theme MUST continue delegating base markup generation to the core renderers 
 ### Latest posts replacement contract
 
 `core/latest-posts` is server-replaced with custom semantic list output.
+
+- replacement remains justified because the block must emit a complete `ItemList` with explicit `ListItem` position metadata for each entry.
+- replacement remains justified because each item may need to compose multiple semantic sub-surfaces at once: article type selection, featured image `ImageObject`, author `Person`, date, excerpt/full body, and read-more handling.
+- replacement remains justified because protected-content and trimmed-excerpt branches must remain machine-readable while preserving accessible read-more text behavior.
 
 - the outer wrapper MUST be a `<ul>`.
 - the `<ul>` MUST receive `role="list"`.
@@ -420,6 +443,10 @@ SystemStrap MUST NOT reintroduce menu semantics for latest-posts output.
 
 `core/post-template` is server-replaced with custom list semantics.
 
+- replacement remains justified because query loop output must be promoted from generic loop markup to an `ItemList` with deterministic `ListItem` position metadata.
+- replacement remains justified because each loop item must wrap the rendered inner blocks inside an article shell whose schema type varies by post type.
+- replacement remains justified because the current implementation depends on early `render_block_context` injection for each loop item before nested blocks render.
+
 - the outer wrapper MUST be a `<ul>`.
 - the `<ul>` MUST receive `role="list"`.
 - the `<ul>` MUST receive `itemscope`.
@@ -441,6 +468,11 @@ SystemStrap MUST NOT represent query loop items as menu items.
 
 `core/latest-comments` is server-replaced with semantic list and comment markup.
 
+- replacement remains justified because the block must emit a full `ItemList` with explicit comment positions rather than a flat visual list only.
+- replacement remains justified because each item composes nested `Comment` and `Person` scopes together with optional avatar, date, excerpt, and commented-post link branches.
+- replacement remains justified because the rendered comment excerpt, full-content, author/date, and commented-post-link surfaces must stay machine-readable even when those optional pieces are toggled independently.
+- replacement remains justified because the current implementation preserves latest-comments behavior branches that are awkward to reconstruct safely after render, including `displayContent`, empty-state handling, author URL fallback, and comment-link targeting.
+
 - the outer wrapper MUST be a `<ul>`.
 - the `<ul>` MUST receive `role="list"`.
 - the `<ul>` MUST receive `itemscope`.
@@ -451,6 +483,7 @@ SystemStrap MUST NOT represent query loop items as menu items.
 - comment author MUST be scoped as `Person`.
 - comment date, when shown, MUST use `itemprop="dateCreated"`.
 - excerpt text, when shown, MUST use `itemprop="text"`.
+- full comment text, when shown, MUST use `itemprop="text"`.
 
 SystemStrap MUST NOT reintroduce menu semantics for latest-comments output.
 
@@ -524,7 +557,7 @@ SystemStrap applies additional processor-based mutation to these blocks in `inc/
     - each rendered `LI` MUST receive `itemprop="itemListElement"`.
     - for `post_tag`, each rendered term link MUST receive `itemprop="keywords"`.
     - for `category`, each rendered term link MUST receive `itemprop="articleSection"`.
-    - for other term types, each rendered term link MUST receive `itemprop="url"`.
+    - for other term types, SystemStrap MUST NOT attach generic `itemprop="url"` metadata unless that term output is later wrapped in its own scoped item.
 - `core/video`
     - the rendered root `<figure>` MUST receive `itemscope`.
     - the rendered root `<figure>` MUST receive `itemtype="https://schema.org/VideoObject"`.

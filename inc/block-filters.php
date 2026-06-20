@@ -118,6 +118,31 @@ if ( ! function_exists( 'strap_html_processor_set_attributes' ) ) {
 	}
 }
 
+if ( ! function_exists( 'strap_html_processor_add_classes' ) ) {
+	/**
+	 * Add one or more classes to the current tag.
+	 *
+	 * @param WP_HTML_Tag_Processor $processor Active processor positioned on a tag.
+	 * @param string                $class_name Space-delimited class list.
+	 * @return void
+	 */
+	function strap_html_processor_add_classes( WP_HTML_Tag_Processor $processor, string $class_name ): void {
+		$classes = preg_split( '/\s+/', trim( $class_name ) );
+
+		if ( ! is_array( $classes ) ) {
+			return;
+		}
+
+		foreach ( $classes as $class ) {
+			$class = sanitize_html_class( $class );
+
+			if ( '' !== $class ) {
+				$processor->add_class( $class );
+			}
+		}
+	}
+}
+
 /**
  * Add structured data to template parts.
  */
@@ -130,13 +155,13 @@ function strap_structured_data_parts_block_filter( string $block_content, array 
 		return $block_content;
 	}
 
-	$itemtype = match ( true ) {
-		str_contains( $class_name, 'main-search' ) => 'SearchResultsPage',
-		str_contains( $class_name, 'main-index' ),
-		str_contains( $class_name, 'main-single' ),
-		str_contains( $class_name, 'main-archive' ) => 'Blog',
-		default => 'WebPage',
-	};
+	if ( str_contains( $class_name, 'main-search' ) ) {
+		$itemtype = 'SearchResultsPage';
+	} elseif ( str_contains( $class_name, 'main-index' ) || str_contains( $class_name, 'main-single' ) || str_contains( $class_name, 'main-archive' ) ) {
+		$itemtype = 'Blog';
+	} else {
+		$itemtype = 'WebPage';
+	}
 
 	if ( str_contains( $class_name, 'site-header' ) ) {
 		strap_html_processor_set_attributes(
@@ -207,15 +232,41 @@ function strap_single_content_block_filter( string $block_content, array $block 
 		return $block_content;
 	}
 
+	$post_type = 'CreativeWork';
+	if ( is_singular() ) {
+		$queried_post_type = get_post_type( get_queried_object_id() );
+		if ( 'post' === $queried_post_type ) {
+			$post_type = 'BlogPosting';
+		}
+	}
+
 	strap_html_processor_set_attributes(
 		$processor,
 		array(
 			'itemscope' => true,
-			'itemtype'  => 'https://schema.org/CreativeWork',
+			'itemtype'  => 'https://schema.org/' . $post_type,
 		)
 	);
 
 	return $processor->get_updated_html();
+}
+
+/**
+ * Remove empty comments-header wrappers when the title block outputs nothing.
+ */
+add_filter( 'render_block_core/group', 'strap_comments_header_block_filter', 10, 2 );
+function strap_comments_header_block_filter( string $block_content, array $block ): string {
+	$class_name = strap_get_class_name( $block );
+
+	if ( ! str_contains( $class_name, 'comments-header' ) ) {
+		return $block_content;
+	}
+
+	if ( '' === trim( wp_strip_all_tags( $block_content ) ) ) {
+		return '';
+	}
+
+	return $block_content;
 }
 
 /**
@@ -232,6 +283,261 @@ function strap_post_excerpt_content_block_filter( string $block_content, array $
 
 	$processor->set_attribute( 'itemprop', 'description' );
 	return $processor->get_updated_html();
+}
+
+/**
+ * Add schema to site-title output while preserving the core renderer.
+ */
+add_filter( 'render_block_core/site-title', 'strap_site_title_block_filter', 10, 2 );
+function strap_site_title_block_filter( string $block_content, array $block ): string {
+	if ( ! function_exists( 'strap_add_schema_to_title_markup' ) ) {
+		return $block_content;
+	}
+
+	return strap_add_schema_to_title_markup( $block_content, 'site-title' );
+}
+
+/**
+ * Add schema to site-tagline output while preserving the core renderer.
+ */
+add_filter( 'render_block_core/site-tagline', 'strap_site_tagline_block_filter', 10, 2 );
+function strap_site_tagline_block_filter( string $block_content, array $block ): string {
+	if ( ! function_exists( 'strap_add_schema_to_tagline_markup' ) ) {
+		return $block_content;
+	}
+
+	return strap_add_schema_to_tagline_markup( $block_content, 'site-description' );
+}
+
+/**
+ * Add schema to post-title output while preserving the core renderer.
+ */
+add_filter( 'render_block_core/post-title', 'strap_post_title_block_filter', 10, 2 );
+function strap_post_title_block_filter( string $block_content, array $block ): string {
+	if ( ! function_exists( 'strap_add_schema_to_title_markup' ) ) {
+		return $block_content;
+	}
+
+	return strap_add_schema_to_title_markup( $block_content, 'entry-title' );
+}
+
+/**
+ * Add schema to post-date output while preserving the core renderer.
+ */
+add_filter( 'render_block_core/post-date', 'strap_post_date_block_filter', 10, 3 );
+function strap_post_date_block_filter( string $block_content, array $block, WP_Block $instance ): string {
+	$updated_html = $block_content;
+	$processor    = strap_get_html_processor( $updated_html );
+
+	if ( ! $processor || ! $processor->next_tag() ) {
+		return $block_content;
+	}
+
+	$processor->add_class( 'posted-on' );
+	$updated_html = $processor->get_updated_html();
+
+	$is_modified = isset( $block['attrs']['displayType'] ) && 'modified' === $block['attrs']['displayType'];
+	$post_id     = $instance->context['postId'] ?? 0;
+	$itemprop    = 'datePublished';
+	$time_class  = 'entry-date published';
+
+	if ( $is_modified && $post_id && get_the_modified_date( 'Ymdhi', $post_id ) > get_the_date( 'Ymdhi', $post_id ) ) {
+		$itemprop   = 'dateModified';
+		$time_class = 'entry-date updated';
+	}
+
+	$processor = strap_get_html_processor( $updated_html );
+	if ( $processor && $processor->next_tag( 'TIME' ) ) {
+		$processor->set_attribute( 'itemprop', $itemprop );
+		$processor->set_attribute( 'class', $time_class );
+		$updated_html = $processor->get_updated_html();
+	}
+
+	$processor = strap_get_html_processor( $updated_html );
+	if ( $processor && $processor->next_tag( 'A' ) ) {
+		$processor->set_attribute( 'itemprop', 'url' );
+		$updated_html = $processor->get_updated_html();
+	}
+
+	if ( 'dateModified' !== $itemprop || ! $post_id ) {
+		return $updated_html;
+	}
+
+	$published_time = sprintf(
+		'<time class="entry-date published visually-hidden" datetime="%1$s" itemprop="datePublished">%2$s</time>',
+		esc_attr( get_the_date( 'c', $post_id ) ),
+		esc_html( get_the_date( empty( $block['attrs']['format'] ) ? '' : $block['attrs']['format'], $post_id ) )
+	);
+
+	$closing_div = strrpos( $updated_html, '</div>' );
+
+	if ( false === $closing_div ) {
+		return $updated_html . $published_time;
+	}
+
+	return substr_replace( $updated_html, $published_time . '</div>', $closing_div, strlen( '</div>' ) );
+}
+
+/**
+ * Add schema to post-author output while preserving the core renderer.
+ */
+add_filter( 'render_block_core/post-author-name', 'strap_post_author_name_block_filter', 10, 3 );
+function strap_post_author_name_block_filter( string $block_content, array $block, WP_Block $instance ): string {
+	$author_id = 0;
+
+	if ( isset( $instance->context['postId'] ) ) {
+		$author_id = (int) get_post_field( 'post_author', $instance->context['postId'] );
+	} else {
+		$author_id = (int) get_query_var( 'author' );
+	}
+
+	if ( ! $author_id ) {
+		return $block_content;
+	}
+
+	$author_name_text = get_the_author_meta( 'display_name', $author_id );
+
+	if ( '' === $author_name_text ) {
+		return $block_content;
+	}
+
+	$processor = strap_get_html_processor( $block_content );
+
+	if ( ! $processor || ! $processor->next_tag() ) {
+		return $block_content;
+	}
+
+	$processor->add_class( 'author' );
+	$processor->add_class( 'vcard' );
+	$processor->set_attribute( 'itemprop', 'author' );
+	$processor->set_attribute( 'itemtype', 'https://schema.org/Person' );
+	$processor->set_attribute( 'itemscope', true );
+
+	$updated_html = $processor->get_updated_html();
+	$start        = strpos( $updated_html, '>' );
+	$end          = strrpos( $updated_html, '</div>' );
+
+	if ( false === $start || false === $end || $end <= $start ) {
+		return $updated_html;
+	}
+
+	if ( ! empty( $block['attrs']['isLink'] ) ) {
+		$inner_html = sprintf(
+			'<a href="%1$s" target="%2$s" class="wp-block-post-author-name__link url fn n" title="%3$s" rel="author" itemprop="url"><span class="author-name" itemprop="name">%4$s</span></a>',
+			esc_url( get_author_posts_url( $author_id ) ),
+			esc_attr( $block['attrs']['linkTarget'] ?? '_self' ),
+			esc_attr( sprintf( __( 'View all posts by %s', 'systemstrap' ), $author_name_text ) ),
+			esc_html( $author_name_text )
+		);
+	} else {
+		$inner_html = sprintf(
+			'<span class="author-name" itemprop="name">%s</span>',
+			esc_html( $author_name_text )
+		);
+	}
+
+	return substr( $updated_html, 0, $start + 1 ) . $inner_html . substr( $updated_html, $end );
+}
+
+/**
+ * Add schema to comment-author output while preserving the core renderer.
+ */
+add_filter( 'render_block_core/comment-author-name', 'strap_comment_author_name_block_filter', 10, 3 );
+function strap_comment_author_name_block_filter( string $block_content, array $block, WP_Block $instance ): string {
+	$comment_id = $instance->context['commentId'] ?? 0;
+
+	if ( ! $comment_id ) {
+		return $block_content;
+	}
+
+	$comment = get_comment( $comment_id );
+
+	if ( ! $comment ) {
+		return $block_content;
+	}
+
+	$processor = strap_get_html_processor( $block_content );
+
+	if ( ! $processor || ! $processor->next_tag() ) {
+		return $block_content;
+	}
+
+	$processor->add_class( 'comment-author' );
+	$processor->add_class( 'vcard' );
+	$processor->set_attribute( 'itemprop', 'author' );
+	$processor->set_attribute( 'itemtype', 'https://schema.org/Person' );
+	$processor->set_attribute( 'itemscope', true );
+
+	$updated_html = $processor->get_updated_html();
+	$start        = strpos( $updated_html, '>' );
+	$end          = strrpos( $updated_html, '</div>' );
+
+	if ( false === $start || false === $end || $end <= $start ) {
+		return $updated_html;
+	}
+
+	$comment_author_text = get_comment_author( $comment );
+	$link                = get_comment_author_url( $comment );
+	$commenter           = wp_get_current_commenter();
+	$show_pending_links  = isset( $commenter['comment_author'] ) && $commenter['comment_author'];
+
+		if ( ! empty( $link ) && ! empty( $block['attrs']['isLink'] ) ) {
+			$inner_html = sprintf(
+				'<cite class="fn"><a rel="external nofollow ugc" href="%1$s" target="%2$s" itemprop="url"><span itemprop="name">%3$s</span></a></cite>',
+				esc_url( $link ),
+				esc_attr( $block['attrs']['linkTarget'] ?? '_self' ),
+				esc_html( $comment_author_text )
+			);
+		} else {
+		$inner_html = sprintf(
+			'<cite class="fn"><span itemprop="name">%s</span></cite>',
+			esc_html( $comment_author_text )
+		);
+	}
+
+	if ( '0' === $comment->comment_approved && ! $show_pending_links ) {
+		$inner_html = wp_kses(
+			$inner_html,
+			array(
+				'cite' => array( 'class' => true ),
+				'span' => array( 'itemprop' => true ),
+			)
+		);
+	}
+
+	return substr( $updated_html, 0, $start + 1 ) . $inner_html . substr( $updated_html, $end );
+}
+
+/**
+ * Add schema to comment-date output while preserving the core renderer.
+ */
+add_filter( 'render_block_core/comment-date', 'strap_comment_date_block_filter', 10, 3 );
+function strap_comment_date_block_filter( string $block_content, array $block, WP_Block $instance ): string {
+	$updated_html = $block_content;
+	$processor    = strap_get_html_processor( $updated_html );
+
+	if ( ! $processor || ! $processor->next_tag() ) {
+		return $block_content;
+	}
+
+	$processor->add_class( 'entry-meta' );
+	$processor->add_class( 'comment-metadata' );
+	$updated_html = $processor->get_updated_html();
+
+	$processor = strap_get_html_processor( $updated_html );
+	if ( $processor && $processor->next_tag( 'TIME' ) ) {
+		$processor->set_attribute( 'itemprop', 'datePublished' );
+		$processor->set_attribute( 'class', 'entry-date published' );
+		$updated_html = $processor->get_updated_html();
+	}
+
+	$processor = strap_get_html_processor( $updated_html );
+	if ( $processor && $processor->next_tag( 'A' ) ) {
+		$processor->set_attribute( 'itemprop', 'url' );
+		$updated_html = $processor->get_updated_html();
+	}
+
+	return $updated_html;
 }
 
 /**
@@ -335,10 +641,6 @@ function strap_categories_content_block_filter( string $block_content, array $bl
 		);
 	}
 
-	while ( $processor->next_tag( 'A' ) ) {
-		$processor->set_attribute( 'itemprop', 'url' );
-	}
-
 	return $processor->get_updated_html();
 }
 
@@ -361,10 +663,6 @@ function strap_archives_content_block_filter( string $block_content, array $bloc
 				'aria-label' => 'Archives',
 			)
 		);
-	}
-
-	while ( $processor->next_tag( 'A' ) ) {
-		$processor->set_attribute( 'itemprop', 'url' );
 	}
 
 	return $processor->get_updated_html();
@@ -675,41 +973,70 @@ function strap_gallery_block_filter( string $block_content, array $block ): stri
 add_filter( 'render_block_core/post-terms', 'strap_post_terms_block_filter', 10, 2 );
 function strap_post_terms_block_filter( string $block_content, array $block ): string {
 	$processor = strap_get_html_processor( $block_content );
-	if ( ! $processor ) {
+	if ( ! $processor || ! $processor->next_tag() ) {
 		return $block_content;
 	}
 
-	$term     = ! empty( $block['attrs']['term'] ) ? sanitize_key( $block['attrs']['term'] ) : '';
+	$term  = ! empty( $block['attrs']['term'] ) ? sanitize_key( $block['attrs']['term'] ) : '';
 	$label = 'Post taxonomy';
 	if ( $term ) {
 		$label = 'Post ' . sanitize_text_field( $term );
 	}
 
-	if ( $processor->next_tag( 'UL' ) || $processor->next_tag( 'OL' ) ) {
-		strap_html_processor_set_attributes(
-			$processor,
-			array(
-				'role'       => 'list',
-				'aria-label' => $label,
-			)
-		);
+	if ( in_array( $processor->get_tag(), array( 'UL', 'OL' ), true ) ) {
+		$processor->set_attribute( 'role', 'list' );
+	}
+
+	$processor->set_attribute( 'aria-label', $label );
+	$updated_html = $processor->get_updated_html();
+
+	$processor = strap_get_html_processor( $updated_html );
+	if ( ! $processor ) {
+		return $updated_html;
 	}
 
 	while ( $processor->next_tag( 'LI' ) ) {
 		$processor->set_attribute( 'itemprop', 'itemListElement' );
 	}
 
-	while ( $processor->next_tag( 'A' ) ) {
-		$itemprop = 'url';
-
-		if ( 'post_tag' === $term ) {
-			$itemprop = 'keywords';
-		} elseif ( 'category' === $term ) {
-			$itemprop = 'articleSection';
-		}
-
-		$processor->set_attribute( 'itemprop', $itemprop );
+	$updated_html = $processor->get_updated_html();
+	$processor    = strap_get_html_processor( $updated_html );
+	if ( ! $processor ) {
+		return $updated_html;
 	}
+
+	while ( $processor->next_tag( 'A' ) ) {
+		if ( 'post_tag' === $term ) {
+			$processor->set_attribute( 'itemprop', 'keywords' );
+		} elseif ( 'category' === $term ) {
+			$processor->set_attribute( 'itemprop', 'articleSection' );
+		} else {
+			$processor->remove_attribute( 'itemprop' );
+		}
+	}
+
+	return $processor->get_updated_html();
+}
+
+/**
+ * Scope comment body panels as Comment items.
+ */
+add_filter( 'render_block_core/group', 'strap_comment_body_group_block_filter', 10, 2 );
+function strap_comment_body_group_block_filter( string $block_content, array $block ): string {
+	$class_name = strap_get_class_name( $block );
+	$processor  = strap_get_html_processor( $block_content );
+
+	if ( ! str_contains( $class_name, 'comment-body' ) || ! $processor || ! $processor->next_tag() ) {
+		return $block_content;
+	}
+
+	strap_html_processor_set_attributes(
+		$processor,
+		array(
+			'itemscope' => true,
+			'itemtype'  => 'https://schema.org/Comment',
+		)
+	);
 
 	return $processor->get_updated_html();
 }
@@ -984,6 +1311,55 @@ function strap_bp_dynamic_groups_block_filter( string $block_content, array $blo
 				'aria-label' => 'Groups',
 			)
 		);
+	}
+
+	return $processor->get_updated_html();
+}
+
+/**
+ * Restore saved custom classes on BuddyPress member blocks.
+ *
+ * BuddyPress rebuilds these wrappers in PHP and drops the incoming block
+ * `className`, so style-variation classes like `is-style-system-panel`
+ * must be reattached at render time.
+ */
+add_filter( 'render_block_bp/member', 'strap_bp_member_style_class_filter', 10, 2 );
+add_filter( 'render_block_bp/members', 'strap_bp_member_style_class_filter', 10, 2 );
+function strap_bp_member_style_class_filter( string $block_content, array $block ): string {
+	$class_name = strap_get_class_name( $block );
+	$processor  = strap_get_html_processor( $block_content );
+	$block_name = $block['blockName'] ?? '';
+
+	if ( ! $class_name || ! $processor || ! $processor->next_tag() ) {
+		return $block_content;
+	}
+
+	if ( str_contains( $class_name, 'is-style-system-panel' ) ) {
+		if ( 'bp/member' === $block_name ) {
+			wp_enqueue_style( 'bp-member-system-panel' );
+		}
+
+		if ( 'bp/members' === $block_name ) {
+			wp_enqueue_style( 'bp-members-system-panel' );
+		}
+	}
+
+	strap_html_processor_add_classes( $processor, $class_name );
+
+	$updated_html = $processor->get_updated_html();
+
+	if ( 'bp/member' !== $block_name ) {
+		return $updated_html;
+	}
+
+	$processor = strap_get_html_processor( $updated_html );
+
+	if ( ! $processor ) {
+		return $updated_html;
+	}
+
+	while ( $processor->next_tag( array( 'tag_name' => 'A', 'class_name' => 'button' ) ) ) {
+		$processor->set_attribute( 'class', 'button' );
 	}
 
 	return $processor->get_updated_html();

@@ -1,0 +1,292 @@
+/*
+ * BuddyPress Primary Nav: System Nav Button
+ * Mirrors the SystemStrap button navigation treatment for bp/primary-nav.
+ */
+
+.wp-block-bp-primary-nav.is-style-system-nav-button {
+    width: 100%;
+    color: inherit;
+    background-color: transparent !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button .bp-navs {
+    width: 100%;
+    background: transparent !important;
+    overflow: visible !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button .bp-navs > ul {
+    display: flex !important;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch !important;
+    gap: var(--wp--preset--spacing--30, 1rem) !important;
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button.is-vertical .bp-navs > ul {
+    flex-direction: column;
+    width: 100%;
+    align-items: stretch !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button .bp-navs > ul > li {
+    position: relative;
+    display: flex !important;
+    align-items: stretch !important;
+    width: 100% !important;
+    gap: 0 !important;
+    list-style: none !important;
+    margin: 0 !important;
+    border: var(--wp--custom--btn-border-width) solid var(--wp--custom--btn-border-color) !important;
+    border-radius: var(--wp--custom--btn-border-radius) !important;
+    background-color: var(--wp--preset--color--primary, #0d6efd) !important;
+    color: var(--wp--preset--color--primary-text, #fff) !important;
+    box-shadow: var(--wp--preset--shadow--btn-resting, none) !important;
+    transition: var(--wp--custom--btn-transition) !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button.is-vertical .bp-navs > ul > li {
+    width: 100% !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button .bp-navs > ul > li > a,
+.wp-block-bp-primary-nav.is-style-system-nav-button .bp-navs > ul > li > span:not(.count) {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    padding-top: calc(var(--wp--preset--font-size--small, 0.875rem) * .5) !important;
+    padding-bottom: calc(var(--wp--preset--font-size--small, 0.875rem) * .5) !important;
+    padding-left: var(--wp--preset--font-size--medium, 1.25rem) !important;
+    padding-right: var(--wp--preset--font-size--medium, 1.25rem) !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: inherit !important;
+    text-decoration: none !important;
+    font-family: var(--wp--preset--font-family--button, var(--wp--preset--font-family--heading, inherit)) !important;
+    font-weight: var(--wp--custom--font-weight-button) !important;
+    line-height: 1.5 !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button .bp-navs > ul > li > a .count,
+.wp-block-bp-primary-nav.is-style-system-nav-button .bp-navs > ul > li > span .count {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 0 0 auto !important;
+    min-width: 1.5rem !important;
+    height: 1.5rem !important;
+    margin-left: auto !important;
+    padding: 0 0.45rem !important;
+    float: none !important;
+    border-left: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-top: 0 !important;
+    border-right: 0 !important;
+    border-bottom: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    color: inherit !important;
+    font-weight: var(--wp--custom--badge-font-weight) !important;
+    line-height: 1 !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button .bp-navs > ul > li:hover,
+.wp-block-bp-primary-nav.is-style-system-nav-button .bp-navs > ul > li.current,
+.wp-block-bp-primary-nav.is-style-system-nav-button .bp-navs > ul > li.selected {
+    background-color: color-mix(in srgb, var(--wp--preset--color--primary, #0d6efd) 85%, black) !important;
+    border-color: var(--wp--custom--btn-hover-border-color) !important;
+    box-shadow: var(--wp--preset--shadow--btn-hover, none) !important;
+    transform: var(--wp--custom--btn-hover-transform) !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button .bp-navs > ul > li:active {
+    background-color: color-mix(in srgb, var(--wp--preset--color--primary, #0d6efd) 75%, black) !important;
+    border-color: var(--wp--custom--btn-hover-border-color) !important;
+    box-shadow: var(--wp--preset--shadow--btn-active, none) !important;
+    transform: translateY(0) !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button .bp-navs > ul > li > a:focus-visible,
+.wp-block-bp-primary-nav.is-style-system-nav-button .bp-navs > ul > li > span:not(.count):focus-visible {
+    outline: 2px solid currentColor !important;
+    outline-offset: -2px !important;
+    border-radius: inherit;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-background {
+    background-color: transparent !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-base-background-color .bp-navs > ul > li,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-secondary-bg-background-color .bp-navs > ul > li,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-tertiary-bg-background-color .bp-navs > ul > li,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-light-background-color .bp-navs > ul > li {
+    color: var(--wp--preset--color--contrast) !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-contrast-background-color .bp-navs > ul > li,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-primary-background-color .bp-navs > ul > li,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-secondary-background-color .bp-navs > ul > li,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-success-background-color .bp-navs > ul > li,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-info-background-color .bp-navs > ul > li,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-warning-background-color .bp-navs > ul > li,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-danger-background-color .bp-navs > ul > li,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-dark-background-color .bp-navs > ul > li {
+    color: var(--wp--preset--color--base, #fff) !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-secondary-color-background-color .bp-navs > ul > li {
+    color: var(--wp--preset--color--secondary-bg) !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-tertiary-color-background-color .bp-navs > ul > li {
+    color: var(--wp--preset--color--tertiary-bg) !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-base-background-color .bp-navs > ul > li {
+    background-color: var(--wp--preset--color--base) !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-contrast-background-color .bp-navs > ul > li {
+    background-color: var(--wp--preset--color--contrast) !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-secondary-bg-background-color .bp-navs > ul > li {
+    background-color: var(--wp--preset--color--secondary-bg) !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-secondary-color-background-color .bp-navs > ul > li {
+    background-color: var(--wp--preset--color--secondary-color) !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-tertiary-bg-background-color .bp-navs > ul > li {
+    background-color: var(--wp--preset--color--tertiary-bg) !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-tertiary-color-background-color .bp-navs > ul > li {
+    background-color: var(--wp--preset--color--tertiary-color) !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-primary-background-color .bp-navs > ul > li {
+    background-color: var(--wp--preset--color--primary) !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-secondary-background-color .bp-navs > ul > li {
+    background-color: var(--wp--preset--color--secondary) !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-success-background-color .bp-navs > ul > li {
+    background-color: var(--wp--preset--color--success) !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-info-background-color .bp-navs > ul > li {
+    background-color: var(--wp--preset--color--info) !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-warning-background-color .bp-navs > ul > li {
+    background-color: var(--wp--preset--color--warning) !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-danger-background-color .bp-navs > ul > li {
+    background-color: var(--wp--preset--color--danger) !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-light-background-color .bp-navs > ul > li {
+    background-color: var(--wp--preset--color--light) !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-dark-background-color .bp-navs > ul > li {
+    background-color: var(--wp--preset--color--dark) !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-base-background-color .bp-navs > ul > li:hover,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-base-background-color .bp-navs > ul > li.current,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-base-background-color .bp-navs > ul > li.selected {
+    background-color: color-mix(in srgb, var(--wp--preset--color--base) 85%, black) !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-contrast-background-color .bp-navs > ul > li:hover,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-contrast-background-color .bp-navs > ul > li.current,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-contrast-background-color .bp-navs > ul > li.selected {
+    background-color: color-mix(in srgb, var(--wp--preset--color--contrast) 85%, black) !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-secondary-bg-background-color .bp-navs > ul > li:hover,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-secondary-bg-background-color .bp-navs > ul > li.current,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-secondary-bg-background-color .bp-navs > ul > li.selected {
+    background-color: color-mix(in srgb, var(--wp--preset--color--secondary-bg) 85%, black) !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-secondary-color-background-color .bp-navs > ul > li:hover,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-secondary-color-background-color .bp-navs > ul > li.current,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-secondary-color-background-color .bp-navs > ul > li.selected {
+    background-color: color-mix(in srgb, var(--wp--preset--color--secondary-color) 85%, black) !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-tertiary-bg-background-color .bp-navs > ul > li:hover,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-tertiary-bg-background-color .bp-navs > ul > li.current,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-tertiary-bg-background-color .bp-navs > ul > li.selected {
+    background-color: color-mix(in srgb, var(--wp--preset--color--tertiary-bg) 85%, black) !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-tertiary-color-background-color .bp-navs > ul > li:hover,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-tertiary-color-background-color .bp-navs > ul > li.current,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-tertiary-color-background-color .bp-navs > ul > li.selected {
+    background-color: color-mix(in srgb, var(--wp--preset--color--tertiary-color) 85%, black) !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-primary-background-color .bp-navs > ul > li:hover,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-primary-background-color .bp-navs > ul > li.current,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-primary-background-color .bp-navs > ul > li.selected {
+    background-color: color-mix(in srgb, var(--wp--preset--color--primary) 85%, black) !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-secondary-background-color .bp-navs > ul > li:hover,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-secondary-background-color .bp-navs > ul > li.current,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-secondary-background-color .bp-navs > ul > li.selected {
+    background-color: color-mix(in srgb, var(--wp--preset--color--secondary) 85%, black) !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-success-background-color .bp-navs > ul > li:hover,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-success-background-color .bp-navs > ul > li.current,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-success-background-color .bp-navs > ul > li.selected {
+    background-color: color-mix(in srgb, var(--wp--preset--color--success) 85%, black) !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-info-background-color .bp-navs > ul > li:hover,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-info-background-color .bp-navs > ul > li.current,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-info-background-color .bp-navs > ul > li.selected {
+    background-color: color-mix(in srgb, var(--wp--preset--color--info) 85%, black) !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-warning-background-color .bp-navs > ul > li:hover,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-warning-background-color .bp-navs > ul > li.current,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-warning-background-color .bp-navs > ul > li.selected {
+    background-color: color-mix(in srgb, var(--wp--preset--color--warning) 85%, black) !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-danger-background-color .bp-navs > ul > li:hover,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-danger-background-color .bp-navs > ul > li.current,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-danger-background-color .bp-navs > ul > li.selected {
+    background-color: color-mix(in srgb, var(--wp--preset--color--danger) 85%, black) !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-light-background-color .bp-navs > ul > li:hover,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-light-background-color .bp-navs > ul > li.current,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-light-background-color .bp-navs > ul > li.selected {
+    background-color: color-mix(in srgb, var(--wp--preset--color--light) 85%, black) !important;
+}
+
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-dark-background-color .bp-navs > ul > li:hover,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-dark-background-color .bp-navs > ul > li.current,
+.wp-block-bp-primary-nav.is-style-system-nav-button.has-dark-background-color .bp-navs > ul > li.selected {
+    background-color: color-mix(in srgb, var(--wp--preset--color--dark) 85%, black) !important;
+}

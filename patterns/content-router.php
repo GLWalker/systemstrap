@@ -46,7 +46,7 @@ if (empty($bp_template_file)) {
 $slug = str_replace(['parts/part-', '.html'], '', $bp_template_file);
 $class_name = (strpos($slug, 'page') !== false)
   ? 'site-main main-page'
-  : "site-main main-{$slug}";
+  : "site-main main-buddypress main-{$slug}";
 
 // Output the dynamic template part block
 $block_attrs = [

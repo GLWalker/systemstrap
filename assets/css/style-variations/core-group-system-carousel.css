@@ -76,28 +76,116 @@
 /* Ensure the track strictly hides overflow to prevent Safari bleed */
 .splide__track {
     overflow: hidden !important;
+    /* Expand track vertically to prevent shadow clipping without shrinking slides */
+    padding-top: var(--wp--preset--spacing--20, 1rem) !important;
+    padding-bottom: var(--wp--preset--spacing--20, 1rem) !important;
+    margin-top: calc(var(--wp--preset--spacing--20, 1rem) * -1) !important;
+    margin-bottom: calc(var(--wp--preset--spacing--20, 1rem) * -1) !important;
+}
+
+/* Expand track horizontally ONLY for multi/auto sliders to allow side shadows to breathe */
+.is-style-system-carousel-auto .splide__track,
+.is-style-system-carousel-multi .splide__track {
+    padding-left: var(--wp--preset--spacing--20, 1rem) !important;
+    padding-right: var(--wp--preset--spacing--20, 1rem) !important;
+    margin-left: calc(var(--wp--preset--spacing--20, 1rem) * -1) !important;
+    margin-right: calc(var(--wp--preset--spacing--20, 1rem) * -1) !important;
 }
 
 /* Fix Safari Flexbox bugs where slides overflow their calculated boundaries */
 .splide__slide {
+    padding: 0; /* Removed padding so slide matches grid width */
     min-width: 0 !important; /* CRITICAL SAFARI FIX: Allows flex items to shrink below their intrinsic content size */
     min-height: 0 !important;
     box-sizing: border-box !important;
     flex-shrink: 0 !important;
     max-width: 100%;
     transform: translateZ(0); /* Force hardware acceleration in Safari to stop rendering glitches and enforce clipping */
-    
+
     /* Safely contain Gutenberg blocks by forcing a block context (Safari ignores overflow: hidden on flex items) */
     display: block !important;
-    overflow: hidden !important;
+    overflow: visible !important;
 }
 
-/* Ensure inner Gutenberg blocks completely fill the safe slide wrapper without bleeding */
-.splide__slide.system-slide-wrapper > * {
-    width: auto !important; /* Safari autoWidth Google Fix */
+/* For single-item carousels: expand the track with margin but compress the slide with padding.
+   This perfectly preserves the 100% block width, allows shadows to bleed out into the margin,
+   but prevents the next slide from being visible because the track boundary ends exactly where the next slide begins. */
+.is-style-system-carousel .splide__track {
+    margin-left: calc(var(--wp--preset--spacing--20, 1rem) * -1) !important;
+    margin-right: calc(var(--wp--preset--spacing--20, 1rem) * -1) !important;
+}
+
+.is-style-system-carousel .splide__slide {
+    padding-left: var(--wp--preset--spacing--20, 1rem) !important;
+    padding-right: var(--wp--preset--spacing--20, 1rem) !important;
+}
+
+/* Ensure inner Gutenberg blocks are safely contained.
+   We center them automatically if they are smaller than the slide (e.g., thumbnails on mobile) */
+.splide__slide > * {
     max-width: 100% !important;
     box-sizing: border-box !important;
-    margin: 0 !important;
+    margin: 0 auto !important;
+}
+
+/* Force thumbnail figure wrappers to shrink-to-fit so backgrounds/borders don't stretch */
+.is-style-system-carousel-multi .splide__slide > *,
+.is-style-system-carousel-auto .splide__slide > * {
+    display: table !important;
+}
+
+/* For single-item banners, we do want the content to fill the slide */
+.is-style-system-carousel .splide__slide > * {
+    width: 100% !important;
+}
+
+/* Safari specific fix to prevent Cover blocks from shrinking */
+.splide__list {
+    display: flex !important;
+}
+
+.is-style-system-carousel .splide__slide {
+    flex: 0 0 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* Explicitly bind auto/multi carousels to WordPress thumbnail sizes to prevent flex stretching */
+.is-style-system-carousel-multi .splide__slide,
+.is-style-system-carousel-auto .splide__slide {
+    width: var(--wp--custom--medium-width, 300px) !important;
+}
+
+@media (max-width: 768px) {
+    .is-style-system-carousel-multi .splide__slide,
+    .is-style-system-carousel-auto .splide__slide {
+        width: var(--wp--custom--thumbnail-width, 150px) !important;
+    }
+}
+
+.splide__slide > .wp-block-cover {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.splide__slide .wp-block-cover__image-background,
+.splide__slide .wp-block-cover__video-background {
+    width: 100% !important;
+}
+
+/* Deep Safari border-radius fix specifically for Cover blocks inside carousels */
+.splide__slide .wp-block-cover {
+    isolation: isolate; /* Create stacking context without masking shadows */
+}
+
+/* Force the absolutely positioned background image/video to inherit the wrapper's border-radius natively and apply mask to prevent bleed */
+.splide__slide .wp-block-cover > .wp-block-cover__image-background,
+.splide__slide .wp-block-cover > .wp-block-cover__video-background,
+.splide__slide .wp-block-cover > .wp-block-cover__background {
+    border-radius: inherit !important;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    mask-image: radial-gradient(white, black);
+    transform: translateZ(0);
 }
 
 /* ==========================================================================
@@ -264,4 +352,34 @@
     width: calc(100% - ((var(--carousel-button-size) + var(--carousel-nav-gap)) * 2)) !important;
     margin-left: auto !important;
     margin-right: auto !important;
+}
+
+/* ==========================================================================
+   Carousel Custom Borders
+   ========================================================================== */
+/* Apply a subtle border so carousels POP in contrast-heavy themes like Brite */
+.is-style-system-carousel .wp-block-cover,
+.is-style-system-carousel .wp-block-image,
+.is-style-system-carousel-auto .wp-block-image {
+    border: 1px solid var(--wp--preset--color--border-color, rgba(0, 0, 0, 0.1));
+    border-radius: var(--wp--preset--spacing--20, 0.5rem);
+    box-shadow: var(--wp--custom--shadow, none);
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* Apply border radius to the main carousel wrapper itself */
+.is-style-system-carousel,
+.is-style-system-carousel-auto,
+.is-style-system-carousel-multi {
+    border-radius: var(--wp--preset--spacing--20, 0.5rem);
+    overflow: hidden;
+    padding: var(--wp--preset--spacing--10, 0.25rem);
+    box-sizing: border-box;
+}
+
+/* Nudge navigation buttons down a sliver on the banner slider as requested */
+.wp-block-group:has(.is-style-system-carousel) .carousel-prev,
+.wp-block-group:has(.is-style-system-carousel) .carousel-next {
+    margin-top: 12px !important;
 }

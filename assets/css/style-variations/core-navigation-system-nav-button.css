@@ -76,6 +76,10 @@
 	border: 0;
 	border-radius: 0;
 	box-shadow: none;
+    font-family: var(--wp--preset--font-family--button, var(--wp--preset--font-family--heading, inherit));
+    font-size: var(--wp--preset--font-size--small, 0.875rem);
+    font-weight: var(--wp--custom--font-weight-button);
+    line-height: 1.5;
 }
 
 /* Top-level submenu toggle */
@@ -103,6 +107,10 @@
 	cursor: pointer !important;
 	overflow: visible !important;
     border-left: 1px solid rgba(255, 255, 255, 0.2);
+    font-family: var(--wp--preset--font-family--button, var(--wp--preset--font-family--heading, inherit));
+    font-size: var(--wp--preset--font-size--small, 0.875rem);
+    font-weight: var(--wp--custom--font-weight-button);
+    line-height: 1.5;
 }
 
 /* Submenu icon (The SVG inside the toggle button) */
@@ -245,6 +253,72 @@
 /* Make parent transparent if a preset background is applied */
 .wp-block-navigation.is-style-system-nav-button.has-background {
     background-color: transparent !important;
+}
+
+/* Route Base */
+.wp-block-navigation.is-style-system-nav-button.has-base-background-color > .wp-block-navigation__container > .wp-block-navigation-item,
+.wp-block-navigation.is-style-system-nav-button.has-base-background-color .wp-block-navigation__responsive-container-content > .wp-block-navigation__container > .wp-block-navigation-item {
+    background-color: var(--wp--preset--color--base) !important;
+    color: var(--wp--preset--color--contrast) !important;
+}
+.wp-block-navigation.is-style-system-nav-button.has-base-background-color > .wp-block-navigation__container > .wp-block-navigation-item:hover,
+.wp-block-navigation.is-style-system-nav-button.has-base-background-color .wp-block-navigation__responsive-container-content > .wp-block-navigation__container > .wp-block-navigation-item:hover {
+    background-color: color-mix(in srgb, var(--wp--preset--color--base) 85%, black) !important;
+}
+
+/* Route Contrast */
+.wp-block-navigation.is-style-system-nav-button.has-contrast-background-color > .wp-block-navigation__container > .wp-block-navigation-item,
+.wp-block-navigation.is-style-system-nav-button.has-contrast-background-color .wp-block-navigation__responsive-container-content > .wp-block-navigation__container > .wp-block-navigation-item {
+    background-color: var(--wp--preset--color--contrast) !important;
+    color: var(--wp--preset--color--base, #fff) !important;
+}
+.wp-block-navigation.is-style-system-nav-button.has-contrast-background-color > .wp-block-navigation__container > .wp-block-navigation-item:hover,
+.wp-block-navigation.is-style-system-nav-button.has-contrast-background-color .wp-block-navigation__responsive-container-content > .wp-block-navigation__container > .wp-block-navigation-item:hover {
+    background-color: color-mix(in srgb, var(--wp--preset--color--contrast) 85%, black) !important;
+}
+
+/* Route Secondary Background */
+.wp-block-navigation.is-style-system-nav-button.has-secondary-bg-background-color > .wp-block-navigation__container > .wp-block-navigation-item,
+.wp-block-navigation.is-style-system-nav-button.has-secondary-bg-background-color .wp-block-navigation__responsive-container-content > .wp-block-navigation__container > .wp-block-navigation-item {
+    background-color: var(--wp--preset--color--secondary-bg) !important;
+    color: var(--wp--preset--color--secondary-color) !important;
+}
+.wp-block-navigation.is-style-system-nav-button.has-secondary-bg-background-color > .wp-block-navigation__container > .wp-block-navigation-item:hover,
+.wp-block-navigation.is-style-system-nav-button.has-secondary-bg-background-color .wp-block-navigation__responsive-container-content > .wp-block-navigation__container > .wp-block-navigation-item:hover {
+    background-color: color-mix(in srgb, var(--wp--preset--color--secondary-bg) 85%, black) !important;
+}
+
+/* Route Secondary Contrast */
+.wp-block-navigation.is-style-system-nav-button.has-secondary-color-background-color > .wp-block-navigation__container > .wp-block-navigation-item,
+.wp-block-navigation.is-style-system-nav-button.has-secondary-color-background-color .wp-block-navigation__responsive-container-content > .wp-block-navigation__container > .wp-block-navigation-item {
+    background-color: var(--wp--preset--color--secondary-color) !important;
+    color: var(--wp--preset--color--secondary-bg) !important;
+}
+.wp-block-navigation.is-style-system-nav-button.has-secondary-color-background-color > .wp-block-navigation__container > .wp-block-navigation-item:hover,
+.wp-block-navigation.is-style-system-nav-button.has-secondary-color-background-color .wp-block-navigation__responsive-container-content > .wp-block-navigation__container > .wp-block-navigation-item:hover {
+    background-color: color-mix(in srgb, var(--wp--preset--color--secondary-color) 85%, black) !important;
+}
+
+/* Route Tertiary Background */
+.wp-block-navigation.is-style-system-nav-button.has-tertiary-bg-background-color > .wp-block-navigation__container > .wp-block-navigation-item,
+.wp-block-navigation.is-style-system-nav-button.has-tertiary-bg-background-color .wp-block-navigation__responsive-container-content > .wp-block-navigation__container > .wp-block-navigation-item {
+    background-color: var(--wp--preset--color--tertiary-bg) !important;
+    color: var(--wp--preset--color--tertiary-color) !important;
+}
+.wp-block-navigation.is-style-system-nav-button.has-tertiary-bg-background-color > .wp-block-navigation__container > .wp-block-navigation-item:hover,
+.wp-block-navigation.is-style-system-nav-button.has-tertiary-bg-background-color .wp-block-navigation__responsive-container-content > .wp-block-navigation__container > .wp-block-navigation-item:hover {
+    background-color: color-mix(in srgb, var(--wp--preset--color--tertiary-bg) 85%, black) !important;
+}
+
+/* Route Tertiary Contrast */
+.wp-block-navigation.is-style-system-nav-button.has-tertiary-color-background-color > .wp-block-navigation__container > .wp-block-navigation-item,
+.wp-block-navigation.is-style-system-nav-button.has-tertiary-color-background-color .wp-block-navigation__responsive-container-content > .wp-block-navigation__container > .wp-block-navigation-item {
+    background-color: var(--wp--preset--color--tertiary-color) !important;
+    color: var(--wp--preset--color--tertiary-bg) !important;
+}
+.wp-block-navigation.is-style-system-nav-button.has-tertiary-color-background-color > .wp-block-navigation__container > .wp-block-navigation-item:hover,
+.wp-block-navigation.is-style-system-nav-button.has-tertiary-color-background-color .wp-block-navigation__responsive-container-content > .wp-block-navigation__container > .wp-block-navigation-item:hover {
+    background-color: color-mix(in srgb, var(--wp--preset--color--tertiary-color) 85%, black) !important;
 }
 
 /* Route Primary */

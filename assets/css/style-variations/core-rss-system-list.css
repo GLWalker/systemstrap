@@ -4,13 +4,13 @@
  */
 
 /* Container */
-.wp-block-rss.is-style-system-list {
+.wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush) {
     list-style: none;
     margin: 0;
 }
 
 /* Base LIs */
-.wp-block-rss.is-style-system-list > li {
+.wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush) > li {
     
     
     
@@ -27,8 +27,7 @@
 
 
 /* RSS Title / Link */
-.wp-block-rss.is-style-system-list > li .wp-block-rss__item-title > a {
-    font-size: 1.1em;
+.wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush) > li .wp-block-rss__item-title > a {
     font-weight: var(--wp--custom--font-weight-heading);
     line-height: 1.2;
     text-decoration: none;
@@ -36,7 +35,7 @@
 }
 
 /* Stretch pseudo element over the LI so the entire row is clickable */
-.wp-block-rss.is-style-system-list > li .wp-block-rss__item-title > a::after {
+.wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush) > li .wp-block-rss__item-title > a::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -44,22 +43,20 @@
 }
 
 /* Make sure inner links sit above the pseudo element */
-.wp-block-rss.is-style-system-list > li a:not(.wp-block-rss__item-title > a) {
+.wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush) > li a:not(.wp-block-rss__item-title > a) {
     position: relative;
     z-index: 2;
 }
 
 /* Post Meta (Author, Date) */
-.wp-block-rss.is-style-system-list > li .wp-block-rss__item-author,
-.wp-block-rss.is-style-system-list > li .wp-block-rss__item-publish-date {
-    font-size: 0.85em;
+.wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush) > li .wp-block-rss__item-author,
+.wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush) > li .wp-block-rss__item-publish-date {
     color: var(--wp--preset--color--contrast);
     opacity: 0.7;
 }
 
 /* Excerpt */
-.wp-block-rss.is-style-system-list > li .wp-block-rss__item-excerpt {
-    font-size: 0.9em;
+.wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush) > li .wp-block-rss__item-excerpt {
     line-height: 1.5;
     margin-top: var(--wp--preset--spacing--10);
     color: var(--wp--preset--color--contrast);
@@ -67,23 +64,26 @@
 }
 
 /* Hover States on LI */
-.wp-block-rss.is-style-system-list:not(.is-not-action) > li:hover {
+.wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush):not(.is-not-action) > li:hover {
     background: var(--system-ui-hover-bg);
 }
 
 /* Has-background overrides */
-.wp-block-rss.is-style-system-list.has-background > li {
+.wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush).has-background > li {
     background: transparent;
     border-color: var(--system-ui-border-color-on-background);
 }
-.wp-block-rss.is-style-system-list.has-background:not(.is-not-action) > li:hover {
+.wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush).has-background:not(.is-not-action) > li:hover {
     background: var(--system-ui-hover-bg-on-background);
 }
 
 /* Increased Visibility Inside Parent with Background */
-.has-background > .wp-block-rss.is-style-system-list:not(.has-background) > li {
+.has-background > .wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) > li {
     border-color: rgba(var(--wp--preset--color--border-color-rgb), .7);
 }
-.has-background > .wp-block-rss.is-style-system-list:not(.has-background):not(.is-not-action) > li:hover {
+.has-background > .wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background):not(.is-not-action) > li:hover {
     background: var(--system-ui-hover-bg-on-background);
 }
+
+
+.is-style-system-list .wp-block-rss__item-title { font-size: var(--wp--preset--font-size--medium); }

@@ -31,7 +31,6 @@
     border-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px));
     transition: background-color 0.15s ease-in-out;
     position: relative;
-    font-family: var(--wp--custom--font-family-heading);
     font-weight: var(--wp--custom--font-weight-heading);
 }
 

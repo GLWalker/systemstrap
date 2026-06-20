@@ -9,11 +9,11 @@
 
 <!-- wp:group {"metadata":{"name":"Featured Color Palets"},"align":"full","className":"use-tooltip","style":{"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull use-tooltip" style="padding-top:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40)"><!-- wp:heading {"textAlign":"center","style":{"elements":{"link":{"color":{"text":"var:preset|color|bs-primary"}}},"typography":{"fontStyle":"normal","fontWeight":"900"}},"textColor":"bs-primary","fontSize":"huge"} -->
- <h2 class="wp-block-heading has-text-align-center has-bs-primary-color has-text-color has-link-color has-huge-font-size" style="font-style:normal;font-weight:900">Full Site Editing combined with Bootstrap 5</h2>
+ <h2 class="wp-block-heading has-text-align-center has-bs-primary-color has-text-color has-link-color has-huge-font-size" style="font-style:normal;font-weight:900">Full Site Editing combined with SystemStrap</h2>
  <!-- /wp:heading -->
 
  <!-- wp:paragraph {"className":""} -->
- <p class="">SystemStrap tightly integrates the feature-packed Bootstrap 5 frontend toolkit into a robust WordPress block theme. Build and beautifully customize your next project with two of the most popular website components today!</p>
+ <p class="">SystemStrap tightly integrates a feature-packed frontend toolkit into a robust WordPress block theme. Build and beautifully customize your next project with two of the most popular website components today!</p>
  <!-- /wp:paragraph -->
 
  <!-- wp:spacer {"height":"1rem"} -->
@@ -79,7 +79,7 @@
  <!-- /wp:group -->
 
  <!-- wp:heading {"textAlign":"center","level":4,"className":"py-2"} -->
- <h4 class="wp-block-heading has-text-align-center py-2">Bootstrap Main Colors</h4>
+ <h4 class="wp-block-heading has-text-align-center py-2">System Main Colors</h4>
  <!-- /wp:heading -->
 
  <!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"center"}} -->
@@ -125,7 +125,7 @@
  <!-- /wp:group -->
 
  <!-- wp:heading {"textAlign":"center","level":4,"className":"py-2"} -->
- <h4 class="wp-block-heading has-text-align-center py-2">Bootstrap Subtle Colors</h4>
+ <h4 class="wp-block-heading has-text-align-center py-2">System Subtle Colors</h4>
  <!-- /wp:heading -->
 
  <!-- wp:group {"className":"","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"center"}} -->
@@ -190,7 +190,7 @@
  <!-- /wp:heading -->
 
  <!-- wp:paragraph {"className":""} -->
- <p class="">SystemStrap provides a number of preset styles created from Bootswatch! Use the block editor to quickly switch from some of the most popular styles ever put together for the Bootstrap framework.</p>
+ <p class="">SystemStrap provides a number of preset styles created from Bootswatch! Use the block editor to quickly switch from some of the most popular styles ever put together for the SystemStrap framework.</p>
  <!-- /wp:paragraph -->
  </div>
  <!-- /wp:group -->
@@ -338,7 +338,7 @@
  <!-- /wp:group -->
 
  <!-- wp:heading {"textAlign":"center","level":4,"backgroundColor":"transparent"} -->
- <h4 class="wp-block-heading has-text-align-center has-transparent-background-color has-background">BootStrap Shadows</h4>
+ <h4 class="wp-block-heading has-text-align-center has-transparent-background-color has-background">System Shadows</h4>
  <!-- /wp:heading -->
 
  <!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"center"}} -->

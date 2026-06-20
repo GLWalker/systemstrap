@@ -4,8 +4,9 @@
     gap: 0;
     display: flex;
     flex-direction: column;
-    padding: 0 !important; /* Prevent WP from injecting background padding that pushes items inward */
-    border-radius: var(--wp--custom--border-radius); /* Ensure background colors don't bleed past item radii */
+
+    border-radius: var(--wp--custom--border-radius);
+    /* Ensure background colors don't bleed past item radii */
 }
 
 /* Individual accordion items styled exactly like details blocks */
@@ -20,7 +21,7 @@
 }
 
 /* Collapse borders and radii between adjacent accordion items */
-.wp-block-accordion.is-style-system-accordion .wp-block-accordion-item + .wp-block-accordion-item {
+.wp-block-accordion.is-style-system-accordion .wp-block-accordion-item+.wp-block-accordion-item {
     border-top: 0;
     margin-top: 0 !important;
     border-top-left-radius: 0;
@@ -35,8 +36,10 @@
 
 /* Header (Toggle) matching details summary */
 .wp-block-accordion.is-style-system-accordion .wp-block-accordion-heading {
-    margin-bottom: 0 !important; /* Vaporize native block wrapper gap */
+    margin-bottom: 0 !important;
+    /* Vaporize native block wrapper gap */
 }
+
 .wp-block-accordion.is-style-system-accordion .wp-block-accordion-heading__toggle {
     padding: var(--wp--preset--spacing--20) 1.25rem;
     color: var(--wp--preset--color--inherit);
@@ -46,15 +49,15 @@
     transition: background-color 0.15s ease-in-out;
     width: 100%;
     text-align: left;
-    font-family: var(--wp--custom--font-family-heading);
     font-weight: var(--wp--custom--font-weight-heading);
 }
 
 /* Sync toggle inner radii with the outer item container when stacked */
-.wp-block-accordion.is-style-system-accordion .wp-block-accordion-item + .wp-block-accordion-item .wp-block-accordion-heading__toggle {
+.wp-block-accordion.is-style-system-accordion .wp-block-accordion-item+.wp-block-accordion-item .wp-block-accordion-heading__toggle {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
+
 .wp-block-accordion.is-style-system-accordion .wp-block-accordion-item:has(+ .wp-block-accordion-item):not(.is-open) .wp-block-accordion-heading__toggle {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
@@ -64,6 +67,7 @@
 .wp-block-accordion.is-style-system-accordion .wp-block-accordion-heading__toggle:hover {
     background-color: var(--system-ui-hover-bg);
 }
+
 .wp-block-accordion.is-style-system-accordion.has-background .wp-block-accordion-heading__toggle:hover {
     background-color: var(--system-ui-hover-bg-on-background);
 }
@@ -79,6 +83,7 @@
 .wp-block-accordion.is-style-system-accordion .wp-block-accordion-item.is-open {
     border-bottom-color: var(--system-ui-border-color);
 }
+
 .wp-block-accordion.is-style-system-accordion .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle {
     border-bottom-color: var(--system-ui-border-color-on-background);
 
@@ -87,12 +92,13 @@
 }
 
 .wp-block-accordion.is-style-system-accordion:not(.has-background) .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle {
-     background-color: var(--system-ui-hover-bg);
+    background-color: var(--system-ui-hover-bg);
 }
 
 /* Panel inside Open State */
 .wp-block-accordion.is-style-system-accordion .wp-block-accordion-item.is-open .wp-block-accordion-panel {
-    margin-top: 0 !important; /* Vaporize native block wrapper gap */
+    margin-top: 0 !important;
+    /* Vaporize native block wrapper gap */
     padding-left: 1.25rem;
     padding-right: 1.25rem;
     padding-top: var(--wp--preset--spacing--20);
@@ -102,14 +108,15 @@
 }
 
 /* Prevent double-spacing by killing the native margins on the first and last inner blocks inside the panel */
-.wp-block-accordion.is-style-system-accordion .wp-block-accordion-panel > *:first-child,
-.wp-block-accordion.is-style-system-accordion .wp-block-accordion-panel .block-editor-block-list__layout > *:first-child {
+.wp-block-accordion.is-style-system-accordion .wp-block-accordion-panel>*:first-child,
+.wp-block-accordion.is-style-system-accordion .wp-block-accordion-panel .block-editor-block-list__layout>*:first-child {
     margin-top: 0 !important;
 }
-.wp-block-accordion.is-style-system-accordion .wp-block-accordion-panel > *:last-child,
-.wp-block-accordion.is-style-system-accordion .wp-block-accordion-panel > *:has(+ .block-list-appender),
-.wp-block-accordion.is-style-system-accordion .wp-block-accordion-panel .block-editor-block-list__layout > *:last-child,
-.wp-block-accordion.is-style-system-accordion .wp-block-accordion-panel .block-editor-block-list__layout > *:has(+ .block-list-appender) {
+
+.wp-block-accordion.is-style-system-accordion .wp-block-accordion-panel>*:last-child,
+.wp-block-accordion.is-style-system-accordion .wp-block-accordion-panel>*:has(+ .block-list-appender),
+.wp-block-accordion.is-style-system-accordion .wp-block-accordion-panel .block-editor-block-list__layout>*:last-child,
+.wp-block-accordion.is-style-system-accordion .wp-block-accordion-panel .block-editor-block-list__layout>*:has(+ .block-list-appender) {
     margin-bottom: 0 !important;
 }
 
@@ -122,6 +129,7 @@
 .wp-block-accordion.is-style-system-accordion.has-background .wp-block-accordion-item {
     background: transparent;
 }
+
 .wp-block-accordion.is-style-system-accordion.has-background .wp-block-accordion-item,
 .wp-block-accordion.is-style-system-accordion.has-background .wp-block-accordion-item.is-open,
 .wp-block-accordion.is-style-system-accordion.has-background .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle {

@@ -9,7 +9,7 @@
     margin: 0 !important;
     border-radius: 0 !important; /* Auto-clipped perfectly by outer panel overflow: hidden */
     width: 100%;
-    font-family: var(--wp--custom--font-family-heading, inherit);
+    font-family: var(--wp--preset--font-family--heading, inherit);
     font-weight: var(--wp--custom--font-weight-heading, inherit);
 }
 

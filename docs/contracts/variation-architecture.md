@@ -6,11 +6,43 @@ This file is a CONTRACT.
 
 ## Contract Version
 
-Current Version: 3.0
+Current Version: 3.8
 
-Last Updated: 2026-06-15
+Last Updated: 2026-06-18
 
 ## Change Log
+
+### 3.8
+
+Updated the BuddyPress variation anchor contract so it resolves against whichever Core global-styles handle is actually registered in the current context, with `wp-block-library` as the final fallback. Added a shared BuddyPress widget-heading variation asset registered across the relevant widget-style BuddyPress blocks, and aligned BuddyPress panel/nav variation chrome more closely with the Core panel/header/nav families.
+
+### 3.7
+
+Replaced the direct BuddyPress variation dependency on `global-styles` with a dedicated `strap-buddypress-variation-anchor` handle. That anchor resolves to `global-styles` on the frontend and `global-styles-css-custom-properties` in editor contexts so BuddyPress block style variations can remain in the post-Core-style lane without triggering unregistered-dependency notices in the Site Editor.
+
+### 3.6
+
+Updated BuddyPress block style variation dependency routing so BuddyPress `assets/css/style-variations/*.css` files remain dependent on `strap-buddypress-blocks` but also anchor to `global-styles`. This keeps BuddyPress variation chrome in the same post-Global-Styles runtime lane as the theme's broader variation layer while preserving the BuddyPress block base stylesheet beneath it.
+
+### 3.5
+
+Extended `assets/css/buddypress-theme-sync.css` to govern broader BuddyPress Nouveau runtime surfaces, including tabbed navigation states, directory/list loop rhythm, metadata tone, pagination tone, and generic activity-card shell styling. These broad surfaces remain in the sync layer and MUST NOT be collapsed into the BuddyPress block-owned stylesheet.
+
+### 3.2
+
+Updated BuddyPress `system-panel` and `system-nav-button` variation behavior so block-level `has-background` classes route through the variation chrome instead of being buried under default surface colors. Preserved the explicit editor/frontend BuddyPress variation layer rather than moving that logic into the broader sync stylesheet.
+
+### 3.3
+
+Extended the same background-routing rule into `assets/css/buddypress-blocks.css` for BuddyPress block-owned panel surfaces, including base group cards, group lists, latest activities cards, and sitewide notice panels. Reduced unnecessary color and border `!important` usage on those BuddyPress-owned block surfaces where plugin CSS did not require it.
+
+### 3.4
+
+Reduced unnecessary color and border `!important` usage in the BuddyPress base navigation, dynamic-list, and notice-control styling so manual class-based color assignment can continue to override those surfaces without breaking the structural layout rules that still rely on stronger declarations.
+
+### 3.1
+
+Added `system-panel` BuddyPress block style variations for `bp/member` and `bp/members`, and updated the governed variation inventory to include those CSS surfaces.
 
 ### 3.0
 
@@ -62,6 +94,7 @@ The variation architecture is currently implemented through these files and dire
 - `inc/block-styles.php`
 - `inc/dialog-renderer.php`
 - `assets/css/main-styles.css`
+- `assets/css/buddypress-blocks.css`
 - `assets/css/style-variations/*.css`
 - `assets/js/variations/*.js`
 - `styles/`
@@ -87,6 +120,10 @@ SystemStrap currently uses four distinct variation surfaces:
 
 These surfaces are related, but they are NOT interchangeable.
 
+SystemStrap also ships explicit conditional block stylesheets that are not style variations.
+
+Those files are block-scoped runtime CSS, but they do NOT create editor-visible `register_block_style()` choices unless documented as a true block style variation.
+
 ## Token Ownership Rule
 
 Variation files are consumers of the canonical design system, not independent token registries.
@@ -99,6 +136,10 @@ The authoritative token registry is defined by:
 
 Variation contracts MUST NOT duplicate the full token registry.
 
+The following token families represent the currently approved consumption surfaces for variation files, not an exclusive forever-closed list.
+
+Derived or expanded token families MAY be introduced when they are documented in the same change set and remain subordinate to the canonical design-system contracts.
+
 ## Filesystem Boundary
 
 The current variation filesystem shape is:
@@ -110,6 +151,12 @@ The current variation filesystem shape is:
 │   ├── colors/
 │   └── typography/
 ├── assets/css/style-variations/
+│   ├── bp-login-form-system-panel.css
+│   ├── bp-member-system-panel.css
+│   ├── bp-members-system-panel.css
+│   ├── bp-primary-nav-system-nav-button.css
+│   ├── bp-primary-nav-system-nav-gen.css
+│   ├── bp-widget-system-panel-header.css
 │   ├── core-accordion-system-accordion.css
 │   ├── core-accordion-system-tabs-vertical.css
 │   ├── core-accordion-system-tabs.css
@@ -176,7 +223,7 @@ The reserved directory roles are:
 - `styles/typography/*.json`
     - typography-only overlays
 
-If files are added to `styles/colors/` or `styles/typography/`, they MUST remain scoped to that domain or they risk being treated by WordPress as broader Global Styles behavior.
+If files are added to `styles/colors/` or `styles/typography/`, they MUST remain scoped to that domain or WordPress may interpret them as broader Global Styles behavior.
 
 ### Deep merge and array replacement rules
 
@@ -299,7 +346,7 @@ Example:
 
 ### Auto-registered block style files
 
-The following files currently match the auto-registration rule:
+The following files are governed by this contract as of Version 3.0 and currently match the auto-registration rule:
 
 - `core-accordion-system-accordion.css`
 - `core-accordion-system-tabs-vertical.css`
@@ -332,6 +379,8 @@ The following files in `assets/css/style-variations/` are NOT governed by the de
 
 - `core-group-system-carousel.css`
     - explicitly skipped by `strap_register_block_styles()`
+- `bp-widget-system-panel-header.css`
+    - explicitly skipped by `strap_register_block_styles()`
 - `core-icon-dialog.css`
     - does not match the `-system-` parsing rule
 
@@ -341,9 +390,47 @@ These files MUST be loaded only through their explicit runtime loaders unless th
 
 The variation architecture currently uses these explicit CSS loading exceptions:
 
+- `inc/block-styles.php`
+    - conditionally registers `assets/css/buddypress-blocks.css` through `wp_enqueue_block_style()`
+    - maps the same stylesheet to:
+        - `bp/primary-nav`
+        - `bp/login-form`
+        - `bp/member`
+        - `bp/members`
+        - `bp/dynamic-members`
+        - `bp/online-members`
+        - `bp/active-members`
+        - `bp/latest-activities`
+        - `bp/friends`
+        - `bp/group`
+        - `bp/groups`
+        - `bp/dynamic-groups`
+        - `bp/sitewide-notices`
+    - assigns `strap-buddypress-sync` as the dependency for `strap-buddypress-blocks`
+    - assigns `strap-buddypress-blocks` as the dependency root for BuddyPress block style variation files
+    - assigns `strap-buddypress-variation-anchor` as an additional dependency for BuddyPress block style variation files so those variation handles print in the post-Core-style lane without depending directly on a frontend-only Core handle
+    - explicitly registers `assets/css/style-variations/bp-widget-system-panel-header.css` as a shared BuddyPress widget-heading variation across:
+        - `bp/primary-nav`
+        - `bp/dynamic-members`
+        - `bp/online-members`
+        - `bp/active-members`
+        - `bp/latest-activities`
+        - `bp/friends`
+        - `bp/dynamic-groups`
+        - `bp/sitewide-notices`
+    - uses this file for editor/frontend parity on BuddyPress block-owned surfaces without routing those rules through the broader BuddyPress frontend sync stylesheet
+
 - `inc/enqueue-assets.php`
     - enqueues `core-group-system-carousel.css` as `strap-carousel-styles`
     - enqueues `core-button-system-icon.css` as `strap-button-icon`
+    - registers `strap-buddypress-sync` on `init`
+    - registers `strap-buddypress-variation-anchor` on `init`
+    - enqueues `strap-buddypress-sync` on `bp_enqueue_community_scripts` for BuddyPress frontend surfaces
+    - resolves `strap-buddypress-variation-anchor` against the first registered Core style lane among:
+        - `global-styles`
+        - `global-styles-css-custom-properties`
+        - `wp-block-library`
+    - enqueues the same `strap-buddypress-sync` handle on `enqueue_block_editor_assets` when BuddyPress is present so BuddyPress block-style dependencies remain valid in editor contexts
 - `functions.php`
     - includes `assets/css/style-variations/core-group-system-carousel.css` in `add_editor_style()`
 - `inc/dialog-renderer.php`
@@ -360,6 +447,30 @@ The current rationale is:
 
 - the file participates in normal block-style registration
 - the icon button treatment is also required outside normal block-style loading assumptions
+
+`assets/css/buddypress-blocks.css` is NOT part of the `assets/css/style-variations/*.css` parser.
+
+It MUST remain on the explicit `wp_enqueue_block_style()` path unless the BuddyPress block loading contract is intentionally replaced.
+
+### BuddyPress block dependency chain
+
+The current BuddyPress block CSS stack is intentionally layered as:
+
+1. BuddyPress plugin/theme-pack CSS
+2. `strap-buddypress-sync`
+3. `strap-buddypress-blocks`
+4. `strap-buddypress-variation-anchor`
+5. BuddyPress block style variation CSS
+
+The current rationale is:
+
+- `strap-buddypress-sync` normalizes BuddyPress-owned baseline controls and nav surfaces
+- `strap-buddypress-sync` also carries broad non-block BuddyPress Nouveau polish such as generic tabbed-nav states, loop/list spacing, meta-tone defaults, and activity-card shell styling
+- `strap-buddypress-blocks` establishes token-aware block defaults shared by BuddyPress block widgets in frontend and editor contexts
+- BuddyPress block style variations such as nav and panel treatments MUST sit on top of that shared base rather than duplicating it independently
+- shared BuddyPress widget-heading chrome MAY be delivered through one CSS asset as long as each participating block still receives its own style variation registration
+
+This dependency chain is part of the variation runtime and MUST remain explicit.
 
 ## Render-Time Asset Safeguards
 
@@ -380,7 +491,7 @@ These safeguards are conditional loading behavior and MUST be treated as part of
 
 ## CSS Variation Surface Registry
 
-The current CSS block-style surfaces covered by this contract are:
+The current CSS block-style surfaces covered by this contract as of Version 3.0 are:
 
 - accordion and tabs
     - `core-accordion-system-accordion.css`
@@ -405,6 +516,8 @@ The current CSS block-style surfaces covered by this contract are:
 - navigation-family styles
     - `core-navigation-system-nav-gen.css`
     - `core-navigation-system-nav-button.css`
+- BuddyPress widget-heading surface
+    - `bp-widget-system-panel-header.css`
 - button and icon surfaces
     - `core-button-system-icon.css`
     - `core-icon-dialog.css`
@@ -438,6 +551,8 @@ The files in `assets/js/variations/` currently fall into three categories:
 3. editor-side attribute and inspector control extensions through `wp.hooks.addFilter()`
 
 These categories MUST NOT be conflated.
+
+The following JavaScript files are governed by this contract as of Version 3.0.
 
 ## Registered Block Variation Registry
 
@@ -499,6 +614,13 @@ These variations currently inject class-bearing structures including:
 
 These class names are part of the panel variation contract and are coupled to the CSS block-style files and the semantic dialog contract.
 
+The panel variation architecture assumes:
+
+- panel wrapper variations apply to `core/group`
+- list styling inside panel structures is consumed through nested list-compatible block surfaces rather than arbitrary child markup
+
+Violations of those assumptions produce undefined visual results and MUST be treated as unsupported variation behavior.
+
 ## Registered Block Style Registry From JS
 
 ### `strap-buttons.js`
@@ -519,7 +641,7 @@ The current frontend CSS consumer for these button styles lives in:
 
 These button styles are variation behavior even though they are not part of the auto-registered CSS file naming system.
 
-## Editor Attribute and Inspector Extension Contract
+## Editor Extensions and Inspector Extension Contract
 
 ### `strap-controls.js`
 

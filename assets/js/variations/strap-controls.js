@@ -17,7 +17,7 @@
 		function (settings, name) {
 			if (name === "core/group") {
 				settings.attributes = Object.assign(settings.attributes, {
-					systemNavPosition: { type: "string", default: "bottom" }
+					systemNavPosition: { type: "string", default: "" }
 				});
 			}
 			return settings;

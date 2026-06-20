@@ -59,6 +59,7 @@ wp.blocks.registerBlockVariation("core/group", {
 	keywords: ["Carousel", "slider", "media", "cover", "hero"],
 	attributes: {
 		className: "alignfull",
+		systemNavPosition: "bottom",
 		layout: { type: "constrained" },
 		metadata: { name: "Media Carousel" },
 	},
@@ -105,6 +106,7 @@ wp.blocks.registerBlockVariation("core/group", {
 	keywords: ["Carousel", "slider", "banner", "image"],
 	attributes: {
 		className: "alignfull",
+		systemNavPosition: "bottom",
 		layout: { type: "constrained" },
 		metadata: { name: "Banner Carousel" },
 	},
@@ -153,6 +155,7 @@ wp.blocks.registerBlockVariation("core/group", {
 	keywords: ["Carousel", "slider", "thumbnails", "grid"],
 	attributes: {
 		className: "alignwide",
+		systemNavPosition: "bottom",
 		layout: { type: "constrained" },
 		metadata: { name: "Thumbnails Carousel" },
 	},
@@ -201,6 +204,7 @@ wp.blocks.registerBlockVariation("core/group", {
 	keywords: ["Carousel", "slider", "team", "profile", "media text"],
 	attributes: {
 		className: "alignwide",
+		systemNavPosition: "bottom",
 		layout: { type: "constrained" },
 		metadata: { name: "Team Carousel" },
 	},
@@ -225,40 +229,44 @@ wp.blocks.registerBlockVariation("core/group", {
 					},
 					[
 						[
-							"core/media-text",
-							{
-								mediaUrl: templateUri + "assets/media/female-360x480.webp",
-								mediaType: "image",
-								verticalAlignment: "center",
-								className: "is-style-system-panel"
-							},
+							"core/group",
+							{ className: "is-style-system-panel", layout: { type: "constrained" } },
 							[
-								[ "core/heading", { level: 3, content: "Meet Jane" } ],
-								[ "core/paragraph", { content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." } ],
-								[ "core/buttons", {}, [[ "core/button", { text: "Contact Jane" } ]] ],
-								[ "core/social-links", { iconColor: "current", iconColorValue: "currentcolor", className: "is-style-logos-only" }, [
-									[ "core/social-link", { url: "#", service: "facebook" } ],
-									[ "core/social-link", { url: "#", service: "x" } ],
-									[ "core/social-link", { url: "#", service: "pinterest" } ]
+								[ "core/columns", { verticalAlignment: "center", isStackedOnMobile: true }, [
+									[ "core/column", { width: "40%" }, [
+										[ "core/image", { url: templateUri + "assets/media/female-360x480.webp", sizeSlug: "large" } ]
+									]],
+									[ "core/column", { width: "60%" }, [
+										[ "core/heading", { level: 3, content: "Meet Jane" } ],
+										[ "core/paragraph", { content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." } ],
+										[ "core/buttons", {}, [[ "core/button", { text: "Contact Jane" } ]] ],
+										[ "core/social-links", { iconColor: "current", iconColorValue: "currentcolor", className: "is-style-logos-only" }, [
+											[ "core/social-link", { url: "#", service: "facebook" } ],
+											[ "core/social-link", { url: "#", service: "x" } ],
+											[ "core/social-link", { url: "#", service: "pinterest" } ]
+										]]
+									]]
 								]]
 							]
 						],
 						[
-							"core/media-text",
-							{
-								mediaUrl: templateUri + "assets/media/male-360x480.webp",
-								mediaType: "image",
-								verticalAlignment: "center",
-								className: "is-style-system-panel"
-							},
+							"core/group",
+							{ className: "is-style-system-panel", layout: { type: "constrained" } },
 							[
-								[ "core/heading", { level: 3, content: "Meet John" } ],
-								[ "core/paragraph", { content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." } ],
-								[ "core/buttons", {}, [[ "core/button", { text: "Contact John" } ]] ],
-								[ "core/social-links", { iconColor: "current", iconColorValue: "currentcolor", className: "is-style-logos-only" }, [
-									[ "core/social-link", { url: "#", service: "facebook" } ],
-									[ "core/social-link", { url: "#", service: "x" } ],
-									[ "core/social-link", { url: "#", service: "pinterest" } ]
+								[ "core/columns", { verticalAlignment: "center", isStackedOnMobile: true }, [
+									[ "core/column", { width: "40%" }, [
+										[ "core/image", { url: templateUri + "assets/media/male-360x480.webp", sizeSlug: "large" } ]
+									]],
+									[ "core/column", { width: "60%" }, [
+										[ "core/heading", { level: 3, content: "Meet John" } ],
+										[ "core/paragraph", { content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." } ],
+										[ "core/buttons", {}, [[ "core/button", { text: "Contact John" } ]] ],
+										[ "core/social-links", { iconColor: "current", iconColorValue: "currentcolor", className: "is-style-logos-only" }, [
+											[ "core/social-link", { url: "#", service: "facebook" } ],
+											[ "core/social-link", { url: "#", service: "x" } ],
+											[ "core/social-link", { url: "#", service: "pinterest" } ]
+										]]
+									]]
 								]]
 							]
 						]
@@ -282,6 +290,7 @@ wp.blocks.registerBlockVariation("core/group", {
 	keywords: ["Carousel", "slider", "posts", "blog"],
 	attributes: {
 		className: "alignwide",
+		systemNavPosition: "bottom",
 		layout: { type: "constrained" },
 		metadata: { name: "Posts Carousel" },
 	},
@@ -325,6 +334,7 @@ wp.blocks.registerBlockVariation("core/group", {
 	keywords: ["Carousel", "slider", "comments", "testimonials"],
 	attributes: {
 		className: "alignwide",
+		systemNavPosition: "bottom",
 		layout: { type: "constrained" },
 		metadata: { name: "Comments Carousel" },
 	},

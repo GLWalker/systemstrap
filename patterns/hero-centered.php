@@ -18,7 +18,7 @@
 
  <!-- wp:group {"className":" ","layout":{"type":"constrained","contentSize":"66%"}} -->
  <div class="wp-block-group "><!-- wp:paragraph {"className":" "} -->
- <p class="">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+ <p class="">Quickly design and customize responsive mobile-first sites with SystemStrap, the ultimate frontend toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
  <!-- /wp:paragraph -->
 
  <!-- wp:buttons {"align":"full","className":" -6 ","layout":{"type":"flex","justifyContent":"center","flexWrap":"nowrap"}} -->

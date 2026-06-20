@@ -103,12 +103,17 @@ document.addEventListener('DOMContentLoaded', () => {
             pagination: true,
             arrows: false,
             drag: true,
+            snap: true, // Forces drag to snap to the nearest image boundary instead of stopping midway
             autoWidth: isAuto ? true : false, // Safely use autoWidth for multi-item sliders
+            gap: `calc(${sliderGap} - (var(--wp--preset--spacing--20, 0.5rem) * 2))`
         };
 
         if (!isAuto) {
             // Standard carousel shows 1 item at a time
             splideOptions.perPage = 1;
+        } else {
+            splideOptions.focus = 0; // Essential for snap: true to know where to align autoWidth slides
+            splideOptions.omitEnd = true; // Prevents empty space at the end of the track
         }
 
         // 5. Mount Splide

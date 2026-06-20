@@ -1,6 +1,6 @@
 /* 
  * System Panel Container
- * Acts like a Bootstrap Card. Contains powerful native flush logic.
+ * Acts like a Card. Contains powerful native flush logic.
  */
 
 /* Core Panel Wrapper */
@@ -102,6 +102,10 @@
     box-shadow: none !important;
     border-top: 0 !important;
     margin: 0 !important;
+}
+
+.wp-block-group.is-style-system-panel .is-style-system-details summary {
+    border-radius: 0 !important;
 }
 
 /* If details is the last child of the panel, kill its bottom border */

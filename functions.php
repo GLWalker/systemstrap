@@ -53,3 +53,25 @@ function strap_theme_setup() {
 	add_editor_style( $editor_styles );
 }
 add_action( 'after_setup_theme', 'strap_theme_setup' );
+
+if ( ! function_exists( 'strap_do_comments_template' ) ) {
+	/**
+	 * Add the comments template part to singular post and page views.
+	 *
+	 * @return void
+	 */
+	function strap_do_comments_template(): void {
+		if ( ! is_singular() ) {
+			return;
+		}
+
+		if ( ! comments_open() && '0' === get_comments_number() ) {
+			return;
+		}
+
+		block_template_part( 'part-comments' );
+	}
+
+	add_action( 'strap_hook_end_single', 'strap_do_comments_template', 15 );
+	add_action( 'strap_hook_end_page', 'strap_do_comments_template', 15 );
+}

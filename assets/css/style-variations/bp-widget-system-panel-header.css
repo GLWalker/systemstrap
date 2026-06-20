@@ -1,0 +1,99 @@
+/*
+ * BuddyPress Widget: System Panel Header
+ * Applies SystemStrap panel chrome plus header chrome to BuddyPress widget
+ * blocks whose title is rendered as a heading inside the widget surface.
+ */
+
+.wp-block-bp-primary-nav.is-style-system-panel-header,
+.wp-block-bp-online-members.is-style-system-panel-header,
+.wp-block-bp-active-members.is-style-system-panel-header,
+.wp-block-bp-dynamic-members.is-style-system-panel-header .bp-dynamic-block-container,
+.wp-block-bp-friends.is-style-system-panel-header .bp-dynamic-block-container,
+.wp-block-bp-dynamic-groups.is-style-system-panel-header .bp-dynamic-block-container,
+.wp-block-bp-latest-activities.is-style-system-panel-header .bp-latest-activities-block,
+.wp-block-bp-sitewide-notices.is-style-system-panel-header .bp-sitewide-notice-block {
+    border: var(--wp--custom--border-width, 1px) solid var(--system-ui-border-color);
+    background: var(--system-ui-surface);
+    border-radius: var(--wp--custom--border-radius);
+    box-shadow: var(--wp--custom--shadow, none);
+    overflow: hidden;
+}
+
+.wp-block-bp-primary-nav.is-style-system-panel-header.has-background,
+.wp-block-bp-online-members.is-style-system-panel-header.has-background,
+.wp-block-bp-active-members.is-style-system-panel-header.has-background,
+.wp-block-bp-dynamic-members.is-style-system-panel-header.has-background .bp-dynamic-block-container,
+.wp-block-bp-friends.is-style-system-panel-header.has-background .bp-dynamic-block-container,
+.wp-block-bp-dynamic-groups.is-style-system-panel-header.has-background .bp-dynamic-block-container,
+.wp-block-bp-latest-activities.is-style-system-panel-header.has-background .bp-latest-activities-block,
+.wp-block-bp-sitewide-notices.is-style-system-panel-header.has-background .bp-sitewide-notice-block {
+    border-color: var(--system-ui-border-color-on-background);
+}
+
+.wp-block-bp-primary-nav.is-style-system-panel-header > .widget-title,
+.wp-block-bp-online-members.is-style-system-panel-header > .widget-title,
+.wp-block-bp-active-members.is-style-system-panel-header > .widget-title,
+.wp-block-bp-dynamic-members.is-style-system-panel-header .bp-dynamic-block-container > .widget-title,
+.wp-block-bp-friends.is-style-system-panel-header .bp-dynamic-block-container > .widget-title,
+.wp-block-bp-dynamic-groups.is-style-system-panel-header .bp-dynamic-block-container > .widget-title,
+.wp-block-bp-latest-activities.is-style-system-panel-header .bp-latest-activities-block > .widget-title,
+.wp-block-bp-sitewide-notices.is-style-system-panel-header .bp-sitewide-notice-block > .widget-title {
+    width: 100%;
+    margin: 0 !important;
+    padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--20) !important;
+    background: var(--system-ui-surface-subtle);
+    border-bottom: var(--wp--custom--border-width, 1px) solid var(--system-ui-border-color);
+    color: inherit;
+    font-family: var(--wp--preset--font-family--heading, inherit);
+    font-weight: var(--wp--custom--font-weight-heading, inherit);
+    line-height: 1.2;
+}
+
+.wp-block-bp-primary-nav.is-style-system-panel-header.has-background > .widget-title,
+.wp-block-bp-online-members.is-style-system-panel-header.has-background > .widget-title,
+.wp-block-bp-active-members.is-style-system-panel-header.has-background > .widget-title,
+.wp-block-bp-dynamic-members.is-style-system-panel-header.has-background .bp-dynamic-block-container > .widget-title,
+.wp-block-bp-friends.is-style-system-panel-header.has-background .bp-dynamic-block-container > .widget-title,
+.wp-block-bp-dynamic-groups.is-style-system-panel-header.has-background .bp-dynamic-block-container > .widget-title,
+.wp-block-bp-latest-activities.is-style-system-panel-header.has-background .bp-latest-activities-block > .widget-title,
+.wp-block-bp-sitewide-notices.is-style-system-panel-header.has-background .bp-sitewide-notice-block > .widget-title {
+    border-bottom-color: var(--system-ui-border-color-on-background);
+}
+
+.wp-block-bp-primary-nav.is-style-system-panel-header > .widget-title a,
+.wp-block-bp-online-members.is-style-system-panel-header > .widget-title a,
+.wp-block-bp-active-members.is-style-system-panel-header > .widget-title a,
+.wp-block-bp-dynamic-members.is-style-system-panel-header .bp-dynamic-block-container > .widget-title a,
+.wp-block-bp-friends.is-style-system-panel-header .bp-dynamic-block-container > .widget-title a,
+.wp-block-bp-dynamic-groups.is-style-system-panel-header .bp-dynamic-block-container > .widget-title a,
+.wp-block-bp-latest-activities.is-style-system-panel-header .bp-latest-activities-block > .widget-title a,
+.wp-block-bp-sitewide-notices.is-style-system-panel-header .bp-sitewide-notice-block > .widget-title a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.wp-block-bp-primary-nav.is-style-system-panel-header > :not(.widget-title),
+.wp-block-bp-online-members.is-style-system-panel-header > :not(.widget-title),
+.wp-block-bp-active-members.is-style-system-panel-header > :not(.widget-title) {
+    padding: var(--wp--preset--spacing--20);
+}
+
+.wp-block-bp-dynamic-members.is-style-system-panel-header .bp-dynamic-block-container > :not(.widget-title),
+.wp-block-bp-friends.is-style-system-panel-header .bp-dynamic-block-container > :not(.widget-title),
+.wp-block-bp-dynamic-groups.is-style-system-panel-header .bp-dynamic-block-container > :not(.widget-title),
+.wp-block-bp-latest-activities.is-style-system-panel-header .bp-latest-activities-block > :not(.widget-title),
+.wp-block-bp-sitewide-notices.is-style-system-panel-header .bp-sitewide-notice-block > :not(.widget-title) {
+    padding-left: var(--wp--preset--spacing--20);
+    padding-right: var(--wp--preset--spacing--20);
+}
+
+.wp-block-bp-primary-nav.is-style-system-panel-header .widget-title + *,
+.wp-block-bp-online-members.is-style-system-panel-header .widget-title + *,
+.wp-block-bp-active-members.is-style-system-panel-header .widget-title + *,
+.wp-block-bp-dynamic-members.is-style-system-panel-header .bp-dynamic-block-container .widget-title + *,
+.wp-block-bp-friends.is-style-system-panel-header .bp-dynamic-block-container .widget-title + *,
+.wp-block-bp-dynamic-groups.is-style-system-panel-header .bp-dynamic-block-container .widget-title + *,
+.wp-block-bp-latest-activities.is-style-system-panel-header .bp-latest-activities-block .widget-title + *,
+.wp-block-bp-sitewide-notices.is-style-system-panel-header .bp-sitewide-notice-block .widget-title + * {
+    margin-top: 0 !important;
+}

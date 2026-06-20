@@ -19,7 +19,7 @@
  <!-- /wp:spacer -->
 
  <!-- wp:paragraph {"align":"center","className":""} -->
- <p class="has-text-align-center ">Not just a theme with a stylesheet added, SystemStrap was built from the ground up to be one of the most advanced Bootstrap themes for WordPress.</p>
+ <p class="has-text-align-center ">Not just a theme with a stylesheet added, SystemStrap was built from the ground up to be one of the most advanced block themes for WordPress.</p>
  <!-- /wp:paragraph -->
  </div>
  <!-- /wp:group -->
@@ -37,7 +37,7 @@
  <!-- /wp:heading -->
 
  <!-- wp:paragraph {"className":""} -->
- <p class="">WordPress already loads styles conditionally for blocks, SystemStrap follows the same concept for loading Bootstrap styles.</p>
+ <p class="">WordPress already loads styles conditionally for blocks, SystemStrap follows the same concept for loading System styles.</p>
  <!-- /wp:paragraph -->
 
  <!-- wp:paragraph -->
@@ -65,11 +65,11 @@
  <!-- /wp:heading -->
 
  <!-- wp:paragraph {"className":""} -->
- <p class="">Port over a Bootstrap or WP design with ease. SystemStrap seamlessly combines WordPress and Bootstrap styles. </p>
+ <p class="">Port over a custom WP design with ease. SystemStrap seamlessly combines WordPress and SystemStrap styles. </p>
  <!-- /wp:paragraph -->
 
  <!-- wp:paragraph {"className":""} -->
- <p class="">The theme recognizes Bootstrap color pallets by class name as well as the block editor. </p>
+ <p class="">The theme recognizes System color palettes by class name as well as the block editor. </p>
  <!-- /wp:paragraph -->
  </div>
  <!-- /wp:group -->

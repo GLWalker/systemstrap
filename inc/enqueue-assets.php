@@ -17,21 +17,11 @@ if ( ! function_exists( 'strap_enqueue_assets' ) ) {
 		$theme_version = wp_get_theme()->get( 'Version' );
 		$version       = is_string( $theme_version ) ? $theme_version : false;
 
-		// Reset Styles
-		if ( ! is_admin() ) {
-			wp_enqueue_style(
-				'strap-reset',
-				get_template_directory_uri() . '/assets/css/strap-reset.css',
-				array(),
-				$version
-			);
-		}
-
 		// Main Styles
 		wp_enqueue_style(
 			'strap-main-styles',
 			get_template_directory_uri() . '/assets/css/main-styles.css',
-			array('strap-reset'), // Enforces reset loads first
+			array( 'strap-reset', 'global-styles' ),
 			$version
 		);
 
@@ -58,16 +48,6 @@ if ( ! function_exists( 'strap_enqueue_assets' ) ) {
 			array('strap-main-styles'),
 			$version
 		);
-
-		// Child Theme Styles (Loaded after main-styles)
-		if ( is_child_theme() ) {
-			wp_enqueue_style(
-				'strap-child-style',
-				get_stylesheet_uri(),
-				array( 'strap-main-styles' ),
-				$version
-			);
-		}
 
 		// Main Scripts
 		wp_enqueue_script(
@@ -124,25 +104,404 @@ if ( ! function_exists( 'strap_enqueue_assets' ) ) {
 }
 add_action( 'wp_enqueue_scripts', 'strap_enqueue_assets', 8 );
 
-/**
- * Enqueue BuddyPress Lightweight Theme Sync
- * Hooked at priority 99 to guarantee it loads AFTER all BuddyPress
- * template packs (Nouveau or Legacy). This ONLY syncs typography and buttons.
- */
-function strap_enqueue_buddypress_sync() {
-	if ( function_exists( 'is_buddypress' ) && is_buddypress() ) {
-		$theme_version = wp_get_theme()->get( 'Version' );
-		$version       = is_string( $theme_version ) ? $theme_version : false;
+if ( ! function_exists( 'strap_enqueue_child_style' ) ) {
+	/**
+	 * Enqueue child theme styles after the parent theme stylesheet layer.
+	 */
+	function strap_enqueue_child_style() {
+		if ( ! is_child_theme() ) {
+			return;
+		}
+
+		$child_theme   = wp_get_theme( get_stylesheet() );
+		$child_version = $child_theme->get( 'Version' );
+		$version       = is_string( $child_version ) ? $child_version : false;
 
 		wp_enqueue_style(
-			'strap-buddypress-sync',
-			get_template_directory_uri() . '/assets/css/buddypress-theme-sync.css',
+			'strap-child-style',
+			get_stylesheet_uri(),
 			array( 'strap-main-styles' ),
 			$version
 		);
 	}
 }
-add_action( 'wp_enqueue_scripts', 'strap_enqueue_buddypress_sync', 999 );
+add_action( 'wp_enqueue_scripts', 'strap_enqueue_child_style', 100 );
+
+if ( ! function_exists( 'strap_enqueue_reset_style' ) ) {
+	/**
+	 * Enqueue the reset stylesheet as early as possible.
+	 */
+	function strap_enqueue_reset_style() {
+		if ( is_admin() ) {
+			return;
+		}
+
+		$theme_version = wp_get_theme()->get( 'Version' );
+		$version       = is_string( $theme_version ) ? $theme_version : false;
+
+		wp_enqueue_style(
+			'strap-reset',
+			get_template_directory_uri() . '/assets/css/strap-reset.css',
+			array(),
+			$version
+		);
+	}
+}
+add_action( 'wp_enqueue_scripts', 'strap_enqueue_reset_style', 0 );
+
+/**
+ * Register the BuddyPress sync stylesheet handle early so block-style
+ * dependencies can resolve it in both frontend and editor contexts.
+ */
+function strap_register_buddypress_sync_style() {
+	if ( ! class_exists( 'BuddyPress' ) ) {
+		return;
+	}
+
+	$theme_version = wp_get_theme()->get( 'Version' );
+	$version       = is_string( $theme_version ) ? $theme_version : false;
+
+	wp_register_style(
+		'strap-buddypress-sync',
+		get_template_directory_uri() . '/assets/css/buddypress-theme-sync.css',
+		array(),
+		$version
+	);
+}
+add_action( 'init', 'strap_register_buddypress_sync_style', 5 );
+
+/**
+ * Register a BuddyPress variation anchor handle that can safely sit after
+ * Core Global Styles in both frontend and editor contexts.
+ *
+ * This handle has no stylesheet source of its own. It exists only to give
+ * BuddyPress block style variations a stable dependency target that resolves
+ * against the correct Core style handle per context.
+ */
+function strap_register_buddypress_variation_anchor() {
+	if ( ! class_exists( 'BuddyPress' ) ) {
+		return;
+	}
+
+	$theme_version = wp_get_theme()->get( 'Version' );
+	$version       = is_string( $theme_version ) ? $theme_version : false;
+
+	wp_register_style(
+		'strap-buddypress-variation-anchor',
+		false,
+		array( 'wp-block-library' ),
+		$version
+	);
+}
+add_action( 'init', 'strap_register_buddypress_variation_anchor', 5 );
+
+/**
+ * Resolve the active Core style handle that should anchor BuddyPress
+ * variation styles after the current Global Styles lane.
+ *
+ * @return string
+ */
+function strap_get_buddypress_variation_anchor_dependency() {
+	$wp_styles = wp_styles();
+	$candidates = array(
+		'global-styles',
+		'global-styles-css-custom-properties',
+	);
+
+	foreach ( $candidates as $handle ) {
+		if ( isset( $wp_styles->registered[ $handle ] ) ) {
+			return $handle;
+		}
+	}
+
+	return 'wp-block-library';
+}
+
+/**
+ * Point the BuddyPress variation anchor at the best available Core style lane
+ * for the current request context.
+ *
+ * @return void
+ */
+function strap_point_buddypress_variation_anchor() {
+	$wp_styles = wp_styles();
+
+	if ( isset( $wp_styles->registered['strap-buddypress-variation-anchor'] ) ) {
+		$wp_styles->registered['strap-buddypress-variation-anchor']->deps = array(
+			strap_get_buddypress_variation_anchor_dependency(),
+		);
+	}
+}
+
+/**
+ * Get the active BuddyPress theme-pack stylesheet handles.
+ *
+ * @return string[]
+ */
+function strap_get_buddypress_theme_style_handles() {
+	$handles = array();
+
+	if ( wp_style_is( 'bp-nouveau', 'registered' ) || wp_style_is( 'bp-nouveau', 'enqueued' ) ) {
+		$handles[] = 'bp-nouveau';
+	}
+
+	if ( wp_style_is( 'bp-legacy-css', 'registered' ) || wp_style_is( 'bp-legacy-css', 'enqueued' ) ) {
+		$handles[] = 'bp-legacy-css';
+	}
+
+	return $handles;
+}
+
+/**
+ * Enqueue BuddyPress Lightweight Theme Sync
+ * Attached to the active BuddyPress theme-pack handle after BuddyPress
+ * registers/enqueues its community styles.
+ */
+function strap_enqueue_buddypress_sync() {
+	if ( function_exists( 'is_buddypress' ) && is_buddypress() ) {
+		$deps      = strap_get_buddypress_theme_style_handles();
+		$wp_styles = wp_styles();
+
+		if ( isset( $wp_styles->registered['strap-buddypress-sync'] ) ) {
+			$wp_styles->registered['strap-buddypress-sync']->deps = $deps;
+		}
+
+		strap_point_buddypress_variation_anchor();
+
+		wp_enqueue_style( 'strap-buddypress-sync' );
+	}
+}
+add_action( 'bp_enqueue_community_scripts', 'strap_enqueue_buddypress_sync', 20 );
+
+/**
+ * Enqueue the BuddyPress sync stylesheet in the block editor when BuddyPress
+ * blocks are available, so dependent BP block styles have a registered handle.
+ */
+function strap_enqueue_buddypress_sync_editor() {
+	if ( ! is_admin() ) {
+		return;
+	}
+
+	if ( ! class_exists( 'BuddyPress' ) ) {
+		return;
+	}
+
+	strap_point_buddypress_variation_anchor();
+
+	wp_enqueue_style( 'strap-buddypress-sync' );
+}
+add_action( 'enqueue_block_editor_assets', 'strap_enqueue_buddypress_sync_editor', 1 );
+
+/**
+ * Move top-level Global Styles custom CSS onto its own late handle.
+ *
+ * Core merges theme custom CSS into the global-styles handle. SystemStrap
+ * keeps the native global-styles lifecycle intact, but peels the custom CSS
+ * back off so it can print after theme and variation styles.
+ */
+function strap_enqueue_global_styles_custom_css_last() {
+	static $has_run = false;
+
+	if ( $has_run || is_admin() || ! wp_is_block_theme() ) {
+		return;
+	}
+
+	$has_run = true;
+
+	$theme_custom_css = wp_get_global_stylesheet( array( 'custom-css' ) );
+	$customizer_css   = trim( wp_get_custom_css() );
+	$late_custom_css  = '';
+
+	if ( $customizer_css ) {
+		$late_custom_css .= "\n" . $customizer_css;
+	}
+
+	$late_custom_css .= $theme_custom_css;
+
+	if ( '' === trim( $late_custom_css ) ) {
+		return;
+	}
+
+	$wp_styles = wp_styles();
+	$css_parts = $wp_styles->get_data( 'global-styles', 'after' );
+
+	if ( empty( $css_parts ) || ! is_array( $css_parts ) ) {
+		return;
+	}
+
+	foreach ( $css_parts as $index => $css ) {
+		if ( ! is_string( $css ) || '' === $css ) {
+			continue;
+		}
+
+		$position = strrpos( $css, $late_custom_css );
+
+		if ( false === $position ) {
+			continue;
+		}
+
+		$trailing_css = trim( substr( $css, $position ) );
+
+		if ( trim( $late_custom_css ) !== $trailing_css ) {
+			continue;
+		}
+
+		$css_parts[ $index ] = rtrim( substr( $css, 0, $position ) );
+		break;
+	}
+
+	$wp_styles->registered['global-styles']->extra['after'] = $css_parts;
+
+	$theme_version = wp_get_theme()->get( 'Version' );
+	$version       = is_string( $theme_version ) ? $theme_version : false;
+
+	wp_register_style( 'global-styles-custom-css', false, array(), $version );
+	wp_enqueue_style( 'global-styles-custom-css' );
+	wp_add_inline_style( 'global-styles-custom-css', $late_custom_css );
+}
+add_action( 'wp_enqueue_scripts', 'strap_enqueue_global_styles_custom_css_last', 12 );
+
+/**
+ * Reorder frontend styles into the SystemStrap contract order.
+ *
+ * Order:
+ * 1. strap-reset
+ * 2. BuddyPress plugin/theme-pack CSS
+ * 3. SystemStrap BuddyPress sync
+ * 4. SystemStrap BuddyPress block base styles
+ * 5. Core block library styles
+ * 6. global-styles
+ * 7. SystemStrap main theme CSS
+ * 8. Child theme CSS
+ * 9. SystemStrap BuddyPress block style variations
+ * 10. Remaining SystemStrap theme CSS
+ * 11. wp-block-custom-css / global-styles-custom-css
+ * 12. everything else
+ */
+function strap_reorder_frontend_style_queue() {
+	if ( is_admin() ) {
+		return;
+	}
+
+	$wp_styles = wp_styles();
+
+	if ( empty( $wp_styles->queue ) || ! is_array( $wp_styles->queue ) ) {
+		return;
+	}
+
+	$theme_uri = trailingslashit( get_template_directory_uri() );
+	$queue     = array_values( array_unique( $wp_styles->queue ) );
+	$buckets   = array(
+		'reset'         => array(),
+		'bp_plugin'     => array(),
+		'bp_sync'       => array(),
+		'bp_blocks'     => array(),
+		'bp_variations' => array(),
+		'core_blocks'   => array(),
+		'global'        => array(),
+		'main'          => array(),
+		'child'         => array(),
+		'theme_rest'    => array(),
+		'custom_css'    => array(),
+		'remainder'     => array(),
+	);
+
+	foreach ( $queue as $handle ) {
+		$src = '';
+
+		if ( isset( $wp_styles->registered[ $handle ]->src ) && is_string( $wp_styles->registered[ $handle ]->src ) ) {
+			$src = $wp_styles->registered[ $handle ]->src;
+		}
+
+		if ( 'strap-reset' === $handle ) {
+			$buckets['reset'][] = $handle;
+			continue;
+		}
+
+		if ( 'strap-buddypress-sync' === $handle ) {
+			$buckets['bp_sync'][] = $handle;
+			continue;
+		}
+
+		if ( 'strap-buddypress-blocks' === $handle ) {
+			$buckets['bp_blocks'][] = $handle;
+			continue;
+		}
+
+		if ( str_contains( $src, $theme_uri . 'assets/css/style-variations/bp-' ) ) {
+			$buckets['bp_variations'][] = $handle;
+			continue;
+		}
+
+		if ( 'wp-block-custom-css' === $handle || 'global-styles-custom-css' === $handle ) {
+			$buckets['custom_css'][] = $handle;
+			continue;
+		}
+
+		if (
+			str_contains( $src, '/wp-content/plugins/buddypress/' ) ||
+			( str_starts_with( $handle, 'bp-' ) && ! str_contains( $src, $theme_uri . 'assets/css/style-variations/bp-' ) )
+		) {
+			$buckets['bp_plugin'][] = $handle;
+			continue;
+		}
+
+		if ( 'global-styles' === $handle ) {
+			$buckets['global'][] = $handle;
+			continue;
+		}
+
+		if (
+			'wp-block-library' === $handle ||
+			'wp-block-library-theme' === $handle ||
+			str_starts_with( $handle, 'wp-block-' ) ||
+			str_contains( $src, '/wp-includes/css/dist/block-library/' )
+		) {
+			$buckets['core_blocks'][] = $handle;
+			continue;
+		}
+
+		if ( 'strap-main-styles' === $handle ) {
+			$buckets['main'][] = $handle;
+			continue;
+		}
+
+		if ( 'strap-child-style' === $handle ) {
+			$buckets['child'][] = $handle;
+			continue;
+		}
+
+		if (
+			str_starts_with( $handle, 'strap-' ) ||
+			str_contains( $src, $theme_uri )
+		) {
+			$buckets['theme_rest'][] = $handle;
+			continue;
+		}
+
+		$buckets['remainder'][] = $handle;
+	}
+
+	$wp_styles->queue = array_values(
+		array_unique(
+				array_merge(
+					$buckets['reset'],
+					$buckets['bp_plugin'],
+					$buckets['bp_sync'],
+					$buckets['bp_blocks'],
+					$buckets['core_blocks'],
+					$buckets['global'],
+					$buckets['main'],
+					$buckets['child'],
+					$buckets['bp_variations'],
+					$buckets['theme_rest'],
+					$buckets['custom_css'],
+					$buckets['remainder']
+			)
+		)
+	);
+}
+add_action( 'wp_print_styles', 'strap_reorder_frontend_style_queue', 1 );
 
 /**
  * Conditionally enqueue scripts for Accordion Tabs variation.
@@ -151,7 +510,10 @@ add_action( 'wp_enqueue_scripts', 'strap_enqueue_buddypress_sync', 999 );
 function strap_enqueue_accordion_tabs( $block_content, $block ) {
 	if ( 
 		isset( $block['attrs']['className'] ) && 
-		( strpos( $block['attrs']['className'], 'is-style-system-tabs' ) !== false ) 
+		(
+			strpos( $block['attrs']['className'], 'is-style-system-tabs' ) !== false ||
+			strpos( $block['attrs']['className'], 'is-style-system-tabs-vertical' ) !== false
+		)
 	) {
 		wp_enqueue_script(
 			'strap-accordion-tabs',
@@ -166,84 +528,69 @@ function strap_enqueue_accordion_tabs( $block_content, $block ) {
 add_filter( 'render_block', 'strap_enqueue_accordion_tabs', 10, 2 );
 
 /**
- * Completely remove inline default styles/markup for WordPress core palettes,
- * gradients, and duotones before they are parsed by global styles.
- */
-add_filter(
-	'wp_theme_json_data_default',
-	static function ( $theme_json ) {
-		$data = $theme_json->get_data();
-
-		$data['settings']['color']['palette']['default']   = [];
-		$data['settings']['color']['duotone']['default']   = [];
-		$data['settings']['color']['gradients']['default'] = [];
-
-		$theme_json->update_with( $data );
-
-		return $theme_json;
-	}
-);
-
-/**
- * Intercept and rewrite WordPress Global Styles.
- * - Injects complementary text colors into background classes.
- * - Prunes useless generated classes for border-color.
+ * Rewrite generated WordPress global styles after Core enqueues them.
+ *
+ * This preserves the native enqueue lifecycle while still allowing
+ * SystemStrap to adjust generated background utility classes.
  */
 function strap_intercept_global_styles() {
-	// Nuke WP's default generation on whatever hook is currently firing
-	remove_action( 'wp_enqueue_scripts', 'wp_enqueue_global_styles' );
-	remove_action( 'enqueue_block_assets', 'wp_enqueue_global_styles' );
-
 	static $has_run = false;
 	if ( $has_run ) {
 		return;
 	}
+
+	$wp_styles = wp_styles();
+	if ( ! isset( $wp_styles->registered['global-styles'] ) ) {
+		return;
+	}
+
+	$css_parts = $wp_styles->get_data( 'global-styles', 'after' );
+
+	if ( empty( $css_parts ) || ! is_array( $css_parts ) ) {
+		return;
+	}
+
 	$has_run = true;
 
-	// Grab the CSS ourselves natively
-	$css = wp_get_global_stylesheet();
-
-	// Base background replacements (these flip in dark mode, so they map to slugs)
-	$slug_replacements = [
+	// Base background replacements (these flip in dark mode, so they map to slugs).
+	$slug_replacements = array(
 		'base'         => 'contrast',
 		'contrast'     => 'base',
 		'secondary-bg' => 'secondary-color',
+		'secondary-color' => 'secondary-bg',
 		'tertiary-bg'  => 'tertiary-color',
-	];
+		'tertiary-color' => 'tertiary-bg',
+	);
 
-	// Accent background replacements (these now map to their dynamically generated -text variables)
-	$accent_slugs = [ 'primary', 'secondary', 'success', 'info', 'warning', 'danger', 'light', 'dark' ];
+	// Accent background replacements (these map to the dynamic -text variables).
+	$accent_slugs = array( 'primary', 'secondary', 'success', 'info', 'warning', 'danger', 'light', 'dark' );
 
-	foreach ( $slug_replacements as $bg_slug => $text_slug ) {
-		$pattern = '/\.has-' . $bg_slug . '-background-color\s*\{/';
-		$replace = ".has-{$bg_slug}-background-color:not(.has-text-color) {\n\tcolor: var(--wp--preset--color--{$text_slug}) !important;";
-		$css     = preg_replace( $pattern, $replace, $css );
-	}
-
-	foreach ( $accent_slugs as $bg_slug ) {
-		$pattern = '/\.has-' . $bg_slug . '-background-color\s*\{/';
-		$replace = ".has-{$bg_slug}-background-color:not(.has-text-color) {\n\tcolor: var(--wp--preset--color--{$bg_slug}-text) !important;";
-		$css     = preg_replace( $pattern, $replace, $css );
-	}
-
-	// Register and enqueue the filtered styles properly
-	// Force dependencies to ensure Site Editor CSS is printed absolute last on the frontend
-	$global_deps = array();
-	if ( ! is_admin() ) {
-		$global_deps[] = 'strap-main-styles';
-
-		if ( is_child_theme() ) {
-			$global_deps[] = 'strap-child-style';
+	foreach ( $css_parts as $index => $css ) {
+		if ( ! is_string( $css ) || '' === $css ) {
+			continue;
 		}
+
+		foreach ( $slug_replacements as $bg_slug => $text_slug ) {
+			$pattern = '/\.has-' . preg_quote( $bg_slug, '/' ) . '-background-color\s*\{/';
+			$replace = ".has-{$bg_slug}-background-color:not(.has-text-color) {\n\tcolor: var(--wp--preset--color--{$text_slug}) !important;";
+			$result  = preg_replace( $pattern, $replace, $css );
+			$css     = is_string( $result ) ? $result : $css;
+		}
+
+		foreach ( $accent_slugs as $bg_slug ) {
+			$pattern = '/\.has-' . preg_quote( $bg_slug, '/' ) . '-background-color\s*\{/';
+			$replace = ".has-{$bg_slug}-background-color:not(.has-text-color) {\n\tcolor: var(--wp--preset--color--{$bg_slug}-text) !important;";
+			$result  = preg_replace( $pattern, $replace, $css );
+			$css     = is_string( $result ) ? $result : $css;
+		}
+
+		$css_parts[ $index ] = $css;
 	}
 
-	wp_register_style( 'global-styles', false, $global_deps );
-	wp_add_inline_style( 'global-styles', $css );
-	wp_enqueue_style( 'global-styles' );
+	$wp_styles->registered['global-styles']->extra['after'] = $css_parts;
 }
-// Hook early to ensure WP is unhooked before it runs
-add_action( 'wp_enqueue_scripts', 'strap_intercept_global_styles', 9 );
-add_action( 'enqueue_block_assets', 'strap_intercept_global_styles', 9 );
+add_action( 'wp_enqueue_scripts', 'strap_intercept_global_styles', 11 );
+add_action( 'enqueue_block_assets', 'strap_intercept_global_styles', 11 );
 
 /**
  * Enqueue Block Editor Assets (Scripts)
@@ -265,21 +612,6 @@ function strap_enqueue_block_editor_assets() {
 	}
 }
 add_action( 'enqueue_block_editor_assets', 'strap_enqueue_block_editor_assets' );
-
-/**
- * Enqueue Editor-only Styles safely into the Iframe
- */
-function strap_enqueue_editor_iframe_styles() {
-	if ( is_admin() ) {
-		wp_enqueue_style(
-			'strap-reset-editor',
-			get_template_directory_uri() . '/assets/css/strap-reset.css',
-			array(),
-			wp_get_theme()->get( 'Version' )
-		);
-	}
-}
-add_action( 'enqueue_block_assets', 'strap_enqueue_editor_iframe_styles' );
 
 /**
  * Enqueue pagination block styles only when pagination blocks render.

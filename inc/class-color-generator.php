@@ -1,8 +1,8 @@
 <?php
 
 /**
- * SystemPress Color Palette Generator
- * @package SystemPress
+ * SystemStrap Color Palette Generator
+ * @package SystemStrap
  * @since 0.0.1
  */
 
@@ -277,7 +277,7 @@ class Strap_ColorGenerator
 
         for ($i = 0; $i < $colorCount; $i++) {
             $shift = ($i - $middle) * $step;
-            $lightness = max(10.0, min(95.0, $hsl['l'] + $shift)); // Bootstrap: 10%-95% range
+            $lightness = max(10.0, min(95.0, $hsl['l'] + $shift)); // System: 10%-95% range
             $saturation = ($i < $middle)
                 ? max(20.0, $hsl['s'] - ($middle - $i) * 15) // Fade S up to -100
                 : min(100.0, $hsl['s']); // Keep S strong down to -900
@@ -303,7 +303,7 @@ class Strap_ColorGenerator
 
         for ($i = 0; $i < $colorCount; $i++) {
             $shift = ($i - $middle) * $step;
-            $lightness = max(10.0, min(95.0, $hsl['l'] + $shift)); // Bootstrap: 10%-95% range
+            $lightness = max(10.0, min(95.0, $hsl['l'] + $shift)); // System: 10%-95% range
 
             // Adjust saturation for hover (light) colors
             $saturation = ($i < $middle)
@@ -534,11 +534,13 @@ class Strap_ColorGenerator
 
         if ($d !== 0.0) {
             $s = $l > 0.5 ? $d / (2.0 - $max - $min) : $d / ($max + $min);
-            $h = match (true) {
-                $max === $r => (($g - $b) / $d + ($g < $b ? 6.0 : 0.0)) * 60.0,
-                $max === $g => (($b - $r) / $d + 2.0) * 60.0,
-                $max === $b => (($r - $g) / $d + 4.0) * 60.0,
-            };
+            if ($max === $r) {
+                $h = (($g - $b) / $d + ($g < $b ? 6.0 : 0.0)) * 60.0;
+            } elseif ($max === $g) {
+                $h = (($b - $r) / $d + 2.0) * 60.0;
+            } elseif ($max === $b) {
+                $h = (($r - $g) / $d + 4.0) * 60.0;
+            }
         }
 
         return $this->cache[$cacheKey] = ['h' => $h, 's' => $s * 100.0, 'l' => $l * 100.0];
@@ -571,14 +573,20 @@ class Strap_ColorGenerator
         $m = $l - $c / 2.0;
 
         $hPrime = $h * 6.0;
-        [$r, $g, $b] = match (true) {
-            $hPrime < 1.0 => [$c, $x, 0.0],
-            $hPrime < 2.0 => [$x, $c, 0.0],
-            $hPrime < 3.0 => [0.0, $c, $x],
-            $hPrime < 4.0 => [0.0, $x, $c],
-            $hPrime < 5.0 => [$x, 0.0, $c],
-            default => [$c, 0.0, $x],
-        };
+        if ($hPrime < 1.0) {
+            $rgb = [$c, $x, 0.0];
+        } elseif ($hPrime < 2.0) {
+            $rgb = [$x, $c, 0.0];
+        } elseif ($hPrime < 3.0) {
+            $rgb = [0.0, $c, $x];
+        } elseif ($hPrime < 4.0) {
+            $rgb = [0.0, $x, $c];
+        } elseif ($hPrime < 5.0) {
+            $rgb = [$x, 0.0, $c];
+        } else {
+            $rgb = [$c, 0.0, $x];
+        }
+        [$r, $g, $b] = $rgb;
 
         return $this->cache[$cacheKey] = sprintf(
             '#%02x%02x%02x',

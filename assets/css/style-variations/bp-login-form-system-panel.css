@@ -1,0 +1,27 @@
+/*
+ * BuddyPress Login Form: System Panel
+ * Adds the panel chrome to the logged-in BuddyPress login widget while
+ * preserving the same media-object alignment used by the default state.
+ */
+
+.widget_bp_core_login_widget.wp-block-bp-login-form.is-style-system-panel {
+    border: var(--wp--custom--border-width, 1px) solid var(--system-ui-border-color);
+    background: var(--system-ui-surface);
+    border-radius: var(--wp--custom--border-radius);
+    box-shadow: var(--wp--custom--shadow, none);
+    padding: var(--wp--preset--spacing--20, 1rem);
+    overflow: hidden;
+    transition: border-color 0.15s ease-in-out;
+}
+
+.widget_bp_core_login_widget.wp-block-bp-login-form.is-style-system-panel.has-background {
+    border-color: var(--system-ui-border-color-on-background);
+}
+
+.widget_bp_core_login_widget.wp-block-bp-login-form.is-style-system-panel .bp-login-widget-user-avatar img {
+    border: var(--wp--custom--border-width, 1px) solid rgba(var(--wp--preset--color--border-color-rgb), 0.25);
+}
+
+.widget_bp_core_login_widget.wp-block-bp-login-form.is-style-system-panel .bp-login-widget-user-link a {
+    font-weight: var(--wp--custom--font-weight-heading);
+}

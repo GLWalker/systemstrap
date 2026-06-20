@@ -1,0 +1,34 @@
+/*
+ * BuddyPress Members: System Panel
+ * Restores SystemStrap panel chrome to each BuddyPress members card while
+ * preserving the base list and thumbnail layout behavior.
+ */
+
+.bp-block-members.is-style-system-panel > .member-content,
+.wp-block-bp-members.is-style-system-panel .bp-block-members > .member-content {
+    border: var(--wp--custom--border-width, 1px) solid var(--system-ui-border-color);
+    background: var(--system-ui-surface);
+    border-radius: var(--wp--custom--border-radius);
+    box-shadow: var(--wp--custom--shadow, none);
+    overflow: hidden;
+    transition: border-color 0.15s ease-in-out;
+}
+
+.bp-block-members.is-style-system-panel.has-background > .member-content,
+.wp-block-bp-members.is-style-system-panel.has-background .bp-block-members > .member-content {
+    border-color: var(--system-ui-border-color-on-background);
+}
+
+.bp-block-members.is-style-system-panel > .member-content .item-header-avatar img.avatar,
+.wp-block-bp-members.is-style-system-panel .bp-block-members > .member-content .item-header-avatar img.avatar {
+    border: var(--wp--custom--border-width, 1px) solid rgba(var(--wp--preset--color--border-color-rgb), 0.25);
+}
+
+.bp-block-members.is-style-system-panel > .member-content .member-description > strong a,
+.bp-block-members.is-style-system-panel > .member-content .user-nicename,
+.bp-block-members.is-style-system-panel > .member-content time,
+.wp-block-bp-members.is-style-system-panel .bp-block-members > .member-content .member-description > strong a,
+.wp-block-bp-members.is-style-system-panel .bp-block-members > .member-content .user-nicename,
+.wp-block-bp-members.is-style-system-panel .bp-block-members > .member-content time {
+    color: inherit;
+}

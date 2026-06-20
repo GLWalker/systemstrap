@@ -18,7 +18,7 @@
  <!-- /wp:heading -->
 
  <!-- wp:paragraph {"className":" "} -->
- <p class="">A full site editing experience that integrates WordPress and Bootstrap 5 — built for precision. With a dynamic color system, smart class loading, flexible theme hooks, and accessible, ARIA-compliant markup, SystemStrap gives you complete control without the clutter.</p>
+ <p class="">A full site editing experience that integrates WordPress and SystemStrap — built for precision. With a dynamic color system, smart class loading, flexible theme hooks, and accessible, ARIA-compliant markup, SystemStrap gives you complete control without the clutter.</p>
  <!-- /wp:paragraph -->
 
  <!-- wp:buttons {"align":"full","className":"","layout":{"type":"flex","justifyContent":"center","flexWrap":"wrap"}} -->

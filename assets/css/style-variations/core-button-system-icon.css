@@ -15,7 +15,9 @@
     background: rgba(var(--wp--preset--color--secondary-bg-rgb), .5);
 
     color: var(--wp--preset--color--secondary-color);
-    border: var(--wp--custom--border-width, 1px) solid transparent;
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--btn-icon-border-color, transparent);
+    box-shadow: var(--wp--preset--shadow--btn-icon-resting, none);
+    transform: var(--wp--custom--btn-icon-transform, none);
     transition: all 0.2s ease-in-out;
     text-decoration: none;
 }
@@ -30,7 +32,9 @@ html body .wp-block-button.is-style-system-btn-icon button.wp-block-button__link
 
      background-color: rgba(var(--wp--preset--color--secondary-bg-rgb), .75);
     color: var(--wp--preset--color--contrast) !important;
-    border-color: rgba(var(--wp--preset--color--border-color-rgb), 0.2) !important;
+    border-color: var(--wp--custom--btn-icon-hover-border-color, rgba(var(--wp--preset--color--border-color-rgb), 0.2)) !important;
+    box-shadow: var(--wp--preset--shadow--btn-icon-hover, none);
+    transform: var(--wp--custom--btn-icon-hover-transform, none);
 }
 
 /*

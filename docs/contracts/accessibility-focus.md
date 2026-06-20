@@ -234,13 +234,11 @@ These navigation treatments are part of the current contract and MUST NOT be des
 
 The current BuddyPress focus surfaces include:
 
-- `body #buddypress .button:focus`
-- `body #buddypress input[type="submit"]:focus`
-- `body #buddypress input[type="button"]:focus`
-- `body #buddypress input[type="reset"]:focus`
-- `body #buddypress input[type="time"]:focus`
-- `body #buddypress textarea:focus`
-- `body #buddypress select:focus`
+- `body.buddypress`-scoped BuddyPress buttons
+- `body.buddypress`-scoped submit, button, and reset inputs
+- `body.buddypress`-scoped time inputs
+- `body.buddypress`-scoped textareas
+- `body.buddypress`-scoped selects
 
 The current behavior is:
 

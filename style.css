@@ -3,7 +3,13 @@ Theme Name: SystemStrap
 Theme URI: https://example.com
 Author: System
 Author URI: https://example.com
-Description: A lightweight, pure WordPress block theme acting as a modern, airy alternative to Bootstrap.
+Description: A lightweight, pure WordPress block theme acting as a modern, airy foundation.
 Version: 1.0.56
+Requires PHP: 8.0
+Tested up to: 7.0
+License: GPL-2.0-or-later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: systemstrap
+Tags: full-site-editing, block-patterns, custom-logo, featured-images, threaded-comments, translation-ready
+Copyright: 2026 SystemStrap contributors
 */
