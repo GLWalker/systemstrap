@@ -6,15 +6,19 @@ This file is a CONTRACT.
 
 ## Contract Version
 
-Current Version: 3.8
+Current Version: 3.9
 
-Last Updated: 2026-06-18
+Last Updated: 2026-06-20
 
 ## Change Log
 
 ### 3.8
 
 Updated the BuddyPress variation anchor contract so it resolves against whichever Core global-styles handle is actually registered in the current context, with `wp-block-library` as the final fallback. Added a shared BuddyPress widget-heading variation asset registered across the relevant widget-style BuddyPress blocks, and aligned BuddyPress panel/nav variation chrome more closely with the Core panel/header/nav families.
+
+### 3.9
+
+Updated the live filesystem variation inventory to include active `styles/*.json`, `styles/colors/*.json`, and `styles/typography/*.json` files, and documented the body/admin variation class contract emitted by `inc/dynamic-styles.php`.
 
 ### 3.7
 
@@ -148,8 +152,14 @@ The current variation filesystem shape is:
 .
 ├── theme.json
 ├── styles/
+│   ├── brite.json
+│   ├── vapor.json
 │   ├── colors/
+│   │   ├── brite.json
+│   │   └── vapor.json
 │   └── typography/
+│       ├── brite.json
+│       └── vapor.json
 ├── assets/css/style-variations/
 │   ├── bp-login-form-system-panel.css
 │   ├── bp-member-system-panel.css
@@ -192,29 +202,32 @@ The current variation filesystem shape is:
     └── strap-panels.js
 ```
 
-The `styles/` directory currently contains the `colors/` and `typography/` directories but no active JSON variation files.
+The `styles/` directory currently contains active filesystem variation JSON files in the root, `colors/`, and `typography/` lanes.
 
-That empty-but-reserved state is part of the current contract.
+Those lanes are part of the current contract and MUST be documented as live runtime variation surfaces, not as reserved placeholders.
 
 ## Global Theme Variation Contract
 
 ### Current runtime state
 
-SystemStrap currently has one active global theme configuration source:
+SystemStrap currently has one active base global theme configuration source:
 
 - `theme.json`
 
-SystemStrap currently does NOT ship active filesystem variation JSON files in:
+SystemStrap currently also ships active filesystem variation JSON files in:
 
-- `styles/*.json`
-- `styles/colors/*.json`
-- `styles/typography/*.json`
+- `styles/brite.json`
+- `styles/vapor.json`
+- `styles/colors/brite.json`
+- `styles/colors/vapor.json`
+- `styles/typography/brite.json`
+- `styles/typography/vapor.json`
 
-The presence of the empty `styles/colors/` and `styles/typography/` directories MUST be treated as reserved architecture, not as active runtime variation behavior.
+These files are active runtime variation sources layered onto the base `theme.json` configuration.
 
 ### Reserved directory intent
 
-The reserved directory roles are:
+The current runtime variation roles are:
 
 - `styles/*.json`
     - full global style variations or layout-oriented base overlays
@@ -223,11 +236,11 @@ The reserved directory roles are:
 - `styles/typography/*.json`
     - typography-only overlays
 
-If files are added to `styles/colors/` or `styles/typography/`, they MUST remain scoped to that domain or WordPress may interpret them as broader Global Styles behavior.
+Files in these directories MUST remain scoped to those domains or WordPress may interpret them as broader Global Styles behavior.
 
 ### Deep merge and array replacement rules
 
-When filesystem global variation files are introduced, SystemStrap MUST treat WordPress `theme.json` merge behavior as follows:
+When filesystem global variation files are introduced or updated, SystemStrap MUST treat WordPress `theme.json` merge behavior as follows:
 
 - object-like configuration nodes are deep-merged
 - array nodes are replaced wholesale
@@ -258,6 +271,21 @@ This currently appears in `theme.json` through pipeline syntax such as:
 ```
 
 Future filesystem global variations SHOULD prefer changing token slugs and preset values over redefining unrelated custom-property families in parallel.
+
+## Body/Admin Variation Class Contract
+
+`inc/dynamic-styles.php` currently injects the resolved active variation slugs into:
+
+- `body_class`
+- `admin_body_class`
+
+The emitted runtime classes are:
+
+- `is-layout-{slug}`
+- `is-color-{slug}`
+- `is-typography-{slug}`
+
+These classes are derived from `systemstrap_get_active_variation_slugs()` and MUST remain aligned with the active variation files resolved through `WP_Theme_JSON_Resolver::get_style_variations( 'theme' )`.
 
 ## Theme JSON Inline Variation Contract
 
@@ -718,21 +746,26 @@ When adding or modifying a variation template:
 - metadata names used by editor extensions MUST remain stable if inspector logic depends on them
 - new custom attributes MUST be declared through `blocks.registerBlockType` filters before they are consumed by editor UI or saved output hooks
 
-## Planned Mix-and-Match Global Variation Rule
+## Current Mix-and-Match Global Variation Rule
 
-SystemStrap is architected to support modular global variation layering through the reserved `styles/` directory structure.
+SystemStrap currently supports modular global variation layering through the `styles/` directory structure.
 
-Until actual JSON variation files exist there:
+The current active JSON variation files are:
 
-- the contract MUST describe that structure as reserved
-- the theme MUST NOT be documented as already shipping color-pack or typography-pack files
-- future additions to those directories MUST be documented here with exact file names and scope boundaries
+- `styles/brite.json`
+- `styles/vapor.json`
+- `styles/colors/brite.json`
+- `styles/colors/vapor.json`
+- `styles/typography/brite.json`
+- `styles/typography/vapor.json`
+
+Future additions to those directories MUST be documented here with exact file names and scope boundaries.
 
 ## Prohibited Regressions
 
 The following regressions are prohibited:
 
-- documenting `styles/colors/` or `styles/typography/` as active runtime file inventories when they are empty
+- documenting `styles/colors/` or `styles/typography/` as empty reserved directories when active JSON files exist there
 - adding uncategorized broad Global Style keys to future `styles/colors/*.json` or `styles/typography/*.json` files without documenting the scope change
 - renaming variation files in `assets/css/style-variations/` without preserving or intentionally replacing the filename parsing contract
 - moving editor extension files out of `assets/js/variations/` without updating the glob loader in `strap_enqueue_block_editor_assets()`

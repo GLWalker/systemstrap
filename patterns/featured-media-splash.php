@@ -14,9 +14,9 @@
  <h2 class="wp-block-heading has-text-align-center wow animate__animated animate__backInUp has-display-3-font-size">Get into the action <mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-bs-primary-color "><em>OnDemand</em></mark><em>!</em></h2>
  <!-- /wp:heading -->
 
- <!-- wp:media-text {"align":"","mediaLink":"<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/pexels-jeshoots-com-147458-1040160.jpg","mediaType":"image","imageFill":true,"className":"wow animate__animated animate__slideInUp"} -->
+ <!-- wp:media-text {"align":"","mediaLink":"<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/hero-1280x720.webp","mediaType":"image","imageFill":true,"className":"wow animate__animated animate__slideInUp"} -->
  <div class="wp-block-media-text is-stacked-on-mobile is-image-fill wow animate__animated animate__slideInUp">
- <figure class="wp-block-media-text__media" style="background-image:url(<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/pexels-jeshoots-com-147458-1040160.jpg);background-position:50% 50%"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/pexels-jeshoots-com-147458-1040160.jpg" alt="Watch Party" /></figure>
+ <figure class="wp-block-media-text__media" style="background-image:url(<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/hero-1280x720.webp);background-position:50% 50%"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/hero-1280x720.webp" alt="Watch Party" /></figure>
 
  <div class="wp-block-media-text__content">
 

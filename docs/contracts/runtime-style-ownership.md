@@ -54,6 +54,7 @@ The current runtime style ownership layer is implemented through these files:
 - `assets/css/buddypress-theme-sync.css`
 - `assets/css/buddypress-blocks.css`
 - `assets/css/style-variations/*.css`
+- `assets/js/main-scripts.js`
 
 Runtime verification snapshots MAY be captured in:
 
@@ -123,6 +124,14 @@ SystemStrap currently owns these primary stylesheet lanes:
 - explicit runtime exception handles such as `strap-carousel-styles`, `strap-button-icon`, and dialog CSS
 
 These handles are the theme-owned styling surface.
+
+## JavaScript Anchor Surface
+
+SystemStrap intentionally ships `strap-main-scripts` from `assets/js/main-scripts.js` as a no-op runtime anchor.
+
+The handle MUST remain registered and enqueued so child themes and future inline runtime behaviors have a stable attachment point.
+
+The file MUST NOT be described as dead code merely because it does not yet contain executable logic.
 
 ## Frontend Queue Contract
 
@@ -258,4 +267,3 @@ SystemStrap MUST NOT introduce any of the following regressions into the covered
 - letting theme-owned Custom CSS print before theme and variation layers
 - collapsing BuddyPress sync, base block styles, and variation styles into one undocumented stylesheet
 - introducing new duplicate-style handles without documenting the rationale
-

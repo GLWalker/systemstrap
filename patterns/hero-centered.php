@@ -9,7 +9,7 @@
 
 <!-- wp:group {"metadata":{"name":"Centered Hero"},"className":"hero-centered py-4 ","layout":{"type":"default"}} -->
 <div class="wp-block-group hero-centered py-4 "><!-- wp:image {"id":2274,"sizeSlug":"full","linkDestination":"none","style":{"color":{}}} -->
- <figure class="wp-block-image size-full"><img src="http://corner.local/wp-content/uploads/2024/06/logo-100x100-1.webp" alt="logo placeholder" class="wp-image-2274" /></figure>
+ <figure class="wp-block-image size-full"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/logo-100x100.webp" alt="logo placeholder" class="wp-image-2274" /></figure>
  <!-- /wp:image -->
 
  <!-- wp:heading {"style":{"typography":{"fontStyle":"normal","fontWeight":"700"}},"className":"","fontSize":"display-5"} -->

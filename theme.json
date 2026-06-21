@@ -1762,11 +1762,6 @@
         },
         {
             "area": "uncategorized",
-            "name": "part-sidebar-buddypress",
-            "title": "Sidebar BuddyPress Part"
-        },
-        {
-            "area": "uncategorized",
             "name": "part-sidebar-secondary",
             "title": "Sidebar Secondary Part"
         },
@@ -1779,11 +1774,6 @@
             "area": "uncategorized",
             "name": "part-single",
             "title": "Single Part"
-        },
-        {
-            "area": "uncategorized",
-            "name": "part-offcanvas",
-            "title": "Offcanvas Part"
         },
         {
             "area": "uncategorized",
@@ -1814,13 +1804,6 @@
                 "post"
             ],
             "title": "Single with Sidebar"
-        },
-        {
-            "name": "single-tertiary",
-            "postTypes": [
-                "post"
-            ],
-            "title": "Single with 2 Sidebars"
         }
     ]
 }

@@ -6,9 +6,9 @@ This file is a CONTRACT.
 
 ## Contract Version
 
-Current Version: 1.1
+Current Version: 1.2
 
-Last Updated: 2026-06-15
+Last Updated: 2026-06-20
 
 ## Change Log
 
@@ -19,6 +19,10 @@ Initial theme.json design-system contract.
 ### 1.1
 
 Delegated detailed runtime color, contrast, and global-styles extension behavior to `color-runtime.md`. Updated the global-styles section to match the current Core-preserving mutation architecture and removed the outdated PHP-side default-preset stripping description.
+
+### 1.2
+
+Synced the template metadata registry to the live filesystem by removing unresolved template-part and custom-template entries that had no matching shipped files.
 
 ## Purpose
 
@@ -374,11 +378,9 @@ The current `templateParts` registry includes:
 - `part-index`
 - `part-home`
 - `part-search`
-- `part-sidebar-buddypress`
 - `part-sidebar-secondary`
 - `part-sidebar-tertiary`
 - `part-single`
-- `part-offcanvas`
 - `part-search-modal`
 
 ### Custom templates contract
@@ -388,7 +390,6 @@ The current `customTemplates` registry includes:
 - `no-title` for `page` and `post`
 - `blank` for `page` and `post`
 - `single-secondary` for `post`
-- `single-tertiary` for `post`
 
 ## Editor and Frontend Parity Contract
 

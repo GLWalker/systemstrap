@@ -27,7 +27,7 @@
  <div class="wp-block-column" style="flex-basis:66.66%">
 
  <!-- wp:image {"sizeSlug":"large","linkDestination":"none","className":"img-fluid wow animate__animated animate__fadeInLeft is-style-"} -->
- <figure class="wp-block-image size-large img-fluid wow animate__animated animate__fadeInLeft is-style-"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/pexels-kowalievska-1174775.jpg" alt="searching online" /></figure>
+ <figure class="wp-block-image size-large img-fluid wow animate__animated animate__fadeInLeft is-style-"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/blog-1200x800.webp" alt="searching online" /></figure>
  <!-- /wp:image -->
 
  </div>
