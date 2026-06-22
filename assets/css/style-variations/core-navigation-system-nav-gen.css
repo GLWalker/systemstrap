@@ -137,9 +137,10 @@
     gap: 0 !important;
 
     color: inherit;
-    border: var(--wp--custom--dropdown-border-width) solid var(--wp--custom--dropdown-border-color);
+    background-color: var(--wp--preset--color--base);
+    box-shadow: var(--wp--preset--shadow--dropdown-menu);
     border-radius: var(--wp--custom--dropdown-border-radius);
-    box-shadow: var(--wp--custom--dropdown-shadow);
+    border: var(--wp--custom--dropdown-border-width) solid var(--wp--custom--dropdown-border-color);
 }
 
 /* Submenu items */

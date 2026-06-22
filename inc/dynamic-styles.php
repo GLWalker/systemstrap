@@ -197,6 +197,25 @@ ul.wp-block-latest-posts.has-{$slug}-gradient-background > li {
 			}
 		}
 
+		$active_slugs = systemstrap_get_active_variation_slugs();
+		if ( isset( $active_slugs['color'] ) && 'quartz' === $active_slugs['color'] ) {
+			$css .= "
+/* Quartz Glassmorphism Chrome */
+.is-style-system-panel {
+    background-color: transparent !important;
+    background-image: var(--wp--preset--gradient--element) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(var(--wp--preset--color--border-color-rgb), 0.2) !important;
+}
+.is-style-system-panel .is-style-system-panel {
+    background-image: none !important;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+";
+		}
+
 		return $css;
 	}
 }

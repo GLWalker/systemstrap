@@ -9,17 +9,10 @@
 			"form-border-width": "2px",
 			"btn-border-color": "var(--wp--preset--color--border-color)",
 			"btn-hover-border-color": "var(--wp--preset--color--border-color)",
-			"btn-icon-border-color": "var(--wp--preset--color--border-color)",
-			"btn-icon-hover-border-color": "var(--wp--preset--color--border-color)",
 			"form-border-color": "var(--wp--preset--color--border-color)",
-			"system-ui-border-color": "var(--wp--preset--color--border-color)",
-			"btn-icon-transform": "translate(-3px, -3px)",
-			"btn-icon-hover-transform": "translate(0, 0)",
-			"shadow": "3px 3px 0 0 var(--wp--preset--color--border-color)",
-			"shadow-sm": "3px 3px 0 0 var(--wp--preset--color--border-color)",
+			"shadow": "var:preset|shadow|md",
 			"btn-transform": "translate(-3px, -3px)",
 			"btn-hover-transform": "translate(0, 0)",
-			"dropdown-shadow": "3px 3px 0 0 var(--wp--preset--color--border-color)",
 			"font-weight-nav": "500",
 			"font-weight-button": "500"
 		},
@@ -32,7 +25,7 @@
 				},
 				{
 					"name": "Medium",
-					"shadow": "0 .5rem 1rem rgba(0, 0, 0, .15)",
+					"shadow": "3px 3px 0 0 var(--wp--preset--color--border-color)",
 					"slug": "md"
 				},
 				{
@@ -46,44 +39,9 @@
 					"slug": "inset"
 				},
 				{
-					"name": "Top",
-					"shadow": "0 -1rem 1rem -1rem rgba(var(--wp--preset--color--contrast-rgb), 0.4)",
-					"slug": "top"
-				},
-				{
-					"name": "Right",
-					"shadow": "1rem 0 1rem -1rem rgba(var(--wp--preset--color--contrast-rgb), 0.4)",
-					"slug": "right"
-				},
-				{
-					"name": "Bottom",
-					"shadow": "0 1rem 1rem -1rem rgba(var(--wp--preset--color--contrast-rgb), 0.4)",
-					"slug": "bottom"
-				},
-				{
-					"name": "Left",
-					"shadow": "-1rem 0 1rem -1rem rgba(var(--wp--preset--color--contrast-rgb), 0.4)",
-					"slug": "left"
-				},
-				{
-					"name": "Top Right",
-					"shadow": "0 -1rem 1rem -1rem rgba(var(--wp--preset--color--contrast-rgb), 0.4), 1rem 0 1rem -1rem rgba(var(--wp--preset--color--contrast-rgb), 0.4)",
-					"slug": "top-right"
-				},
-				{
-					"name": "Top Bottom",
-					"shadow": "0 -1rem 1rem -1rem rgba(var(--wp--preset--color--contrast-rgb), 0.4), 0 1rem 1rem -1rem rgba(var(--wp--preset--color--contrast-rgb), 0.4)",
-					"slug": "top-bottom"
-				},
-				{
-					"name": "All Sides",
-					"shadow": "0 -1rem 1rem -1rem rgba(var(--wp--preset--color--contrast-rgb), 0.4), 1rem 0 1rem -1rem rgba(var(--wp--preset--color--contrast-rgb), 0.4), 0 1rem 1rem -1rem rgba(var(--wp--preset--color--contrast-rgb), 0.4), -1rem 0 1rem -1rem rgba(var(--wp--preset--color--contrast-rgb), 0.4)",
-					"slug": "all-sides"
-				},
-				{
-					"name": "Inset All Sides",
-					"shadow": "0 0 .625rem 0 rgba(0,0,0,0.4) inset",
-					"slug": "inset-all-sides"
+					"name": "Dropdown Menu",
+					"shadow": "3px 3px 0 0 var(--wp--preset--color--border-color)",
+					"slug": "dropdown-menu"
 				},
 				{
 					"name": "Form Focus",
@@ -108,16 +66,6 @@
 				{
 					"name": "Button Active",
 					"slug": "btn-active",
-					"shadow": "none"
-				},
-				{
-					"name": "Button Icon Resting",
-					"slug": "btn-icon-resting",
-					"shadow": "3px 3px 0 0 var(--wp--preset--color--border-color)"
-				},
-				{
-					"name": "Button Icon Hover",
-					"slug": "btn-icon-hover",
 					"shadow": "none"
 				}
 			]

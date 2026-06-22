@@ -1,0 +1,46 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "Quartz Typography",
+	"settings": {
+		"typography": {
+			"fontFamilies": [
+				{
+					"fontFamily": "system-ui, -apple-system, \"Segoe UI\", Roboto, \"Helvetica Neue\", \"Noto Sans\", \"Liberation Sans\", Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+					"name": "Body Font",
+					"slug": "body"
+				},
+				{
+					"fontFamily": "system-ui, -apple-system, \"Segoe UI\", Roboto, \"Helvetica Neue\", \"Noto Sans\", \"Liberation Sans\", Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+					"name": "Heading Font",
+					"slug": "heading"
+				},
+				{
+					"fontFamily": "system-ui, -apple-system, \"Segoe UI\", Roboto, \"Helvetica Neue\", \"Noto Sans\", \"Liberation Sans\", Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+					"name": "Navigation Font",
+					"slug": "navigation"
+				},
+				{
+					"fontFamily": "system-ui, -apple-system, \"Segoe UI\", Roboto, \"Helvetica Neue\", \"Noto Sans\", \"Liberation Sans\", Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+					"name": "Display Font",
+					"slug": "display"
+				},
+				{
+					"fontFamily": "SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\",\"Courier New\",monospace",
+					"name": "Monospace Font",
+					"slug": "monospace"
+				},
+				{
+					"fontFamily": "var(--wp--preset--font-family--navigation)",
+					"name": "Button Font",
+					"slug": "button"
+				},
+				{
+					"fontFamily": "var(--wp--preset--font-family--display)",
+					"name": "Single Title Font",
+					"slug": "single-title"
+				}
+			]
+		}
+	}
+}
