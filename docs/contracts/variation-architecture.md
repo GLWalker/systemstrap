@@ -96,6 +96,7 @@ The variation architecture is currently implemented through these files and dire
 - `functions.php`
 - `inc/enqueue-assets.php`
 - `inc/block-styles.php`
+- `inc/dynamic-styles.php`
 - `inc/dialog-renderer.php`
 - `assets/css/main-styles.css`
 - `assets/css/buddypress-blocks.css`
@@ -153,12 +154,15 @@ The current variation filesystem shape is:
 ├── theme.json
 ├── styles/
 │   ├── brite.json
+│   ├── quartz.json
 │   ├── vapor.json
 │   ├── colors/
 │   │   ├── brite.json
+│   │   ├── quartz.json
 │   │   └── vapor.json
 │   └── typography/
 │       ├── brite.json
+│       ├── quartz.json
 │       └── vapor.json
 ├── assets/css/style-variations/
 │   ├── bp-login-form-system-panel.css
@@ -217,10 +221,13 @@ SystemStrap currently has one active base global theme configuration source:
 SystemStrap currently also ships active filesystem variation JSON files in:
 
 - `styles/brite.json`
+- `styles/quartz.json`
 - `styles/vapor.json`
 - `styles/colors/brite.json`
+- `styles/colors/quartz.json`
 - `styles/colors/vapor.json`
 - `styles/typography/brite.json`
+- `styles/typography/quartz.json`
 - `styles/typography/vapor.json`
 
 These files are active runtime variation sources layered onto the base `theme.json` configuration.
@@ -419,6 +426,7 @@ These files MUST be loaded only through their explicit runtime loaders unless th
 The variation architecture currently uses these explicit CSS loading exceptions:
 
 - `inc/block-styles.php`
+- `inc/dynamic-styles.php`
     - conditionally registers `assets/css/buddypress-blocks.css` through `wp_enqueue_block_style()`
     - maps the same stylesheet to:
         - `bp/primary-nav`
@@ -753,10 +761,13 @@ SystemStrap currently supports modular global variation layering through the `st
 The current active JSON variation files are:
 
 - `styles/brite.json`
+- `styles/quartz.json`
 - `styles/vapor.json`
 - `styles/colors/brite.json`
+- `styles/colors/quartz.json`
 - `styles/colors/vapor.json`
 - `styles/typography/brite.json`
+- `styles/typography/quartz.json`
 - `styles/typography/vapor.json`
 
 Future additions to those directories MUST be documented here with exact file names and scope boundaries.

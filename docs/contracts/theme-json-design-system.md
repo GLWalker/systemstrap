@@ -18,7 +18,7 @@ Initial theme.json design-system contract.
 
 ### 1.1
 
-Delegated detailed runtime color, contrast, and global-styles extension behavior to `color-runtime.md`. Updated the global-styles section to match the current Core-preserving mutation architecture and removed the outdated PHP-side default-preset stripping description.
+Delegated detailed runtime color, contrast, and global-styles extension behavior to this contract and `variation-architecture.md`. Updated the global-styles section to match the current Core-preserving mutation architecture and removed the outdated PHP-side default-preset stripping description.
 
 ### 1.2
 
@@ -130,7 +130,7 @@ The theme currently owns these color registries:
 
 The color design system MUST be treated as theme-owned rather than default-core-owned.
 
-Detailed governance for runtime color derivation, contrast routing, `global-styles` mutation, and compatibility behavior belongs to `color-runtime.md`.
+Detailed governance for runtime color derivation, contrast routing, `global-styles` mutation, and compatibility behavior belongs to this contract and `variation-architecture.md`.
 
 ### Palette contract
 
@@ -478,7 +478,7 @@ This routine currently:
 - rewrites background utility classes to inject contrast-aware text colors for theme-owned background slugs
 - writes the modified CSS back onto the same handle
 
-Detailed governance for the color-runtime behavior of this mutation belongs to `color-runtime.md`.
+Detailed governance for the color-runtime behavior of this mutation belongs to this contract.
 
 The current background text-color rewrite contract includes:
 
@@ -615,7 +615,7 @@ Patterns MUST use the token families already present in `theme.json` when those 
 
 The theme MUST NOT introduce any of the following regressions into the covered design-system layer:
 
-- changing the theme-owned color settings in `theme.json` without updating `color-runtime.md` when runtime color behavior is affected
+- changing the theme-owned color settings in `theme.json` without updating this contract when runtime color behavior is affected
 - renaming preset slugs or custom-token families without updating their runtime consumers and this contract
 - bypassing `theme.json` tokens in favor of repeated hard-coded literals where an existing equivalent token family already exists
 - changing global-styles interception order in a way that causes WordPress output to override `strap-main-styles` unexpectedly
