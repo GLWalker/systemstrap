@@ -1,0 +1,112 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "Lux Typography",
+	"settings": {
+		"typography": {
+			"fontFamilies": [
+				{
+					"fontFamily": "\"Nunito Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+					"name": "Body Font",
+					"slug": "body",
+					"fontFace": [
+						{
+							"fontFamily": "Nunito Sans",
+							"fontStyle": "normal",
+							"fontWeight": "200 800",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/nunito/nunito-sans-variable.woff2"
+							]
+						}
+					]
+				},
+				{
+					"fontFamily": "\"Nunito Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+					"name": "Heading Font",
+					"slug": "heading",
+					"fontFace": [
+						{
+							"fontFamily": "Nunito Sans",
+							"fontStyle": "normal",
+							"fontWeight": "200 800",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/nunito/nunito-sans-variable.woff2"
+							]
+						}
+					]
+				},
+				{
+					"fontFamily": "\"Nunito Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+					"name": "Button Font",
+					"slug": "button",
+					"fontFace": [
+						{
+							"fontFamily": "Nunito Sans",
+							"fontStyle": "normal",
+							"fontWeight": "200 800",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/nunito/nunito-sans-variable.woff2"
+							]
+						}
+					]
+				},
+				{
+					"fontFamily": "\"Nunito Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+					"name": "Navigation Font",
+					"slug": "navigation",
+					"fontFace": [
+						{
+							"fontFamily": "Nunito Sans",
+							"fontStyle": "normal",
+							"fontWeight": "200 800",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/nunito/nunito-sans-variable.woff2"
+							]
+						}
+					]
+				},
+				{
+					"fontFamily": "\"Nunito Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+					"name": "Display Font",
+					"slug": "display",
+					"fontFace": [
+						{
+							"fontFamily": "Nunito Sans",
+							"fontStyle": "normal",
+							"fontWeight": "200 800",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/nunito/nunito-sans-variable.woff2"
+							]
+						}
+					]
+				},
+				{
+					"fontFamily": "\"Nunito Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+					"name": "Single Title Font",
+					"slug": "single-title",
+					"fontFace": [
+						{
+							"fontFamily": "Nunito Sans",
+							"fontStyle": "normal",
+							"fontWeight": "200 800",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/nunito/nunito-sans-variable.woff2"
+							]
+						}
+					]
+				},
+				{
+					"fontFamily": "SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+					"name": "Monospace Font",
+					"slug": "monospace"
+				}
+			]
+		}
+	}
+}
