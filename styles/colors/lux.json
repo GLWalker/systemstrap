@@ -18,7 +18,7 @@
 						"#55595c",
 						"#ffffff"
 					],
-					"name": "Contrast to Base",
+					"name": "Contast to Base",
 					"slug": "duotone-11"
 				},
 				{
@@ -353,7 +353,8 @@
 	},
 	"styles": {
 		"color": {
-			"gradient": "var:preset|gradient|body"
+			"gradient": "var:preset|gradient|body",
+			"text": "var:preset|color|contrast"
 		}
 	}
 }
