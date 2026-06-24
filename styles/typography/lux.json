@@ -22,28 +22,17 @@
 					]
 				},
 				{
-					"fontFamily": "\"Nunito Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+					"fontFamily": "var(--wp--preset--font-family--body)",
 					"name": "Heading Font",
-					"slug": "heading",
-					"fontFace": [
-						{
-							"fontFamily": "Nunito Sans",
-							"fontStyle": "normal",
-							"fontWeight": "200 800",
-							"fontDisplay": "swap",
-							"src": [
-								"file:./assets/fonts/nunito/nunito-sans-variable.woff2"
-							]
-						}
-					]
+					"slug": "heading"
 				},
 				{
-					"fontFamily": "var(--wp--preset--font-family--heading)",
+					"fontFamily": "var(--wp--preset--font-family--body)",
 					"name": "Navigation Font",
 					"slug": "navigation"
 				},
 				{
-					"fontFamily": "var(--wp--preset--font-family--heading)",
+					"fontFamily": "var(--wp--preset--font-family--body)",
 					"name": "Display Font",
 					"slug": "display"
 				},
@@ -53,12 +42,12 @@
 					"slug": "monospace"
 				},
 				{
-					"fontFamily": "var(--wp--preset--font-family--navigation)",
+					"fontFamily": "var(--wp--preset--font-family--body)",
 					"name": "Button Font",
 					"slug": "button"
 				},
 				{
-					"fontFamily": "var(--wp--preset--font-family--display)",
+					"fontFamily": "var(--wp--preset--font-family--body)",
 					"name": "Single Title Font",
 					"slug": "single-title"
 				}
