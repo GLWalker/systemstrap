@@ -13,7 +13,7 @@
 			"form-border-radius": "0",
 			"dropdown-border-radius": "0",
 			"shadow": "var:preset|shadow|md",
-			"system-ui-surface": "#20374c",
+			"system-ui-surface": "#4e5d6c",
 			"system-ui-surface-nested": "none",
 			"system-ui-background-image": "var:preset|gradient|element",
 			"system-ui-border-color": "var:preset|color|border-color",

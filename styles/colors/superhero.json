@@ -162,22 +162,22 @@
 					"slug": "contrast"
 				},
 				{
-					"color": "#343a40",
+					"color": "#4e5d6c",
 					"name": "Secondary Body BG",
 					"slug": "secondary-bg"
 				},
 				{
-					"color": "#959ea7",
+					"color": "#ffffff",
 					"name": "Secondary Body Contrast",
 					"slug": "secondary-color"
 				},
 				{
-					"color": "#2b3035",
+					"color": "#20374c",
 					"name": "Tertiary Body BG",
 					"slug": "tertiary-bg"
 				},
 				{
-					"color": "#868e96",
+					"color": "#ffffff",
 					"name": "Tertiary Body Contrast",
 					"slug": "tertiary-color"
 				},
@@ -260,7 +260,7 @@
 				},
 				{
 					"slug": "body",
-					"gradient": "linear-gradient(135deg, var(--wp--preset--color--secondary-bg) 0%, var(--wp--preset--color--tertiary-bg) 100%)",
+					"gradient": "linear-gradient(135deg, var(--wp--preset--color--base) 0%, #08141e 100%)",
 					"name": "Body Background"
 				},
 				{
