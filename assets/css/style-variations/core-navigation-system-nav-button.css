@@ -178,6 +178,7 @@
 	background-color: var(--wp--preset--color--base);
 	box-shadow: var(--wp--preset--shadow--dropdown-menu);
 	border-radius: var(--wp--custom--dropdown-border-radius);
+	z-index: 1000 !important;
 }
 
 /* Invisible bridge to prevent hover state from closing when moving mouse over the gap */
@@ -235,7 +236,7 @@
 
 /* Mobile/offcanvas */
 .wp-block-navigation.is-style-system-nav-button .wp-block-navigation__responsive-dialog {
-	background-color: var(--system-ui-surface, #fff);
+	background-color: var(--wp--custom--system-ui-surface, #fff);
 	border-radius: 0;
 	box-shadow: var(--wp--custom--shadow);
 }
@@ -408,3 +409,4 @@
 .wp-block-navigation.is-style-system-nav-button.has-dark-background-color .wp-block-navigation__responsive-container-content > .wp-block-navigation__container > .wp-block-navigation-item:hover { 
     background-color: color-mix(in srgb, var(--wp--preset--color--dark) 85%, black) !important; 
 }
+

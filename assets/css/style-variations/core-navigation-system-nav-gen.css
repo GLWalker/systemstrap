@@ -141,6 +141,7 @@
     box-shadow: var(--wp--preset--shadow--dropdown-menu);
     border-radius: var(--wp--custom--dropdown-border-radius);
     border: var(--wp--custom--dropdown-border-width) solid var(--wp--custom--dropdown-border-color);
+    z-index: 1000 !important;
 }
 
 /* Submenu items */
@@ -170,7 +171,7 @@
 
 /* Mobile/offcanvas */
 .wp-block-navigation.is-style-system-nav-gen .wp-block-navigation__responsive-dialog {
-    background-color: var(--system-ui-surface, #fff);
+    background-color: var(--wp--custom--system-ui-surface, #fff);
     border-radius: 0;
 }
 
