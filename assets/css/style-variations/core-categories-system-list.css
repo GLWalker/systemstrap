@@ -54,20 +54,22 @@
     padding-left: calc(var(--wp--preset--spacing--30) + 7.5rem);
 }
 
-/* Hover States on Anchor */
-.wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush):not(.is-not-action) li:hover:not(:has(li:hover)) > a {
+/* Hover States */
+.wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush):not(.is-not-action) li:not(:has(ul)):not(:has(ol)):hover {
+    background: var(--wp--custom--system-ui-list-hover-bg);
+}
+.wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush):not(.is-not-action) li:has(ul, ol):hover:not(:has(li:hover)) > a {
     background: var(--wp--custom--system-ui-list-hover-bg);
 }
 
-/* Hover States on Badge */
-.wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush):not(.is-not-action) li:hover:not(:has(li:hover)) > .system-badge {
-    background-color: var(--wp--custom--system-ui-list-hover-bg);
+/* Active State */
+.wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush) li:not(:has(ul)):not(:has(ol)).current-cat,
+.wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush) li:not(:has(ul)):not(:has(ol)):has(> a[aria-current="page"]) {
+    background: var(--wp--custom--system-ui-list-hover-bg);
 }
-
-/* Active State on Anchor */
-.wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush) li.current-cat > a,
-.wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush) li.current-cat-parent > a,
-.wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush) li:has(> a[aria-current="page"]) > a {
+.wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush) li:has(ul, ol).current-cat > a,
+.wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush) li:has(ul, ol).current-cat-parent > a,
+.wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush) li:has(ul, ol):has(> a[aria-current="page"]) > a {
     background: var(--wp--custom--system-ui-list-hover-bg);
 }
 
@@ -113,11 +115,11 @@
     background: transparent;
     border-color: var(--wp--custom--system-ui-border-color);
 }
-.wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush).has-background:not(.is-not-action) li:hover:not(:has(li:hover)) > a {
+.wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush).has-background:not(.is-not-action) li:not(:has(ul)):not(:has(ol)):hover {
     background: var(--wp--custom--system-ui-list-hover-bg);
 }
-.wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush).has-background:not(.is-not-action) li:hover:not(:has(li:hover)) > .system-badge {
-    background-color: var(--wp--custom--system-ui-list-hover-bg);
+.wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush).has-background:not(.is-not-action) li:has(ul, ol):hover:not(:has(li:hover)) > a {
+    background: var(--wp--custom--system-ui-list-hover-bg);
 }
 
 
@@ -127,15 +129,19 @@
     background: var(--wp--custom--system-ui-surface-nested, transparent);
     background-image: var(--wp--custom--system-ui-background-image-nested, none);
 }
-.has-background > .wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background):not(.is-not-action) li:hover:not(:has(li:hover)) > a {
+.has-background > .wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background):not(.is-not-action) li:not(:has(ul)):not(:has(ol)):hover {
     background: var(--wp--custom--system-ui-list-hover-bg);
 }
-.has-background > .wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background):not(.is-not-action) li:hover:not(:has(li:hover)) > .system-badge {
-    background-color: var(--wp--custom--system-ui-list-hover-bg);
+.has-background > .wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background):not(.is-not-action) li:has(ul, ol):hover:not(:has(li:hover)) > a {
+    background: var(--wp--custom--system-ui-list-hover-bg);
 }
-.has-background > .wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) li.current-cat > a,
-.has-background > .wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) li.current-cat-parent > a,
-.has-background > .wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) li:has(> a[aria-current="page"]) > a {
+.has-background > .wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) li:not(:has(ul)):not(:has(ol)).current-cat,
+.has-background > .wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) li:not(:has(ul)):not(:has(ol)):has(> a[aria-current="page"]) {
+    background: var(--wp--custom--system-ui-list-hover-bg);
+}
+.has-background > .wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) li:has(ul, ol).current-cat > a,
+.has-background > .wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) li:has(ul, ol).current-cat-parent > a,
+.has-background > .wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) li:has(ul, ol):has(> a[aria-current="page"]) > a {
     background: var(--wp--custom--system-ui-list-hover-bg);
 }
 

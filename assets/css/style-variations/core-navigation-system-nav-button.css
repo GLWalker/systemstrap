@@ -185,10 +185,10 @@
 .wp-block-navigation.is-style-system-nav-button .wp-block-navigation__submenu-container::before {
     content: "";
     position: absolute;
-    top: calc(var(--wp--preset--spacing--20, 20px) * -1);
+    top: calc((var(--wp--preset--spacing--20, 20px) + 10px) * -1);
     left: 0;
     right: 0;
-    height: var(--wp--preset--spacing--20, 20px);
+    height: calc(var(--wp--preset--spacing--20, 20px) + 12px);
     background: transparent;
     z-index: 1;
 }
@@ -201,7 +201,8 @@
 /* Move the invisible bridge to the bottom when dropping UP */
 .wp-block-navigation.is-style-system-nav-button .wp-block-navigation-item.has-child .wp-block-navigation__submenu-container.is-align-top::before {
     top: auto;
-    bottom: calc(var(--wp--preset--spacing--20, 20px) * -1);
+    bottom: calc((var(--wp--preset--spacing--20, 20px) + 10px) * -1);
+    height: calc(var(--wp--preset--spacing--20, 20px) + 12px);
 }
 
 
