@@ -1,0 +1,46 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "Cerulean Typography",
+	"settings": {
+		"typography": {
+			"fontFamilies": [
+				{
+					"fontFamily": "system-ui, -apple-system, \"Segoe UI\", Roboto, \"Helvetica Neue\", \"Noto Sans\", \"Liberation Sans\", Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+					"name": "Body Font",
+					"slug": "body"
+				},
+				{
+					"fontFamily": "var(--wp--preset--font-family--body)",
+					"name": "Heading Font",
+					"slug": "heading"
+				},
+				{
+					"fontFamily": "var(--wp--preset--font-family--body)",
+					"name": "Navigation Font",
+					"slug": "navigation"
+				},
+				{
+					"fontFamily": "var(--wp--preset--font-family--heading)",
+					"name": "Display Font",
+					"slug": "display"
+				},
+				{
+					"fontFamily": "SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+					"name": "Monospace Font",
+					"slug": "monospace"
+				},
+				{
+					"fontFamily": "var(--wp--preset--font-family--navigation)",
+					"name": "Button Font",
+					"slug": "button"
+				},
+				{
+					"fontFamily": "var(--wp--preset--font-family--display)",
+					"name": "Single Title Font",
+					"slug": "single-title"
+				}
+			]
+		}
+	}
+}
