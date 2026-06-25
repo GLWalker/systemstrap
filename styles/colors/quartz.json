@@ -11,7 +11,7 @@
 					"slug": "base"
 				},
 				{
-					"color": "#fff",
+					"color": "#ffffff",
 					"name": "Contrast",
 					"slug": "contrast"
 				},
@@ -71,7 +71,7 @@
 					"slug": "danger"
 				},
 				{
-					"color": "#e9e9e8",
+					"color": "#eeeeed",
 					"name": "Light",
 					"slug": "light"
 				},
@@ -105,14 +105,14 @@
 				{
 					"colors": [
 						"#686dc3",
-						"#fff"
+						"#ffffff"
 					],
 					"name": "Base to Contrast",
 					"slug": "duotone-1"
 				},
 				{
 					"colors": [
-						"#fff",
+						"#ffffff",
 						"#686dc3"
 					],
 					"name": "Contast to Base",
@@ -232,7 +232,7 @@
 				},
 				{
 					"colors": [
-						"#e9e9e8",
+						"#eeeeed",
 						"#212529"
 					],
 					"name": "Light to Dark",
@@ -241,7 +241,7 @@
 				{
 					"colors": [
 						"#212529",
-						"#e9e9e8"
+						"#eeeeed"
 					],
 					"name": "Dark to Light",
 					"slug": "duotone-10"
@@ -250,7 +250,7 @@
 			"gradients": [
 				{
 					"slug": "gradient",
-					"gradient": "linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0))",
+					"gradient": "linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%)",
 					"name": "Gradient"
 				},
 				{

@@ -1,15 +1,31 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
 	"version": 3,
-	"title": "Quartz",
+	"title": "Quartz Layout",
 	"settings": {
 		"custom": {
-			"border-radius": ".375rem",
-			"border-radius-sm": ".25rem",
-			"border-radius-lg": ".5rem",
-			"btn-border-radius": ".375rem",
-			"form-border-radius": ".375rem",
-			"shadow": "var:preset|shadow|md"
+			"border-radius": "0.5rem",
+			"border-radius-sm": "0.6rem",
+			"border-radius-lg": "0.7rem",
+			"border-radius-xl": "1rem",
+			"border-radius-pill": "50rem",
+			"btn-border-radius": "0.5rem",
+			"form-border-radius": "0.5rem",
+			"dropdown-border-radius": "0.5rem",
+			"shadow": "var:preset|shadow|md",
+			"system-ui-surface": "rgba(var(--wp--preset--color--contrast-rgb), 0.3)",
+			"system-ui-surface-nested": "none",
+			"system-ui-surface-banner": "none",
+			"system-ui-background-image": "var:preset|gradient|element",
+			"system-ui-background-image-nested": "none",
+			"system-ui-backdrop-filter": "blur(5px)",
+			"system-ui-border-color": "rgba(var(--wp--preset--color--contrast-rgb), 0.2)",
+			"font-weight-light": "300",
+			"font-weight-body": "400",
+			"font-weight-button": "400",
+			"font-weight-heading": "700",
+			"font-weight-nav": "400",
+			"font-weight-bold": "700"
 		},
 		"shadow": {
 			"presets": [
@@ -20,7 +36,7 @@
 				},
 				{
 					"name": "Medium",
-					"shadow": "1px 3px 24px -1px rgba(0, 0, 0, 0.15)",
+					"shadow": "inset 1px 1px rgba(255, 255, 255, 0.2), inset -1px -1px rgba(255, 255, 255, 0.1), 1px 3px 24px -1px rgba(0, 0, 0, 0.15)",
 					"slug": "md"
 				},
 				{
@@ -35,17 +51,17 @@
 				},
 				{
 					"name": "Dropdown Menu",
-					"shadow": "0 1rem 3rem rgba(0, 0, 0, 0.175)",
+					"shadow": "inset 1px 1px rgba(255, 255, 255, 0.2), inset -1px -1px rgba(255, 255, 255, 0.1), 1px 3px 24px -1px rgba(0, 0, 0, 0.15)",
 					"slug": "dropdown-menu"
 				},
 				{
 					"name": "Form Focus",
 					"slug": "form-focus",
-					"shadow": "var(--wp--preset--shadow--form-control-shadow, none), 0 0 0 .25rem rgba(var(--wp--preset--color--primary-shadow-rgb), 0.5)"
+					"shadow": "var(--wp--preset--shadow--form-control-shadow, none), 0 0 0 .25rem rgba(var(--wp--preset--color--primary-rgb), 0.25)"
 				},
 				{
 					"name": "Form Shadow",
-					"shadow": "inset 0 .0625rem .125rem rgba(0, 0, 0, 0.075)",
+					"shadow": "inset 0 1px 2px rgba(0, 0, 0, 0.075)",
 					"slug": "form-control-shadow"
 				},
 				{
