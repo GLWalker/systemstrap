@@ -16,7 +16,7 @@
 			"system-ui-surface": "#3a3f44",
 			"system-ui-surface-nested": "none",
 			"system-ui-background-image": "var:preset|gradient|element",
-			"system-ui-border-color": "#52575c",
+			"system-ui-border-color": "var:preset|color|border-color",
 			"font-weight-light": "300",
 			"font-weight-body": "400",
 			"font-weight-button": "400",
