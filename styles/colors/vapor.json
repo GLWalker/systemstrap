@@ -4,6 +4,103 @@
 	"title": "Vapor Palette",
 	"settings": {
 		"color": {
+			"palette": [
+				{
+					"color": "#1a0933",
+					"name": "Base/Body",
+					"slug": "base"
+				},
+				{
+					"color": "#32fbe2",
+					"name": "Contrast",
+					"slug": "contrast"
+				},
+				{
+					"color": "#170229",
+					"name": "Secondary Body BG",
+					"slug": "secondary-bg"
+				},
+				{
+					"color": "#ea39b8",
+					"name": "Secondary Body Contrast",
+					"slug": "secondary-color"
+				},
+				{
+					"color": "#261e35",
+					"name": "Tertiary Body BG",
+					"slug": "tertiary-bg"
+				},
+				{
+					"color": "#44d9e8",
+					"name": "Tertiary Body Contrast",
+					"slug": "tertiary-color"
+				},
+				{
+					"color": "#495057",
+					"name": "Border Color",
+					"slug": "border-color"
+				},
+				{
+					"color": "#6f42c1",
+					"name": "Primary",
+					"slug": "primary"
+				},
+				{
+					"color": "#ea39b9",
+					"name": "Secondary",
+					"slug": "secondary"
+				},
+				{
+					"color": "#3cf281",
+					"name": "Success",
+					"slug": "success"
+				},
+				{
+					"color": "#1ba2f6",
+					"name": "Info",
+					"slug": "info"
+				},
+				{
+					"color": "#ffc107",
+					"name": "Warning",
+					"slug": "warning"
+				},
+				{
+					"color": "#e44c55",
+					"name": "Danger",
+					"slug": "danger"
+				},
+				{
+					"color": "#44d9e9",
+					"name": "Light",
+					"slug": "light"
+				},
+				{
+					"color": "#17022a",
+					"name": "Dark",
+					"slug": "dark"
+				},
+				{
+					"color": "transparent",
+					"name": "Transparent",
+					"slug": "transparent"
+				},
+				{
+					"color": "currentcolor",
+					"name": "Current",
+					"slug": "current"
+				},
+				{
+					"color": "color-mix(in srgb, currentColor 40%, transparent)",
+					"name": "Current Mix",
+					"slug": "current-mix"
+				},
+				{
+					"color": "inherit",
+					"name": "Inherit",
+					"slug": "inherit"
+				}
+			],
 			"duotone": [
 				{
 					"colors": [
@@ -150,107 +247,10 @@
 					"slug": "duotone-10"
 				}
 			],
-			"palette": [
-				{
-					"color": "#1a0933",
-					"name": "Base/Body",
-					"slug": "base"
-				},
-				{
-					"color": "#32fbe2",
-					"name": "Contrast",
-					"slug": "contrast"
-				},
-				{
-					"color": "#170229",
-					"name": "Secondary Body BG",
-					"slug": "secondary-bg"
-				},
-				{
-					"color": "#ea39b8",
-					"name": "Secondary Body Contrast",
-					"slug": "secondary-color"
-				},
-				{
-					"color": "#261e35",
-					"name": "Tertiary Body BG",
-					"slug": "tertiary-bg"
-				},
-				{
-					"color": "#44d9e8",
-					"name": "Tertiary Body Contrast",
-					"slug": "tertiary-color"
-				},
-				{
-					"color": "#495057",
-					"name": "Border Color",
-					"slug": "border-color"
-				},
-				{
-					"color": "#6f42c1",
-					"name": "Primary",
-					"slug": "primary"
-				},
-				{
-					"color": "#ea39b9",
-					"name": "Secondary",
-					"slug": "secondary"
-				},
-				{
-					"color": "#3cf281",
-					"name": "Success",
-					"slug": "success"
-				},
-				{
-					"color": "#1ba2f6",
-					"name": "Info",
-					"slug": "info"
-				},
-				{
-					"color": "#ffc107",
-					"name": "Warning",
-					"slug": "warning"
-				},
-				{
-					"color": "#e44c55",
-					"name": "Danger",
-					"slug": "danger"
-				},
-				{
-					"color": "#44d9e9",
-					"name": "Light",
-					"slug": "light"
-				},
-				{
-					"color": "#17022a",
-					"name": "Dark",
-					"slug": "dark"
-				},
-				{
-					"color": "transparent",
-					"name": "Transparent",
-					"slug": "transparent"
-				},
-				{
-					"color": "currentcolor",
-					"name": "Current",
-					"slug": "current"
-				},
-				{
-					"color": "color-mix(in srgb, currentColor 40%, transparent)",
-					"name": "Current Mix",
-					"slug": "current-mix"
-				},
-				{
-					"color": "inherit",
-					"name": "Inherit",
-					"slug": "inherit"
-				}
-			],
 			"gradients": [
 				{
 					"slug": "gradient",
-					"gradient": "linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0.1) 100%)",
+					"gradient": "linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%)",
 					"name": "Gradient"
 				},
 				{
@@ -265,7 +265,7 @@
 				},
 				{
 					"slug": "element",
-					"gradient": "linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 100%)",
+					"gradient": "linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%)",
 					"name": "Element Background"
 				},
 				{
@@ -353,7 +353,8 @@
 	},
 	"styles": {
 		"color": {
-			"gradient": "var:preset|gradient|body"
+			"gradient": "var:preset|gradient|body",
+			"text": "var:preset|color|contrast"
 		}
 	}
 }

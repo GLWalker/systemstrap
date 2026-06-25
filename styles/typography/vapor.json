@@ -6,7 +6,7 @@
 		"typography": {
 			"fontFamilies": [
 				{
-					"fontFamily": "Lato, system-ui, -apple-system, \"Segoe UI\", Roboto, \"Helvetica Neue\", \"Noto Sans\", \"Liberation Sans\", Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+					"fontFamily": "Lato, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
 					"name": "Body Font",
 					"slug": "body",
 					"fontFace": [
@@ -14,6 +14,7 @@
 							"fontFamily": "Lato",
 							"fontStyle": "normal",
 							"fontWeight": "400",
+							"fontDisplay": "swap",
 							"src": [
 								"file:./assets/fonts/lato/lato-v24-latin-regular.woff2",
 								"file:./assets/fonts/lato/lato-v24-latin-regular.woff"
@@ -23,6 +24,7 @@
 							"fontFamily": "Lato",
 							"fontStyle": "italic",
 							"fontWeight": "400",
+							"fontDisplay": "swap",
 							"src": [
 								"file:./assets/fonts/lato/lato-v24-latin-italic.woff2",
 								"file:./assets/fonts/lato/lato-v24-latin-italic.woff"
@@ -32,6 +34,7 @@
 							"fontFamily": "Lato",
 							"fontStyle": "normal",
 							"fontWeight": "700",
+							"fontDisplay": "swap",
 							"src": [
 								"file:./assets/fonts/lato/lato-v24-latin-700.woff2",
 								"file:./assets/fonts/lato/lato-v24-latin-700.woff"
@@ -41,6 +44,7 @@
 							"fontFamily": "Lato",
 							"fontStyle": "italic",
 							"fontWeight": "700",
+							"fontDisplay": "swap",
 							"src": [
 								"file:./assets/fonts/lato/lato-v24-latin-700italic.woff2",
 								"file:./assets/fonts/lato/lato-v24-latin-700italic.woff"
@@ -49,73 +53,24 @@
 					]
 				},
 				{
-					"fontFamily": "Ubuntu, system-ui, -apple-system, \"Segoe UI\", Roboto, \"Helvetica Neue\", \"Noto Sans\", \"Liberation Sans\", Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+					"fontFamily": "var(--wp--preset--font-family--body)",
 					"name": "Heading Font",
-					"slug": "heading",
-					"fontFace": [
-						{
-							"fontFamily": "Ubuntu",
-							"fontStyle": "normal",
-							"fontWeight": "300",
-							"src": [
-								"file:./assets/fonts/ubuntu/ubuntu-v20-latin-300.woff2",
-								"file:./assets/fonts/ubuntu/ubuntu-v20-latin-300.woff"
-							]
-						},
-						{
-							"fontFamily": "Ubuntu",
-							"fontStyle": "normal",
-							"fontWeight": "400",
-							"src": [
-								"file:./assets/fonts/ubuntu/ubuntu-v20-latin-regular.woff2",
-								"file:./assets/fonts/ubuntu/ubuntu-v20-latin-regular.woff"
-							]
-						},
-						{
-							"fontFamily": "Ubuntu",
-							"fontStyle": "normal",
-							"fontWeight": "500",
-							"src": [
-								"file:./assets/fonts/ubuntu/ubuntu-v20-latin-500.woff2",
-								"file:./assets/fonts/ubuntu/ubuntu-v20-latin-500.woff"
-							]
-						},
-						{
-							"fontFamily": "Ubuntu",
-							"fontStyle": "normal",
-							"fontWeight": "700",
-							"src": [
-								"file:./assets/fonts/ubuntu/ubuntu-v20-latin-700.woff2",
-								"file:./assets/fonts/ubuntu/ubuntu-v20-latin-700.woff"
-							]
-						}
-					]
+					"slug": "heading"
 				},
 				{
-					"fontFamily": "SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\",\"Courier New\",monospace",
-					"name": "Monospace Font",
-					"slug": "monospace"
-				},
-				{
-					"fontFamily": "var(--wp--preset--font-family--heading)",
+					"fontFamily": "var(--wp--preset--font-family--body)",
 					"name": "Navigation Font",
 					"slug": "navigation"
 				},
 				{
-					"fontFamily": "Monoton, system-ui, -apple-system, \"Segoe UI\", Roboto, \"Helvetica Neue\", \"Noto Sans\", \"Liberation Sans\", Arial, sans-serif",
+					"fontFamily": "var(--wp--preset--font-family--body)",
 					"name": "Display Font",
-					"slug": "display",
-					"fontFace": [
-						{
-							"fontFamily": "Monoton",
-							"fontStyle": "normal",
-							"fontWeight": "400",
-							"src": [
-								"file:./assets/fonts/monoton/monoton-v19-latin-regular.woff2",
-								"file:./assets/fonts/monoton/monoton-v19-latin-regular.woff"
-							]
-						}
-					]
+					"slug": "display"
+				},
+				{
+					"fontFamily": "SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+					"name": "Monospace Font",
+					"slug": "monospace"
 				},
 				{
 					"fontFamily": "var(--wp--preset--font-family--navigation)",
