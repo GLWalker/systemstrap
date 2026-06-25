@@ -170,7 +170,7 @@
 	max-width: 200px !important;
 
     /* Space dropdown away from nav item */
-    margin-top: var(--wp--preset--spacing--20, 20px) !important;
+    margin-top: var(--wp--preset--spacing--30, 30px) !important;
 
 	padding: var(--wp--preset--spacing--10, 0.5rem) 0 !important;
 	gap: 0 !important;
@@ -185,24 +185,24 @@
 .wp-block-navigation.is-style-system-nav-button .wp-block-navigation__submenu-container::before {
     content: "";
     position: absolute;
-    top: calc((var(--wp--preset--spacing--20, 20px) + 10px) * -1);
-    left: 0;
-    right: 0;
-    height: calc(var(--wp--preset--spacing--20, 20px) + 12px);
+    top: calc((var(--wp--preset--spacing--30, 30px) + 10px) * -1);
+    left: -20px;
+    right: -20px;
+    height: calc(var(--wp--preset--spacing--30, 30px) + 12px);
     background: transparent;
     z-index: 1;
 }
 
-/* Ensure boundary-flipped top gap is exactly 20px */
+/* Ensure boundary-flipped top gap is exactly 30px */
 .wp-block-navigation.is-style-system-nav-button .wp-block-navigation-item.has-child .wp-block-navigation__submenu-container.is-align-top {
-    margin-bottom: var(--wp--preset--spacing--20, 20px) !important;
+    margin-bottom: var(--wp--preset--spacing--30, 30px) !important;
 }
 
 /* Move the invisible bridge to the bottom when dropping UP */
 .wp-block-navigation.is-style-system-nav-button .wp-block-navigation-item.has-child .wp-block-navigation__submenu-container.is-align-top::before {
     top: auto;
-    bottom: calc((var(--wp--preset--spacing--20, 20px) + 10px) * -1);
-    height: calc(var(--wp--preset--spacing--20, 20px) + 12px);
+    bottom: calc((var(--wp--preset--spacing--30, 30px) + 10px) * -1);
+    height: calc(var(--wp--preset--spacing--30, 30px) + 12px);
 }
 
 

@@ -19,22 +19,24 @@
 
 /* ALL LIs (including nested) */
 .wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush) li {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
+    position: relative;
     list-style-type: none;
     margin: 0;
     padding: 0;
-    
 }
 
 /* Anchor tags inside LIs */
 .wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush) li > a {
+    grid-column: 1;
     padding: var(--wp--preset--spacing--20);
-    flex-grow: 1;
     text-decoration: none;
     color: inherit;
     transition: background-color 0.15s ease-in-out;
+    position: relative;
+    z-index: 1;
 }
 
 /* Recursive Indentation Levels */
@@ -55,26 +57,36 @@
 }
 
 /* Hover States */
-.wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush):not(.is-not-action) li:not(:has(ul)):not(:has(ol)):hover {
-    background: var(--wp--custom--system-ui-list-hover-bg);
-}
-.wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush):not(.is-not-action) li:has(ul, ol):hover:not(:has(li:hover)) > a {
-    background: var(--wp--custom--system-ui-list-hover-bg);
+.wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush):not(.is-not-action) li:hover:not(:has(li:hover))::before {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    height: calc(1lh + (var(--wp--preset--spacing--20) * 2));
+    background-color: var(--wp--custom--system-ui-list-hover-bg) !important;
+    background-image: none !important;
+    pointer-events: none;
+    z-index: 0;
 }
 
 /* Active State */
 .wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush) li:not(:has(ul)):not(:has(ol)).current-cat,
 .wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush) li:not(:has(ul)):not(:has(ol)):has(> a[aria-current="page"]) {
-    background: var(--wp--custom--system-ui-list-hover-bg);
+    background-color: var(--wp--custom--system-ui-list-hover-bg) !important;
+    background-image: none !important;
 }
 .wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush) li:has(ul, ol).current-cat > a,
 .wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush) li:has(ul, ol).current-cat-parent > a,
 .wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush) li:has(ul, ol):has(> a[aria-current="page"]) > a {
-    background: var(--wp--custom--system-ui-list-hover-bg);
+    background-color: var(--wp--custom--system-ui-list-hover-bg) !important;
+    background-image: none !important;
 }
 
 /* System Badge Styling */
 .wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush) li > .system-badge {
+    grid-column: 2;
+    position: relative;
+    z-index: 1;
     display: inline-block;
     padding: var(--wp--custom--badge-padding-y) var(--wp--custom--badge-padding-x);
     font-size: var(--wp--custom--badge-font-size);
@@ -93,7 +105,7 @@
 
 /* Nested ULs (Kill SystemPress bleeds) */
 .wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush) li > ul {
-    flex-basis: 100%;
+    grid-column: 1 / -1;
     margin: 0 !important;
     padding: 0 !important;
     display: flex;
@@ -115,11 +127,16 @@
     background: transparent;
     border-color: var(--wp--custom--system-ui-border-color);
 }
-.wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush).has-background:not(.is-not-action) li:not(:has(ul)):not(:has(ol)):hover {
-    background: var(--wp--custom--system-ui-list-hover-bg);
-}
-.wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush).has-background:not(.is-not-action) li:has(ul, ol):hover:not(:has(li:hover)) > a {
-    background: var(--wp--custom--system-ui-list-hover-bg);
+.wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush).has-background:not(.is-not-action) li:hover:not(:has(li:hover))::before {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    height: calc(1lh + (var(--wp--preset--spacing--20) * 2));
+    background-color: var(--wp--custom--system-ui-list-hover-bg) !important;
+    background-image: none !important;
+    pointer-events: none;
+    z-index: 0;
 }
 
 
@@ -129,20 +146,27 @@
     background: var(--wp--custom--system-ui-surface-nested, transparent);
     background-image: var(--wp--custom--system-ui-background-image-nested, none);
 }
-.has-background > .wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background):not(.is-not-action) li:not(:has(ul)):not(:has(ol)):hover {
-    background: var(--wp--custom--system-ui-list-hover-bg);
-}
-.has-background > .wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background):not(.is-not-action) li:has(ul, ol):hover:not(:has(li:hover)) > a {
-    background: var(--wp--custom--system-ui-list-hover-bg);
+.has-background > .wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background):not(.is-not-action) li:hover:not(:has(li:hover))::before {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    height: calc(1lh + (var(--wp--preset--spacing--20) * 2));
+    background-color: var(--wp--custom--system-ui-list-hover-bg) !important;
+    background-image: none !important;
+    pointer-events: none;
+    z-index: 0;
 }
 .has-background > .wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) li:not(:has(ul)):not(:has(ol)).current-cat,
 .has-background > .wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) li:not(:has(ul)):not(:has(ol)):has(> a[aria-current="page"]) {
-    background: var(--wp--custom--system-ui-list-hover-bg);
+    background-color: var(--wp--custom--system-ui-list-hover-bg) !important;
+    background-image: none !important;
 }
 .has-background > .wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) li:has(ul, ol).current-cat > a,
 .has-background > .wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) li:has(ul, ol).current-cat-parent > a,
 .has-background > .wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) li:has(ul, ol):has(> a[aria-current="page"]) > a {
-    background: var(--wp--custom--system-ui-list-hover-bg);
+    background-color: var(--wp--custom--system-ui-list-hover-bg) !important;
+    background-image: none !important;
 }
 
 

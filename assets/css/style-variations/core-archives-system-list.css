@@ -55,21 +55,16 @@
 }
 
 /* Hover States */
-.wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush):not(.is-not-action) li:not(:has(ul)):not(:has(ol)):hover {
-    background: var(--wp--custom--system-ui-list-hover-bg);
-}
-.wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush):not(.is-not-action) li:has(ul, ol):hover:not(:has(li:hover)) > a {
-    background: var(--wp--custom--system-ui-list-hover-bg);
+.wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush):not(.is-not-action) li:hover {
+    background-color: var(--wp--custom--system-ui-list-hover-bg) !important;
+    background-image: none !important;
 }
 
 /* Active State */
-.wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush) li:not(:has(ul)):not(:has(ol)).current,
-.wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush) li:not(:has(ul)):not(:has(ol)):has(> a[aria-current="page"]) {
-    background: var(--wp--custom--system-ui-list-hover-bg);
-}
-.wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush) li:has(ul, ol).current > a,
-.wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush) li:has(ul, ol):has(> a[aria-current="page"]) > a {
-    background: var(--wp--custom--system-ui-list-hover-bg);
+.wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush) li.current,
+.wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush) li:has(> a[aria-current="page"]) {
+    background-color: var(--wp--custom--system-ui-list-hover-bg) !important;
+    background-image: none !important;
 }
 
 /* System Badge Styling */
@@ -115,11 +110,9 @@
     background: transparent;
     border-color: var(--wp--custom--system-ui-border-color);
 }
-.wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush).has-background:not(.is-not-action) li:not(:has(ul)):not(:has(ol)):hover {
-    background: var(--wp--custom--system-ui-list-hover-bg);
-}
-.wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush).has-background:not(.is-not-action) li:has(ul, ol):hover:not(:has(li:hover)) > a {
-    background: var(--wp--custom--system-ui-list-hover-bg);
+.wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush).has-background:not(.is-not-action) li:hover {
+    background-color: var(--wp--custom--system-ui-list-hover-bg) !important;
+    background-image: none !important;
 }
 
 
@@ -129,19 +122,14 @@
     background: var(--wp--custom--system-ui-surface-nested, transparent);
     background-image: var(--wp--custom--system-ui-background-image-nested, none);
 }
-.has-background > .wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background):not(.is-not-action) li:not(:has(ul)):not(:has(ol)):hover {
-    background: var(--wp--custom--system-ui-list-hover-bg);
+.has-background > .wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background):not(.is-not-action) li:hover {
+    background-color: var(--wp--custom--system-ui-list-hover-bg) !important;
+    background-image: none !important;
 }
-.has-background > .wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background):not(.is-not-action) li:has(ul, ol):hover:not(:has(li:hover)) > a {
-    background: var(--wp--custom--system-ui-list-hover-bg);
-}
-.has-background > .wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) li:not(:has(ul)):not(:has(ol)).current,
-.has-background > .wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) li:not(:has(ul)):not(:has(ol)):has(> a[aria-current="page"]) {
-    background: var(--wp--custom--system-ui-list-hover-bg);
-}
-.has-background > .wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) li:has(ul, ol).current > a,
-.has-background > .wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) li:has(ul, ol):has(> a[aria-current="page"]) > a {
-    background: var(--wp--custom--system-ui-list-hover-bg);
+.has-background > .wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) li.current,
+.has-background > .wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) li:has(> a[aria-current="page"]) {
+    background-color: var(--wp--custom--system-ui-list-hover-bg) !important;
+    background-image: none !important;
 }
 
 
