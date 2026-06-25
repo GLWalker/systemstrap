@@ -7,7 +7,7 @@
 			"duotone": [
 				{
 					"colors": [
-						"#fff",
+						"#ffffff",
 						"#212529"
 					],
 					"name": "Base to Contrast",
@@ -16,14 +16,14 @@
 				{
 					"colors": [
 						"#212529",
-						"#fff"
+						"#ffffff"
 					],
 					"name": "Contast to Base",
 					"slug": "duotone-11"
 				},
 				{
 					"colors": [
-						"#fff",
+						"#ffffff",
 						"#a2e436"
 					],
 					"name": "Base to Accent",
@@ -32,14 +32,14 @@
 				{
 					"colors": [
 						"#a2e436",
-						"#fff"
+						"#ffffff"
 					],
 					"name": "Accent to Base",
 					"slug": "duotone-12"
 				},
 				{
 					"colors": [
-						"#fff",
+						"#ffffff",
 						"#a2e436"
 					],
 					"name": "Base to Primary",
@@ -48,30 +48,30 @@
 				{
 					"colors": [
 						"#a2e436",
-						"#fff"
+						"#ffffff"
 					],
 					"name": "Base to Primary to Base",
 					"slug": "duotone-13"
 				},
 				{
 					"colors": [
-						"#fff",
-						"#fff"
+						"#ffffff",
+						"#fcfdfd"
 					],
 					"name": "Base to Secondary",
 					"slug": "duotone-4"
 				},
 				{
 					"colors": [
-						"#fff",
-						"#fff"
+						"#fcfdfd",
+						"#ffffff"
 					],
 					"name": "Secondary to Base",
 					"slug": "duotone-14"
 				},
 				{
 					"colors": [
-						"#fff",
+						"#ffffff",
 						"#68d391"
 					],
 					"name": "Base to Success",
@@ -80,14 +80,14 @@
 				{
 					"colors": [
 						"#68d391",
-						"#fff"
+						"#ffffff"
 					],
 					"name": "Success to Base",
 					"slug": "duotone-15"
 				},
 				{
 					"colors": [
-						"#fff",
+						"#ffffff",
 						"#22d2ed"
 					],
 					"name": "Base to Info",
@@ -96,14 +96,14 @@
 				{
 					"colors": [
 						"#22d2ed",
-						"#fff"
+						"#ffffff"
 					],
 					"name": "Info to Base",
 					"slug": "duotone-16"
 				},
 				{
 					"colors": [
-						"#fff",
+						"#ffffff",
 						"#ffc700"
 					],
 					"name": "Base to Warning",
@@ -112,14 +112,14 @@
 				{
 					"colors": [
 						"#ffc700",
-						"#fff"
+						"#ffffff"
 					],
 					"name": "Warning to Base",
 					"slug": "duotone-17"
 				},
 				{
 					"colors": [
-						"#fff",
+						"#ffffff",
 						"#f56565"
 					],
 					"name": "Base to Danger",
@@ -128,23 +128,23 @@
 				{
 					"colors": [
 						"#f56565",
-						"#fff"
+						"#ffffff"
 					],
 					"name": "Danger to Base",
 					"slug": "duotone-18"
 				},
 				{
 					"colors": [
-						"#e9ecef",
-						"#000"
+						"#eaedef",
+						"#080808"
 					],
 					"name": "Light to Dark",
 					"slug": "duotone-9"
 				},
 				{
 					"colors": [
-						"#000",
-						"#e9ecef"
+						"#080808",
+						"#eaedef"
 					],
 					"name": "Dark to Light",
 					"slug": "duotone-10"
@@ -152,7 +152,7 @@
 			],
 			"palette": [
 				{
-					"color": "#fff",
+					"color": "#ffffff",
 					"name": "Base/Body",
 					"slug": "base"
 				},
@@ -182,7 +182,7 @@
 					"slug": "tertiary-color"
 				},
 				{
-					"color": "#000",
+					"color": "#000000",
 					"name": "Border Color",
 					"slug": "border-color"
 				},
@@ -192,7 +192,7 @@
 					"slug": "primary"
 				},
 				{
-					"color": "#fff",
+					"color": "#fcfdfd",
 					"name": "Secondary",
 					"slug": "secondary"
 				},
@@ -217,12 +217,12 @@
 					"slug": "danger"
 				},
 				{
-					"color": "#e9ecef",
+					"color": "#eaedef",
 					"name": "Light",
 					"slug": "light"
 				},
 				{
-					"color": "#000",
+					"color": "#080808",
 					"name": "Dark",
 					"slug": "dark"
 				},
@@ -250,7 +250,7 @@
 			"gradients": [
 				{
 					"slug": "gradient",
-					"gradient": "linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0.1) 100%)",
+					"gradient": "linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%)",
 					"name": "Gradient"
 				},
 				{
@@ -265,7 +265,7 @@
 				},
 				{
 					"slug": "element",
-					"gradient": "linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 100%)",
+					"gradient": "linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%)",
 					"name": "Element Background"
 				},
 				{
@@ -353,7 +353,8 @@
 	},
 	"styles": {
 		"color": {
-			"gradient": "var:preset|gradient|body"
+			"gradient": "var:preset|gradient|body",
+			"text": "var:preset|color|contrast"
 		}
 	}
 }
