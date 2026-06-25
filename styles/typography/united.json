@@ -1,0 +1,68 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "United Typography",
+	"settings": {
+		"typography": {
+			"fontFamilies": [
+				{
+					"fontFamily": "Ubuntu, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+					"name": "Body Font",
+					"slug": "body",
+					"fontFace": [
+						{
+							"fontFamily": "Ubuntu",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/ubuntu/ubuntu-v20-latin-regular.woff2",
+								"file:./assets/fonts/ubuntu/ubuntu-v20-latin-regular.woff"
+							]
+						},
+						{
+							"fontFamily": "Ubuntu",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/ubuntu/ubuntu-v20-latin-700.woff2",
+								"file:./assets/fonts/ubuntu/ubuntu-v20-latin-700.woff"
+							]
+						}
+					]
+				},
+				{
+					"fontFamily": "var(--wp--preset--font-family--body)",
+					"name": "Heading Font",
+					"slug": "heading"
+				},
+				{
+					"fontFamily": "var(--wp--preset--font-family--body)",
+					"name": "Navigation Font",
+					"slug": "navigation"
+				},
+				{
+					"fontFamily": "var(--wp--preset--font-family--body)",
+					"name": "Display Font",
+					"slug": "display"
+				},
+				{
+					"fontFamily": "SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+					"name": "Monospace Font",
+					"slug": "monospace"
+				},
+				{
+					"fontFamily": "var(--wp--preset--font-family--navigation)",
+					"name": "Button Font",
+					"slug": "button"
+				},
+				{
+					"fontFamily": "var(--wp--preset--font-family--display)",
+					"name": "Single Title Font",
+					"slug": "single-title"
+				}
+			]
+		}
+	}
+}
