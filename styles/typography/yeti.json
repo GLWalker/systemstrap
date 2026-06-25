@@ -1,0 +1,57 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "Yeti Typography",
+	"settings": {
+		"typography": {
+			"fontFamilies": [
+				{
+					"fontFamily": "\"Open Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+					"name": "Body Font",
+					"slug": "body",
+					"fontFace": [
+						{
+							"fontFamily": "Open Sans",
+							"fontStyle": "normal",
+							"fontWeight": "300 800",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/open-sans/open-sans-variable.woff2"
+							]
+						}
+					]
+				},
+				{
+					"fontFamily": "var(--wp--preset--font-family--body)",
+					"name": "Heading Font",
+					"slug": "heading"
+				},
+				{
+					"fontFamily": "var(--wp--preset--font-family--body)",
+					"name": "Navigation Font",
+					"slug": "navigation"
+				},
+				{
+					"fontFamily": "var(--wp--preset--font-family--body)",
+					"name": "Display Font",
+					"slug": "display"
+				},
+				{
+					"fontFamily": "SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+					"name": "Monospace Font",
+					"slug": "monospace"
+				},
+				{
+					"fontFamily": "var(--wp--preset--font-family--navigation)",
+					"name": "Button Font",
+					"slug": "button"
+				},
+				{
+					"fontFamily": "var(--wp--preset--font-family--display)",
+					"name": "Single Title Font",
+					"slug": "single-title"
+				}
+			]
+		}
+	}
+}
