@@ -4,13 +4,15 @@
 
 .wp-block-group.is-style-system-panel-header {
     padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--20) !important;
-    background: var(--system-ui-surface-subtle);
-    border-bottom: var(--wp--custom--border-width, 1px) solid var(--system-ui-border-color);
+    background: var(--wp--custom--system-ui-surface-banner);
+    border-bottom: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
     margin: 0 !important;
     border-radius: 0 !important; /* Auto-clipped perfectly by outer panel overflow: hidden */
     width: 100%;
     font-family: var(--wp--preset--font-family--heading, inherit);
     font-weight: var(--wp--custom--font-weight-heading, inherit);
+    background: var(--wp--custom--system-ui-surface-nested, transparent);
+    background-image: var(--wp--custom--system-ui-background-image-nested, none);
 }
 
 .wp-block-group.is-style-system-panel.is-style-system-modal .wp-block-group.is-style-system-panel-header {
@@ -18,7 +20,9 @@
 }
 
 .wp-block-group.is-style-system-panel.has-background .wp-block-group.is-style-system-panel-header {
-    border-bottom-color: var(--system-ui-border-color-on-background);
+    border-bottom-color: var(--wp--custom--system-ui-border-color);
+    background: var(--wp--custom--system-ui-surface-nested, transparent);
+    background-image: var(--wp--custom--system-ui-background-image-nested, none);
 }
 
 /* Vaporize inner margins to guarantee perfectly balanced padding */
@@ -27,3 +31,4 @@
     margin-top: 0 !important;
     margin-bottom: 0 !important;
 }
+

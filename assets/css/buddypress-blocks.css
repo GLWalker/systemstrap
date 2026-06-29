@@ -266,9 +266,9 @@
 .wp-block-bp-primary-nav .widget-error {
     margin: 0 !important;
     padding: var(--wp--preset--spacing--20, 1rem) !important;
-    border: var(--wp--custom--border-width, 1px) var(--wp--custom--border-style, solid) var(--system-ui-border-color);
+    border: var(--wp--custom--border-width, 1px) var(--wp--custom--border-style, solid) var(--wp--custom--system-ui-border-color);
     border-radius: var(--wp--custom--border-radius) !important;
-    background: var(--system-ui-surface);
+    background: var(--wp--custom--system-ui-surface);
     color: inherit;
     box-shadow: var(--wp--custom--shadow, none);
 }
@@ -357,7 +357,7 @@
 
 .bp-dynamic-block-container .item-options a:hover,
 .bp-dynamic-block-container .item-options a:focus {
-    background: var(--system-ui-hover-bg-subtle);
+    background: var(--wp--custom--system-ui-panel-hover-bg);
     color: var(--wp--preset--color--primary, inherit);
 }
 
@@ -388,7 +388,7 @@
 }
 
 .bp-dynamic-block-container ul.item-list>li:hover {
-    background: var(--system-ui-hover-bg-subtle);
+    background: var(--wp--custom--system-ui-panel-hover-bg);
 }
 
 .bp-dynamic-block-container ul.item-list>li .item-avatar {
@@ -469,15 +469,15 @@
     width: 100% !important;
     max-width: 100% !important;
     padding: var(--wp--preset--spacing--20, 1rem);
-    border: var(--wp--custom--border-width, 1px) var(--wp--custom--border-style, solid) var(--system-ui-border-color);
+    border: var(--wp--custom--border-width, 1px) var(--wp--custom--border-style, solid) var(--wp--custom--system-ui-border-color);
     border-radius: var(--wp--custom--border-radius) !important;
-    background: var(--system-ui-surface);
+    background: var(--wp--custom--system-ui-surface);
     box-shadow: var(--wp--custom--shadow, none);
     overflow: hidden !important;
 }
 
 .wp-block-bp-latest-activities.has-background .bp-latest-activities-block .activity-list.item-list .activity-item {
-    border-color: var(--system-ui-border-color-on-background);
+    border-color: var(--wp--custom--system-ui-border-color);
     background-color: transparent;
 }
 
@@ -532,14 +532,14 @@
     position: relative !important;
     padding: var(--wp--preset--spacing--20, 1rem);
     padding-right: calc(var(--wp--preset--spacing--40, 2rem) + 2.5rem);
-    border: var(--wp--custom--border-width, 1px) var(--wp--custom--border-style, solid) var(--system-ui-border-color);
+    border: var(--wp--custom--border-width, 1px) var(--wp--custom--border-style, solid) var(--wp--custom--system-ui-border-color);
     border-radius: var(--wp--custom--border-radius) !important;
-    background: var(--system-ui-surface);
+    background: var(--wp--custom--system-ui-surface);
     box-shadow: var(--wp--custom--shadow, none);
 }
 
 .wp-block-bp-sitewide-notices.has-background .bp-sitewide-notice-block .bp-sitewide-notice-message {
-    border-color: var(--system-ui-border-color-on-background);
+    border-color: var(--wp--custom--system-ui-border-color);
     background-color: transparent;
 }
 
@@ -570,7 +570,7 @@
 
 .bp-sitewide-notice-block .dismiss-notice:hover,
 .bp-sitewide-notice-block .dismiss-notice:focus {
-    background: var(--system-ui-hover-bg-subtle);
+    background: var(--wp--custom--system-ui-panel-hover-bg);
     color: var(--wp--preset--color--primary, inherit);
 }
 
@@ -621,7 +621,7 @@
     border-radius: 0 !important;
     background: transparent;
     color: inherit;
-    font-family: var(--wp--preset--font-family--navigation, var(--wp--preset--font-family--heading, inherit));
+    font-family: var(--wp--preset--font-family--button, var(--wp--preset--font-family--heading, inherit));
     font-size: var(--wp--preset--font-size--medium);
     font-weight: var(--wp--custom--font-weight-nav, 500);
     line-height: 1.5;
@@ -738,14 +738,14 @@
 }
 
 .bp-block-group {
-    border: var(--wp--custom--border-width, 1px) var(--wp--custom--border-style, solid) var(--system-ui-border-color);
-    background: var(--system-ui-surface);
+    border: var(--wp--custom--border-width, 1px) var(--wp--custom--border-style, solid) var(--wp--custom--system-ui-border-color);
+    background: var(--wp--custom--system-ui-surface);
     box-shadow: var(--wp--custom--shadow, none);
 }
 
 .bp-block-group.has-background,
 .wp-block-bp-group.has-background .bp-block-group {
-    border-color: var(--system-ui-border-color-on-background);
+    border-color: var(--wp--custom--system-ui-border-color);
     background-color: transparent;
 }
 
@@ -818,7 +818,7 @@
 }
 
 .bp-block-member.has-cover {
-    border: var(--wp--custom--border-width, 1px) var(--wp--custom--border-style, solid) var(--system-ui-border-color);
+    border: var(--wp--custom--border-width, 1px) var(--wp--custom--border-style, solid) var(--wp--custom--system-ui-border-color);
     background: transparent;
     box-shadow: none;
     padding: 0 0 var(--wp--preset--spacing--30, 1.5rem) !important;
@@ -826,7 +826,7 @@
 
 .bp-block-member.has-cover.has-background,
 .wp-block-bp-member.has-background .bp-block-member.has-cover {
-    border-color: var(--system-ui-border-color-on-background);
+    border-color: var(--wp--custom--system-ui-border-color);
 }
 
 .bp-block-member.has-cover .member-content {
@@ -1136,15 +1136,15 @@
     gap: var(--wp--preset--spacing--20, 1rem);
     margin: 0 0 var(--wp--preset--spacing--20, 1rem) 0;
     padding: var(--wp--preset--spacing--20, 1rem);
-    border: var(--wp--custom--border-width, 1px) var(--wp--custom--border-style, solid) var(--system-ui-border-color);
+    border: var(--wp--custom--border-width, 1px) var(--wp--custom--border-style, solid) var(--wp--custom--system-ui-border-color);
     border-radius: var(--wp--custom--border-radius) !important;
-    background: var(--system-ui-surface);
+    background: var(--wp--custom--system-ui-surface);
     box-shadow: var(--wp--custom--shadow, none);
 }
 
 .bp-block-groups.has-background>.group-content,
 .wp-block-bp-groups.has-background .bp-block-groups>.group-content {
-    border-color: var(--system-ui-border-color-on-background);
+    border-color: var(--wp--custom--system-ui-border-color);
     background-color: transparent;
 }
 

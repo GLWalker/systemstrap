@@ -6,11 +6,15 @@ This file is a CONTRACT.
 
 ## Contract Version
 
-Current Version: 1.2
+Current Version: 1.3
 
-Last Updated: 2026-06-20
+Last Updated: 2026-06-28
 
 ## Change Log
+
+### 1.3
+
+Extended the `inc/dynamic-styles.php` global-styles append lane so active System Tabs and System Vertical Tabs can route their joining edge color from theme palette background utility classes. The tabs CSS now defaults that active join edge to `--wp--custom--system-ui-surface`, while the dynamic palette loop overrides it for `.has-*-background-color` active tab states on the frontend.
 
 ### 1.0
 
@@ -18,7 +22,7 @@ Initial theme.json design-system contract.
 
 ### 1.1
 
-Delegated detailed runtime color, contrast, and global-styles extension behavior to this contract and `variation-architecture.md`. Updated the global-styles section to match the current Core-preserving mutation architecture and removed the outdated PHP-side default-preset stripping description.
+Delegated detailed runtime color, contrast, and global-styles extension behavior to this contract and `variation-architecture.md`. Updated the global-styles section to match the current Core-preserving extension architecture and removed the outdated PHP-side default-preset stripping description.
 
 ### 1.2
 
@@ -68,9 +72,9 @@ The design-system layer is currently implemented through these files:
 
 Any change to the files listed above MUST be reviewed against this contract.
 
-Any new token family, preset family, block-level style family, global-styles interception rule, editor-style rule, or token-consuming CSS convention MUST be added to this contract in the same change set that introduces it.
+Any new token family, preset family, block-level style family, global-styles extension rule, editor-style rule, or token-consuming CSS convention MUST be added to this contract in the same change set that introduces it.
 
-Any removal or rename of a token slug, custom property, style-variation naming rule, or global-styles interception rule listed here MUST be treated as a design-system behavior change and documented here in the same change set.
+Any removal or rename of a token slug, custom property, style-variation naming rule, or global-styles extension rule listed here MUST be treated as a design-system behavior change and documented here in the same change set.
 
 ## Canonical Token Registry
 
@@ -130,7 +134,7 @@ The theme currently owns these color registries:
 
 The color design system MUST be treated as theme-owned rather than default-core-owned.
 
-Detailed governance for runtime color derivation, contrast routing, `global-styles` mutation, and compatibility behavior belongs to this contract and `variation-architecture.md`.
+Detailed governance for runtime color derivation, contrast routing, `global-styles` extension, and compatibility behavior belongs to this contract and `variation-architecture.md`.
 
 ### Palette contract
 
@@ -156,7 +160,7 @@ The current palette includes named slugs for:
 - `current-mix`
 - `inherit`
 
-These slugs are part of the contract because runtime CSS, patterns, and global-styles interception consume them directly.
+These slugs are part of the contract because runtime CSS, patterns, and global-styles extension consume them directly.
 
 Palette slug renames MUST be treated as breaking design-system changes.
 
@@ -184,11 +188,9 @@ These gradients are part of the design-system contract because they reference pr
 
 - body typography
 - heading typography
-- single-title typography
-- navigation typography
-- monospace typography
-- button typography
 - display typography
+- button typography
+- monospace typography
 - font weights
 - link colors
 - code and highlight colors
@@ -281,11 +283,11 @@ The current font-size preset family includes:
 
 The current font-family preset family includes:
 
-- `geist`
-- `manrope`
-- `inter`
+- `body`
+- `heading`
+- `display`
+- `button`
 - `monospace`
-- `syne`
 
 These family slugs are part of the design-system contract because custom tokens and block styles reference them directly.
 
@@ -464,28 +466,35 @@ The current rationale is:
 - theme and variation styles must load before user-authored Custom CSS
 - user-authored Custom CSS must remain the final override surface
 
-## Global Styles Interception Contract
+## Global Styles Extension Contract
 
-`inc/enqueue-assets.php` modifies WordPress global styles at runtime.
+`inc/dynamic-styles.php` extends WordPress global styles at runtime.
 
-### Global stylesheet rewrite contract
+### Dynamic CSS enqueue contract
 
-The theme currently preserves WordPress's native `wp_enqueue_global_styles()` lifecycle and mutates the generated inline CSS on the `global-styles` handle through `strap_intercept_global_styles()`.
+The theme preserves WordPress's native `wp_enqueue_global_styles()` lifecycle and appends dynamic CSS directly to the `global-styles` handle using `wp_add_inline_style()`.
 
-This routine currently:
+This routine:
 
-- reads the current inline CSS stored on the `global-styles` handle
-- rewrites background utility classes to inject contrast-aware text colors for theme-owned background slugs
-- writes the modified CSS back onto the same handle
+- generates dynamic color and layout utilities, including accessibility contrast rules for theme-owned background slugs
+- appends the rules onto the native `global-styles` handle to output them inside the same tag
+- runs late (priority 9999) on both frontend and editor styles enqueue to ensure core styles are loaded first
 
-Detailed governance for the color-runtime behavior of this mutation belongs to this contract.
+Detailed governance for the color-runtime behavior of these appended styles belongs to this contract.
 
-The current background text-color rewrite contract includes:
+The dynamic background text-color contrast mapping includes:
 
 - slug remapping for `base`, `contrast`, `secondary-bg`, and `tertiary-bg`
 - accent background text-color fallback for `primary`, `secondary`, `success`, `info`, `warning`, `danger`, `light`, and `dark`
 
-This interception is part of the design system because color legibility is not left to default WordPress output.
+The current global-styles extension also includes palette-driven active join-color routing for:
+
+- `.wp-block-accordion.is-style-system-tabs .system-tabs__tab.has-*-background-color[aria-selected="true"]`
+- `.wp-block-accordion.is-style-system-tabs-vertical .system-tabs__tab.has-*-background-color[aria-selected="true"]`
+
+These rules exist so palette-selected tab backgrounds can force the active joining edge to the same preset color on the frontend, instead of relying only on transparent surface blending.
+
+This extension is part of the design system because color legibility is not left to default WordPress output.
 
 ### Late custom CSS contract
 
@@ -618,7 +627,7 @@ The theme MUST NOT introduce any of the following regressions into the covered d
 - changing the theme-owned color settings in `theme.json` without updating this contract when runtime color behavior is affected
 - renaming preset slugs or custom-token families without updating their runtime consumers and this contract
 - bypassing `theme.json` tokens in favor of repeated hard-coded literals where an existing equivalent token family already exists
-- changing global-styles interception order in a way that causes WordPress output to override `strap-main-styles` unexpectedly
+- changing global-styles extension order in a way that causes WordPress output to override `strap-main-styles` unexpectedly
 - breaking editor/frontend parity for shared token consumers without documenting the split
 - changing style-variation filename parsing rules without documenting the new rule here
 
@@ -629,7 +638,7 @@ New design-system work MUST extend this contract by adding:
 - source file
 - token family or style surface
 - runtime consumer
-- interception behavior if any
+- extension behavior if any
 - editor/frontend implications if any
 
 ## Current Expansion Queue

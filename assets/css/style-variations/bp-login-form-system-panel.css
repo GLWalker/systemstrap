@@ -5,8 +5,10 @@
  */
 
 .widget_bp_core_login_widget.wp-block-bp-login-form.is-style-system-panel {
-    border: var(--wp--custom--border-width, 1px) solid var(--system-ui-border-color);
-    background: var(--system-ui-surface);
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+    background-image: var(--wp--custom--system-ui-background-image, none);
+    backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     border-radius: var(--wp--custom--border-radius);
     box-shadow: var(--wp--custom--shadow, none);
     padding: var(--wp--preset--spacing--20, 1rem);
@@ -14,14 +16,19 @@
     transition: border-color 0.15s ease-in-out;
 }
 
+.widget_bp_core_login_widget.wp-block-bp-login-form.is-style-system-panel:not(.has-background):not([style*="background-color"]) {
+    background: var(--wp--custom--system-ui-surface);
+}
+
 .widget_bp_core_login_widget.wp-block-bp-login-form.is-style-system-panel.has-background {
-    border-color: var(--system-ui-border-color-on-background);
+    border-color: var(--wp--custom--system-ui-border-color);
 }
 
 .widget_bp_core_login_widget.wp-block-bp-login-form.is-style-system-panel .bp-login-widget-user-avatar img {
-    border: var(--wp--custom--border-width, 1px) solid rgba(var(--wp--preset--color--border-color-rgb), 0.25);
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
 }
 
 .widget_bp_core_login_widget.wp-block-bp-login-form.is-style-system-panel .bp-login-widget-user-link a {
     font-weight: var(--wp--custom--font-weight-heading);
 }
+

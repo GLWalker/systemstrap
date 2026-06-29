@@ -10,24 +10,40 @@
     margin: 0;
 }
 
+.wp-block-latest-comments:is(.is-style-system-list, .is-style-system-list-flush) > li:last-child {
+    border-bottom: 0;
+}
+
+.wp-block-latest-comments:is(.is-style-system-list, .is-style-system-list-flush).has-background > li:last-child {
+    border-bottom: 0;
+}
+
+.wp-block-latest-comments:is(.is-style-system-list, .is-style-system-list-flush).has-background > li + li {
+    border-top: 0; /* ensure it stays collapsed */
+}
+
+.has-background .wp-block-latest-comments:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) > li {
+    border-color: var(--wp--custom--system-ui-border-color);
+}
+
+.has-background .wp-block-latest-comments:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) > li:last-child {
 /* Base LIs */
 .wp-block-latest-comments:is(.is-style-system-list, .is-style-system-list-flush) > li {
-    padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--20) !important;
+    padding: var(--wp--preset--spacing--20) !important;
+    background: var(--wp--custom--system-ui-surface);
+    background-image: var(--wp--custom--system-ui-background-image, none);
+    backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     
-    /* Make the inner dividers subtle */
-    border-bottom-color: rgba(var(--wp--preset--color--border-color-rgb), .1);
-    
-    
+    /* Base overrides from main-styles.css */
 }
 
-/* Restore strong bottom border for the last item to complete the outer frame */
-.wp-block-latest-comments:is(.is-style-system-list, .is-style-system-list-flush) > li:last-child {
-    border-bottom-color: var(--system-ui-border-color);
+/* Premium System Borders between ROOT items */
+.wp-block-latest-comments:is(.is-style-system-list, .is-style-system-list-flush) > li + li {
+    border-top-width: var(--wp--custom--border-width, 1px);
+    border-top-style: solid;
+    border-top-color: var(--wp--custom--system-ui-border-color);
 }
-
-/* Border Collapsing & Radii Merging */
-
-
 
 /* Article Layout: Media Object Flex Row */
 .wp-block-latest-comments:is(.is-style-system-list, .is-style-system-list-flush) > li > article {
@@ -47,7 +63,7 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: var(--wp--custom--border-width, 1px) solid rgba(var(--wp--preset--color--border-color-rgb), .2);
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
     display: block;
 }
 
@@ -112,21 +128,6 @@
 /* Has-background overrides */
 .wp-block-latest-comments:is(.is-style-system-list, .is-style-system-list-flush).has-background > li {
     background: transparent;
-    border-color: var(--system-ui-border-color-on-background);
-    border-bottom-color: color-mix(in srgb, currentColor 15%, transparent);
-}
-.wp-block-latest-comments:is(.is-style-system-list, .is-style-system-list-flush).has-background > li:last-child {
-    border-bottom-color: var(--system-ui-border-color-on-background);
-}
-.wp-block-latest-comments:is(.is-style-system-list, .is-style-system-list-flush).has-background > li + li {
-    border-top: 0; /* ensure it stays collapsed */
+    border-color: var(--wp--custom--system-ui-border-color);
 }
 
-/* Increased Visibility Inside Parent with Background */
-.has-background .wp-block-latest-comments:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) > li {
-    border-color: var(--system-ui-border-color-on-background);
-    border-bottom-color: color-mix(in srgb, currentColor 15%, transparent);
-}
-.has-background .wp-block-latest-comments:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) > li:last-child {
-    border-bottom-color: var(--system-ui-border-color-on-background);
-}

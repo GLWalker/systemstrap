@@ -307,7 +307,7 @@ body .main-buddypress .main-navs.dir-navs .component-navigation > li > a {
     padding: var(--wp--preset--spacing--20, 0.5rem) var(--wp--preset--spacing--30, 1rem);
     background: rgba(var(--wp--preset--color--contrast-rgb), 0.04);
     color: inherit;
-    font-family: var(--wp--preset--font-family--navigation, var(--wp--preset--font-family--heading, inherit));
+    font-family: var(--wp--preset--font-family--button, var(--wp--preset--font-family--heading, inherit));
     font-size: var(--wp--preset--font-size--medium);
     font-weight: var(--wp--custom--font-weight-nav, 500);
     line-height: 1.5;
@@ -366,14 +366,14 @@ body.buddypress.buddypress-wrap .bp-navs ul li.selected a .count {
 /* 6c. Generic BuddyPress Navigation & Loop Polish */
 body .main-buddypress .bp-navs.tabbed-links ul,
 body .main-buddypress .bp-navs.tabbed-links ol {
-    border-bottom: var(--wp--custom--border-width, 1px) var(--wp--custom--border-style, solid) var(--system-ui-border-color);
+    border-bottom: var(--wp--custom--border-width, 1px) var(--wp--custom--border-style, solid) var(--wp--custom--system-ui-border-color);
 }
 
 body .main-buddypress .bp-navs.tabbed-links ul li.current,
 body .main-buddypress .bp-navs.tabbed-links ol li.current,
 body .main-buddypress .bp-navs.tabbed-links ul li.selected,
 body .main-buddypress .bp-navs.tabbed-links ol li.selected {
-    border-color: var(--system-ui-border-color) var(--system-ui-border-color) var(--wp--preset--color--base, #fff);
+    border-color: var(--wp--custom--system-ui-border-color) var(--wp--custom--system-ui-border-color) var(--wp--preset--color--base, #fff);
     border-style: solid;
     border-width: var(--wp--custom--border-width, 1px);
     border-top-left-radius: var(--wp--custom--border-radius);
@@ -456,9 +456,9 @@ body .main-buddypress .activity-list.bp-list {
 
 body .main-buddypress .activity-list.bp-list .activity-item {
     padding: var(--wp--preset--spacing--20, 1rem);
-    border: var(--wp--custom--border-width, 1px) var(--wp--custom--border-style, solid) var(--system-ui-border-color);
+    border: var(--wp--custom--border-width, 1px) var(--wp--custom--border-style, solid) var(--wp--custom--system-ui-border-color);
     border-radius: var(--wp--custom--border-radius);
-    background: var(--system-ui-surface);
+    background: var(--wp--custom--system-ui-surface);
     box-shadow: var(--wp--custom--shadow, none);
 }
 

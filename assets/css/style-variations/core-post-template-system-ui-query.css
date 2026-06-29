@@ -1,0 +1,111 @@
+/* ==========================================================================
+   Post Template - System UI Query Variation
+   ========================================================================== */
+
+/* Shared System Panel/List Base Styles */
+.wp-block-post-template.is-style-system-ui-query > li {
+    position: relative;
+    color: var(--wp--preset--color--inherit);
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+    background: var(--wp--custom--system-ui-surface);
+    box-shadow: var(--wp--custom--shadow);
+    border-radius: var(--wp--custom--border-radius);
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+
+/* Hover effects */
+.wp-block-post-template.is-style-system-ui-query > li:hover {
+    background-color: var(--wp--custom--system-ui-list-hover-bg, rgba(var(--wp--preset--color--contrast-rgb), .05));
+}
+
+
+/* ==========================================================================
+   Layout Mode: List (Flow / Default)
+   Acts as a continuous, stacked list.
+   ========================================================================== */
+
+.wp-block-post-template.is-style-system-ui-query:not(.is-layout-grid) {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    border-radius: var(--wp--custom--border-radius);
+}
+
+.wp-block-post-template.is-style-system-ui-query:not(.is-layout-grid) > li {
+    margin: 0 !important;
+    padding: var(--wp--preset--spacing--30) !important;
+}
+
+/* Collapse borders and radii for adjacent items to create a continuous list */
+.wp-block-post-template.is-style-system-ui-query:not(.is-layout-grid) > li + li {
+    border-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.wp-block-post-template.is-style-system-ui-query:not(.is-layout-grid) > li:has(+ li) {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+
+/* ==========================================================================
+   Layout Mode: Grid (Cards)
+   Acts as discrete panels with flush images.
+   ========================================================================== */
+
+.wp-block-post-template.is-style-system-ui-query.is-layout-grid > li {
+    display: flex;
+    flex-direction: column;
+    padding: 0 !important; /* Panel bodies handle padding natively */
+    overflow: hidden; /* Ensure rounded corners clip children properly */
+}
+
+/* Make featured image flush with the card border */
+.wp-block-post-template.is-style-system-ui-query.is-layout-grid > li > .wp-block-post-featured-image {
+    margin: 0;
+    width: 100%;
+}
+
+.wp-block-post-template.is-style-system-ui-query.is-layout-grid > li > .wp-block-post-featured-image img {
+    border-radius: 0;
+    width: 100%;
+    display: block;
+}
+
+/* Add padding to the content wrapper beneath the image */
+.wp-block-post-template.is-style-system-ui-query.is-layout-grid > li > :not(.wp-block-post-featured-image) {
+    padding-left: var(--wp--preset--spacing--30);
+    padding-right: var(--wp--preset--spacing--30);
+}
+
+.wp-block-post-template.is-style-system-ui-query.is-layout-grid > li > *:last-child {
+    padding-bottom: var(--wp--preset--spacing--30);
+}
+
+/* ==========================================================================
+   Directory Pattern Additions
+   ========================================================================== */
+
+/* Tag Limiting */
+.wp-block-post-template.is-style-system-ui-query .systemstrap-directory-col-3 .wp-block-post-tags a:nth-child(n+3) {
+    display: none !important;
+}
+
+/* Responsive Row Stacking */
+@media (max-width: 991px) {
+    .wp-block-post-template.is-style-system-ui-query .systemstrap-directory-row {
+        flex-wrap: wrap !important;
+    }
+    .wp-block-post-template.is-style-system-ui-query .systemstrap-directory-col-1 {
+        flex-basis: 100% !important;
+        margin-bottom: var(--wp--preset--spacing--10);
+    }
+}
+
+@media (max-width: 600px) {
+    .wp-block-post-template.is-style-system-ui-query .systemstrap-directory-col-1 .wp-block-post-excerpt {
+        display: none !important;
+    }
+}

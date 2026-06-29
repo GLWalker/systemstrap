@@ -11,6 +11,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! function_exists( 'strap_enqueue_assets' ) ) {
 	/**
+	 * Determine whether the current singular post needs Page Break navigation styles.
+	 *
+	 * @return bool
+	 */
+	function strap_should_enqueue_page_break_navigation() {
+		if ( ! is_singular() ) {
+			return false;
+		}
+
+		$post = get_queried_object();
+
+		if ( ! ( $post instanceof WP_Post ) || ! is_string( $post->post_content ) || '' === $post->post_content ) {
+			return false;
+		}
+
+		return has_block( 'core/nextpage', $post ) || str_contains( $post->post_content, '<!--nextpage-->' );
+	}
+
+	/**
 	 * Enqueue main scripts and styles.
 	 */
 	function strap_enqueue_assets() {
@@ -48,6 +67,16 @@ if ( ! function_exists( 'strap_enqueue_assets' ) ) {
 			array('strap-main-styles'),
 			$version
 		);
+
+		if ( strap_should_enqueue_page_break_navigation() ) {
+			// Page Break Navigation Styles
+			wp_enqueue_style(
+				'strap-page-break-navigation',
+				get_template_directory_uri() . '/assets/css/page-break-navigation.css',
+				array( 'strap-main-styles' ),
+				$version
+			);
+		}
 
 		// Main Scripts
 		wp_enqueue_script(
@@ -527,87 +556,82 @@ function strap_enqueue_accordion_tabs( $block_content, $block ) {
 }
 add_filter( 'render_block', 'strap_enqueue_accordion_tabs', 10, 2 );
 
-/**
- * Rewrite generated WordPress global styles after Core enqueues them.
- *
- * This preserves the native enqueue lifecycle while still allowing
- * SystemStrap to adjust generated background utility classes.
- */
-function strap_intercept_global_styles() {
-	static $has_run = false;
-	if ( $has_run ) {
-		return;
-	}
 
-	$wp_styles = wp_styles();
-	if ( ! isset( $wp_styles->registered['global-styles'] ) ) {
-		return;
-	}
-
-	$css_parts = $wp_styles->get_data( 'global-styles', 'after' );
-
-	if ( empty( $css_parts ) || ! is_array( $css_parts ) ) {
-		return;
-	}
-
-	$has_run = true;
-
-	// Base background replacements (these flip in dark mode, so they map to slugs).
-	$slug_replacements = array(
-		'base'         => 'contrast',
-		'contrast'     => 'base',
-		'secondary-bg' => 'secondary-color',
-		'secondary-color' => 'secondary-bg',
-		'tertiary-bg'  => 'tertiary-color',
-		'tertiary-color' => 'tertiary-bg',
-	);
-
-	// Accent background replacements (these map to the dynamic -text variables).
-	$accent_slugs = array( 'primary', 'secondary', 'success', 'info', 'warning', 'danger', 'light', 'dark' );
-
-	foreach ( $css_parts as $index => $css ) {
-		if ( ! is_string( $css ) || '' === $css ) {
-			continue;
-		}
-
-		foreach ( $slug_replacements as $bg_slug => $text_slug ) {
-			$pattern = '/\.has-' . preg_quote( $bg_slug, '/' ) . '-background-color\s*\{/';
-			$replace = ".has-{$bg_slug}-background-color:not(.has-text-color) {\n\tcolor: var(--wp--preset--color--{$text_slug}) !important;";
-			$result  = preg_replace( $pattern, $replace, $css );
-			$css     = is_string( $result ) ? $result : $css;
-		}
-
-		foreach ( $accent_slugs as $bg_slug ) {
-			$pattern = '/\.has-' . preg_quote( $bg_slug, '/' ) . '-background-color\s*\{/';
-			$replace = ".has-{$bg_slug}-background-color:not(.has-text-color) {\n\tcolor: var(--wp--preset--color--{$bg_slug}-text) !important;";
-			$result  = preg_replace( $pattern, $replace, $css );
-			$css     = is_string( $result ) ? $result : $css;
-		}
-
-		$css_parts[ $index ] = $css;
-	}
-
-	$wp_styles->registered['global-styles']->extra['after'] = $css_parts;
-}
-add_action( 'wp_enqueue_scripts', 'strap_intercept_global_styles', 11 );
-add_action( 'enqueue_block_assets', 'strap_intercept_global_styles', 11 );
 
 /**
  * Enqueue Block Editor Assets (Scripts)
  */
+function strap_get_style_variation_sync_map() {
+	$theme_styles_dir = get_template_directory() . '/styles';
+	$layout_files     = glob( $theme_styles_dir . '/*.json' );
+	$sync_map         = array();
+
+	if ( empty( $layout_files ) ) {
+		return $sync_map;
+	}
+
+	foreach ( $layout_files as $layout_file ) {
+		$slug            = basename( $layout_file, '.json' );
+		$color_file      = $theme_styles_dir . '/colors/' . $slug . '.json';
+		$typography_file = $theme_styles_dir . '/typography/' . $slug . '.json';
+
+		if ( ! file_exists( $color_file ) || ! file_exists( $typography_file ) ) {
+			continue;
+		}
+
+		$layout_data     = wp_json_file_decode( $layout_file, array( 'associative' => true ) );
+		$color_data      = wp_json_file_decode( $color_file, array( 'associative' => true ) );
+		$typography_data = wp_json_file_decode( $typography_file, array( 'associative' => true ) );
+
+		if ( ! is_array( $layout_data ) || ! is_array( $color_data ) || ! is_array( $typography_data ) ) {
+			continue;
+		}
+
+		$layout_title     = isset( $layout_data['title'] ) ? (string) $layout_data['title'] : $slug;
+		$color_title      = isset( $color_data['title'] ) ? (string) $color_data['title'] : $slug;
+		$typography_title = isset( $typography_data['title'] ) ? (string) $typography_data['title'] : $slug;
+
+		$sync_map[ $slug ] = array(
+			'layoutTitle'     => $layout_title,
+			'colorTitle'      => $color_title,
+			'typographyTitle' => $typography_title,
+		);
+	}
+
+	return $sync_map;
+}
+
 function strap_enqueue_block_editor_assets() {
 	$variations_dir = get_template_directory() . '/assets/js/variations/';
 	if ( is_dir( $variations_dir ) ) {
 		$variations = glob( $variations_dir . '*.js' );
 		foreach ( $variations as $file ) {
 			$basename = basename( $file, '.js' );
+			$deps     = array( 'wp-blocks', 'wp-element', 'wp-components', 'wp-i18n' );
+
+			if ( 'strap-style-sync' === $basename ) {
+				$deps = array( 'wp-data', 'wp-core-data' );
+			}
+
 			wp_enqueue_script(
 				'strap-variation-' . $basename,
 				get_template_directory_uri() . '/assets/js/variations/' . basename( $file ),
-				array( 'wp-blocks', 'wp-element', 'wp-components', 'wp-i18n' ),
+				$deps,
 				wp_get_theme()->get( 'Version' ),
 				true
 			);
+
+			if ( 'strap-style-sync' === $basename ) {
+				wp_add_inline_script(
+					'strap-variation-' . $basename,
+					'window.systemstrapStyleSync = ' . wp_json_encode(
+						array(
+							'variationMap' => strap_get_style_variation_sync_map(),
+						)
+					) . ';',
+					'before'
+				);
+			}
 		}
 	}
 }

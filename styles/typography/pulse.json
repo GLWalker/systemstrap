@@ -1,0 +1,64 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "Pulse Typography",
+	"settings": {
+		"typography": {
+			"fontFamilies": [
+				{
+					"fontFamily": "system-ui, -apple-system, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+					"name": "Body Font",
+					"slug": "body"
+				},
+				{
+					"fontFamily": "Ubuntu",
+					"name": "Heading Font",
+					"slug": "heading",
+					"fontFace": [
+						{
+							"fontFamily": "Ubuntu",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/ubuntu/ubuntu-v20-latin-regular.woff2"
+							]
+						}
+					]
+				},
+				{
+					"fontFamily": "Righteous",
+					"name": "Display Font",
+					"slug": "display",
+					"fontFace": [
+						{
+							"fontFamily": "Righteous",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/righteous/righteous-0.woff2"
+							]
+						}
+					]
+				},
+				{
+					"fontFamily": "Exo 2",
+					"name": "Button Font",
+					"slug": "button",
+					"fontFace": [
+						{
+							"fontFamily": "Exo 2",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/exo-2/exo-2-0.woff2"
+							]
+						}
+					]
+				}
+			]
+		}
+	}
+}

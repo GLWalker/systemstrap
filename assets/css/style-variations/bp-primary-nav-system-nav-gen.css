@@ -6,6 +6,13 @@
 .wp-block-bp-primary-nav.is-style-system-nav-gen {
     width: 100%;
     color: inherit;
+    background: var(--wp--custom--system-ui-surface);
+    background-image: var(--wp--custom--system-ui-background-image, none);
+    backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+    border-radius: var(--wp--custom--border-radius);
+    overflow: hidden;
 }
 
 .wp-block-bp-primary-nav.is-style-system-nav-gen .bp-navs {
@@ -95,13 +102,15 @@
     margin-left: auto !important;
     padding: var(--wp--custom--badge-padding-y) var(--wp--custom--badge-padding-x) !important;
     float: none !important;
-    border: var(--wp--custom--border-width, 1px) solid rgba(var(--wp--preset--color--border-color-rgb), .2) !important;
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color) !important;
     border-radius: var(--wp--custom--badge-border-radius) !important;
     background-color: rgba(var(--wp--preset--color--contrast-rgb), .05) !important;
     box-sizing: border-box !important;
     color: var(--wp--preset--color--base, #fff) !important;
     font-weight: var(--wp--custom--badge-font-weight) !important;
     line-height: 1 !important;
+    background: var(--wp--custom--system-ui-surface-nested, transparent);
+    background-image: var(--wp--custom--system-ui-background-image-nested, none);
 }
 
 .wp-block-bp-primary-nav.is-style-system-nav-gen.has-background .bp-navs > ul > li > a .count,
@@ -112,3 +121,4 @@
     border-color: color-mix(in srgb, currentColor 20%, transparent) !important;
     color: inherit !important;
 }
+

@@ -5,8 +5,11 @@
  */
 
 .wp-block-table.is-style-system-panel {
-    border: var(--wp--custom--border-width, 1px) solid var(--system-ui-border-color);
-    background: var(--system-ui-surface);
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+    background: var(--wp--custom--system-ui-surface);
+    background-image: var(--wp--custom--system-ui-background-image, none);
+    backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     border-radius: var(--wp--custom--border-radius);
     box-shadow: var(--wp--custom--shadow);
     overflow: hidden;
@@ -25,8 +28,8 @@
 .wp-block-table.is-style-system-panel > table > caption {
     caption-side: top;
     padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
-    background: var(--system-ui-surface-subtle);
-    border-bottom: var(--wp--custom--border-width, 1px) solid var(--system-ui-border-color);
+    background: var(--wp--custom--system-ui-surface-banner);
+    border-bottom: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
     color: inherit;
     font-weight: var(--wp--custom--font-weight-heading, inherit);
     text-align: left;
@@ -34,12 +37,12 @@
 
 .wp-block-table.is-style-system-panel > table > thead > tr > th {
     border-top: 0;
-    border-bottom: var(--wp--custom--border-width, 1px) solid var(--system-ui-border-color);
+    border-bottom: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
 }
 
 .wp-block-table.is-style-system-panel > table > thead > tr > th,
 .wp-block-table.is-style-system-panel > table > tfoot > tr > td {
-    background: var(--system-ui-surface-subtle);
+    background: var(--wp--custom--system-ui-surface-banner);
     font-weight: var(--wp--custom--font-weight-heading, inherit);
     color: inherit;
     text-align: left;
@@ -50,7 +53,7 @@
 .wp-block-table.is-style-system-panel > table > tbody > tr > td,
 .wp-block-table.is-style-system-panel > table > tfoot > tr > td {
     padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
-    border-top: var(--wp--custom--border-width, 1px) solid var(--system-ui-border-color);
+    border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
     vertical-align: top;
 }
 
@@ -59,16 +62,16 @@
 }
 
 .wp-block-table.is-style-system-panel > table > tfoot > tr > td {
-    border-top: var(--wp--custom--border-width, 1px) solid var(--system-ui-border-color);
+    border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
 }
 
 .wp-block-table.is-style-system-panel.has-background {
-    border-color: var(--system-ui-border-color-on-background);
+    border-color: var(--wp--custom--system-ui-border-color);
     background: transparent;
 }
 
 .has-background .wp-block-table.is-style-system-panel:not(.has-background) {
-    border-color: var(--system-ui-border-color-on-background);
+    border-color: var(--wp--custom--system-ui-border-color);
 }
 
 .wp-block-table.is-style-system-panel.has-background > table > caption,
@@ -81,5 +84,6 @@
 .has-background .wp-block-table.is-style-system-panel:not(.has-background) > table > tbody > tr > th,
 .has-background .wp-block-table.is-style-system-panel:not(.has-background) > table > tbody > tr > td,
 .has-background .wp-block-table.is-style-system-panel:not(.has-background) > table > tfoot > tr > td {
-    border-color: var(--system-ui-border-color-on-background);
+    border-color: var(--wp--custom--system-ui-border-color);
 }
+

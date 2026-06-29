@@ -22,34 +22,52 @@
 					]
 				},
 				{
-					"fontFamily": "var(--wp--preset--font-family--body)",
+					"fontFamily": "Quicksand",
 					"name": "Heading Font",
-					"slug": "heading"
+					"slug": "heading",
+					"fontFace": [
+						{
+							"fontFamily": "Quicksand",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/quicksand/quicksand-0.woff2"
+							]
+						}
+					]
 				},
 				{
-					"fontFamily": "var(--wp--preset--font-family--body)",
-					"name": "Navigation Font",
-					"slug": "navigation"
-				},
-				{
-					"fontFamily": "var(--wp--preset--font-family--body)",
+					"fontFamily": "Fredoka",
 					"name": "Display Font",
-					"slug": "display"
+					"slug": "display",
+					"fontFace": [
+						{
+							"fontFamily": "Fredoka",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/fredoka/fredoka-0.woff2"
+							]
+						}
+					]
 				},
 				{
-					"fontFamily": "SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
-					"name": "Monospace Font",
-					"slug": "monospace"
-				},
-				{
-					"fontFamily": "var(--wp--preset--font-family--navigation)",
+					"fontFamily": "Comfortaa",
 					"name": "Button Font",
-					"slug": "button"
-				},
-				{
-					"fontFamily": "var(--wp--preset--font-family--display)",
-					"name": "Single Title Font",
-					"slug": "single-title"
+					"slug": "button",
+					"fontFace": [
+						{
+							"fontFamily": "Comfortaa",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/comfortaa/comfortaa-0.woff2"
+							]
+						}
+					]
 				}
 			]
 		}

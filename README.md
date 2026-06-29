@@ -21,8 +21,8 @@ SystemStrap is built to ensure parent-child theme stability:
 * Child theme `style.css` files are dynamically detected and automatically routed into both the front-end and the Gutenberg Editor.
 * Child themes can safely override colors and typography without accidentally destroying the underlying Structural UI logic.
 
-### 4. Controlled Global Styles
-SystemStrap actively intercepts WordPress Global Styles (`wp_enqueue_global_styles`), rewriting background/text contrast classes to ensure predictable rendering and making sure Site Editor CSS always loads last.
+### 4. Appended Global Styles
+SystemStrap appends custom layout and dynamic palette styles directly to the native `global-styles` handle, avoiding destructive runtime mutations while ensuring consistent color palette overrides and rendering order.
 
 ***
 

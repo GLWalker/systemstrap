@@ -11,34 +11,52 @@
 					"slug": "body"
 				},
 				{
-					"fontFamily": "var(--wp--preset--font-family--body)",
+					"fontFamily": "Fjalla One",
 					"name": "Heading Font",
-					"slug": "heading"
+					"slug": "heading",
+					"fontFace": [
+						{
+							"fontFamily": "Fjalla One",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/fjalla-one/fjalla-one-0.woff2"
+							]
+						}
+					]
 				},
 				{
-					"fontFamily": "var(--wp--preset--font-family--body)",
-					"name": "Navigation Font",
-					"slug": "navigation"
-				},
-				{
-					"fontFamily": "var(--wp--preset--font-family--heading)",
+					"fontFamily": "Anton",
 					"name": "Display Font",
-					"slug": "display"
+					"slug": "display",
+					"fontFace": [
+						{
+							"fontFamily": "Anton",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/anton/anton-0.woff2"
+							]
+						}
+					]
 				},
 				{
-					"fontFamily": "SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
-					"name": "Monospace Font",
-					"slug": "monospace"
-				},
-				{
-					"fontFamily": "var(--wp--preset--font-family--navigation)",
+					"fontFamily": "Oswald",
 					"name": "Button Font",
-					"slug": "button"
-				},
-				{
-					"fontFamily": "var(--wp--preset--font-family--display)",
-					"name": "Single Title Font",
-					"slug": "single-title"
+					"slug": "button",
+					"fontFace": [
+						{
+							"fontFamily": "Oswald",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/oswald/oswald-0.woff2"
+							]
+						}
+					]
 				}
 			]
 		}

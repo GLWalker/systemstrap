@@ -27,7 +27,7 @@
 .wp-block-tag-cloud.is-style-system-tags a.tag-cloud-link:focus {
     background-color: var(--wp--preset--color--tertiary-bg);
     color: var(--wp--preset--color--contrast);
-    border-color: rgba(var(--wp--preset--color--border-color-rgb), .2);
+    border-color: var(--wp--custom--system-ui-border-color);
 }
 
 /* Tag Count Number */
@@ -41,10 +41,11 @@
 .has-background .wp-block-tag-cloud.is-style-system-tags a.tag-cloud-link {
     background-color: rgba(var(--wp--preset--color--base-rgb), 0.5); /* Frosty white over color */
     color: var(--wp--preset--color--inherit);
-    border-color: rgba(var(--wp--preset--color--border-color-rgb), 0.1);
+    border-color: var(--wp--custom--system-ui-border-color);
 }
 .has-background .wp-block-tag-cloud.is-style-system-tags a.tag-cloud-link:hover,
 .has-background .wp-block-tag-cloud.is-style-system-tags a.tag-cloud-link:focus {
     background-color: rgba(var(--wp--preset--color--base-rgb), 0.8);
     color: var(--wp--preset--color--contrast);
 }
+

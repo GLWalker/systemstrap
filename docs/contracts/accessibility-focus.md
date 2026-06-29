@@ -6,11 +6,15 @@ This file is a CONTRACT.
 
 ## Contract Version
 
-Current Version: 1.0
+Current Version: 1.1
 
-Last Updated: 2026-06-15
+Last Updated: 2026-06-26
 
 ## Change Log
+
+### 1.1
+
+Added the generated System Tabs accordion controls to the focus contract. The horizontal and vertical tab accordion style variations now define keyboard-visible focus on `.system-tabs__tab:focus-visible` while preserving the accordion-derived `.wp-block-accordion-heading__toggle` hook on generated tab buttons.
 
 ### 1.0
 
@@ -60,6 +64,8 @@ The current focus-visibility layer is implemented through these files:
 - `wp-content/themes/systemstrap/assets/css/buddypress-theme-sync.css`
 - `wp-content/themes/systemstrap/assets/css/style-variations/core-details-system-details.css`
 - `wp-content/themes/systemstrap/assets/css/style-variations/core-accordion-system-accordion.css`
+- `wp-content/themes/systemstrap/assets/css/style-variations/core-accordion-system-tabs.css`
+- `wp-content/themes/systemstrap/assets/css/style-variations/core-accordion-system-tabs-vertical.css`
 - `wp-content/themes/systemstrap/assets/css/style-variations/core-navigation-system-nav-gen.css`
 - `wp-content/themes/systemstrap/assets/css/style-variations/core-navigation-system-nav-button.css`
 
@@ -160,6 +166,8 @@ The current targeted surfaces include:
 
 - `summary` inside `core-details-system-details`
 - `.wp-block-accordion-heading__toggle` inside `core-accordion-system-accordion`
+- `.system-tabs__tab` inside `core-accordion-system-tabs`
+- `.system-tabs__tab` inside `core-accordion-system-tabs-vertical`
 - `.wp-block-navigation-item__content` and `.wp-block-navigation-submenu__toggle` inside the two current navigation variations
 
 This targeting behavior is part of the accessibility contract.
@@ -195,6 +203,25 @@ The current behavior is:
 - `position: relative`
 
 This is part of the contract for theme-owned accordion styling.
+
+## Accordion Tabs Variation Contract
+
+`assets/css/style-variations/core-accordion-system-tabs.css` currently defines keyboard-visible focus on:
+
+- `.wp-block-accordion.is-style-system-tabs .system-tabs__tab:focus-visible`
+
+`assets/css/style-variations/core-accordion-system-tabs-vertical.css` currently defines keyboard-visible focus on:
+
+- `.wp-block-accordion.is-style-system-tabs-vertical .system-tabs__tab:focus-visible`
+
+The current behavior is:
+
+- `outline: none`
+- compound box-shadow using inset border emphasis plus outer focus halo
+- `z-index: 2`
+- `position: relative`
+
+These generated tab controls also preserve the `.wp-block-accordion-heading__toggle` class so the tab runtime remains an accordion-derived interactive surface.
 
 ## Navigation Variation Contract
 

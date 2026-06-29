@@ -9,9 +9,13 @@
 /* Base LIs (Root level) */
 
 
-/* Border Collapsing & Radii Merging (ROOT items only) */
-
-
+/* ROOT LIs */
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) > li {
+    background: var(--wp--custom--system-ui-surface);
+    background-image: var(--wp--custom--system-ui-background-image, none);
+    backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+}
 
 /* ALL LIs (including nested) */
 .wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li {
@@ -21,6 +25,7 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
+    
 }
 
 /* Anchor tags inside LIs */
@@ -50,15 +55,15 @@
 }
 
 /* Hover States on Anchor */
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush):not(.is-not-action) li:hover {
-    background: var(--system-ui-hover-bg);
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush):not(.is-not-action) li:hover:not(:has(li:hover)) > a {
+    background: var(--wp--custom--system-ui-list-hover-bg);
 }
 
 /* Active State on Anchor */
 .wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li.current_page_item > a,
 .wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li.current_page_ancestor > a,
 .wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li:has(> a[aria-current="page"]) > a {
-    background: var(--system-ui-hover-bg);
+    background: var(--wp--custom--system-ui-list-hover-bg);
 }
 
 /* Nested ULs (Kill SystemPress bleeds) */
@@ -77,31 +82,43 @@
 /* Nested LIs */
 .wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li > ul > li {
     border: 0; /* Reset any bleeding borders */
-    border-top: var(--wp--custom--border-width, 1px) solid var(--system-ui-border-color) !important;
     border-radius: 0 !important;
 }
 
 /* Has-background overrides */
 .wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush).has-background > li {
     background: transparent;
-    border-color: var(--system-ui-border-color-on-background);
+    border-color: var(--wp--custom--system-ui-border-color);
 }
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush).has-background:not(.is-not-action) li:hover {
-    background: var(--system-ui-hover-bg-on-background);
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush).has-background:not(.is-not-action) li:hover:not(:has(li:hover)) > a {
+    background: var(--wp--custom--system-ui-list-hover-bg);
 }
 
-/* Increased Visibility Inside Parent with Background */
-.has-background > .wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) > li {
-    border-color: rgba(var(--wp--preset--color--border-color-rgb), .7);
-}
+
+
 .has-background > .wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) li > ul > li {
-    border-top-color: rgba(var(--wp--preset--color--border-color-rgb), .7) !important;
+    border-top-color: var(--wp--custom--system-ui-border-color) !important;
+    background: var(--wp--custom--system-ui-surface-nested, transparent);
+    background-image: var(--wp--custom--system-ui-background-image-nested, none);
 }
-.has-background > .wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background):not(.is-not-action) li:hover {
-    background: var(--system-ui-hover-bg-on-background);
+.has-background > .wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background):not(.is-not-action) li:hover:not(:has(li:hover)) > a {
+    background: var(--wp--custom--system-ui-list-hover-bg);
 }
 .has-background > .wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) li.current_page_item > a,
 .has-background > .wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) li.current_page_ancestor > a,
 .has-background > .wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) li:has(> a[aria-current="page"]) > a {
-    background: var(--system-ui-hover-bg-on-background);
+    background: var(--wp--custom--system-ui-list-hover-bg);
 }
+
+
+
+/* Premium System Borders between ROOT items */
+
+
+/* Premium System Borders between NESTED items */
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li > ul > li {
+    border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+    background: var(--wp--custom--system-ui-surface-nested, transparent);
+    background-image: var(--wp--custom--system-ui-background-image-nested, none);
+}
+

@@ -6,19 +6,59 @@ This file is a CONTRACT.
 
 ## Contract Version
 
-Current Version: 3.9
+Current Version: 3.19
 
-Last Updated: 2026-06-20
+Last Updated: 2026-06-28
 
 ## Change Log
 
-### 3.8
+### 3.19
 
-Updated the BuddyPress variation anchor contract so it resolves against whichever Core global-styles handle is actually registered in the current context, with `wp-block-library` as the final fallback. Added a shared BuddyPress widget-heading variation asset registered across the relevant widget-style BuddyPress blocks, and aligned BuddyPress panel/nav variation chrome more closely with the Core panel/header/nav families.
+Rewrote `core-accordion-system-tabs.css` and `core-accordion-system-tabs-vertical.css` into explicit token, layout, state, panel, seam, editor-fallback, and nested-override lanes so both tab styles now align to the System UI authority surfaces. The tabs CSS now consumes `system-ui-surface-banner`, `system-ui-list-hover-bg`, `system-ui-active-bg`, `system-ui-surface`, and `system-ui-border-color` directly, keeps the panel-owned seam mask contract intact, preserves the accordion-like editor fallback with tab labels, and leaves `accordion-tabs.js` as the unchanged transform and geometry layer.
+
+### 3.18
+
+Added `assets/js/variations/strap-accordion-tabs.js` as an editor-only block-variation registration surface for `core/accordion`. The file registers two inserter variations, `strap-accordion-tabs` and `strap-accordion-tabs-vertical`, that preconfigure the existing System Tabs and System Vertical Tabs styles with three starter accordion items and Base-preset heading/panel backgrounds without changing the frontend tabs runtime.
+
+### 3.17
+
+Updated the System Tabs seam contract so the panel now owns the seam mask that hides its joining border beneath the active tab. `accordion-tabs.js` now writes active-tab geometry onto the active panel, while the horizontal and vertical tab variation styles paint the seam cover from the panel pseudo-element and leave the tab pseudo-element responsible only for active-state depth styling.
+
+### 3.16
+
+Updated the System Tabs active-state presentation so the selected tab keeps its joining edge transparent while a higher-layer inherited-background seam strip covers the panel join. Added a shared active-state depth overlay to the tab surface so selection remains visually obvious even when user styling changes background, border, or panel values independently.
+
+### 3.15
+
+Updated the System Tabs seam behavior so the active joining edge is covered by a tab-owned inherited-background pseudo-element instead of relying on color-matched border overrides. Horizontal tabs now mask the panel join from the active tab bottom edge, and vertical tabs do the same from the active right edge on desktop plus the bottom edge on the mobile fallback layout.
+
+### 3.14
+
+Updated the System Tabs seam behavior so the active joining border now consumes the measured active tab background color directly. The runtime keeps `accordion-tabs.js` seam measurement, but the horizontal and vertical variations no longer paint the seam from `.system-tabs__panels::after`.
+
+### 3.13
+
+Updated the System Tabs seam runtime so `accordion-tabs.js` measures the active tab and writes seam geometry plus background values onto the accordion root. The horizontal and vertical tab variations now paint the seam cover from `.system-tabs__panels::after` instead of relying on a tab-owned pseudo-element.
+
+### 3.12
+
+Updated the System Tabs CSS seam behavior so the active tab paints a small inherited-background mask over the panel join. The horizontal variation uses a bottom mask strip, the desktop vertical variation uses a right-edge mask strip, and the mobile vertical fallback reuses the bottom mask behavior.
+
+### 3.11
+
+Updated the System Tabs transform so the first valid source accordion item supplies border classes, inline border settings, resolved border style, and resolved radius to the surviving accordion shell. Updated horizontal and vertical tab seams so the panel border remains authoritative while active tabs mask only their joining edge.
+
+### 3.10
+
+Updated the System Tabs accordion runtime contract so `accordion-tabs.js` remains the transform layer for `is-style-system-tabs` and `is-style-system-tabs-vertical` while preserving accordion-derived heading and panel styling hooks on the generated tab buttons and panels. Confirmed the horizontal and vertical tab styles remain CSS block-style variation surfaces and consume System UI tokens for surface, border, radius, focus, and spacing behavior.
 
 ### 3.9
 
 Updated the live filesystem variation inventory to include active `styles/*.json`, `styles/colors/*.json`, and `styles/typography/*.json` files, and documented the body/admin variation class contract emitted by `inc/dynamic-styles.php`.
+
+### 3.8
+
+Updated the BuddyPress variation anchor contract so it resolves against whichever Core global-styles handle is actually registered in the current context, with `wp-block-library` as the final fallback. Added a shared BuddyPress widget-heading variation asset registered across the relevant widget-style BuddyPress blocks, and aligned BuddyPress panel/nav variation chrome more closely with the Core panel/header/nav families.
 
 ### 3.7
 
@@ -155,14 +195,23 @@ The current variation filesystem shape is:
 ├── styles/
 │   ├── brite.json
 │   ├── quartz.json
+│   ├── slate.json
+│   ├── superhero.json
+│   ├── united.json
 │   ├── vapor.json
 │   ├── colors/
 │   │   ├── brite.json
 │   │   ├── quartz.json
+│   │   ├── slate.json
+│   │   ├── superhero.json
+│   │   ├── united.json
 │   │   └── vapor.json
 │   └── typography/
 │       ├── brite.json
 │       ├── quartz.json
+│       ├── slate.json
+│       ├── superhero.json
+│       ├── united.json
 │       └── vapor.json
 ├── assets/css/style-variations/
 │   ├── bp-login-form-system-panel.css
@@ -198,12 +247,14 @@ The current variation filesystem shape is:
 │   ├── core-table-system-panel.css
 │   └── core-tag-cloud-system-tags.css
 └── assets/js/variations/
+    ├── strap-accordion-tabs.js
     ├── strap-action-hook.js
     ├── strap-buttons.js
     ├── strap-carousel.js
     ├── strap-controls.js
     ├── strap-icon-controls.js
-    └── strap-panels.js
+    ├── strap-panels.js
+    └── strap-style-sync.js
 ```
 
 The `styles/` directory currently contains active filesystem variation JSON files in the root, `colors/`, and `typography/` lanes.
@@ -222,15 +273,35 @@ SystemStrap currently also ships active filesystem variation JSON files in:
 
 - `styles/brite.json`
 - `styles/quartz.json`
+- `styles/slate.json`
+- `styles/superhero.json`
+- `styles/united.json`
 - `styles/vapor.json`
 - `styles/colors/brite.json`
 - `styles/colors/quartz.json`
+- `styles/colors/slate.json`
+- `styles/colors/superhero.json`
+- `styles/colors/united.json`
 - `styles/colors/vapor.json`
 - `styles/typography/brite.json`
 - `styles/typography/quartz.json`
+- `styles/typography/slate.json`
+- `styles/typography/superhero.json`
+- `styles/typography/united.json`
 - `styles/typography/vapor.json`
 
 These files are active runtime variation sources layered onto the base `theme.json` configuration.
+
+SystemStrap currently also ships a theme-owned editor sync layer that auto-merges matching color and typography partials after a root layout variation is selected in the Site Editor:
+
+- `assets/js/variations/strap-style-sync.js`
+
+That editor-side behavior is derived from the live `styles/`, `styles/colors/`, and `styles/typography/` filenames through `strap_get_style_variation_sync_map()` in `inc/enqueue-assets.php`.
+
+The current sync rule is one-way:
+
+- selecting a root `styles/{slug}.json` variation MUST merge the matching `styles/colors/{slug}.json` and `styles/typography/{slug}.json` partials when they exist
+- selecting a color-only or typography-only partial MUST NOT force a layout variation change
 
 ### Reserved directory intent
 
@@ -516,6 +587,10 @@ The following render-time safeguards are part of the variation runtime:
     - hooked to `render_block`
     - detects `is-style-system-tabs` and `is-style-system-tabs-vertical`
     - enqueues `accordion-tabs.js`
+    - transforms rendered accordion items into tab buttons and tab panels on the frontend
+    - preserves accordion-derived heading and panel hooks on generated tab controls through `.wp-block-accordion-heading__toggle` and `.wp-block-accordion-panel`
+    - copies presentation classes and inline styles from source accordion items, headings, heading controls, and panels into the generated tab structure while excluding structural accordion wrapper classes
+    - copies border presentation from the first valid source accordion item onto the surviving accordion shell so item-level border settings remain visible after transformation
 - `strap_enqueue_pagination_block_styles()`
     - hooked to `render_block`
     - detects `core/query-pagination*`
@@ -566,6 +641,34 @@ The current CSS block-style surfaces covered by this contract as of Version 3.0 
 - carousel surface
     - `core-group-system-carousel.css`
 
+## System Tabs CSS Surface Contract
+
+The System Tabs CSS runtime is split across:
+
+- `core-accordion-system-tabs.css`
+- `core-accordion-system-tabs-vertical.css`
+
+These two files are CSS-only variation surfaces and MUST remain responsible for:
+
+- tab root token setup
+- frontend tablist and panel layout
+- resting, hover, active, and focus visual deltas on generated tabs
+- generated panel surface presentation
+- seam-mask presentation on the panel pseudo-element
+- accordion-like editor fallback presentation for tab variations
+
+These files MUST consume the System UI authority tokens directly:
+
+- `--wp--custom--system-ui-surface-banner`
+- `--wp--custom--system-ui-list-hover-bg`
+- `--wp--custom--system-ui-active-bg`
+- `--wp--custom--system-ui-surface`
+- `--wp--custom--system-ui-border-color`
+- `--wp--custom--system-ui-background-image`
+- `--wp--custom--system-ui-backdrop-filter`
+
+Nested tab overrides MAY exist only where they directly mirror existing System UI authority behavior for nested surfaces. They MUST NOT introduce new runtime responsibilities, duplicate transform logic, or replace the editor fallback with frontend tab rendering inside the editor.
+
 ## JavaScript Variation Contract
 
 ### Loader boundary
@@ -591,6 +694,23 @@ These categories MUST NOT be conflated.
 The following JavaScript files are governed by this contract as of Version 3.0.
 
 ## Registered Block Variation Registry
+
+### `strap-accordion-tabs.js`
+
+Registers two `core/accordion` variations:
+
+- `strap-accordion-tabs`
+- `strap-accordion-tabs-vertical`
+
+These variations currently inject:
+
+- `className: "is-style-system-tabs"`
+- `className: "is-style-system-tabs-vertical"`
+- three preconfigured `core/accordion-item` children
+- `core/accordion-heading` children with Base-preset backgrounds and starter titles
+- `core/accordion-panel` children with Base-preset backgrounds and placeholder paragraph content
+
+These variations are starter-content registrations only. They MUST continue to rely on the existing System Tabs runtime and CSS block-style surfaces rather than introducing duplicate accordion-tab behavior in the editor variation layer.
 
 ### `strap-action-hook.js`
 
@@ -762,12 +882,21 @@ The current active JSON variation files are:
 
 - `styles/brite.json`
 - `styles/quartz.json`
+- `styles/slate.json`
+- `styles/superhero.json`
+- `styles/united.json`
 - `styles/vapor.json`
 - `styles/colors/brite.json`
 - `styles/colors/quartz.json`
+- `styles/colors/slate.json`
+- `styles/colors/superhero.json`
+- `styles/colors/united.json`
 - `styles/colors/vapor.json`
 - `styles/typography/brite.json`
 - `styles/typography/quartz.json`
+- `styles/typography/slate.json`
+- `styles/typography/superhero.json`
+- `styles/typography/united.json`
 - `styles/typography/vapor.json`
 
 Future additions to those directories MUST be documented here with exact file names and scope boundaries.

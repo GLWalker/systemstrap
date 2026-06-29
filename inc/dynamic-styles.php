@@ -27,8 +27,17 @@ if ( ! function_exists( 'strap_generate_dynamic_colors' ) ) {
 
 		$target_slugs   = [ 'primary', 'secondary', 'success', 'info', 'warning', 'danger', 'light', 'dark' ];
 		$rgb_only_slugs = [ 'base', 'contrast', 'secondary-bg', 'secondary-color', 'tertiary-bg', 'tertiary-color', 'border-color' ];
+		$fixed_contrast_map = [
+			'base'            => 'contrast',
+			'contrast'        => 'base',
+			'secondary-bg'    => 'secondary-color',
+			'secondary-color' => 'secondary-bg',
+			'tertiary-bg'     => 'tertiary-color',
+			'tertiary-color'  => 'tertiary-bg',
+		];
 		$css            = ":root, body, .editor-styles-wrapper {\n";
 		$button_css     = "\n/* Dynamic Button Hover Shadows */\n";
+		$tabs_css       = "\n/* Dynamic System Tabs Active Join Color Routing */\n";
 
 		foreach ( $colors as $color ) {
 			$slug = $color['slug'];
@@ -38,11 +47,29 @@ if ( ! function_exists( 'strap_generate_dynamic_colors' ) ) {
 				continue;
 			}
 
+			$tabs_css .= "
+body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs .system-tabs__tab.has-{$slug}-background-color[aria-selected=\"true\"],
+body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs-vertical .system-tabs__tab.has-{$slug}-background-color[aria-selected=\"true\"] {
+    --system-tabs-active-join-color: var(--wp--preset--color--{$slug}) !important;
+}
+";
+
 			if ( in_array( $slug, $rgb_only_slugs, true ) ) {
 				$generator  = new Strap_ColorGenerator( $color_value );
 				$rgb_string = $generator->hex_to_rgb( $color_value );
 				$rgb_raw    = str_replace( [ 'rgb(', 'rgba(', ')' ], '', $rgb_string );
 				$css       .= sprintf( "\t--wp--preset--color--%s-rgb: %s;\n", $slug, $rgb_raw );
+
+				if ( isset( $fixed_contrast_map[ $slug ] ) ) {
+					$contrast_slug = $fixed_contrast_map[ $slug ];
+					$button_css .= "
+/* Fixed Contrast Routing */
+.has-{$slug}-background-color:not(.has-text-color) {
+    color: var(--wp--preset--color--{$contrast_slug}) !important;
+}
+";
+				}
+
 				continue;
 			}
 
@@ -66,9 +93,7 @@ if ( ! function_exists( 'strap_generate_dynamic_colors' ) ) {
 			$text_contrast = $generator->parse_the_contrast( $color_value );
 			$css          .= sprintf( "\t--wp--preset--color--%s-text: %s;\n", $slug, $text_contrast );
 
-			$text_rgb_string = $generator->hex_to_rgb( $text_contrast );
-			$text_rgb_raw    = str_replace( [ 'rgb(', 'rgba(', ')' ], '', $text_rgb_string );
-			$css          .= sprintf( "\t--wp--preset--color--%s-text-rgb: %s;\n", $slug, $text_rgb_raw );
+			// Removed --wp--preset--color--{$slug}-text-rgb per user instruction.
 
 			$shadow_index = 3;
 			if ( isset( $palette[ $shadow_index ] ) ) {
@@ -78,6 +103,11 @@ if ( ! function_exists( 'strap_generate_dynamic_colors' ) ) {
 
 				// Generate dynamic component CSS for this color
 				$button_css .= "
+/* Dynamic Background Contrast Routing */
+.has-{$slug}-background-color:not(.has-text-color) {
+    color: var(--wp--preset--color--{$slug}-text) !important;
+}
+
 /* System Badge Contrast Routing */
 .system-badge.has-{$slug}-background-color,
 .has-system-badge mark.has-{$slug}-background-color {
@@ -94,7 +124,6 @@ ul.wp-block-latest-posts.has-{$slug}-background-color > li {
 }
 
 .wp-block-button__link.has-{$slug}-background-color {
-    --local-btn-highlight-rgb: var(--wp--preset--color--{$slug}-text-rgb);
     --local-btn-shadow-rgb: var(--wp--preset--color--{$slug}-shadow-rgb);
 }
 .wp-block-button.is-style-outline .wp-block-button__link.has-{$slug}-color,
@@ -106,7 +135,6 @@ ul.wp-block-latest-posts.has-{$slug}-background-color > li {
     background-color: transparent !important;
     color: var(--wp--preset--color--{$slug}) !important;
     border-color: var(--wp--preset--color--{$slug}) !important;
-    --local-btn-highlight-rgb: var(--wp--preset--color--{$slug}-text-rgb);
     --local-btn-shadow-rgb: var(--wp--preset--color--{$slug}-shadow-rgb);
 }
 
@@ -168,6 +196,7 @@ ul.wp-block-latest-posts.has-{$slug}-background-color > li {
 
 		$css .= "}\n";
 		$css .= $button_css;
+		$css .= $tabs_css;
 
 		// Add Gradient background routing for Latest Posts
 		$gradients = $settings['color']['gradients']['theme'] ?? [];
@@ -197,24 +226,7 @@ ul.wp-block-latest-posts.has-{$slug}-gradient-background > li {
 			}
 		}
 
-		$active_slugs = systemstrap_get_active_variation_slugs();
-		if ( isset( $active_slugs['color'] ) && 'quartz' === $active_slugs['color'] ) {
-			$css .= "
-/* Quartz Glassmorphism Chrome */
-.is-style-system-panel {
-    background-color: transparent !important;
-    background-image: var(--wp--preset--gradient--element) !important;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(var(--wp--preset--color--border-color-rgb), 0.2) !important;
-}
-.is-style-system-panel .is-style-system-panel {
-    background-image: none !important;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-}
-";
-		}
+
 
 		return $css;
 	}
@@ -223,39 +235,41 @@ ul.wp-block-latest-posts.has-{$slug}-gradient-background > li {
 if ( ! function_exists( 'strap_ensure_global_styles_handle' ) ) {
 	/**
 	 * Ensure a writable global styles handle exists before attaching inline CSS.
-	 *
-	 * Core registers `global-styles` on the frontend, but editor and block-asset
-	 * flows may not always have that handle available when SystemStrap appends
-	 * dynamic palette-derived CSS.
-	 *
-	 * @return void
 	 */
 	function strap_ensure_global_styles_handle() {
 		if ( wp_style_is( 'global-styles', 'registered' ) ) {
 			return;
 		}
-
 		wp_register_style( 'global-styles', false );
 		wp_enqueue_style( 'global-styles' );
 	}
 }
 
-// Frontend & Editor injection via global-styles
-function strap_enqueue_all_dynamic_css() {
-	static $has_run = false;
-	if ( $has_run ) {
-		return;
-	}
-	$has_run = true;
+if ( ! function_exists( 'strap_enqueue_all_dynamic_css' ) ) {
+	/**
+	 * Frontend & Editor injection of dynamic palette styles.
+	 * We append directly to 'global-styles' so it prints inside the same tag,
+	 * but we use late priorities (9999) to ensure WP core has already added its own rules first.
+	 */
+	function strap_enqueue_all_dynamic_css() {
+		static $has_run = false;
+		if ( $has_run ) {
+			return;
+		}
+		$has_run = true;
 
-	$css = strap_generate_dynamic_colors_output();
-	if ( $css ) {
+		$css = strap_generate_dynamic_colors_output();
+		if ( ! $css ) {
+			return;
+		}
+
 		strap_ensure_global_styles_handle();
 		wp_add_inline_style( 'global-styles', $css );
 	}
 }
-add_action( 'wp_enqueue_scripts', 'strap_enqueue_all_dynamic_css', 100 );
-add_action( 'enqueue_block_assets', 'strap_enqueue_all_dynamic_css', 100 );
+// Run very late so wp_enqueue_global_styles (priority 10) has already populated its rules.
+add_action( 'wp_enqueue_scripts', 'strap_enqueue_all_dynamic_css', 9999 );
+add_action( 'enqueue_block_editor_assets', 'strap_enqueue_all_dynamic_css', 9999 );
 
 if ( ! function_exists( 'systemstrap_get_active_variation_slugs' ) ) {
 	/**

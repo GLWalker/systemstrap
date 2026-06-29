@@ -1,0 +1,75 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "Sandstone Typography",
+	"settings": {
+		"typography": {
+			"fontFamilies": [
+				{
+					"fontFamily": "Roboto, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Helvetica Neue\", Arial, sans-serif",
+					"name": "Body Font",
+					"slug": "body",
+					"fontFace": [
+						{
+							"fontFamily": "Roboto",
+							"fontStyle": "normal",
+							"fontWeight": "100 900",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/roboto/roboto-variable.woff2"
+							]
+						}
+					]
+				},
+				{
+					"fontFamily": "Merriweather",
+					"name": "Heading Font",
+					"slug": "heading",
+					"fontFace": [
+						{
+							"fontFamily": "Merriweather",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/merriweather/merriweather-0.woff2"
+							]
+						}
+					]
+				},
+				{
+					"fontFamily": "Cardo",
+					"name": "Display Font",
+					"slug": "display",
+					"fontFace": [
+						{
+							"fontFamily": "Cardo",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/cardo/cardo_normal_400.woff2"
+							]
+						}
+					]
+				},
+				{
+					"fontFamily": "Montserrat",
+					"name": "Button Font",
+					"slug": "button",
+					"fontFace": [
+						{
+							"fontFamily": "Montserrat",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/montserrat/montserrat-variable.woff2"
+							]
+						}
+					]
+				}
+			]
+		}
+	}
+}

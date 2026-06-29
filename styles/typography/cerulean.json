@@ -11,34 +11,52 @@
 					"slug": "body"
 				},
 				{
-					"fontFamily": "var(--wp--preset--font-family--body)",
+					"fontFamily": "Montserrat",
 					"name": "Heading Font",
-					"slug": "heading"
+					"slug": "heading",
+					"fontFace": [
+						{
+							"fontFamily": "Montserrat",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/montserrat/montserrat-variable.woff2"
+							]
+						}
+					]
 				},
 				{
-					"fontFamily": "var(--wp--preset--font-family--body)",
-					"name": "Navigation Font",
-					"slug": "navigation"
-				},
-				{
-					"fontFamily": "var(--wp--preset--font-family--heading)",
+					"fontFamily": "Jost",
 					"name": "Display Font",
-					"slug": "display"
+					"slug": "display",
+					"fontFace": [
+						{
+							"fontFamily": "Jost",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/jost/Jost-VariableFont_wght.woff2"
+							]
+						}
+					]
 				},
 				{
-					"fontFamily": "SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
-					"name": "Monospace Font",
-					"slug": "monospace"
-				},
-				{
-					"fontFamily": "var(--wp--preset--font-family--navigation)",
+					"fontFamily": "Nunito Sans",
 					"name": "Button Font",
-					"slug": "button"
-				},
-				{
-					"fontFamily": "var(--wp--preset--font-family--display)",
-					"name": "Single Title Font",
-					"slug": "single-title"
+					"slug": "button",
+					"fontFace": [
+						{
+							"fontFamily": "Nunito Sans",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/nunito/nunito-sans-variable.woff2"
+							]
+						}
+					]
 				}
 			]
 		}

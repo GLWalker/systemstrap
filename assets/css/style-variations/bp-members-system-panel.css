@@ -6,8 +6,11 @@
 
 .bp-block-members.is-style-system-panel > .member-content,
 .wp-block-bp-members.is-style-system-panel .bp-block-members > .member-content {
-    border: var(--wp--custom--border-width, 1px) solid var(--system-ui-border-color);
-    background: var(--system-ui-surface);
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+    background: var(--wp--custom--system-ui-surface);
+    background-image: var(--wp--custom--system-ui-background-image, none);
+    backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     border-radius: var(--wp--custom--border-radius);
     box-shadow: var(--wp--custom--shadow, none);
     overflow: hidden;
@@ -16,12 +19,12 @@
 
 .bp-block-members.is-style-system-panel.has-background > .member-content,
 .wp-block-bp-members.is-style-system-panel.has-background .bp-block-members > .member-content {
-    border-color: var(--system-ui-border-color-on-background);
+    border-color: var(--wp--custom--system-ui-border-color);
 }
 
 .bp-block-members.is-style-system-panel > .member-content .item-header-avatar img.avatar,
 .wp-block-bp-members.is-style-system-panel .bp-block-members > .member-content .item-header-avatar img.avatar {
-    border: var(--wp--custom--border-width, 1px) solid rgba(var(--wp--preset--color--border-color-rgb), 0.25);
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
 }
 
 .bp-block-members.is-style-system-panel > .member-content .member-description > strong a,
@@ -32,3 +35,4 @@
 .wp-block-bp-members.is-style-system-panel .bp-block-members > .member-content time {
     color: inherit;
 }
+

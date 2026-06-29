@@ -3,147 +3,291 @@
  * Converts standard accordion layout into horizontal tabs.
  */
 
-.wp-block-accordion.is-style-system-tabs {
-    /* The actual block wrapper */
+/* 1. Root token lane */
+body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs {
     display: block;
+    --system-tabs-gap: var(--wp--preset--spacing--10, .5rem);
+    --system-tabs-padding-y: var(--wp--preset--spacing--10, .5rem);
+    --system-tabs-padding-x: var(--wp--preset--spacing--20, 1rem);
+    --system-tabs-panel-padding: var(--wp--preset--spacing--30, 1rem);
+    --system-tabs-border-width: var(--wp--custom--border-width, 1px);
+    --system-tabs-active-overlap: 3px;
+    --system-tabs-radius: var(--wp--custom--border-radius, .375rem);
+    --system-tabs-surface-banner: var(--wp--custom--system-ui-surface-banner, var(--wp--custom--system-ui-surface, transparent));
+    --system-tabs-surface-hover: var(--wp--custom--system-ui-list-hover-bg, color-mix(in srgb, currentColor 8%, transparent));
+    --system-tabs-surface-active: var(--wp--custom--system-ui-active-bg, var(--wp--custom--system-ui-surface, transparent));
+    --system-tabs-surface-panel: var(--wp--custom--system-ui-surface, transparent);
+    --system-tabs-border-color: var(--wp--custom--system-ui-border-color, color-mix(in srgb, currentColor 18%, transparent));
+    --system-tabs-active-join-color: var(--wp--preset--color--base, transparent);
 }
 
-/* Fallback / Editor styles */
-.wp-block-accordion.is-style-system-tabs .wp-block-accordion-heading {
+/* 2. Frontend layout lane */
+body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs > .wp-block-accordion-item {
+    display: contents;
+}
+
+body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs .wp-block-accordion-heading {
     display: inline-flex;
 }
 
-.wp-block-accordion.is-style-system-tabs>.wp-block-accordion-item {
-    display: contents;
-    /* Strip default wrapper constraints */
-}
-
-/* Fix WP core injecting block-gap as margin-top onto the second grid child */
-.wp-block-accordion.is-style-system-tabs .system-tabs__panels {
+body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs .system-tabs__panels {
     margin-top: 0 !important;
+    position: relative;
+    z-index: 0;
 }
 
-/* Frontend JS-Enhanced Tablist */
-.wp-block-accordion.is-style-system-tabs .system-tabs__tablist {
+body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs .system-tabs__tablist {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--wp--preset--spacing--10, .5rem);
-    margin-bottom: 0;
-    /* Tabs must connect flush with panel */
-    border-bottom: 1px solid var(--system-ui-border-color);
+    gap: var(--system-tabs-gap);
+    align-items: flex-start;
+    overflow: visible;
+    position: relative;
+    z-index: 1;
+    margin-bottom: calc(var(--system-tabs-border-width) * -1);
+    padding-inline-start: var(--wp--preset--spacing--10, .5rem);
 }
 
-.wp-block-accordion.is-style-system-tabs .system-tabs__tab,
-.wp-block-accordion.is-style-system-tabs .system-tabs__tab * {
+/* 3. Base tab surface lane */
+body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs .system-tabs__tab,
+body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs .system-tabs__tab * {
     text-decoration: none !important;
 }
 
-.wp-block-accordion.is-style-system-tabs .system-tabs__tab {
+body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs .system-tabs__tab {
     color: inherit;
-    background: transparent;
-    border: 1px solid transparent;
-    border-radius: var(--wp--custom--border-radius, 8px) var(--wp--custom--border-radius, 8px) 0 0;
-    margin-bottom: -1px;
-    /* Overlap the tablist bottom border */
-    padding: var(--wp--preset--spacing--10, .5rem) var(--wp--preset--spacing--20, 1rem) !important;
+    background-color: var(--system-tabs-surface-banner);
+    background-image: var(--wp--custom--system-ui-background-image, none);
+    backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    border: var(--system-tabs-border-width) solid var(--system-tabs-border-color);
+    border-radius: var(--system-tabs-radius) var(--system-tabs-radius) 0 0;
+    margin-bottom: calc(var(--system-tabs-border-width) * -1);
+    padding: var(--system-tabs-padding-y) var(--system-tabs-padding-x);
+    overflow: visible;
     cursor: pointer;
+    width: auto;
+    max-width: 100%;
+    flex: 0 0 auto;
     min-inline-size: 2.5rem;
     min-block-size: 2.5rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: .5rem;
-    font-weight: var(--wp--custom--font-weight-heading);
-    transition: background-color 0.2s ease, transform 0.1s ease, filter 0.2s ease, border-color 0.2s ease;
+    transition: background-color 0.2s ease, border-color 0.2s ease, filter 0.2s ease, transform 0.1s ease;
 }
 
-.wp-block-accordion.is-style-system-tabs .system-tabs__tab:not(.has-background):not([style*="background"]) {
-    background: var(--system-ui-surface, rgba(0, 0, 0, 0.03));
+/* 4. Tab state delta lane */
+body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs .system-tabs__tab:hover {
+    background-color: var(--system-tabs-surface-hover);
 }
 
-.wp-block-accordion.is-style-system-tabs .system-tabs__tab:not(.has-background):not([style*="background"]):hover {
-    background-color: color-mix(in srgb, var(--system-ui-hover-bg), currentColor 5%);
-}
-
-.wp-block-accordion.is-style-system-tabs .system-tabs__tab.has-background:hover,
-.wp-block-accordion.is-style-system-tabs .system-tabs__tab[style*="background"]:hover {
+body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs .system-tabs__tab.has-background:hover,
+body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs .system-tabs__tab[style*="background"]:hover {
     filter: brightness(0.95);
 }
 
-.wp-block-accordion.is-style-system-tabs .system-tabs__tab[aria-selected="true"] {
+body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs .system-tabs__tab[aria-selected="true"] {
     position: relative;
-    border-color: var(--system-ui-border-color);
-    border-bottom-color: transparent;
-    /* Connects with the panel background */
+    z-index: 2;
+    background-color: var(--system-tabs-surface-active);
+    border-bottom-color: var(--system-tabs-active-join-color);
+    padding-bottom: calc(var(--system-tabs-padding-y) + var(--system-tabs-active-overlap));
+    margin-bottom: calc((var(--system-tabs-border-width) * -1) - var(--system-tabs-active-overlap));
 }
 
-.wp-block-accordion.is-style-system-tabs .system-tabs__tab:not(.has-background):not([style*="background"])[aria-selected="true"] {
-    background-color: var(--system-ui-surface);
-    /* Match panel surface instead of hover shade */
+body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs .system-tabs__tab[aria-selected="true"] > * {
+    position: relative;
+    z-index: 2;
 }
 
-.wp-block-accordion.is-style-system-tabs .system-tabs__tab.has-background[aria-selected="true"],
-.wp-block-accordion.is-style-system-tabs .system-tabs__tab[style*="background"][aria-selected="true"] {
-    filter: brightness(0.9);
+body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs .system-tabs__tab[aria-selected="true"]::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-image: linear-gradient(180deg, color-mix(in srgb, currentColor 10%, transparent), transparent 72%);
+    pointer-events: none;
+    z-index: 1;
 }
 
-.wp-block-accordion.is-style-system-tabs .system-tabs__panel {
+body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs .system-tabs__tab:focus-visible {
+    outline: none;
+    box-shadow: inset 0 0 0 var(--system-tabs-border-width) var(--wp--preset--color--primary), 0 0 0 var(--wp--custom--focus-ring-width, .25rem) var(--wp--custom--focus-ring-color, rgba(13, 110, 253, .25));
+    position: relative;
+    z-index: 3;
+}
+
+/* 5. Panel surface lane */
+body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs .system-tabs__panel {
     color: inherit;
-    border: var(--wp--custom--border-width, 1px) solid var(--system-ui-border-color);
-    background: transparent;
-
-    padding: var(--wp--preset--spacing--30, 1rem);
-
+    background-color: var(--system-tabs-surface-panel);
+    background-image: var(--wp--custom--system-ui-background-image, none);
+    backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    border: var(--system-tabs-border-width) solid var(--system-tabs-border-color);
+    border-radius: var(--system-tabs-radius);
+    padding: var(--system-tabs-panel-padding);
+    position: relative;
+    z-index: 0;
 }
 
-.wp-block-accordion.is-style-system-tabs .system-tabs__panel:not(.has-background):not([style*="background"]) {
-    background: var(--system-ui-surface, transparent);
-}
-
-/* Prevent inner blocks from adding extra top space inside the panel */
-.wp-block-accordion.is-style-system-tabs .system-tabs__panel>*:first-child {
+body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs .system-tabs__panel > *:first-child {
     margin-top: 0 !important;
 }
 
-/* Editor fallback: keep tab accordions easy to edit even when frontend JS conversion is absent */
+body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs .system-tabs__panel > *:last-child,
+body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs .system-tabs__panel > *:has(+ .block-list-appender) {
+    margin-bottom: 0 !important;
+}
+
+/* 6. Seam lane */
+body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs .system-tabs__panel::before {
+    content: "";
+    position: absolute;
+    top: calc(var(--system-tabs-border-width) * -1);
+    left: var(--system-tabs-active-tab-left, 0px);
+    width: var(--system-tabs-active-tab-width, 0px);
+    height: calc(var(--system-tabs-border-width) + 2px);
+    background-color: inherit;
+    background-image: inherit;
+    backdrop-filter: inherit;
+    -webkit-backdrop-filter: inherit;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* 7. Editor fallback lane */
 .editor-styles-wrapper .wp-block-accordion.is-style-system-tabs {
     display: block;
+    gap: 0;
     padding: 0;
 }
 
 .editor-styles-wrapper .wp-block-accordion.is-style-system-tabs::before {
     content: "System Tabs Accordion";
     display: block;
-    margin-bottom: var(--wp--preset--spacing--10, 0.5rem);
+    margin-bottom: var(--system-tabs-gap);
     padding: 0.35rem 0.65rem;
-    border: 1px solid var(--system-ui-border-color, rgba(0, 0, 0, 0.12));
-    border-radius: var(--wp--custom--border-radius, 8px);
-    background: var(--system-ui-surface, rgba(0, 0, 0, 0.03));
     color: inherit;
     font-size: var(--wp--preset--font-size--x-small, 0.75rem);
     font-weight: var(--wp--custom--font-weight-heading);
     letter-spacing: 0.02em;
     text-transform: uppercase;
+    background-color: var(--system-tabs-surface-panel);
+    background-image: var(--wp--custom--system-ui-background-image, none);
+    backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    border: var(--system-tabs-border-width) solid var(--system-tabs-border-color);
+    border-radius: var(--system-tabs-radius);
 }
 
-.editor-styles-wrapper .wp-block-accordion.is-style-system-tabs>.wp-block-accordion-item {
+.editor-styles-wrapper .wp-block-accordion.is-style-system-tabs > .wp-block-accordion-item {
     display: block;
-    border: var(--wp--custom--border-width, 1px) solid var(--system-ui-border-color);
-    border-radius: var(--wp--custom--border-radius, 8px);
     margin-top: 0 !important;
+    margin-bottom: 0;
     overflow: hidden;
+    background-color: var(--system-tabs-surface-panel);
+    background-image: var(--wp--custom--system-ui-background-image, none);
+    backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    border: var(--system-tabs-border-width) solid var(--system-tabs-border-color);
+    border-radius: var(--system-tabs-radius);
+    box-shadow: var(--wp--custom--shadow);
+}
+
+.editor-styles-wrapper .wp-block-accordion.is-style-system-tabs > .wp-block-accordion-item + .wp-block-accordion-item {
+    border-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.editor-styles-wrapper .wp-block-accordion.is-style-system-tabs > .wp-block-accordion-item:has(+ .wp-block-accordion-item) {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 .editor-styles-wrapper .wp-block-accordion.is-style-system-tabs .wp-block-accordion-heading {
     display: block;
+    margin-bottom: 0 !important;
 }
 
 .editor-styles-wrapper .wp-block-accordion.is-style-system-tabs .wp-block-accordion-heading__toggle {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
     width: 100%;
+    padding: var(--wp--preset--spacing--20) 1.25rem;
     text-align: left;
+    color: var(--wp--preset--color--inherit);
+    background-color: var(--system-tabs-surface-banner);
+    background-image: var(--wp--custom--system-ui-background-image, none);
+    backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    border: 0;
+    border-bottom: var(--system-tabs-border-width) solid transparent;
+    border-radius: calc(var(--system-tabs-radius) - var(--system-tabs-border-width));
+    font-weight: var(--wp--custom--font-weight-heading);
+    transition: background-color 0.15s ease-in-out;
+}
+
+.editor-styles-wrapper .wp-block-accordion.is-style-system-tabs .wp-block-accordion-heading__toggle-title {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.editor-styles-wrapper .wp-block-accordion.is-style-system-tabs .wp-block-accordion-heading__toggle-icon {
+    flex: 0 0 auto;
+    margin-left: auto;
+}
+
+.editor-styles-wrapper .wp-block-accordion.is-style-system-tabs > .wp-block-accordion-item + .wp-block-accordion-item .wp-block-accordion-heading__toggle {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.editor-styles-wrapper .wp-block-accordion.is-style-system-tabs > .wp-block-accordion-item:has(+ .wp-block-accordion-item):not(.is-open) .wp-block-accordion-heading__toggle {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.editor-styles-wrapper .wp-block-accordion.is-style-system-tabs .wp-block-accordion-heading__toggle:hover {
+    background-color: var(--system-tabs-surface-hover);
+}
+
+.editor-styles-wrapper .wp-block-accordion.is-style-system-tabs .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle {
+    background-color: var(--system-tabs-surface-active);
+    border-bottom-color: var(--system-tabs-border-color);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 .editor-styles-wrapper .wp-block-accordion.is-style-system-tabs .wp-block-accordion-panel {
-    border-top: var(--wp--custom--border-width, 1px) solid var(--system-ui-border-color);
+    padding: var(--wp--preset--spacing--20) 1.25rem;
+    background-color: var(--system-tabs-surface-panel);
+    background-image: var(--wp--custom--system-ui-background-image, none);
+    backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+}
+
+.editor-styles-wrapper .wp-block-accordion.is-style-system-tabs .wp-block-accordion-panel > *:first-child,
+.editor-styles-wrapper .wp-block-accordion.is-style-system-tabs .wp-block-accordion-panel .block-editor-block-list__layout > *:first-child {
+    margin-top: 0 !important;
+}
+
+.editor-styles-wrapper .wp-block-accordion.is-style-system-tabs .wp-block-accordion-panel > *:last-child,
+.editor-styles-wrapper .wp-block-accordion.is-style-system-tabs .wp-block-accordion-panel > *:has(+ .block-list-appender),
+.editor-styles-wrapper .wp-block-accordion.is-style-system-tabs .wp-block-accordion-panel .block-editor-block-list__layout > *:last-child,
+.editor-styles-wrapper .wp-block-accordion.is-style-system-tabs .wp-block-accordion-panel .block-editor-block-list__layout > *:has(+ .block-list-appender) {
+    margin-bottom: 0 !important;
+}
+
+/* 8. Nested override lane */
+body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[class*="wp-block-accordion"]:is(.is-style-system-tabs) .system-tabs__tab:not(.has-background):not([style*="background"]),
+body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[class*="wp-block-accordion"]:is(.is-style-system-tabs) .system-tabs__tab[aria-selected="true"]:not(.has-background):not([style*="background"]),
+body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[class*="wp-block-accordion"]:is(.is-style-system-tabs) .system-tabs__panel:not(.has-background):not([style*="background"]) {
+    background-color: var(--wp--custom--system-ui-surface-nested, transparent) !important;
+    background-image: var(--wp--custom--system-ui-background-image-nested, none) !important;
 }

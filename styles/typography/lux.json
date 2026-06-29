@@ -22,34 +22,52 @@
 					]
 				},
 				{
-					"fontFamily": "var(--wp--preset--font-family--body)",
+					"fontFamily": "Playfair Display",
 					"name": "Heading Font",
-					"slug": "heading"
+					"slug": "heading",
+					"fontFace": [
+						{
+							"fontFamily": "Playfair Display",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/playfair-display/playfair-display-0.woff2"
+							]
+						}
+					]
 				},
 				{
-					"fontFamily": "var(--wp--preset--font-family--body)",
-					"name": "Navigation Font",
-					"slug": "navigation"
-				},
-				{
-					"fontFamily": "var(--wp--preset--font-family--body)",
+					"fontFamily": "Cinzel",
 					"name": "Display Font",
-					"slug": "display"
+					"slug": "display",
+					"fontFace": [
+						{
+							"fontFamily": "Cinzel",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/cinzel/cinzel-0.woff2"
+							]
+						}
+					]
 				},
 				{
-					"fontFamily": "SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
-					"name": "Monospace Font",
-					"slug": "monospace"
-				},
-				{
-					"fontFamily": "var(--wp--preset--font-family--body)",
+					"fontFamily": "Merriweather",
 					"name": "Button Font",
-					"slug": "button"
-				},
-				{
-					"fontFamily": "var(--wp--preset--font-family--body)",
-					"name": "Single Title Font",
-					"slug": "single-title"
+					"slug": "button",
+					"fontFace": [
+						{
+							"fontFamily": "Merriweather",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/merriweather/merriweather-0.woff2"
+							]
+						}
+					]
 				}
 			]
 		}

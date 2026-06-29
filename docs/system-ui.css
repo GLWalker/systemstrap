@@ -1,0 +1,503 @@
+/*!
+ * SystemStrap System UI Map
+ * File: docs/system-ui.css
+ * Classification: Documentation Map / Non-Runtime Reference
+ *
+ * Purpose:
+ * This file documents the SystemStrap System UI styling architecture in one place.
+ * It is not enqueued and does not act as the runtime source of truth.
+ *
+ * Maintenance Rule:
+ * When a live System UI surface changes, update:
+ * 1. The real runtime CSS file
+ * 2. This map
+ *
+ * Runtime Source Of Truth:
+ * assets/css/style-variations/*.css
+ * theme.json
+ * inc/dynamic-styles.php
+ */
+
+/* ========================================================================
+   TABLE OF CONTENTS
+   ========================================================================
+
+   1. Token Registry
+   2. Authority Order
+   3. Shared System UI Rules
+   4. System Panel
+   5. System List
+   6. System Accordion
+   7. System Details
+   8. System Tabs
+   9. System Vertical Tabs
+   10. Nested Surface Rules
+   11. Editor Fallback Rules
+   12. Dynamic Color Runtime
+   13. Known Edge Cases
+*/
+
+/* ========================================================================
+   1. TOKEN REGISTRY
+   ======================================================================== */
+
+/*
+ * Surface Tokens
+ * --wp--custom--system-ui-surface
+ * Default source: theme.json
+ * Used by: panel shells, accordion bodies, details bodies, tab panels
+ * Purpose: primary component surface
+ */
+
+/*
+ * Surface Banner Tokens
+ * --wp--custom--system-ui-surface-banner
+ * Default source: theme.json
+ * Used by: panel headers, accordion toggles, details summaries, tab buttons
+ * Purpose: resting interactive surface
+ */
+
+/*
+ * Active Tokens
+ * --wp--custom--system-ui-active-bg
+ * Default source: theme.json
+ * Used by: open and active header states
+ * Purpose: active emphasis surface
+ */
+
+/*
+ * Hover Tokens
+ * --wp--custom--system-ui-list-hover-bg
+ * Default source: theme.json
+ * Used by: hover states on list-like and toggle-like interactive surfaces
+ * Purpose: hover response
+ */
+
+/*
+ * Border Tokens
+ * --wp--custom--system-ui-border-color
+ * --wp--custom--border-width
+ * --wp--custom--border-radius
+ * Default source: theme.json
+ * Used by: all System UI surfaces
+ * Purpose: shell and join consistency
+ */
+
+/*
+ * FX Tokens
+ * --wp--custom--system-ui-background-image
+ * --wp--custom--system-ui-background-image-nested
+ * --wp--custom--system-ui-backdrop-filter
+ * Default source: theme.json
+ * Used by: glass/image-capable surfaces
+ * Purpose: layered visual treatment across direct and nested surfaces
+ */
+
+/*
+ * Nested Surface Tokens
+ * --wp--custom--system-ui-surface-nested
+ * --wp--custom--system-ui-background-image-nested
+ * Default source: theme.json
+ * Used by: system surfaces when nested inside system-panel
+ * Purpose: prevent double chrome while preserving visual hierarchy
+ */
+
+/*
+ * Focus Tokens
+ * --wp--custom--focus-ring-width
+ * --wp--custom--focus-ring-color
+ * Default source: theme.json
+ * Used by: keyboard-visible focus states across interactive surfaces
+ * Purpose: consistent accessibility feedback
+ */
+
+/* ========================================================================
+   2. AUTHORITY ORDER
+   ======================================================================== */
+
+/*
+ * Authority 1: System Panel
+ * Why: shell model, border model, outer surface ownership
+ * Runtime files:
+ * - assets/css/style-variations/core-group-system-panel.css
+ */
+
+/*
+ * Authority 2: System List
+ * Why: row rhythm, nested surface behavior, hover behavior
+ * Runtime files:
+ * - assets/css/style-variations/core-list-system-list.css
+ */
+
+/*
+ * Authority 3: Panel/List Subsets
+ * Includes:
+ * - accordion
+ * - details
+ * - tabs
+ * - vertical tabs
+ *
+ * Rule:
+ * These surfaces should inherit panel/list logic where possible instead of
+ * inventing parallel shell behavior.
+ */
+
+/* ========================================================================
+   3. SHARED SYSTEM UI RULES
+   ======================================================================== */
+
+/*
+ * Shared Rule: Surface-owned spacing
+ * Generic .has-background rescue padding is allowed only for plain content
+ * blocks in normal document flow.
+ *
+ * System UI surfaces own their own spacing.
+ * Generic reset padding should not apply to:
+ * - the surface itself
+ * - content nested anywhere inside an is-style-system-* ancestor
+ *
+ * Runtime files:
+ * - assets/css/strap-reset.css
+ * - individual System UI variation files
+ */
+
+/*
+ * Shared Rule: Nested chrome suppression
+ * Nested system surfaces should not stack duplicate borders, blur, or image
+ * layers when inserted into a system-panel authority shell.
+ *
+ * Runtime files:
+ * - assets/css/style-variations/core-group-system-panel.css
+ * - subset variation files
+ */
+
+/*
+ * Shared Rule: Theme token consumption
+ * System UI surfaces consume theme.json presets and custom properties.
+ * They do not define a parallel token registry.
+ *
+ * Runtime sources:
+ * - theme.json
+ * - inc/dynamic-styles.php
+ */
+
+/* ========================================================================
+   4. SYSTEM PANEL
+   ======================================================================== */
+
+/*
+ * Purpose:
+ * Primary container shell for System UI.
+ *
+ * Authority Status:
+ * Primary authority.
+ *
+ * Runtime Files:
+ * - assets/css/style-variations/core-group-system-panel.css
+ *
+ * Owns:
+ * - outer border
+ * - shell radius model
+ * - shell shadow
+ * - surface background and image/filter treatment
+ * - child flush behavior
+ *
+ * Nested Behavior:
+ * - strips double chrome from nested system surfaces
+ * - routes nested surfaces to nested background/image tokens
+ *
+ * Padding Ownership:
+ * - panel owns child padding rhythm
+ * - reset-layer .has-background padding should not interfere
+ *
+ * Known Risks:
+ * - nested block backgrounds
+ * - image cap bleed
+ * - footer/list/accordion flush joins
+ */
+
+/* ========================================================================
+   5. SYSTEM LIST
+   ======================================================================== */
+
+/*
+ * Purpose:
+ * Row-oriented interactive and non-interactive list surface.
+ *
+ * Authority Status:
+ * Secondary authority.
+ *
+ * Runtime Files:
+ * - assets/css/style-variations/core-list-system-list.css
+ * - related list-family variation files
+ *
+ * Owns:
+ * - row spacing rhythm
+ * - nested list breakout behavior
+ * - hover surface behavior for list-like interactions
+ *
+ * Nested Behavior:
+ * - nested rows use surface-nested tokens
+ * - nested list layers suppress duplicate background chrome
+ *
+ * Padding Ownership:
+ * - list rows own their own padding
+ * - generic .has-background rescue padding should not be used inside the list
+ *
+ * Known Risks:
+ * - nested list indentation vs block margins
+ * - hover routing in mixed action/non-action lists
+ */
+
+/* ========================================================================
+   6. SYSTEM ACCORDION
+   ======================================================================== */
+
+/*
+ * Purpose:
+ * Disclosure surface using stacked item shells and toggle rows.
+ *
+ * Authority Status:
+ * Panel/list subset.
+ *
+ * Runtime Files:
+ * - assets/css/style-variations/core-accordion-system-accordion.css
+ *
+ * Owns:
+ * - stacked item shell behavior
+ * - toggle row appearance
+ * - open-state panel spacing
+ * - collapse/flush joins between items
+ *
+ * Inherits From Authorities:
+ * - panel shell logic
+ * - list-like hover rhythm
+ *
+ * Nested Behavior:
+ * - when nested inside system-panel, items drop side borders and use nested
+ *   surface routing
+ *
+ * Padding Ownership:
+ * - toggle padding is owned by the accordion
+ * - open panel body padding is owned by the accordion
+ *
+ * Known Risks:
+ * - nested .has-background content
+ * - editor appender spacing
+ */
+
+/* ========================================================================
+   7. SYSTEM DETAILS
+   ======================================================================== */
+
+/*
+ * Purpose:
+ * Summary/body disclosure surface parallel to accordion semantics.
+ *
+ * Authority Status:
+ * Panel/list subset.
+ *
+ * Runtime Files:
+ * - assets/css/style-variations/core-details-system-details.css
+ *
+ * Owns:
+ * - summary row appearance
+ * - open-state body spacing
+ * - indicator treatment
+ * - stacked flush behavior between adjacent details blocks
+ *
+ * Inherits From Authorities:
+ * - panel shell logic
+ * - list-like hover rhythm
+ *
+ * Nested Behavior:
+ * - nested inside system-panel uses nested surface routing and flush edges
+ *
+ * Padding Ownership:
+ * - summary and open body spacing are component-owned
+ *
+ * Known Risks:
+ * - summary/body radius joins
+ * - editor-visible appenders
+ */
+
+/* ========================================================================
+   8. SYSTEM TABS
+   ======================================================================== */
+
+/*
+ * Purpose:
+ * Frontend-rendered tab interface derived from core/accordion content.
+ *
+ * Authority Status:
+ * Accordion-derived subset with dedicated runtime transform.
+ *
+ * Runtime Files:
+ * - assets/css/style-variations/core-accordion-system-tabs.css
+ * - assets/js/accordion-tabs.js
+ * - inc/dynamic-styles.php
+ *
+ * Owns:
+ * - tablist layout
+ * - tab button surface
+ * - tab panel surface
+ * - active join/seam presentation
+ *
+ * Does Not Own:
+ * - generic editor accordion markup
+ * - palette registry
+ * - transform geometry generation
+ *
+ * Frontend Runtime:
+ * - frontend tab rendering depends on accordion-tabs.js
+ * - runtime preserves heading/panel hooks on generated tab elements
+ *
+ * Editor Fallback:
+ * - editor intentionally stays accordion-like
+ * - tab-specific frontend layout should not style the editor iframe
+ *
+ * Dynamic Color Runtime:
+ * - active join color defaults to preset base
+ * - palette-backed active tabs override join color through dynamic-styles.php
+ *
+ * Padding Ownership:
+ * - tab buttons own button padding
+ * - tab panels own panel padding
+ * - generic reset padding must stay out
+ *
+ * Known Risks:
+ * - active seam behavior on transparent/glass variations
+ * - per-tab background utility interactions
+ */
+
+/* ========================================================================
+   9. SYSTEM VERTICAL TABS
+   ======================================================================== */
+
+/*
+ * Purpose:
+ * Frontend-rendered vertical tab interface derived from core/accordion content.
+ *
+ * Authority Status:
+ * Tabs subset with desktop vertical layout and mobile horizontal fallback.
+ *
+ * Runtime Files:
+ * - assets/css/style-variations/core-accordion-system-tabs-vertical.css
+ * - assets/js/accordion-tabs.js
+ * - inc/dynamic-styles.php
+ *
+ * Owns:
+ * - vertical tab rail layout
+ * - right-edge active join behavior on desktop
+ * - mobile fallback bottom-edge join behavior
+ * - panel stretch behavior relative to the tab rail
+ *
+ * Does Not Own:
+ * - editor tab rendering
+ * - palette registry
+ * - transform geometry generation
+ *
+ * Frontend Runtime:
+ * - vertical tab rail stretches to the grid lane
+ * - tabs and panel shell are expected to maintain shared height rhythm
+ *
+ * Editor Fallback:
+ * - editor intentionally stays accordion-like with vertical-tab labeling
+ *
+ * Dynamic Color Runtime:
+ * - active join color defaults to preset base
+ * - palette-backed active tabs override the active join color through
+ *   dynamic-styles.php
+ *
+ * Padding Ownership:
+ * - tab rail buttons own their own spacing
+ * - tab panel owns body spacing
+ * - generic reset padding must stay out
+ *
+ * Known Risks:
+ * - short-content panel height vs tab rail height
+ * - per-tab mixed palette backgrounds
+ */
+
+/* ========================================================================
+   10. NESTED SURFACE RULES
+   ======================================================================== */
+
+/*
+ * Rule:
+ * Nested system surfaces should consume nested surface tokens when inserted
+ * inside a system-panel authority shell.
+ *
+ * Primary Runtime Files:
+ * - assets/css/style-variations/core-group-system-panel.css
+ * - assets/css/style-variations/core-accordion-system-accordion.css
+ * - assets/css/style-variations/core-details-system-details.css
+ * - assets/css/style-variations/core-accordion-system-tabs.css
+ * - assets/css/style-variations/core-accordion-system-tabs-vertical.css
+ */
+
+/*
+ * Rule:
+ * Nested plain content blocks with .has-background should not receive reset
+ * rescue padding inside any is-style-system-* ancestor.
+ *
+ * Runtime File:
+ * - assets/css/strap-reset.css
+ */
+
+/* ========================================================================
+   11. EDITOR FALLBACK RULES
+   ======================================================================== */
+
+/*
+ * Rule:
+ * Tabs and vertical tabs should not render frontend tab layout in the editor.
+ * They should present an accordion-like fallback that matches System UI
+ * spacing and labeling closely enough for editing clarity.
+ *
+ * Runtime Files:
+ * - assets/css/style-variations/core-accordion-system-tabs.css
+ * - assets/css/style-variations/core-accordion-system-tabs-vertical.css
+ */
+
+/*
+ * Rule:
+ * Editor fallback headers must preserve left title / right icon row rhythm and
+ * should not stack icons beneath titles.
+ */
+
+/* ========================================================================
+   12. DYNAMIC COLOR RUNTIME
+   ======================================================================== */
+
+/*
+ * Source:
+ * - inc/dynamic-styles.php
+ *
+ * Responsibilities:
+ * - append runtime palette-derived CSS to global-styles
+ * - contrast routing for background utility classes
+ * - component-specific repeated palette rules
+ * - active join-color routing for tabs and vertical tabs
+ *
+ * Current Tab Rule:
+ * Active tabs with .has-*-background-color can force the join edge to the
+ * exact preset color on the frontend.
+ */
+
+/* ========================================================================
+   13. KNOWN EDGE CASES
+   ======================================================================== */
+
+/*
+ * Tabs:
+ * - transparent/glass variations may not blend perfectly under all fallback
+ *   conditions when no explicit tab background is chosen
+ *
+ * Vertical Tabs:
+ * - mixed-height content still requires periodic visual checks in real layouts
+ *
+ * Generic Backgrounds:
+ * - content-block .has-background rescue rules should remain content-scoped
+ *   and must not reclaim ownership from System UI components
+ */

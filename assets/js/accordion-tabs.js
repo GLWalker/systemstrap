@@ -1,24 +1,24 @@
 // assets/js/accordion-tabs.js
 document.addEventListener('DOMContentLoaded', () => {
-	const accordions = document.querySelectorAll('.wp-block-accordion.is-style-system-tabs, .wp-block-accordion.is-style-system-tabs-vertical');
+	var accordions = document.querySelectorAll('.wp-block-accordion.is-style-system-tabs, .wp-block-accordion.is-style-system-tabs-vertical');
 
 	accordions.forEach(accordion => {
-		const items = Array.from(accordion.querySelectorAll('.wp-block-accordion-item'));
+		var items = Array.from(accordion.querySelectorAll('.wp-block-accordion-item'));
 		if (items.length === 0) return;
 
-		const tablist = document.createElement('div');
+		var tablist = document.createElement('div');
 		tablist.className = 'system-tabs__tablist';
 		tablist.setAttribute('role', 'tablist');
 
-		const panelsWrapper = document.createElement('div');
+		var panelsWrapper = document.createElement('div');
 		panelsWrapper.className = 'system-tabs__panels';
 
-		const isVertical = accordion.classList.contains('is-style-system-tabs-vertical');
+		var isVertical = accordion.classList.contains('is-style-system-tabs-vertical');
 		
-		const tabs = [];
+		var tabs = [];
 
 		// SLUG GENERATION LOGIC (Per Accordion)
-		const slugCounts = new Map();
+		var slugCounts = new Map();
 
 		function slugify(value) {
 			return value
@@ -32,8 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 
 		function uniqueSlug(base) {
-			const slug = base || 'tab';
-			const count = slugCounts.get(slug) || 0;
+			var slug = base || 'tab';
+			var count = slugCounts.get(slug) || 0;
 
 			slugCounts.set(slug, count + 1);
 
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 
 		function getTabSlug(heading, index) {
-			const existingId = heading.id || heading.closest('[id]')?.id;
+			var existingId = heading.id || heading.closest('[id]')?.id;
 
 			if (existingId && existingId.trim() !== '') {
 				return uniqueSlug(existingId);
@@ -50,22 +50,174 @@ document.addEventListener('DOMContentLoaded', () => {
 			return uniqueSlug(slugify(heading.textContent) || `tab-${index + 1}`);
 		}
 
-		items.forEach((item, index) => {
-			const heading = item.querySelector('.wp-block-accordion-heading') || item.querySelector('summary') || item.firstElementChild;
-			const content = item.querySelector('.wp-block-accordion-panel') || item.querySelector('.wp-block-accordion-content') || (item.querySelector('summary') ? item.querySelector('summary').nextElementSibling : item.lastElementChild);
-			
-			if (!heading || !content) return;
+		function shouldCopyClass(className) {
+			var blocked = [
+				'wp-block-accordion-item',
+				'wp-block-accordion-heading',
+				'wp-block-accordion-panel',
+				'wp-block-accordion-content',
+				'wp-block-accordion-heading__toggle',
+				'is-open',
+			];
 
-			const tabBtn = document.createElement('button');
-			tabBtn.className = 'system-tabs__tab';
+			if (!className || blocked.includes(className)) {
+				return false;
+			}
+
+			if (className.indexOf('block-editor-') === 0 || className.indexOf('components-') === 0) {
+				return false;
+			}
+
+			return className.indexOf('wp-block-') !== 0;
+		}
+
+		function copyPresentation(source, target) {
+			if (!source || !target) {
+				return;
+			}
+
+			Array.from(source.classList).forEach(className => {
+				if (shouldCopyClass(className)) {
+					target.classList.add(className);
+				}
+			});
+
+			if (source.getAttribute('style')) {
+				target.style.cssText = `${target.style.cssText};${source.getAttribute('style')}`;
+			}
+		}
+
+		function copyShellBorderPresentation(source, target) {
+			if (!source || !target) {
+				return;
+			}
+
+			var originalStyle = target.getAttribute('style') || '';
+			var computedStyle = window.getComputedStyle(source);
+
+			Array.from(source.classList).forEach(className => {
+				if (className === 'has-border-color' || /^has-.+-border-color$/.test(className)) {
+					target.classList.add(className);
+				}
+			});
+
+			for (var index = 0; index < source.style.length; index += 1) {
+				var property = source.style[index];
+
+				if (property.indexOf('border') === 0) {
+					target.style.setProperty(
+						property,
+						source.style.getPropertyValue(property),
+						source.style.getPropertyPriority(property)
+					);
+				}
+			}
+
+			if (computedStyle.borderStyle !== 'none') {
+				target.style.borderStyle = computedStyle.borderStyle;
+			}
+
+			if (computedStyle.borderRadius !== '0px') {
+				target.style.borderRadius = computedStyle.borderRadius;
+			}
+
+			if (originalStyle) {
+				target.style.cssText = `${target.style.cssText};${originalStyle}`;
+			}
+		}
+
+		function removeAccordionToggleIcon(node) {
+			if (!node) {
+				return;
+			}
+
+			Array.from(node.querySelectorAll('.wp-block-accordion-heading__toggle-icon, [class*="accordion-heading__toggle-icon"]')).forEach(icon => {
+				icon.remove();
+			});
+		}
+
+		function resetTabButtonLayout(button) {
+			if (!button) {
+				return;
+			}
+
+			[
+				'width',
+				'min-width',
+				'max-width',
+				'inline-size',
+				'min-inline-size',
+				'max-inline-size',
+				'flex',
+				'flex-basis',
+				'flex-grow',
+				'flex-shrink',
+			].forEach(property => {
+				button.style.removeProperty(property);
+			});
+		}
+
+		function syncActiveTabSeam(activeTab) {
+			if (!activeTab || !activeTab.btn || !activeTab.panel) {
+				return;
+			}
+
+			var buttonRect = activeTab.btn.getBoundingClientRect();
+			var panelRect = activeTab.panel.getBoundingClientRect();
+
+			tabs.forEach((tabSet) => {
+				if (!tabSet.panel) {
+					return;
+				}
+
+				tabSet.panel.style.removeProperty('--system-tabs-active-tab-left');
+				tabSet.panel.style.removeProperty('--system-tabs-active-tab-width');
+				tabSet.panel.style.removeProperty('--system-tabs-active-tab-top');
+				tabSet.panel.style.removeProperty('--system-tabs-active-tab-height');
+			});
+
+			activeTab.panel.style.setProperty(
+				'--system-tabs-active-tab-left',
+				`${Math.max(0, buttonRect.left - panelRect.left)}px`
+			);
+			activeTab.panel.style.setProperty(
+				'--system-tabs-active-tab-width',
+				`${buttonRect.width}px`
+			);
+			activeTab.panel.style.setProperty(
+				'--system-tabs-active-tab-top',
+				`${Math.max(0, buttonRect.top - panelRect.top)}px`
+			);
+			activeTab.panel.style.setProperty(
+				'--system-tabs-active-tab-height',
+				`${buttonRect.height}px`
+			);
+		}
+
+		var shellBorderCopied = false;
+
+		items.forEach((item, index) => {
+			var heading = item.querySelector('.wp-block-accordion-heading') || item.querySelector('summary') || item.firstElementChild;
+			var content = item.querySelector('.wp-block-accordion-panel') || item.querySelector('.wp-block-accordion-content') || (item.querySelector('summary') ? item.querySelector('summary').nextElementSibling : item.lastElementChild);
+			var headingControl = heading ? heading.querySelector('.wp-block-accordion-heading__toggle') || heading : null;
+			
+			if (!heading || !headingControl || !content) return;
+
+			if (!shellBorderCopied) {
+				copyShellBorderPresentation(item, accordion);
+				shellBorderCopied = true;
+			}
+
+			var tabBtn = document.createElement('button');
+			tabBtn.className = 'system-tabs__tab wp-block-accordion-heading__toggle';
 			tabBtn.setAttribute('role', 'tab');
 			
-			const panel = document.createElement('div');
-			panel.className = 'system-tabs__panel';
+			var panel = document.createElement('div');
+			panel.className = 'system-tabs__panel wp-block-accordion-panel';
 			panel.setAttribute('role', 'tabpanel');
 			panel.hidden = true; // start hidden
 			
-			const slug = getTabSlug(heading, index);
+			var slug = getTabSlug(headingControl, index);
 
 			tabBtn.dataset.systemTabSlug = slug;
 			panel.dataset.systemTabSlug = slug;
@@ -81,29 +233,18 @@ document.addEventListener('DOMContentLoaded', () => {
 			tabBtn.setAttribute('aria-controls', panel.id);
 			panel.setAttribute('aria-labelledby', tabBtn.id);
 
-			// Color Sync: Retain the user's color choices from the editor
-			const applyColors = (source, target1, target2) => {
-				Array.from(source.classList).forEach(cls => {
-					if (cls.startsWith('has-')) {
-						target1.classList.add(cls);
-						if (target2) target2.classList.add(cls);
-					}
-				});
-				if (source.getAttribute('style')) {
-					target1.style.cssText += source.getAttribute('style');
-					if (target2) target2.style.cssText += source.getAttribute('style');
-				}
-			};
+			copyPresentation(item, tabBtn);
+			copyPresentation(item, panel);
+			copyPresentation(heading, tabBtn);
+			copyPresentation(headingControl, tabBtn);
+			copyPresentation(content, panel);
+			resetTabButtonLayout(tabBtn);
+			removeAccordionToggleIcon(headingControl);
 
-			// Safely move DOM nodes instead of innerHTML so SVGs and spans survive perfectly
-			while (heading.firstChild) {
-				tabBtn.appendChild(heading.firstChild);
+			// Move DOM nodes instead of innerHTML so icons, spans, and inline formatting survive.
+			while (headingControl.firstChild) {
+				tabBtn.appendChild(headingControl.firstChild);
 			}
-
-			// Apply colors from the original item and heading to both the tab button and the new panel
-			applyColors(item, tabBtn, panel);
-			if (heading) applyColors(heading, tabBtn, null);
-			if (content) applyColors(content, panel, null);
 			
 			// Copy content children safely
 			while (content.firstChild) {
@@ -115,20 +256,25 @@ document.addEventListener('DOMContentLoaded', () => {
 			panelsWrapper.appendChild(panel);
 		});
 
+		if (tabs.length === 0) {
+			return;
+		}
+
 		// Clear original accordion content and append tabs structure
 		accordion.innerHTML = '';
+		accordion.dataset.systemTabsEnhanced = 'true';
 		accordion.appendChild(tablist);
 		accordion.appendChild(panelsWrapper);
 
 		// NEW ACTIVATE TAB FUNCTION
 		function activateTab(activeTab, options = {}) {
-			const {
+			var {
 				updateHash = true,
 				scroll = false,
 			} = options;
 
 			tabs.forEach((t) => {
-				const selected = t === activeTab;
+				var selected = t === activeTab;
 				
 				t.btn.setAttribute('aria-selected', selected ? 'true' : 'false');
 				t.btn.setAttribute('tabindex', selected ? '0' : '-1');
@@ -137,6 +283,8 @@ document.addEventListener('DOMContentLoaded', () => {
 					t.panel.hidden = !selected;
 				}
 			});
+
+			syncActiveTabSeam(activeTab);
 
 			if (updateHash && activeTab.btn.dataset.systemTabSlug) {
 				history.replaceState(null, '', `#${encodeURIComponent(activeTab.btn.dataset.systemTabSlug)}`);
@@ -156,13 +304,13 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 
 		function activateFromHash() {
-			const hash = getHashSlug();
+			var hash = getHashSlug();
 
 			if (!hash) {
 				return false;
 			}
 
-			const target = tabs.find((t) => t.btn.dataset.systemTabSlug === hash);
+			var target = tabs.find((t) => t.btn.dataset.systemTabSlug === hash);
 
 			if (!target) {
 				return false;
@@ -173,13 +321,17 @@ document.addEventListener('DOMContentLoaded', () => {
 			return true;
 		}
 
+		function getActiveTab() {
+			return tabs.find((t) => t.btn.getAttribute('aria-selected') === 'true') || null;
+		}
+
 		accordion.systemTabsActivateFromHash = activateFromHash;
 
 		// Initialize
-		const activatedByHash = activateFromHash();
+		var activatedByHash = activateFromHash();
 
 		if (!activatedByHash) {
-			const initiallyOpen = tabs.find((t, index) => {
+			var initiallyOpen = tabs.find((t, index) => {
 				return items[index]?.hasAttribute('open') || items[index]?.classList.contains('is-open');
 			});
 
@@ -196,7 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			});
 
 			t.btn.addEventListener('keydown', (e) => {
-				let newIndex = i;
+				var newIndex = i;
 
 				if (!isVertical) {
 					if (e.key === 'ArrowRight') newIndex = i + 1;
@@ -215,6 +367,14 @@ document.addEventListener('DOMContentLoaded', () => {
 					tabs[newIndex].btn.focus();
 				}
 			});
+		});
+
+		window.addEventListener('resize', () => {
+			var activeTab = getActiveTab();
+
+			if (activeTab) {
+				syncActiveTabSeam(activeTab);
+			}
 		});
 	});
 });

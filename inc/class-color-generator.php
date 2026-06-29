@@ -623,7 +623,9 @@ class Strap_ColorGenerator
 
         $contrastRatio = max($l1, $l2) / min($l1, $l2);
 
-        return $contrastRatio > 5 ? '#111111' : '#ffffff';
+        // Raise the threshold from 5 to 6.5 so that medium-dark colors (like Yeti's #008cba)
+        // fall back to white (#ffffff) instead of getting forced to dark text.
+        return $contrastRatio > 6 ? '#111111' : '#ffffff';
     }
 
     /**

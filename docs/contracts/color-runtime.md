@@ -69,7 +69,7 @@ The color runtime is consumed by patterns, parts, templates, and block styles th
 
 Any change to the files listed above MUST be reviewed against this contract.
 
-Any new palette slug, derived shade family, contrast variable, global-styles mutation rule, runtime color override, or compatibility exception MUST be added to this contract in the same change set that introduces it.
+Any new palette slug, derived shade family, contrast variable, global-styles extension rule, runtime color override, or compatibility exception MUST be added to this contract in the same change set that introduces it.
 
 Any removal or rename of a documented color slug or derived variable family MUST be treated as a color-runtime behavior change and documented here in the same change set.
 
@@ -113,7 +113,7 @@ The current theme-owned palette includes these slugs:
 - `current-mix`
 - `inherit`
 
-These slugs are part of the contract because runtime CSS, gradients, shadows, and global-styles mutation consume them directly.
+These slugs are part of the contract because runtime CSS, gradients, shadows, and global-styles extension consume them directly.
 
 Palette slug renames MUST be treated as breaking runtime changes.
 
@@ -141,17 +141,11 @@ SystemStrap MAY derive additional runtime variables from active theme palette va
 
 SystemStrap currently does this in `inc/dynamic-styles.php` through `Strap_ColorGenerator`.
 
-### 3. Global Styles handle mutation
+### 3. Inline extension of the `global-styles` handle
 
-SystemStrap MAY mutate generated Core Global Styles after WordPress enqueues them, as long as it preserves the native enqueue lifecycle.
+SystemStrap appends additional dynamic layout and color CSS to the enqueued `global-styles` handle, preserving the native WordPress enqueue lifecycle.
 
-SystemStrap currently does this in `inc/enqueue-assets.php` by mutating the inline CSS stored on the `global-styles` handle.
-
-### 4. Inline extension of the `global-styles` handle
-
-SystemStrap MAY append additional dynamic color CSS to `global-styles`.
-
-SystemStrap currently does this in `inc/dynamic-styles.php`.
+SystemStrap currently does this in `inc/dynamic-styles.php` through `strap_enqueue_all_dynamic_css()`.
 
 ### 5. Token-consuming custom CSS
 
@@ -217,26 +211,24 @@ If the contrast algorithm changes, that change MUST be documented as a runtime b
 
 ## Global Styles Extension Contract
 
-`inc/enqueue-assets.php` currently extends generated WordPress Global Styles without replacing Core's lifecycle.
+`inc/dynamic-styles.php` extends generated WordPress Global Styles without replacing Core's lifecycle.
 
 The current behavior is:
 
 - Core enqueues `global-styles` normally.
-- `strap_intercept_global_styles()` runs after Core on:
-  - `wp_enqueue_scripts`
-  - `enqueue_block_assets`
-- the function reads the current inline CSS from:
-  - `wp_styles()->get_data( 'global-styles', 'after' )`
-- the function rewrites targeted background utility selectors in place
-- the modified CSS is written back onto the existing `global-styles` handle
+- `strap_enqueue_all_dynamic_css()` runs after Core on:
+  - `wp_enqueue_scripts` (priority 9999)
+  - `enqueue_block_editor_assets` (priority 9999)
+- the function dynamically generates the layout and color utility overrides.
+- the function appends the generated CSS to the existing `global-styles` handle using `wp_add_inline_style()`.
 
-This mutation path is part of the runtime contract.
+This additive path is part of the runtime contract.
 
-SystemStrap MUST NOT revert to removing `wp_enqueue_global_styles()` unless a later change documents a concrete incompatibility that cannot be solved through handle mutation or additive extension.
+SystemStrap MUST NOT revert to removing `wp_enqueue_global_styles()` unless a later change documents a concrete incompatibility that cannot be solved through additive extension.
 
-## Background Utility Rewrite Contract
+## Background Utility Contrast Contract
 
-SystemStrap currently rewrites generated `.has-*-background-color` utility rules to inject contrast-aware text colors when `.has-text-color` is not already present.
+SystemStrap dynamically generates `.has-*-background-color` utility overrides to inject contrast-aware text colors when `.has-text-color` is not already present.
 
 ### Current remapped background slugs
 
@@ -251,7 +243,7 @@ The current remap behavior is:
 
 ### Current accent background slugs
 
-The following background slugs currently route text color to their derived `-text` variables:
+The following background slugs route text color to their derived `-text` variables:
 
 - `primary`
 - `secondary`
@@ -262,7 +254,7 @@ The following background slugs currently route text color to their derived `-tex
 - `light`
 - `dark`
 
-This rewrite behavior is part of the color-runtime contract because it is how SystemStrap achieves readable preset utility classes without demanding explicit text-color classes from authors.
+This dynamic generation behavior is part of the color-runtime contract because it is how SystemStrap achieves readable preset utility classes without demanding explicit text-color classes from authors.
 
 ## Global Styles Handle Availability Contract
 
@@ -330,7 +322,7 @@ New color-runtime work MUST extend this contract by adding:
 
 - source file
 - token source or derived token family
-- mutation or generation mechanism
+- extension or generation mechanism
 - consuming surfaces
 - editor/runtime implications
 - compatibility implications

@@ -1,10 +1,36 @@
 /* 2. System Details Variation  */
 .wp-block-details.is-style-system-details {
-    border: var(--wp--custom--border-width, 1px) solid var(--system-ui-border-color);
-    background: var(--system-ui-surface);
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+    background: var(--wp--custom--system-ui-surface);
+    background-image: var(--wp--custom--system-ui-background-image, none);
+    backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     border-radius: var(--wp--custom--border-radius);
     transition: border-color 0.15s ease-in-out;
     box-shadow: var(--wp--custom--shadow);
+}
+
+/* Nested Outer Borders & Flush Edges */
+.is-style-system-panel .wp-block-details[class*="wp-block-details"]:is(.is-style-system-details) {
+    border-color: var(--wp--custom--system-ui-border-color) !important;
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: var(--wp--custom--system-ui-surface-nested, transparent) !important;
+    background-image: var(--wp--custom--system-ui-background-image-nested, none) !important;
+}
+
+.is-style-system-panel .wp-block-details[class*="wp-block-details"]:is(.is-style-system-details):first-child {
+    border-top: 0;
+}
+
+.is-style-system-panel .wp-block-details[class*="wp-block-details"]:is(.is-style-system-details):last-child {
+    border-bottom: 0;
+}
+
+.is-style-system-panel .wp-block-details[class*="wp-block-details"]:is(.is-style-system-details) summary {
+    border-radius: 0;
 }
 
 /* Collapse borders and radii between adjacent system-details accordions */
@@ -25,13 +51,14 @@
     list-style: none; /* Hide default triangle */
     padding: var(--wp--preset--spacing--20) 1.25rem;
     color: var(--wp--preset--color--inherit);
-    background: var(--wp--preset--color--inherit);
+    background: var(--wp--custom--system-ui-surface-banner, var(--wp--custom--system-ui-surface, transparent));
     cursor: pointer;
     border-bottom: var(--wp--custom--border-width, 1px) solid transparent;
     border-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px));
     transition: background-color 0.15s ease-in-out;
     position: relative;
     font-weight: var(--wp--custom--font-weight-heading);
+    line-height: 1.2;
 }
 
 /* Sync summary inner radii with the outer container when stacked */
@@ -45,10 +72,10 @@
     border-bottom-right-radius: 0;
 }
 .wp-block-details.is-style-system-details summary:hover {
-    background-color: var(--system-ui-hover-bg);
+    background-color: var(--wp--custom--system-ui-list-hover-bg);
 }
 .wp-block-details.is-style-system-details.has-background summary:hover {
-    background-color: var(--system-ui-hover-bg-on-background);
+    background-color: var(--wp--custom--system-ui-list-hover-bg);
 }
 
 .wp-block-details.is-style-system-details summary:focus-visible {
@@ -59,17 +86,36 @@
 }
 
 .wp-block-details.is-style-system-details[open] {
-    border-bottom-color: var(--system-ui-border-color);
+    border-bottom-color: var(--wp--custom--system-ui-border-color);
+}
+
+.is-style-system-panel .wp-block-details[class*="wp-block-details"]:is(.is-style-system-details)[open] {
+    border-bottom-color: var(--wp--custom--system-ui-border-color);
+    background: var(--wp--custom--system-ui-surface-nested, transparent) !important;
+    background-image: var(--wp--custom--system-ui-background-image-nested, none) !important;
 }
 
 .wp-block-details.is-style-system-details[open] > summary {
-    border-bottom-color: var(--system-ui-border-color-on-background);
+    border-bottom-color: var(--wp--custom--system-ui-border-color);
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
 
+.is-style-system-panel .wp-block-details[class*="wp-block-details"]:is(.is-style-system-details)[open] > summary {
+    border-bottom-color: var(--wp--custom--system-ui-border-color);
+    background: var(--wp--custom--system-ui-surface-nested, transparent) !important;
+    background-image: var(--wp--custom--system-ui-background-image-nested, none) !important;
+}
+
+.is-style-system-panel.has-background .wp-block-details[class*="wp-block-details"]:is(.is-style-system-details)[open] > summary,
+.has-background > .is-style-system-panel .wp-block-details[class*="wp-block-details"]:is(.is-style-system-details)[open] > summary {
+    border-bottom-color: var(--wp--custom--system-ui-border-color);
+    background: var(--wp--custom--system-ui-surface-nested, transparent) !important;
+    background-image: var(--wp--custom--system-ui-background-image-nested, none) !important;
+}
+
 .wp-block-details.is-style-system-details:not(.has-background)[open] > summary {
-     background-color: var(--system-ui-hover-bg);
+     background-color: var(--wp--custom--system-ui-active-bg);
 }
 
 .wp-block-details.is-style-system-details[open] > *:not(summary) {
@@ -82,13 +128,20 @@
 }
 
 .wp-block-details.is-style-system-details:not(.has-background)[open] > *:not(summary) {
-     background: var(--system-ui-active-bg);
+     background: transparent;
 }
 
 .wp-block-details.is-style-system-details.has-background,
 .wp-block-details.is-style-system-details.has-background[open],
 .wp-block-details.is-style-system-details.has-background[open] > summary {
-    border-color: var(--system-ui-border-color-on-background);
+    border-color: var(--wp--custom--system-ui-border-color) !important;
+}
+
+.is-style-system-panel.has-background .wp-block-details[class*="wp-block-details"]:is(.is-style-system-details),
+.has-background > .is-style-system-panel .wp-block-details[class*="wp-block-details"]:is(.is-style-system-details) {
+    border-color: var(--wp--custom--system-ui-border-color) !important;
+    background: var(--wp--custom--system-ui-surface-nested, transparent) !important;
+    background-image: var(--wp--custom--system-ui-background-image-nested, none) !important;
 }
 
 .wp-block-details.is-style-system-details[open] > summary + *:not(summary) {

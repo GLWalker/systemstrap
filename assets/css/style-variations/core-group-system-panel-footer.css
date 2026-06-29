@@ -4,12 +4,14 @@
 
 .wp-block-group.is-style-system-panel-footer {
     padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30) !important;
-    background: var(--system-ui-hover-bg-on-background);
-    border-top: var(--wp--custom--border-width, 1px) solid var(--system-ui-border-color);
+    background: var(--wp--custom--system-ui-surface-banner);
+    border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
     margin: 0 !important;
     border-radius: 0 !important; /* Auto-clipped perfectly by outer panel overflow: hidden */
     width: 100%;
     font-size: var(--wp--preset--font-size--small);
+    background: var(--wp--custom--system-ui-surface-nested, transparent);
+    background-image: var(--wp--custom--system-ui-background-image-nested, none);
 }
 
 .wp-block-group.is-style-system-panel.is-style-system-modal .wp-block-group.is-style-system-panel-footer {
@@ -17,7 +19,9 @@
 }
 
 .wp-block-group.is-style-system-panel.has-background .wp-block-group.is-style-system-panel-footer {
-    border-top-color: var(--system-ui-border-color-on-background);
+    border-top-color: var(--wp--custom--system-ui-border-color);
+    background: var(--wp--custom--system-ui-surface-nested, transparent);
+    background-image: var(--wp--custom--system-ui-background-image-nested, none);
 }
 
 /* Vaporize inner margins to guarantee perfectly balanced padding */
@@ -26,3 +30,4 @@
     margin-top: 0 !important;
     margin-bottom: 0 !important;
 }
+

@@ -8,8 +8,8 @@
 > Semantic render behavior is governed by `docs/contracts/semantic-rendering-contract.md`.
 > Any change to block filters, block replacements, dialog rendering, search result parsing, or machine-readable output MUST be checked against that contract in the same change set.
 > Theme token, preset, global-style, and editor/frontend design-system behavior is governed by `docs/contracts/theme-json-design-system.md`.
-> Any change to `theme.json`, token consumers, global-style interception, or style-variation loading MUST be checked against that contract in the same change set.
-> Theme variation creation, scope boundaries, and external theme porting (e.g., Bootswatch/Bootstrap) are governed by `docs/contracts/theme-variation-porting-guide.md` and `docs/contracts/variation-architecture.md`.
+> Any change to `theme.json`, token consumers, global-style extension, or style-variation loading MUST be checked against that contract in the same change set.
+> Theme variation creation, scope boundaries, and external theme porting (e.g., Bootswatch/Bootstrap) are governed by `docs/theme-variation-porting-guide.md` and `docs/contracts/variation-architecture.md`.
 > Any creation of new variations or architectural changes to variations MUST be checked against these guides.
 > Accessibility standards, interactivity API implementation, starter content, and submission demonstration architecture are governed by `docs/contracts/accessibility-focus.md`, `docs/contracts/interactivity-api.md`, `docs/contracts/starter-content.md`, and `docs/contracts/submission-demonstration-architecture.md` respectively.
 

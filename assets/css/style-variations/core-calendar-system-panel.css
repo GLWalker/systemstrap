@@ -2,8 +2,11 @@
 .wp-block-calendar.is-style-system-panel {
     position: relative;
     z-index: 1; /* Establish stacking context for the background color extraction hack */
-    border: var(--wp--custom--border-width, 1px) solid var(--system-ui-border-color);
-    background: var(--system-ui-surface);
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+    background: var(--wp--custom--system-ui-surface);
+    background-image: var(--wp--custom--system-ui-background-image, none);
+    backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     border-radius: var(--wp--custom--border-radius);
     transition: border-color 0.15s ease-in-out;
     box-shadow: var(--wp--custom--shadow);
@@ -36,19 +39,19 @@
 /* Has Background Overrides for borders */
 .wp-block-calendar.is-style-system-panel.has-background,
 .wp-block-calendar.is-style-system-panel:has(.wp-calendar-table.has-background) {
-    border-color: var(--system-ui-border-color-on-background) !important;
+    border-color: var(--wp--custom--system-ui-border-color) !important;
 }
 
 .wp-block-calendar.is-style-system-panel.has-background caption,
 .wp-block-calendar.is-style-system-panel:has(.wp-calendar-table.has-background) caption {
-    border-bottom-color: var(--system-ui-border-color-on-background) !important;
+    border-bottom-color: var(--wp--custom--system-ui-border-color) !important;
 }
 
 .wp-block-calendar.is-style-system-panel.has-background nav,
 .wp-block-calendar.is-style-system-panel.has-background .wp-calendar-nav,
 .wp-block-calendar.is-style-system-panel:has(.wp-calendar-table.has-background) nav,
 .wp-block-calendar.is-style-system-panel:has(.wp-calendar-table.has-background) .wp-calendar-nav {
-    border-top-color: var(--system-ui-border-color-on-background) !important;
+    border-top-color: var(--wp--custom--system-ui-border-color) !important;
 }
 
 /* Caption (Month/Year) - Header */
@@ -59,7 +62,7 @@
     font-size: var(--wp--preset--font-size--medium, 1.1em) !important;
     color: var(--wp--preset--color--inherit);
     padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30) !important;
-    border-bottom: var(--wp--custom--border-width, 1px) solid rgba(var(--wp--preset--color--border-color-rgb), .2) !important;
+    border-bottom: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color) !important;
     /* Overlay dimming. Sits on top of the table::before pseudo-element to shade it properly */
     background-color: rgba(var(--wp--preset--color--contrast-rgb), .05) !important;
 }
@@ -71,14 +74,14 @@
     font-size: var(--wp--preset--font-size--small) !important;
     color: var(--wp--preset--color--contrast) !important;
     padding: var(--wp--preset--spacing--20) !important;
-    border: var(--wp--custom--border-width, 1px) solid rgba(var(--wp--preset--color--border-color-rgb), .2) !important;
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color) !important;
     text-align: center !important;
 }
 
 /* Day Cells (Squares) */
 .wp-block-calendar.is-style-system-panel td {
     padding: var(--wp--preset--spacing--20) !important;
-    border: var(--wp--custom--border-width, 1px) solid rgba(var(--wp--preset--color--border-color-rgb), .2) !important;
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color) !important;
     text-align: center !important;
     background-color: transparent !important;
 }
@@ -91,7 +94,7 @@
 .wp-block-calendar.is-style-system-panel.has-background td,
 .wp-block-calendar.is-style-system-panel:has(.wp-calendar-table.has-background) td {
     border-width: calc(var(--wp--custom--border-width, 1px) + 1px) !important;
-    border-color: rgba(var(--wp--preset--color--contrast-rgb), .1) !important;
+    border-color: var(--wp--custom--system-ui-border-color) !important;
 }
 
 /* Fix outer borders to not double up with the container border */
@@ -112,7 +115,7 @@
 .wp-block-calendar.is-style-system-panel .wp-calendar-nav {
     margin: 0 !important;
     padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30) !important;
-    border-top: var(--wp--custom--border-width, 1px) solid rgba(var(--wp--preset--color--border-color-rgb), .2) !important;
+    border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color) !important;
     display: flex !important;
     justify-content: space-between !important;
     font-size: var(--wp--preset--font-size--small) !important;
@@ -120,3 +123,4 @@
     /* Overlay dimming. Sits on top of the table::before pseudo-element to shade it properly */
     background-color: rgba(var(--wp--preset--color--contrast-rgb), .05) !important;
 }
+

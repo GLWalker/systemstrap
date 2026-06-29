@@ -95,7 +95,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // 4. Determine Splide Settings
-        const isAuto = carousel.classList.contains('is-style-system-carousel-auto') || carousel.classList.contains('is-style-system-carousel-multi');
+        const isAuto = carousel.classList.contains('is-style-system-carousel-auto');
+        const isMulti = carousel.classList.contains('is-style-system-carousel-multi');
         
         let splideOptions = {
             type: 'slide',
@@ -104,16 +105,51 @@ document.addEventListener('DOMContentLoaded', () => {
             arrows: false,
             drag: true,
             snap: true, // Forces drag to snap to the nearest image boundary instead of stopping midway
-            autoWidth: isAuto ? true : false, // Safely use autoWidth for multi-item sliders
             gap: `calc(${sliderGap} - (var(--wp--preset--spacing--20, 0.5rem) * 2))`
         };
 
-        if (!isAuto) {
+        if (!isAuto && !isMulti) {
             // Standard carousel shows 1 item at a time
             splideOptions.perPage = 1;
-        } else {
-            splideOptions.focus = 0; // Essential for snap: true to know where to align autoWidth slides
-            splideOptions.omitEnd = true; // Prevents empty space at the end of the track
+            splideOptions.autoWidth = false;
+        } else if (isMulti) {
+            // Multi Carousel shows exactly 3 on desktop, 2 on tablet, 1 on mobile
+            splideOptions.perPage = 3;
+            splideOptions.autoWidth = false;
+            splideOptions.breakpoints = {
+                899: {
+                    perPage: 2
+                },
+                599: {
+                    perPage: 1
+                }
+            };
+        } else if (isAuto) {
+            // Auto/Thumbnail Carousel: Calculate perPage based on image sizes and navigation layout
+            const hasMedium = carousel.querySelector('.wp-block-image.size-medium') !== null;
+            const hasOutsideNav = carousel.closest('.has-nav-center-out') !== null;
+            
+            let defaultPerPage = 3;
+            if (hasMedium) {
+                defaultPerPage = hasOutsideNav ? 1 : 2;
+            } else {
+                defaultPerPage = hasOutsideNav ? 2 : 3;
+            }
+            
+            splideOptions.perPage = defaultPerPage;
+            splideOptions.autoWidth = false;
+            splideOptions.focus = 0;
+            splideOptions.omitEnd = true;
+
+            // Responsive adjustments for thumbnail slider
+            splideOptions.breakpoints = {
+                899: {
+                    perPage: Math.max(1, defaultPerPage - 1)
+                },
+                599: {
+                    perPage: 1
+                }
+            };
         }
 
         // 5. Mount Splide

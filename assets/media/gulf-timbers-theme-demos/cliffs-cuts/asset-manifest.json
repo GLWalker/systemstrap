@@ -1,0 +1,125 @@
+{
+  "assets": [
+    {
+      "filename": "hero-cliffs-cuts-exterior.webp",
+      "width": 2560,
+      "height": 1400,
+      "source": "a_wide_warm_cinematic_street_scene_of_a_small_to.png"
+    },
+    {
+      "filename": "cliff-and-sons-portrait.webp",
+      "width": 720,
+      "height": 960,
+      "source": "a_warmly_lit_butcher_shop_interior_scene_realisti.png"
+    },
+    {
+      "filename": "magic-green-mellow-rub.webp",
+      "width": 800,
+      "height": 800,
+      "source": "a_close_up_warm_rustic_food_product_scene_on_a_w.png"
+    },
+    {
+      "filename": "carousel-prime-beef.webp",
+      "width": 600,
+      "height": 600,
+      "source": "close_up_food_photography_scene_a_thick_raw_ribe.png"
+    },
+    {
+      "filename": "carousel-chicken.webp",
+      "width": 600,
+      "height": 600,
+      "source": "a_high_resolution_well_lit_food_photography_scene.png"
+    },
+    {
+      "filename": "carousel-pork.webp",
+      "width": 600,
+      "height": 600,
+      "source": "a_close_up_well_lit_food_photography_scene_on_a_w.png"
+    },
+    {
+      "filename": "carousel-gulf-snapper.webp",
+      "width": 600,
+      "height": 600,
+      "source": "a_close_up_high_resolution_photo_of_a_seafood_mar.png"
+    },
+    {
+      "filename": "carousel-quail.webp",
+      "width": 600,
+      "height": 600,
+      "source": "a_rustic_food_product_photograph_overhead_angled.png"
+    },
+    {
+      "filename": "carousel-bison.webp",
+      "width": 600,
+      "height": 600,
+      "source": "a_close_up_high_detail_food_photography_scene_of.png"
+    },
+    {
+      "filename": "fresh-milk.webp",
+      "width": 600,
+      "height": 600,
+      "source": "a_bright_rustic_still_life_scene_on_a_wooden_tabl.png"
+    },
+    {
+      "filename": "artisan-bread.webp",
+      "width": 600,
+      "height": 600,
+      "source": "a_warm_rustic_bakery_still_life_scene_close_up_o.png"
+    },
+    {
+      "filename": "fresh-apples.webp",
+      "width": 600,
+      "height": 600,
+      "source": "a_rustic_still_life_scene_a_close_up_warm_sunli.png"
+    },
+    {
+      "filename": "shop-online-grocery-bag.webp",
+      "width": 800,
+      "height": 800,
+      "source": "top_down_bright_photo_of_a_grocery_bag_scene_on_a.png"
+    },
+    {
+      "filename": "footer-open-sign.webp",
+      "width": 600,
+      "height": 600,
+      "source": "a_warm_close_up_street_level_shop_window_scene_t.png"
+    },
+    {
+      "filename": "footer-oak-tree.webp",
+      "width": 600,
+      "height": 600,
+      "source": "a_bright_warm_photorealistic_small_town_street_s.png"
+    },
+    {
+      "filename": "footer-contact-phone.webp",
+      "width": 600,
+      "height": 600,
+      "source": "a_cozy_vintage_interior_scene_of_a_butcher_shop_or.png"
+    },
+    {
+      "filename": "team-stocking-shelves.webp",
+      "width": 1200,
+      "height": 800,
+      "source": "a_bright_warm_interior_scene_of_a_butcher_shop_go.png"
+    },
+    {
+      "filename": "customers-checkout-line.webp",
+      "width": 1200,
+      "height": 800,
+      "source": "a_wide_interior_shot_of_a_bright_rustic_butcher_s.png"
+    },
+    {
+      "filename": "kid-green-sprinkle-icecream.webp",
+      "width": 1200,
+      "height": 800,
+      "source": "a_bright_outdoor_street_shopfront_scene_in_warm_su.png"
+    },
+    {
+      "filename": "summer-sizzle-bbq.webp",
+      "width": 2560,
+      "height": 1200,
+      "source": "a_warm_golden_hour_outdoor_backyard_park_barbecue.png"
+    }
+  ],
+  "missing": []
+}

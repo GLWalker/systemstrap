@@ -13,15 +13,30 @@
     margin: 0 !important;
     color: var(--wp--preset--color--inherit);
     
-    border: var(--wp--custom--border-width, 1px) solid var(--system-ui-border-color);
-    background: var(--system-ui-surface);
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+    background: var(--wp--custom--system-ui-surface);
+    background-image: var(--wp--custom--system-ui-background-image, none);
+    backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     box-shadow: var(--wp--custom--shadow);
     border-radius: var(--wp--custom--border-radius);
     
     transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 }
 
-/* Border Collapsing & Radii Merging (ROOT items only) */
+/* Premium System Borders between ROOT items */
+.wp-block-post-terms:is(.is-style-system-list, .is-style-system-list-flush) > li + li,
+.wp-block-post-terms:is(.is-style-system-list, .is-style-system-list-flush) > a + a {
+    border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+}
+
+/* Premium System Borders between NESTED items */
+.wp-block-post-terms:is(.is-style-system-list, .is-style-system-list-flush) li > ul > li {
+    border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+    background: var(--wp--custom--system-ui-surface-nested, transparent);
+    background-image: var(--wp--custom--system-ui-background-image-nested, none);
+}
+
 .wp-block-post-terms:is(.is-style-system-list, .is-style-system-list-flush) > li + li,
 .wp-block-post-terms:is(.is-style-system-list, .is-style-system-list-flush) > a + a {
     border-top: 0;
@@ -79,14 +94,14 @@
 /* Hover States on Anchor */
 .wp-block-post-terms:is(.is-style-system-list, .is-style-system-list-flush):not(.is-not-action) li:hover,
 .wp-block-post-terms:is(.is-style-system-list, .is-style-system-list-flush):not(.is-not-action) > a:hover {
-    background: var(--system-ui-hover-bg);
+    background: var(--wp--custom--system-ui-list-hover-bg);
 }
 
 /* Active State on Anchor */
 .wp-block-post-terms:is(.is-style-system-list, .is-style-system-list-flush) li.current > a,
 .wp-block-post-terms:is(.is-style-system-list, .is-style-system-list-flush) li:has(> a[aria-current="page"]) > a,
 .wp-block-post-terms:is(.is-style-system-list, .is-style-system-list-flush) > a[aria-current="page"] {
-    background: var(--system-ui-hover-bg);
+    background: var(--wp--custom--system-ui-list-hover-bg);
 }
 
 /* Nested ULs (Kill SystemPress bleeds) */
@@ -105,7 +120,6 @@
 /* Nested LIs */
 .wp-block-post-terms:is(.is-style-system-list, .is-style-system-list-flush) li > ul > li {
     border: 0; /* Reset any bleeding borders */
-    border-top: var(--wp--custom--border-width, 1px) solid var(--system-ui-border-color) !important;
     border-radius: 0 !important;
 }
 
@@ -113,27 +127,30 @@
 .wp-block-post-terms:is(.is-style-system-list, .is-style-system-list-flush).has-background > li,
 .wp-block-post-terms:is(.is-style-system-list, .is-style-system-list-flush).has-background > a {
     background: transparent;
-    border-color: var(--system-ui-border-color-on-background);
+    border-color: var(--wp--custom--system-ui-border-color);
 }
 .wp-block-post-terms:is(.is-style-system-list, .is-style-system-list-flush).has-background:not(.is-not-action) li:hover,
 .wp-block-post-terms:is(.is-style-system-list, .is-style-system-list-flush).has-background:not(.is-not-action) > a:hover {
-    background: var(--system-ui-hover-bg-on-background);
+    background: var(--wp--custom--system-ui-list-hover-bg);
 }
 
 /* Increased Visibility Inside Parent with Background */
-.has-background > .wp-block-post-terms:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) > li,
-.has-background > .wp-block-post-terms:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) > a {
-    border-color: rgba(var(--wp--preset--color--border-color-rgb), .7);
+.has-background > .wp-block-post-terms:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) > li + li,
+.has-background > .wp-block-post-terms:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) > a + a {
+    border-top-color: var(--wp--custom--system-ui-border-color);
 }
 .has-background > .wp-block-post-terms:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) li > ul > li {
-    border-top-color: rgba(var(--wp--preset--color--border-color-rgb), .7) !important;
+    border-top-color: var(--wp--custom--system-ui-border-color) !important;
+    background: var(--wp--custom--system-ui-surface-nested, transparent);
+    background-image: var(--wp--custom--system-ui-background-image-nested, none);
 }
 .has-background > .wp-block-post-terms:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background):not(.is-not-action) li:hover,
 .has-background > .wp-block-post-terms:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background):not(.is-not-action) > a:hover {
-    background: var(--system-ui-hover-bg-on-background);
+    background: var(--wp--custom--system-ui-list-hover-bg);
 }
 .has-background > .wp-block-post-terms:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) li.current > a,
 .has-background > .wp-block-post-terms:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) li:has(> a[aria-current="page"]) > a,
 .has-background > .wp-block-post-terms:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) > a[aria-current="page"] {
-    background: var(--system-ui-hover-bg-on-background);
+    background: var(--wp--custom--system-ui-list-hover-bg);
 }
+

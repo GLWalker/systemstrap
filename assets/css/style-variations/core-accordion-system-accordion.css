@@ -11,13 +11,39 @@
 
 /* Individual accordion items styled exactly like details blocks */
 .wp-block-accordion.is-style-system-accordion .wp-block-accordion-item {
-    border: var(--wp--custom--border-width, 1px) solid var(--system-ui-border-color);
-    background: var(--system-ui-surface);
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+    background: var(--wp--custom--system-ui-surface);
+    background-image: var(--wp--custom--system-ui-background-image, none);
+    backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     border-radius: var(--wp--custom--border-radius);
     margin-bottom: 0;
     transition: border-color 0.15s ease-in-out;
     box-shadow: var(--wp--custom--shadow);
     overflow: hidden;
+}
+
+/* Nested Outer Borders & Flush Edges */
+.is-style-system-panel .wp-block-accordion[class*="wp-block-accordion"]:is(.is-style-system-accordion) .wp-block-accordion-item {
+    border-color: var(--wp--custom--system-ui-border-color) !important;
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: var(--wp--custom--system-ui-surface-nested, transparent) !important;
+    background-image: var(--wp--custom--system-ui-background-image-nested, none) !important;
+}
+
+.is-style-system-panel .wp-block-accordion[class*="wp-block-accordion"]:is(.is-style-system-accordion):first-child .wp-block-accordion-item:first-child {
+    border-top: 0;
+}
+
+.is-style-system-panel .wp-block-accordion[class*="wp-block-accordion"]:is(.is-style-system-accordion):last-child .wp-block-accordion-item:last-child {
+    border-bottom: 0;
+}
+
+.is-style-system-panel .wp-block-accordion[class*="wp-block-accordion"]:is(.is-style-system-accordion) .wp-block-accordion-heading__toggle {
+    border-radius: 0;
 }
 
 /* Collapse borders and radii between adjacent accordion items */
@@ -43,7 +69,7 @@
 .wp-block-accordion.is-style-system-accordion .wp-block-accordion-heading__toggle {
     padding: var(--wp--preset--spacing--20) 1.25rem;
     color: var(--wp--preset--color--inherit);
-    background: var(--wp--preset--color--inherit);
+    background: var(--wp--custom--system-ui-surface-banner, var(--wp--custom--system-ui-surface, transparent));
     border-bottom: var(--wp--custom--border-width, 1px) solid transparent;
     border-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px));
     transition: background-color 0.15s ease-in-out;
@@ -65,11 +91,11 @@
 
 /* Hover & Focus */
 .wp-block-accordion.is-style-system-accordion .wp-block-accordion-heading__toggle:hover {
-    background-color: var(--system-ui-hover-bg);
+    background-color: var(--wp--custom--system-ui-list-hover-bg);
 }
 
 .wp-block-accordion.is-style-system-accordion.has-background .wp-block-accordion-heading__toggle:hover {
-    background-color: var(--system-ui-hover-bg-on-background);
+    background-color: var(--wp--custom--system-ui-list-hover-bg);
 }
 
 .wp-block-accordion.is-style-system-accordion .wp-block-accordion-heading__toggle:focus-visible {
@@ -81,18 +107,36 @@
 
 /* Open State */
 .wp-block-accordion.is-style-system-accordion .wp-block-accordion-item.is-open {
-    border-bottom-color: var(--system-ui-border-color);
+    border-bottom-color: var(--wp--custom--system-ui-border-color);
+}
+
+.is-style-system-panel .wp-block-accordion[class*="wp-block-accordion"]:is(.is-style-system-accordion) .wp-block-accordion-item.is-open {
+    border-bottom-color: var(--wp--custom--system-ui-border-color);
+    background: var(--wp--custom--system-ui-surface-nested, transparent) !important;
+    background-image: var(--wp--custom--system-ui-background-image-nested, none) !important;
 }
 
 .wp-block-accordion.is-style-system-accordion .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle {
-    border-bottom-color: var(--system-ui-border-color-on-background);
-
+    border-bottom-color: var(--wp--custom--system-ui-border-color);
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
 
+.is-style-system-panel .wp-block-accordion[class*="wp-block-accordion"]:is(.is-style-system-accordion) .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle {
+    border-bottom-color: var(--wp--custom--system-ui-border-color);
+    background: var(--wp--custom--system-ui-surface-nested, transparent) !important;
+    background-image: var(--wp--custom--system-ui-background-image-nested, none) !important;
+}
+
+.is-style-system-panel.has-background .wp-block-accordion[class*="wp-block-accordion"]:is(.is-style-system-accordion) .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle,
+.has-background > .is-style-system-panel .wp-block-accordion[class*="wp-block-accordion"]:is(.is-style-system-accordion) .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle {
+    border-bottom-color: var(--wp--custom--system-ui-border-color);
+    background: var(--wp--custom--system-ui-surface-nested, transparent) !important;
+    background-image: var(--wp--custom--system-ui-background-image-nested, none) !important;
+}
+
 .wp-block-accordion.is-style-system-accordion:not(.has-background) .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle {
-    background-color: var(--system-ui-hover-bg);
+    background-color: var(--wp--custom--system-ui-active-bg);
 }
 
 /* Panel inside Open State */
@@ -104,7 +148,7 @@
     padding-top: var(--wp--preset--spacing--20);
     padding-bottom: var(--wp--preset--spacing--20);
     animation: fadeIn 0.3s ease-in-out;
-    background: var(--system-ui-active-bg);
+    background: transparent;
 }
 
 /* Prevent double-spacing by killing the native margins on the first and last inner blocks inside the panel */
@@ -133,5 +177,12 @@
 .wp-block-accordion.is-style-system-accordion.has-background .wp-block-accordion-item,
 .wp-block-accordion.is-style-system-accordion.has-background .wp-block-accordion-item.is-open,
 .wp-block-accordion.is-style-system-accordion.has-background .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle {
-    border-color: var(--system-ui-border-color-on-background);
+    border-color: var(--wp--custom--system-ui-border-color) !important;
+}
+
+.is-style-system-panel.has-background .wp-block-accordion[class*="wp-block-accordion"]:is(.is-style-system-accordion) .wp-block-accordion-item,
+.has-background > .is-style-system-panel .wp-block-accordion[class*="wp-block-accordion"]:is(.is-style-system-accordion) .wp-block-accordion-item {
+    border-color: var(--wp--custom--system-ui-border-color) !important;
+    background: var(--wp--custom--system-ui-surface-nested, transparent) !important;
+    background-image: var(--wp--custom--system-ui-background-image-nested, none) !important;
 }

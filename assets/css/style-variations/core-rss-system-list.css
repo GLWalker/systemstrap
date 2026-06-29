@@ -18,14 +18,20 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--20) !important;
+    padding: var(--wp--preset--spacing--20) !important;
+    background: var(--wp--custom--system-ui-surface);
+    background-image: var(--wp--custom--system-ui-background-image, none);
+    backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     gap: var(--wp--preset--spacing--10);
 }
 
-/* Border Collapsing & Radii Merging */
-
-
-
+/* Premium System Borders between ROOT items */
+.wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush) > li + li {
+    border-top-width: var(--wp--custom--border-width, 1px);
+    border-top-style: solid;
+    border-top-color: var(--wp--custom--system-ui-border-color);
+}
 /* RSS Title / Link */
 .wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush) > li .wp-block-rss__item-title > a {
     font-weight: var(--wp--custom--font-weight-heading);
@@ -65,25 +71,22 @@
 
 /* Hover States on LI */
 .wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush):not(.is-not-action) > li:hover {
-    background: var(--system-ui-hover-bg);
+    background: var(--wp--custom--system-ui-list-hover-bg);
 }
 
 /* Has-background overrides */
 .wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush).has-background > li {
     background: transparent;
-    border-color: var(--system-ui-border-color-on-background);
+    border-color: var(--wp--custom--system-ui-border-color);
 }
 .wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush).has-background:not(.is-not-action) > li:hover {
-    background: var(--system-ui-hover-bg-on-background);
+    background: var(--wp--custom--system-ui-list-hover-bg);
 }
 
-/* Increased Visibility Inside Parent with Background */
-.has-background > .wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) > li {
-    border-color: rgba(var(--wp--preset--color--border-color-rgb), .7);
-}
+
+
 .has-background > .wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background):not(.is-not-action) > li:hover {
-    background: var(--system-ui-hover-bg-on-background);
+    background: var(--wp--custom--system-ui-list-hover-bg);
 }
 
 
-.is-style-system-list .wp-block-rss__item-title { font-size: var(--wp--preset--font-size--medium); }

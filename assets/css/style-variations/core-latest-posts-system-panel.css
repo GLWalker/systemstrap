@@ -19,8 +19,11 @@
     position: relative;
     color: var(--wp--preset--color--inherit);
 
-    border: var(--wp--custom--border-width, 1px) solid var(--system-ui-border-color);
-    background: var(--system-ui-surface);
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+    background: var(--wp--custom--system-ui-surface);
+    background-image: var(--wp--custom--system-ui-background-image, none);
+    backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     box-shadow: var(--wp--custom--shadow);
     border-radius: var(--wp--custom--border-radius);
 
@@ -46,7 +49,7 @@
     margin-bottom: var(--wp--preset--spacing--20);
     overflow: hidden;
     border-radius: calc(var(--wp--custom--border-radius) / 1.5);
-    border: var(--wp--custom--border-width, 1px) solid rgba(var(--wp--preset--color--border-color-rgb), .2);
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
 }
 
 /* Native Image Alignment Margins */
@@ -118,19 +121,20 @@
 
 /* Hover States on LI */
 .wp-block-latest-posts.is-style-system-panel:not(.is-not-action) > li:hover {
-    background: var(--system-ui-hover-bg-subtle);
+    background: var(--wp--custom--system-ui-panel-hover-bg);
 }
 
 /* Has-background overrides */
 .wp-block-latest-posts.is-style-system-panel.has-background > li {
     background: transparent;
-    border-color: var(--system-ui-border-color-on-background);
+    border-color: var(--wp--custom--system-ui-border-color);
 }
 .wp-block-latest-posts.is-style-system-panel.has-background:not(.is-not-action) > li:hover {
-    background: var(--system-ui-hover-bg-on-background-adaptive);
+    background: var(--wp--custom--system-ui-panel-hover-bg);
 }
 
 /* Increased Visibility Inside Parent with Background */
 .has-background .wp-block-latest-posts.is-style-system-panel:not(.has-background) > li {
-    border-color: var(--system-ui-border-color-on-background);
+    border-color: var(--wp--custom--system-ui-border-color);
 }
+

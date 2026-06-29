@@ -78,7 +78,7 @@ SystemStrap currently participates in three ownership lanes:
 
 SystemStrap MUST NOT present plugin-owned or Core-owned CSS as if the theme authored it.
 
-SystemStrap MAY layer on top of those surfaces through explicit enqueue order, block-style registration, or inline `global-styles` mutation where separately governed contracts already allow it.
+SystemStrap MAY layer on top of those surfaces through explicit enqueue order, block-style registration, or inline `global-styles` extension where separately governed contracts already allow it.
 
 ## Core-Owned Runtime Surface
 
