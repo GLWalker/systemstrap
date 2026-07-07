@@ -209,6 +209,7 @@
     font-family: var(--wp--preset--font-family--heading, inherit);
     font-size: var(--wp--preset--font-size--x-large);
     font-weight: var(--wp--custom--font-weight-heading);
+    letter-spacing: 0.015em;
     line-height: 1.2;
     color: var(--wp--custom--heading-color, var(--wp--preset--color--contrast));
 }
@@ -433,7 +434,8 @@
 .bp-dynamic-block-container ul.item-list>li .item-meta .activity {
     margin-top: 0.25rem;
     font-size: var(--wp--preset--font-size--small);
-    line-height: 1.45;
+    letter-spacing: 0.03em;
+    line-height: 1.5;
     color: inherit;
     opacity: 0.72;
     overflow-wrap: anywhere;
@@ -624,7 +626,8 @@
     font-family: var(--wp--preset--font-family--button, var(--wp--preset--font-family--heading, inherit));
     font-size: var(--wp--preset--font-size--medium);
     font-weight: var(--wp--custom--font-weight-nav, 500);
-    line-height: 1.5;
+    letter-spacing: 0.03em;
+    line-height: 1.45;
     text-decoration: none;
     box-shadow: none;
     transition: background-color 0.15s ease-in-out !important;
@@ -670,6 +673,7 @@
     color: var(--wp--preset--color--primary-text, #fff);
     font-size: var(--wp--custom--badge-font-size, 0.75em);
     font-weight: var(--wp--custom--badge-font-weight, 600);
+    letter-spacing: 0.03em;
     line-height: 1;
     box-sizing: border-box !important;
 }
@@ -1017,7 +1021,7 @@
     display: block;
     margin-top: 0.35rem;
     font-size: var(--wp--preset--font-size--small);
-    line-height: 1.45;
+    line-height: 1.5;
     color: inherit;
     opacity: 0.72;
 }
@@ -1052,7 +1056,8 @@
     font-family: var(--wp--preset--font-family--button, var(--wp--preset--font-family--heading, inherit)) !important;
     font-size: var(--wp--preset--font-size--small) !important;
     font-weight: var(--wp--custom--font-weight-button) !important;
-    line-height: 1.5 !important;
+    letter-spacing: 0.03em !important;
+    line-height: 1.45 !important;
     text-decoration: none !important;
     box-shadow: var(--wp--preset--shadow--btn-resting, none) !important;
     transition: var(--wp--custom--btn-transition) !important;

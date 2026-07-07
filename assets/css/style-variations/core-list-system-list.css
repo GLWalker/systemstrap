@@ -1,122 +1,117 @@
-/* 
- * System List Variation 
- * Replaces Default List Group while utilizing the System UI contract 
+/*
+ * System List Variation
+ * Documented authority for row shells, flush joins, hover behavior, and
+ * nested list surface routing.
  */
 
-/* Container */
+.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) {
+    margin: 0;
+    padding: 0;
+    color: inherit;
+}
 
-
-/* Base Items */
-.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) > li {
-    padding: var(--wp--preset--spacing--20);
-    
+.wp-block-list.is-style-system-list {
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+    border-radius: var(--wp--custom--border-radius);
     overflow: hidden;
-    background: var(--wp--custom--system-ui-surface);
+}
+
+.wp-block-list.is-style-system-list-flush {
+    border: 0;
+    border-radius: 0;
+    overflow: visible;
+}
+
+.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) > li {
+    margin: 0;
+    padding: var(--wp--preset--spacing--20);
+    color: inherit;
+    background-color: var(--wp--custom--system-ui-surface);
     background-image: var(--wp--custom--system-ui-background-image, none);
     backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
-    
 }
 
-/* Handle UL vs OL logic */
+.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) > li + li {
+    border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+}
+
 ul.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) > li {
-    list-style-type: none;
-    display: block;
+    list-style: none;
 }
 
 ol.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) > li {
-    list-style-type: decimal;
     list-style-position: inside;
-    display: list-item;
 }
 
-/* Fix Gutenberg Editor wrapping issues with list-style inside */
-ol.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) > li > .rich-text,
-ol.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) > li > div {
-    display: inline;
-}
-
-/* Recursive Nesting via Negative Margins */
-/* Break nested lists out of the parent's padding */
 .wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) li > ul,
 .wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) li > ol {
-    margin-top: var(--wp--preset--spacing--10);
-    margin-bottom: calc(var(--wp--preset--spacing--10) * -1);
-    margin-left: calc(var(--wp--preset--spacing--20) * -1);
-    margin-right: calc(var(--wp--preset--spacing--20) * -1);
+    margin: var(--wp--preset--spacing--10) calc(var(--wp--preset--spacing--20) * -1) calc(var(--wp--preset--spacing--20) * -1);
     padding: 0;
     display: flex;
+    flex-basis: 100%;
     flex-direction: column;
+    background: transparent !important;
+    background-image: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
 }
 
-/* Nested Items */
 .wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) li > ul > li,
 .wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) li > ol > li {
+    margin: 0;
     padding: var(--wp--preset--spacing--20);
     border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
-    margin: 0;
-    list-style-position: inside;
-    background: var(--wp--custom--system-ui-surface-nested, transparent);
+    background-color: var(--wp--custom--system-ui-surface-nested, transparent);
     background-image: var(--wp--custom--system-ui-background-image-nested, none);
+    color: inherit;
 }
 
-/* Indentation Levels */
 .wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) li > ul > li,
 .wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) li > ol > li {
     padding-left: calc(var(--wp--preset--spacing--20) + 1.5rem);
 }
+
 .wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) li > ul > li > ul > li,
 .wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) li > ol > li > ol > li {
     padding-left: calc(var(--wp--preset--spacing--20) + 3rem);
 }
+
 .wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) li > ul > li > ul > li > ul > li,
 .wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) li > ol > li > ol > li > ol > li {
     padding-left: calc(var(--wp--preset--spacing--20) + 4.5rem);
 }
 
-/* Ensure inner lists override default ul styles */
-ul.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) li > ul > li {
-    list-style-type: none; /* Can add bullets back if preferred */
+.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush).is-action > li:hover:not(:has(li:hover)) {
+    background-color: var(--wp--custom--system-ui-list-hover-bg);
 }
 
-/* Interactive Hover State (Requires 'is-action' class) */
-.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush).is-action li:hover:not(:has(li:hover)) {
-    background: var(--wp--custom--system-ui-list-hover-bg);
-    z-index: 1; /* Keep border overlaps clean on hover */
+.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush).has-background > li,
+.has-background > .wp-block-list:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) > li {
+    background-color: transparent;
+    background-image: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
 }
 
-.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush).is-action li > ol > li:hover {
-/* Has-background overrides (Contract) */
-.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush).has-background > li {
-    background: transparent;
-    border-color: var(--wp--custom--system-ui-border-color);
-}
-.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush).is-action.has-background li:hover:not(:has(li:hover)) {
-    background: var(--wp--custom--system-ui-list-hover-bg);
+.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush).is-action.has-background > li:hover:not(:has(li:hover)),
+.has-background > .wp-block-list:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background).is-action > li:hover:not(:has(li:hover)) {
+    background-color: var(--wp--custom--system-ui-list-hover-bg);
 }
 
+.wp-block-group.is-style-system-panel > .wp-block-list:is(.is-style-system-list, .is-style-system-list-flush),
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) {
+    border: 0;
+    border-radius: inherit;
+    overflow: hidden;
+}
 
-
-.has-background > .wp-block-list:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) li > ul > li,
-.has-background > .wp-block-list:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) li > ol > li {
-    border-top-color: var(--wp--custom--system-ui-border-color);
-    background: var(--wp--custom--system-ui-surface-nested, transparent);
+.wp-block-group.is-style-system-panel > .wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) > li,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) > li {
+    background-color: var(--wp--custom--system-ui-surface-nested, transparent);
     background-image: var(--wp--custom--system-ui-background-image-nested, none);
-}
-.has-background > .wp-block-list:is(.is-style-system-list, .is-style-system-list-flush).is-action:not(.has-background) li:hover:not(:has(li:hover)) {
-    background: var(--wp--custom--system-ui-list-hover-bg);
-}
-
-/* ========================================================= */
-/* Prevent Double-Chrome on Nested Lists                     */
-/* ========================================================= */
-.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) li > ul,
-.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) li > ol,
-.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) li > ul > li,
-.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) li > ol > li {
-    background: transparent !important;
-    background-image: none !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
 }
-

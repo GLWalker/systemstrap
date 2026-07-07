@@ -619,8 +619,8 @@ if (!function_exists('strap_render_block_core_latest_comments')) {
 
 if (!function_exists('strap_render_block_widget_badges')) {
     /**
-     * Server-side badge replacements for Categories and Archives blocks.
-     * Converts native Gutenberg ( count ) text into <span class="system-badge">count</span>.
+     * Server-side badge replacements for Categories, Archives, and Terms Query blocks.
+     * Converts native Gutenberg count text into <span class="system-badge">count</span>.
      */
     function strap_render_block_widget_badges( $block_content, $block ) {
         if ( empty( $block_content ) ) {
@@ -636,6 +636,14 @@ if (!function_exists('strap_render_block_widget_badges')) {
             $block_content = preg_replace(
                 '/\(\s*(\d+)\s*\)/',
                 '<span class="system-badge">$1</span>',
+                $block_content
+            );
+        }
+
+        if ( 'core/terms-query' === $block['blockName'] ) {
+            $block_content = preg_replace(
+                '/(<(?:div|p)\b[^>]*class="[^"]*wp-block-term-count[^"]*"[^>]*>)\(\s*(\d+)\s*\)(<\/(?:div|p)>)/',
+                '<span class="system-badge">$2</span>',
                 $block_content
             );
         }

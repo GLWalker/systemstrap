@@ -5,6 +5,8 @@
 
 /* Core Panel Wrapper */
 .wp-block-group.is-style-system-panel {
+    --strap-system-panel-child-padding: var(--wp--preset--spacing--20);
+
     border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
     background-image: var(--wp--custom--system-ui-background-image, none);
     backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
@@ -34,11 +36,15 @@
 
 /* Only apply default background if no background is set by user */
 .wp-block-group.is-style-system-panel:not(.has-background):not([style*="background-color"]) {
-    background: var(--wp--custom--system-ui-surface);
+    background-color: var(--wp--custom--system-ui-surface);
 }
 
 .wp-block-group.is-style-system-panel.has-background {
     border-color: var(--wp--custom--system-ui-border-color);
+}
+
+.wp-block-group.is-style-system-panel.is-style-system-modal {
+    --strap-system-panel-child-padding: var(--wp--preset--spacing--40);
 }
 
 /* ========================================================= */
@@ -51,13 +57,28 @@
     max-width: none !important; /* Overrides Gutenberg constrained layout widths */
 }
 
-.wp-block-group.is-style-system-panel > *:not(.is-style-system-list):not(.is-style-system-accordion):not(.is-style-system-details):not(.is-style-system-panel-header):not(.is-style-system-panel-footer):not(.wp-block-image):not(.wp-block-cover) {
-    padding: var(--wp--preset--spacing--20);
+.wp-block-group.is-style-system-panel > *:not(.is-style-system-list):not(.is-style-system-accordion):not(.is-style-system-details):not(.is-style-system-panel-header):not(.is-style-system-panel-footer):not(.wp-block-image):not(.wp-block-cover):not(.query-directory-listing):not(.directory-listing):not(.query-latest-posts):not(.systemstrap-directory-grid):not(.wp-block-latest-posts):not(.wp-block-latest-comments):not(.wp-block-archives):not(.wp-block-categories):not(.wp-block-page-list):not(.wp-block-rss):not(.wp-block-post-terms):not(.wp-block-terms-query):not(.wp-block-list):not(.wp-block-query-pagination):not(.wp-block-comments-pagination) {
+    padding: var(--strap-system-panel-child-padding);
 }
 
 /* Override chunkier padding when panel is used as a modal */
-.wp-block-group.is-style-system-panel.is-style-system-modal > *:not(.is-style-system-list):not(.is-style-system-accordion):not(.is-style-system-details):not(.is-style-system-panel-header):not(.is-style-system-panel-footer):not(.wp-block-image):not(.wp-block-cover) {
-    padding: var(--wp--preset--spacing--40);
+.wp-block-group.is-style-system-panel.is-style-system-modal > *:not(.is-style-system-list):not(.is-style-system-accordion):not(.is-style-system-details):not(.is-style-system-panel-header):not(.is-style-system-panel-footer):not(.wp-block-image):not(.wp-block-cover):not(.query-directory-listing):not(.directory-listing):not(.query-latest-posts):not(.systemstrap-directory-grid):not(.wp-block-latest-posts):not(.wp-block-latest-comments):not(.wp-block-archives):not(.wp-block-categories):not(.wp-block-page-list):not(.wp-block-rss):not(.wp-block-post-terms):not(.wp-block-terms-query):not(.wp-block-list):not(.wp-block-query-pagination):not(.wp-block-comments-pagination) {
+    padding: var(--strap-system-panel-child-padding);
+}
+
+/* Allow nested one-child listing shells to break out of padded content wrappers. */
+.wp-block-group.is-style-system-panel > *:has(> :is(.query-directory-listing, .directory-listing, .query-latest-posts, .systemstrap-directory-grid, .wp-block-latest-posts, .wp-block-latest-comments, .wp-block-archives, .wp-block-categories, .wp-block-page-list, .wp-block-rss, .wp-block-post-terms, .wp-block-terms-query, .wp-block-list):only-child) > :is(.query-directory-listing, .directory-listing, .query-latest-posts, .systemstrap-directory-grid, .wp-block-latest-posts, .wp-block-latest-comments, .wp-block-archives, .wp-block-categories, .wp-block-page-list, .wp-block-rss, .wp-block-post-terms, .wp-block-terms-query, .wp-block-list),
+.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > *:has(> :is(.query-directory-listing, .directory-listing, .query-latest-posts, .systemstrap-directory-grid, .wp-block-latest-posts, .wp-block-latest-comments, .wp-block-archives, .wp-block-categories, .wp-block-page-list, .wp-block-rss, .wp-block-post-terms, .wp-block-terms-query, .wp-block-list):only-child) > :is(.query-directory-listing, .directory-listing, .query-latest-posts, .systemstrap-directory-grid, .wp-block-latest-posts, .wp-block-latest-comments, .wp-block-archives, .wp-block-categories, .wp-block-page-list, .wp-block-rss, .wp-block-post-terms, .wp-block-terms-query, .wp-block-list) {
+    margin: calc(var(--strap-system-panel-child-padding) * -1) !important;
+    width: auto;
+}
+
+/* Let nested panel footers fill edge-to-edge like direct-child panel headers. */
+.wp-block-group.is-style-system-panel > *:has(> .wp-block-group.is-style-system-panel-footer:only-child) > .wp-block-group.is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > *:has(> .wp-block-group.is-style-system-panel-footer:only-child) > .wp-block-group.is-style-system-panel-footer {
+    margin: calc(var(--strap-system-panel-child-padding) * -1) !important;
+    width: calc(100% + (var(--strap-system-panel-child-padding) * 2));
+    max-width: none !important;
 }
 
 /* Force Image Caps to naturally span 100% without using dangerous .alignfull rules */
@@ -169,9 +190,33 @@
 .wp-block-group.is-style-system-panel > *:has(> .is-style-system-list) + .is-style-system-panel-footer,
 .wp-block-group.is-style-system-panel > *:has(> .is-style-system-accordion) + .is-style-system-panel-footer,
 .wp-block-group.is-style-system-panel > *:has(> .is-style-system-details) + .is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel > .query-directory-listing + .is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel > .directory-listing + .is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel > .query-latest-posts + .is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel > .systemstrap-directory-grid + .is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel > .wp-block-latest-posts + .is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel > .wp-block-latest-comments + .is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel > .wp-block-archives + .is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel > .wp-block-categories + .is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel > .wp-block-page-list + .is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel > .wp-block-terms-query + .is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel > .wp-block-rss + .is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel > .wp-block-post-terms + .is-style-system-panel-footer,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:has(.is-style-system-list) + * > .is-style-system-panel-footer,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:has(.is-style-system-accordion) + * > .is-style-system-panel-footer,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:has(.is-style-system-details) + * > .is-style-system-panel-footer {
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:has(.is-style-system-details) + * > .is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing + * > .is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .directory-listing + * > .is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-latest-posts + * > .is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .systemstrap-directory-grid + * > .is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-latest-posts + * > .is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-latest-comments + * > .is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-archives + * > .is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-categories + * > .is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-page-list + * > .is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-terms-query + * > .is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-rss + * > .is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-post-terms + * > .is-style-system-panel-footer {
     border-top: 0 !important;
 }
 
@@ -187,4 +232,3 @@
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
 }
-

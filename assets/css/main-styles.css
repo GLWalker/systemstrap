@@ -90,6 +90,59 @@ header.wp-block-template-part {
     align-items: flex-start !important;
 }
 
+.wp-block-terms-query .wp-block-term-template {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.wp-block-terms-query .wp-block-term-template>li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.wp-block-terms-query .wp-block-term-template>li+li {
+    border-top: var(--wp--custom--border-width, 1px) solid var(--wp--preset--color--border-color);
+}
+
+.wp-block-terms-query .wp-block-term-name,
+.wp-block-terms-query .wp-block-term-template>li>.wp-block-group>.wp-block-term-name {
+    margin: 0;
+    min-width: 0;
+}
+
+.wp-block-terms-query .wp-block-term-name>a,
+.wp-block-terms-query .wp-block-term-template>li>.wp-block-group>.wp-block-term-name>a {
+    display: block;
+    padding: var(--wp--preset--spacing--20);
+    color: inherit;
+    text-decoration: none;
+}
+
+.wp-block-terms-query .wp-block-term-template>li>.wp-block-group {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0;
+    margin: 0;
+}
+
+.wp-block-terms-query .wp-block-term-count {
+    display: flex;
+    align-items: center;
+    margin: 0 var(--wp--preset--spacing--30) 0 0;
+}
+
+.wp-block-terms-query .wp-block-term-count>.system-badge,
+.wp-block-terms-query .wp-block-term-template>li>.wp-block-group>.system-badge {
+    display: inline-block;
+    padding: var(--wp--custom--badge-padding-y) var(--wp--custom--badge-padding-x);
+    font-size: var(--wp--preset--font-size--x-small, .75rem);
+    line-height: 1;
+    margin: 0 var(--wp--preset--spacing--30) 0 0;
+}
+
 /* 7. Badges & Pills */
 .badge .is-layout-flow {
     margin-block-start: 0;
@@ -306,126 +359,6 @@ header.wp-block-template-part {
 }
 
 /* ==========================================================================
-   Shared System List Component
-   ========================================================================== */
-:where(.is-style-system-list, .is-style-system-list-flush) {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    padding: 0 !important;
-    border-radius: var(--wp--custom--border-radius);
-}
-
-:where(.is-style-system-list, .is-style-system-list-flush)>li {
-    position: relative;
-    margin: 0 !important;
-    color: var(--wp--preset--color--inherit);
-    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
-    background: rgba(var(--wp--preset--color--base-rgb), .2);
-    box-shadow: var(--wp--custom--shadow);
-    border-radius: var(--wp--custom--border-radius);
-    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
-}
-
-:where(.is-style-system-list, .is-style-system-list-flush)>li+li {
-    border-top: 0;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-}
-
-:where(.is-style-system-list, .is-style-system-list-flush)>li:has(+ li) {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-}
-
-/* ==========================================================================
-   System List Flush Component
-   ========================================================================== */
-:where(.is-style-system-list-flush) {
-    border-radius: 0;
-}
-
-:where(.is-style-system-list-flush)>li {
-    border-left: 0;
-    border-right: 0;
-    border-radius: 0;
-    box-shadow: none;
-}
-
-:where(.is-style-system-list-flush)>li:first-child {
-    border-top: 0;
-}
-
-:where(.is-style-system-list-flush)>li:last-child {
-    border-bottom: 0;
-}
-
-/* ==========================================================================
-   Nested Lists inside Panels
-   ========================================================================== */
-.is-style-system-panel [class*="wp-block-"]:is(.is-style-system-list, .is-style-system-list-flush)>li {
-    background: var(--wp--custom--system-ui-surface-nested, var(--wp--custom--system-ui-surface)) !important;
-    background-image: var(--wp--custom--system-ui-background-image-nested, none) !important;
-    border-color: var(--wp--custom--system-ui-border-color);
-    border-left: 0;
-    border-right: 0;
-    border-radius: 0;
-    box-shadow: none;
-}
-
-.is-style-system-panel [class*="wp-block-"]:is(.is-style-system-list, .is-style-system-list-flush)>li:first-child {
-    border-top: 0;
-}
-
-.is-style-system-panel [class*="wp-block-"]:is(.is-style-system-list, .is-style-system-list-flush)>li:last-child {
-    border-bottom: 0;
-}
-
-.is-style-system-panel.has-background [class*="wp-block-"]:is(.is-style-system-list, .is-style-system-list-flush)>li,
-.has-background>.is-style-system-panel [class*="wp-block-"]:is(.is-style-system-list, .is-style-system-list-flush)>li {
-    border-color: var(--wp--custom--system-ui-border-color);
-}
-
-/* ==========================================================================
-   Nested Details & Accordions inside Panels
-   ========================================================================== */
-.is-style-system-panel [class*="wp-block-"]:is(.is-style-system-details),
-.is-style-system-panel [class*="wp-block-"]:is(.is-style-system-accordion) .wp-block-accordion-item {
-    background: var(--wp--custom--system-ui-surface-nested, var(--wp--custom--system-ui-surface)) !important;
-    background-image: var(--wp--custom--system-ui-background-image-nested, none) !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    border-color: var(--wp--custom--system-ui-border-color);
-    border-left: 0;
-    border-right: 0;
-    border-radius: 0;
-    box-shadow: none;
-}
-
-/* Force header toggles to be transparent so parent nested surface shows through */
-.is-style-system-panel [class*="wp-block-"]:is(.is-style-system-details) summary,
-.is-style-system-panel [class*="wp-block-"]:is(.is-style-system-accordion) .wp-block-accordion-heading__toggle {
-    background: transparent;
-}
-
-.is-style-system-panel [class*="wp-block-"]:is(.is-style-system-details):first-child,
-.is-style-system-panel [class*="wp-block-"]:is(.is-style-system-accordion):first-child .wp-block-accordion-item:first-child {
-    border-top: 0;
-}
-
-.is-style-system-panel [class*="wp-block-"]:is(.is-style-system-details):last-child,
-.is-style-system-panel [class*="wp-block-"]:is(.is-style-system-accordion):last-child .wp-block-accordion-item:last-child {
-    border-bottom: 0;
-}
-
-.is-style-system-panel.has-background [class*="wp-block-"]:is(.is-style-system-details),
-.has-background>.is-style-system-panel [class*="wp-block-"]:is(.is-style-system-details),
-.is-style-system-panel.has-background [class*="wp-block-"]:is(.is-style-system-accordion) .wp-block-accordion-item,
-.has-background>.is-style-system-panel [class*="wp-block-"]:is(.is-style-system-accordion) .wp-block-accordion-item {
-    border-color: var(--wp--custom--system-ui-border-color);
-}
-
-/* ==========================================================================
    Hardcode Core Accordion Fixes
    ========================================================================== */
 .wp-block-accordion .wp-block-accordion-heading__toggle {
@@ -528,288 +461,4 @@ select:focus {
 .wp-block-heading svg,
 .wp-block-heading i {
     font-size: 1em;
-}
-
-/*
- * Basic directory listing.
- *
- * Desktop:
- * [icon + title] [excerpt] [tags] [arrow]
- *
- * Tablet:
- * [icon + title] [excerpt] [arrow]
- * [tags........................]
- *
- * Mobile:
- * [icon + title]          [arrow]
- * [tags........................]
- */
-
-.directory-listing {
-    --directory-border-color: color-mix(in srgb,
-            currentColor 14%,
-            transparent);
-    --directory-surface-color: color-mix(in srgb,
-            currentColor 4%,
-            transparent);
-    --directory-tag-color: color-mix(in srgb,
-            currentColor 7%,
-            transparent);
-
-    border: 1px solid var(--directory-border-color);
-    border-radius: 0.5rem;
-    overflow: hidden;
-}
-
-/*
- * Header
- */
-
-.directory-listing__header {
-    gap: 0.75rem;
-    margin: 0;
-    padding: 1rem 1.25rem;
-    background: var(--directory-surface-color);
-    border-bottom: 1px solid var(--directory-border-color);
-}
-
-.directory-listing__header-icon,
-.directory-listing__item-icon,
-.directory-listing__arrow {
-    flex: 0 0 auto;
-    margin: 0;
-}
-
-.directory-listing__header-icon {
-    width: 1.5rem;
-}
-
-.directory-listing__heading {
-    margin: 0;
-    font-size: 1.125rem;
-    line-height: 1.2;
-}
-
-/*
- * Query and post list
- */
-
-.directory-listing__query {
-    margin: 0;
-}
-
-.directory-listing__items {
-    margin: 0;
-    padding: 0;
-}
-
-.directory-listing__items>li {
-    margin: 0;
-    padding: 0;
-}
-
-/*
- * Desktop row
- */
-
-.directory-listing__row {
-    display: grid;
-    grid-template-columns:
-        minmax(12rem, 1.1fr) minmax(16rem, 1.6fr) minmax(10rem, 1fr) auto;
-    gap: 1.25rem;
-    align-items: center;
-    margin: 0;
-    padding: 0.875rem 1.25rem;
-    border-bottom: 1px solid var(--directory-border-color);
-}
-
-.directory-listing__identity {
-    min-width: 0;
-    gap: 0.75rem;
-    margin: 0;
-}
-
-.directory-listing__item-icon {
-    width: 1.25rem;
-}
-
-.directory-listing__title {
-    min-width: 0;
-    margin: 0;
-    font-size: 1rem;
-    line-height: 1.3;
-}
-
-.directory-listing__title a {
-    text-decoration: none;
-}
-
-.directory-listing__title a:hover,
-.directory-listing__title a:focus-visible {
-    text-decoration: underline;
-}
-
-.directory-listing__excerpt {
-    min-width: 0;
-    margin: 0;
-}
-
-.directory-listing__excerpt p {
-    display: -webkit-box;
-    margin: 0;
-    overflow: hidden;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-}
-
-/*
- * Tag strip
- */
-
-.directory-listing__tags {
-    min-width: 0;
-    margin: 0;
-    overflow-x: auto;
-    overflow-y: hidden;
-    overscroll-behavior-inline: contain;
-    scrollbar-width: thin;
-}
-
-.directory-listing__post-terms {
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    gap: 0.5rem;
-    width: max-content;
-    min-width: 100%;
-    margin: 0;
-    white-space: nowrap;
-}
-
-/*
- * WordPress outputs the separator as text between links.
- * The pattern uses a single space so the Flex gap controls spacing.
- */
-
-.directory-listing__post-terms a {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.25rem 0.625rem;
-    background: var(--directory-tag-color);
-    border-radius: 999px;
-    font-size: 0.8125rem;
-    line-height: 1.3;
-    text-decoration: none;
-}
-
-.directory-listing__post-terms a:hover,
-.directory-listing__post-terms a:focus-visible {
-    text-decoration: underline;
-}
-
-/*
- * End arrow
- */
-
-.directory-listing__arrow {
-    width: 1rem;
-    justify-self: end;
-}
-
-/*
- * Pagination footer
- */
-
-.directory-listing__footer {
-    justify-content: flex-end;
-    margin: 0;
-    padding: 1rem 1.25rem;
-}
-
-.directory-listing__pagination {
-    justify-content: flex-end;
-    margin: 0;
-}
-
-/*
- * Empty results
- */
-
-.directory-listing__empty {
-    margin: 0;
-    padding: 1.25rem;
-}
-
-/*
- * Tablet
- */
-
-@media (max-width: 900px) {
-    .directory-listing__row {
-        grid-template-columns:
-            minmax(11rem, auto) minmax(0, 1fr) auto;
-        gap: 0.625rem 1rem;
-    }
-
-    .directory-listing__identity {
-        grid-column: 1;
-        grid-row: 1;
-    }
-
-    .directory-listing__excerpt {
-        grid-column: 2;
-        grid-row: 1;
-    }
-
-    .directory-listing__tags {
-        grid-column: 1 / 3;
-        grid-row: 2;
-    }
-
-    .directory-listing__arrow {
-        grid-column: 3;
-        grid-row: 1 / 3;
-    }
-}
-
-/*
- * Mobile
- */
-
-@media (max-width: 600px) {
-
-    .directory-listing__header,
-    .directory-listing__row,
-    .directory-listing__footer {
-        padding-right: 1rem;
-        padding-left: 1rem;
-    }
-
-    .directory-listing__row {
-        grid-template-columns: minmax(0, 1fr) auto;
-    }
-
-    .directory-listing__identity {
-        grid-column: 1;
-        grid-row: 1;
-    }
-
-    .directory-listing__excerpt {
-        display: none;
-    }
-
-    .directory-listing__tags {
-        grid-column: 1 / 3;
-        grid-row: 2;
-    }
-
-    .directory-listing__arrow {
-        grid-column: 2;
-        grid-row: 1;
-    }
-
-    .directory-listing__pagination {
-        flex-wrap: wrap;
-    }
 }

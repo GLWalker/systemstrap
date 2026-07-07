@@ -165,6 +165,7 @@
 /* Custom SVG Arrow Indicator */
 .wp-block-details.is-style-system-details summary {
     position: relative;
+    font-size: var(--wp--preset--font-size--medium, 1rem);
     list-style: none; /* remove default arrow */
 }
 .wp-block-details.is-style-system-details summary::-webkit-details-marker {

@@ -38,6 +38,8 @@ if ( ! function_exists( 'strap_generate_dynamic_colors' ) ) {
 		$css            = ":root, body, .editor-styles-wrapper {\n";
 		$button_css     = "\n/* Dynamic Button Hover Shadows */\n";
 		$tabs_css       = "\n/* Dynamic System Tabs Active Join Color Routing */\n";
+		$directory_css    = "\n/* Dynamic Query Directory Header-to-Badge Color Routing */\n";
+		$latest_posts_css = "\n/* Dynamic Latest Posts Header-to-Badge Color Routing */\n";
 
 		foreach ( $colors as $color ) {
 			$slug = $color['slug'];
@@ -51,6 +53,96 @@ if ( ! function_exists( 'strap_generate_dynamic_colors' ) ) {
 body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs .system-tabs__tab.has-{$slug}-background-color[aria-selected=\"true\"],
 body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs-vertical .system-tabs__tab.has-{$slug}-background-color[aria-selected=\"true\"] {
     --system-tabs-active-join-color: var(--wp--preset--color--{$slug}) !important;
+}
+";
+
+$directory_css .= "
+.query-directory-listing.has-{$slug}-color,
+.directory-listing.has-{$slug}-color,
+.query-directory-grid.has-{$slug}-color,
+.systemstrap-directory-grid.has-{$slug}-color,
+.query-latest-posts.has-{$slug}-color {
+    --query-directory-listing-muted-color: var(--wp--preset--color--current-mix-color);
+    --directory-grid-card-muted-color: var(--wp--preset--color--current-mix-color);
+    --strap-pagination-current-bg: var(--wp--preset--color--{$slug});
+    --strap-pagination-current-border-color: var(--wp--preset--color--{$slug});
+    --strap-pagination-current-color: var(--wp--preset--color--base);
+}
+
+.query-directory-listing.has-{$slug}-background-color,
+.directory-listing.has-{$slug}-background-color,
+.query-directory-grid.has-{$slug}-background-color,
+.systemstrap-directory-grid.has-{$slug}-background-color,
+.query-latest-posts.has-{$slug}-background-color {
+    --query-directory-listing-muted-color: var(--wp--preset--color--current-mix-color);
+    --directory-grid-card-muted-color: var(--wp--preset--color--current-mix-color);
+    --strap-pagination-current-bg: var(--wp--preset--color--{$slug}-text);
+    --strap-pagination-current-border-color: var(--wp--preset--color--{$slug}-text);
+    --strap-pagination-current-color: var(--wp--preset--color--{$slug});
+}
+
+.query-directory-listing:has(> .query-directory-listing__header.has-{$slug}-background-color),
+.directory-listing:has(> .directory-listing__header.has-{$slug}-background-color) {
+    --query-directory-listing-badge-bg: rgba(var(--wp--preset--color--{$slug}-rgb), 0.16);
+    --query-directory-listing-badge-border-color: rgba(var(--wp--preset--color--{$slug}-rgb), 0.3);
+}
+
+.query-directory-listing__post-terms.has-{$slug}-background-color,
+.directory-listing__post-terms.has-{$slug}-background-color {
+    background-color: transparent !important;
+    --query-directory-listing-term-badge-bg: var(--wp--preset--color--{$slug});
+    --query-directory-listing-term-badge-border-color: var(--wp--preset--color--{$slug});
+}
+
+.query-directory-listing__post-terms.has-{$slug}-background-color a:hover,
+.query-directory-listing__post-terms.has-{$slug}-background-color a:focus-visible,
+.directory-listing__post-terms.has-{$slug}-background-color a:hover,
+.directory-listing__post-terms.has-{$slug}-background-color a:focus-visible {
+    background-color: var(--wp--preset--color--{$slug}-50) !important;
+    border-color: var(--wp--custom--btn-hover-border-color) !important;
+    color: var(--wp--preset--color--{$slug}-text) !important;
+    text-decoration: none !important;
+}
+
+.query-directory-listing__post-terms.has-{$slug}-color,
+.directory-listing__post-terms.has-{$slug}-color {
+    background-color: transparent !important;
+    --query-directory-listing-term-badge-bg: rgba(var(--wp--preset--color--{$slug}-rgb), 0.16);
+    --query-directory-listing-term-badge-border-color: rgba(var(--wp--preset--color--{$slug}-rgb), 0.3);
+    --query-directory-listing-term-badge-color: var(--wp--preset--color--{$slug});
+}
+";
+
+$latest_posts_css .= "
+.query-latest-posts:has(> .query-latest-posts__header.has-{$slug}-color),
+.query-latest-posts:has(> .query-latest-posts__header .query-latest-posts__heading.has-{$slug}-color),
+.systemstrap-latest-posts:has(> .systemstrap-latest-posts__header.has-{$slug}-color),
+.systemstrap-latest-posts:has(> .systemstrap-latest-posts__header .systemstrap-latest-posts__heading.has-{$slug}-color) {
+    --query-directory-listing-badge-bg: var(--wp--preset--color--{$slug});
+    --query-directory-listing-badge-border-color: var(--wp--preset--color--{$slug});
+    --strap-pagination-current-bg: var(--wp--preset--color--{$slug});
+    --strap-pagination-current-border-color: var(--wp--preset--color--{$slug});
+    --strap-pagination-current-color: var(--wp--preset--color--base);
+}
+
+.query-latest-posts:has(> .query-latest-posts__header .query-latest-posts__header-icon.has-{$slug}-color),
+.systemstrap-latest-posts:has(> .systemstrap-latest-posts__header .systemstrap-latest-posts__header-icon.has-{$slug}-color) {
+    --query-directory-listing-badge-bg: var(--wp--preset--color--{$slug});
+    --query-directory-listing-badge-border-color: var(--wp--preset--color--{$slug});
+    --strap-pagination-current-bg: var(--wp--preset--color--{$slug});
+    --strap-pagination-current-border-color: var(--wp--preset--color--{$slug});
+    --strap-pagination-current-color: var(--wp--preset--color--base);
+}
+
+.query-latest-posts:has(> .query-latest-posts__header.has-{$slug}-background-color),
+.query-latest-posts:has(> .query-latest-posts__header .query-latest-posts__heading.has-{$slug}-background-color),
+.systemstrap-latest-posts:has(> .systemstrap-latest-posts__header.has-{$slug}-background-color),
+.systemstrap-latest-posts:has(> .systemstrap-latest-posts__header .systemstrap-latest-posts__heading.has-{$slug}-background-color) {
+    --query-directory-listing-badge-bg: var(--wp--preset--color--{$slug});
+    --query-directory-listing-badge-border-color: var(--wp--preset--color--{$slug});
+    --strap-pagination-current-bg: var(--wp--preset--color--{$slug});
+    --strap-pagination-current-border-color: var(--wp--preset--color--{$slug});
+    --strap-pagination-current-color: var(--wp--preset--color--base);
 }
 ";
 
@@ -188,6 +280,46 @@ ul.wp-block-latest-posts.has-{$slug}-background-color > li {
 			}
 		}
 
+		foreach ( $colors as $background_color ) {
+			$background_slug = $background_color['slug'];
+
+			foreach ( $colors as $text_color ) {
+				$text_slug = $text_color['slug'];
+
+$latest_posts_css .= "
+.query-directory-listing.has-{$background_slug}-background-color.has-{$text_slug}-color,
+.directory-listing.has-{$background_slug}-background-color.has-{$text_slug}-color,
+.query-directory-grid.has-{$background_slug}-background-color.has-{$text_slug}-color,
+.systemstrap-directory-grid.has-{$background_slug}-background-color.has-{$text_slug}-color,
+.query-latest-posts.has-{$background_slug}-background-color.has-{$text_slug}-color {
+    --query-directory-listing-muted-color: var(--wp--preset--color--current-mix-color);
+    --directory-grid-card-muted-color: var(--wp--preset--color--current-mix-color);
+    --strap-pagination-current-bg: var(--wp--preset--color--{$text_slug});
+    --strap-pagination-current-border-color: var(--wp--preset--color--{$text_slug});
+    --strap-pagination-current-color: var(--wp--preset--color--{$background_slug});
+}
+
+.query-latest-posts:has(> .query-latest-posts__header.has-{$background_slug}-background-color.has-{$text_slug}-color),
+.query-latest-posts:has(> .query-latest-posts__header.has-{$background_slug}-background-color .query-latest-posts__heading.has-{$text_slug}-color),
+.query-latest-posts:has(> .query-latest-posts__header .query-latest-posts__heading.has-{$background_slug}-background-color.has-{$text_slug}-color),
+.systemstrap-latest-posts:has(> .systemstrap-latest-posts__header.has-{$background_slug}-background-color.has-{$text_slug}-color),
+.systemstrap-latest-posts:has(> .systemstrap-latest-posts__header.has-{$background_slug}-background-color .systemstrap-latest-posts__heading.has-{$text_slug}-color),
+.systemstrap-latest-posts:has(> .systemstrap-latest-posts__header .systemstrap-latest-posts__heading.has-{$background_slug}-background-color.has-{$text_slug}-color) {
+    --query-directory-listing-badge-color: var(--wp--preset--color--{$text_slug});
+    --strap-pagination-current-color: var(--wp--preset--color--{$text_slug});
+}
+
+.query-directory-listing__post-terms.has-{$background_slug}-background-color.has-{$text_slug}-color,
+.directory-listing__post-terms.has-{$background_slug}-background-color.has-{$text_slug}-color {
+    background-color: transparent !important;
+    --query-directory-listing-term-badge-bg: var(--wp--preset--color--{$background_slug});
+    --query-directory-listing-term-badge-border-color: var(--wp--preset--color--{$background_slug});
+    --query-directory-listing-term-badge-color: var(--wp--preset--color--{$text_slug});
+}
+";
+			}
+		}
+
 		// Inject WordPress native image sizes for responsive carousels
 		$thumbnail_width = get_option( 'thumbnail_size_w', 150 );
 		$medium_width    = get_option( 'medium_size_w', 300 );
@@ -197,6 +329,8 @@ ul.wp-block-latest-posts.has-{$slug}-background-color > li {
 		$css .= "}\n";
 		$css .= $button_css;
 		$css .= $tabs_css;
+		$css .= $directory_css;
+		$css .= $latest_posts_css;
 
 		// Add Gradient background routing for Latest Posts
 		$gradients = $settings['color']['gradients']['theme'] ?? [];

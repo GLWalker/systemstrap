@@ -1,116 +1,196 @@
-/* 
+/*
  * System List Variation for Latest Posts
- * Replaces default layout while utilizing the System UI contract 
+ * Uses the documented System List authority for row shells, flush joins,
+ * hover behavior, and nested surface routing.
  */
 
-/* Container */
-.wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush) {
+:is(
+    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush),
+    .wp-block-group.is-style-system-panel > .wp-block-latest-posts,
+    .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-latest-posts
+) {
     list-style: none;
+    margin: 0;
+    padding: 0;
+    color: inherit;
 }
 
-/* Base LIs */
-.wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush) > li {
+.wp-block-latest-posts.is-style-system-list {
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+    border-radius: var(--wp--custom--border-radius);
+    overflow: hidden;
+}
+
+.wp-block-latest-posts.is-style-system-list-flush {
+    border: 0;
+    border-radius: 0;
+    overflow: visible;
+}
+
+:is(
+    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush),
+    .wp-block-group.is-style-system-panel > .wp-block-latest-posts,
+    .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-latest-posts
+) > li {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--wp--preset--spacing--20);
+    margin: 0;
     padding: var(--wp--preset--spacing--20) !important;
-    background: var(--wp--custom--system-ui-surface);
+    color: inherit;
+    background-color: var(--wp--custom--system-ui-surface);
     background-image: var(--wp--custom--system-ui-background-image, none);
     backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
-    
-    
-    /* Media object layout inside the LI */
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: var(--wp--preset--spacing--20);
 }
 
-/* Premium System Borders between ROOT items */
-.wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush) > li + li {
-    border-top-width: var(--wp--custom--border-width, 1px);
-    border-top-style: solid;
-    border-top-color: var(--wp--custom--system-ui-border-color);
+:is(
+    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush),
+    .wp-block-group.is-style-system-panel > .wp-block-latest-posts,
+    .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-latest-posts
+) > li + li {
+    border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
 }
-/* Content wrapper (the LI itself acts as the outer flex, inner content wraps in a column if needed) */
-.wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush) > li > div[itemprop="item"] {
+
+:is(
+    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush),
+    .wp-block-group.is-style-system-panel > .wp-block-latest-posts,
+    .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-latest-posts
+) > li > article {
     display: flex;
+    flex: 1 1 auto;
     flex-direction: column;
     gap: var(--wp--preset--spacing--10);
-    flex-grow: 1;
+    min-width: 0;
 }
 
-/* Featured Image (Media Object Thumbnail) */
-.wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush) > li .wp-block-latest-posts__featured-image {
-    flex-shrink: 0;
+:is(
+    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush),
+    .wp-block-group.is-style-system-panel > .wp-block-latest-posts,
+    .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-latest-posts
+) > li .wp-block-latest-posts__featured-image {
+    flex: 0 0 auto;
     margin: 0;
     overflow: hidden;
-    border-radius: calc(var(--wp--custom--border-radius) / 1.5);
     border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+    border-radius: calc(var(--wp--custom--border-radius) / 1.5);
 }
 
-.wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush) > li .wp-block-latest-posts__featured-image img {
+:is(
+    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush),
+    .wp-block-group.is-style-system-panel > .wp-block-latest-posts,
+    .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-latest-posts
+) > li .wp-block-latest-posts__featured-image img {
     display: block;
     object-fit: cover;
 }
 
-/* Post Title */
-.wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush) > li .wp-block-latest-posts__post-title {
+:is(
+    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush),
+    .wp-block-group.is-style-system-panel > .wp-block-latest-posts,
+    .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-latest-posts
+) > li .wp-block-latest-posts__post-title {
     line-height: 1.2;
-    text-decoration: none;
     color: inherit;
-    /* Stretch the link across the entire LI for accessibility */
+    text-decoration: none;
 }
 
-/* Stretch pseudo element over the LI so the entire row is clickable if desired */
-.wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush) > li .wp-block-latest-posts__post-title::after {
+:is(
+    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush),
+    .wp-block-group.is-style-system-panel > .wp-block-latest-posts,
+    .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-latest-posts
+) > li .wp-block-latest-posts__post-title::after {
     content: "";
     position: absolute;
     inset: 0;
     z-index: 1;
 }
 
-/* Make sure inner links sit above the pseudo element */
-.wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush) > li a:not(.wp-block-latest-posts__post-title) {
+:is(
+    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush),
+    .wp-block-group.is-style-system-panel > .wp-block-latest-posts,
+    .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-latest-posts
+) > li a:not(.wp-block-latest-posts__post-title) {
     position: relative;
     z-index: 2;
 }
 
-/* Post Meta (Author, Date) */
-.wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush) > li .wp-block-latest-posts__post-author,
-.wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush) > li .wp-block-latest-posts__post-date {
-    color: var(--wp--preset--color--contrast);
-    opacity: 0.7;
+:is(
+    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush),
+    .wp-block-group.is-style-system-panel > .wp-block-latest-posts,
+    .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-latest-posts
+) > li .wp-block-latest-posts__post-author,
+:is(
+    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush),
+    .wp-block-group.is-style-system-panel > .wp-block-latest-posts,
+    .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-latest-posts
+) > li .wp-block-latest-posts__post-date {
+    color: inherit;
+    opacity: 0.72;
 }
 
-/* Excerpt */
-.wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush) > li .wp-block-latest-posts__post-excerpt {
+:is(
+    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush),
+    .wp-block-group.is-style-system-panel > .wp-block-latest-posts,
+    .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-latest-posts
+) > li .wp-block-latest-posts__post-excerpt,
+:is(
+    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush),
+    .wp-block-group.is-style-system-panel > .wp-block-latest-posts,
+    .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-latest-posts
+) > li .wp-block-latest-posts__post-full-content {
+    color: inherit;
     line-height: 1.5;
-    margin-top: var(--wp--preset--spacing--10);
-    color: var(--wp--preset--color--contrast);
-    opacity: 0.85;
+    opacity: 0.88;
 }
 
-/* Read More */
-.wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush) > li .wp-block-latest-posts__read-more {
-    text-decoration: none;
-    margin-top: var(--wp--preset--spacing--10);
-    display: inline-block;
+:is(
+    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush),
+    .wp-block-group.is-style-system-panel > .wp-block-latest-posts,
+    .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-latest-posts
+) > li .wp-block-latest-posts__read-more {
+    position: relative;
+    z-index: 2;
 }
 
-/* Hover States on LI */
-.wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush):not(.is-not-action) > li:hover {
-    background: var(--wp--custom--system-ui-panel-hover-bg);
+:is(
+    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush),
+    .wp-block-group.is-style-system-panel > .wp-block-latest-posts,
+    .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-latest-posts
+):not(.is-not-action) > li:hover {
+    background-color: var(--wp--custom--system-ui-list-hover-bg);
 }
 
-
-/* Has-background overrides */
-.wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush).has-background > li {
+.wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush).has-background > li,
+.has-background > .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) > li {
     background: transparent;
-    border-color: var(--wp--custom--system-ui-border-color);
+    background-image: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
 }
 
-.wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush).has-background:not(.is-not-action) > li:hover {
-    background: var(--wp--custom--system-ui-panel-hover-bg);
+.wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush).has-background:not(.is-not-action) > li:hover,
+.has-background > .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background):not(.is-not-action) > li:hover {
+    background: var(--wp--custom--system-ui-list-hover-bg);
 }
 
+.wp-block-group.is-style-system-panel > .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush),
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush),
+.wp-block-group.is-style-system-panel > .wp-block-latest-posts,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-latest-posts {
+    border: 0;
+    border-radius: inherit;
+    overflow: hidden;
+}
 
-
+.wp-block-group.is-style-system-panel > .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush) > li,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush) > li,
+.wp-block-group.is-style-system-panel > .wp-block-latest-posts > li,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-latest-posts > li {
+    background-color: var(--wp--custom--system-ui-surface-nested, transparent);
+    background-image: var(--wp--custom--system-ui-background-image-nested, none);
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+}

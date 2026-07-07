@@ -46,7 +46,8 @@ body .main-buddypress .submit input[type="submit"] {
     font-family: var(--wp--preset--font-family--button, var(--wp--preset--font-family--heading, inherit));
     font-size: var(--wp--preset--font-size--medium);
     font-weight: var(--wp--custom--font-weight-button);
-    line-height: 1.5;
+    letter-spacing: 0.03em;
+    line-height: 1.45;
     border-radius: var(--wp--custom--btn-border-radius);
     padding-top: calc(var(--wp--preset--font-size--medium) * .5);
     padding-bottom: calc(var(--wp--preset--font-size--medium) * .5);
@@ -192,6 +193,7 @@ body .main-buddypress button span.count {
     color: var(--wp--preset--color--primary-text, #fff);
     font-size: 0.75rem;
     font-weight: var(--wp--custom--font-weight-button);
+    letter-spacing: 0.03em;
     padding: 0.2rem 0.5rem;
     border-radius: var(--wp--custom--border-radius-pill, 50rem);
     margin-left: 0.35rem;
@@ -310,7 +312,8 @@ body .main-buddypress .main-navs.dir-navs .component-navigation > li > a {
     font-family: var(--wp--preset--font-family--button, var(--wp--preset--font-family--heading, inherit));
     font-size: var(--wp--preset--font-size--medium);
     font-weight: var(--wp--custom--font-weight-nav, 500);
-    line-height: 1.5;
+    letter-spacing: 0.03em;
+    line-height: 1.45;
     text-decoration: none;
     border: 0;
     border-radius: 0;
@@ -429,6 +432,8 @@ body .main-buddypress .bp-list li .activity-header .time-since,
 body .main-buddypress .bp-list li .activity-header .time-since:hover {
     color: rgba(var(--wp--preset--color--contrast-rgb), 0.72);
     font-size: var(--wp--preset--font-size--small);
+    letter-spacing: 0.03em;
+    line-height: 1.5;
 }
 
 body .main-buddypress .bp-list li:not(.mini) .item-avatar {

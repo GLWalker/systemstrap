@@ -10,15 +10,19 @@
 
 
 /* ROOT LIs */
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) > li {
-    background: var(--wp--custom--system-ui-surface);
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) > li,
+.wp-block-group.is-style-system-panel > .wp-block-page-list > li,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-page-list > li {
+    background-color: var(--wp--custom--system-ui-surface);
     background-image: var(--wp--custom--system-ui-background-image, none);
     backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
 }
 
 /* ALL LIs (including nested) */
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li {
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li,
+.wp-block-group.is-style-system-panel > .wp-block-page-list li,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-page-list li {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -29,7 +33,9 @@
 }
 
 /* Anchor tags inside LIs */
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li > a {
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li > a,
+.wp-block-group.is-style-system-panel > .wp-block-page-list li > a,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-page-list li > a {
     padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
     flex-grow: 1;
     text-decoration: none;
@@ -55,19 +61,29 @@
 }
 
 /* Hover States on Anchor */
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush):not(.is-not-action) li:hover:not(:has(li:hover)) > a {
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush):not(.is-not-action) li:hover:not(:has(li:hover)) > a,
+.wp-block-group.is-style-system-panel > .wp-block-page-list:not(.is-not-action) li:hover:not(:has(li:hover)) > a,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-page-list:not(.is-not-action) li:hover:not(:has(li:hover)) > a {
     background: var(--wp--custom--system-ui-list-hover-bg);
 }
 
 /* Active State on Anchor */
 .wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li.current_page_item > a,
 .wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li.current_page_ancestor > a,
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li:has(> a[aria-current="page"]) > a {
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li:has(> a[aria-current="page"]) > a,
+.wp-block-group.is-style-system-panel > .wp-block-page-list li.current_page_item > a,
+.wp-block-group.is-style-system-panel > .wp-block-page-list li.current_page_ancestor > a,
+.wp-block-group.is-style-system-panel > .wp-block-page-list li:has(> a[aria-current="page"]) > a,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-page-list li.current_page_item > a,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-page-list li.current_page_ancestor > a,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-page-list li:has(> a[aria-current="page"]) > a {
     background: var(--wp--custom--system-ui-list-hover-bg);
 }
 
 /* Nested ULs (Kill SystemPress bleeds) */
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li > ul {
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li > ul,
+.wp-block-group.is-style-system-panel > .wp-block-page-list li > ul,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-page-list li > ul {
     flex-basis: 100%;
     margin: 0 !important;
     padding: 0 !important;
@@ -80,7 +96,9 @@
 }
 
 /* Nested LIs */
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li > ul > li {
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li > ul > li,
+.wp-block-group.is-style-system-panel > .wp-block-page-list li > ul > li,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-page-list li > ul > li {
     border: 0; /* Reset any bleeding borders */
     border-radius: 0 !important;
 }
@@ -98,7 +116,7 @@
 
 .has-background > .wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) li > ul > li {
     border-top-color: var(--wp--custom--system-ui-border-color) !important;
-    background: var(--wp--custom--system-ui-surface-nested, transparent);
+    background-color: var(--wp--custom--system-ui-surface-nested, transparent);
     background-image: var(--wp--custom--system-ui-background-image-nested, none);
 }
 .has-background > .wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background):not(.is-not-action) li:hover:not(:has(li:hover)) > a {
@@ -113,12 +131,53 @@
 
 
 /* Premium System Borders between ROOT items */
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) > li + li,
+.wp-block-group.is-style-system-panel > .wp-block-page-list > li + li,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-page-list > li + li {
+    border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+}
 
 
 /* Premium System Borders between NESTED items */
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li > ul > li {
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li > ul > li,
+.wp-block-group.is-style-system-panel > .wp-block-page-list li > ul > li,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-page-list li > ul > li {
     border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
-    background: var(--wp--custom--system-ui-surface-nested, transparent);
+    background-color: var(--wp--custom--system-ui-surface-nested, transparent);
     background-image: var(--wp--custom--system-ui-background-image-nested, none);
 }
 
+.wp-block-group.is-style-system-panel > .wp-block-page-list,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-page-list {
+    border: 0;
+    border-radius: inherit;
+    overflow: hidden;
+}
+
+.wp-block-group.is-style-system-panel > .wp-block-page-list > li,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-page-list > li {
+    background-color: var(--wp--custom--system-ui-surface-nested, transparent);
+    background-image: var(--wp--custom--system-ui-background-image-nested, none);
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush),
+.wp-block-group.is-style-system-panel > .wp-block-page-list,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-page-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color: inherit;
+}
+
+.wp-block-page-list.is-style-system-list {
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+    border-radius: var(--wp--custom--border-radius);
+    overflow: hidden;
+}
+
+.wp-block-page-list.is-style-system-list-flush {
+    border: 0;
+    border-radius: 0;
+    overflow: visible;
+}

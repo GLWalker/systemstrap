@@ -148,7 +148,7 @@
     padding-top: var(--wp--preset--spacing--20);
     padding-bottom: var(--wp--preset--spacing--20);
     animation: fadeIn 0.3s ease-in-out;
-    background: transparent;
+    background-color: transparent;
 }
 
 /* Prevent double-spacing by killing the native margins on the first and last inner blocks inside the panel */
@@ -171,7 +171,7 @@
 
 /* Has-background overrides */
 .wp-block-accordion.is-style-system-accordion.has-background .wp-block-accordion-item {
-    background: transparent;
+    background-color: transparent;
 }
 
 .wp-block-accordion.is-style-system-accordion.has-background .wp-block-accordion-item,

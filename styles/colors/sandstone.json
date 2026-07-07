@@ -162,31 +162,6 @@
 					"slug": "contrast"
 				},
 				{
-					"color": "#f2ede4",
-					"name": "Secondary Body BG",
-					"slug": "secondary-bg"
-				},
-				{
-					"color": "#7e7c75",
-					"name": "Secondary Body Contrast",
-					"slug": "secondary-color"
-				},
-				{
-					"color": "#f8f9fa",
-					"name": "Tertiary Body BG",
-					"slug": "tertiary-bg"
-				},
-				{
-					"color": "#98978b",
-					"name": "Tertiary Body Contrast",
-					"slug": "tertiary-color"
-				},
-				{
-					"color": "#dfd7ca",
-					"name": "Border Color",
-					"slug": "border-color"
-				},
-				{
 					"color": "#325d88",
 					"name": "Primary",
 					"slug": "primary"
@@ -227,9 +202,29 @@
 					"slug": "dark"
 				},
 				{
-					"color": "transparent",
-					"name": "Transparent",
-					"slug": "transparent"
+					"color": "#f2ede4",
+					"name": "Secondary Body BG",
+					"slug": "secondary-bg"
+				},
+				{
+					"color": "#7e7c75",
+					"name": "Secondary Body Contrast",
+					"slug": "secondary-color"
+				},
+				{
+					"color": "#f8f9fa",
+					"name": "Tertiary Body BG",
+					"slug": "tertiary-bg"
+				},
+				{
+					"color": "#98978b",
+					"name": "Tertiary Body Contrast",
+					"slug": "tertiary-color"
+				},
+				{
+					"color": "#dfd7ca",
+					"name": "Border Color",
+					"slug": "border-color"
 				},
 				{
 					"color": "currentcolor",
@@ -240,6 +235,16 @@
 					"color": "color-mix(in srgb, currentColor 40%, transparent)",
 					"name": "Current Mix",
 					"slug": "current-mix"
+				},
+				{
+					"slug": "current-mix-color",
+					"color": "color-mix(in srgb, currentColor 85%, transparent)",
+					"name": "Current Mix Color"
+				},
+				{
+					"color": "transparent",
+					"name": "Transparent",
+					"slug": "transparent"
 				},
 				{
 					"color": "inherit",

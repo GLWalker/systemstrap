@@ -1,87 +1,85 @@
 /*
  * System Panel Variation for Latest Posts
- * Uses gap spacing, independent cards, and respects native grid/alignment.
+ * Uses the documented System Panel authority for shell chrome, panel media,
+ * nested surface routing, and hover treatment.
  */
 
-/* Container */
 .wp-block-latest-posts.is-style-system-panel {
-    padding: 0 !important;
     list-style: none;
+    margin: 0;
+    padding: 0 !important;
+    color: inherit;
 }
+
 .wp-block-latest-posts.is-style-system-panel:not(.is-grid) {
     display: flex;
     flex-direction: column;
     gap: var(--wp--style--block-gap, var(--wp--preset--spacing--30));
 }
 
-/* Base LIs */
 .wp-block-latest-posts.is-style-system-panel > li {
     position: relative;
-    color: var(--wp--preset--color--inherit);
-
+    margin: 0;
+    overflow: hidden;
     border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+    border-radius: var(--wp--custom--border-radius);
     background: var(--wp--custom--system-ui-surface);
     background-image: var(--wp--custom--system-ui-background-image, none);
     backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     box-shadow: var(--wp--custom--shadow);
-    border-radius: var(--wp--custom--border-radius);
-
-    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
-
-    /* Allow native flow to handle floats (image alignments) */
-    display: flow-root;
-    padding: var(--wp--preset--spacing--30);
+    color: inherit;
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-/* Enforce zero margin ONLY in column mode (where flex gap handles spacing) */
-.wp-block-latest-posts.is-style-system-panel:not(.is-grid) > li {
-    margin: 0 !important;
+.wp-block-latest-posts.is-style-system-panel > li > article {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wp--preset--spacing--10);
+    min-height: 100%;
 }
 
-/* Content wrapper (Restore block display so floats work natively) */
-.wp-block-latest-posts.is-style-system-panel > li > div[itemprop="item"] {
-    display: block;
+.wp-block-latest-posts.is-style-system-panel > li > article > :not(.wp-block-latest-posts__featured-image) {
+    padding-inline: var(--wp--preset--spacing--30);
 }
 
-/* Featured Image */
+.wp-block-latest-posts.is-style-system-panel > li > article > .wp-block-latest-posts__post-title {
+    padding-top: var(--wp--preset--spacing--30);
+}
+
+.wp-block-latest-posts.is-style-system-panel > li > article > :last-child:not(.wp-block-latest-posts__featured-image) {
+    padding-bottom: var(--wp--preset--spacing--30);
+}
+
 .wp-block-latest-posts.is-style-system-panel > li .wp-block-latest-posts__featured-image {
-    margin-bottom: var(--wp--preset--spacing--20);
+    margin: 0;
     overflow: hidden;
-    border-radius: calc(var(--wp--custom--border-radius) / 1.5);
-    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+    border: 0;
+    border-radius: 0;
 }
 
-/* Native Image Alignment Margins */
-.wp-block-latest-posts.is-style-system-panel > li .wp-block-latest-posts__featured-image.alignleft {
-    margin-right: var(--wp--preset--spacing--30);
-    margin-bottom: var(--wp--preset--spacing--20);
-}
-.wp-block-latest-posts.is-style-system-panel > li .wp-block-latest-posts__featured-image.alignright {
-    margin-left: var(--wp--preset--spacing--30);
-    margin-bottom: var(--wp--preset--spacing--20);
-}
+.wp-block-latest-posts.is-style-system-panel > li .wp-block-latest-posts__featured-image.alignleft,
+.wp-block-latest-posts.is-style-system-panel > li .wp-block-latest-posts__featured-image.alignright,
 .wp-block-latest-posts.is-style-system-panel > li .wp-block-latest-posts__featured-image.aligncenter {
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0;
 }
 
 .wp-block-latest-posts.is-style-system-panel > li .wp-block-latest-posts__featured-image img {
     display: block;
-    object-fit: cover;
     width: 100%;
+    object-fit: cover;
+    border-top-left-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px));
+    border-top-right-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px));
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
-/* Post Title */
 .wp-block-latest-posts.is-style-system-panel > li .wp-block-latest-posts__post-title {
     line-height: 1.2;
-    text-decoration: none;
     color: inherit;
-    display: block;
-    margin-bottom: var(--wp--preset--spacing--10);
+    text-decoration: none;
 }
 
-/* Stretch pseudo element over the LI so the entire row is clickable if desired */
 .wp-block-latest-posts.is-style-system-panel > li .wp-block-latest-posts__post-title::after {
     content: "";
     position: absolute;
@@ -89,52 +87,43 @@
     z-index: 1;
 }
 
-/* Make sure inner links sit above the pseudo element */
 .wp-block-latest-posts.is-style-system-panel > li a:not(.wp-block-latest-posts__post-title) {
     position: relative;
     z-index: 2;
 }
 
-/* Post Meta (Author, Date) */
 .wp-block-latest-posts.is-style-system-panel > li .wp-block-latest-posts__post-author,
 .wp-block-latest-posts.is-style-system-panel > li .wp-block-latest-posts__post-date {
-    color: var(--wp--preset--color--contrast);
-    opacity: 0.7;
-    display: block;
-    margin-bottom: 0.25em;
-}
-
-/* Excerpt */
-.wp-block-latest-posts.is-style-system-panel > li .wp-block-latest-posts__post-excerpt {
-    line-height: 1.5;
-    margin-top: var(--wp--preset--spacing--10);
     color: inherit;
-    opacity: 0.85;
+    opacity: 0.72;
 }
 
-/* Read More */
-.wp-block-latest-posts.is-style-system-panel > li .wp-block-latest-posts__read-more {
-    text-decoration: none;
-    margin-top: var(--wp--preset--spacing--10);
-    display: inline-block;
+.wp-block-latest-posts.is-style-system-panel > li .wp-block-latest-posts__post-excerpt,
+.wp-block-latest-posts.is-style-system-panel > li .wp-block-latest-posts__post-full-content {
+    color: inherit;
+    line-height: 1.5;
+    opacity: 0.88;
 }
 
-/* Hover States on LI */
 .wp-block-latest-posts.is-style-system-panel:not(.is-not-action) > li:hover {
     background: var(--wp--custom--system-ui-panel-hover-bg);
 }
 
-/* Has-background overrides */
-.wp-block-latest-posts.is-style-system-panel.has-background > li {
+.wp-block-latest-posts.is-style-system-panel.has-background > li,
+.has-background > .wp-block-latest-posts.is-style-system-panel:not(.has-background) > li {
     background: transparent;
-    border-color: var(--wp--custom--system-ui-border-color);
 }
-.wp-block-latest-posts.is-style-system-panel.has-background:not(.is-not-action) > li:hover {
+
+.wp-block-latest-posts.is-style-system-panel.has-background:not(.is-not-action) > li:hover,
+.has-background > .wp-block-latest-posts.is-style-system-panel:not(.has-background):not(.is-not-action) > li:hover {
     background: var(--wp--custom--system-ui-panel-hover-bg);
 }
 
-/* Increased Visibility Inside Parent with Background */
-.has-background .wp-block-latest-posts.is-style-system-panel:not(.has-background) > li {
-    border-color: var(--wp--custom--system-ui-border-color);
+.wp-block-group.is-style-system-panel > .wp-block-latest-posts.is-style-system-panel > li,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-latest-posts.is-style-system-panel > li {
+    background: var(--wp--custom--system-ui-surface-nested, transparent);
+    background-image: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
 }
-

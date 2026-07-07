@@ -21,6 +21,22 @@ body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs {
     --system-tabs-active-join-color: var(--wp--preset--color--base, transparent);
 }
 
+.editor-styles-wrapper .wp-block-accordion.is-style-system-tabs {
+    --system-tabs-gap: var(--wp--preset--spacing--10, .5rem);
+    --system-tabs-padding-y: var(--wp--preset--spacing--10, .5rem);
+    --system-tabs-padding-x: var(--wp--preset--spacing--20, 1rem);
+    --system-tabs-panel-padding: var(--wp--preset--spacing--30, 1rem);
+    --system-tabs-border-width: var(--wp--custom--border-width, 1px);
+    --system-tabs-active-overlap: 3px;
+    --system-tabs-radius: var(--wp--custom--border-radius, .375rem);
+    --system-tabs-surface-banner: var(--wp--custom--system-ui-surface-banner, var(--wp--custom--system-ui-surface, transparent));
+    --system-tabs-surface-hover: var(--wp--custom--system-ui-list-hover-bg, color-mix(in srgb, currentColor 8%, transparent));
+    --system-tabs-surface-active: var(--wp--custom--system-ui-active-bg, var(--wp--custom--system-ui-surface, transparent));
+    --system-tabs-surface-panel: var(--wp--custom--system-ui-surface, transparent);
+    --system-tabs-border-color: var(--wp--custom--system-ui-border-color, color-mix(in srgb, currentColor 18%, transparent));
+    --system-tabs-active-join-color: var(--wp--preset--color--base, transparent);
+}
+
 /* 2. Frontend layout lane */
 body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs > .wp-block-accordion-item {
     display: contents;

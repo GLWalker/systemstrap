@@ -18,9 +18,9 @@ html {
 body {
     margin: 0;
     font-family: sans-serif;
-    font-size: var(--wp--custom--body-font-size, 16px);
+    font-size: var(--wp--preset--font-size--medium, 1rem);
     font-weight: 400;
-    line-height: 1.5;
+    line-height: 1.6;
     background: inherit;
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -35,7 +35,8 @@ body {
 img {
     height: auto;
     max-width: 100%;
-    width: auto; /* Overrides any rogue 100% width injections */
+    width: auto;
+    /* Overrides any rogue 100% width injections */
 }
 
 h1,
@@ -379,7 +380,7 @@ figcaption,
 }
 
 /* Screen Reader Accessibility Styles
-   Compatible with SystemPress theme.json variables
+   Compatible with SystemStrap theme.json variables
    Automatically supports dark/light mode via dynamic CSS variables
 */
 

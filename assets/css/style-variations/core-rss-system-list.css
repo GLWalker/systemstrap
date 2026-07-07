@@ -4,13 +4,31 @@
  */
 
 /* Container */
-.wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush) {
+.wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush),
+.wp-block-group.is-style-system-panel > .wp-block-rss,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-rss {
     list-style: none;
     margin: 0;
+    padding: 0;
+    color: inherit;
+}
+
+.wp-block-rss.is-style-system-list {
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+    border-radius: var(--wp--custom--border-radius);
+    overflow: hidden;
+}
+
+.wp-block-rss.is-style-system-list-flush {
+    border: 0;
+    border-radius: 0;
+    overflow: visible;
 }
 
 /* Base LIs */
-.wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush) > li {
+.wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush) > li,
+.wp-block-group.is-style-system-panel > .wp-block-rss > li,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-rss > li {
     
     
     
@@ -19,7 +37,7 @@
     flex-direction: column;
     align-items: flex-start;
     padding: var(--wp--preset--spacing--20) !important;
-    background: var(--wp--custom--system-ui-surface);
+    background-color: var(--wp--custom--system-ui-surface);
     background-image: var(--wp--custom--system-ui-background-image, none);
     backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
@@ -27,13 +45,17 @@
 }
 
 /* Premium System Borders between ROOT items */
-.wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush) > li + li {
+.wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush) > li + li,
+.wp-block-group.is-style-system-panel > .wp-block-rss > li + li,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-rss > li + li {
     border-top-width: var(--wp--custom--border-width, 1px);
     border-top-style: solid;
     border-top-color: var(--wp--custom--system-ui-border-color);
 }
 /* RSS Title / Link */
-.wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush) > li .wp-block-rss__item-title > a {
+.wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush) > li .wp-block-rss__item-title > a,
+.wp-block-group.is-style-system-panel > .wp-block-rss > li .wp-block-rss__item-title > a,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-rss > li .wp-block-rss__item-title > a {
     font-weight: var(--wp--custom--font-weight-heading);
     line-height: 1.2;
     text-decoration: none;
@@ -41,7 +63,9 @@
 }
 
 /* Stretch pseudo element over the LI so the entire row is clickable */
-.wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush) > li .wp-block-rss__item-title > a::after {
+.wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush) > li .wp-block-rss__item-title > a::after,
+.wp-block-group.is-style-system-panel > .wp-block-rss > li .wp-block-rss__item-title > a::after,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-rss > li .wp-block-rss__item-title > a::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -49,29 +73,39 @@
 }
 
 /* Make sure inner links sit above the pseudo element */
-.wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush) > li a:not(.wp-block-rss__item-title > a) {
+.wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush) > li a:not(.wp-block-rss__item-title > a),
+.wp-block-group.is-style-system-panel > .wp-block-rss > li a:not(.wp-block-rss__item-title > a),
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-rss > li a:not(.wp-block-rss__item-title > a) {
     position: relative;
     z-index: 2;
 }
 
 /* Post Meta (Author, Date) */
 .wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush) > li .wp-block-rss__item-author,
-.wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush) > li .wp-block-rss__item-publish-date {
-    color: var(--wp--preset--color--contrast);
+.wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush) > li .wp-block-rss__item-publish-date,
+.wp-block-group.is-style-system-panel > .wp-block-rss > li .wp-block-rss__item-author,
+.wp-block-group.is-style-system-panel > .wp-block-rss > li .wp-block-rss__item-publish-date,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-rss > li .wp-block-rss__item-author,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-rss > li .wp-block-rss__item-publish-date {
+    color: inherit;
     opacity: 0.7;
 }
 
 /* Excerpt */
-.wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush) > li .wp-block-rss__item-excerpt {
+.wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush) > li .wp-block-rss__item-excerpt,
+.wp-block-group.is-style-system-panel > .wp-block-rss > li .wp-block-rss__item-excerpt,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-rss > li .wp-block-rss__item-excerpt {
     line-height: 1.5;
     margin-top: var(--wp--preset--spacing--10);
-    color: var(--wp--preset--color--contrast);
+    color: inherit;
     opacity: 0.85;
 }
 
 /* Hover States on LI */
-.wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush):not(.is-not-action) > li:hover {
-    background: var(--wp--custom--system-ui-list-hover-bg);
+.wp-block-rss:is(.is-style-system-list, .is-style-system-list-flush):not(.is-not-action) > li:hover,
+.wp-block-group.is-style-system-panel > .wp-block-rss:not(.is-not-action) > li:hover,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-rss:not(.is-not-action) > li:hover {
+    background-color: var(--wp--custom--system-ui-list-hover-bg);
 }
 
 /* Has-background overrides */
@@ -89,4 +123,18 @@
     background: var(--wp--custom--system-ui-list-hover-bg);
 }
 
+.wp-block-group.is-style-system-panel > .wp-block-rss,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-rss {
+    border: 0;
+    border-radius: inherit;
+    overflow: hidden;
+}
+
+.wp-block-group.is-style-system-panel > .wp-block-rss > li,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-rss > li {
+    background-color: var(--wp--custom--system-ui-surface-nested, transparent);
+    background-image: var(--wp--custom--system-ui-background-image-nested, none);
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
 

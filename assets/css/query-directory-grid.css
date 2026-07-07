@@ -1,0 +1,359 @@
+/*
+ * Query Directory Grid
+ *
+ * Base grid query lane.
+ * Owns card stacking, media joins, grid rhythm, and pagination spacing.
+ * Typography and badge language should defer to the shared query/list system
+ * wherever possible.
+ */
+
+.query-directory-grid,
+.systemstrap-directory-grid {
+    --directory-grid-card-border-color:
+        var(--wp--preset--color--border-color);
+    --directory-grid-card-bg:
+        var(--wp--preset--color--base);
+    --directory-grid-card-muted-color:
+        var(--wp--preset--color--current-mix-color,
+            var(--wp--preset--color--secondary-color,
+                currentColor));
+    --query-directory-listing-badge-bg:
+        var(--directory-listing-badge-bg,
+            var(--wp--preset--color--secondary-bg));
+    --query-directory-listing-badge-border-color:
+        var(--directory-listing-badge-border-color,
+            var(--wp--preset--color--border-color));
+    --query-directory-listing-badge-color:
+        var(--directory-listing-badge-color,
+            var(--wp--preset--color--secondary-color));
+    --directory-grid-card-shadow:
+        var(--wp--preset--shadow--sm);
+
+    margin-block: 0;
+}
+
+.query-directory-grid.has-background,
+.systemstrap-directory-grid.has-background,
+.wp-block-group.has-background .query-directory-grid,
+.wp-block-group.has-background .systemstrap-directory-grid,
+.wp-block-cover.has-background .query-directory-grid,
+.wp-block-cover.has-background .systemstrap-directory-grid {
+    --directory-grid-card-bg: transparent;
+    --directory-grid-card-muted-color:
+        var(--wp--preset--color--current-mix-color,
+            currentColor);
+    --strap-pagination-control-color:
+        var(--wp--preset--color--contrast,
+            inherit);
+    --strap-pagination-control-bg:
+        rgba(var(--wp--preset--color--base-rgb, 255, 255, 255), 0.92);
+    --strap-pagination-control-border-color:
+        rgba(var(--wp--preset--color--contrast-rgb, 0, 0, 0), 0.14);
+    --strap-pagination-control-hover-bg:
+        rgba(var(--wp--preset--color--base-rgb, 255, 255, 255), 1);
+    --strap-pagination-control-hover-border-color:
+        rgba(var(--wp--preset--color--contrast-rgb, 0, 0, 0), 0.22);
+    --strap-pagination-control-hover-color:
+        var(--wp--preset--color--contrast,
+            inherit);
+    --strap-pagination-current-bg: currentColor;
+    --strap-pagination-current-border-color: currentColor;
+    --strap-pagination-current-color:
+        var(--wp--preset--color--base);
+    --strap-pagination-dots-color: currentColor;
+}
+
+.query-directory-grid.has-text-color,
+.systemstrap-directory-grid.has-text-color,
+.wp-block-group.has-text-color .query-directory-grid,
+.wp-block-group.has-text-color .systemstrap-directory-grid,
+.wp-block-cover.has-text-color .query-directory-grid,
+.wp-block-cover.has-text-color .systemstrap-directory-grid {
+    --directory-grid-card-muted-color:
+        var(--wp--preset--color--current-mix-color,
+            currentColor);
+    --strap-pagination-current-bg: currentColor;
+    --strap-pagination-current-border-color: currentColor;
+    --strap-pagination-current-color:
+        var(--wp--preset--color--base);
+    --strap-pagination-dots-color: currentColor;
+}
+
+.query-directory-grid__query,
+.systemstrap-directory-grid__query {
+    margin: 0;
+    padding: 0 !important;
+    width: 100%;
+    list-style: none;
+}
+
+.query-directory-grid__items,
+.systemstrap-directory-grid__items,
+.query-directory-grid__items > li,
+.systemstrap-directory-grid__items > li {
+    margin: 0;
+    padding: 0 !important;
+    width: 100%;
+    max-width: none !important;
+    list-style: none;
+}
+
+.query-directory-grid__query,
+.systemstrap-directory-grid__query {
+    display: block;
+}
+
+.query-directory-grid__items,
+.systemstrap-directory-grid__items {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--wp--preset--spacing--40);
+    padding-left: 0 !important;
+}
+
+.query-directory-grid__items > li,
+.systemstrap-directory-grid__items > li {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    background-color: var(--directory-grid-card-bg);
+    border: var(--wp--custom--border-width, 1px) solid var(--directory-grid-card-border-color);
+    border-radius: var(--wp--custom--border-radius-lg, var(--wp--custom--border-radius));
+    box-shadow: var(--directory-grid-card-shadow);
+    color: inherit;
+}
+
+.query-directory-grid__items > li > *,
+.systemstrap-directory-grid__items > li > * {
+    width: 100%;
+    max-width: none;
+}
+
+.query-directory-grid__card,
+.systemstrap-directory-grid__card {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+    margin: 0;
+    border: 0;
+    border-radius: inherit;
+    background: transparent;
+    box-shadow: none;
+    color: inherit;
+}
+
+.query-directory-grid__card > *,
+.systemstrap-directory-grid__card > * {
+    width: 100%;
+}
+
+.query-directory-grid__media,
+.systemstrap-directory-grid__media {
+    margin: 0;
+    overflow: hidden;
+    background-color: var(--wp--preset--color--tertiary-bg);
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.query-directory-grid__card:not(:has(.query-directory-grid__image img, .systemstrap-directory-grid__image img)) .query-directory-grid__media,
+.systemstrap-directory-grid__card:not(:has(.query-directory-grid__image img, .systemstrap-directory-grid__image img)) .systemstrap-directory-grid__media {
+    display: none;
+}
+
+.query-directory-grid__image,
+.systemstrap-directory-grid__image {
+    margin: 0;
+    overflow: hidden;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.query-directory-grid__image img,
+.systemstrap-directory-grid__image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.query-directory-grid__body,
+.systemstrap-directory-grid__body {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: var(--wp--preset--spacing--20);
+    min-width: 0;
+    margin: 0;
+    padding: var(--wp--preset--spacing--30);
+}
+
+.query-directory-grid__card:has(.query-directory-grid__image img, .systemstrap-directory-grid__image img) .query-directory-grid__body,
+.systemstrap-directory-grid__card:has(.query-directory-grid__image img, .systemstrap-directory-grid__image img) .systemstrap-directory-grid__body {
+    border-top: var(--wp--custom--border-width, 1px) solid var(--directory-grid-card-border-color);
+}
+
+.query-directory-grid__title,
+.systemstrap-directory-grid__title,
+.query-directory-grid__excerpt,
+.systemstrap-directory-grid__excerpt,
+.query-directory-grid__category,
+.systemstrap-directory-grid__category,
+.query-directory-grid__tags,
+.systemstrap-directory-grid__tags,
+.query-directory-grid__card-footer,
+.systemstrap-directory-grid__card-footer,
+.query-directory-grid__meta,
+.systemstrap-directory-grid__meta {
+    min-width: 0;
+    margin: 0;
+}
+
+.query-directory-grid__category,
+.systemstrap-directory-grid__category {
+    width: auto;
+}
+
+.query-directory-grid__category,
+.systemstrap-directory-grid__category,
+.query-directory-grid__tags-list,
+.systemstrap-directory-grid__terms {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: var(--wp--preset--spacing--10);
+    width: max-content;
+    min-width: 100%;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.query-directory-grid__category > a:nth-of-type(n + 3),
+.systemstrap-directory-grid__category > a:nth-of-type(n + 3),
+.query-directory-grid__tags-list > a:nth-of-type(n + 3),
+.systemstrap-directory-grid__terms > a:nth-of-type(n + 3) {
+    display: none;
+}
+
+.query-directory-grid__category a,
+.systemstrap-directory-grid__category a,
+.query-directory-grid__tags-list a,
+.systemstrap-directory-grid__terms a {
+    display: inline-flex;
+    align-items: center;
+    padding: calc(var(--wp--preset--spacing--10) * 0.5) var(--wp--preset--spacing--20);
+    background-color: var(--query-directory-listing-term-badge-bg, var(--query-directory-listing-badge-bg));
+    border: var(--wp--custom--border-width, 1px) solid var(--query-directory-listing-term-badge-border-color, var(--query-directory-listing-badge-border-color));
+    border-radius: var(--wp--custom--badge-border-radius, calc(var(--wp--custom--border-radius) / 1.5));
+    color: var(--query-directory-listing-term-badge-color, var(--query-directory-listing-badge-color));
+    font-size: var(--wp--preset--font-size--x-small);
+    font-weight: var(--wp--custom--badge-font-weight, var(--wp--custom--font-weight-button));
+    line-height: 1.3;
+    text-decoration: none;
+}
+
+.query-directory-grid__category a:hover,
+.query-directory-grid__category a:focus-visible,
+.systemstrap-directory-grid__category a:hover,
+.systemstrap-directory-grid__category a:focus-visible,
+.query-directory-grid__tags-list a:hover,
+.query-directory-grid__tags-list a:focus-visible,
+.systemstrap-directory-grid__terms a:hover,
+.systemstrap-directory-grid__terms a:focus-visible {
+    border-color: var(--wp--preset--color--primary-40, var(--wp--preset--color--primary));
+    color: var(--wp--custom--link-hover-color, var(--wp--preset--color--primary));
+    text-decoration: underline;
+}
+
+.query-directory-grid__excerpt,
+.systemstrap-directory-grid__excerpt,
+.query-directory-grid__meta,
+.systemstrap-directory-grid__meta {
+    color: var(--directory-grid-card-muted-color);
+}
+
+.query-directory-grid__excerpt p,
+.systemstrap-directory-grid__excerpt p {
+    display: -webkit-box;
+    margin: 0;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+}
+
+.query-directory-grid__tags,
+.systemstrap-directory-grid__tags {
+    overflow: hidden;
+}
+
+.query-directory-grid__card-footer,
+.systemstrap-directory-grid__card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--wp--preset--spacing--20);
+    margin-top: auto;
+    color: inherit;
+}
+
+.query-directory-grid__arrow,
+.systemstrap-directory-grid__arrow {
+    flex: 0 0 auto;
+    width: 1rem;
+    margin: 0;
+    color: var(--directory-grid-card-muted-color);
+}
+
+.query-directory-grid__empty,
+.systemstrap-directory-grid__empty,
+.query-directory-grid__footer,
+.query-directory-grid__pagination,
+.systemstrap-directory-grid__pagination {
+    margin: 0;
+}
+
+.query-directory-grid__footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--wp--preset--spacing--30);
+    padding-top: var(--wp--preset--spacing--40);
+}
+
+.query-directory-grid__empty,
+.systemstrap-directory-grid__empty {
+    padding: var(--wp--preset--spacing--40);
+}
+
+@media (max-width: 900px) {
+    .query-directory-grid__items,
+    .systemstrap-directory-grid__items {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .query-directory-grid__items,
+    .systemstrap-directory-grid__items {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--wp--preset--spacing--30);
+    }
+
+    .query-directory-grid__body,
+    .systemstrap-directory-grid__body {
+        padding: var(--wp--preset--spacing--20);
+    }
+}

@@ -68,6 +68,27 @@ if ( ! function_exists( 'strap_enqueue_assets' ) ) {
 			$version
 		);
 
+		wp_register_style(
+			'strap-query-directory',
+			get_template_directory_uri() . '/assets/css/query-directory.css',
+			array( 'strap-main-styles' ),
+			$version
+		);
+
+		wp_register_style(
+			'strap-query-directory-grid',
+			get_template_directory_uri() . '/assets/css/query-directory-grid.css',
+			array( 'strap-main-styles' ),
+			$version
+		);
+
+		wp_register_style(
+			'strap-query-latest-posts-list',
+			get_template_directory_uri() . '/assets/css/query-latest-posts-list.css',
+			array( 'strap-main-styles' ),
+			$version
+		);
+
 		if ( strap_should_enqueue_page_break_navigation() ) {
 			// Page Break Navigation Styles
 			wp_enqueue_style(
@@ -556,6 +577,51 @@ function strap_enqueue_accordion_tabs( $block_content, $block ) {
 }
 add_filter( 'render_block', 'strap_enqueue_accordion_tabs', 10, 2 );
 
+/**
+ * Conditionally enqueue the directory query base stylesheet when its markup renders.
+ *
+ * @param string $block_content Rendered block content.
+ * @param array  $block         Parsed block data.
+ * @return string
+ */
+function strap_enqueue_query_directory_styles( $block_content, $block ) {
+	if ( empty( $block['blockName'] ) ) {
+		return $block_content;
+	}
+
+	if ( ! in_array( $block['blockName'], array( 'core/group', 'core/query', 'core/post-template' ), true ) ) {
+		return $block_content;
+	}
+
+	if (
+		strpos( $block_content, 'query-directory-listing' ) !== false ||
+		strpos( $block_content, 'directory-listing' ) !== false ||
+		strpos( $block_content, 'directory-listing__query' ) !== false
+	) {
+		wp_enqueue_style( 'strap-query-directory' );
+	}
+
+	if (
+		strpos( $block_content, 'systemstrap-directory-grid' ) !== false ||
+		strpos( $block_content, 'systemstrap-directory-grid__items' ) !== false
+	) {
+		wp_enqueue_style( 'strap-query-directory' );
+		wp_enqueue_style( 'strap-query-directory-grid' );
+	}
+
+	if (
+		strpos( $block_content, 'query-latest-posts' ) !== false ||
+		strpos( $block_content, 'systemstrap-latest-posts' ) !== false ||
+		strpos( $block_content, 'systemstrap-latest-posts__query' ) !== false
+	) {
+		wp_enqueue_style( 'strap-query-directory' );
+		wp_enqueue_style( 'strap-query-latest-posts-list' );
+	}
+
+	return $block_content;
+}
+add_filter( 'render_block', 'strap_enqueue_query_directory_styles', 10, 2 );
+
 
 
 /**
@@ -602,6 +668,27 @@ function strap_get_style_variation_sync_map() {
 }
 
 function strap_enqueue_block_editor_assets() {
+	wp_enqueue_style(
+		'strap-query-directory',
+		get_template_directory_uri() . '/assets/css/query-directory.css',
+		array( 'wp-edit-blocks' ),
+		wp_get_theme()->get( 'Version' )
+	);
+
+	wp_enqueue_style(
+		'strap-query-directory-grid',
+		get_template_directory_uri() . '/assets/css/query-directory-grid.css',
+		array( 'wp-edit-blocks' ),
+		wp_get_theme()->get( 'Version' )
+	);
+
+	wp_enqueue_style(
+		'strap-query-latest-posts-list',
+		get_template_directory_uri() . '/assets/css/query-latest-posts-list.css',
+		array( 'wp-edit-blocks' ),
+		wp_get_theme()->get( 'Version' )
+	);
+
 	$variations_dir = get_template_directory() . '/assets/js/variations/';
 	if ( is_dir( $variations_dir ) ) {
 		$variations = glob( $variations_dir . '*.js' );
@@ -636,6 +723,65 @@ function strap_enqueue_block_editor_assets() {
 	}
 }
 add_action( 'enqueue_block_editor_assets', 'strap_enqueue_block_editor_assets' );
+
+/**
+ * Assign a stable page-unique query ID to each rendered Query Loop block.
+ *
+ * Pattern markup can be duplicated on the same page, which causes hardcoded
+ * query IDs to collide and share pagination state. Replacing the query ID at
+ * render time keeps each instance isolated while preserving the authored query
+ * settings. Theme-owned query patterns are grouped into family-specific ID
+ * ranges so repeated instances remain easy to reason about.
+ *
+ * @param array      $parsed_block Parsed block data.
+ * @param array|null $source_block Source block data prior to processing.
+ * @param array|null $parent_block Parent block data.
+ * @return array
+ */
+function strap_assign_runtime_query_ids( $parsed_block, $source_block = null, $parent_block = null ) {
+	static $query_family_counts = array();
+
+	$query_id_families = array(
+		101 => 'query_media_object',
+		102 => 'query_directory_listing',
+		103 => 'query_directory_grid',
+		104 => 'query_latest_posts_list',
+		105 => 'query_directory_grid',
+	);
+
+	$query_id_ranges = array(
+		'query_media_object'      => 1100,
+		'query_directory_listing' => 1200,
+		'query_directory_grid'    => 1300,
+		'query_latest_posts_list' => 1400,
+	);
+
+	if ( empty( $parsed_block['blockName'] ) || 'core/query' !== $parsed_block['blockName'] ) {
+		return $parsed_block;
+	}
+
+	if ( ! isset( $parsed_block['attrs'] ) || ! is_array( $parsed_block['attrs'] ) ) {
+		$parsed_block['attrs'] = array();
+	}
+
+	$source_query_id = isset( $parsed_block['attrs']['queryId'] ) ? (int) $parsed_block['attrs']['queryId'] : 0;
+
+	if ( ! isset( $query_id_families[ $source_query_id ] ) ) {
+		return $parsed_block;
+	}
+
+	$query_family = $query_id_families[ $source_query_id ];
+
+	if ( ! isset( $query_family_counts[ $query_family ] ) ) {
+		$query_family_counts[ $query_family ] = 0;
+	}
+
+	$query_family_counts[ $query_family ]++;
+	$parsed_block['attrs']['queryId'] = $query_id_ranges[ $query_family ] + $query_family_counts[ $query_family ];
+
+	return $parsed_block;
+}
+add_filter( 'render_block_data', 'strap_assign_runtime_query_ids', 10, 3 );
 
 /**
  * Enqueue pagination block styles only when pagination blocks render.
