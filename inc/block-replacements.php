@@ -139,10 +139,16 @@ if (!function_exists('strap_render_block_core_latest_posts')) {
 
                 $image_style = '';
                 if (isset($attributes['featuredImageSizeWidth'])) {
-                    $image_style .= sprintf('max-width:%spx;', $attributes['featuredImageSizeWidth']);
+                    $width = absint($attributes['featuredImageSizeWidth']);
+                    if ( $width > 0 ) {
+                        $image_style .= sprintf('max-width:%dpx;', $width);
+                    }
                 }
                 if (isset($attributes['featuredImageSizeHeight'])) {
-                    $image_style .= sprintf('max-height:%spx;', $attributes['featuredImageSizeHeight']);
+                    $height = absint($attributes['featuredImageSizeHeight']);
+                    if ( $height > 0 ) {
+                        $image_style .= sprintf('max-height:%dpx;', $height);
+                    }
                 }
 
                 $image_classes = 'wp-block-latest-posts__featured-image';
@@ -235,7 +241,7 @@ if (!function_exists('strap_render_block_core_latest_posts')) {
 
                 $list_items_markup .= sprintf(
                     '<div class="wp-block-latest-posts__post-excerpt" itemprop="description">%1$s</div>',
-                    $trimmed_excerpt
+                    wp_kses_post($trimmed_excerpt)
                 );
             }
 
@@ -321,7 +327,7 @@ if (!function_exists('strap_render_block_core_post_template')) {
     {
         $page_key            = isset($block->context['queryId']) ? 'query-' . $block->context['queryId'] . '-page' : 'query-page';
         $enhanced_pagination = isset($block->context['enhancedPagination']) && $block->context['enhancedPagination'];
-        $page                = empty($_GET[$page_key]) ? 1 : (int) $_GET[$page_key];
+        $page                = empty($_GET[$page_key]) ? 1 : absint(wp_unslash($_GET[$page_key]));
 
         // Use global query if needed.
         $use_global_query = (isset($block->context['query']['inherit']) && $block->context['query']['inherit']);

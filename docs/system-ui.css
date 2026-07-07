@@ -1658,6 +1658,12 @@ body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[clas
    Runtime mirror:
    - assets/css/style-variations/core-query-system-ui-query.css
    Base query layout files are intentionally not mirrored here.
+   Fine-detail query text is routed by the base query files through:
+   - --query-directory-listing-muted-color
+   - --directory-grid-card-muted-color
+   - --query-latest-posts-muted-color
+   These default to --wp--preset--color--current-mix-color and remain
+   color-routable through dynamic query wrapper exports.
    ======================================================================== */
 
 /* ==========================================================================
@@ -1704,12 +1710,7 @@ body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[clas
 .query-directory-listing:has(> .query-directory-listing__query.is-style-system-ui-query) .query-directory-listing__row,
 .directory-listing:has(> .directory-listing__query.is-style-system-ui-query) .directory-listing__row {
     background: transparent;
-    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
-}
-
-.query-directory-listing:has(> .query-directory-listing__query.is-style-system-ui-query) .query-directory-listing__row:hover,
-.directory-listing:has(> .directory-listing__query.is-style-system-ui-query) .directory-listing__row:hover {
-    background: var(--wp--custom--system-ui-list-hover-bg);
+    transition: border-color 0.15s ease-in-out;
 }
 
 .query-directory-listing:has(> .query-directory-listing__query.is-style-system-ui-query) .query-directory-listing__empty,
@@ -1833,6 +1834,8 @@ body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[clas
     opacity: 0.78;
 }
 
+.query-directory-grid__query.is-style-system-ui-query,
+.systemstrap-directory-grid__query.is-style-system-ui-query,
 .systemstrap-directory-grid.is-style-system-ui-query {
     --directory-grid-border-color:
         var(--wp--custom--system-ui-border-color);
@@ -1857,7 +1860,15 @@ body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[clas
     margin: 0;
 }
 
-.systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__card,
+.query-directory-grid:has(> .query-directory-grid__query.is-style-system-ui-query) .query-directory-grid__items > li,
+.query-directory-grid:has(> .query-directory-grid__query.is-style-system-ui-query) .query-directory-grid__empty,
+.query-directory-grid__query.is-style-system-ui-query .query-directory-grid__items > li,
+.query-directory-grid__query.is-style-system-ui-query .query-directory-grid__empty,
+.systemstrap-directory-grid:has(> .systemstrap-directory-grid__query.is-style-system-ui-query) .systemstrap-directory-grid__items > li,
+.systemstrap-directory-grid:has(> .systemstrap-directory-grid__query.is-style-system-ui-query) .systemstrap-directory-grid__empty,
+.systemstrap-directory-grid__query.is-style-system-ui-query .systemstrap-directory-grid__items > li,
+.systemstrap-directory-grid__query.is-style-system-ui-query .systemstrap-directory-grid__empty,
+.systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__items > li,
 .systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__empty {
     border-color: transparent;
     border-color: var(--wp--custom--system-ui-border-color);
@@ -1868,27 +1879,29 @@ body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[clas
     box-shadow: var(--wp--custom--shadow);
 }
 
-.systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__card:hover {
-    background: var(--wp--custom--system-ui-list-hover-bg);
-}
-
-.systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__categories a {
-    border-color: transparent;
-    border-color: var(--wp--custom--system-ui-border-color);
+.query-directory-grid:has(> .query-directory-grid__query.is-style-system-ui-query) .query-directory-grid__media,
+.query-directory-grid__query.is-style-system-ui-query .query-directory-grid__media,
+.systemstrap-directory-grid:has(> .systemstrap-directory-grid__query.is-style-system-ui-query) .systemstrap-directory-grid__media,
+.systemstrap-directory-grid__query.is-style-system-ui-query .systemstrap-directory-grid__media,
+.systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__media {
     background-color: var(--wp--custom--system-ui-surface-banner);
     background-image: var(--wp--custom--system-ui-background-image, none);
     backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
-    color: inherit;
 }
 
-.systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__categories a:hover,
-.systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__categories a:focus-visible {
-    background: var(--wp--custom--system-ui-list-hover-bg);
-    color: inherit;
+.query-directory-grid:has(> .query-directory-grid__query.is-style-system-ui-query) .query-directory-grid__body,
+.query-directory-grid__query.is-style-system-ui-query .query-directory-grid__body,
+.systemstrap-directory-grid:has(> .systemstrap-directory-grid__query.is-style-system-ui-query) .systemstrap-directory-grid__body,
+.systemstrap-directory-grid__query.is-style-system-ui-query .systemstrap-directory-grid__body,
+.systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__body {
+    background-color: transparent;
 }
 
-.systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__footer {
+.systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__card-footer,
+.systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__arrow,
+.query-directory-grid__query.is-style-system-ui-query .query-directory-grid__card-footer,
+.query-directory-grid__query.is-style-system-ui-query .query-directory-grid__arrow {
     color: inherit;
 }
 
@@ -1898,12 +1911,22 @@ body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[clas
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .directory-listing:has(> .directory-listing__query.is-style-system-ui-query),
 .wp-block-group.is-style-system-panel > .query-latest-posts:has(> .query-latest-posts__query.is-style-system-ui-query),
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-latest-posts:has(> .query-latest-posts__query.is-style-system-ui-query),
+.wp-block-group.is-style-system-panel > .query-directory-grid:has(> .query-directory-grid__query.is-style-system-ui-query),
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-grid:has(> .query-directory-grid__query.is-style-system-ui-query),
+.wp-block-group.is-style-system-panel > .systemstrap-directory-grid:has(> .systemstrap-directory-grid__query.is-style-system-ui-query),
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .systemstrap-directory-grid:has(> .systemstrap-directory-grid__query.is-style-system-ui-query),
+.wp-block-group.is-style-system-panel > .systemstrap-directory-grid.is-style-system-ui-query,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .systemstrap-directory-grid.is-style-system-ui-query,
 .wp-block-group.is-style-system-panel > .query-directory-listing,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing,
 .wp-block-group.is-style-system-panel > .directory-listing,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .directory-listing,
 .wp-block-group.is-style-system-panel > .query-latest-posts,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-latest-posts {
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-latest-posts,
+.wp-block-group.is-style-system-panel > .query-directory-grid,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-grid,
+.wp-block-group.is-style-system-panel > .systemstrap-directory-grid,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .systemstrap-directory-grid {
     border-color: transparent;
     background-color: transparent;
     background-image: none !important;
@@ -1920,7 +1943,11 @@ body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[clas
 .wp-block-group.is-style-system-panel > .directory-listing.has-global-padding,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .directory-listing.has-global-padding,
 .wp-block-group.is-style-system-panel > .query-latest-posts.has-global-padding,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-latest-posts.has-global-padding {
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-latest-posts.has-global-padding,
+.wp-block-group.is-style-system-panel > .query-directory-grid.has-global-padding,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-grid.has-global-padding,
+.wp-block-group.is-style-system-panel > .systemstrap-directory-grid.has-global-padding,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .systemstrap-directory-grid.has-global-padding {
     padding: 0 !important;
 }
 
@@ -1932,10 +1959,10 @@ body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[clas
 .wp-block-group.is-style-system-panel > .directory-listing:has(> .directory-listing__query.is-style-system-ui-query) .directory-listing__footer,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .directory-listing:has(> .directory-listing__query.is-style-system-ui-query) .directory-listing__header,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .directory-listing:has(> .directory-listing__query.is-style-system-ui-query) .directory-listing__footer,
-.wp-block-group.is-style-system-panel > .query-latest-posts:has(> .query-latest-posts__query.is-style-system-ui-query) .query-directory-listing__header,
-.wp-block-group.is-style-system-panel > .query-latest-posts:has(> .query-latest-posts__query.is-style-system-ui-query) .query-directory-listing__footer,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-latest-posts:has(> .query-latest-posts__query.is-style-system-ui-query) .query-directory-listing__header,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-latest-posts:has(> .query-latest-posts__query.is-style-system-ui-query) .query-directory-listing__footer,
+.wp-block-group.is-style-system-panel > .query-latest-posts:has(> .query-latest-posts__query.is-style-system-ui-query) .query-latest-posts__header,
+.wp-block-group.is-style-system-panel > .query-latest-posts:has(> .query-latest-posts__query.is-style-system-ui-query) .query-latest-posts__footer,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-latest-posts:has(> .query-latest-posts__query.is-style-system-ui-query) .query-latest-posts__header,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-latest-posts:has(> .query-latest-posts__query.is-style-system-ui-query) .query-latest-posts__footer,
 .wp-block-group.is-style-system-panel > .query-directory-listing .query-directory-listing__header,
 .wp-block-group.is-style-system-panel > .query-directory-listing .query-directory-listing__footer,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing .query-directory-listing__header,
@@ -1944,10 +1971,10 @@ body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[clas
 .wp-block-group.is-style-system-panel > .directory-listing .directory-listing__footer,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .directory-listing .directory-listing__header,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .directory-listing .directory-listing__footer,
-.wp-block-group.is-style-system-panel > .query-latest-posts .query-directory-listing__header,
-.wp-block-group.is-style-system-panel > .query-latest-posts .query-directory-listing__footer,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-latest-posts .query-directory-listing__header,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-latest-posts .query-directory-listing__footer {
+.wp-block-group.is-style-system-panel > .query-latest-posts .query-latest-posts__header,
+.wp-block-group.is-style-system-panel > .query-latest-posts .query-latest-posts__footer,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-latest-posts .query-latest-posts__header,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-latest-posts .query-latest-posts__footer {
     background-color: var(--wp--custom--system-ui-surface-nested, transparent);
     background-image: var(--wp--custom--system-ui-background-image-nested, none);
 }
@@ -2015,18 +2042,25 @@ body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[clas
     color: inherit;
 }
 
-.wp-block-group.is-style-system-panel > .systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__card,
+.wp-block-group.is-style-system-panel > .query-directory-grid:has(> .query-directory-grid__query.is-style-system-ui-query) .query-directory-grid__items > li,
+.wp-block-group.is-style-system-panel > .query-directory-grid:has(> .query-directory-grid__query.is-style-system-ui-query) .query-directory-grid__empty,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-grid:has(> .query-directory-grid__query.is-style-system-ui-query) .query-directory-grid__items > li,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-grid:has(> .query-directory-grid__query.is-style-system-ui-query) .query-directory-grid__empty,
+.wp-block-group.is-style-system-panel > .systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__items > li,
 .wp-block-group.is-style-system-panel > .systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__empty,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__card,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__items > li,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__empty {
     background-color: var(--wp--custom--system-ui-surface-nested, transparent);
     background-image: var(--wp--custom--system-ui-background-image-nested, none);
-    backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
-    -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
 }
 
-.wp-block-group.is-style-system-panel > .systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__categories a,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__categories a {
+.wp-block-group.is-style-system-panel > .query-directory-grid:has(> .query-directory-grid__query.is-style-system-ui-query) .query-directory-grid__media,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-grid:has(> .query-directory-grid__query.is-style-system-ui-query) .query-directory-grid__media,
+.wp-block-group.is-style-system-panel > .systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__media,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__media {
     background-color: var(--wp--custom--system-ui-surface-nested, transparent);
     background-image: var(--wp--custom--system-ui-background-image-nested, none);
 }
@@ -2122,11 +2156,13 @@ body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[clas
     outline: none;
 }
 
-.wp-block-query-pagination .current {
+.wp-block-query-pagination .wp-block-query-pagination-numbers > .page-numbers.current,
+.wp-block-query-pagination .wp-block-query-pagination-numbers > [aria-current="page"] {
     background: var(--strap-pagination-current-bg, var(--wp--preset--color--primary));
     border-color: var(--strap-pagination-current-border-color, var(--wp--preset--color--primary));
-    box-shadow: 0 0.35rem 0.85rem rgba(var(--wp--preset--color--primary-rgb, 37, 99, 235), 0.18);
+    box-shadow: 0 0.35rem 0.85rem color-mix(in srgb, var(--strap-pagination-current-border-color, currentColor) 22%, transparent);
     color: var(--strap-pagination-current-color, var(--wp--preset--color--primary-text, var(--wp--preset--color--base)));
+    font-weight: var(--wp--custom--font-weight-button, 700);
 }
 
 .wp-block-query-pagination .dots {
@@ -2173,12 +2209,14 @@ body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[clas
     border-color: var(--wp--custom--system-ui-border-color);
 }
 
-.wp-block-query-pagination.is-style-system-pagination .current {
-    background-color: var(--wp--custom--system-ui-surface-banner);
-    background-image: var(--wp--custom--system-ui-background-image, none);
-    border-color: var(--wp--custom--system-ui-border-color);
-    box-shadow: var(--wp--custom--shadow);
-    color: inherit;
+.wp-block-query-pagination.is-style-system-pagination .wp-block-query-pagination-numbers > .page-numbers.current,
+.wp-block-query-pagination.is-style-system-pagination .wp-block-query-pagination-numbers > [aria-current="page"] {
+    background-color: var(--strap-pagination-current-bg, var(--wp--preset--color--primary));
+    background-image: none;
+    border-color: var(--strap-pagination-current-border-color, var(--wp--preset--color--primary));
+    box-shadow: 0 0.35rem 0.85rem color-mix(in srgb, var(--strap-pagination-current-border-color, currentColor) 22%, transparent);
+    color: var(--strap-pagination-current-color, var(--wp--preset--color--primary-text, var(--wp--preset--color--base)));
+    font-weight: var(--wp--custom--font-weight-button, 700);
 }
 
 .wp-block-group.is-style-system-panel .wp-block-query-pagination.is-style-system-pagination > .wp-block-query-pagination-previous > a,
@@ -2192,9 +2230,14 @@ body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[clas
     box-shadow: none !important;
 }
 
-.wp-block-group.is-style-system-panel .wp-block-query-pagination.is-style-system-pagination .current {
-    background-color: var(--wp--custom--system-ui-surface-banner);
-    background-image: var(--wp--custom--system-ui-background-image-nested, none);
+.wp-block-group.is-style-system-panel .wp-block-query-pagination.is-style-system-pagination .wp-block-query-pagination-numbers > .page-numbers.current,
+.wp-block-group.is-style-system-panel .wp-block-query-pagination.is-style-system-pagination .wp-block-query-pagination-numbers > [aria-current="page"] {
+    background-color: var(--strap-pagination-current-bg, var(--wp--preset--color--primary));
+    background-image: none;
+    border-color: var(--strap-pagination-current-border-color, var(--wp--preset--color--primary));
+    box-shadow: 0 0.35rem 0.85rem color-mix(in srgb, var(--strap-pagination-current-border-color, currentColor) 22%, transparent);
+    color: var(--strap-pagination-current-color, var(--wp--preset--color--primary-text, var(--wp--preset--color--base)));
+    font-weight: var(--wp--custom--font-weight-button, 700);
 }
 
 .wp-block-comments-pagination {

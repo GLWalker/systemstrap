@@ -42,7 +42,10 @@ if ( ! function_exists( 'strap_generate_dynamic_colors' ) ) {
 		$latest_posts_css = "\n/* Dynamic Latest Posts Header-to-Badge Color Routing */\n";
 
 		foreach ( $colors as $color ) {
-			$slug = $color['slug'];
+			$slug = sanitize_title( $color['slug'] );
+			if ( empty( $slug ) ) {
+				continue;
+			}
 			$color_value = $color['color'];
 
 			if ( strpos( $color_value, 'var(' ) !== false ) {
@@ -281,10 +284,16 @@ ul.wp-block-latest-posts.has-{$slug}-background-color > li {
 		}
 
 		foreach ( $colors as $background_color ) {
-			$background_slug = $background_color['slug'];
+			$background_slug = sanitize_title( $background_color['slug'] );
+			if ( empty( $background_slug ) ) {
+				continue;
+			}
 
 			foreach ( $colors as $text_color ) {
-				$text_slug = $text_color['slug'];
+				$text_slug = sanitize_title( $text_color['slug'] );
+				if ( empty( $text_slug ) ) {
+					continue;
+				}
 
 $latest_posts_css .= "
 .query-directory-listing.has-{$background_slug}-background-color.has-{$text_slug}-color,
@@ -336,7 +345,10 @@ $latest_posts_css .= "
 		$gradients = $settings['color']['gradients']['theme'] ?? [];
 		if ( ! empty( $gradients ) ) {
 			foreach ( $gradients as $gradient ) {
-				$slug = $gradient['slug'];
+				$slug = sanitize_title( $gradient['slug'] );
+				if ( empty( $slug ) ) {
+					continue;
+				}
 				$css .= "
 /* Latest Posts Widget Gradient Fix */
 ul.wp-block-latest-posts.has-{$slug}-gradient-background {
@@ -512,13 +524,13 @@ if ( ! function_exists( 'systemstrap_inject_variation_body_classes' ) ) {
 		$active_slugs = systemstrap_get_active_variation_slugs();
 
 		if ( isset( $active_slugs['layout'] ) ) {
-			$classes[] = 'is-layout-' . esc_attr( $active_slugs['layout'] );
+			$classes[] = 'is-layout-' . sanitize_html_class( $active_slugs['layout'] );
 		}
 		if ( isset( $active_slugs['color'] ) ) {
-			$classes[] = 'is-color-' . esc_attr( $active_slugs['color'] );
+			$classes[] = 'is-color-' . sanitize_html_class( $active_slugs['color'] );
 		}
 		if ( isset( $active_slugs['typography'] ) ) {
-			$classes[] = 'is-typography-' . esc_attr( $active_slugs['typography'] );
+			$classes[] = 'is-typography-' . sanitize_html_class( $active_slugs['typography'] );
 		}
 
 		return $classes;

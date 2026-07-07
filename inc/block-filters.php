@@ -27,6 +27,12 @@ if ( ! function_exists( 'strap_do_block_action' ) ) {
 	 * @return string
 	 */
 	function strap_do_block_action( string $hook = '' ): string {
+		$hook = sanitize_key( $hook );
+
+		if ( ! preg_match( '/^strap_hook_(start|end)_[a-z0-9_]+$/', $hook ) ) {
+			return '';
+		}
+
 		ob_start();
 		do_action( $hook );
 		$block_action = ob_get_clean();

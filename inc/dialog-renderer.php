@@ -31,9 +31,19 @@ class SystemStrap_Dialog_Renderer {
             return $block_content;
         }
 
+        $pattern_slug = sanitize_text_field( $attrs['systemDialogPattern'] );
+        $registry     = WP_Block_Patterns_Registry::get_instance();
+
+        if ( ! $pattern_slug || ! $registry->is_registered( $pattern_slug ) ) {
+            return $block_content;
+        }
+
+        $position = $attrs['systemDialogPosition'] ?? 'start';
+        if ( ! in_array( $position, [ 'start', 'end', 'top', 'bottom', 'center' ], true ) ) {
+            $position = 'start';
+        }
+
         $dialog_id = 'strap-dialog-' . wp_generate_uuid4();
-        $pattern_slug = $attrs['systemDialogPattern'];
-        $position = $attrs['systemDialogPosition'] ?? 'start'; // start, end, top, bottom, center
         $pattern_label = self::get_dialog_label($pattern_slug);
         $is_icon_trigger = in_array($block['blockName'] ?? '', ['core/icon', 'icon-block/icon'], true);
 

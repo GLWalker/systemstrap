@@ -462,3 +462,12 @@ select:focus {
 .wp-block-heading i {
     font-size: 1em;
 }
+/* ==========================================================================
+   System Header Component
+   ========================================================================== */
+.site-header .is-style-system-panel {
+    border-top:none;
+    border-right: none;
+    border-left: none;
+    border-radius: 0 !important;
+}
