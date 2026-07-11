@@ -6,68 +6,24 @@
 		"typography": {
 			"fontFamilies": [
 				{
-					"fontFamily": "\"Open Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+					"fontFamily": "Arial, Helvetica, sans-serif",
 					"name": "Body Font",
-					"slug": "body",
-					"fontFace": [
-						{
-							"fontFamily": "Open Sans",
-							"fontStyle": "normal",
-							"fontWeight": "100 900",
-							"fontDisplay": "swap",
-							"src": [
-								"file:./assets/fonts/open-sans/open-sans-variable.woff2"
-							]
-						}
-					]
+					"slug": "body"
 				},
 				{
-					"fontFamily": "Montserrat",
+					"fontFamily": "Helvetica, Arial, sans-serif",
 					"name": "Heading Font",
-					"slug": "heading",
-					"fontFace": [
-						{
-							"fontFamily": "Montserrat",
-							"fontStyle": "normal",
-							"fontWeight": "400",
-							"fontDisplay": "swap",
-							"src": [
-								"file:./assets/fonts/montserrat/montserrat-variable.woff2"
-							]
-						}
-					]
+					"slug": "heading"
 				},
 				{
-					"fontFamily": "Jost",
+					"fontFamily": "\"Arial Narrow\", Arial, Helvetica, sans-serif",
 					"name": "Display Font",
-					"slug": "display",
-					"fontFace": [
-						{
-							"fontFamily": "Jost",
-							"fontStyle": "normal",
-							"fontWeight": "400",
-							"fontDisplay": "swap",
-							"src": [
-								"file:./assets/fonts/jost/Jost-VariableFont_wght.woff2"
-							]
-						}
-					]
+					"slug": "display"
 				},
 				{
-					"fontFamily": "Inter",
+					"fontFamily": "Arial, Helvetica, sans-serif",
 					"name": "Button Font",
-					"slug": "button",
-					"fontFace": [
-						{
-							"fontFamily": "Inter",
-							"fontStyle": "normal",
-							"fontWeight": "400",
-							"fontDisplay": "swap",
-							"src": [
-								"file:./assets/fonts/inter/Inter-VariableFont_slnt,wght.woff2"
-							]
-						}
-					]
+					"slug": "button"
 				}
 			]
 		}

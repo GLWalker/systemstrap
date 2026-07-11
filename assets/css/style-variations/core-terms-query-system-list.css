@@ -67,7 +67,7 @@
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-terms-query > .wp-block-term-template > li > .wp-block-term-name > a,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-terms-query > .wp-block-term-template > li > .wp-block-group > .wp-block-term-name > a {
     display: block;
-    padding: var(--wp--preset--spacing--20);
+    padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
     color: inherit;
     text-decoration: none;
     transition: background-color 0.15s ease-in-out;
@@ -83,24 +83,6 @@
     margin: 0 var(--wp--preset--spacing--30) 0 0;
     position: relative;
     z-index: 1;
-}
-
-.wp-block-terms-query:is(.is-style-system-list, .is-style-system-list-flush) .wp-block-term-count > .system-badge,
-.wp-block-terms-query:is(.is-style-system-list, .is-style-system-list-flush) > .wp-block-term-template > li > .wp-block-group > .system-badge,
-.wp-block-group.is-style-system-panel > .wp-block-terms-query .wp-block-term-count > .system-badge,
-.wp-block-group.is-style-system-panel > .wp-block-terms-query > .wp-block-term-template > li > .wp-block-group > .system-badge,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-terms-query .wp-block-term-count > .system-badge,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-terms-query > .wp-block-term-template > li > .wp-block-group > .system-badge {
-    display: inline-block;
-    padding: var(--wp--custom--badge-padding-y) var(--wp--custom--badge-padding-x);
-    font-size: var(--wp--preset--font-size--x-small, .75rem);
-    font-weight: var(--wp--custom--badge-font-weight);
-    line-height: 1;
-    color: inherit;
-    background-color: rgba(var(--wp--preset--color--contrast-rgb), .05);
-    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
-    border-radius: var(--wp--custom--badge-border-radius);
-    margin-right: var(--wp--preset--spacing--30);
 }
 
 .wp-block-terms-query:is(.is-style-system-list, .is-style-system-list-flush):not(.is-not-action) > .wp-block-term-template > li:hover::before,

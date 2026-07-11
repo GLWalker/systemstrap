@@ -90,29 +90,25 @@ $directory_css .= "
     --query-directory-listing-badge-border-color: rgba(var(--wp--preset--color--{$slug}-rgb), 0.3);
 }
 
-.query-directory-listing__post-terms.has-{$slug}-background-color,
-.directory-listing__post-terms.has-{$slug}-background-color {
+.wp-block-post-terms.is-style-system-badge.has-{$slug}-background-color {
     background-color: transparent !important;
-    --query-directory-listing-term-badge-bg: var(--wp--preset--color--{$slug});
-    --query-directory-listing-term-badge-border-color: var(--wp--preset--color--{$slug});
+    --strap-term-badge-bg: var(--wp--preset--color--{$slug});
+    --strap-term-badge-border-color: var(--wp--preset--color--{$slug});
 }
 
-.query-directory-listing__post-terms.has-{$slug}-background-color a:hover,
-.query-directory-listing__post-terms.has-{$slug}-background-color a:focus-visible,
-.directory-listing__post-terms.has-{$slug}-background-color a:hover,
-.directory-listing__post-terms.has-{$slug}-background-color a:focus-visible {
+.wp-block-post-terms.is-style-system-badge.has-{$slug}-background-color a:hover,
+.wp-block-post-terms.is-style-system-badge.has-{$slug}-background-color a:focus-visible {
     background-color: var(--wp--preset--color--{$slug}-50) !important;
     border-color: var(--wp--custom--btn-hover-border-color) !important;
     color: var(--wp--preset--color--{$slug}-text) !important;
     text-decoration: none !important;
 }
 
-.query-directory-listing__post-terms.has-{$slug}-color,
-.directory-listing__post-terms.has-{$slug}-color {
+.wp-block-post-terms.is-style-system-badge.has-{$slug}-color {
     background-color: transparent !important;
-    --query-directory-listing-term-badge-bg: rgba(var(--wp--preset--color--{$slug}-rgb), 0.16);
-    --query-directory-listing-term-badge-border-color: rgba(var(--wp--preset--color--{$slug}-rgb), 0.3);
-    --query-directory-listing-term-badge-color: var(--wp--preset--color--{$slug});
+    --strap-term-badge-bg: rgba(var(--wp--preset--color--{$slug}-rgb), 0.16);
+    --strap-term-badge-border-color: rgba(var(--wp--preset--color--{$slug}-rgb), 0.3);
+    --strap-term-badge-color: var(--wp--preset--color--{$slug});
 }
 ";
 
@@ -210,10 +206,12 @@ $latest_posts_css .= "
 }
 
 /* Latest Posts Widget Fix */
-ul.wp-block-latest-posts.has-{$slug}-background-color {
+ul.wp-block-latest-posts.has-{$slug}-background-color,
+ul.wp-block-post-template.has-{$slug}-background-color {
     background-color: transparent !important;
 }
-ul.wp-block-latest-posts.has-{$slug}-background-color > li {
+ul.wp-block-latest-posts.has-{$slug}-background-color > li,
+ul.wp-block-post-template.has-{$slug}-background-color > li {
     background-color: var(--wp--preset--color--{$slug}) !important;
     color: var(--wp--preset--color--{$slug}-text, inherit) !important;
 }
@@ -318,12 +316,11 @@ $latest_posts_css .= "
     --strap-pagination-current-color: var(--wp--preset--color--{$text_slug});
 }
 
-.query-directory-listing__post-terms.has-{$background_slug}-background-color.has-{$text_slug}-color,
-.directory-listing__post-terms.has-{$background_slug}-background-color.has-{$text_slug}-color {
+.wp-block-post-terms.is-style-system-badge.has-{$background_slug}-background-color.has-{$text_slug}-color {
     background-color: transparent !important;
-    --query-directory-listing-term-badge-bg: var(--wp--preset--color--{$background_slug});
-    --query-directory-listing-term-badge-border-color: var(--wp--preset--color--{$background_slug});
-    --query-directory-listing-term-badge-color: var(--wp--preset--color--{$text_slug});
+    --strap-term-badge-bg: var(--wp--preset--color--{$background_slug});
+    --strap-term-badge-border-color: var(--wp--preset--color--{$background_slug});
+    --strap-term-badge-color: var(--wp--preset--color--{$text_slug});
 }
 ";
 			}
@@ -351,10 +348,12 @@ $latest_posts_css .= "
 				}
 				$css .= "
 /* Latest Posts Widget Gradient Fix */
-ul.wp-block-latest-posts.has-{$slug}-gradient-background {
+ul.wp-block-latest-posts.has-{$slug}-gradient-background,
+ul.wp-block-post-template.has-{$slug}-gradient-background {
     background: transparent !important;
 }
-ul.wp-block-latest-posts.has-{$slug}-gradient-background > li {
+ul.wp-block-latest-posts.has-{$slug}-gradient-background > li,
+ul.wp-block-post-template.has-{$slug}-gradient-background > li {
     background-image: var(--wp--preset--gradient--{$slug}) !important;
 }
 

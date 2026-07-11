@@ -11,23 +11,25 @@
 .wp-block-tag-cloud.is-style-system-tags a.tag-cloud-link {
     display: inline-flex;
     align-items: center;
-    background-color: var(--wp--preset--color--secondary-bg);
-    color: var(--wp--preset--color--secondary-color);
-    padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--20);
-    border-radius: var(--wp--preset--spacing--20, 50rem); /* Pill shape */
-    border: var(--wp--custom--border-width, 1px) solid transparent;
+    background-color: var(--wp--custom--system-ui-surface);
+    color: inherit;
+    padding: calc(var(--wp--preset--spacing--10) * 0.5) var(--wp--preset--spacing--20);
+    border-radius: var(--wp--custom--badge-border-radius, calc(var(--wp--custom--border-radius) / 1.5));
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
     font-size: var(--wp--preset--font-size--small) !important; /* Override inline sizes */
-    line-height: 1 !important;
+    font-weight: var(--wp--custom--badge-font-weight, var(--wp--custom--font-weight-button));
+    line-height: 1.3 !important;
     text-decoration: none;
-    transition: all 0.15s ease-in-out;
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, color 0.15s ease-in-out;
 }
 
 /* Hover State */
 .wp-block-tag-cloud.is-style-system-tags a.tag-cloud-link:hover,
-.wp-block-tag-cloud.is-style-system-tags a.tag-cloud-link:focus {
-    background-color: var(--wp--preset--color--tertiary-bg);
-    color: var(--wp--preset--color--contrast);
-    border-color: var(--wp--custom--system-ui-border-color);
+.wp-block-tag-cloud.is-style-system-tags a.tag-cloud-link:focus-visible {
+    background-color: var(--wp--custom--system-ui-list-hover-bg);
+    border-color: var(--strap-term-badge-hover-border-color, color-mix(in srgb, currentColor 40%, transparent));
+    color: var(--strap-term-badge-hover-color, currentColor);
+    text-decoration: none;
 }
 
 /* Tag Count Number */
@@ -40,12 +42,12 @@
 /* Contract: When placed inside a container with a background */
 .has-background .wp-block-tag-cloud.is-style-system-tags a.tag-cloud-link {
     background-color: rgba(var(--wp--preset--color--base-rgb), 0.5); /* Frosty white over color */
-    color: var(--wp--preset--color--inherit);
-    border-color: var(--wp--custom--system-ui-border-color);
+    color: inherit;
+    border-color: rgba(var(--wp--preset--color--base-rgb), 0.2);
 }
 .has-background .wp-block-tag-cloud.is-style-system-tags a.tag-cloud-link:hover,
 .has-background .wp-block-tag-cloud.is-style-system-tags a.tag-cloud-link:focus {
     background-color: rgba(var(--wp--preset--color--base-rgb), 0.8);
-    color: var(--wp--preset--color--contrast);
+    color: inherit;
 }
 

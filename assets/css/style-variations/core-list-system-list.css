@@ -24,7 +24,7 @@
 
 .wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) > li {
     margin: 0;
-    padding: var(--wp--preset--spacing--20);
+    padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
     color: inherit;
     background-color: var(--wp--custom--system-ui-surface);
     background-image: var(--wp--custom--system-ui-background-image, none);
@@ -46,7 +46,7 @@ ol.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) > li {
 
 .wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) li > ul,
 .wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) li > ol {
-    margin: var(--wp--preset--spacing--10) calc(var(--wp--preset--spacing--20) * -1) calc(var(--wp--preset--spacing--20) * -1);
+    margin: var(--wp--preset--spacing--10) calc(var(--wp--preset--spacing--30) * -1) calc(var(--wp--preset--spacing--20) * -1);
     padding: 0;
     display: flex;
     flex-basis: 100%;
@@ -61,7 +61,7 @@ ol.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) > li {
 .wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) li > ul > li,
 .wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) li > ol > li {
     margin: 0;
-    padding: var(--wp--preset--spacing--20);
+    padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
     border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
     background-color: var(--wp--custom--system-ui-surface-nested, transparent);
     background-image: var(--wp--custom--system-ui-background-image-nested, none);
@@ -70,17 +70,17 @@ ol.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) > li {
 
 .wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) li > ul > li,
 .wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) li > ol > li {
-    padding-left: calc(var(--wp--preset--spacing--20) + 1.5rem);
+    padding-left: calc(var(--wp--preset--spacing--30) + 1.5rem);
 }
 
 .wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) li > ul > li > ul > li,
 .wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) li > ol > li > ol > li {
-    padding-left: calc(var(--wp--preset--spacing--20) + 3rem);
+    padding-left: calc(var(--wp--preset--spacing--30) + 3rem);
 }
 
 .wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) li > ul > li > ul > li > ul > li,
 .wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) li > ol > li > ol > li > ol > li {
-    padding-left: calc(var(--wp--preset--spacing--20) + 4.5rem);
+    padding-left: calc(var(--wp--preset--spacing--30) + 4.5rem);
 }
 
 .wp-block-list:is(.is-style-system-list, .is-style-system-list-flush).is-action > li:hover:not(:has(li:hover)) {

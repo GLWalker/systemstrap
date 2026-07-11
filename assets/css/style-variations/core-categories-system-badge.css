@@ -1,0 +1,7 @@
+/* 
+ * System Badge Variation for Categories
+ * 
+ * Note: Core badge rendering logic is centralized in assets/css/main-styles.css
+ * to ensure consistency across all system lists and standalone badge components.
+ * This file exists primarily to auto-register the block style variation in PHP.
+ */

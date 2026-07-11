@@ -6,77 +6,24 @@
 		"typography": {
 			"fontFamilies": [
 				{
-					"fontFamily": "Lato, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+					"fontFamily": "\"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
 					"name": "Body Font",
-					"slug": "body",
-					"fontFace": [
-						{
-							"fontFamily": "Lato",
-							"fontStyle": "normal",
-							"fontWeight": "400",
-							"fontDisplay": "swap",
-							"src": [
-								"file:./assets/fonts/lato/lato-v24-latin-regular.woff2"
-							]
-						},
-						{
-							"fontFamily": "Lato",
-							"fontStyle": "normal",
-							"fontWeight": "700",
-							"fontDisplay": "swap",
-							"src": [
-								"file:./assets/fonts/lato/lato-v24-latin-700.woff2"
-							]
-						}
-					]
+					"slug": "body"
 				},
 				{
-					"fontFamily": "Oswald",
+					"fontFamily": "\"Helvetica Neue\", Helvetica, Arial, sans-serif",
 					"name": "Heading Font",
-					"slug": "heading",
-					"fontFace": [
-						{
-							"fontFamily": "Oswald",
-							"fontStyle": "normal",
-							"fontWeight": "400",
-							"fontDisplay": "swap",
-							"src": [
-								"file:./assets/fonts/oswald/oswald-0.woff2"
-							]
-						}
-					]
+					"slug": "heading"
 				},
 				{
-					"fontFamily": "Bebas Neue",
+					"fontFamily": "\"Franklin Gothic Medium\", \"Arial Narrow\", Arial, sans-serif",
 					"name": "Display Font",
-					"slug": "display",
-					"fontFace": [
-						{
-							"fontFamily": "Bebas Neue",
-							"fontStyle": "normal",
-							"fontWeight": "400",
-							"fontDisplay": "swap",
-							"src": [
-								"file:./assets/fonts/bebas-neue/bebas-neue-0.woff2"
-							]
-						}
-					]
+					"slug": "display"
 				},
 				{
-					"fontFamily": "Anton",
+					"fontFamily": "\"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
 					"name": "Button Font",
-					"slug": "button",
-					"fontFace": [
-						{
-							"fontFamily": "Anton",
-							"fontStyle": "normal",
-							"fontWeight": "400",
-							"fontDisplay": "swap",
-							"src": [
-								"file:./assets/fonts/anton/anton-0.woff2"
-							]
-						}
-					]
+					"slug": "button"
 				}
 			]
 		}

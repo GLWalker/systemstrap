@@ -6,68 +6,24 @@
 		"typography": {
 			"fontFamilies": [
 				{
-					"fontFamily": "Roboto, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Helvetica Neue\", Arial, sans-serif",
+					"fontFamily": "Verdana, Geneva, Tahoma, sans-serif",
 					"name": "Body Font",
-					"slug": "body",
-					"fontFace": [
-						{
-							"fontFamily": "Roboto",
-							"fontStyle": "normal",
-							"fontWeight": "100 900",
-							"fontDisplay": "swap",
-							"src": [
-								"file:./assets/fonts/roboto/roboto-variable.woff2"
-							]
-						}
-					]
+					"slug": "body"
 				},
 				{
-					"fontFamily": "Oswald",
+					"fontFamily": "Tahoma, Verdana, Geneva, sans-serif",
 					"name": "Heading Font",
-					"slug": "heading",
-					"fontFace": [
-						{
-							"fontFamily": "Oswald",
-							"fontStyle": "normal",
-							"fontWeight": "400",
-							"fontDisplay": "swap",
-							"src": [
-								"file:./assets/fonts/oswald/oswald-0.woff2"
-							]
-						}
-					]
+					"slug": "heading"
 				},
 				{
-					"fontFamily": "Roboto Slab",
+					"fontFamily": "Optima, Candara, \"Segoe UI\", Verdana, sans-serif",
 					"name": "Display Font",
-					"slug": "display",
-					"fontFace": [
-						{
-							"fontFamily": "Roboto Slab",
-							"fontStyle": "normal",
-							"fontWeight": "400",
-							"fontDisplay": "swap",
-							"src": [
-								"file:./assets/fonts/roboto-slab/roboto-slab-0.woff2"
-							]
-						}
-					]
+					"slug": "display"
 				},
 				{
-					"fontFamily": "Anton",
+					"fontFamily": "Geneva, Verdana, Tahoma, sans-serif",
 					"name": "Button Font",
-					"slug": "button",
-					"fontFace": [
-						{
-							"fontFamily": "Anton",
-							"fontStyle": "normal",
-							"fontWeight": "400",
-							"fontDisplay": "swap",
-							"src": [
-								"file:./assets/fonts/anton/anton-0.woff2"
-							]
-						}
-					]
+					"slug": "button"
 				}
 			]
 		}

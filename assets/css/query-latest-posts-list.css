@@ -181,6 +181,17 @@
 	align-self: start;
 }
 
+.query-latest-posts__title a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.query-latest-posts__title a:hover,
+.query-latest-posts__title a:focus-visible {
+    color: color-mix(in srgb, currentColor 70%, transparent);
+    text-decoration: underline;
+}
+
 .query-latest-posts__excerpt {
 	grid-area: excerpt;
 	color: var(--query-latest-posts-muted-color);

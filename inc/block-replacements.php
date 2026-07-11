@@ -139,13 +139,13 @@ if (!function_exists('strap_render_block_core_latest_posts')) {
 
                 $image_style = '';
                 if (isset($attributes['featuredImageSizeWidth'])) {
-                    $width = absint($attributes['featuredImageSizeWidth']);
+                    $width = absint( $attributes['featuredImageSizeWidth'] );
                     if ( $width > 0 ) {
                         $image_style .= sprintf('max-width:%dpx;', $width);
                     }
                 }
                 if (isset($attributes['featuredImageSizeHeight'])) {
-                    $height = absint($attributes['featuredImageSizeHeight']);
+                    $height = absint( $attributes['featuredImageSizeHeight'] );
                     if ( $height > 0 ) {
                         $image_style .= sprintf('max-height:%dpx;', $height);
                     }
@@ -241,7 +241,7 @@ if (!function_exists('strap_render_block_core_latest_posts')) {
 
                 $list_items_markup .= sprintf(
                     '<div class="wp-block-latest-posts__post-excerpt" itemprop="description">%1$s</div>',
-                    wp_kses_post($trimmed_excerpt)
+                    wp_kses_post( $trimmed_excerpt )
                 );
             }
 
@@ -327,7 +327,7 @@ if (!function_exists('strap_render_block_core_post_template')) {
     {
         $page_key            = isset($block->context['queryId']) ? 'query-' . $block->context['queryId'] . '-page' : 'query-page';
         $enhanced_pagination = isset($block->context['enhancedPagination']) && $block->context['enhancedPagination'];
-        $page                = empty($_GET[$page_key]) ? 1 : absint(wp_unslash($_GET[$page_key]));
+        $page                = empty( $_GET[ $page_key ] ) ? 1 : absint( wp_unslash( $_GET[ $page_key ] ) );
 
         // Use global query if needed.
         $use_global_query = (isset($block->context['query']['inherit']) && $block->context['query']['inherit']);
@@ -638,10 +638,13 @@ if (!function_exists('strap_render_block_widget_badges')) {
                 return $block_content;
             }
 
-            // Look for (123) inside list items and replace with badge span.
+            // Define the proper native class based on block type
+            $count_class = ( 'core/archives' === $block['blockName'] ) ? 'wp-block-archives__count' : 'wp-block-categories__count';
+
+            // Wrap counts structurally so they remain naked by default but can be targeted by System UI styles
             $block_content = preg_replace(
                 '/\(\s*(\d+)\s*\)/',
-                '<span class="system-badge">$1</span>',
+                '<span class="' . $count_class . '"><span class="count-paren">(</span>$1<span class="count-paren">)</span></span>',
                 $block_content
             );
         }
@@ -649,10 +652,19 @@ if (!function_exists('strap_render_block_widget_badges')) {
         if ( 'core/terms-query' === $block['blockName'] ) {
             $block_content = preg_replace(
                 '/(<(?:div|p)\b[^>]*class="[^"]*wp-block-term-count[^"]*"[^>]*>)\(\s*(\d+)\s*\)(<\/(?:div|p)>)/',
-                '<span class="system-badge">$2</span>',
+                '$1<span class="count-paren">(</span>$2<span class="count-paren">)</span>$3',
                 $block_content
             );
         }
+
+        if ( 'core/tag-cloud' === $block['blockName'] ) {
+            $block_content = preg_replace(
+                '/(<span class="tag-link-count"[^>]*>)\s*\(\s*(\d+)\s*\)(<\/span>)/',
+                ' $1<span class="count-paren">(</span>$2<span class="count-paren">)</span>$3',
+                $block_content
+            );
+        }
+
 
         return $block_content;
     }

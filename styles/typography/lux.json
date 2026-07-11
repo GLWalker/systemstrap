@@ -6,68 +6,24 @@
 		"typography": {
 			"fontFamilies": [
 				{
-					"fontFamily": "\"Nunito Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+					"fontFamily": "Georgia, \"Times New Roman\", Times, serif",
 					"name": "Body Font",
-					"slug": "body",
-					"fontFace": [
-						{
-							"fontFamily": "Nunito Sans",
-							"fontStyle": "normal",
-							"fontWeight": "200 800",
-							"fontDisplay": "swap",
-							"src": [
-								"file:./assets/fonts/nunito/nunito-sans-variable.woff2"
-							]
-						}
-					]
+					"slug": "body"
 				},
 				{
-					"fontFamily": "Playfair Display",
+					"fontFamily": "\"Times New Roman\", Times, Georgia, serif",
 					"name": "Heading Font",
-					"slug": "heading",
-					"fontFace": [
-						{
-							"fontFamily": "Playfair Display",
-							"fontStyle": "normal",
-							"fontWeight": "400",
-							"fontDisplay": "swap",
-							"src": [
-								"file:./assets/fonts/playfair-display/playfair-display-0.woff2"
-							]
-						}
-					]
+					"slug": "heading"
 				},
 				{
-					"fontFamily": "Cinzel",
+					"fontFamily": "Didot, \"Bodoni 72\", \"Bodoni MT\", Georgia, serif",
 					"name": "Display Font",
-					"slug": "display",
-					"fontFace": [
-						{
-							"fontFamily": "Cinzel",
-							"fontStyle": "normal",
-							"fontWeight": "400",
-							"fontDisplay": "swap",
-							"src": [
-								"file:./assets/fonts/cinzel/cinzel-0.woff2"
-							]
-						}
-					]
+					"slug": "display"
 				},
 				{
-					"fontFamily": "Merriweather",
+					"fontFamily": "Optima, Candara, \"Segoe UI\", system-ui, sans-serif",
 					"name": "Button Font",
-					"slug": "button",
-					"fontFace": [
-						{
-							"fontFamily": "Merriweather",
-							"fontStyle": "normal",
-							"fontWeight": "400",
-							"fontDisplay": "swap",
-							"src": [
-								"file:./assets/fonts/merriweather/merriweather-0.woff2"
-							]
-						}
-					]
+					"slug": "button"
 				}
 			]
 		}

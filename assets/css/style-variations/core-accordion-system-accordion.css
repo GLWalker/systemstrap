@@ -67,7 +67,7 @@
 }
 
 .wp-block-accordion.is-style-system-accordion .wp-block-accordion-heading__toggle {
-    padding: var(--wp--preset--spacing--20) 1.25rem;
+    padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
     color: var(--wp--preset--color--inherit);
     background: var(--wp--custom--system-ui-surface-banner, var(--wp--custom--system-ui-surface, transparent));
     border-bottom: var(--wp--custom--border-width, 1px) solid transparent;
@@ -143,8 +143,8 @@
 .wp-block-accordion.is-style-system-accordion .wp-block-accordion-item.is-open .wp-block-accordion-panel {
     margin-top: 0 !important;
     /* Vaporize native block wrapper gap */
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
+    padding-left: var(--wp--preset--spacing--30);
+    padding-right: var(--wp--preset--spacing--30);
     padding-top: var(--wp--preset--spacing--20);
     padding-bottom: var(--wp--preset--spacing--20);
     animation: fadeIn 0.3s ease-in-out;

@@ -37,7 +37,7 @@
     align-items: flex-start;
     gap: var(--wp--preset--spacing--20);
     margin: 0;
-    padding: var(--wp--preset--spacing--20) !important;
+    padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30) !important;
     color: inherit;
     background-color: var(--wp--custom--system-ui-surface);
     background-image: var(--wp--custom--system-ui-background-image, none);

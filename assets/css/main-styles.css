@@ -103,7 +103,6 @@ header.wp-block-template-part {
 }
 
 .wp-block-terms-query .wp-block-term-template>li+li {
-    border-top: var(--wp--custom--border-width, 1px) solid var(--wp--preset--color--border-color);
 }
 
 .wp-block-terms-query .wp-block-term-name,
@@ -470,4 +469,108 @@ select:focus {
     border-right: none;
     border-left: none;
     border-radius: 0 !important;
+}
+
+/* ==========================================================================
+   10. Native Block Baselines
+   ========================================================================== */
+
+/* Push post counts to the right on bog-standard list items */
+.wp-block-archives:not([class*="is-style-system"]) li,
+.wp-block-categories:not([class*="is-style-system"]) li,
+.wp-block-archives-list:not([class*="is-style-system"]) li,
+.wp-block-categories-list:not([class*="is-style-system"]) li {
+    display: flex;
+    flex-wrap: wrap; /* Fix hierarchical structure loss */
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--wp--preset--spacing--10);
+}
+
+/* Force nested lists to their own row to maintain indentation */
+.wp-block-archives:not([class*="is-style-system"]) li > ul,
+.wp-block-categories:not([class*="is-style-system"]) li > ul,
+.wp-block-archives-list:not([class*="is-style-system"]) li > ul,
+.wp-block-categories-list:not([class*="is-style-system"]) li > ul {
+    width: 100%;
+}
+
+/* Base Post Terms Styling (Tags/Categories at bottom of post) */
+.wp-block-post-terms:not([class*="is-style-system"]) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--wp--preset--spacing--10, 0.5rem);
+    align-items: center;
+}
+.wp-block-post-terms:not([class*="is-style-system"]) a {
+    display: inline-block;
+    max-width: fit-content;
+}
+
+/* Search Block Baseline */
+.wp-block-search__inside-wrapper {
+    display: flex;
+    align-items: center;
+    gap: var(--wp--preset--spacing--10, 0.5rem);
+}
+
+/* Separator Block Baseline */
+.wp-block-separator:not(.is-style-system-divider) {
+    border-color: var(--wp--custom--border-color);
+}
+
+/* ==========================================================================
+   11. Dynamic Count Badges
+   Applied via .is-style-system-list, .is-style-system-list-flush, or .is-style-system-badge
+   ========================================================================== */
+
+:is(.is-style-system-list, .is-style-system-list-flush, .is-style-system-badge, .is-style-outline, .is-style-system-tags) :is(
+    .wp-block-categories__count,
+    .wp-block-archives__count,
+    .tag-link-count,
+    .wp-block-term-count
+) {
+    display: inline-block;
+    padding: var(--wp--custom--badge-padding-y) var(--wp--custom--badge-padding-x);
+    font-size: var(--wp--custom--badge-font-size);
+    font-weight: var(--wp--custom--badge-font-weight);
+    line-height: 1;
+    border-radius: var(--wp--custom--badge-border-radius);
+
+    /* Dynamic shading inherited from current text color */
+    background-color: color-mix(in srgb, currentColor 10%, transparent);
+    color: color-mix(in srgb, currentColor 90%, #000);
+    border: 1px solid currentColor;
+}
+
+/* Tame the big and gawky WordPress Core outline tag clouds */
+.wp-block-tag-cloud.is-style-outline a {
+    display: inline-flex !important;
+    align-items: center !important;
+    padding: calc(var(--wp--preset--spacing--10) * 0.5) var(--wp--preset--spacing--20) !important;
+    font-size: var(--wp--preset--font-size--small) !important;
+}
+
+/* Balance horizontal padding when a badge is present inside the tag */
+.wp-block-tag-cloud:is(.is-style-system-tags, .is-style-outline) a:has(.tag-link-count) {
+    padding-inline-end: calc(var(--wp--preset--spacing--20) * 0.5) !important;
+}
+
+/* Ensure tag clouds actually inherit custom text colors */
+.wp-block-tag-cloud.has-text-color a {
+    color: inherit;
+}
+
+:is(.is-style-system-list, .is-style-system-list-flush, .is-style-system-badge, .is-style-outline, .is-style-system-tags) .tag-link-count {
+    margin-inline-start: var(--wp--preset--spacing--10, 0.5rem);
+}
+
+/* Hide the parentheses structurally when badges are active */
+:is(.is-style-system-list, .is-style-system-list-flush, .is-style-system-badge, .is-style-outline, .is-style-system-tags) :is(
+    .wp-block-categories__count,
+    .wp-block-archives__count,
+    .tag-link-count,
+    .wp-block-term-count
+) .count-paren {
+    display: none;
 }

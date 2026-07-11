@@ -199,7 +199,7 @@
 
 .query-directory-listing__item-icon,
 .directory-listing__item-icon {
-    width: 1.25rem;
+    width: 1.75rem;
 }
 
 .query-directory-listing__title,
@@ -223,7 +223,7 @@
 .query-directory-listing__title a:focus-visible,
 .directory-listing__title a:hover,
 .directory-listing__title a:focus-visible {
-    color: var(--wp--custom--link-hover-color, var(--wp--preset--color--primary));
+    color: color-mix(in srgb, currentColor 70%, transparent);
     text-decoration: underline;
 }
 
@@ -269,34 +269,12 @@
     display: none;
 }
 
-.query-directory-listing__post-terms a,
-.directory-listing__post-terms a {
-    display: inline-flex;
-    align-items: center;
-    padding: calc(var(--wp--preset--spacing--10) * 0.5) var(--wp--preset--spacing--20);
-    background-color: var(--query-directory-listing-term-badge-bg, var(--query-directory-listing-badge-bg));
-    border: var(--wp--custom--border-width, 1px) solid var(--query-directory-listing-term-badge-border-color, var(--query-directory-listing-badge-border-color));
-    border-radius: var(--wp--custom--badge-border-radius, calc(var(--wp--custom--border-radius) / 1.5));
-    color: var(--query-directory-listing-term-badge-color, var(--query-directory-listing-badge-color));
-    font-size: var(--wp--preset--font-size--x-small);
-    font-weight: var(--wp--custom--badge-font-weight, var(--wp--custom--font-weight-button));
-    line-height: 1.3;
-    text-decoration: none;
-}
-
-.query-directory-listing__post-terms a:hover,
-.query-directory-listing__post-terms a:focus-visible,
-.directory-listing__post-terms a:hover,
-.directory-listing__post-terms a:focus-visible {
-    border-color: var(--wp--preset--color--primary-40, var(--wp--preset--color--primary));
-    color: var(--wp--custom--link-hover-color, var(--wp--preset--color--primary));
-    text-decoration: underline;
-}
 
 .query-directory-listing__arrow,
 .directory-listing__arrow {
     width: 1rem;
     justify-self: end;
+    margin-right: 0.5rem;
 }
 
 .query-directory-listing__footer,
@@ -368,6 +346,7 @@
         grid-column: 2;
         grid-row: 1 / 4;
         align-self: start;
+        margin-right: 1rem;
     }
 }
 
@@ -412,6 +391,7 @@
         grid-row: 1;
         align-self: start;
         padding-left: var(--wp--preset--spacing--20);
+        margin-right: 1rem;
     }
 
     .query-directory-listing__pagination,

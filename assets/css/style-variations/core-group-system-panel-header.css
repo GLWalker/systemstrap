@@ -3,7 +3,7 @@
  */
 
 .wp-block-group.is-style-system-panel-header {
-    padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--20) !important;
+    padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30) !important;
     border-bottom: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
     margin: 0 !important;
     border-radius: 0 !important; /* Auto-clipped perfectly by outer panel overflow: hidden */

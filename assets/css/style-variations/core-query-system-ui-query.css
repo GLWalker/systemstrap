@@ -77,51 +77,18 @@
     color: inherit;
 }
 
-.query-directory-listing:has(> .query-directory-listing__query.is-style-system-ui-query) .query-directory-listing__post-terms a,
-.directory-listing:has(> .directory-listing__query.is-style-system-ui-query) .directory-listing__post-terms a {
-    border-color: var(--query-directory-listing-term-badge-border-color, color-mix(in srgb, currentColor 18%, var(--wp--custom--system-ui-border-color)));
-    background-color: var(--query-directory-listing-term-badge-bg, color-mix(in srgb, currentColor 10%, var(--wp--custom--system-ui-surface-banner)));
+.is-style-system-ui-query .wp-block-post-terms.is-style-system-badge a {
+    --strap-term-badge-border-color: color-mix(in srgb, currentColor 18%, var(--wp--custom--system-ui-border-color));
+    --strap-term-badge-bg: color-mix(in srgb, currentColor 10%, var(--wp--custom--system-ui-surface-banner));
+    --strap-term-badge-color: inherit;
     background-image: none;
-    color: var(--query-directory-listing-term-badge-color, inherit);
-    text-decoration: none;
 }
 
-.query-directory-listing:has(> .query-directory-listing__query.is-style-system-ui-query) .query-directory-listing__post-terms a:hover,
-.query-directory-listing:has(> .query-directory-listing__query.is-style-system-ui-query) .query-directory-listing__post-terms a:focus-visible,
-.directory-listing:has(> .directory-listing__query.is-style-system-ui-query) .directory-listing__post-terms a:hover,
-.directory-listing:has(> .directory-listing__query.is-style-system-ui-query) .directory-listing__post-terms a:focus-visible {
-    background-color: color-mix(in srgb, currentColor 16%, var(--wp--custom--system-ui-list-hover-bg));
-    border-color: color-mix(in srgb, currentColor 28%, var(--wp--custom--system-ui-border-color));
-    color: inherit;
-    text-decoration: none;
-}
-
-.query-directory-grid:has(> .query-directory-grid__query.is-style-system-ui-query) .query-directory-listing__post-terms a,
-.query-directory-grid__query.is-style-system-ui-query .query-directory-listing__post-terms a,
-.systemstrap-directory-grid:has(> .systemstrap-directory-grid__query.is-style-system-ui-query) .query-directory-listing__post-terms a,
-.systemstrap-directory-grid__query.is-style-system-ui-query .query-directory-listing__post-terms a,
-.systemstrap-directory-grid.is-style-system-ui-query .query-directory-listing__post-terms a {
-    border-color: var(--query-directory-listing-term-badge-border-color, color-mix(in srgb, currentColor 18%, var(--wp--custom--system-ui-border-color)));
-    background-color: var(--query-directory-listing-term-badge-bg, color-mix(in srgb, currentColor 10%, var(--wp--custom--system-ui-surface-banner)));
-    background-image: none;
-    color: var(--query-directory-listing-term-badge-color, inherit);
-    text-decoration: none;
-}
-
-.query-directory-grid:has(> .query-directory-grid__query.is-style-system-ui-query) .query-directory-listing__post-terms a:hover,
-.query-directory-grid:has(> .query-directory-grid__query.is-style-system-ui-query) .query-directory-listing__post-terms a:focus-visible,
-.query-directory-grid__query.is-style-system-ui-query .query-directory-listing__post-terms a:hover,
-.query-directory-grid__query.is-style-system-ui-query .query-directory-listing__post-terms a:focus-visible,
-.systemstrap-directory-grid:has(> .systemstrap-directory-grid__query.is-style-system-ui-query) .query-directory-listing__post-terms a:hover,
-.systemstrap-directory-grid:has(> .systemstrap-directory-grid__query.is-style-system-ui-query) .query-directory-listing__post-terms a:focus-visible,
-.systemstrap-directory-grid__query.is-style-system-ui-query .query-directory-listing__post-terms a:hover,
-.systemstrap-directory-grid__query.is-style-system-ui-query .query-directory-listing__post-terms a:focus-visible,
-.systemstrap-directory-grid.is-style-system-ui-query .query-directory-listing__post-terms a:hover,
-.systemstrap-directory-grid.is-style-system-ui-query .query-directory-listing__post-terms a:focus-visible {
-    background-color: color-mix(in srgb, currentColor 16%, var(--wp--custom--system-ui-list-hover-bg));
-    border-color: color-mix(in srgb, currentColor 28%, var(--wp--custom--system-ui-border-color));
-    color: inherit;
-    text-decoration: none;
+.is-style-system-ui-query .wp-block-post-terms.is-style-system-badge a:hover,
+.is-style-system-ui-query .wp-block-post-terms.is-style-system-badge a:focus-visible {
+    --strap-term-badge-hover-bg: color-mix(in srgb, currentColor 16%, var(--wp--custom--system-ui-list-hover-bg));
+    --strap-term-badge-hover-border-color: color-mix(in srgb, currentColor 28%, var(--wp--custom--system-ui-border-color));
+    --strap-term-badge-hover-color: inherit;
 }
 
 .query-directory-listing__query.is-style-system-ui-query,
@@ -148,9 +115,14 @@
 }
 
 .wp-block-query.is-style-system-ui-query:not(.query-directory-listing__query):not(.directory-listing__query):not(.query-latest-posts__query):not(.query-directory-grid__query):not(.systemstrap-directory-grid__query) > .wp-block-post-template > li {
+    display: flex;
+    flex-direction: column;
     position: relative;
     margin: 0;
-    padding: var(--wp--preset--spacing--20) !important;
+    padding: 0 !important;
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
     color: inherit;
     background-color: var(--wp--custom--system-ui-surface);
     background-image: var(--wp--custom--system-ui-background-image, none);
@@ -158,29 +130,53 @@
     -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
 }
 
-.wp-block-query.is-style-system-ui-query:not(.query-directory-listing__query):not(.directory-listing__query):not(.query-latest-posts__query):not(.query-directory-grid__query):not(.systemstrap-directory-grid__query) > .wp-block-post-template > li + li {
+.wp-block-query.is-style-system-ui-query:not(.query-directory-listing__query):not(.directory-listing__query):not(.query-latest-posts__query):not(.query-directory-grid__query):not(.systemstrap-directory-grid__query) > .wp-block-post-template > li > * {
+    width: 100%;
+    max-width: none;
+    border-radius: 0 !important;
+}
+
+.wp-block-query.is-style-system-ui-query:not(.query-directory-listing__query):not(.directory-listing__query):not(.query-latest-posts__query):not(.query-directory-grid__query):not(.systemstrap-directory-grid__query) > .wp-block-post-template > li .wp-block-post-featured-image,
+.wp-block-query.is-style-system-ui-query:not(.query-directory-listing__query):not(.directory-listing__query):not(.query-latest-posts__query):not(.query-directory-grid__query):not(.systemstrap-directory-grid__query) > .wp-block-post-template > li .wp-block-post-featured-image * {
+    border-radius: 0 !important;
+}
+
+.wp-block-query.is-style-system-ui-query:not(.query-directory-listing__query):not(.directory-listing__query):not(.query-latest-posts__query):not(.query-directory-grid__query):not(.systemstrap-directory-grid__query) > .wp-block-post-template:not(.is-layout-grid) > li + li {
     border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+}
+
+.wp-block-query.is-style-system-ui-query:not(.query-directory-listing__query):not(.directory-listing__query):not(.query-latest-posts__query):not(.query-directory-grid__query):not(.systemstrap-directory-grid__query) > .wp-block-post-template.is-layout-grid > li {
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+    border-radius: var(--wp--custom--border-radius);
+    box-shadow: var(--wp--custom--shadow);
 }
 
 .wp-block-query.is-style-system-ui-query:not(.query-directory-listing__query):not(.directory-listing__query):not(.query-latest-posts__query):not(.query-directory-grid__query):not(.systemstrap-directory-grid__query) > .wp-block-post-template > li > article {
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;
-    gap: var(--wp--preset--spacing--10);
     min-width: 0;
 }
 
-.wp-block-query.is-style-system-ui-query:not(.query-directory-listing__query):not(.directory-listing__query):not(.query-latest-posts__query):not(.query-directory-grid__query):not(.systemstrap-directory-grid__query) > .wp-block-post-template > li .wp-block-post-featured-image {
-    margin: 0 0 var(--wp--preset--spacing--20);
-    overflow: hidden;
-    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
-    border-radius: calc(var(--wp--custom--border-radius) / 1.5);
+/* Ensure padding on bog-standard query loop inner content so text doesn't touch edges */
+.wp-block-query.is-style-system-ui-query:not(.query-directory-listing__query):not(.directory-listing__query):not(.query-latest-posts__query):not(.query-directory-grid__query):not(.systemstrap-directory-grid__query) > .wp-block-post-template > li > article > *:not(.wp-block-post-featured-image):not(.wp-block-cover):not(.wp-block-columns) {
+    padding-left: var(--wp--preset--spacing--30);
+    padding-right: var(--wp--preset--spacing--30);
+    padding-top: var(--wp--preset--spacing--20);
+    padding-bottom: var(--wp--preset--spacing--20);
 }
 
-.wp-block-query.is-style-system-ui-query:not(.query-directory-listing__query):not(.directory-listing__query):not(.query-latest-posts__query):not(.query-directory-grid__query):not(.systemstrap-directory-grid__query) > .wp-block-post-template > li .wp-block-post-featured-image img {
-    display: block;
-    width: 100%;
+/* Remove top padding if the element is NOT the first visible block */
+.wp-block-query.is-style-system-ui-query:not(.query-directory-listing__query):not(.directory-listing__query):not(.query-latest-posts__query):not(.query-directory-grid__query):not(.systemstrap-directory-grid__query) > .wp-block-post-template > li > article > *:not(meta):not(style):not(script):not(link) ~ *:not(.wp-block-post-featured-image):not(.wp-block-cover):not(.wp-block-columns) {
+    padding-top: 0;
 }
+
+/* Remove bottom padding if the element is NOT the last visible block */
+.wp-block-query.is-style-system-ui-query:not(.query-directory-listing__query):not(.directory-listing__query):not(.query-latest-posts__query):not(.query-directory-grid__query):not(.systemstrap-directory-grid__query) > .wp-block-post-template > li > article > *:not(.wp-block-post-featured-image):not(.wp-block-cover):not(.wp-block-columns):has(~ *:not(meta):not(style):not(script):not(link)) {
+    padding-bottom: 0;
+}
+
+/* Remove all previous featured image structural hacks because the li overflow: hidden handles it */
 
 .wp-block-query.is-style-system-ui-query:not(.query-directory-listing__query):not(.directory-listing__query):not(.query-latest-posts__query):not(.query-directory-grid__query):not(.systemstrap-directory-grid__query) > .wp-block-post-template > li .wp-block-post-title,
 .wp-block-query.is-style-system-ui-query:not(.query-directory-listing__query):not(.directory-listing__query):not(.query-latest-posts__query):not(.query-directory-grid__query):not(.systemstrap-directory-grid__query) > .wp-block-post-template > li .wp-block-post-title a,
@@ -207,20 +203,6 @@
     opacity: 0.72;
 }
 
-.wp-block-query.is-style-system-ui-query:not(.query-directory-listing__query):not(.directory-listing__query):not(.query-latest-posts__query):not(.query-directory-grid__query):not(.systemstrap-directory-grid__query) > .wp-block-post-template > li .wp-block-post-terms a {
-    background-color: var(--query-directory-listing-term-badge-bg, color-mix(in srgb, currentColor 10%, var(--wp--custom--system-ui-surface-banner)));
-    border-color: var(--query-directory-listing-term-badge-border-color, color-mix(in srgb, currentColor 18%, var(--wp--custom--system-ui-border-color)));
-    color: var(--query-directory-listing-term-badge-color, inherit);
-    text-decoration: none;
-}
-
-.wp-block-query.is-style-system-ui-query:not(.query-directory-listing__query):not(.directory-listing__query):not(.query-latest-posts__query):not(.query-directory-grid__query):not(.systemstrap-directory-grid__query) > .wp-block-post-template > li .wp-block-post-terms a:hover,
-.wp-block-query.is-style-system-ui-query:not(.query-directory-listing__query):not(.directory-listing__query):not(.query-latest-posts__query):not(.query-directory-grid__query):not(.systemstrap-directory-grid__query) > .wp-block-post-template > li .wp-block-post-terms a:focus-visible {
-    background-color: color-mix(in srgb, currentColor 16%, var(--wp--custom--system-ui-list-hover-bg));
-    border-color: color-mix(in srgb, currentColor 28%, var(--wp--custom--system-ui-border-color));
-    color: inherit;
-    text-decoration: none;
-}
 
 .wp-block-query.is-style-system-ui-query:not(.query-directory-listing__query):not(.directory-listing__query):not(.query-latest-posts__query):not(.query-directory-grid__query):not(.systemstrap-directory-grid__query).has-background > .wp-block-post-template > li,
 .has-background > .wp-block-query.is-style-system-ui-query:not(.query-directory-listing__query):not(.directory-listing__query):not(.query-latest-posts__query):not(.query-directory-grid__query):not(.systemstrap-directory-grid__query):not(.has-background) > .wp-block-post-template > li {
@@ -230,8 +212,9 @@
     -webkit-backdrop-filter: none;
 }
 
-.wp-block-query.is-style-system-ui-query:not(.query-directory-listing__query):not(.directory-listing__query):not(.query-latest-posts__query):not(.query-directory-grid__query):not(.systemstrap-directory-grid__query) > .wp-block-query-pagination,
-.wp-block-query.is-style-system-ui-query:not(.query-directory-listing__query):not(.directory-listing__query):not(.query-latest-posts__query):not(.query-directory-grid__query):not(.systemstrap-directory-grid__query) > .wp-block-query-no-results {
+/* Bog standard query pagination - default (list) layout: acts as a flush footer */
+.wp-block-query.is-style-system-ui-query:not(.query-directory-listing__query):not(.directory-listing__query):not(.query-latest-posts__query):not(.query-directory-grid__query):not(.systemstrap-directory-grid__query) > .wp-block-post-template:not(.is-layout-grid) ~ .wp-block-query-pagination,
+.wp-block-query.is-style-system-ui-query:not(.query-directory-listing__query):not(.directory-listing__query):not(.query-latest-posts__query):not(.query-directory-grid__query):not(.systemstrap-directory-grid__query) > .wp-block-post-template:not(.is-layout-grid) ~ .wp-block-query-no-results {
     margin: 0;
     padding: var(--wp--preset--spacing--20);
     border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
@@ -239,6 +222,20 @@
     background-image: var(--wp--custom--system-ui-background-image, none);
     backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+}
+
+/* Bog standard query pagination - grid layout: detached pill/box */
+.wp-block-query.is-style-system-ui-query:not(.query-directory-listing__query):not(.directory-listing__query):not(.query-latest-posts__query):not(.query-directory-grid__query):not(.systemstrap-directory-grid__query) > .wp-block-post-template.is-layout-grid ~ .wp-block-query-pagination,
+.wp-block-query.is-style-system-ui-query:not(.query-directory-listing__query):not(.directory-listing__query):not(.query-latest-posts__query):not(.query-directory-grid__query):not(.systemstrap-directory-grid__query) > .wp-block-post-template.is-layout-grid ~ .wp-block-query-no-results {
+    margin: var(--wp--preset--spacing--30) 0 0 0;
+    padding: var(--wp--preset--spacing--20);
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+    border-radius: var(--wp--custom--border-radius);
+    background-color: var(--wp--custom--system-ui-surface-banner);
+    background-image: var(--wp--custom--system-ui-background-image, none);
+    backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    box-shadow: var(--wp--custom--shadow);
 }
 
 .query-directory-listing.is-style-system-panel > .query-directory-listing__query.is-style-system-ui-query.has-global-padding,
@@ -475,8 +472,8 @@
     padding: 0 !important;
 }
 
-.wp-block-group.is-style-system-panel > .wp-block-query.is-style-system-ui-query:not(.query-directory-listing__query):not(.directory-listing__query):not(.query-latest-posts__query):not(.query-directory-grid__query):not(.systemstrap-directory-grid__query) > .wp-block-post-template > li,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-query.is-style-system-ui-query:not(.query-directory-listing__query):not(.directory-listing__query):not(.query-latest-posts__query):not(.query-directory-grid__query):not(.systemstrap-directory-grid__query) > .wp-block-post-template > li {
+.wp-block-group.is-style-system-panel > .wp-block-query.is-style-system-ui-query:not(.query-directory-listing__query):not(.directory-listing__query):not(.query-latest-posts__query):not(.query-directory-grid__query):not(.systemstrap-directory-grid__query) > .wp-block-post-template:not(.is-layout-grid) > li,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-query.is-style-system-ui-query:not(.query-directory-listing__query):not(.directory-listing__query):not(.query-latest-posts__query):not(.query-directory-grid__query):not(.systemstrap-directory-grid__query) > .wp-block-post-template:not(.is-layout-grid) > li {
     background-color: var(--wp--custom--system-ui-surface-nested, transparent);
     background-image: var(--wp--custom--system-ui-background-image-nested, none);
     backdrop-filter: none !important;
@@ -520,17 +517,6 @@
     background-image: var(--wp--custom--system-ui-background-image-nested, none);
 }
 
-.wp-block-group.is-style-system-panel > .query-directory-listing:has(> .query-directory-listing__query.is-style-system-ui-query) .query-directory-listing__post-terms a,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing:has(> .query-directory-listing__query.is-style-system-ui-query) .query-directory-listing__post-terms a,
-.wp-block-group.is-style-system-panel > .directory-listing:has(> .directory-listing__query.is-style-system-ui-query) .directory-listing__post-terms a,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .directory-listing:has(> .directory-listing__query.is-style-system-ui-query) .directory-listing__post-terms a,
-.wp-block-group.is-style-system-panel > .query-directory-listing .query-directory-listing__post-terms a,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing .query-directory-listing__post-terms a,
-.wp-block-group.is-style-system-panel > .directory-listing .directory-listing__post-terms a,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .directory-listing .directory-listing__post-terms a {
-    background-color: var(--query-directory-listing-term-badge-bg, color-mix(in srgb, currentColor 10%, var(--wp--custom--system-ui-surface-nested, transparent)));
-    background-image: none;
-}
 
 .wp-block-group.is-style-system-panel > .query-directory-listing .query-directory-listing__title,
 .wp-block-group.is-style-system-panel > .query-directory-listing .query-directory-listing__title a,
@@ -610,4 +596,19 @@
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-latest-posts .query-latest-posts__date-month {
     background-color: var(--wp--custom--system-ui-surface-banner, var(--wp--custom--system-ui-surface-nested, transparent));
     background-image: var(--wp--custom--system-ui-background-image-nested, none);
+}
+
+/* ==========================================================================
+   Query Double Chrome Prevention
+   Strips colors from outer post wrappers when they contain System UI panels,
+   leaving structural padding/margins intact for featured images.
+   ========================================================================== */
+
+.wp-block-query.is-style-system-ui-query .wp-block-post-template > .wp-block-post:has(.is-style-system-panel) {
+    background-color: transparent;
+    background-image: none;
+    border-color: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
 }

@@ -6,68 +6,29 @@
 		"typography": {
 			"fontFamilies": [
 				{
-					"fontFamily": "\"Open Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+					"fontFamily": "\"Helvetica Neue\", Helvetica, Roboto, Arial, sans-serif",
 					"name": "Body Font",
-					"slug": "body",
-					"fontFace": [
-						{
-							"fontFamily": "Open Sans",
-							"fontStyle": "normal",
-							"fontWeight": "300 800",
-							"fontDisplay": "swap",
-							"src": [
-								"file:./assets/fonts/open-sans/open-sans-variable.woff2"
-							]
-						}
-					]
+					"slug": "body"
 				},
 				{
-					"fontFamily": "Quicksand",
+					"fontFamily": "\"Helvetica Neue\", Helvetica, Roboto, Arial, sans-serif",
 					"name": "Heading Font",
-					"slug": "heading",
-					"fontFace": [
-						{
-							"fontFamily": "Quicksand",
-							"fontStyle": "normal",
-							"fontWeight": "400",
-							"fontDisplay": "swap",
-							"src": [
-								"file:./assets/fonts/quicksand/quicksand-0.woff2"
-							]
-						}
-					]
+					"slug": "heading"
 				},
 				{
-					"fontFamily": "Fredoka",
+					"fontFamily": "Bahnschrift, \"DIN Alternate\", \"Franklin Gothic Medium\", \"Nimbus Sans Narrow\", \"Arial Narrow\", sans-serif-condensed, sans-serif",
 					"name": "Display Font",
-					"slug": "display",
-					"fontFace": [
-						{
-							"fontFamily": "Fredoka",
-							"fontStyle": "normal",
-							"fontWeight": "400",
-							"fontDisplay": "swap",
-							"src": [
-								"file:./assets/fonts/fredoka/fredoka-0.woff2"
-							]
-						}
-					]
+					"slug": "display"
 				},
 				{
-					"fontFamily": "Comfortaa",
+					"fontFamily": "\"Helvetica Neue\", Helvetica, Roboto, Arial, sans-serif",
 					"name": "Button Font",
-					"slug": "button",
-					"fontFace": [
-						{
-							"fontFamily": "Comfortaa",
-							"fontStyle": "normal",
-							"fontWeight": "400",
-							"fontDisplay": "swap",
-							"src": [
-								"file:./assets/fonts/comfortaa/comfortaa-0.woff2"
-							]
-						}
-					]
+					"slug": "button"
+				},
+				{
+					"fontFamily": "Consolas, \"Liberation Mono\", Courier, monospace",
+					"name": "Monospace Font",
+					"slug": "monospace"
 				}
 			]
 		}

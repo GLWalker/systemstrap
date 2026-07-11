@@ -221,6 +221,14 @@
     margin: 0;
 }
 
+.query-directory-grid__title a:hover,
+.query-directory-grid__title a:focus-visible,
+.systemstrap-directory-grid__title a:hover,
+.systemstrap-directory-grid__title a:focus-visible {
+    color: color-mix(in srgb, currentColor 70%, transparent);
+    text-decoration: underline;
+}
+
 .query-directory-grid__category,
 .systemstrap-directory-grid__category {
     width: auto;
@@ -247,35 +255,7 @@
     display: none;
 }
 
-.query-directory-grid__category a,
-.systemstrap-directory-grid__category a,
-.query-directory-grid__tags-list a,
-.systemstrap-directory-grid__terms a {
-    display: inline-flex;
-    align-items: center;
-    padding: calc(var(--wp--preset--spacing--10) * 0.5) var(--wp--preset--spacing--20);
-    background-color: var(--query-directory-listing-term-badge-bg, var(--query-directory-listing-badge-bg));
-    border: var(--wp--custom--border-width, 1px) solid var(--query-directory-listing-term-badge-border-color, var(--query-directory-listing-badge-border-color));
-    border-radius: var(--wp--custom--badge-border-radius, calc(var(--wp--custom--border-radius) / 1.5));
-    color: var(--query-directory-listing-term-badge-color, var(--query-directory-listing-badge-color));
-    font-size: var(--wp--preset--font-size--x-small);
-    font-weight: var(--wp--custom--badge-font-weight, var(--wp--custom--font-weight-button));
-    line-height: 1.3;
-    text-decoration: none;
-}
 
-.query-directory-grid__category a:hover,
-.query-directory-grid__category a:focus-visible,
-.systemstrap-directory-grid__category a:hover,
-.systemstrap-directory-grid__category a:focus-visible,
-.query-directory-grid__tags-list a:hover,
-.query-directory-grid__tags-list a:focus-visible,
-.systemstrap-directory-grid__terms a:hover,
-.systemstrap-directory-grid__terms a:focus-visible {
-    border-color: var(--wp--preset--color--primary-40, var(--wp--preset--color--primary));
-    color: var(--wp--custom--link-hover-color, var(--wp--preset--color--primary));
-    text-decoration: underline;
-}
 
 .query-directory-grid__excerpt,
 .systemstrap-directory-grid__excerpt,

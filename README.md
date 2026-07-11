@@ -32,6 +32,6 @@ SystemStrap appends custom layout and dynamic palette styles directly to the nat
 
 SystemStrap is built on the shoulders of open-source giants:
 
-* **Splide.js:** A lightweight, accessible, and flexible slider/carousel script ([MIT License](https://github.com/Splidejs/splide/blob/master/LICENSE)).
+* **Splide.js:** A lightweight, accessible, and flexible slider/carousel script ([MIT License](https://github.com/Splidejs/splide/blob/master/LICENSE)). Version 4.1.4, included unmodified.
 * **Placeholder Images:** Structural UI placeholder graphics provided via [BetterPlaceholder](https://betterplaceholder.com/) and Wikimedia Commons ([CC0 Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)).
 * **Fonts (Porting Soon):** Utilizing [SIL Open Font Licensed](https://scripts.sil.org/OFL) typography families to ensure compliance and pristine typography.

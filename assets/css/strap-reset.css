@@ -11,6 +11,7 @@
 }
 
 html {
+    line-height: 1.15;
     overflow-x: hidden;
     /* Prevent sideways shift from .alignfull blocks */
 }

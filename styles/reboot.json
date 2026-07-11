@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "Reboot Layout",
+	"settings": {
+		"custom": {
+			"font-weight-button": "400",
+			"font-weight-heading": "500",
+			"font-weight-nav": "400",
+			"badge-font-weight": "700",
+			"badge-border-radius": "var(--wp--custom--border-radius)",
+			"disabled-opacity": ".65",
+			"shadow": "var:preset|shadow|md",
+			"system-ui-surface": "var:preset|color|base",
+			"system-ui-border-color": "var:preset|color|border-color",
+			"system-ui-background-image": "var:preset|gradient|element"
+		}
+	}
+}

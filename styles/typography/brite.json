@@ -6,56 +6,24 @@
 		"typography": {
 			"fontFamilies": [
 				{
-					"fontFamily": "system-ui, -apple-system, \"Segoe UI\", Roboto, \"Helvetica Neue\", \"Noto Sans\", \"Liberation Sans\", Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+					"fontFamily": "\"Avenir Next\", Avenir, \"Segoe UI\", system-ui, sans-serif",
 					"name": "Body Font",
 					"slug": "body"
 				},
 				{
-					"fontFamily": "Manrope, sans-serif",
+					"fontFamily": "\"Franklin Gothic Medium\", \"Avenir Next\", Avenir, \"Segoe UI\", system-ui, sans-serif",
 					"name": "Heading Font",
-					"slug": "heading",
-					"fontFace": [
-						{
-							"fontFamily": "Manrope",
-							"fontStyle": "normal",
-							"fontWeight": "100 900",
-							"fontDisplay": "swap",
-							"src": [
-								"file:./assets/fonts/manrope/Manrope-VariableFont_wght.ttf"
-							]
-						}
-					]
+					"slug": "heading"
 				},
 				{
-					"fontFamily": "Syne, sans-serif",
+					"fontFamily": "\"Arial Black\", Impact, Haettenschweiler, \"Avenir Next\", sans-serif",
 					"name": "Display Font",
-					"slug": "display",
-					"fontFace": [
-						{
-							"fontFamily": "Syne",
-							"fontWeight": "400 800",
-							"fontStyle": "normal",
-							"src": [
-								"file:./assets/fonts/syne/syne-variable.woff2"
-							]
-						}
-					]
+					"slug": "display"
 				},
 				{
-					"fontFamily": "Inter",
+					"fontFamily": "\"Avenir Next\", Avenir, \"Segoe UI Semibold\", \"Segoe UI\", system-ui, sans-serif",
 					"name": "Button Font",
-					"slug": "button",
-					"fontFace": [
-						{
-							"fontFamily": "Inter",
-							"fontStyle": "normal",
-							"fontWeight": "400",
-							"fontDisplay": "swap",
-							"src": [
-								"file:./assets/fonts/inter/Inter-VariableFont_slnt,wght.woff2"
-							]
-						}
-					]
+					"slug": "button"
 				}
 			]
 		}

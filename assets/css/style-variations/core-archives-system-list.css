@@ -36,7 +36,7 @@
 .wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush) li > a,
 .wp-block-group.is-style-system-panel > .wp-block-archives li > a,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-archives li > a {
-    padding: var(--wp--preset--spacing--20);
+    padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
     flex-grow: 1;
     text-decoration: none;
     color: inherit;
@@ -45,16 +45,16 @@
 
 /* Recursive Indentation Levels */
 .wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush) li > ul > li > a {
-    padding-left: calc(var(--wp--preset--spacing--20) + 1.5rem);
+    padding-left: calc(var(--wp--preset--spacing--30) + 1.5rem);
 }
 .wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush) li > ul > li > ul > li > a {
-    padding-left: calc(var(--wp--preset--spacing--20) + 3rem);
+    padding-left: calc(var(--wp--preset--spacing--30) + 3rem);
 }
 .wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush) li > ul > li > ul > li > ul > li > a {
-    padding-left: calc(var(--wp--preset--spacing--20) + 4.5rem);
+    padding-left: calc(var(--wp--preset--spacing--30) + 4.5rem);
 }
 .wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush) li > ul > li > ul > li > ul > li > ul > li > a {
-    padding-left: calc(var(--wp--preset--spacing--20) + 6rem);
+    padding-left: calc(var(--wp--preset--spacing--30) + 6rem);
 }
 .wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush) li > ul > li > ul > li > ul > li > ul > li > ul > li > a {
     padding-left: calc(var(--wp--preset--spacing--30) + 7.5rem);
@@ -80,24 +80,10 @@
 }
 
 /* System Badge Styling */
-.wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush) li > .system-badge,
-.wp-block-group.is-style-system-panel > .wp-block-archives li > .system-badge,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-archives li > .system-badge {
-    display: inline-block;
-    padding: var(--wp--custom--badge-padding-y) var(--wp--custom--badge-padding-x);
-    font-size: var(--wp--custom--badge-font-size);
-    font-weight: var(--wp--custom--badge-font-weight);
-    line-height: 1;
-    color: inherit;
-
-    background-color: rgba(var(--wp--preset--color--contrast-rgb), .05);
-    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
-    border-radius: var(--wp--custom--badge-border-radius);
+.wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush) li > .wp-block-archives__count,
+.wp-block-group.is-style-system-panel > .wp-block-archives li > .wp-block-archives__count,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-archives li > .wp-block-archives__count {
     margin-right: var(--wp--preset--spacing--30);
-}
-
-.wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush).has-background .system-badge {
-    background-color: rgba(var(--wp--preset--color--contrast-rgb), .15);
 }
 
 /* Nested ULs (Kill SystemPress bleeds) */

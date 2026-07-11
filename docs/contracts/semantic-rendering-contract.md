@@ -213,6 +213,16 @@ If the class string does not exactly match that format, the separator MUST remai
 
 This is an intentional replacement contract, not a parsing limitation.
 
+#### Hook Namespace Constraints
+
+Block-authored hook outlets may only execute hooks matching the following namespace:
+- `strap_hook_start_{name}`
+- `strap_hook_end_{name}`
+
+The `{name}` portion must use lowercase letters, numbers, and underscores (regex: `^[a-z0-9_]+$`).
+
+This intentionally supports child themes and site builders adding named insertion points inside templates, parts, and patterns, while strictly blocking arbitrary WordPress or plugin hooks from being executed via the editor.
+
 ### Template-part landmark contract
 
 `render_block_core/template-part` is intercepted in `strap_structured_data_parts_block_filter()`.

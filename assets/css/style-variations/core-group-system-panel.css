@@ -5,7 +5,8 @@
 
 /* Core Panel Wrapper */
 .wp-block-group.is-style-system-panel {
-    --strap-system-panel-child-padding: var(--wp--preset--spacing--20);
+    --strap-system-panel-padding-y: var(--wp--preset--spacing--20);
+    --strap-system-panel-padding-x: var(--wp--preset--spacing--30);
 
     border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
     background-image: var(--wp--custom--system-ui-background-image, none);
@@ -14,8 +15,19 @@
     border-radius: var(--wp--custom--border-radius);
     box-shadow: var(--wp--custom--shadow);
     padding: 0 !important; 
-    /* overflow: hidden; -- Disabled to allow nested absolute dropdown menus to escape */
+    overflow: hidden;
     transition: border-color 0.15s ease-in-out;
+}
+
+/* Allow dropdown menus to escape the overflow if a navigation block is nested inside */
+.wp-block-group.is-style-system-panel:has(.wp-block-navigation) {
+    overflow: visible;
+}
+
+/* Zero out border radius globally for all direct children (prevents inward curves on flush elements) */
+.wp-block-group.is-style-system-panel > *,
+.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > * {
+    border-radius: 0 !important;
 }
 
 /* Rounded corner containment for direct children without overflow: hidden */
@@ -44,7 +56,8 @@
 }
 
 .wp-block-group.is-style-system-panel.is-style-system-modal {
-    --strap-system-panel-child-padding: var(--wp--preset--spacing--40);
+    --strap-system-panel-padding-y: var(--wp--preset--spacing--40);
+    --strap-system-panel-padding-x: var(--wp--preset--spacing--40);
 }
 
 /* ========================================================= */
@@ -57,27 +70,27 @@
     max-width: none !important; /* Overrides Gutenberg constrained layout widths */
 }
 
-.wp-block-group.is-style-system-panel > *:not(.is-style-system-list):not(.is-style-system-accordion):not(.is-style-system-details):not(.is-style-system-panel-header):not(.is-style-system-panel-footer):not(.wp-block-image):not(.wp-block-cover):not(.query-directory-listing):not(.directory-listing):not(.query-latest-posts):not(.systemstrap-directory-grid):not(.wp-block-latest-posts):not(.wp-block-latest-comments):not(.wp-block-archives):not(.wp-block-categories):not(.wp-block-page-list):not(.wp-block-rss):not(.wp-block-post-terms):not(.wp-block-terms-query):not(.wp-block-list):not(.wp-block-query-pagination):not(.wp-block-comments-pagination) {
-    padding: var(--strap-system-panel-child-padding);
+.wp-block-group.is-style-system-panel > *:not(.is-style-system-list):not(.is-style-system-accordion):not(.is-style-system-details):not(.is-style-system-panel-header):not(.is-style-system-panel-footer):not(.wp-block-image):not(.wp-block-cover):not(.is-style-system-ui-query):not(.query-directory-listing):not(.directory-listing):not(.query-latest-posts):not(.systemstrap-directory-grid):not(.wp-block-latest-posts):not(.wp-block-latest-comments):not(.wp-block-archives):not(.wp-block-categories):not(.wp-block-page-list):not(.wp-block-rss):not(.wp-block-post-terms):not(.wp-block-terms-query):not(.wp-block-list):not(.wp-block-query-pagination):not(.wp-block-comments-pagination) {
+    padding: var(--strap-system-panel-padding-y) var(--strap-system-panel-padding-x);
 }
 
 /* Override chunkier padding when panel is used as a modal */
-.wp-block-group.is-style-system-panel.is-style-system-modal > *:not(.is-style-system-list):not(.is-style-system-accordion):not(.is-style-system-details):not(.is-style-system-panel-header):not(.is-style-system-panel-footer):not(.wp-block-image):not(.wp-block-cover):not(.query-directory-listing):not(.directory-listing):not(.query-latest-posts):not(.systemstrap-directory-grid):not(.wp-block-latest-posts):not(.wp-block-latest-comments):not(.wp-block-archives):not(.wp-block-categories):not(.wp-block-page-list):not(.wp-block-rss):not(.wp-block-post-terms):not(.wp-block-terms-query):not(.wp-block-list):not(.wp-block-query-pagination):not(.wp-block-comments-pagination) {
-    padding: var(--strap-system-panel-child-padding);
+.wp-block-group.is-style-system-panel.is-style-system-modal > *:not(.is-style-system-list):not(.is-style-system-accordion):not(.is-style-system-details):not(.is-style-system-panel-header):not(.is-style-system-panel-footer):not(.wp-block-image):not(.wp-block-cover):not(.is-style-system-ui-query):not(.query-directory-listing):not(.directory-listing):not(.query-latest-posts):not(.systemstrap-directory-grid):not(.wp-block-latest-posts):not(.wp-block-latest-comments):not(.wp-block-archives):not(.wp-block-categories):not(.wp-block-page-list):not(.wp-block-rss):not(.wp-block-post-terms):not(.wp-block-terms-query):not(.wp-block-list):not(.wp-block-query-pagination):not(.wp-block-comments-pagination) {
+    padding: var(--strap-system-panel-padding-y) var(--strap-system-panel-padding-x);
 }
 
 /* Allow nested one-child listing shells to break out of padded content wrappers. */
 .wp-block-group.is-style-system-panel > *:has(> :is(.query-directory-listing, .directory-listing, .query-latest-posts, .systemstrap-directory-grid, .wp-block-latest-posts, .wp-block-latest-comments, .wp-block-archives, .wp-block-categories, .wp-block-page-list, .wp-block-rss, .wp-block-post-terms, .wp-block-terms-query, .wp-block-list):only-child) > :is(.query-directory-listing, .directory-listing, .query-latest-posts, .systemstrap-directory-grid, .wp-block-latest-posts, .wp-block-latest-comments, .wp-block-archives, .wp-block-categories, .wp-block-page-list, .wp-block-rss, .wp-block-post-terms, .wp-block-terms-query, .wp-block-list),
 .wp-block-group.is-style-system-panel > .block-editor-block-list__layout > *:has(> :is(.query-directory-listing, .directory-listing, .query-latest-posts, .systemstrap-directory-grid, .wp-block-latest-posts, .wp-block-latest-comments, .wp-block-archives, .wp-block-categories, .wp-block-page-list, .wp-block-rss, .wp-block-post-terms, .wp-block-terms-query, .wp-block-list):only-child) > :is(.query-directory-listing, .directory-listing, .query-latest-posts, .systemstrap-directory-grid, .wp-block-latest-posts, .wp-block-latest-comments, .wp-block-archives, .wp-block-categories, .wp-block-page-list, .wp-block-rss, .wp-block-post-terms, .wp-block-terms-query, .wp-block-list) {
-    margin: calc(var(--strap-system-panel-child-padding) * -1) !important;
+    margin: calc(var(--strap-system-panel-padding-y) * -1) calc(var(--strap-system-panel-padding-x) * -1) !important;
     width: auto;
 }
 
 /* Let nested panel footers fill edge-to-edge like direct-child panel headers. */
 .wp-block-group.is-style-system-panel > *:has(> .wp-block-group.is-style-system-panel-footer:only-child) > .wp-block-group.is-style-system-panel-footer,
 .wp-block-group.is-style-system-panel > .block-editor-block-list__layout > *:has(> .wp-block-group.is-style-system-panel-footer:only-child) > .wp-block-group.is-style-system-panel-footer {
-    margin: calc(var(--strap-system-panel-child-padding) * -1) !important;
-    width: calc(100% + (var(--strap-system-panel-child-padding) * 2));
+    margin: calc(var(--strap-system-panel-padding-y) * -1) calc(var(--strap-system-panel-padding-x) * -1) !important;
+    width: calc(100% + (var(--strap-system-panel-padding-x) * 2));
     max-width: none !important;
 }
 
@@ -90,6 +103,7 @@
 .wp-block-group.is-style-system-panel > .wp-block-image img,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-image img {
     width: 100%;
+    border-radius: 0 !important;
 }
 
 /* ========================================================= */
@@ -104,24 +118,36 @@
 }
 
 /* If the list is the first child of the panel, kill the top border of its first item and round its corners */
-.wp-block-group.is-style-system-panel > *:first-child .is-style-system-list > li:first-child,
-.wp-block-group.is-style-system-panel > *:first-child .is-style-system-list > a:first-child,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:first-child .is-style-system-list > li:first-child,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:first-child .is-style-system-list > a:first-child {
+.wp-block-group.is-style-system-panel > *:first-child:is(.is-style-system-list) > li:first-child,
+.wp-block-group.is-style-system-panel > *:first-child:has(> .is-style-system-list) > .is-style-system-list > li:first-child,
+.wp-block-group.is-style-system-panel > *:first-child:is(.is-style-system-list) > a:first-child,
+.wp-block-group.is-style-system-panel > *:first-child:has(> .is-style-system-list) > .is-style-system-list > a:first-child,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:first-child:is(.is-style-system-list) > li:first-child,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:first-child:has(> .is-style-system-list) > .is-style-system-list > li:first-child,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:first-child:is(.is-style-system-list) > a:first-child,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:first-child:has(> .is-style-system-list) > .is-style-system-list > a:first-child {
     border-top: 0 !important;
     border-top-left-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
     border-top-right-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
 }
 
 /* If the list is the last child of the panel, kill the bottom border of its last item and round its corners */
-.wp-block-group.is-style-system-panel > *:last-child .is-style-system-list > li:last-child,
-.wp-block-group.is-style-system-panel > *:has(+ .block-list-appender) .is-style-system-list > li:last-child,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:last-child .is-style-system-list > li:last-child,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:has(+ .block-list-appender) .is-style-system-list > li:last-child,
-.wp-block-group.is-style-system-panel > *:last-child .is-style-system-list > a:last-child,
-.wp-block-group.is-style-system-panel > *:has(+ .block-list-appender) .is-style-system-list > a:last-child,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:last-child .is-style-system-list > a:last-child,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:has(+ .block-list-appender) .is-style-system-list > a:last-child {
+.wp-block-group.is-style-system-panel > *:last-child:is(.is-style-system-list) > li:last-child,
+.wp-block-group.is-style-system-panel > *:last-child:has(> .is-style-system-list) > .is-style-system-list > li:last-child,
+.wp-block-group.is-style-system-panel > *:has(+ .block-list-appender):is(.is-style-system-list) > li:last-child,
+.wp-block-group.is-style-system-panel > *:has(+ .block-list-appender):has(> .is-style-system-list) > .is-style-system-list > li:last-child,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:last-child:is(.is-style-system-list) > li:last-child,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:last-child:has(> .is-style-system-list) > .is-style-system-list > li:last-child,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:has(+ .block-list-appender):is(.is-style-system-list) > li:last-child,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:has(+ .block-list-appender):has(> .is-style-system-list) > .is-style-system-list > li:last-child,
+.wp-block-group.is-style-system-panel > *:last-child:is(.is-style-system-list) > a:last-child,
+.wp-block-group.is-style-system-panel > *:last-child:has(> .is-style-system-list) > .is-style-system-list > a:last-child,
+.wp-block-group.is-style-system-panel > *:has(+ .block-list-appender):is(.is-style-system-list) > a:last-child,
+.wp-block-group.is-style-system-panel > *:has(+ .block-list-appender):has(> .is-style-system-list) > .is-style-system-list > a:last-child,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:last-child:is(.is-style-system-list) > a:last-child,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:last-child:has(> .is-style-system-list) > .is-style-system-list > a:last-child,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:has(+ .block-list-appender):is(.is-style-system-list) > a:last-child,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:has(+ .block-list-appender):has(> .is-style-system-list) > .is-style-system-list > a:last-child {
     border-bottom: 0 !important;
     border-bottom-left-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
     border-bottom-right-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
@@ -139,10 +165,14 @@
 }
 
 /* If the accordion is the last child of the panel, kill the bottom border of its last item and round its corners */
-.wp-block-group.is-style-system-panel > *:last-child .is-style-system-accordion .wp-block-accordion-item:last-child,
-.wp-block-group.is-style-system-panel > *:has(+ .block-list-appender) .is-style-system-accordion .wp-block-accordion-item:last-child,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:last-child .is-style-system-accordion .wp-block-accordion-item:last-child,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:has(+ .block-list-appender) .is-style-system-accordion .wp-block-accordion-item:last-child {
+.wp-block-group.is-style-system-panel > *:last-child:is(.is-style-system-accordion) .wp-block-accordion-item:last-child,
+.wp-block-group.is-style-system-panel > *:last-child:has(> .is-style-system-accordion) > .is-style-system-accordion .wp-block-accordion-item:last-child,
+.wp-block-group.is-style-system-panel > *:has(+ .block-list-appender):is(.is-style-system-accordion) .wp-block-accordion-item:last-child,
+.wp-block-group.is-style-system-panel > *:has(+ .block-list-appender):has(> .is-style-system-accordion) > .is-style-system-accordion .wp-block-accordion-item:last-child,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:last-child:is(.is-style-system-accordion) .wp-block-accordion-item:last-child,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:last-child:has(> .is-style-system-accordion) > .is-style-system-accordion .wp-block-accordion-item:last-child,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:has(+ .block-list-appender):is(.is-style-system-accordion) .wp-block-accordion-item:last-child,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:has(+ .block-list-appender):has(> .is-style-system-accordion) > .is-style-system-accordion .wp-block-accordion-item:last-child {
     border-bottom: 0 !important;
     border-bottom-left-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
     border-bottom-right-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
@@ -165,19 +195,27 @@
 }
 
 /* If details is the first child of the panel, round its top corners */
-.wp-block-group.is-style-system-panel > *:first-child .is-style-system-details,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:first-child .is-style-system-details,
-.wp-block-group.is-style-system-panel > *:first-child .is-style-system-details summary,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:first-child .is-style-system-details summary {
+.wp-block-group.is-style-system-panel > *:first-child:is(.is-style-system-details),
+.wp-block-group.is-style-system-panel > *:first-child:has(> .is-style-system-details) > .is-style-system-details,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:first-child:is(.is-style-system-details),
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:first-child:has(> .is-style-system-details) > .is-style-system-details,
+.wp-block-group.is-style-system-panel > *:first-child:is(.is-style-system-details) summary,
+.wp-block-group.is-style-system-panel > *:first-child:has(> .is-style-system-details) > .is-style-system-details summary,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:first-child:is(.is-style-system-details) summary,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:first-child:has(> .is-style-system-details) > .is-style-system-details summary {
     border-top-left-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
     border-top-right-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
 }
 
 /* If details is the last child of the panel, kill its bottom border and round its corners */
-.wp-block-group.is-style-system-panel > *:last-child .is-style-system-details,
-.wp-block-group.is-style-system-panel > *:has(+ .block-list-appender) .is-style-system-details,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:last-child .is-style-system-details,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:has(+ .block-list-appender) .is-style-system-details {
+.wp-block-group.is-style-system-panel > *:last-child:is(.is-style-system-details),
+.wp-block-group.is-style-system-panel > *:last-child:has(> .is-style-system-details) > .is-style-system-details,
+.wp-block-group.is-style-system-panel > *:has(+ .block-list-appender):is(.is-style-system-details),
+.wp-block-group.is-style-system-panel > *:has(+ .block-list-appender):has(> .is-style-system-details) > .is-style-system-details,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:last-child:is(.is-style-system-details),
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:last-child:has(> .is-style-system-details) > .is-style-system-details,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:has(+ .block-list-appender):is(.is-style-system-details),
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:has(+ .block-list-appender):has(> .is-style-system-details) > .is-style-system-details {
     border-bottom: 0 !important;
     border-bottom-left-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
     border-bottom-right-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
