@@ -558,8 +558,8 @@ add_action( 'wp_print_styles', 'strap_reorder_frontend_style_queue', 1 );
  * Hooked to render_block to ensure it loads even if the block is nested inside a pattern or template part.
  */
 function strap_enqueue_accordion_tabs( $block_content, $block ) {
-	if ( 
-		isset( $block['attrs']['className'] ) && 
+	if (
+		isset( $block['attrs']['className'] ) &&
 		(
 			strpos( $block['attrs']['className'], 'is-style-system-tabs' ) !== false ||
 			strpos( $block['attrs']['className'], 'is-style-system-tabs-vertical' ) !== false

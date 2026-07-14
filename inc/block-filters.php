@@ -238,7 +238,7 @@ function strap_single_content_block_filter( string $block_content, array $block 
 		return $block_content;
 	}
 
-	$post_type = 'CreativeWork';
+	$post_type = 'Article';
 	if ( is_singular() ) {
 		$queried_post_type = get_post_type( get_queried_object_id() );
 		if ( 'post' === $queried_post_type ) {
@@ -903,7 +903,7 @@ function strap_add_site_logo_schema_markup( string $block_content ): string {
 		}
 
 		if ( 'IMG' === $tag_name ) {
-			$processor->set_attribute( 'itemprop', 'logo' );
+			$processor->set_attribute( 'itemprop', 'contentUrl' );
 		}
 	}
 
@@ -1151,26 +1151,6 @@ function strap_tag_cloud_block_filter( string $block_content, array $block ): st
 	return $processor->get_updated_html();
 }
 
-/**
- * Add schema to video blocks.
- */
-add_filter( 'render_block_core/video', 'strap_video_block_filter', 10, 2 );
-function strap_video_block_filter( string $block_content, array $block ): string {
-	$processor = strap_get_html_processor( $block_content );
-	if ( ! $processor || ! $processor->next_tag( 'FIGURE' ) ) {
-		return $block_content;
-	}
-
-	strap_html_processor_set_attributes(
-		$processor,
-		array(
-			'itemscope' => true,
-			'itemtype'  => 'https://schema.org/VideoObject',
-		)
-	);
-
-	return $processor->get_updated_html();
-}
 
 /**
  * Add schema to audio blocks.
@@ -1190,7 +1170,18 @@ function strap_audio_block_filter( string $block_content, array $block ): string
 		)
 	);
 
-	return $processor->get_updated_html();
+	while ( $processor->next_tag() ) {
+		if ( 'AUDIO' === $processor->get_tag() ) {
+			$processor->set_attribute( 'itemprop', 'contentUrl' );
+		}
+	}
+
+	$updated_html = $processor->get_updated_html();
+	
+	$meta_tags = '<meta itemprop="name" content="' . esc_attr( get_the_title() ) . ' Audio">';
+	$updated_html = str_replace( '</figure>', $meta_tags . '</figure>', $updated_html );
+
+	return $updated_html;
 }
 
 /**
@@ -1369,4 +1360,93 @@ function strap_bp_member_style_class_filter( string $block_content, array $block
 	}
 
 	return $processor->get_updated_html();
+}
+add_filter( 'render_block_core/latest-posts', 'strap_latest_posts_block_filter', 10, 2 );
+function strap_latest_posts_block_filter( string $block_content, array $block ): string {
+	$block_content = preg_replace( '/<ul([^>]*)>/', '<ul$1 itemscope itemtype="https://schema.org/ItemList">', $block_content, 1 );
+
+	$counter = 1;
+	$block_content = preg_replace_callback( '/<li>(.*?)<\/li>/s', function( $matches ) use ( &$counter ) {
+		$inner = $matches[1];
+		$url = '';
+		$title = '';
+		if ( preg_match( '/<a[^>]*href="([^"]*)"[^>]*>(.*?)<\/a>/', $inner, $a_matches ) ) {
+			$url = $a_matches[1];
+			$title = wp_strip_all_tags( $a_matches[2] );
+		}
+		
+		$html = '<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">';
+		$html .= '<meta itemprop="position" content="' . $counter . '" />';
+		$html .= '<article itemprop="item" itemscope itemtype="https://schema.org/Article">';
+		if ( $url && $title ) {
+			$html .= '<link itemprop="mainEntityOfPage url" href="' . esc_url( $url ) . '" />';
+			$html .= '<meta itemprop="headline" content="' . esc_attr( $title ) . '" />';
+			$html .= '<meta itemprop="description" content="' . esc_attr( $title ) . '" />';
+		}
+		$html .= $inner;
+		$html .= '</article></li>';
+		
+		$counter++;
+		return $html;
+	}, $block_content );
+
+	return $block_content;
+}
+
+add_filter( 'render_block_core/post-template', 'strap_post_template_block_filter', 10, 2 );
+function strap_post_template_block_filter( string $block_content, array $block ): string {
+	$block_content = preg_replace( '/<ul([^>]*)>/', '<ul$1 itemscope itemtype="https://schema.org/ItemList">', $block_content, 1 );
+
+	$counter = 1;
+	// We need to parse <li> with classes.
+	$block_content = preg_replace_callback( '/<li([^>]*)>(.*?)<\/li>/s', function( $matches ) use ( &$counter ) {
+		$attrs = $matches[1];
+		$inner = $matches[2];
+		
+		// Attempt to extract title/url from core/post-title if present
+		$url = '';
+		$title = '';
+		if ( preg_match( '/<h[1-6][^>]*wp-block-post-title[^>]*>.*?<a[^>]*href="([^"]*)"[^>]*>(.*?)<\/a>.*?<\/h[1-6]>/s', $inner, $a_matches ) ) {
+			$url = $a_matches[1];
+			$title = wp_strip_all_tags( $a_matches[2] );
+		}
+		
+		$html = '<li' . $attrs . ' itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">';
+		$html .= '<meta itemprop="position" content="' . $counter . '" />';
+		$html .= '<article itemprop="item" itemscope itemtype="https://schema.org/Article">';
+		if ( $url && $title ) {
+			$html .= '<link itemprop="mainEntityOfPage url" href="' . esc_url( $url ) . '" />';
+			$html .= '<meta itemprop="headline" content="' . esc_attr( $title ) . '" />';
+			$html .= '<meta itemprop="description" content="' . esc_attr( $title ) . '" />';
+		}
+		$html .= $inner;
+		$html .= '</article></li>';
+		
+		$counter++;
+		return $html;
+	}, $block_content );
+
+	return $block_content;
+}
+
+add_filter( 'render_block_core/latest-comments', 'strap_latest_comments_block_filter', 10, 2 );
+function strap_latest_comments_block_filter( string $block_content, array $block ): string {
+	$block_content = preg_replace( '/<ol([^>]*)>/', '<ol$1 itemscope itemtype="https://schema.org/ItemList">', $block_content, 1 );
+
+	$counter = 1;
+	$block_content = preg_replace_callback( '/<li([^>]*)>(.*?)<\/li>/s', function( $matches ) use ( &$counter ) {
+		$attrs = $matches[1];
+		$inner = $matches[2];
+		
+		$html = '<li' . $attrs . ' itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">';
+		$html .= '<meta itemprop="position" content="' . $counter . '" />';
+		$html .= '<article itemprop="item" itemscope itemtype="https://schema.org/Comment">';
+		$html .= $inner;
+		$html .= '</article></li>';
+		
+		$counter++;
+		return $html;
+	}, $block_content );
+
+	return $block_content;
 }
