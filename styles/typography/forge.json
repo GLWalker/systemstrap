@@ -1,0 +1,37 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "Forge Typography",
+	"description": "Typography: The GitHub Primer system font stack.",
+	"settings": {
+		"typography": {
+			"fontFamilies": [
+				{
+					"fontFamily": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans\", Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+					"name": "Body Font",
+					"slug": "body"
+				},
+				{
+					"fontFamily": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans\", Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+					"name": "Heading Font",
+					"slug": "heading"
+				},
+				{
+					"fontFamily": "\"Avenir Next\", Avenir, \"Century Gothic\", \"Helvetica Neue\", sans-serif",
+					"name": "Display Font",
+					"slug": "display"
+				},
+				{
+					"fontFamily": "-apple-system, BlinkMacSystemFont, \"Segoe UI Semibold\", \"Segoe UI\", Roboto, sans-serif",
+					"name": "Button Font",
+					"slug": "button"
+				},
+				{
+					"fontFamily": "ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace",
+					"name": "Monospace",
+					"slug": "monospace"
+				}
+			]
+		}
+	}
+}

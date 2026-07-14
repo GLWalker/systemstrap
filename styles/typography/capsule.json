@@ -1,0 +1,37 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "Capsule Typography",
+	"description": "Typography: A clean, modern style inspired by flat design principles and the Bulma framework.",
+	"settings": {
+		"typography": {
+			"fontFamilies": [
+				{
+					"fontFamily": "\"Inter\", \"SF Pro\", \"Segoe UI\", \"Roboto\", \"Oxygen\", \"Ubuntu\", \"Helvetica Neue\", \"Helvetica\", \"Arial\", sans-serif",
+					"name": "Body Font",
+					"slug": "body"
+				},
+				{
+					"fontFamily": "\"Inter\", \"SF Pro\", \"Segoe UI\", \"Roboto\", \"Oxygen\", \"Ubuntu\", \"Helvetica Neue\", \"Helvetica\", \"Arial\", sans-serif",
+					"name": "Heading Font",
+					"slug": "heading"
+				},
+				{
+					"fontFamily": "ui-rounded, \"Hiragino Maru Gothic ProN\", Quicksand, sans-serif",
+					"name": "Display Font",
+					"slug": "display"
+				},
+				{
+					"fontFamily": "\"Helvetica Neue\", Helvetica, Arial, sans-serif",
+					"name": "Button Font",
+					"slug": "button"
+				},
+				{
+					"fontFamily": "monospace",
+					"name": "Monospace Font",
+					"slug": "monospace"
+				}
+			]
+		}
+	}
+}

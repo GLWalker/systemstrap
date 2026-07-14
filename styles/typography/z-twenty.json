@@ -1,0 +1,37 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "Twenty Typography",
+	"description": "Typography: Twenty Twenty-Four typography with Inter and Cardo.",
+	"settings": {
+		"typography": {
+			"fontFamilies": [
+				{
+					"fontFamily": "\"Inter\", sans-serif",
+					"name": "Inter",
+					"slug": "body"
+				},
+				{
+					"fontFamily": "Cardo, serif",
+					"name": "Cardo",
+					"slug": "heading"
+				},
+				{
+					"fontFamily": "\"Inter\", sans-serif",
+					"name": "Inter Display",
+					"slug": "display"
+				},
+				{
+					"fontFamily": "\"Inter\", sans-serif",
+					"name": "Inter Button",
+					"slug": "button"
+				},
+				{
+					"fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+					"name": "Monospace",
+					"slug": "monospace"
+				}
+			]
+		}
+	}
+}

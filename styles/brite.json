@@ -2,6 +2,7 @@
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
 	"version": 3,
 	"title": "Brite Layout",
+	"description": "Layout: A bright, high-contrast style variation inspired by Bootswatch Brite.",
 	"settings": {
 		"custom": {
 			"border-radius": "0.375rem",
@@ -22,16 +23,18 @@
 			"btn-transform": "translate(-3px, -3px)",
 			"btn-hover-transform": "translate(0, 0)",
 			"btn-transition": "all 0.3s",
-			"system-ui-surface": "#ffffff",
+			"system-ui-surface": "var:preset|color|base",
 			"system-ui-surface-nested": "none",
 			"system-ui-background-image": "var:preset|gradient|element",
-			"system-ui-border-color": "#000000",
+			"system-ui-border-color": "var:preset|color|border-color",
 			"font-weight-light": "300",
 			"font-weight-body": "400",
 			"font-weight-button": "500",
 			"font-weight-heading": "500",
 			"font-weight-nav": "500",
-			"font-weight-bold": "700"
+			"font-weight-bold": "700",
+			"link-color": "var:preset|color|primary",
+			"link-hover-color": "color-mix(in srgb, var(--wp--custom--link-color) 70%, var(--wp--preset--color--contrast))"
 		},
 		"shadow": {
 			"presets": [
@@ -78,12 +81,12 @@
 				{
 					"name": "Button Hover",
 					"slug": "btn-hover",
-					"shadow": "none"
+					"shadow": "0 0 0 0 transparent"
 				},
 				{
 					"name": "Button Active",
 					"slug": "btn-active",
-					"shadow": "none"
+					"shadow": "0 0 0 0 transparent"
 				}
 			]
 		}

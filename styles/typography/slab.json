@@ -1,7 +1,8 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
 	"version": 3,
-	"title": "Yeti Typography",
+	"title": "Slab Typography",
+	"description": "Typography: A friendly, Foundation 5 inspired layout and design.",
 	"settings": {
 		"typography": {
 			"fontFamilies": [

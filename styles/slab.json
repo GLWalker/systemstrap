@@ -1,7 +1,8 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
 	"version": 3,
-	"title": "Yeti Layout",
+	"title": "Slab Layout",
+	"description": "Layout: A friendly, Foundation 5 inspired layout and design.",
 	"settings": {
 		"custom": {
 			"border-radius": "0",
@@ -13,14 +14,16 @@
 			"form-border-radius": "0",
 			"dropdown-border-radius": "0",
 			"shadow": "var:preset|shadow|sm",
-			"system-ui-surface": "#ffffff",
+			"system-ui-surface": "var:preset|color|base",
 			"system-ui-surface-nested": "none",
 			"system-ui-background-image": "var:preset|gradient|element",
 			"system-ui-border-color": "var:preset|color|border-color",
 			"system-ui-list-hover-bg": "color-mix(in srgb, currentColor 5%, transparent)",
 			"font-weight-button": "400",
 			"font-weight-heading": "400",
-			"font-weight-nav": "400"
+			"font-weight-nav": "400",
+			"link-color": "var:preset|color|primary",
+			"link-hover-color": "color-mix(in srgb, var(--wp--custom--link-color) 70%, var(--wp--preset--color--contrast))"
 		},
 		"shadow": {
 			"presets": [
@@ -62,18 +65,30 @@
 				{
 					"name": "Button Resting",
 					"slug": "btn-resting",
-					"shadow": "none"
+					"shadow": "0 0 0 0 transparent"
 				},
 				{
 					"name": "Button Hover",
 					"slug": "btn-hover",
-					"shadow": "none"
+					"shadow": "0 0 0 0 transparent"
 				},
 				{
 					"name": "Button Active",
 					"slug": "btn-active",
 					"shadow": "inset 0 1px 2px rgba(10, 10, 10, 0.16)"
 				}
+			]
+		},
+		"spacing": {
+			"spacingSizes": [
+				{ "name": "Ten", "size": "0.25rem", "slug": "10" },
+				{ "name": "Twenty", "size": "0.5rem", "slug": "20" },
+				{ "name": "Thirty", "size": "1rem", "slug": "30" },
+				{ "name": "Forty", "size": "2rem", "slug": "40" },
+				{ "name": "Fifty", "size": "3rem", "slug": "50" },
+				{ "name": "Sixty", "size": "5rem", "slug": "60" },
+				{ "name": "Seventy", "size": "clamp(4rem, 4vw, 7rem)", "slug": "70" },
+				{ "name": "Eighty", "size": "clamp(6rem, 6vw, 10rem)", "slug": "80" }
 			]
 		}
 	}

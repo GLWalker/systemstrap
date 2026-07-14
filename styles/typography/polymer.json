@@ -1,0 +1,37 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "Polymer Typography",
+	"description": "Typography: Material Design 3 aesthetic, inspired by Google Material.",
+	"settings": {
+		"typography": {
+			"fontFamilies": [
+				{
+					"fontFamily": "Roboto, \"Noto Sans\", system-ui, -apple-system, \"Segoe UI\", \"Helvetica Neue\", \"Liberation Sans\", Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+					"name": "Body Font",
+					"slug": "body"
+				},
+				{
+					"fontFamily": "Roboto, \"Noto Sans\", system-ui, -apple-system, \"Segoe UI\", \"Helvetica Neue\", \"Liberation Sans\", Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+					"name": "Heading Font",
+					"slug": "heading"
+				},
+				{
+					"fontFamily": "\"Roboto Slab\", \"Rockwell\", \"Courier New\", Courier, serif",
+					"name": "Display Font",
+					"slug": "display"
+				},
+				{
+					"fontFamily": "\"Product Sans\", \"Google Sans\", \"Open Sans\", Roboto, sans-serif",
+					"name": "Button Font",
+					"slug": "button"
+				},
+				{
+					"fontFamily": "\"Roboto Mono\", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+					"name": "Monospace Font",
+					"slug": "monospace"
+				}
+			]
+		}
+	}
+}

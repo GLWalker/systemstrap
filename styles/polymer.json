@@ -1,0 +1,92 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "Polymer Layout",
+	"description": "Layout: Material Design 3 aesthetic, inspired by Google Material.",
+	"settings": {
+		"custom": {
+			"border-radius": "0.75rem",
+			"border-radius-sm": "0.5rem",
+			"border-radius-lg": "1rem",
+			"border-radius-xl": "1.75rem",
+			"border-radius-pill": "50rem",
+			"btn-border-radius": "50rem",
+			"form-border-radius": "0.25rem",
+			"dropdown-border-radius": "0.25rem",
+			"shadow": "var:preset|shadow|sm",
+			"system-ui-surface": "var:preset|color|base",
+			"system-ui-surface-nested": "none",
+			"system-ui-background-image": "var:preset|gradient|element",
+			"system-ui-border-color": "color-mix(in srgb, currentColor 20%, transparent)",
+			"font-weight-light": "300",
+			"font-weight-body": "400",
+			"font-weight-button": "500",
+			"font-weight-heading": "400",
+			"font-weight-nav": "500",
+			"font-weight-bold": "700",
+			"link-color": "var:preset|color|primary",
+			"link-hover-color": "color-mix(in srgb, var(--wp--custom--link-color) 70%, var(--wp--preset--color--contrast))"
+		},
+		"shadow": {
+			"presets": [
+				{
+					"name": "Small",
+					"shadow": "0 1px 2px 0 rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15)",
+					"slug": "sm"
+				},
+				{
+					"name": "Medium",
+					"shadow": "0 1px 2px 0 rgba(0, 0, 0, 0.3), 0 2px 6px 2px rgba(0, 0, 0, 0.15)",
+					"slug": "md"
+				},
+				{
+					"name": "Large",
+					"shadow": "0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 4px 8px 3px rgba(0, 0, 0, 0.15)",
+					"slug": "lg"
+				},
+				{
+					"name": "Inset",
+					"shadow": "inset 0 2px 4px 0 rgba(0, 0, 0, 0.05)",
+					"slug": "inset"
+				},
+				{
+					"name": "Dropdown Menu",
+					"shadow": "0 2px 3px 0 rgba(0, 0, 0, 0.3), 0 6px 10px 4px rgba(0, 0, 0, 0.15)",
+					"slug": "dropdown-menu"
+				},
+				{
+					"name": "Form Focus",
+					"slug": "form-focus",
+					"shadow": "var(--wp--preset--shadow--form-control-shadow, none), 0 0 0 0.125rem var(--wp--preset--color--primary)"
+				},
+				{
+					"name": "Form Shadow",
+					"shadow": "inset 0 1px 2px 0 rgba(0, 0, 0, 0.1)",
+					"slug": "form-control-shadow"
+				},
+				{
+					"name": "Button Resting",
+					"slug": "btn-resting",
+					"shadow": "0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.15)"
+				},
+				{
+					"name": "Button Hover",
+					"slug": "btn-hover",
+					"shadow": "0 2px 4px 0 rgba(0, 0, 0, 0.3), 0 3px 6px 1px rgba(0, 0, 0, 0.15)"
+				},
+				{
+					"name": "Button Active",
+					"slug": "btn-active",
+					"shadow": "0 0 0 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.15)"
+				}
+			]
+		}
+	},
+	"styles": {
+		"elements": {
+			"button": {
+				"css": "& { text-transform: none; border: none; box-shadow: var(--wp--preset--shadow--btn-resting); transition: color 0.2s, background-color 0.2s, border-color 0.2s, box-shadow 0.2s; }\n&:hover { box-shadow: var(--wp--preset--shadow--btn-hover); background-color: color-mix(in srgb, var(--wp--preset--color--primary) 92%, #000); }\n&:active { box-shadow: var(--wp--preset--shadow--btn-active); background-color: color-mix(in srgb, var(--wp--preset--color--primary) 88%, #000); }"
+			}
+		}
+	}
+}

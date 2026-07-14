@@ -1,228 +1,83 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
 	"version": 3,
-	"title": "Darkly Palette",
+	"title": "Slab Colors",
+	"description": "Colors: A friendly, Foundation 5 inspired layout and design.",
 	"settings": {
 		"color": {
-			"duotone": [
-				{
-					"colors": [
-						"#222222",
-						"#ffffff"
-					],
-					"name": "Base to Contrast",
-					"slug": "duotone-1"
-				},
-				{
-					"colors": [
-						"#ffffff",
-						"#222222"
-					],
-					"name": "Contast to Base",
-					"slug": "duotone-11"
-				},
-				{
-					"colors": [
-						"#222222",
-						"#375a7f"
-					],
-					"name": "Base to Accent",
-					"slug": "duotone-2"
-				},
-				{
-					"colors": [
-						"#375a7f",
-						"#222222"
-					],
-					"name": "Accent to Base",
-					"slug": "duotone-12"
-				},
-				{
-					"colors": [
-						"#222222",
-						"#375a7f"
-					],
-					"name": "Base to Primary",
-					"slug": "duotone-3"
-				},
-				{
-					"colors": [
-						"#375a7f",
-						"#222222"
-					],
-					"name": "Base to Primary to Base",
-					"slug": "duotone-13"
-				},
-				{
-					"colors": [
-						"#222222",
-						"#303030"
-					],
-					"name": "Base to Secondary",
-					"slug": "duotone-4"
-				},
-				{
-					"colors": [
-						"#303030",
-						"#222222"
-					],
-					"name": "Secondary to Base",
-					"slug": "duotone-14"
-				},
-				{
-					"colors": [
-						"#222222",
-						"#00bc8c"
-					],
-					"name": "Base to Success",
-					"slug": "duotone-5"
-				},
-				{
-					"colors": [
-						"#00bc8c",
-						"#222222"
-					],
-					"name": "Success to Base",
-					"slug": "duotone-15"
-				},
-				{
-					"colors": [
-						"#222222",
-						"#3498db"
-					],
-					"name": "Base to Info",
-					"slug": "duotone-6"
-				},
-				{
-					"colors": [
-						"#3498db",
-						"#222222"
-					],
-					"name": "Info to Base",
-					"slug": "duotone-16"
-				},
-				{
-					"colors": [
-						"#222222",
-						"#f39c12"
-					],
-					"name": "Base to Warning",
-					"slug": "duotone-7"
-				},
-				{
-					"colors": [
-						"#f39c12",
-						"#222222"
-					],
-					"name": "Warning to Base",
-					"slug": "duotone-17"
-				},
-				{
-					"colors": [
-						"#222222",
-						"#e74c3c"
-					],
-					"name": "Base to Danger",
-					"slug": "duotone-8"
-				},
-				{
-					"colors": [
-						"#e74c3c",
-						"#222222"
-					],
-					"name": "Danger to Base",
-					"slug": "duotone-18"
-				},
-				{
-					"colors": [
-						"#303030",
-						"#ffffff"
-					],
-					"name": "Light to Dark",
-					"slug": "duotone-9"
-				},
-				{
-					"colors": [
-						"#ffffff",
-						"#303030"
-					],
-					"name": "Dark to Light",
-					"slug": "duotone-10"
-				}
-			],
 			"palette": [
 				{
-					"color": "#222222",
+					"color": "#fefefe",
 					"name": "Base/Body",
 					"slug": "base"
 				},
 				{
-					"color": "#ffffff",
+					"color": "#0a0a0a",
 					"name": "Contrast",
 					"slug": "contrast"
 				},
 				{
-					"color": "#375a7f",
+					"color": "#1779ba",
 					"name": "Primary",
 					"slug": "primary"
 				},
 				{
-					"color": "#444444",
+					"color": "#767676",
 					"name": "Secondary",
 					"slug": "secondary"
 				},
 				{
-					"color": "#00bc8c",
+					"color": "#3adb76",
 					"name": "Success",
 					"slug": "success"
 				},
 				{
-					"color": "#3498db",
+					"color": "#2ba6cb",
 					"name": "Info",
 					"slug": "info"
 				},
 				{
-					"color": "#f39c12",
+					"color": "#ffae00",
 					"name": "Warning",
 					"slug": "warning"
 				},
 				{
-					"color": "#e74c3c",
+					"color": "#cc4b37",
 					"name": "Danger",
 					"slug": "danger"
 				},
 				{
-					"color": "#adb5bd",
+					"color": "#c6c6c6",
 					"name": "Light",
 					"slug": "light"
 				},
 				{
-					"color": "#303030",
+					"color": "#333333",
 					"name": "Dark",
 					"slug": "dark"
 				},
 				{
-					"color": "#303030",
+					"color": "#e6e6e6",
 					"name": "Secondary Body BG",
 					"slug": "secondary-bg"
 				},
 				{
-					"color": "#888888",
+					"color": "#8a8a8a",
 					"name": "Secondary Body Contrast",
 					"slug": "secondary-color"
 				},
 				{
-					"color": "#292929",
+					"color": "#f3f3f3",
 					"name": "Tertiary Body BG",
 					"slug": "tertiary-bg"
 				},
 				{
-					"color": "#555555",
+					"color": "#666666",
 					"name": "Tertiary Body Contrast",
 					"slug": "tertiary-color"
 				},
 				{
-					"color": "#444444",
+					"color": "#cacaca",
 					"name": "Border Color",
 					"slug": "border-color"
 				},
@@ -232,7 +87,7 @@
 					"slug": "current"
 				},
 				{
-					"color": "current-mix",
+					"color": "color-mix(in srgb, currentColor 40%, transparent)",
 					"name": "Current Mix",
 					"slug": "current-mix"
 				},
@@ -252,25 +107,155 @@
 					"slug": "inherit"
 				}
 			],
+			"duotone": [
+				{
+					"colors": [
+						"#fefefe",
+						"#0a0a0a"
+					],
+					"name": "Base to Contrast",
+					"slug": "duotone-1"
+				},
+				{
+					"colors": [
+						"#0a0a0a",
+						"#fefefe"
+					],
+					"name": "Contast to Base",
+					"slug": "duotone-11"
+				},
+				{
+					"colors": [
+						"#fefefe",
+						"#1779ba"
+					],
+					"name": "Base to Primary",
+					"slug": "duotone-3"
+				},
+				{
+					"colors": [
+						"#1779ba",
+						"#fefefe"
+					],
+					"name": "Base to Primary to Base",
+					"slug": "duotone-13"
+				},
+				{
+					"colors": [
+						"#fefefe",
+						"#767676"
+					],
+					"name": "Base to Secondary",
+					"slug": "duotone-4"
+				},
+				{
+					"colors": [
+						"#767676",
+						"#fefefe"
+					],
+					"name": "Secondary to Base",
+					"slug": "duotone-14"
+				},
+				{
+					"colors": [
+						"#fefefe",
+						"#3adb76"
+					],
+					"name": "Base to Success",
+					"slug": "duotone-5"
+				},
+				{
+					"colors": [
+						"#3adb76",
+						"#fefefe"
+					],
+					"name": "Success to Base",
+					"slug": "duotone-15"
+				},
+				{
+					"colors": [
+						"#fefefe",
+						"#2ba6cb"
+					],
+					"name": "Base to Info",
+					"slug": "duotone-6"
+				},
+				{
+					"colors": [
+						"#2ba6cb",
+						"#fefefe"
+					],
+					"name": "Info to Base",
+					"slug": "duotone-16"
+				},
+				{
+					"colors": [
+						"#fefefe",
+						"#ffae00"
+					],
+					"name": "Base to Warning",
+					"slug": "duotone-7"
+				},
+				{
+					"colors": [
+						"#ffae00",
+						"#fefefe"
+					],
+					"name": "Warning to Base",
+					"slug": "duotone-17"
+				},
+				{
+					"colors": [
+						"#fefefe",
+						"#cc4b37"
+					],
+					"name": "Base to Danger",
+					"slug": "duotone-8"
+				},
+				{
+					"colors": [
+						"#cc4b37",
+						"#fefefe"
+					],
+					"name": "Danger to Base",
+					"slug": "duotone-18"
+				},
+				{
+					"colors": [
+						"#e6e6e6",
+						"#2c2c2c"
+					],
+					"name": "Light to Dark",
+					"slug": "duotone-9"
+				},
+				{
+					"colors": [
+						"#2c2c2c",
+						"#e6e6e6"
+					],
+					"name": "Dark to Light",
+					"slug": "duotone-10"
+				}
+			],
 			"gradients": [
 				{
 					"slug": "gradient",
-					"gradient": "linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0.1) 100%)",
+					"gradient": "linear-gradient(180deg, rgba(254, 254, 254, 0.22) 0%, rgba(254, 254, 254, 0) 100%)",
 					"name": "Gradient"
 				},
 				{
 					"slug": "gradient-alt",
-					"gradient": "linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.2) 100%)",
+					"gradient": "linear-gradient(180deg, rgba(10, 10, 10, 0.04) 0%, rgba(10, 10, 10, 0.14) 100%)",
 					"name": "Gradient Alt"
 				},
 				{
 					"slug": "body",
-					"gradient": "linear-gradient(135deg, var(--wp--preset--color--secondary-bg) 0%, var(--wp--preset--color--tertiary-bg) 100%)",
+					"gradient": "linear-gradient(135deg, var(--wp--preset--color--base) 0%, var(--wp--preset--color--tertiary-bg) 52%, var(--wp--preset--color--secondary-bg) 100%)",
 					"name": "Body Background"
 				},
 				{
 					"slug": "element",
-					"gradient": "linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%)",
+					"gradient": "linear-gradient(180deg, rgba(254, 254, 254, 0.38) 0%, rgba(243, 243, 243, 0.18) 48%, rgba(10, 10, 10, 0.02) 100%)",
 					"name": "Element Background"
 				},
 				{
@@ -358,7 +343,7 @@
 	},
 	"styles": {
 		"color": {
-			"background": "var:preset|color|base",
+			"gradient": "var:preset|gradient|body",
 			"text": "var:preset|color|contrast"
 		}
 	}

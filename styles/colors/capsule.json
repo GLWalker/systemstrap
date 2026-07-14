@@ -1,22 +1,22 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
 	"version": 3,
-	"title": "Reboot Colors",
-	"description": "Colors: The foundational baseline style, inspired by Bootstrap 5.",
+	"title": "Capsule Colors",
+	"description": "Colors: A clean, modern style inspired by flat design principles and the Bulma framework.",
 	"settings": {
 		"color": {
 			"duotone": [
 				{
 					"colors": [
 						"#ffffff",
-						"#212529"
+						"#363636"
 					],
 					"name": "Base to Contrast",
 					"slug": "duotone-1"
 				},
 				{
 					"colors": [
-						"#212529",
+						"#363636",
 						"#ffffff"
 					],
 					"name": "Contrast to Base",
@@ -25,14 +25,14 @@
 				{
 					"colors": [
 						"#ffffff",
-						"#0d6efd"
+						"#00d1b2"
 					],
 					"name": "Base to Primary",
 					"slug": "duotone-3"
 				},
 				{
 					"colors": [
-						"#0d6efd",
+						"#00d1b2",
 						"#ffffff"
 					],
 					"name": "Primary to Base",
@@ -41,14 +41,14 @@
 				{
 					"colors": [
 						"#ffffff",
-						"#6c757d"
+						"#485fc7"
 					],
 					"name": "Base to Secondary",
 					"slug": "duotone-4"
 				},
 				{
 					"colors": [
-						"#6c757d",
+						"#485fc7",
 						"#ffffff"
 					],
 					"name": "Secondary to Base",
@@ -57,14 +57,14 @@
 				{
 					"colors": [
 						"#ffffff",
-						"#198754"
+						"#48c774"
 					],
 					"name": "Base to Success",
 					"slug": "duotone-5"
 				},
 				{
 					"colors": [
-						"#198754",
+						"#48c774",
 						"#ffffff"
 					],
 					"name": "Success to Base",
@@ -73,14 +73,14 @@
 				{
 					"colors": [
 						"#ffffff",
-						"#0dcaf0"
+						"#3e8ed0"
 					],
 					"name": "Base to Info",
 					"slug": "duotone-6"
 				},
 				{
 					"colors": [
-						"#0dcaf0",
+						"#3e8ed0",
 						"#ffffff"
 					],
 					"name": "Info to Base",
@@ -89,14 +89,14 @@
 				{
 					"colors": [
 						"#ffffff",
-						"#ffc107"
+						"#ffe08a"
 					],
 					"name": "Base to Warning",
 					"slug": "duotone-7"
 				},
 				{
 					"colors": [
-						"#ffc107",
+						"#ffe08a",
 						"#ffffff"
 					],
 					"name": "Warning to Base",
@@ -105,14 +105,14 @@
 				{
 					"colors": [
 						"#ffffff",
-						"#dc3545"
+						"#f14668"
 					],
 					"name": "Base to Danger",
 					"slug": "duotone-8"
 				},
 				{
 					"colors": [
-						"#dc3545",
+						"#f14668",
 						"#ffffff"
 					],
 					"name": "Danger to Base",
@@ -120,16 +120,16 @@
 				},
 				{
 					"colors": [
-						"#f1f3f5",
-						"#343a40"
+						"#f5f5f5",
+						"#363635"
 					],
 					"name": "Light to Dark",
 					"slug": "duotone-9"
 				},
 				{
 					"colors": [
-						"#343a40",
-						"#f1f3f5"
+						"#363635",
+						"#f5f5f5"
 					],
 					"name": "Dark to Light",
 					"slug": "duotone-10"
@@ -142,82 +142,82 @@
 					"slug": "base"
 				},
 				{
-					"color": "#212529",
+					"color": "#363636",
 					"name": "Contrast",
 					"slug": "contrast"
 				},
 				{
-					"color": "#0d6efd",
+					"color": "#00d1b2",
 					"name": "Primary",
 					"slug": "primary"
 				},
 				{
-					"color": "#6c757d",
+					"color": "#485fc7",
 					"name": "Secondary",
 					"slug": "secondary"
 				},
 				{
-					"color": "#198754",
+					"color": "#48c774",
 					"name": "Success",
 					"slug": "success"
 				},
 				{
-					"color": "#0dcaf0",
+					"color": "#3e8ed0",
 					"name": "Info",
 					"slug": "info"
 				},
 				{
-					"color": "#ffc107",
+					"color": "#ffe08a",
 					"name": "Warning",
 					"slug": "warning"
 				},
 				{
-					"color": "#dc3545",
+					"color": "#f14668",
 					"name": "Danger",
 					"slug": "danger"
 				},
 				{
-					"color": "#f1f3f5",
+					"color": "#f5f5f5",
 					"name": "Light",
 					"slug": "light"
 				},
 				{
-					"color": "#343a40",
+					"color": "#363635",
 					"name": "Dark",
 					"slug": "dark"
 				},
 				{
-					"color": "#e9ecef",
+					"color": "#fafafa",
 					"name": "Secondary Body BG",
 					"slug": "secondary-bg"
 				},
 				{
-					"color": "#495057",
+					"color": "#4a4a4a",
 					"name": "Secondary Body Contrast",
 					"slug": "secondary-color"
 				},
 				{
-					"color": "#f8f9fa",
+					"color": "#f5f5f6",
 					"name": "Tertiary Body BG",
 					"slug": "tertiary-bg"
 				},
 				{
-					"color": "#6e7780",
+					"color": "#7a7a7a",
 					"name": "Tertiary Body Contrast",
 					"slug": "tertiary-color"
 				},
 				{
-					"color": "#dee2e6",
+					"color": "#dbdbdb",
 					"name": "Border Color",
 					"slug": "border-color"
 				},
 				{
-					"color": "currentcolor",
+					"color": "currentColor",
 					"name": "Current",
 					"slug": "current"
 				},
 				{
-					"color": "color-mix(in srgb, currentColor 40%, transparent)",
+					"color": "color-mix(in srgb, currentColor 20%, transparent)",
 					"name": "Current Mix",
 					"slug": "current-mix"
 				},

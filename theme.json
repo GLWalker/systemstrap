@@ -737,7 +737,7 @@
 				"color": {
 					"text": "var:preset|color|contrast"
 				},
-				"css": "& table:where(:not(.has-text-color)) th{background-color:var(--wp--preset--color--secondary-color);color:var(--wp--preset--color--base);border-color:var(--wp--preset--color--secondary-color);border-style:var(--wp--custom--border-style)} & table:where(:not(.has-text-color)) td{border-color:var(--wp--preset--color--secondary-color);border-style:var(--wp--custom--border-style)}"
+				"css": "& table:where(:not(.has-text-color)) th{background-color:var(--wp--preset--color--secondary-color);color:var(--wp--preset--color--base);border-color:var(--wp--preset--color--border-color);border-style:var(--wp--custom--border-style)} & table:where(:not(.has-text-color)) td{border-color:var(--wp--preset--color--border-color);border-style:var(--wp--custom--border-style)}"
 			},
 			"core/categories": {
 				"typography": {
@@ -1488,7 +1488,7 @@
 					"style": "var(--wp--custom--border-style)",
 					"width": "var(--wp--custom--border-width)"
 				},
-				"css": "& table, & th, & td { border-color: var(--wp--preset--color--border-color); border-style: var(--wp--custom--border-style); border-width: var(--wp--custom--border-width); }",
+				"css": "& { overflow: hidden; } & table, & th, & td { border-color: var(--wp--preset--color--border-color); border-style: var(--wp--custom--border-style); border-width: var(--wp--custom--border-width); }",
 				"spacing": {
 					"padding": {
 						"bottom": "calc(var(--wp--preset--font-size--medium) * .5)",

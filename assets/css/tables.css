@@ -1,0 +1,61 @@
+/*
+ * SystemStrap Core Table Overrides
+ * Maps WordPress core table styles directly to our design tokens.
+ */
+
+/* Baseline Borders */
+.wp-block-table thead {
+    border-bottom: calc(var(--wp--custom--border-width, 1px) * 2) solid var(--wp--preset--color--border-color);
+}
+
+.wp-block-table tfoot {
+    border-top: calc(var(--wp--custom--border-width, 1px) * 2) solid var(--wp--preset--color--border-color);
+}
+
+.wp-block-table td,
+.wp-block-table th {
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--preset--color--border-color);
+}
+
+/* Captions & Typography */
+.wp-block-table :where(figcaption) {
+    color: var(--wp--preset--color--secondary-color);
+}
+
+/* Stripes Variation */
+.wp-block-table.is-style-stripes {
+    border-bottom: var(--wp--custom--border-width, 1px) solid var(--wp--preset--color--border-color);
+}
+
+.wp-block-table.is-style-stripes th,
+.wp-block-table.is-style-stripes td {
+    border-color: transparent;
+}
+
+.wp-block-table.is-style-stripes tbody tr:nth-child(odd) {
+    background-color:
+color-mix(in srgb, currentColor 8%, transparent);
+}
+
+/* Subtle background variations */
+.wp-block-table .has-subtle-light-gray-background-color {
+    background-color: var(--wp--preset--color--tertiary-bg);
+}
+
+.wp-block-table.is-style-stripes.has-subtle-light-gray-background-color tbody tr:nth-child(odd) {
+    background-color:
+color-mix(in srgb, currentColor 8%, transparent);
+}
+
+/* Enforce inheritance for custom block settings */
+.wp-block-table .has-border-color > *,
+.wp-block-table .has-border-color tr,
+.wp-block-table .has-border-color th,
+.wp-block-table .has-border-color td {
+    border-color: inherit;
+}
+
+.wp-block-table table[style*="border-top-color"] > *,
+.wp-block-table table[style*="border-top-color"] tr:first-child {
+    border-top-color: inherit;
+}

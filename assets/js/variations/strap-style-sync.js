@@ -16,6 +16,7 @@
 	var lastAppliedSignature = '';
 	var lastLayoutSelectionSignature = '';
 	var isApplying = false;
+	var isInitialBoot = true;
 
 	function sortKeysDeep( value ) {
 		if ( Array.isArray( value ) ) {
@@ -173,6 +174,13 @@
 			settings: stripPropertiesDeep( currentRecord.settings || {}, [ 'color', 'typography' ] ),
 			styles: stripPropertiesDeep( currentRecord.styles || {}, [ 'color', 'typography' ] ),
 		} );
+
+		if ( isInitialBoot ) {
+			isInitialBoot = false;
+			lastLayoutSelectionSignature = layoutSelectionSignature;
+			lastAppliedSignature = matchedSlug ? ( matchedSlug + '::' + stableStringify( { settings: currentRecord.settings || {}, styles: currentRecord.styles || {} } ) ) : '';
+			return;
+		}
 
 		if ( ! matchedSlug || ! variationMap[ matchedSlug ] ) {
 			lastAppliedSignature = '';

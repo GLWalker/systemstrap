@@ -86,4 +86,3 @@
 .has-background .wp-block-table.is-style-system-panel:not(.has-background) > table > tfoot > tr > td {
     border-color: var(--wp--custom--system-ui-border-color);
 }
-

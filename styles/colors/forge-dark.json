@@ -1,0 +1,107 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "Dark Forge Colors",
+	"description": "Github Primer style inspired by Copilot visuals",
+	"settings": {
+		"color": {
+			"palette": [
+				{
+					"name": "Base",
+					"slug": "base",
+					"color": "#0d1117"
+				},
+				{
+					"name": "Contrast",
+					"slug": "contrast",
+					"color": "#c9d1d9"
+				},
+				{
+					"name": "Secondary BG",
+					"slug": "secondary-bg",
+					"color": "#161b22"
+				},
+				{
+					"name": "Secondary Color",
+					"slug": "secondary-color",
+					"color": "#8b949e"
+				},
+				{
+					"name": "Tertiary BG",
+					"slug": "tertiary-bg",
+					"color": "#21262d"
+				},
+				{
+					"name": "Tertiary Color",
+					"slug": "tertiary-color",
+					"color": "#7d8590"
+				},
+				{
+					"name": "Border Color",
+					"slug": "border-color",
+					"color": "#30363d"
+				},
+				{
+					"name": "Primary",
+					"slug": "primary",
+					"color": "#58a6ff"
+				},
+				{
+					"name": "Secondary",
+					"slug": "secondary",
+					"color": "#8b949e"
+				},
+				{
+					"name": "Success",
+					"slug": "success",
+					"color": "#238636"
+				},
+				{
+					"name": "Info",
+					"slug": "info",
+					"color": "#1f6feb"
+				},
+				{
+					"name": "Warning",
+					"slug": "warning",
+					"color": "#d29922"
+				},
+				{
+					"name": "Danger",
+					"slug": "danger",
+					"color": "#f85149"
+				},
+				{
+					"name": "Light",
+					"slug": "light",
+					"color": "#c9d1d9"
+				},
+				{
+					"name": "Dark",
+					"slug": "dark",
+					"color": "#010409"
+				},
+				{
+					"name": "Transparent",
+					"slug": "transparent",
+					"color": "transparent"
+				},
+				{
+					"name": "Current",
+					"slug": "current",
+					"color": "currentColor"
+				},
+				{
+					"name": "Current Mix",
+					"slug": "current-mix",
+					"color": "color-mix(in srgb, currentColor 10%, transparent)"
+				},
+				{
+					"name": "Inherit",
+					"slug": "inherit",
+					"color": "inherit"
+				}
+			]
+		}
+	}
+}

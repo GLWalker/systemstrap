@@ -6,11 +6,15 @@ This file is a CONTRACT.
 
 ## Contract Version
 
-Current Version: 1.1
+Current Version: 1.2
 
-Last Updated: 2026-06-18
+Last Updated: 2026-07-13
 
 ## Change Log
+
+### 1.2
+
+Replaced hardcoded `-10` to `-50` hover variables with a universal `color-mix` box-shadow wash architecture in `main-styles.css`. Expanded the dynamic derivation to a full 9-shade scale (`-10` through `-90`). Removed `-text-rgb` to reduce payload.
 
 ### 1.1
 
@@ -184,11 +188,12 @@ The following target slugs currently receive expanded runtime derivation:
 
 For each target slug, the current runtime MUST generate:
 
-- shade variables with suffixes `-10`, `-20`, `-30`, `-40`, and `-50`
+- shade variables representing a 9-shade scale with suffixes `-10`, `-20`, `-30`, `-40`, `-50`, `-60`, `-70`, `-80`, and `-90`
 - an `-rgb` variable
 - a `-text` contrast variable
-- a `-text-rgb` variable
 - a `-shadow-rgb` variable
+
+*(Note: `-text-rgb` was removed to reduce payload bloat).*
 
 These derived variables are part of the color-runtime contract because gradients, buttons, and contrast-aware surfaces consume them directly.
 
@@ -275,8 +280,9 @@ The current dynamic color CSS appended to `global-styles` includes runtime behav
 - `:root`, `body`, and `.editor-styles-wrapper` variable output
 - badge contrast routing
 - latest-posts background and text fixes
-- button background hover, focus, and active behavior
-- outline button hover, focus, and active behavior
+- outline button focus behavior
+
+*(Note: button hover, focus, and active background behavior has been shifted to `main-styles.css` using universal `color-mix` overlays, removing the dependency on discrete shade variables for interaction).*
 
 This list is exhaustive as of the current contract version.
 

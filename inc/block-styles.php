@@ -138,18 +138,27 @@ function strap_register_block_styles() {
 			);
 
 			// 3. Auto-register a Flush variation for any System List component
-			if ( $variation_name === 'system-list' ) {
+			if ( str_starts_with( $variation_name, 'system-list' ) ) {
 				register_block_style(
 					$block_name,
 					array(
-						'name'         => 'system-list-flush',
-						'label'        => 'System List Flush',
+						'name'         => $variation_name . '-flush',
+						'label'        => ucwords( str_replace( '-', ' ', $variation_name ) ) . ' Flush',
 						'style_handle' => $handle,
 					)
 				);
 			}
 		}
 	}
+
+	// 4. Force core/table to use our custom tables.css override mapping
+	wp_enqueue_block_style(
+		'core/table',
+		array(
+			'handle' => 'systemstrap-tables',
+			'src'    => $theme_uri . 'assets/css/tables.css',
+		)
+	);
 
 	// Removed Carousel style registrations to clean up the UI.
 	// We now exclusively use Block Variations (strap-carousels.js) for carousels.

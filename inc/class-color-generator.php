@@ -228,7 +228,7 @@ class Strap_ColorGenerator
         return $this->cache[$key] = max($l1, $l2) / min($l1, $l2);
     }
 
-    private function passes_wcag_contrast(string $fg_hex, string $bg_hex, float $threshold = 4.5): bool
+    public function passes_wcag_contrast(string $fg_hex, string $bg_hex, float $threshold = 4.5): bool
     {
         return $this->wcag_contrast_ratio($fg_hex, $bg_hex) >= $threshold;
     }
@@ -299,6 +299,51 @@ class Strap_ColorGenerator
         $rgb = array_map('hexdec', str_split($this->validate_hex($this->color), 2));
         $hsl = $this->rgb_to_hsl($rgb);
         $middle = (int)floor($colorCount / 2); // Input color at -500
+        $palette = [];
+
+        for ($i = 0; $i < $colorCount; $i++) {
+            $shift = ($i - $middle) * $step;
+            $lightness = max(10.0, min(95.0, $hsl['l'] + $shift)); // System: 10%-95% range
+
+            // Adjust saturation for hover (light) colors
+            $saturation = ($i < $middle)
+                ? max(20.0, $hsl['s'] - ($middle - $i) * 10) // Fade saturation down more slowly
+                : min(90.0, $hsl['s']); // Allow stronger saturation for darker shades
+
+            // For lighter colors (e.g., hover), clamp the saturation gently
+            if ($lightness > 70.0) {
+                $saturation = min(70.0, $saturation); // Avoid excessive saturation for lighter shades
+            }
+
+            // If the lightness is very high, slightly reduce saturation
+            if ($lightness > 85.0) {
+                $saturation = max(40.0, $saturation); // Lower saturation slightly for very light colors
+            }
+
+            // Add the color to the palette
+            $palette[] = $this->hsl_to_hex(['h' => $hsl['h'], 's' => $saturation, 'l' => $lightness]);
+        }
+
+        return $this->cache[$cacheKey] = $palette;
+    }
+
+    /**
+     * Creates an extended 9-shade palette based on the initial color.
+     *
+     * @param float $step Lightness step between colors (default 10.0).
+     * @return array Array of hex color strings.
+     */
+    public function createExtendedPalette(float $step = 10.0): array
+    {
+        $colorCount = 9;
+        $cacheKey = "extended_palette|{$this->color}|$step";
+        if (isset($this->cache[$cacheKey])) {
+            return $this->cache[$cacheKey];
+        }
+
+        $rgb = array_map('hexdec', str_split($this->validate_hex($this->color), 2));
+        $hsl = $this->rgb_to_hsl($rgb);
+        $middle = 4; // Index 4 is the base color (50)
         $palette = [];
 
         for ($i = 0; $i < $colorCount; $i++) {

@@ -40,6 +40,16 @@ if ( ! function_exists( 'strap_generate_dynamic_colors' ) ) {
 		$tabs_css       = "\n/* Dynamic System Tabs Active Join Color Routing */\n";
 		$directory_css    = "\n/* Dynamic Query Directory Header-to-Badge Color Routing */\n";
 		$latest_posts_css = "\n/* Dynamic Latest Posts Header-to-Badge Color Routing */\n";
+		$a11y_text_css    = "\n/* Accessible Text Overrides */\n";
+
+		// Extract base background color for text contrast calculations
+		$base_color = '#ffffff';
+		foreach ( $colors as $c ) {
+			if ( isset( $c['slug'] ) && $c['slug'] === 'base' ) {
+				$base_color = $c['color'];
+				break;
+			}
+		}
 
 		foreach ( $colors as $color ) {
 			$slug = sanitize_title( $color['slug'] );
@@ -98,7 +108,6 @@ $directory_css .= "
 
 .wp-block-post-terms.is-style-system-badge.has-{$slug}-background-color a:hover,
 .wp-block-post-terms.is-style-system-badge.has-{$slug}-background-color a:focus-visible {
-    background-color: var(--wp--preset--color--{$slug}-50) !important;
     border-color: var(--wp--custom--btn-hover-border-color) !important;
     color: var(--wp--preset--color--{$slug}-text) !important;
     text-decoration: none !important;
@@ -169,11 +178,11 @@ $latest_posts_css .= "
 			}
 
 			$generator = new Strap_ColorGenerator( $color_value );
-			$palette   = $generator->createPalette( 5 );
-			$suffixes  = [ 10, 20, 30, 40, 50 ];
+			$palette   = $generator->createExtendedPalette( 10.0 );
+			$suffixes  = [ 10, 20, 30, 40, 50, 60, 70, 80, 90 ];
 
 			foreach ( $palette as $index => $shade_hex ) {
-				$suffix = $suffixes[ $index ] ?? ( $index * 10 + 10 );
+				$suffix = $suffixes[ $index ];
 				$css   .= sprintf( "\t--wp--preset--color--%s-%d: %s;\n", $slug, $suffix, $shade_hex );
 			}
 
@@ -186,11 +195,31 @@ $latest_posts_css .= "
 
 			// Removed --wp--preset--color--{$slug}-text-rgb per user instruction.
 
-			$shadow_index = 3;
+			$shadow_index = 5;
 			if ( isset( $palette[ $shadow_index ] ) ) {
 				$shadow_rgb_string = $generator->hex_to_rgb( $palette[ $shadow_index ] );
 				$shadow_rgb_raw    = str_replace( [ 'rgb(', 'rgba(', ')' ], '', $shadow_rgb_string );
 				$css              .= sprintf( "\t--wp--preset--color--%s-shadow-rgb: %s;\n", $slug, $shadow_rgb_raw );
+
+				// Native WCAG Accessible Text Override
+				if ( ! $generator->passes_wcag_contrast( $color_value, $base_color, 4.5 ) ) {
+					$accessible_shade_suffix = null;
+					$is_dark_bg = $generator->passes_wcag_contrast( '#ffffff', $base_color, 4.5 );
+
+					// For dark bg, look at lighter shades (indices 5-8). For light bg, darker shades (indices 3-0).
+					$check_order = $is_dark_bg ? [ 5, 6, 7, 8, 3, 2, 1, 0 ] : [ 3, 2, 1, 0, 5, 6, 7, 8 ];
+
+					foreach ( $check_order as $idx ) {
+						if ( $generator->passes_wcag_contrast( $palette[ $idx ], $base_color, 4.5 ) ) {
+							$accessible_shade_suffix = $suffixes[ $idx ];
+							break;
+						}
+					}
+
+					if ( $accessible_shade_suffix ) {
+						$a11y_text_css .= "body .has-{$slug}-color, .editor-styles-wrapper .has-{$slug}-color { color: var(--wp--preset--color--{$slug}-{$accessible_shade_suffix}) !important; }\n";
+					}
+				}
 
 				// Generate dynamic component CSS for this color
 				$button_css .= "
@@ -234,30 +263,10 @@ ul.wp-block-post-template.has-{$slug}-background-color > li {
 .wp-block-button__link.has-{$slug}-background-color:not(:disabled) {
     box-shadow: var(--wp--preset--shadow--btn-resting, none);
 }
-.wp-block-button__link.has-{$slug}-background-color:not(:disabled):hover {
-    background-color: var(--wp--preset--color--{$slug}-50) !important;
-    border-color: var(--wp--custom--btn-hover-border-color) !important;
-    box-shadow: var(--wp--preset--shadow--btn-hover, none);
-}
 .wp-block-button__link.has-{$slug}-background-color:not(:disabled):focus {
     box-shadow: 0 0 0 .25rem rgba(var(--wp--preset--color--{$slug}-rgb), 0.5);
 }
-.wp-block-button__link.has-{$slug}-background-color:not(:disabled):active {
-    background-color: var(--wp--preset--color--{$slug}-20) !important;
-    box-shadow: var(--wp--preset--shadow--btn-active, none);
-}
 
-.wp-block-button.is-style-outline .wp-block-button__link.has-{$slug}-color:not(:disabled):hover,
-.wp-block-button.is-style-button-pill-outline .wp-block-button__link.has-{$slug}-color:not(:disabled):hover,
-.wp-block-button.is-style-button-square-outline .wp-block-button__link.has-{$slug}-color:not(:disabled):hover,
-.wp-block-button.is-style-outline .wp-block-button__link.has-{$slug}-background-color:not(:disabled):hover,
-.wp-block-button.is-style-button-pill-outline .wp-block-button__link.has-{$slug}-background-color:not(:disabled):hover,
-.wp-block-button.is-style-button-square-outline .wp-block-button__link.has-{$slug}-background-color:not(:disabled):hover {
-    background-color: var(--wp--preset--color--{$slug}) !important;
-    color: var(--wp--preset--color--{$slug}-text) !important;
-    border-color: var(--wp--custom--btn-hover-border-color) !important;
-    box-shadow: var(--wp--preset--shadow--btn-hover, none);
-}
 .wp-block-button.is-style-outline .wp-block-button__link.has-{$slug}-color:not(:disabled):focus,
 .wp-block-button.is-style-button-pill-outline .wp-block-button__link.has-{$slug}-color:not(:disabled):focus,
 .wp-block-button.is-style-button-square-outline .wp-block-button__link.has-{$slug}-color:not(:disabled):focus,
@@ -265,17 +274,6 @@ ul.wp-block-post-template.has-{$slug}-background-color > li {
 .wp-block-button.is-style-button-pill-outline .wp-block-button__link.has-{$slug}-background-color:not(:disabled):focus,
 .wp-block-button.is-style-button-square-outline .wp-block-button__link.has-{$slug}-background-color:not(:disabled):focus {
     box-shadow: 0 0 0 .25rem rgba(var(--wp--preset--color--{$slug}-rgb), 0.5);
-}
-.wp-block-button.is-style-outline .wp-block-button__link.has-{$slug}-color:not(:disabled):active,
-.wp-block-button.is-style-button-pill-outline .wp-block-button__link.has-{$slug}-color:not(:disabled):active,
-.wp-block-button.is-style-button-square-outline .wp-block-button__link.has-{$slug}-color:not(:disabled):active,
-.wp-block-button.is-style-outline .wp-block-button__link.has-{$slug}-background-color:not(:disabled):active,
-.wp-block-button.is-style-button-pill-outline .wp-block-button__link.has-{$slug}-background-color:not(:disabled):active,
-.wp-block-button.is-style-button-square-outline .wp-block-button__link.has-{$slug}-background-color:not(:disabled):active {
-    background-color: var(--wp--preset--color--{$slug}-20) !important;
-    color: var(--wp--preset--color--{$slug}-text) !important;
-    border-color: var(--wp--preset--color--{$slug}-20) !important;
-    box-shadow: var(--wp--preset--shadow--btn-active, none);
 }
 ";
 			}
@@ -337,6 +335,7 @@ $latest_posts_css .= "
 		$css .= $tabs_css;
 		$css .= $directory_css;
 		$css .= $latest_posts_css;
+		$css .= $a11y_text_css;
 
 		// Add Gradient background routing for Latest Posts
 		$gradients = $settings['color']['gradients']['theme'] ?? [];

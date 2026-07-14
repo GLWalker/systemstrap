@@ -1,0 +1,107 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "Forge Colors",
+	"description": "Colors: Github Primer style inspired by Copilot visuals",
+	"settings": {
+		"color": {
+			"palette": [
+				{
+					"name": "Base",
+					"slug": "base",
+					"color": "#ffffff"
+				},
+				{
+					"name": "Contrast",
+					"slug": "contrast",
+					"color": "#101411"
+				},
+				{
+					"name": "Secondary BG",
+					"slug": "secondary-bg",
+					"color": "#f6f8fa"
+				},
+				{
+					"name": "Secondary Color",
+					"slug": "secondary-color",
+					"color": "#57606a"
+				},
+				{
+					"name": "Tertiary BG",
+					"slug": "tertiary-bg",
+					"color": "#f3f4f6"
+				},
+				{
+					"name": "Tertiary Color",
+					"slug": "tertiary-color",
+					"color": "#6e7781"
+				},
+				{
+					"name": "Border Color",
+					"slug": "border-color",
+					"color": "#B6BFB8"
+				},
+				{
+					"name": "Primary",
+					"slug": "primary",
+					"color": "#8534F3"
+				},
+				{
+					"name": "Secondary",
+					"slug": "secondary",
+					"color": "#3094FF"
+				},
+				{
+					"name": "Success",
+					"slug": "success",
+					"color": "#5FED83"
+				},
+				{
+					"name": "Info",
+					"slug": "info",
+					"color": "#C898FD"
+				},
+				{
+					"name": "Warning",
+					"slug": "warning",
+					"color": "#F4A876"
+				},
+				{
+					"name": "Danger",
+					"slug": "danger",
+					"color": "#FE4C25"
+				},
+				{
+					"name": "Light",
+					"slug": "light",
+					"color": "#F2F5F3"
+				},
+				{
+					"name": "Dark",
+					"slug": "dark",
+					"color": "#101411"
+				},
+				{
+					"name": "Transparent",
+					"slug": "transparent",
+					"color": "transparent"
+				},
+				{
+					"name": "Current",
+					"slug": "current",
+					"color": "currentColor"
+				},
+				{
+					"name": "Current Mix",
+					"slug": "current-mix",
+					"color": "color-mix(in srgb, currentColor 10%, transparent)"
+				},
+				{
+					"name": "Inherit",
+					"slug": "inherit",
+					"color": "inherit"
+				}
+			]
+		}
+	}
+}

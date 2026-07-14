@@ -2,6 +2,7 @@
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
 	"version": 3,
 	"title": "Reboot Layout",
+	"description": "Layout: The foundational baseline style, inspired by Bootstrap 5.",
 	"settings": {
 		"custom": {
 			"font-weight-button": "400",
@@ -12,8 +13,11 @@
 			"disabled-opacity": ".65",
 			"shadow": "var:preset|shadow|md",
 			"system-ui-surface": "var:preset|color|base",
+			"system-ui-surface-nested": "var:preset|color|transparent",
 			"system-ui-border-color": "var:preset|color|border-color",
-			"system-ui-background-image": "var:preset|gradient|element"
+			"system-ui-background-image": "var:preset|gradient|element",
+			"link-color": "var:preset|color|primary",
+			"link-hover-color": "color-mix(in srgb, var(--wp--custom--link-color) 70%, var(--wp--preset--color--contrast))"
 		}
 	}
 }

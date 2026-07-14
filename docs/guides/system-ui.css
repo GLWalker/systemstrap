@@ -259,7 +259,7 @@
     /* Dynamic shading inherited from current text color */
     background-color: color-mix(in srgb, currentColor 10%, transparent);
     color: color-mix(in srgb, currentColor 90%, #000);
-    border: 1px solid currentColor;
+    border: 1px solid color-mix(in srgb, currentColor 10%, transparent);
 }
 
 :is(.is-style-system-list, .is-style-system-list-flush, .is-style-system-badge, .is-style-outline, .is-style-system-tags) .tag-link-count {
@@ -1791,6 +1791,8 @@ body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[clas
     backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     box-shadow: var(--wp--custom--shadow);
+    border-radius: var(--wp--custom--border-radius);
+    overflow: hidden;
 }
 
 .query-directory-listing:has(> .query-directory-listing__query.is-style-system-ui-query).has-background,
@@ -2550,11 +2552,14 @@ body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[clas
  * Dynamic color runtime is not defined here.
  * It is owned by:
  * - inc/dynamic-styles.php
+ * - assets/css/main-styles.css (Universal Element Hovers and Overrides)
  *
  * This includes:
  * - active tab join color output
  * - palette-aware seam color overrides
  * - other runtime-generated color helpers layered onto System UI selectors
+ * - Universal accessible text contrast routing
+ * - Universal button, badge, and interaction hover washes using `color-mix()` via box-shadow
  */
 
 /* ========================================================================

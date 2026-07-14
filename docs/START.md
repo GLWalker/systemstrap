@@ -11,7 +11,7 @@
 > Any change to `theme.json`, token consumers, global-style extension, or style-variation loading MUST be checked against that contract in the same change set.
 > Theme variation creation, scope boundaries, and external theme porting (e.g., Bootswatch/Bootstrap) are governed by `docs/guides/theme-variation-porting-guide.md` and `docs/contracts/variation-architecture.md`.
 > Any creation of new variations or architectural changes to variations MUST be checked against these guides.
-> System UI styling conventions, documentation maps, and runtime CSS contracts are governed by `docs/guides/system-ui.css`. Any changes to live System UI surfaces MUST be reflected in this map.
+> System UI styling conventions, documentation maps, and runtime CSS contracts are governed by `docs/guides/system-ui.css`. This file is the authoritative map of all UI classes, CSS variables, and rules used across the theme (including those in `main-styles.css`). It exists to provide a single, scannable reference to prevent overlap, collision, and nesting issues. Any changes to live System UI surfaces MUST be reflected in this map.
 > Accessibility standards, interactivity API implementation, starter content, and submission demonstration architecture are governed by `docs/contracts/accessibility-focus.md`, `docs/contracts/interactivity-api.md`, `docs/contracts/starter-content.md`, and `docs/contracts/submission-demonstration-architecture.md` respectively.
 
 ## Internal Contributor Reference — Coding Standards

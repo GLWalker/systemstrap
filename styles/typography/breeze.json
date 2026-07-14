@@ -1,28 +1,28 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
 	"version": 3,
-	"title": "Brite Typography",
-	"description": "Typography: A bright, high-contrast style variation inspired by Bootswatch Brite.",
+	"title": "Breeze Typography",
+	"description": "Typography: The official Tailwind CSS system font stack.",
 	"settings": {
 		"typography": {
 			"fontFamilies": [
 				{
-					"fontFamily": "\"Avenir Next\", Avenir, \"Segoe UI\", system-ui, sans-serif",
+					"fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
 					"name": "Body Font",
 					"slug": "body"
 				},
 				{
-					"fontFamily": "\"Franklin Gothic Medium\", \"Avenir Next\", Avenir, \"Segoe UI\", system-ui, sans-serif",
+					"fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
 					"name": "Heading Font",
 					"slug": "heading"
 				},
 				{
-					"fontFamily": "\"Arial Black\", Impact, Haettenschweiler, \"Avenir Next\", sans-serif",
+					"fontFamily": "ui-serif, Georgia, Cambria, \"Times New Roman\", Times, serif",
 					"name": "Display Font",
 					"slug": "display"
 				},
 				{
-					"fontFamily": "\"Avenir Next\", Avenir, \"Segoe UI Semibold\", \"Segoe UI\", system-ui, sans-serif",
+					"fontFamily": "\"Avenir Next\", Avenir, \"Century Gothic\", \"Helvetica Neue\", sans-serif",
 					"name": "Button Font",
 					"slug": "button"
 				},

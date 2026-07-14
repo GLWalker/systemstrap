@@ -1,7 +1,8 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
 	"version": 3,
-	"title": "Brite Palette",
+	"title": "Brite Dark  Colors",
+	"description": "Colors: A bright, high-contrast style variation inspired by Bootswatch Brite.",
 	"settings": {
 		"color": {
 			"duotone": [
