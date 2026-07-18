@@ -13,6 +13,61 @@
 
 	// Blocks allowed to trigger dialogs
 	const allowedBlocks = ["core/icon", "icon-block/icon", "core/button"];
+	const offcanvasPrefix = 'offcanvas-';
+	const modalPrefix = 'modal-';
+
+	function mapLegacyPatternToTemplatePart(patternName) {
+		if (!patternName) {
+			return '';
+		}
+
+		const nameParts = patternName.split('/');
+		const slug = (nameParts.length > 1 ? nameParts[1] : patternName).toLowerCase();
+
+		if (slug === 'modal-search' || slug === 'modal-search-full') {
+			return 'modal-search';
+		}
+
+		if (slug.indexOf(modalPrefix) === 0) {
+			return 'modal-part';
+		}
+
+		if (slug.indexOf(offcanvasPrefix) === 0) {
+			return 'offcanvas-part';
+		}
+
+		return '';
+	}
+
+	function getTemplatePartLabel(templatePart) {
+		if (!templatePart) {
+			return '';
+		}
+
+		if (templatePart.title) {
+			if (typeof templatePart.title === 'string') {
+				return templatePart.title;
+			}
+
+			if (templatePart.title.rendered) {
+				return templatePart.title.rendered;
+			}
+
+			if (templatePart.title.raw) {
+				return templatePart.title.raw;
+			}
+		}
+
+		if (templatePart.slug) {
+			return templatePart.slug
+				.replace(/-/g, ' ')
+				.replace(/\b\w/g, function (letter) {
+					return letter.toUpperCase();
+				});
+		}
+
+		return templatePart.id || '';
+	}
 
 	// 1. Extend attributes for the allowed blocks
 	wp.hooks.addFilter(
@@ -23,6 +78,7 @@
 				settings.attributes = Object.assign(settings.attributes || {}, {
 					systemDialogAction: { type: "boolean", default: false },
 					systemDialogPattern: { type: "string", default: "" },
+					systemDialogTemplatePart: { type: "string", default: "" },
 					systemDialogPosition: { type: "string", default: "start" },
 				});
 			}
@@ -40,31 +96,32 @@
 					const attributes = props.attributes;
 					const setAttributes = props.setAttributes;
 					
-					// Use wp.data.useSelect to fetch patterns dynamically from the editor store
-					const blockPatterns = wp.data.useSelect(function(select) {
+					// Use wp.data.useSelect to fetch template parts dynamically from the editor store.
+					const templateParts = wp.data.useSelect(function(select) {
 						const coreStore = select('core');
-						return coreStore && coreStore.getBlockPatterns ? coreStore.getBlockPatterns() : [];
+						return coreStore && coreStore.getEntityRecords
+							? coreStore.getEntityRecords('postType', 'wp_template_part', { per_page: -1 })
+							: [];
 					}, []);
 
 					// Determine the filter keyword based on selected position
 					const isModal = attributes.systemDialogPosition === 'center';
+					const selectedTemplatePart = attributes.systemDialogTemplatePart || mapLegacyPatternToTemplatePart(attributes.systemDialogPattern);
 					
 					// Build options array
-					let patternOptions = [{ label: "Select Pattern...", value: "" }];
+					let templatePartOptions = [{ label: "Select Template Part...", value: "" }];
 					
-					if (blockPatterns && blockPatterns.length > 0) {
-						blockPatterns.forEach(function(pattern) {
-							// Split namespace from slug (e.g., 'systemstrap/modal-search' -> 'modal-search')
-							// User created patterns in the DB might have different namespaces (like 'core/' or none)
-							const nameParts = pattern.name.split('/');
-							const slug = nameParts.length > 1 ? nameParts[1].toLowerCase() : pattern.name.toLowerCase();
-							
-							// If Center (modal), strictly load patterns whose slug starts with 'modal-'
-							// Otherwise, strictly load patterns whose slug starts with 'offcanvas-'
-							if (isModal && slug.startsWith('modal-')) {
-								patternOptions.push({ label: pattern.title, value: pattern.name });
-							} else if (!isModal && slug.startsWith('offcanvas-')) {
-								patternOptions.push({ label: pattern.title, value: pattern.name });
+					if (templateParts && templateParts.length > 0) {
+						templateParts.forEach(function(templatePart) {
+							const slug = templatePart.slug ? templatePart.slug.toLowerCase() : '';
+							const isModalPart = slug.indexOf(modalPrefix) === 0;
+							const isOffcanvasPart = slug.indexOf(offcanvasPrefix) === 0;
+
+							if ((isModal && isModalPart) || (!isModal && isOffcanvasPart)) {
+								templatePartOptions.push({
+									label: getTemplatePartLabel(templatePart),
+									value: templatePart.slug
+								});
 							}
 						});
 					}
@@ -101,16 +158,22 @@
 										{ label: "Center (Modal)", value: "center" },
 									],
 									onChange: function (value) {
-										// If they change position, clear the pattern if it's no longer valid
-										setAttributes({ systemDialogPosition: value, systemDialogPattern: "" });
+										setAttributes({
+											systemDialogPosition: value,
+											systemDialogPattern: "",
+											systemDialogTemplatePart: ""
+										});
 									}
 								}),
 								attributes.systemDialogAction && el(SelectControl, {
-									label: "Load Pattern",
-									value: attributes.systemDialogPattern,
-									options: patternOptions,
+									label: "Load Template Part",
+									value: selectedTemplatePart,
+									options: templatePartOptions,
 									onChange: function (value) {
-										setAttributes({ systemDialogPattern: value });
+										setAttributes({
+											systemDialogTemplatePart: value,
+											systemDialogPattern: ""
+										});
 									}
 								})
 							)

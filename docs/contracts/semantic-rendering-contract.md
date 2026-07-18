@@ -51,7 +51,6 @@ The semantic rendering layer is currently implemented through these runtime file
 
 - `functions.php`
 - `inc/block-filters.php`
-- `inc/block-replacements.php`
 - `inc/dialog-renderer.php`
 - `assets/js/dialog-init.js`
 - `assets/js/ajax-search.js`
@@ -69,7 +68,9 @@ The class and pattern signals consumed by that layer are defined in these conten
 - `patterns/posts-meta.php`
 - `patterns/query-posts-grid.php`
 - `patterns/query-media-object.php`
-- `patterns/modal-search-full.php`
+- `parts/offcanvas-part.html`
+- `parts/modal-part.html`
+- `parts/modal-search.html`
 - `patterns/header.php`
 - `patterns/header-alt.php`
 - `parts/*.html`
@@ -96,7 +97,7 @@ SystemStrap currently does this in `inc/block-filters.php`.
 
 SystemStrap MAY unregister a core block server render action and register a replacement callback when the entire rendered structure or schema layer must be controlled by the theme.
 
-SystemStrap currently does this in `inc/block-replacements.php`.
+SystemStrap currently does this in `inc/block-filters.php`.
 
 ### 3. Generic `render_block` interception
 
@@ -158,6 +159,7 @@ SystemStrap checks exact block names for these surfaces:
 SystemStrap currently uses the following class signals as semantic triggers:
 
 - `strap-action-hook`
+- `strap-offcanvas-panel`
 - `site-header`
 - `site-main`
 - `site-footer`
@@ -185,7 +187,22 @@ SystemStrap currently uses these non-core theme attributes as interception signa
 
 - `systemDialogAction`
 - `systemDialogPattern`
+- `systemDialogTemplatePart`
 - `systemDialogPosition`
+
+### Offcanvas shell and surface contract
+
+For offcanvas dialog positions, the rendered `<dialog>` and `.strap-dialog-content` wrapper MUST remain semantic transport shells for placement, open-and-close state, and close-button overlay behavior.
+
+For offcanvas dialog positions, the runtime-injected wrapper with the `strap-offcanvas-panel` class MUST be treated as the visible interactive surface.
+
+That surface currently owns:
+
+- default offcanvas background through `--wp--custom--offcanvas-bg`
+- default offcanvas text color through `--wp--custom--offcanvas-text`
+- scrollable body behavior
+- offcanvas padding
+- the single inner-edge border matching slide direction
 
 ### Route-derived class detection
 
@@ -302,9 +319,12 @@ SystemStrap MUST NOT reintroduce `role="menu"` or `role="menuitem"` for standard
 
 ### Widget badge replacement contract
 
-`strap_render_block_widget_badges()` converts the native count text pattern `(123)` inside rendered categories and archives output into:
+`strap_render_block_widget_badges()` converts the native count text pattern `(123)` inside rendered categories and archives output into class-based count markup:
 
-- `<span class="system-badge">123</span>`
+- `<span class="wp-block-categories__count"><span class="count-paren">(</span>123<span class="count-paren">)</span></span>`
+- `<span class="wp-block-archives__count"><span class="count-paren">(</span>123<span class="count-paren">)</span></span>`
+
+For terms-query and tag-cloud output, the existing native count wrappers are preserved and only the parenthesis text is split into `.count-paren` spans.
 
 This is a runtime output replacement, not an editor-only style rule.
 
@@ -628,7 +648,8 @@ Detection rules:
 These blocks are intercepted only when block attributes include:
 
 - `systemDialogAction`
-- `systemDialogPattern`
+- either `systemDialogTemplatePart`
+- or a legacy `systemDialogPattern` value that maps to a shipped template part
 
 Trigger mutation rules:
 
@@ -638,7 +659,7 @@ Trigger mutation rules:
 - the first rendered tag MUST receive `aria-controls`.
 - the first rendered tag MUST receive `aria-expanded="false"` before activation.
 - the first rendered tag MUST receive `aria-haspopup="dialog"`.
-- the first rendered tag MUST receive a stateful `aria-label` derived from the registered block pattern title when available.
+- the first rendered tag MUST receive a stateful `aria-label` derived from the selected template part title when available.
 - if the first rendered tag is not `A` or `BUTTON`:
     - it MUST receive `role="button"`.
     - it MUST receive `tabindex="0"`.
@@ -652,7 +673,7 @@ Trigger mutation rules:
 
 Dialog shell rules:
 
-- intercepted patterns MUST be rendered once into `self::$dialogs`.
+- intercepted dialog template parts MUST be rendered once into `self::$dialogs`.
 - dialogs MUST be injected into the rendered footer template-part when the current `core/template-part` block is identified as `site-footer` or `slug="footer"`.
 - `wp_footer` MAY print the queued dialogs only as a fallback when no eligible footer template-part consumed them.
 - each dialog shell MUST use a native `<dialog>` element.
@@ -735,7 +756,7 @@ The following class-bearing content files are coupled to the semantic layer and 
     - source of `entry-summary`
 - `patterns/query-media-object.php`
     - source of `entry-summary`
-- `patterns/modal-search-full.php`
+- `parts/modal-search.html`
     - source of `strap-ajax-search-wrapper`
 - `parts/*.html`
     - source of theme hook separators using `strap-action-hook`

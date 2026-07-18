@@ -121,7 +121,7 @@ SystemStrap currently owns these primary stylesheet lanes:
 - `strap-buddypress-sync`
 - `strap-buddypress-blocks`
 - block style variation CSS under `assets/css/style-variations/`
-- explicit runtime exception handles such as `strap-carousel-styles`, `strap-button-icon`, and dialog CSS
+- explicit runtime exception handles such as `strap-carousel-styles` and dialog CSS
 
 These handles are the theme-owned styling surface.
 
@@ -150,7 +150,7 @@ The current frontend queue contract is:
 11. `wp-block-custom-css` and `global-styles-custom-css`
 12. everything else
 
-This order is implemented by `strap_reorder_frontend_style_queue()` in `inc/enqueue-assets.php`.
+This order is implemented by `strap_reorder_frontend_style_queue()` in `inc/style-runtime.php`.
 
 This queue order is part of the runtime contract and MUST NOT be changed casually.
 
@@ -199,20 +199,18 @@ frontend head
     └── global-styles-custom-css
 ```
 
-## Duplication Exception Contract
+## Shared Utility Style Contract
 
-The following duplication is currently intentional and MUST NOT be treated as accidental without evidence:
+The shared `is-style-system-btn-icon` treatment is now owned by:
 
-- `core-button-system-icon.css`
-  - auto-registered as a block style through `inc/block-styles.php`
-  - explicitly enqueued as `strap-button-icon` through `inc/enqueue-assets.php`
+- `assets/css/main-styles.css`
 
-The rationale is:
+This utility styling remains intentionally available to:
 
-- the file participates in normal block-style registration
-- the icon button treatment is also needed outside purely block-style-triggered assumptions
+- carousel navigation buttons
+- dialog close buttons
 
-Any new duplicate-style exception MUST be documented here in the same change set that introduces it.
+It MUST NOT be exposed through block-style auto-registration unless that behavior is intentionally restored and documented in the same change set.
 
 ## BuddyPress Extension Boundary
 

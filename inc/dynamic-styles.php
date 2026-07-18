@@ -325,8 +325,10 @@ $latest_posts_css .= "
 		}
 
 		// Inject WordPress native image sizes for responsive carousels
-		$thumbnail_width = get_option( 'thumbnail_size_w', 150 );
-		$medium_width    = get_option( 'medium_size_w', 300 );
+		$thumbnail_width = absint( get_option( 'thumbnail_size_w', 150 ) );
+		$medium_width    = absint( get_option( 'medium_size_w', 300 ) );
+		$thumbnail_width = $thumbnail_width > 0 ? $thumbnail_width : 150;
+		$medium_width    = $medium_width > 0 ? $medium_width : 300;
 		$css            .= sprintf( "\t--wp--custom--thumbnail-width: %dpx;\n", $thumbnail_width );
 		$css            .= sprintf( "\t--wp--custom--medium-width: %dpx;\n", $medium_width );
 
@@ -414,129 +416,3 @@ if ( ! function_exists( 'strap_enqueue_all_dynamic_css' ) ) {
 // Run very late so wp_enqueue_global_styles (priority 10) has already populated its rules.
 add_action( 'wp_enqueue_scripts', 'strap_enqueue_all_dynamic_css', 9999 );
 add_action( 'enqueue_block_editor_assets', 'strap_enqueue_all_dynamic_css', 9999 );
-
-if ( ! function_exists( 'systemstrap_get_active_variation_slugs' ) ) {
-	/**
-	 * Determines the active Mix and Match style variations (Color/Typography)
-	 * by comparing the user's active settings against registered partial JSONs.
-	 *
-	 * @return array Associative array containing 'color' and 'typography' slugs.
-	 */
-	function systemstrap_get_active_variation_slugs() {
-		static $active_slugs = null;
-		if ( null !== $active_slugs ) {
-			return $active_slugs;
-		}
-
-		$active_slugs = [
-			'layout'     => 'system',
-			'color'      => 'system',
-			'typography' => 'system'
-		];
-
-		if ( ! class_exists( 'WP_Theme_JSON_Resolver' ) ) {
-			return $active_slugs;
-		}
-
-		$settings = wp_get_global_settings();
-		$active_palette = $settings['color']['palette']['theme'] ?? null;
-		$active_fonts   = $settings['typography']['fontFamilies']['theme'] ?? null;
-		$active_custom  = $settings['custom'] ?? [];
-
-		// Get all mix and match partial variations
-		$variations = WP_Theme_JSON_Resolver::get_style_variations( 'theme' );
-
-		foreach ( $variations as $variation ) {
-			$slug = $variation['slug'] ?? '';
-			if ( empty( $slug ) ) {
-				$slug = sanitize_title( str_replace( array( ' Palette', ' Typography', ' Layout', ' Cyberpunk' ), '', $variation['title'] ?? 'unknown' ) );
-			}
-			$clean_slug = $slug;
-
-			// Fingerprint the color palette
-			if ( isset( $variation['settings']['color']['palette']['theme'] ) && ! empty( $variation['settings']['color']['palette']['theme'] ) ) {
-				$is_match = true;
-				foreach ( $variation['settings']['color']['palette']['theme'] as $var_color ) {
-					$found = false;
-					foreach ( $active_palette as $active_color ) {
-						if ( isset( $active_color['slug'], $var_color['slug'] ) && $active_color['slug'] === $var_color['slug'] && strtolower( $active_color['color'] ) === strtolower( $var_color['color'] ) ) {
-							$found = true;
-							break;
-						}
-					}
-					if ( ! $found ) {
-						$is_match = false;
-						break;
-					}
-				}
-				if ( $is_match ) {
-					$active_slugs['color'] = $clean_slug;
-				}
-			}
-
-			// Fingerprint the typography fontFamilies
-			if ( isset( $variation['settings']['typography']['fontFamilies']['theme'] ) && ! empty( $variation['settings']['typography']['fontFamilies']['theme'] ) ) {
-				$is_match = true;
-				foreach ( $variation['settings']['typography']['fontFamilies']['theme'] as $var_font ) {
-					$found = false;
-					foreach ( $active_fonts as $active_font ) {
-						if ( isset( $active_font['slug'], $var_font['slug'] ) && $active_font['slug'] === $var_font['slug'] && $active_font['fontFamily'] === $var_font['fontFamily'] ) {
-							$found = true;
-							break;
-						}
-					}
-					if ( ! $found ) {
-						$is_match = false;
-						break;
-					}
-				}
-				if ( $is_match ) {
-					$active_slugs['typography'] = $clean_slug;
-				}
-			}
-
-			// Fingerprint the layout/custom variables
-			if ( isset( $variation['settings']['custom'] ) && ! empty( $variation['settings']['custom'] ) ) {
-				$is_match = true;
-				foreach ( $variation['settings']['custom'] as $key => $val ) {
-					if ( ! isset( $active_custom[ $key ] ) || $active_custom[ $key ] !== $val ) {
-						$is_match = false;
-						break;
-					}
-				}
-				if ( $is_match ) {
-					$active_slugs['layout'] = $clean_slug;
-				}
-			}
-		}
-
-		return $active_slugs;
-	}
-}
-
-if ( ! function_exists( 'systemstrap_inject_variation_body_classes' ) ) {
-	/**
-	 * Injects the active style variation slugs into the body class.
-	 */
-	function systemstrap_inject_variation_body_classes( $classes ) {
-		$active_slugs = systemstrap_get_active_variation_slugs();
-
-		if ( isset( $active_slugs['layout'] ) ) {
-			$classes[] = 'is-layout-' . sanitize_html_class( $active_slugs['layout'] );
-		}
-		if ( isset( $active_slugs['color'] ) ) {
-			$classes[] = 'is-color-' . sanitize_html_class( $active_slugs['color'] );
-		}
-		if ( isset( $active_slugs['typography'] ) ) {
-			$classes[] = 'is-typography-' . sanitize_html_class( $active_slugs['typography'] );
-		}
-
-		return $classes;
-	}
-	add_filter( 'body_class', 'systemstrap_inject_variation_body_classes' );
-	add_filter( 'admin_body_class', function( $classes ) {
-		$slugs = systemstrap_get_active_variation_slugs();
-		$classes .= ' is-layout-' . sanitize_html_class( $slugs['layout'] ) . ' is-color-' . sanitize_html_class( $slugs['color'] ) . ' is-typography-' . sanitize_html_class( $slugs['typography'] );
-		return $classes;
-	} );
-}

@@ -93,7 +93,7 @@ function strap_register_block_styles() {
 		$var_pos = strpos( $filename, '-system-' );
 		
 		// Skip files that are strictly for block variations rather than block styles
-		if ( in_array( $filename, array( 'core-group-system-carousel', 'bp-widget-system-panel-header' ), true ) ) {
+		if ( in_array( $filename, array( 'core-group-system-carousel', 'core-button-system-icon', 'bp-widget-system-panel-header' ), true ) ) {
 			continue;
 		}
 		

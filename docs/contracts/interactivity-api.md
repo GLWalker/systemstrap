@@ -61,12 +61,9 @@ The current interactive-surface layer is implemented through these files:
 - `wp-content/themes/systemstrap/assets/js/variations/strap-panels.js`
 - `wp-content/themes/systemstrap/inc/enqueue-assets.php`
 - `wp-content/themes/systemstrap/theme.json`
-- `wp-content/themes/systemstrap/patterns/modal-search.php`
-- `wp-content/themes/systemstrap/patterns/modal-search-full.php`
-- `wp-content/themes/systemstrap/patterns/offcanvas-left.php`
-- `wp-content/themes/systemstrap/patterns/offcanvas-right.php`
-- `wp-content/themes/systemstrap/patterns/offcanvas-top.php`
-- `wp-content/themes/systemstrap/patterns/offcanvas-bottom.php`
+- `wp-content/themes/systemstrap/parts/offcanvas-part.html`
+- `wp-content/themes/systemstrap/parts/modal-part.html`
+- `wp-content/themes/systemstrap/parts/modal-search.html`
 - `wp-content/themes/systemstrap/patterns/header.php`
 - `wp-content/themes/systemstrap/patterns/header-alt.php`
 
@@ -85,9 +82,9 @@ SystemStrap currently does NOT implement the WordPress Interactivity API as its 
 The current shipped architecture is:
 
 - editor-side attribute extension on selected core blocks
-- editor-side inspector controls for selecting dialog behavior and pattern targets
+- editor-side inspector controls for selecting dialog behavior and template part targets
 - server-side interception of rendered triggers
-- server-side rendering of selected patterns into native `<dialog>` shells
+- server-side rendering of selected template parts into native `<dialog>` shells
 - frontend JavaScript that opens and closes those dialogs through browser APIs
 
 The theme MUST NOT claim that `data-wp-interactive`, `wp_interactivity_state()`, or `@wordpress/interactivity` store modules are part of the current runtime unless code for them is added.
@@ -96,7 +93,7 @@ The theme MUST NOT claim that `data-wp-interactive`, `wp_interactivity_state()`,
 
 If JavaScript fails to execute, interactive triggers MAY lose their enhanced open-and-close behavior, but they MUST NOT corrupt non-interactive page rendering.
 
-Server-rendered trigger markup, pattern output, and surrounding block content MUST remain valid HTML output even when the frontend runtime does not execute.
+Server-rendered trigger markup, template-part output, and surrounding block content MUST remain valid HTML output even when the frontend runtime does not execute.
 
 ## Approved Current Mechanisms
 
@@ -114,9 +111,15 @@ The theme adds inspector controls through `editor.BlockEdit` filters in `assets/
 
 The theme intercepts rendered block output in `inc/dialog-renderer.php` for allowed trigger blocks.
 
-### 4. Pattern-backed dialog composition
+### 4. Template-part-backed dialog composition
 
-The theme renders existing registered block patterns into dialog shells at runtime instead of embedding a separate custom dialog block frontend runtime.
+The theme renders selected template parts into dialog shells at runtime instead of embedding a separate custom dialog block frontend runtime.
+
+For offcanvas positions, the rendered dialog shell MUST remain a transport layer for dimensions, visibility, animation, and close-button overlay behavior.
+
+For offcanvas positions, the dialog renderer MUST wrap rendered template-part content in a runtime surface container carrying `strap-offcanvas-panel`.
+
+That runtime wrapper MUST own the visible surface styling, scrolling behavior, padding, and inner-edge border treatment.
 
 ### 5. Native browser dialog runtime
 
@@ -138,12 +141,14 @@ These block types are part of the current interaction contract because both the 
 
 - `systemDialogAction`
 - `systemDialogPattern`
+- `systemDialogTemplatePart`
 - `systemDialogPosition`
 
 The current defaults are:
 
 - `systemDialogAction: false`
 - `systemDialogPattern: ""`
+- `systemDialogTemplatePart: ""`
 - `systemDialogPosition: "start"`
 
 These attribute names are part of the current public architecture surface for interactive triggers.
@@ -155,7 +160,7 @@ The theme currently injects inspector controls labeled:
 - `Dialog Action`
 - `Trigger Dialog Modal?`
 - `Slide Direction / Position`
-- `Load Pattern`
+- `Load Template Part`
 
 The current position options are:
 
@@ -170,22 +175,31 @@ The current implementation treats:
 - `center` as modal selection behavior
 - all non-`center` positions as offcanvas-style selection behavior
 
-When the position changes, the current implementation clears `systemDialogPattern`.
+When the position changes, the current implementation clears `systemDialogPattern` and `systemDialogTemplatePart`.
 
 That reset behavior is part of the current editor-side interaction contract.
 
-## Pattern Selection Contract
+## Template Part Selection Contract
 
-The current pattern selector in `strap-icon-controls.js` uses the editor block-pattern store through `wp.data.useSelect()`.
+The current template-part selector in `strap-icon-controls.js` uses the editor entity store through `wp.data.useSelect()`.
 
-The current pattern filtering behavior is:
+The current template-part filtering behavior is:
 
-- if `systemDialogPosition === "center"`, available patterns are restricted to slugs beginning with `modal-`
-- otherwise, available patterns are restricted to slugs beginning with `offcanvas-`
+- if `systemDialogPosition === "center"`, available template parts are restricted to slugs beginning with `modal-`
+- otherwise, available template parts are restricted to slugs beginning with `offcanvas-`
 
 This slug-prefix filtering is part of the current interaction architecture.
 
-The current trigger architecture therefore depends on registered pattern names that follow the `modal-*` or `offcanvas-*` convention.
+The current trigger architecture therefore depends on template part slugs that follow the `modal-*` or `offcanvas-*` convention.
+
+The current selector MUST discover both admin-created template parts stored in the database and file-backed template parts shipped in the active theme.
+
+The default offcanvas visual tokens currently come from `theme.json` custom properties:
+
+- `--wp--custom--offcanvas-bg`
+- `--wp--custom--offcanvas-text`
+
+Those tokens are part of the current interactive-surface contract for offcanvas template parts.
 
 ## Server-Side Trigger Detection Contract
 
@@ -193,7 +207,7 @@ The current trigger architecture therefore depends on registered pattern names t
 
 - the rendered block type is one of the allowed trigger blocks
 - `systemDialogAction` is truthy
-- `systemDialogPattern` is not empty
+- either `systemDialogTemplatePart` is not empty or a legacy `systemDialogPattern` value can be mapped to a template part slug
 
 If those conditions are not met, the rendered block content MUST remain unmodified by the dialog renderer.
 
@@ -244,17 +258,17 @@ This id is used as:
 
 The theme MUST maintain this one-trigger-to-one-dialog linkage unless the runtime model changes explicitly.
 
-## Pattern Rendering Contract
+## Template Part Rendering Contract
 
 The current dialog renderer uses:
 
-- `do_blocks('<!-- wp:pattern {"slug":"..."} /-->')`
+- `get_block_template( get_stylesheet() . '//' . $slug, 'wp_template_part' )`
 
-to render the selected pattern during the main render process.
+to resolve the selected template part during the main render process.
 
-The current implementation also tracks `self::$rendering_patterns` to prevent infinite recursion when patterns reference each other.
+When a template part is resolved successfully, the renderer uses `do_blocks( $template_part->content )` so nested block markup is rendered through core during the main render process.
 
-That recursion guard is part of the current architecture contract.
+The current implementation also tracks in-flight dialog source guards to prevent infinite recursion when a dialog source loops back into itself.
 
 ## Dialog Shell Contract
 
@@ -346,21 +360,18 @@ Those `theme.json` variation style declarations are part of the broader editor/r
 
 Detailed variation governance belongs in `variation-architecture.md` when that contract is fully written.
 
-## Pattern Coupling Contract
+## Template Part Coupling Contract
 
-The current interaction layer is coupled to pattern families and headers that already emit interactive triggers.
+The current interaction layer is coupled to dialog template part families and headers that already emit interactive triggers.
 
-The current interactive pattern surfaces include:
+The current interactive dialog template part surfaces include:
 
-- `patterns/modal-search.php`
-- `patterns/modal-search-full.php`
-- `patterns/offcanvas-left.php`
-- `patterns/offcanvas-right.php`
-- `patterns/offcanvas-top.php`
-- `patterns/offcanvas-bottom.php`
+- `parts/offcanvas-part.html`
+- `parts/modal-part.html`
+- `parts/modal-search.html`
 - trigger-bearing header patterns such as `patterns/header.php` and `patterns/header-alt.php`
 
-Pattern slug naming is part of the current architecture because editor-side selection filters on `modal-` and `offcanvas-` prefixes.
+Template part slug naming is part of the current architecture because editor-side selection filters on `modal-` and `offcanvas-` prefixes.
 
 ## Non-Implemented Interactivity API Contract
 
@@ -398,10 +409,10 @@ The theme MUST NOT introduce any of the following regressions into the interacti
 
 - claiming Interactivity API usage without shipped implementation
 - removing editor-side trigger attributes without replacing the server-side detection mechanism
-- breaking the pattern-prefix contract for modal and offcanvas selection without updating the editor filter logic and this contract
+- breaking the template-part slug-prefix contract for modal and offcanvas selection without updating the editor filter logic and this contract
 - replacing native `<dialog>` runtime behavior without updating both frontend and server-side contracts
 - removing keyboard activation for non-button triggers without explicit replacement
-- dropping recursion protection for pattern rendering without equivalent safeguards
+- dropping recursion protection for template-part rendering without equivalent safeguards
 
 ## Expansion Rule
 

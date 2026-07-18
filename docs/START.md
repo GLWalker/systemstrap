@@ -7,6 +7,8 @@
 > **You MUST ALWAYS check the `docs/contracts/` folder before making architectural decisions or starting new features.**
 > Semantic render behavior is governed by `docs/contracts/semantic-rendering-contract.md`.
 > Any change to block filters, block replacements, dialog rendering, search result parsing, or machine-readable output MUST be checked against that contract in the same change set.
+> Carousel runtime behavior, saved carousel markup, thumbnail-versus-medium sizing, and Splide ownership boundaries are governed by `docs/contracts/carousel-runtime.md`.
+> Any change to carousel variations, carousel runtime JavaScript, carousel runtime CSS, navigation-position handling, or carousel sizing behavior MUST be checked against that contract in the same change set.
 > Theme token, preset, global-style, and editor/frontend design-system behavior is governed by `docs/contracts/theme-json-design-system.md`.
 > Any change to `theme.json`, token consumers, global-style extension, or style-variation loading MUST be checked against that contract in the same change set.
 > Theme variation creation, scope boundaries, and external theme porting (e.g., Bootswatch/Bootstrap) are governed by `docs/guides/theme-variation-porting-guide.md` and `docs/contracts/variation-architecture.md`.

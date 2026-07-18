@@ -411,6 +411,8 @@
 			"disabled-bg": "#e9ecef",
 			"disabled-opacity": ".75",
 			"disabled-filter": "grayscale(75%) brightness(100%)",
+			"offcanvas-bg": "var(--wp--preset--color--base)",
+			"offcanvas-text": "var(--wp--preset--color--contrast)",
 			"system-ui-surface": "color-mix(in srgb, var(--wp--preset--color--base) 4%, transparent)",
 			"system-ui-surface-banner": "color-mix(in srgb, var(--wp--preset--color--base) 6%, transparent)",
 			"system-ui-active-bg": "color-mix(in srgb, currentColor 1%, transparent)",

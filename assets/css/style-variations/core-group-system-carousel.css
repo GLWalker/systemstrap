@@ -1,238 +1,279 @@
 /**
  * System Carousel Variation (Splide.js Integration)
  *
- * Provides a highly premium, draggable, swipable slider powered by Splide.js.
- * This file contains the editor-only fallback styles and basic Splide overrides.
+ * Editor fallback plus frontend carousel presentation for SystemStrap Group variations.
  */
+
+:is(.is-style-system-carousel,
+    .is-style-system-carousel-auto,
+    .is-style-system-carousel-multi) {
+    --system-carousel-content-size: var(--wp--style--global--content-size, 1040px);
+    --system-carousel-wide-size: var(--wp--style--global--wide-size, 1200px);
+    --system-carousel-thumb-gutter: var(--wp--preset--spacing--20, 1rem);
+    --system-carousel-thumb-preferred-width: var(--wp--custom--thumbnail-width, 150px);
+    --system-carousel-thumb-rendered-width: var(--system-carousel-thumb-preferred-width);
+    --system-carousel-underflow-width: 100%;
+    --system-carousel-thumb-width: var(--system-carousel-thumb-rendered-width);
+    --system-carousel-content-justify: center;
+}
+
+:is(.is-style-system-carousel-auto,
+    .is-style-system-carousel-multi).is-system-thumb-medium {
+    --system-carousel-thumb-preferred-width: var(--wp--custom--medium-width, 300px);
+}
 
 /* ==========================================================================
    Editor Fallback (Before Splide Initializes)
    ========================================================================== */
-.is-style-system-carousel:not(.is-initialized),
-.is-style-system-carousel-auto:not(.is-initialized),
-.is-style-system-carousel-multi:not(.is-initialized) {
-	display: flex !important;
-	flex-direction: row !important;
-	overflow-x: auto;
-	overflow-y: hidden;
-	scroll-snap-type: x mandatory;
-	scroll-behavior: smooth;
-	-webkit-overflow-scrolling: touch;
-	scrollbar-width: none;
-	-ms-overflow-style: none;
-	flex-wrap: nowrap !important;
-	gap: var(--wp--preset--spacing--30);
-	padding-bottom: 1rem;
+:is(.is-style-system-carousel,
+    .is-style-system-carousel-auto,
+    .is-style-system-carousel-multi):not(.is-initialized) {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    gap: var(--wp--preset--spacing--30);
+    padding-bottom: 1rem;
 }
 
-.is-style-system-carousel:not(.is-initialized)::-webkit-scrollbar,
-.is-style-system-carousel-auto:not(.is-initialized)::-webkit-scrollbar,
-.is-style-system-carousel-multi:not(.is-initialized)::-webkit-scrollbar {
-	display: none;
+:is(.is-style-system-carousel,
+    .is-style-system-carousel-auto,
+    .is-style-system-carousel-multi):not(.is-initialized)::-webkit-scrollbar {
+    display: none;
 }
 
-/* Flatten inner containers in editor so items flow */
-.is-style-system-carousel:not(.is-initialized) > .wp-block-group__inner-container,
-.is-style-system-carousel-auto:not(.is-initialized) > .wp-block-group__inner-container,
-.is-style-system-carousel-multi:not(.is-initialized) > .wp-block-group__inner-container,
-.is-style-system-carousel:not(.is-initialized) .block-editor-block-list__layout,
-.is-style-system-carousel-auto:not(.is-initialized) .block-editor-block-list__layout,
-.is-style-system-carousel-multi:not(.is-initialized) .block-editor-block-list__layout {
-	display: contents;
+:is(.is-style-system-carousel,
+    .is-style-system-carousel-auto,
+    .is-style-system-carousel-multi):not(.is-initialized)>.wp-block-group__inner-container,
+:is(.is-style-system-carousel,
+    .is-style-system-carousel-auto,
+    .is-style-system-carousel-multi):not(.is-initialized) .block-editor-block-list__layout {
+    display: contents;
 }
 
-/* Base item sizing for editor fallback */
-.is-style-system-carousel:not(.is-initialized) > *,
-.is-style-system-carousel:not(.is-initialized) .wp-block-group__inner-container > *,
-.is-style-system-carousel:not(.is-initialized) .block-editor-block-list__layout > .block-editor-block-list__block {
-	scroll-snap-align: start;
-	flex: 0 0 100%;
-	max-width: 100%;
-	margin-top: 0 !important;
-	margin-bottom: 0 !important;
-	min-width: 0 !important; /* Safari flex fix */
+.is-style-system-carousel:not(.is-initialized)>*,
+.is-style-system-carousel:not(.is-initialized)>.wp-block-group__inner-container>*,
+.is-style-system-carousel:not(.is-initialized) .block-editor-block-list__layout>.block-editor-block-list__block {
+    scroll-snap-align: start;
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    min-width: 0 !important;
 }
 
-/* Auto item sizing for editor fallback */
-.is-style-system-carousel-auto:not(.is-initialized) > *,
-.is-style-system-carousel-auto:not(.is-initialized) .wp-block-group__inner-container > *,
-.is-style-system-carousel-multi:not(.is-initialized) > *,
-.is-style-system-carousel-multi:not(.is-initialized) .wp-block-group__inner-container > *,
-.is-style-system-carousel-auto:not(.is-initialized) .block-editor-block-list__layout > .block-editor-block-list__block,
-.is-style-system-carousel-multi:not(.is-initialized) .block-editor-block-list__layout > .block-editor-block-list__block {
-	scroll-snap-align: start;
-	flex: 0 0 calc((100% - (var(--wp--preset--spacing--30) * 2)) / 3);
-	max-width: calc((100% - (var(--wp--preset--spacing--30) * 2)) / 3);
-	margin-top: 0 !important;
-	margin-bottom: 0 !important;
-	min-width: 0 !important; /* Safari flex fix */
+:is(.is-style-system-carousel-auto,
+    .is-style-system-carousel-multi):not(.is-initialized)>*,
+:is(.is-style-system-carousel-auto,
+    .is-style-system-carousel-multi):not(.is-initialized)>.wp-block-group__inner-container>*,
+:is(.is-style-system-carousel-auto,
+    .is-style-system-carousel-multi):not(.is-initialized) .block-editor-block-list__layout>.block-editor-block-list__block {
+    scroll-snap-align: start;
+    flex: 0 0 calc((100% - (var(--wp--preset--spacing--30) * 2)) / 3);
+    max-width: calc((100% - (var(--wp--preset--spacing--30) * 2)) / 3);
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    min-width: 0 !important;
 }
 
+.is-content-justification-left :is(.is-style-system-carousel-auto,
+    .is-style-system-carousel-multi):not(.is-initialized) {
+    justify-content: flex-start !important;
+}
+
+.is-content-justification-center :is(.is-style-system-carousel-auto,
+    .is-style-system-carousel-multi):not(.is-initialized) {
+    justify-content: center !important;
+}
+
+.is-content-justification-right :is(.is-style-system-carousel-auto,
+    .is-style-system-carousel-multi):not(.is-initialized) {
+    justify-content: flex-end !important;
+}
+
+.is-content-justification-space-between :is(.is-style-system-carousel-auto,
+    .is-style-system-carousel-multi):not(.is-initialized) {
+    justify-content: space-between !important;
+}
+
+.is-style-system-carousel-auto.is-system-thumb-thumbnail:not(.is-initialized) .wp-block-image {
+    inline-size: min(100%, var(--wp--custom--thumbnail-width, 150px));
+    max-inline-size: var(--wp--custom--thumbnail-width, 150px);
+    margin-inline: auto;
+}
+
+.is-style-system-carousel-auto.is-system-thumb-medium:not(.is-initialized) .wp-block-image {
+    inline-size: min(100%, var(--wp--custom--medium-width, 300px));
+    max-inline-size: var(--wp--custom--medium-width, 300px);
+    margin-inline: auto;
+}
 
 /* ==========================================================================
-   Splide.js Overrides & Styling
+   Splide Structural Overrides
    ========================================================================== */
+:is(.is-style-system-carousel,
+    .is-style-system-carousel-auto,
+    .is-style-system-carousel-multi).splide {
+    padding-bottom: calc(var(--carousel-button-size, 44px) + var(--carousel-nav-gap, 1rem)) !important;
+}
 
-/* Ensure the track strictly hides overflow to prevent Safari bleed */
-.splide__track {
+:is(.is-style-system-carousel,
+    .is-style-system-carousel-auto,
+    .is-style-system-carousel-multi).splide .splide__track {
     overflow: hidden !important;
-    /* Expand track vertically to prevent shadow clipping without shrinking slides */
     padding-top: var(--wp--preset--spacing--20, 1rem) !important;
     padding-bottom: var(--wp--preset--spacing--20, 1rem) !important;
     margin-top: calc(var(--wp--preset--spacing--20, 1rem) * -1) !important;
     margin-bottom: calc(var(--wp--preset--spacing--20, 1rem) * -1) !important;
 }
 
-/* Expand track horizontally ONLY for multi/auto sliders to allow side shadows to breathe */
-.is-style-system-carousel-auto .splide__track,
-.is-style-system-carousel-multi .splide__track {
-    padding-left: var(--wp--preset--spacing--20, 1rem) !important;
-    padding-right: var(--wp--preset--spacing--20, 1rem) !important;
-    margin-left: calc(var(--wp--preset--spacing--20, 1rem) * -1) !important;
-    margin-right: calc(var(--wp--preset--spacing--20, 1rem) * -1) !important;
+:is(.is-style-system-carousel-auto,
+    .is-style-system-carousel-multi).splide:not(.is-system-thumbnail-carousel) .splide__track {
+    padding-inline: var(--wp--preset--spacing--20, 1rem) !important;
+    margin-inline: calc(var(--wp--preset--spacing--20, 1rem) * -1) !important;
 }
 
-/* Fix Safari Flexbox bugs where slides overflow their calculated boundaries */
-.splide__slide {
-    padding: 0; /* Removed padding so slide matches grid width */
-    min-width: 0 !important; /* CRITICAL SAFARI FIX: Allows flex items to shrink below their intrinsic content size */
-    min-height: 0 !important;
-    box-sizing: border-box !important;
-    flex-shrink: 0 !important;
-    max-width: 100%;
-    transform: translateZ(0); /* Force hardware acceleration in Safari to stop rendering glitches and enforce clipping */
-
-    /* Safely contain Gutenberg blocks by forcing a block context (Safari ignores overflow: hidden on flex items) */
-    display: block !important;
-    overflow: visible !important;
+.is-style-system-carousel.splide .splide__track {
+    margin-inline: calc(var(--wp--preset--spacing--20, 1rem) * -1) !important;
 }
 
-/* For single-item carousels: expand the track with margin but compress the slide with padding.
-   This perfectly preserves the 100% block width, allows shadows to bleed out into the margin,
-   but prevents the next slide from being visible because the track boundary ends exactly where the next slide begins. */
-.is-style-system-carousel .splide__track {
-    margin-left: calc(var(--wp--preset--spacing--20, 1rem) * -1) !important;
-    margin-right: calc(var(--wp--preset--spacing--20, 1rem) * -1) !important;
-}
-
-.is-style-system-carousel .splide__slide {
-    padding-left: var(--wp--preset--spacing--20, 1rem) !important;
-    padding-right: var(--wp--preset--spacing--20, 1rem) !important;
-}
-
-/* Ensure inner Gutenberg blocks are safely contained.
-   We center them automatically if they are smaller than the slide (e.g., thumbnails on mobile) */
-.splide__slide > * {
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-    margin: 0 auto !important;
-}
-
-/* Force thumbnail figure wrappers to shrink-to-fit so backgrounds/borders don't stretch */
-.is-style-system-carousel-multi .splide__slide > *,
-.is-style-system-carousel-auto .splide__slide > * {
-    display: table !important;
-}
-
-/* For single-item banners, we do want the content to fill the slide */
-.is-style-system-carousel .splide__slide > * {
-    width: 100% !important;
-}
-
-/* Safari specific fix to prevent Cover blocks from shrinking */
-.splide__list {
+/* ==========================================================================
+   Shared Slide Containment
+   ========================================================================== */
+:is(.is-style-system-carousel,
+    .is-style-system-carousel-auto,
+    .is-style-system-carousel-multi).splide .splide__list {
     display: flex !important;
 }
 
-.is-style-system-carousel .splide__slide {
-    flex: 0 0 100% !important;
-    min-width: 100% !important;
-    max-width: 100% !important;
+:is(.is-style-system-carousel,
+    .is-style-system-carousel-auto,
+    .is-style-system-carousel-multi).splide .splide__slide {
+    min-inline-size: 0 !important;
+    min-height: 0 !important;
+    box-sizing: border-box !important;
+    flex-shrink: 0 !important;
+    display: block;
+    overflow: visible;
 }
 
-/* Slide widths for .is-style-system-carousel-auto and -multi are calculated and enqueued dynamically in JS via Splide.js perPage options to guarantee perfect columns without fractional clipping. */
-
-/* Limit internal images inside the auto-slider based on their size class */
-.is-style-system-carousel-auto .splide__slide img,
-.is-style-system-carousel-auto .wp-block-image img {
-    max-width: var(--wp--custom--thumbnail-width, 150px) !important; /* Default fallback */
-    width: 100% !important;
-    height: auto !important;
+:is(.is-style-system-carousel,
+    .is-style-system-carousel-auto,
+    .is-style-system-carousel-multi).splide .splide__slide>* {
+    box-sizing: border-box !important;
+    max-inline-size: 100%;
 }
 
-.is-style-system-carousel-auto .splide__slide:has(.wp-block-image.size-medium) img,
-.is-style-system-carousel-auto .splide__slide:has(.wp-block-image.size-medium) .wp-block-image img {
-    max-width: var(--wp--custom--medium-width, 300px) !important;
+/* ==========================================================================
+   Standard Single-Slide Carousel
+   ========================================================================== */
+.is-style-system-carousel.splide .splide__slide {
+    padding-inline: var(--wp--preset--spacing--20, 1rem) !important;
 }
 
-.is-style-system-carousel-auto .splide__slide:has(.wp-block-image.size-thumbnail) img,
-.is-style-system-carousel-auto .splide__slide:has(.wp-block-image.size-thumbnail) .wp-block-image img {
-    max-width: var(--wp--custom--thumbnail-width, 150px) !important;
+.is-style-system-carousel.splide .splide__slide>.wp-block-cover,
+.is-style-system-carousel.splide .splide__slide>.wp-block-image {
+    inline-size: 100% !important;
+    max-inline-size: 100% !important;
 }
 
-.is-style-system-carousel-auto .wp-block-image {
-    max-width: var(--wp--custom--thumbnail-width, 150px) !important; /* Default fallback */
-    width: 100% !important;
-    margin: 0 auto !important;
+/* ==========================================================================
+   Thumbnail Carousel
+   ========================================================================== */
+.is-style-system-carousel-auto.is-system-thumbnail-carousel .splide__list {
+    align-items: flex-start;
 }
 
-.is-style-system-carousel-auto .splide__slide:has(.wp-block-image.size-medium) .wp-block-image {
-    max-width: var(--wp--custom--medium-width, 300px) !important;
+.is-style-system-carousel-auto.is-system-thumbnail-carousel.is-thumbs-underflow .splide__track {
+    max-inline-size: var(--system-carousel-underflow-width);
+    margin-inline: auto !important;
 }
 
-.is-style-system-carousel-auto .splide__slide:has(.wp-block-image.size-thumbnail) .wp-block-image {
-    max-width: var(--wp--custom--thumbnail-width, 150px) !important;
+.is-style-system-carousel-auto.is-system-thumbnail-carousel.is-thumbs-underflow .splide__list {
+    justify-content: flex-start !important;
 }
 
-.splide__slide > .wp-block-cover {
-    width: 100% !important;
-    max-width: 100% !important;
+.is-style-system-carousel-auto.is-system-thumbnail-carousel:not(.is-thumbs-underflow) .splide__list {
+    justify-content: flex-start !important;
 }
 
-.splide__slide .wp-block-cover__image-background,
-.splide__slide .wp-block-cover__video-background {
-    width: 100% !important;
+.is-style-system-carousel-auto.is-system-thumbnail-carousel .splide__slide {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
 }
 
-/* Deep Safari border-radius fix specifically for Cover blocks inside carousels */
-.splide__slide .wp-block-cover {
-    isolation: isolate; /* Create stacking context without masking shadows */
+.is-style-system-carousel-auto.is-system-thumbnail-carousel .splide__slide>* {
+    inline-size: min(100%, var(--system-carousel-thumb-rendered-width));
+    max-inline-size: 100%;
 }
 
-/* Force the absolutely positioned background image/video to inherit the wrapper's border-radius natively and apply mask to prevent bleed */
-.splide__slide .wp-block-cover > .wp-block-cover__image-background,
-.splide__slide .wp-block-cover > .wp-block-cover__video-background,
-.splide__slide .wp-block-cover > .wp-block-cover__background {
+.is-style-system-carousel-auto.is-system-thumbnail-carousel .wp-block-image {
+    inline-size: min(100%, var(--system-carousel-thumb-rendered-width));
+    max-inline-size: var(--system-carousel-thumb-preferred-width);
+    margin-inline: auto;
+}
+
+.is-style-system-carousel-auto.is-system-thumbnail-carousel .wp-block-image img {
+    display: block;
+    inline-size: 100%;
+    max-inline-size: 100%;
+    block-size: auto;
+}
+
+/* ==========================================================================
+   Cover and Group Handling
+   ========================================================================== */
+:is(.is-style-system-carousel,
+    .is-style-system-carousel-auto,
+    .is-style-system-carousel-multi).splide .splide__slide>.wp-block-cover {
+    max-inline-size: 100% !important;
+}
+
+:is(.is-style-system-carousel,
+    .is-style-system-carousel-auto,
+    .is-style-system-carousel-multi).splide .splide__slide .wp-block-cover {
+    isolation: isolate;
+}
+
+:is(.is-style-system-carousel,
+    .is-style-system-carousel-auto,
+    .is-style-system-carousel-multi).splide .splide__slide .wp-block-cover>.wp-block-cover__image-background,
+:is(.is-style-system-carousel,
+    .is-style-system-carousel-auto,
+    .is-style-system-carousel-multi).splide .splide__slide .wp-block-cover>.wp-block-cover__video-background,
+:is(.is-style-system-carousel,
+    .is-style-system-carousel-auto,
+    .is-style-system-carousel-multi).splide .splide__slide .wp-block-cover>.wp-block-cover__background {
     border-radius: inherit !important;
     -webkit-mask-image: -webkit-radial-gradient(white, black);
     mask-image: radial-gradient(white, black);
-    transform: translateZ(0);
+}
+
+:is(.is-style-system-carousel,
+    .is-style-system-carousel-auto,
+    .is-style-system-carousel-multi).splide .splide__slide>.wp-block-group {
+    min-inline-size: 0;
 }
 
 /* ==========================================================================
-   Responsive Slide Sizing (For Splide autoWidth: true)
+   Pagination
    ========================================================================== */
-/* Apply native CSS gaps to the Splide list to replace JS calculated gaps */
-.is-style-system-carousel-auto .splide__list,
-.is-style-system-carousel-multi .splide__list {
-    gap: var(--wp--preset--spacing--30, 1.5rem) !important;
+:is(.is-style-system-carousel,
+    .is-style-system-carousel-auto,
+    .is-style-system-carousel-multi).splide .splide__pagination {
+    bottom: calc((var(--carousel-button-size, 44px) - 10px) / 2) !important;
 }
 
-/* Multi Carousel slide widths are enqueued dynamically in JS via Splide.js perPage and breakpoints settings. */
-
-/* ==========================================================================
-   Pagination Formatting
-   ========================================================================== */
-/* Natively pad the splide container to perfectly house both dots and buttons on the same line, with a gap above them */
-.splide {
-    padding-bottom: calc(var(--carousel-button-size, 44px) + var(--carousel-nav-gap, 1rem)) !important;
-}
-.splide__pagination {
-    bottom: calc((var(--carousel-button-size, 44px) - 10px) / 2) !important; /* Vertically center the 10px dots in the button space */
-}
-
-
-.splide .splide__pagination__page {
+:is(.is-style-system-carousel,
+    .is-style-system-carousel-auto,
+    .is-style-system-carousel-multi).splide .splide__pagination__page {
     width: 10px;
     height: 10px;
     background: transparent;
@@ -240,149 +281,136 @@
     box-shadow: var(--wp--custom--shadow);
 }
 
-.splide .splide__pagination__page.is-active,
-.splide .splide__pagination__page:hover,
-.splide .splide__pagination__page:focus {
+:is(.is-style-system-carousel,
+    .is-style-system-carousel-auto,
+    .is-style-system-carousel-multi).splide .splide__pagination__page.is-active,
+:is(.is-style-system-carousel,
+    .is-style-system-carousel-auto,
+    .is-style-system-carousel-multi).splide .splide__pagination__page:hover,
+:is(.is-style-system-carousel,
+    .is-style-system-carousel-auto,
+    .is-style-system-carousel-multi).splide .splide__pagination__page:focus {
     background: var(--wp--custom--system-ui-list-hover-bg);
     border-color: var(--wp--custom--system-ui-border-color);
     transform: scale(1.3);
 }
 
-
 /* ==========================================================================
-   Navigation Button Positioning (Controlled via custom React Panel)
+   Navigation Positions
    ========================================================================== */
-
-/* Outermost Wrapper (Relative Anchor) */
 .system-carousel-wrapper {
     position: relative;
     --carousel-nav-gap: var(--wp--preset--spacing--20, 0.5rem);
-    --carousel-nav-inset: var(--wp--preset--spacing--30, 1rem); /* Distance from edges in Center mode */
-    --carousel-button-size: 44px; /* Default touch target height */
+    --carousel-nav-inset: var(--wp--preset--spacing--30, 1rem);
+    --carousel-button-size: 44px;
+    padding-bottom: 0 !important;
+    margin: 0 auto;
 }
 
-/* Remove WordPress automatic blockGap margin from the slider since the preceding buttons are absolute */
-.system-carousel-wrapper > .is-style-system-carousel,
-.system-carousel-wrapper > .is-style-system-carousel-auto,
-.system-carousel-wrapper > .is-style-system-carousel-multi {
+.system-carousel-wrapper:has(.is-system-thumbnail-carousel) {
+    margin: 0 .6rem !important;
+}
+
+.system-carousel-wrapper> :is(.is-style-system-carousel,
+    .is-style-system-carousel-auto,
+    .is-style-system-carousel-multi) {
     margin-top: 0 !important;
+    margin-inline: auto;
 }
 
-/* 1. True Default (Bottom Position) */
-.system-carousel-wrapper {
-    padding-bottom: 0 !important; /* Space is now handled natively by .splide */
-}
 .system-carousel-wrapper .system-carousel-nav-buttons {
     position: absolute !important;
+    inset-inline: 0 !important;
     bottom: 0 !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
     width: 100% !important;
-    max-width: var(--wp--style--global--content-size, 1040px) !important; /* Match content bounds */
-    justify-content: flex-end !important; /* Push buttons to the right edge of bounds */
     margin: 0 !important;
     z-index: 10;
-    pointer-events: none; /* Let clicks pass through empty space to pagination dots */
-}
-.system-carousel-wrapper .system-carousel-nav-buttons .wp-block-button {
-    pointer-events: auto; /* Re-enable clicks on the actual buttons */
-}
-
-/* 2. Top Position */
-.has-nav-top .system-carousel-wrapper {
-    padding-bottom: 0 !important;
-    padding-top: calc(var(--carousel-button-size) + var(--carousel-nav-gap)) !important;
-}
-.has-nav-top .system-carousel-nav-buttons {
-    position: absolute !important;
-    top: 0 !important;
-    bottom: auto !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    width: 100% !important;
-    max-width: var(--wp--style--global--content-size, 1040px) !important;
-    justify-content: flex-end !important;
-    margin: 0 !important;
-}
-
-/* 3. Center Position (Overlay on content edges) */
-.has-nav-center .system-carousel-wrapper {
-    padding-bottom: 0 !important;
-}
-.has-nav-center .system-carousel-nav-buttons {
-    position: absolute !important;
-    top: calc(50% - ((var(--carousel-button-size, 44px) + var(--carousel-nav-gap, 1rem)) / 2)) !important;
-    bottom: auto !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    width: calc(100% - (var(--carousel-nav-inset) * 2)) !important;
-    max-width: calc(var(--wp--style--global--content-size, 1040px) - (var(--carousel-nav-inset) * 2)) !important;
-    display: flex;
-    justify-content: space-between !important;
-    pointer-events: none; /* Let clicks pass through empty space */
-    z-index: 10;
-    margin: 0 !important;
-}
-.has-nav-center .system-carousel-nav-buttons .wp-block-button {
-    pointer-events: auto; /* Re-enable clicks on the actual buttons */
-}
-
-/* 4. Center-Out Position (Inside bounds, shrink carousel) */
-.has-nav-center-out .system-carousel-wrapper {
-    padding-bottom: 0 !important;
-}
-.has-nav-center-out .system-carousel-nav-buttons {
-    position: absolute !important;
-    top: calc(50% - ((var(--carousel-button-size, 44px) + var(--carousel-nav-gap, 1rem)) / 2)) !important;
-    bottom: auto !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    width: 100% !important;
-    max-width: var(--wp--style--global--content-size, 1040px) !important;
-    display: flex;
-    justify-content: space-between !important;
     pointer-events: none;
-    z-index: 10;
-    margin: 0 !important;
+    justify-content: flex-end;
 }
-.has-nav-center-out .system-carousel-nav-buttons .wp-block-button {
+
+.system-carousel-wrapper .system-carousel-nav-buttons .wp-block-button {
     pointer-events: auto;
 }
-.has-nav-center-out .is-style-system-carousel,
-.has-nav-center-out .is-style-system-carousel-auto,
-.has-nav-center-out .is-style-system-carousel-multi {
+
+.has-nav-top .system-carousel-wrapper {
+    padding-top: calc(var(--carousel-button-size) + var(--carousel-nav-gap)) !important;
+}
+
+.has-nav-top .system-carousel-nav-buttons {
+    top: 0 !important;
+    bottom: auto !important;
+}
+
+.has-nav-center .system-carousel-nav-buttons {
+    top: calc(50% - ((var(--carousel-button-size, 44px) + var(--carousel-nav-gap, 1rem)) / 2)) !important;
+    bottom: auto !important;
+    inset-inline: var(--carousel-nav-inset) !important;
+    width: auto !important;
+    transform: translateY(-50%) !important;
+    display: flex;
+    justify-content: space-between !important;
+}
+
+.has-nav-center-out .system-carousel-nav-buttons {
+    top: calc(50% - ((var(--carousel-button-size, 44px) + var(--carousel-nav-gap, 1rem)) / 2)) !important;
+    bottom: auto !important;
+    inset-inline: 0 !important;
+    transform: translateY(-50%) !important;
+    display: flex;
+    justify-content: space-between !important;
+}
+
+.has-nav-center-out .system-carousel-wrapper> :is(.is-style-system-carousel,
+    .is-style-system-carousel-multi) {
     width: calc(100% - ((var(--carousel-button-size) + var(--carousel-nav-gap)) * 2)) !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
+}
+
+.has-nav-center-out .system-carousel-wrapper>.is-style-system-carousel-auto {
+    width: calc(100% - ((var(--carousel-button-size) + var(--carousel-nav-gap)) * 2) - var(--wp--preset--spacing--40, 2rem) - 0.5rem) !important;
+}
+
+@media (max-width: 599px) {
+    .has-nav-center-out .system-carousel-nav-buttons {
+        top: auto !important;
+        bottom: 0 !important;
+        transform: none !important;
+        justify-content: flex-end !important;
+    }
+
+    .has-nav-center-out .system-carousel-wrapper> :is(.is-style-system-carousel,
+        .is-style-system-carousel-auto,
+        .is-style-system-carousel-multi) {
+        width: auto !important;
+    }
 }
 
 /* ==========================================================================
-   Carousel Custom Borders
+   Alignment-Specific Presentation
    ========================================================================== */
-/* Apply a subtle border so carousels POP in contrast-heavy themes like Brite */
+.alignfull .is-style-system-carousel .wp-block-cover,
+.alignfull .is-style-system-carousel .wp-block-image,
+.alignfull .is-style-system-carousel {
+    border-radius: 0;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   Shared Visual Treatment
+   ========================================================================== */
 .is-style-system-carousel .wp-block-cover,
 .is-style-system-carousel .wp-block-image,
 .is-style-system-carousel-auto .wp-block-image {
     border: 1px solid var(--wp--preset--color--border-color, rgba(0, 0, 0, 0.1));
-    border-radius: var(--wp--preset--spacing--20, 0.5rem);
+    border-radius: var(--wp--custom--border-radius, 0.375rem);
     box-shadow: var(--wp--custom--shadow, none);
     box-sizing: border-box;
     overflow: hidden;
 }
 
-/* Apply border radius to the main carousel wrapper itself */
-.is-style-system-carousel,
-.is-style-system-carousel-auto,
-.is-style-system-carousel-multi {
-    border-radius: var(--wp--preset--spacing--20, 0.5rem);
-    overflow: hidden;
-    padding: var(--wp--preset--spacing--10, 0.25rem);
+:is(.is-style-system-carousel,
+    .is-style-system-carousel-auto,
+    .is-style-system-carousel-multi) {
+    border-radius: var(--wp--custom--border-radius, 0.375rem);
     box-sizing: border-box;
 }
-
-/* Nudge navigation buttons down a sliver on the banner slider as requested */
-.wp-block-group:has(.is-style-system-carousel) .carousel-prev,
-.wp-block-group:has(.is-style-system-carousel) .carousel-next {
-    margin-top: 12px !important;
-}
-

@@ -22,6 +22,15 @@ button.wp-block-icon[data-strap-dialog-target]>svg:not([width]) {
 }
 
 dialog.strap-dialog {
+    --strap-offcanvas-width: min(100vw, 400px);
+    --strap-offcanvas-height: min(30vh, 100vh);
+    --strap-offcanvas-padding-x: var(--wp--preset--spacing--20);
+    --strap-offcanvas-padding-y: var(--wp--preset--spacing--30);
+    --strap-offcanvas-color: var(--wp--custom--offcanvas-text, var(--wp--preset--color--contrast));
+    --strap-offcanvas-bg: var(--wp--custom--offcanvas-bg, var(--wp--preset--color--base));
+    --strap-offcanvas-border-width: var(--wp--custom--border-width, 1px);
+    --strap-offcanvas-border-color: var(--wp--custom--system-ui-border-color);
+
     padding: 0;
     margin: 0;
     border: none;
@@ -50,30 +59,24 @@ dialog.strap-dialog::backdrop {
 
 /* Offcanvas Content Container */
 .strap-dialog-content {
-    background-color: var(--wp--custom--system-ui-surface);
-    background-image: var(--wp--custom--system-ui-background-image, none);
-    backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
-    -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
-    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
-    color: var(--wp--preset--color--contrast, #000);
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
     height: 100vh;
-    width: 100vw;
-    max-width: 400px;
-    overflow-y: auto;
+    width: var(--strap-offcanvas-width);
+    max-width: 100vw;
+    overflow: hidden;
     overflow-x: hidden;
     position: relative;
-    box-shadow: 0 1.5rem 3rem rgba(15, 23, 42, 0.18);
-    padding: var(--wp--preset--spacing--30) var(--wp--preset--spacing--20);
+    padding: 0;
 }
 
 /* Slide Positions */
 .strap-dialog-pos-start {
     margin-right: auto;
-}
-
-.strap-dialog-pos-start .strap-dialog-content {
-    border-left: 0;
-    box-shadow: 1.5rem 0 3rem rgba(15, 23, 42, 0.18);
 }
 
 .strap-dialog-pos-start[open] .strap-dialog-content {
@@ -94,11 +97,6 @@ dialog.strap-dialog::backdrop {
     margin-left: auto;
 }
 
-.strap-dialog-pos-end .strap-dialog-content {
-    border-right: 0;
-    box-shadow: -1.5rem 0 3rem rgba(15, 23, 42, 0.18);
-}
-
 .strap-dialog-pos-end[open] .strap-dialog-content {
     animation: strap-slide-left 0.3s ease forwards;
 }
@@ -116,14 +114,15 @@ dialog.strap-dialog::backdrop {
 .strap-dialog-pos-top {
     margin-bottom: auto;
     height: auto;
-    max-height: 50vh;
+    max-height: 100vh;
     max-width: 100vw;
     width: 100vw;
 }
 
 .strap-dialog-pos-top .strap-dialog-content {
-    border-top: 0;
-    box-shadow: 0 1.25rem 2.75rem rgba(15, 23, 42, 0.16);
+    height: var(--strap-offcanvas-height);
+    max-width: 100vw;
+    width: 100vw;
 }
 
 .strap-dialog-pos-top[open] .strap-dialog-content {
@@ -143,14 +142,15 @@ dialog.strap-dialog::backdrop {
 .strap-dialog-pos-bottom {
     margin-top: auto;
     height: auto;
-    max-height: 50vh;
+    max-height: 100vh;
     max-width: 100vw;
     width: 100vw;
 }
 
 .strap-dialog-pos-bottom .strap-dialog-content {
-    border-bottom: 0;
-    box-shadow: 0 -1.25rem 2.75rem rgba(15, 23, 42, 0.16);
+    height: var(--strap-offcanvas-height);
+    max-width: 100vw;
+    width: 100vw;
 }
 
 .strap-dialog-pos-bottom[open] .strap-dialog-content {
@@ -228,8 +228,70 @@ dialog.strap-dialog::backdrop {
 }
 
 /* Helper to ensure offcanvas header/body sections space out nicely */
-.strap-dialog-content>.wp-block-group {
+.strap-dialog-content > .wp-block-group:not(.strap-offcanvas-panel) {
     margin-bottom: var(--wp--preset--spacing--20);
+}
+
+.strap-dialog-content > .strap-offcanvas-panel {
+    align-items: stretch;
+    box-sizing: border-box;
+    color: var(--strap-offcanvas-color);
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    background: var(--strap-offcanvas-bg);
+    background-clip: padding-box;
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    height: 100%;
+    margin: 0;
+    max-width: none;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: var(--strap-offcanvas-padding-y) var(--strap-offcanvas-padding-x);
+    border: 0 solid transparent;
+    border-radius: 0;
+    outline: 0;
+}
+
+.strap-dialog-content > .strap-offcanvas-panel > * {
+    flex-shrink: 0;
+    max-width: 100% !important;
+    width: 100%;
+}
+
+.strap-dialog-pos-start .strap-dialog-content > .strap-offcanvas-panel {
+    border-right: var(--strap-offcanvas-border-width) solid var(--strap-offcanvas-border-color);
+}
+
+.strap-dialog-pos-end .strap-dialog-content > .strap-offcanvas-panel {
+    border-left: var(--strap-offcanvas-border-width) solid var(--strap-offcanvas-border-color);
+}
+
+.strap-dialog-pos-top .strap-dialog-content > .strap-offcanvas-panel {
+    border-bottom: var(--strap-offcanvas-border-width) solid var(--strap-offcanvas-border-color);
+}
+
+.strap-dialog-pos-bottom .strap-dialog-content > .strap-offcanvas-panel {
+    border-top: var(--strap-offcanvas-border-width) solid var(--strap-offcanvas-border-color);
+}
+
+.strap-dialog-content > .strap-offcanvas-panel::-webkit-scrollbar {
+    width: 6px;
+}
+
+.strap-dialog-content > .strap-offcanvas-panel::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.strap-dialog-content > .strap-offcanvas-panel::-webkit-scrollbar-thumb {
+    background-color: rgba(var(--wp--preset--color--contrast-rgb, 0, 0, 0), 0.2);
+    border-radius: 10px;
+}
+
+.strap-dialog-content > .strap-offcanvas-panel:hover::-webkit-scrollbar-thumb {
+    background-color: rgba(var(--wp--preset--color--contrast-rgb, 0, 0, 0), 0.4);
 }
 
 /* Absolute Close Button inside Dialog */
@@ -319,40 +381,40 @@ dialog.strap-dialog::backdrop {
     background-color: rgba(var(--wp--preset--color--contrast-rgb, 0, 0, 0), 0.4);
 }
 
-/* Staggered Entrance Animation for Dialog Children */
-.strap-dialog[open] .strap-dialog-content>*:not(.strap-dialog-close-btn) {
+/* Staggered entrance stays modal-only. Offcanvas should just slide in cleanly. */
+.strap-dialog-pos-center[open] .strap-dialog-content>*:not(.strap-dialog-close-btn) {
     opacity: 0;
     animation: strap-staggered-fade-up 0.4s ease forwards;
 }
 
 /* Close button gets a simple fade */
-.strap-dialog[open] .strap-dialog-close-btn {
+.strap-dialog-pos-center[open] .strap-dialog-close-btn {
     opacity: 0;
     animation: strap-fade-in 0.3s ease forwards 0.1s;
 }
 
 /* Stagger delays for up to 6 immediate children (ignoring close btn which is child 1) */
-.strap-dialog[open] .strap-dialog-content>*:nth-child(2) {
+.strap-dialog-pos-center[open] .strap-dialog-content>*:nth-child(2) {
     animation-delay: 0.1s;
 }
 
-.strap-dialog[open] .strap-dialog-content>*:nth-child(3) {
+.strap-dialog-pos-center[open] .strap-dialog-content>*:nth-child(3) {
     animation-delay: 0.15s;
 }
 
-.strap-dialog[open] .strap-dialog-content>*:nth-child(4) {
+.strap-dialog-pos-center[open] .strap-dialog-content>*:nth-child(4) {
     animation-delay: 0.2s;
 }
 
-.strap-dialog[open] .strap-dialog-content>*:nth-child(5) {
+.strap-dialog-pos-center[open] .strap-dialog-content>*:nth-child(5) {
     animation-delay: 0.25s;
 }
 
-.strap-dialog[open] .strap-dialog-content>*:nth-child(6) {
+.strap-dialog-pos-center[open] .strap-dialog-content>*:nth-child(6) {
     animation-delay: 0.3s;
 }
 
-.strap-dialog[open] .strap-dialog-content>*:nth-child(7) {
+.strap-dialog-pos-center[open] .strap-dialog-content>*:nth-child(7) {
     animation-delay: 0.35s;
 }
 

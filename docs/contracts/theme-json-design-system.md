@@ -6,11 +6,15 @@ This file is a CONTRACT.
 
 ## Contract Version
 
-Current Version: 1.3
+Current Version: 1.4
 
-Last Updated: 2026-06-28
+Last Updated: 2026-07-15
 
 ## Change Log
+
+### 1.4
+
+Documented the WordPress media-width variables consumed by the SystemStrap carousel runtime. `inc/dynamic-styles.php` continues to emit `--wp--custom--thumbnail-width` and `--wp--custom--medium-width` from the native Media Settings options, with defensive positive-integer fallbacks, and the carousel runtime now treats thumbnail width as the default presentation width unless every direct image slide in the thumbnail variation is explicitly `size-medium`.
 
 ### 1.3
 
@@ -395,11 +399,11 @@ The current `customTemplates` registry includes:
 
 ## Editor and Frontend Parity Contract
 
-`functions.php` and `inc/enqueue-assets.php` together define the current frontend/editor style-loading contract.
+`inc/theme-setup.php` and `inc/enqueue-assets.php` together define the current frontend/editor style-loading contract.
 
 ### Editor styles contract
 
-`functions.php` currently registers editor styles through `add_editor_style()` with:
+`inc/theme-setup.php` currently registers editor styles through `add_editor_style()` with:
 
 - `assets/css/strap-reset.css`
 - `assets/css/main-styles.css`
@@ -428,7 +432,6 @@ The current editor BuddyPress contract is:
 - `strap-main-styles`
 - `splide-core`
 - `strap-carousel-styles`
-- `strap-button-icon`
 
 If the theme is a child theme, `strap-child-style` is enqueued after `strap-main-styles`.
 
@@ -506,7 +509,7 @@ Under the SystemStrap runtime, that default behavior is not sufficient because i
 - BuddyPress block style variations
 - later theme-owned variation chrome
 
-`inc/enqueue-assets.php` therefore currently peels the top-level custom CSS back off the `global-styles` inline payload through `strap_enqueue_global_styles_custom_css_last()`, then re-enqueues that CSS on a dedicated late handle named `global-styles-custom-css`.
+`inc/style-runtime.php` therefore currently peels the top-level custom CSS back off the `global-styles` inline payload through `strap_enqueue_global_styles_custom_css_last()`, then re-enqueues that CSS on a dedicated late handle named `global-styles-custom-css`.
 
 SystemStrap preserves native Global Styles generation, but re-emits top-level Custom CSS last so user-authored CSS remains the final cascade layer over theme and variation styles.
 
@@ -592,6 +595,34 @@ That safeguard MUST enqueue:
 - `core-comments-pagination-system-pagination`
 
 when the corresponding pagination blocks render on the frontend.
+
+## Carousel Image Width Token Contract
+
+`inc/dynamic-styles.php` currently appends these frontend/editor variables to the global runtime token surface:
+
+- `--wp--custom--thumbnail-width`
+- `--wp--custom--medium-width`
+
+These values currently originate from the native WordPress options:
+
+- `thumbnail_size_w`
+- `medium_size_w`
+
+The current contract is:
+
+- both values MUST be treated as positive integer pixel widths
+- malformed, zero, or negative values MUST fall back to `150px` for thumbnail and `300px` for medium
+- the carousel runtime MAY shrink below those preferred widths when the rendered track is narrower
+- the thumbnail variation MUST NOT upscale beyond the active preferred width
+- thumbnail mode is the safe default for the thumbnail variation
+- medium mode applies only when every direct image slide in the thumbnail variation is explicitly `size-medium`
+- `size-full`, undefined size classes, mixed size classes, and non-image direct slides remain thumbnail mode
+
+These variables are currently consumed by:
+
+- `assets/js/carousel-nav.js`
+- `assets/js/carousel-editor-preview.js`
+- `assets/css/style-variations/core-group-system-carousel.css`
 
 ## Variation Script Loading Contract
 

@@ -3,7 +3,7 @@
  * SystemStrap Dialog Renderer
  * 
  * Intercepts blocks that are flagged as Dialog Triggers, injects vanilla JS trigger,
- * and renders the selected pattern into a `<dialog>` element at the bottom of the page.
+ * and renders the selected template part into a `<dialog>` element at the bottom of the page.
  */
 
 defined('ABSPATH') || exit;
@@ -11,7 +11,7 @@ defined('ABSPATH') || exit;
 class SystemStrap_Dialog_Renderer {
 
     private static $dialogs = [];
-    private static $rendering_patterns = [];
+    private static $rendering_sources = [];
     private static $dialogs_printed = false;
 
     public static function init() {
@@ -27,14 +27,15 @@ class SystemStrap_Dialog_Renderer {
     public static function intercept_dialog_trigger($block_content, $block) {
         $attrs = $block['attrs'] ?? [];
 
-        if (empty($attrs['systemDialogAction']) || empty($attrs['systemDialogPattern'])) {
+        if (empty($attrs['systemDialogAction'])) {
             return $block_content;
         }
 
-        $pattern_slug = sanitize_text_field( $attrs['systemDialogPattern'] );
-        $registry     = WP_Block_Patterns_Registry::get_instance();
+        $template_part_slug = sanitize_title( $attrs['systemDialogTemplatePart'] ?? '' );
+        $legacy_pattern_slug = sanitize_text_field( $attrs['systemDialogPattern'] ?? '' );
+        $dialog_source = self::resolve_dialog_source( $template_part_slug, $legacy_pattern_slug );
 
-        if ( ! $pattern_slug || ! $registry->is_registered( $pattern_slug ) ) {
+        if ( empty( $dialog_source ) || empty( $dialog_source['raw_content'] ) ) {
             return $block_content;
         }
 
@@ -44,42 +45,123 @@ class SystemStrap_Dialog_Renderer {
         }
 
         $dialog_id = 'strap-dialog-' . wp_generate_uuid4();
-        $pattern_label = self::get_dialog_label($pattern_slug);
+        $dialog_label = $dialog_source['label'];
         $is_icon_trigger = in_array($block['blockName'] ?? '', ['core/icon', 'icon-block/icon'], true);
 
-        $block_content = self::add_dialog_trigger_attributes($block_content, $dialog_id, $pattern_label, $is_icon_trigger);
+        $block_content = self::add_dialog_trigger_attributes($block_content, $dialog_id, $dialog_label, $is_icon_trigger);
 
-        // Prevent infinite recursion if patterns reference each other
-        if (in_array($pattern_slug, self::$rendering_patterns, true)) {
+        // Prevent infinite recursion if a dialog source loops back into itself.
+        if (in_array($dialog_source['guard'], self::$rendering_sources, true)) {
             return $block_content;
         }
 
-        // Process the blocks EARLY (during main render loop) so WP knows to enqueue their styles
-        self::$rendering_patterns[] = $pattern_slug;
-        $pattern_content = do_blocks('<!-- wp:pattern {"slug":"' . esc_attr($pattern_slug) . '"} /-->');
-        array_pop(self::$rendering_patterns);
-
-        // Queue the parsed HTML to be rendered in the footer
+        self::$rendering_sources[] = $dialog_source['guard'];
         self::$dialogs[$dialog_id] = [
-            'content'  => $pattern_content,
+            'content'  => self::wrap_dialog_surface_markup(
+                do_blocks($dialog_source['raw_content']),
+                $position
+            ),
             'position' => $position,
-            'label'    => $pattern_label,
+            'label'    => $dialog_label,
         ];
+        array_pop(self::$rendering_sources);
 
         return $block_content;
     }
 
-    private static function get_dialog_label($pattern_slug) {
+    private static function get_dialog_label($source_title) {
         $label = __('Dialog', 'systemstrap');
 
-        if (class_exists('WP_Block_Patterns_Registry')) {
-            $pattern = WP_Block_Patterns_Registry::get_instance()->get_registered($pattern_slug);
-            if (!empty($pattern['title'])) {
-                $label = $pattern['title'];
-            }
+        if (! empty($source_title)) {
+            $label = wp_strip_all_tags($source_title);
         }
 
         return $label;
+    }
+
+    private static function wrap_dialog_surface_markup($content, $position) {
+        if (empty($content) || 'center' === $position) {
+            return $content;
+        }
+
+        return sprintf(
+            '<div class="wp-block-group strap-offcanvas-panel">%s</div>',
+            $content
+        );
+    }
+
+    private static function resolve_dialog_source($template_part_slug, $legacy_pattern_slug) {
+        if ($template_part_slug) {
+            $template_part = self::get_template_part_payload($template_part_slug);
+
+            if (! empty($template_part['raw_content'])) {
+                return $template_part;
+            }
+        }
+
+        if (! $legacy_pattern_slug) {
+            return null;
+        }
+
+        $mapped_slug = self::map_legacy_pattern_to_template_part($legacy_pattern_slug);
+        if (! $mapped_slug) {
+            return null;
+        }
+
+        return self::get_template_part_payload($mapped_slug);
+    }
+
+    private static function map_legacy_pattern_to_template_part($pattern_slug) {
+        $slug = sanitize_text_field($pattern_slug);
+
+        if (str_contains($slug, '/')) {
+            $parts = explode('/', $slug);
+            $slug = end($parts);
+        }
+
+        $slug = strtolower($slug);
+
+        if (in_array($slug, ['modal-search', 'modal-search-full'], true)) {
+            return 'modal-search';
+        }
+
+        if (str_starts_with($slug, 'modal-')) {
+            return 'modal-part';
+        }
+
+        if (str_starts_with($slug, 'offcanvas-')) {
+            return 'offcanvas-part';
+        }
+
+        return '';
+    }
+
+    private static function get_template_part_payload($slug) {
+        if (! function_exists('get_block_template')) {
+            return null;
+        }
+
+        $slug = sanitize_title($slug);
+        if (! $slug) {
+            return null;
+        }
+
+        $template_part_id = get_stylesheet() . '//' . $slug;
+        $template_part = get_block_template($template_part_id, 'wp_template_part');
+
+        if (! $template_part || empty($template_part->content)) {
+            return null;
+        }
+
+        return [
+            'guard'   => 'template-part:' . $slug,
+            'label'   => self::get_dialog_label($template_part->title ?? self::humanize_template_part_slug($slug)),
+            'raw_content' => $template_part->content,
+        ];
+    }
+
+    private static function humanize_template_part_slug($slug) {
+        return ucwords(str_replace('-', ' ', $slug));
     }
 
     private static function add_dialog_trigger_attributes($block_content, $dialog_id, $dialog_label, $prefer_native_button = false) {

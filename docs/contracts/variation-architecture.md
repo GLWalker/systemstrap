@@ -6,11 +6,23 @@ This file is a CONTRACT.
 
 ## Contract Version
 
-Current Version: 3.19
+Current Version: 3.22
 
-Last Updated: 2026-06-28
+Last Updated: 2026-07-18
 
 ## Change Log
+
+### 3.22
+
+Updated the live filesystem variation inventory to match the current shipped style families. Replaced the stale `quartz`, `slate`, `superhero`, `united`, and `vapor` references with the active `breeze`, `capsule`, `colony`, `forge`, `polymer`, `reboot`, `slab`, and `twenty` families across the governed filesystem tree and explicit style-file registries.
+
+### 3.21
+
+Delegated the detailed Splide and carousel runtime behavior to `docs/contracts/carousel-runtime.md`. `variation-architecture.md` remains authoritative for variation registration, saved class contracts, and enqueue boundaries, while the new dedicated carousel contract now governs runtime ownership, thumbnail-versus-medium detection, state classes, underflow rules, and `has-nav-center-out` handling.
+
+### 3.20
+
+Documented the current SystemStrap carousel runtime contract more explicitly. The carousel variations continue to save the same Group-based variation markup and class names, while `assets/js/carousel-nav.js` now owns direct-slide discovery, runtime Splide markup injection, normalized thumbnail-mode classes, underflow state, wrapper-scoped navigation binding, and thumbnail measurement from the rendered track width. The carousel CSS remains explicitly enqueued rather than auto-registered, and the editor preview keeps an unmounted horizontal fallback while mirroring the frontend medium-versus-thumbnail detection rule.
 
 ### 3.19
 
@@ -193,26 +205,45 @@ The current variation filesystem shape is:
 .
 ├── theme.json
 ├── styles/
+│   ├── breeze.json
 │   ├── brite.json
-│   ├── quartz.json
-│   ├── slate.json
-│   ├── superhero.json
-│   ├── united.json
-│   ├── vapor.json
+│   ├── capsule.json
+│   ├── colony.json
+│   ├── forge.json
+│   ├── polymer.json
+│   ├── reboot.json
+│   ├── slab.json
+│   ├── twenty.json
 │   ├── colors/
+│   │   ├── a-default-dark.json
+│   │   ├── breeze-dark.json
+│   │   ├── breeze.json
+│   │   ├── brite-dark.json
 │   │   ├── brite.json
-│   │   ├── quartz.json
-│   │   ├── slate.json
-│   │   ├── superhero.json
-│   │   ├── united.json
-│   │   └── vapor.json
+│   │   ├── capsule-dark.json
+│   │   ├── capsule.json
+│   │   ├── colony-dark.json
+│   │   ├── colony.json
+│   │   ├── forge-dark.json
+│   │   ├── forge.json
+│   │   ├── polymer-dark.json
+│   │   ├── polymer.json
+│   │   ├── reboot-dark.json
+│   │   ├── reboot.json
+│   │   ├── slab-dark.json
+│   │   ├── slab.json
+│   │   ├── twenty-dark.json
+│   │   └── twenty.json
 │   └── typography/
+│       ├── breeze.json
 │       ├── brite.json
-│       ├── quartz.json
-│       ├── slate.json
-│       ├── superhero.json
-│       ├── united.json
-│       └── vapor.json
+│       ├── capsule.json
+│       ├── colony.json
+│       ├── forge.json
+│       ├── polymer.json
+│       ├── reboot.json
+│       ├── slab.json
+│       └── twenty.json
 ├── assets/css/style-variations/
 │   ├── bp-login-form-system-panel.css
 │   ├── bp-member-system-panel.css
@@ -271,24 +302,43 @@ SystemStrap currently has one active base global theme configuration source:
 
 SystemStrap currently also ships active filesystem variation JSON files in:
 
+- `styles/breeze.json`
 - `styles/brite.json`
-- `styles/quartz.json`
-- `styles/slate.json`
-- `styles/superhero.json`
-- `styles/united.json`
-- `styles/vapor.json`
+- `styles/capsule.json`
+- `styles/colony.json`
+- `styles/forge.json`
+- `styles/polymer.json`
+- `styles/reboot.json`
+- `styles/slab.json`
+- `styles/twenty.json`
+- `styles/colors/a-default-dark.json`
+- `styles/colors/breeze-dark.json`
+- `styles/colors/breeze.json`
+- `styles/colors/brite-dark.json`
 - `styles/colors/brite.json`
-- `styles/colors/quartz.json`
-- `styles/colors/slate.json`
-- `styles/colors/superhero.json`
-- `styles/colors/united.json`
-- `styles/colors/vapor.json`
+- `styles/colors/capsule-dark.json`
+- `styles/colors/capsule.json`
+- `styles/colors/colony-dark.json`
+- `styles/colors/colony.json`
+- `styles/colors/forge-dark.json`
+- `styles/colors/forge.json`
+- `styles/colors/polymer-dark.json`
+- `styles/colors/polymer.json`
+- `styles/colors/reboot-dark.json`
+- `styles/colors/reboot.json`
+- `styles/colors/slab-dark.json`
+- `styles/colors/slab.json`
+- `styles/colors/twenty-dark.json`
+- `styles/colors/twenty.json`
+- `styles/typography/breeze.json`
 - `styles/typography/brite.json`
-- `styles/typography/quartz.json`
-- `styles/typography/slate.json`
-- `styles/typography/superhero.json`
-- `styles/typography/united.json`
-- `styles/typography/vapor.json`
+- `styles/typography/capsule.json`
+- `styles/typography/colony.json`
+- `styles/typography/forge.json`
+- `styles/typography/polymer.json`
+- `styles/typography/reboot.json`
+- `styles/typography/slab.json`
+- `styles/typography/twenty.json`
 
 These files are active runtime variation sources layered onto the base `theme.json` configuration.
 
@@ -296,7 +346,7 @@ SystemStrap currently also ships a theme-owned editor sync layer that auto-merge
 
 - `assets/js/variations/strap-style-sync.js`
 
-That editor-side behavior is derived from the live `styles/`, `styles/colors/`, and `styles/typography/` filenames through `strap_get_style_variation_sync_map()` in `inc/enqueue-assets.php`.
+That editor-side behavior is derived from the live `styles/`, `styles/colors/`, and `styles/typography/` filenames through `strap_get_style_variation_sync_map()` in `inc/style-variations.php`.
 
 The current sync rule is one-way:
 
@@ -458,7 +508,6 @@ The following files are governed by this contract as of Version 3.0 and currentl
 - `core-accordion-system-tabs-vertical.css`
 - `core-accordion-system-tabs.css`
 - `core-archives-system-list.css`
-- `core-button-system-icon.css`
 - `core-calendar-system-panel.css`
 - `core-categories-system-list.css`
 - `core-comments-pagination-system-pagination.css`
@@ -484,6 +533,8 @@ The following files are governed by this contract as of Version 3.0 and currentl
 The following files in `assets/css/style-variations/` are NOT governed by the default auto-registration path:
 
 - `core-group-system-carousel.css`
+    - explicitly skipped by `strap_register_block_styles()`
+- `core-button-system-icon.css`
     - explicitly skipped by `strap_register_block_styles()`
 - `bp-widget-system-panel-header.css`
     - explicitly skipped by `strap_register_block_styles()`
@@ -529,7 +580,6 @@ The variation architecture currently uses these explicit CSS loading exceptions:
 
 - `inc/enqueue-assets.php`
     - enqueues `core-group-system-carousel.css` as `strap-carousel-styles`
-    - enqueues `core-button-system-icon.css` as `strap-button-icon`
     - registers `strap-buddypress-sync` on `init`
     - registers `strap-buddypress-variation-anchor` on `init`
     - enqueues `strap-buddypress-sync` on `bp_enqueue_community_scripts` for BuddyPress frontend surfaces
@@ -538,22 +588,14 @@ The variation architecture currently uses these explicit CSS loading exceptions:
         - `global-styles-css-custom-properties`
         - `wp-block-library`
     - enqueues the same `strap-buddypress-sync` handle on `enqueue_block_editor_assets` when BuddyPress is present so BuddyPress block-style dependencies remain valid in editor contexts
-- `functions.php`
+- `inc/theme-setup.php`
     - includes `assets/css/style-variations/core-group-system-carousel.css` in `add_editor_style()`
 - `inc/dialog-renderer.php`
     - enqueues `assets/css/style-variations/core-icon-dialog.css` when dialog runtime is active
 
-`core-button-system-icon.css` is currently both:
+`core-button-system-icon.css` is no longer part of the active block-style registration or explicit frontend enqueue path.
 
-- auto-registered as a block style through `inc/block-styles.php`
-- explicitly enqueued through `inc/enqueue-assets.php`
-
-Under the current runtime, that duplication MUST be treated as intentional behavior rather than assumed accidental double-loading.
-
-The current rationale is:
-
-- the file participates in normal block-style registration
-- the icon button treatment is also required outside normal block-style loading assumptions
+The shared `is-style-system-btn-icon` treatment is instead owned by `assets/css/main-styles.css` so carousel navigation buttons and dialog close buttons can continue to use the same class contract without exposing a `core/button` style variation in the editor.
 
 `assets/css/buddypress-blocks.css` is NOT part of the `assets/css/style-variations/*.css` parser.
 
@@ -630,7 +672,6 @@ The current CSS block-style surfaces covered by this contract as of Version 3.0 
 - BuddyPress widget-heading surface
     - `bp-widget-system-panel-header.css`
 - button and icon surfaces
-    - `core-button-system-icon.css`
     - `core-icon-dialog.css`
 - detail and tag surfaces
     - `core-details-system-details.css`
@@ -726,14 +767,11 @@ This JS registration is coupled to the semantic action-hook contract in `inc/blo
 
 ### `strap-carousel.js`
 
-Registers six `core/group` variations:
+Registers three `core/group` variations:
 
 - `strap-carousel-media`
 - `strap-carousel-banner`
 - `strap-carousel-thumb`
-- `strap-carousel-mediatext`
-- `strap-carousel-posts`
-- `strap-carousel-comments`
 
 These variations currently inject class-bearing structures including:
 
@@ -746,6 +784,16 @@ These variations currently inject class-bearing structures including:
 - `is-style-system-panel`
 
 These class names are part of the carousel variation contract.
+
+The current carousel runtime also depends on these post-mount state classes:
+
+- `splide`
+- `is-initialized`
+- `is-system-carousel-mounted`
+- `is-system-thumbnail-carousel`
+- `is-system-thumb-thumbnail`
+- `is-system-thumb-medium`
+- `is-thumbs-underflow`
 
 ### `strap-panels.js`
 
@@ -847,6 +895,12 @@ Current variation-sensitive class and attribute signals include:
 - `is-style-system-details`
 - `is-style-system-carousel`
 - `is-style-system-carousel-auto`
+- `is-style-system-carousel-multi`
+- `is-system-carousel-mounted`
+- `is-system-thumbnail-carousel`
+- `is-system-thumb-thumbnail`
+- `is-system-thumb-medium`
+- `is-thumbs-underflow`
 - `has-nav-top`
 - `has-nav-center`
 - `has-nav-center-out`
@@ -857,6 +911,39 @@ Current variation-sensitive class and attribute signals include:
 - `systemNavPosition`
 
 Renaming any of these without updating the relevant JS, CSS, PHP, and contract files in the same change set MUST be treated as a breaking variation behavior change.
+
+## Carousel Runtime Contract
+
+The current carousel runtime is split across these files:
+
+- `assets/js/variations/strap-carousel.js`
+- `assets/js/variations/strap-controls.js`
+- `assets/js/carousel-nav.js`
+- `assets/js/carousel-editor-preview.js`
+- `assets/css/style-variations/core-group-system-carousel.css`
+- `inc/enqueue-assets.php`
+- `inc/dynamic-styles.php`
+
+The saved block contract remains:
+
+- outer `core/group` variation wrapper
+- nested `system-carousel-wrapper`
+- nested `system-carousel-nav-buttons`
+- nested carousel Group using one of:
+  - `is-style-system-carousel`
+  - `is-style-system-carousel-auto`
+  - `is-style-system-carousel-multi`
+
+The runtime contract is:
+
+- saved Gutenberg slide blocks remain the authored source of truth
+- Splide wrappers are injected only at runtime
+- `core-group-system-carousel.css` is explicitly enqueued as `strap-carousel-styles`
+- `core-group-system-carousel.css` MUST NOT be auto-registered through the generic block-style scanner
+- thumbnail carousel width is measured from the rendered track, not re-derived from `theme.json` layout math
+- thumbnail mode defaults to thumbnail and promotes to medium only when every direct image slide is explicitly `size-medium`
+- `size-full`, undefined size, mixed sizes, and non-image direct slides all resolve to thumbnail mode
+- editor preview remains an unmounted horizontal fallback and mirrors the same thumbnail-mode rule
 
 ## Gutenberg Serialization Contract
 
@@ -880,24 +967,43 @@ SystemStrap currently supports modular global variation layering through the `st
 
 The current active JSON variation files are:
 
+- `styles/breeze.json`
 - `styles/brite.json`
-- `styles/quartz.json`
-- `styles/slate.json`
-- `styles/superhero.json`
-- `styles/united.json`
-- `styles/vapor.json`
+- `styles/capsule.json`
+- `styles/colony.json`
+- `styles/forge.json`
+- `styles/polymer.json`
+- `styles/reboot.json`
+- `styles/slab.json`
+- `styles/twenty.json`
+- `styles/colors/a-default-dark.json`
+- `styles/colors/breeze-dark.json`
+- `styles/colors/breeze.json`
+- `styles/colors/brite-dark.json`
 - `styles/colors/brite.json`
-- `styles/colors/quartz.json`
-- `styles/colors/slate.json`
-- `styles/colors/superhero.json`
-- `styles/colors/united.json`
-- `styles/colors/vapor.json`
+- `styles/colors/capsule-dark.json`
+- `styles/colors/capsule.json`
+- `styles/colors/colony-dark.json`
+- `styles/colors/colony.json`
+- `styles/colors/forge-dark.json`
+- `styles/colors/forge.json`
+- `styles/colors/polymer-dark.json`
+- `styles/colors/polymer.json`
+- `styles/colors/reboot-dark.json`
+- `styles/colors/reboot.json`
+- `styles/colors/slab-dark.json`
+- `styles/colors/slab.json`
+- `styles/colors/twenty-dark.json`
+- `styles/colors/twenty.json`
+- `styles/typography/breeze.json`
 - `styles/typography/brite.json`
-- `styles/typography/quartz.json`
-- `styles/typography/slate.json`
-- `styles/typography/superhero.json`
-- `styles/typography/united.json`
-- `styles/typography/vapor.json`
+- `styles/typography/capsule.json`
+- `styles/typography/colony.json`
+- `styles/typography/forge.json`
+- `styles/typography/polymer.json`
+- `styles/typography/reboot.json`
+- `styles/typography/slab.json`
+- `styles/typography/twenty.json`
 
 Future additions to those directories MUST be documented here with exact file names and scope boundaries.
 
