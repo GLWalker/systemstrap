@@ -2,6 +2,365 @@
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
 	"version": 3,
 	"title": "Dark Default Colors",
-	"description": "Colors: Matching dark theme for default SystemStrap theme.",
-	"settings": {}
+	"description": "Colors: Matching dark theme for the default SystemStrap color system.",
+	"settings": {
+		"color": {
+			"duotone": [
+				{
+					"colors": [
+						"#111827",
+						"#F9FAFB"
+					],
+					"name": "Base to Contrast",
+					"slug": "duotone-1"
+				},
+				{
+					"colors": [
+						"#F9FAFB",
+						"#111827"
+					],
+					"name": "Contrast to Base",
+					"slug": "duotone-11"
+				},
+				{
+					"colors": [
+						"#111827",
+						"#38BDF8"
+					],
+					"name": "Base to Accent",
+					"slug": "duotone-2"
+				},
+				{
+					"colors": [
+						"#38BDF8",
+						"#111827"
+					],
+					"name": "Accent to Base",
+					"slug": "duotone-12"
+				},
+				{
+					"colors": [
+						"#111827",
+						"#5B7FA3"
+					],
+					"name": "Base to Primary",
+					"slug": "duotone-3"
+				},
+				{
+					"colors": [
+						"#5B7FA3",
+						"#111827"
+					],
+					"name": "Base to Primary to Base",
+					"slug": "duotone-13"
+				},
+				{
+					"colors": [
+						"#111827",
+						"#9CA3AF"
+					],
+					"name": "Base to Secondary",
+					"slug": "duotone-4"
+				},
+				{
+					"colors": [
+						"#9CA3AF",
+						"#111827"
+					],
+					"name": "Secondary to Base",
+					"slug": "duotone-14"
+				},
+				{
+					"colors": [
+						"#111827",
+						"#22C55E"
+					],
+					"name": "Base to Success",
+					"slug": "duotone-5"
+				},
+				{
+					"colors": [
+						"#22C55E",
+						"#111827"
+					],
+					"name": "Success to Base",
+					"slug": "duotone-15"
+				},
+				{
+					"colors": [
+						"#111827",
+						"#38BDF8"
+					],
+					"name": "Base to Info",
+					"slug": "duotone-6"
+				},
+				{
+					"colors": [
+						"#38BDF8",
+						"#111827"
+					],
+					"name": "Info to Base",
+					"slug": "duotone-16"
+				},
+				{
+					"colors": [
+						"#111827",
+						"#F59E0B"
+					],
+					"name": "Base to Warning",
+					"slug": "duotone-7"
+				},
+				{
+					"colors": [
+						"#F59E0B",
+						"#111827"
+					],
+					"name": "Warning to Base",
+					"slug": "duotone-17"
+				},
+				{
+					"colors": [
+						"#111827",
+						"#EF4444"
+					],
+					"name": "Base to Danger",
+					"slug": "duotone-8"
+				},
+				{
+					"colors": [
+						"#EF4444",
+						"#111827"
+					],
+					"name": "Danger to Base",
+					"slug": "duotone-18"
+				},
+				{
+					"colors": [
+						"#030712",
+						"#F9FAFB"
+					],
+					"name": "Light to Dark",
+					"slug": "duotone-9"
+				},
+				{
+					"colors": [
+						"#F9FAFB",
+						"#030712"
+					],
+					"name": "Dark to Light",
+					"slug": "duotone-10"
+				}
+			],
+			"palette": [
+				{
+					"color": "#111827",
+					"name": "Base/Body",
+					"slug": "base"
+				},
+				{
+					"color": "#F9FAFB",
+					"name": "Contrast",
+					"slug": "contrast"
+				},
+				{
+					"color": "#5B7FA3",
+					"name": "Primary",
+					"slug": "primary"
+				},
+				{
+					"color": "#9CA3AF",
+					"name": "Secondary",
+					"slug": "secondary"
+				},
+				{
+					"color": "#22C55E",
+					"name": "Success",
+					"slug": "success"
+				},
+				{
+					"color": "#38BDF8",
+					"name": "Info",
+					"slug": "info"
+				},
+				{
+					"color": "#F59E0B",
+					"name": "Warning",
+					"slug": "warning"
+				},
+				{
+					"color": "#EF4444",
+					"name": "Danger",
+					"slug": "danger"
+				},
+				{
+					"color": "#F9FAFB",
+					"name": "Light",
+					"slug": "light"
+				},
+				{
+					"color": "#030712",
+					"name": "Dark",
+					"slug": "dark"
+				},
+				{
+					"color": "#1F2937",
+					"name": "Secondary Body BG",
+					"slug": "secondary-bg"
+				},
+				{
+					"color": "#D1D5DB",
+					"name": "Secondary Body Contrast",
+					"slug": "secondary-color"
+				},
+				{
+					"color": "#374151",
+					"name": "Tertiary Body BG",
+					"slug": "tertiary-bg"
+				},
+				{
+					"color": "#E5E7EB",
+					"name": "Tertiary Body Contrast",
+					"slug": "tertiary-color"
+				},
+				{
+					"color": "#4B5563",
+					"name": "Border Color",
+					"slug": "border-color"
+				},
+				{
+					"color": "currentcolor",
+					"name": "Current",
+					"slug": "current"
+				},
+				{
+					"color": "color-mix(in srgb, currentColor 40%, transparent)",
+					"name": "Current Mix",
+					"slug": "current-mix"
+				},
+				{
+					"color": "color-mix(in srgb, currentColor 85%, transparent)",
+					"name": "Current Mix Text",
+					"slug": "current-mix-color"
+				},
+				{
+					"color": "transparent",
+					"name": "Transparent",
+					"slug": "transparent"
+				},
+				{
+					"color": "inherit",
+					"name": "Inherit",
+					"slug": "inherit"
+				}
+			],
+			"gradients": [
+				{
+					"slug": "gradient",
+					"gradient": "linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 100%)",
+					"name": "Gradient"
+				},
+				{
+					"slug": "gradient-alt",
+					"gradient": "linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.2) 100%)",
+					"name": "Gradient Alt"
+				},
+				{
+					"slug": "body",
+					"gradient": "linear-gradient(135deg, var(--wp--preset--color--base) 0%, var(--wp--preset--color--secondary-bg) 100%)",
+					"name": "Body Background"
+				},
+				{
+					"slug": "element",
+					"gradient": "linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%)",
+					"name": "Element Background"
+				},
+				{
+					"name": "Primary",
+					"slug": "primary",
+					"gradient": "linear-gradient(rgba(var(--wp--preset--color--primary-shadow-rgb),0.7), var(--wp--preset--color--primary) 60%, rgba(var(--wp--preset--color--primary-shadow-rgb),0.7))"
+				},
+				{
+					"name": "Primary Hover",
+					"slug": "primary-hover",
+					"gradient": "linear-gradient(var(--wp--preset--color--primary), var(--wp--preset--color--primary-50) 60%, var(--wp--preset--color--primary-40))"
+				},
+				{
+					"name": "Secondary",
+					"slug": "secondary",
+					"gradient": "linear-gradient(rgba(var(--wp--preset--color--secondary-shadow-rgb),0.7), var(--wp--preset--color--secondary) 60%, rgba(var(--wp--preset--color--secondary-shadow-rgb),0.7))"
+				},
+				{
+					"name": "Secondary Hover",
+					"slug": "secondary-hover",
+					"gradient": "linear-gradient(var(--wp--preset--color--secondary), var(--wp--preset--color--secondary-50) 60%, var(--wp--preset--color--secondary-40))"
+				},
+				{
+					"name": "Success",
+					"slug": "success",
+					"gradient": "linear-gradient(rgba(var(--wp--preset--color--success-shadow-rgb),0.7), var(--wp--preset--color--success) 60%, rgba(var(--wp--preset--color--success-shadow-rgb),0.7))"
+				},
+				{
+					"name": "Success Hover",
+					"slug": "success-hover",
+					"gradient": "linear-gradient(var(--wp--preset--color--success), var(--wp--preset--color--success-50) 60%, var(--wp--preset--color--success-40))"
+				},
+				{
+					"name": "Info",
+					"slug": "info",
+					"gradient": "linear-gradient(rgba(var(--wp--preset--color--info-shadow-rgb),0.7), var(--wp--preset--color--info) 60%, rgba(var(--wp--preset--color--info-shadow-rgb),0.7))"
+				},
+				{
+					"name": "Info Hover",
+					"slug": "info-hover",
+					"gradient": "linear-gradient(var(--wp--preset--color--info), var(--wp--preset--color--info-50) 60%, var(--wp--preset--color--info-40))"
+				},
+				{
+					"name": "Warning",
+					"slug": "warning",
+					"gradient": "linear-gradient(rgba(var(--wp--preset--color--warning-shadow-rgb),0.7), var(--wp--preset--color--warning) 60%, rgba(var(--wp--preset--color--warning-shadow-rgb),0.7))"
+				},
+				{
+					"name": "Warning Hover",
+					"slug": "warning-hover",
+					"gradient": "linear-gradient(var(--wp--preset--color--warning), var(--wp--preset--color--warning-50) 60%, var(--wp--preset--color--warning-40))"
+				},
+				{
+					"name": "Danger",
+					"slug": "danger",
+					"gradient": "linear-gradient(rgba(var(--wp--preset--color--danger-shadow-rgb),0.7), var(--wp--preset--color--danger) 60%, rgba(var(--wp--preset--color--danger-shadow-rgb),0.7))"
+				},
+				{
+					"name": "Danger Hover",
+					"slug": "danger-hover",
+					"gradient": "linear-gradient(var(--wp--preset--color--danger), var(--wp--preset--color--danger-50) 60%, var(--wp--preset--color--danger-40))"
+				},
+				{
+					"name": "Light",
+					"slug": "light",
+					"gradient": "linear-gradient(rgba(var(--wp--preset--color--light-shadow-rgb),0.7), var(--wp--preset--color--light) 60%, rgba(var(--wp--preset--color--light-shadow-rgb),0.7))"
+				},
+				{
+					"name": "Light Hover",
+					"slug": "light-hover",
+					"gradient": "linear-gradient(var(--wp--preset--color--light), var(--wp--preset--color--light-50) 60%, var(--wp--preset--color--light-40))"
+				},
+				{
+					"name": "Dark",
+					"slug": "dark",
+					"gradient": "linear-gradient(rgba(var(--wp--preset--color--dark-shadow-rgb),0.7), var(--wp--preset--color--dark) 60%, rgba(var(--wp--preset--color--dark-shadow-rgb),0.7))"
+				},
+				{
+					"name": "Dark Hover",
+					"slug": "dark-hover",
+					"gradient": "linear-gradient(var(--wp--preset--color--dark), var(--wp--preset--color--dark-50) 60%, var(--wp--preset--color--dark-40))"
+				}
+			]
+		}
+	},
+	"styles": {
+		"color": {
+			"background": "var:preset|color|base",
+			"text": "var:preset|color|contrast"
+		}
+	}
 }

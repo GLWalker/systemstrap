@@ -15,6 +15,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 function strap_register_block_styles() {
 	$theme_dir = get_template_directory() . '/';
 	$theme_uri = get_template_directory_uri() . '/';
+	$pagination_stylesheet = "{$theme_dir}assets/css/system-ui-pagination.css";
+
+	if ( file_exists( $pagination_stylesheet ) ) {
+		wp_register_style(
+			'strap-system-ui-pagination',
+			$theme_uri . 'assets/css/system-ui-pagination.css',
+			array(),
+			wp_get_theme()->get( 'Version' )
+		);
+	}
 
 	$bp_block_stylesheet = "{$theme_dir}assets/css/buddypress-blocks.css";
 
@@ -116,6 +126,10 @@ function strap_register_block_styles() {
 				$deps[] = 'strap-buddypress-variation-anchor';
 			}
 
+			if ( str_starts_with( $variation_name, 'system-ui-pagination' ) ) {
+				$deps[] = 'strap-system-ui-pagination';
+			}
+
 			// 1. Register the conditional block stylesheet using absolute path
 			wp_enqueue_block_style(
 				$block_name,
@@ -128,14 +142,48 @@ function strap_register_block_styles() {
 			);
 
 			// 2. Register the Block Style Variation and map it to the handle
+			$variation_label = ucwords( str_replace( '-', ' ', $variation_name ) );
+
+			if ( str_starts_with( $variation_name, 'system-ui-pagination' ) ) {
+				$variation_label = str_replace( 'System Ui', 'System UI', $variation_label );
+			}
+
 			register_block_style(
 				$block_name,
 				array(
 					'name'         => $variation_name,
-					'label'        => ucwords( str_replace( '-', ' ', $variation_name ) ),
+					'label'        => $variation_label,
 					'style_handle' => $handle,
 				)
 			);
+
+			if ( str_starts_with( $variation_name, 'system-ui-pagination' ) ) {
+				$pagination_child_blocks = array(
+					'core/query-pagination'    => array( 'core/query-pagination-previous', 'core/query-pagination-numbers', 'core/query-pagination-next' ),
+					'core/comments-pagination' => array( 'core/comments-pagination-previous', 'core/comments-pagination-numbers', 'core/comments-pagination-next' ),
+				);
+
+				foreach ( $pagination_child_blocks[ $block_name ] ?? array() as $child_block_name ) {
+					wp_enqueue_block_style(
+						$child_block_name,
+						array(
+							'handle' => $handle,
+							'src'    => $theme_uri . 'assets/css/style-variations/' . basename( $file ),
+							'path'   => $file,
+							'deps'   => $deps,
+						)
+					);
+
+					register_block_style(
+						$child_block_name,
+						array(
+							'name'         => $variation_name,
+							'label'        => $variation_label,
+							'style_handle' => $handle,
+						)
+					);
+				}
+			}
 
 			// 3. Auto-register a Flush variation for any System List component
 			if ( str_starts_with( $variation_name, 'system-list' ) ) {

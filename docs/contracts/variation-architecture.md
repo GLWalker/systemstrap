@@ -6,11 +6,19 @@ This file is a CONTRACT.
 
 ## Contract Version
 
-Current Version: 3.22
+Current Version: 3.24
 
-Last Updated: 2026-07-18
+Last Updated: 2026-07-30
 
 ## Change Log
+
+### 3.24
+
+Extended the shared `system-ui-pagination` family to Query and Comments Pagination child blocks: Previous, Page Numbers, and Next. Parent-level variations remain the bulk styling shortcut; child-level selections reuse the same variation names and stylesheet as local overrides, allowing arrows and page numbers to be styled independently without changing saved parent markup.
+
+### 3.23
+
+Replaced the retired `system-pagination`, `system-ui-circle`, `system-ui-rounded`, and `system-ui-square` pagination styles with the shared `system-ui-pagination` family. Query Pagination, Comments Pagination, and Post Navigation Link now register the fill, outline, pill, pill-outline, square, square-outline, and badge variants from files named `*-system-ui-pagination*.css`. The shared `assets/css/system-ui-pagination.css` asset is a dependency of a selected variation; no render filter force-enqueues pagination assets.
 
 ### 3.22
 
@@ -258,7 +266,7 @@ The current variation filesystem shape is:
 │   ├── core-button-system-icon.css
 │   ├── core-calendar-system-panel.css
 │   ├── core-categories-system-list.css
-│   ├── core-comments-pagination-system-pagination.css
+│   ├── core-comments-pagination-system-ui-pagination*.css
 │   ├── core-details-system-details.css
 │   ├── core-group-system-carousel.css
 │   ├── core-group-system-panel-footer.css
@@ -273,7 +281,8 @@ The current variation filesystem shape is:
 │   ├── core-navigation-system-nav-gen.css
 │   ├── core-page-list-system-list.css
 │   ├── core-post-terms-system-list.css
-│   ├── core-query-pagination-system-pagination.css
+│   ├── core-post-navigation-link-system-ui-pagination*.css
+│   ├── core-query-pagination-system-ui-pagination*.css
 │   ├── core-rss-system-list.css
 │   ├── core-table-system-panel.css
 │   └── core-tag-cloud-system-tags.css
@@ -510,7 +519,7 @@ The following files are governed by this contract as of Version 3.0 and currentl
 - `core-archives-system-list.css`
 - `core-calendar-system-panel.css`
 - `core-categories-system-list.css`
-- `core-comments-pagination-system-pagination.css`
+- `core-comments-pagination-system-ui-pagination*.css`
 - `core-details-system-details.css`
 - `core-group-system-panel-footer.css`
 - `core-group-system-panel-header.css`
@@ -523,7 +532,8 @@ The following files are governed by this contract as of Version 3.0 and currentl
 - `core-navigation-system-nav-gen.css`
 - `core-page-list-system-list.css`
 - `core-post-terms-system-list.css`
-- `core-query-pagination-system-pagination.css`
+- `core-post-navigation-link-system-ui-pagination*.css`
+- `core-query-pagination-system-ui-pagination*.css`
 - `core-rss-system-list.css`
 - `core-table-system-panel.css`
 - `core-tag-cloud-system-tags.css`
@@ -633,14 +643,7 @@ The following render-time safeguards are part of the variation runtime:
     - preserves accordion-derived heading and panel hooks on generated tab controls through `.wp-block-accordion-heading__toggle` and `.wp-block-accordion-panel`
     - copies presentation classes and inline styles from source accordion items, headings, heading controls, and panels into the generated tab structure while excluding structural accordion wrapper classes
     - copies border presentation from the first valid source accordion item onto the surviving accordion shell so item-level border settings remain visible after transformation
-- `strap_enqueue_pagination_block_styles()`
-    - hooked to `render_block`
-    - detects `core/query-pagination*`
-    - enqueues `core-query-pagination-system-pagination`
-    - detects `core/comments-pagination*`
-    - enqueues `core-comments-pagination-system-pagination`
-
-These safeguards are conditional loading behavior and MUST be treated as part of the variation contract.
+Selected pagination variations load through the ordinary `wp_enqueue_block_style()` path. `strap-system-ui-pagination` is registered by `inc/block-styles.php` and supplied only as a dependency of `system-ui-pagination*` variation handles.
 
 ## CSS Variation Surface Registry
 
@@ -676,9 +679,11 @@ The current CSS block-style surfaces covered by this contract as of Version 3.0 
 - detail and tag surfaces
     - `core-details-system-details.css`
     - `core-tag-cloud-system-tags.css`
-- query and comments pagination surfaces
-    - `core-query-pagination-system-pagination.css`
-    - `core-comments-pagination-system-pagination.css`
+- pagination surfaces
+    - `assets/css/system-ui-pagination.css`
+    - `core-query-pagination-system-ui-pagination*.css`
+    - `core-comments-pagination-system-ui-pagination*.css`
+    - `core-post-navigation-link-system-ui-pagination*.css`
 - carousel surface
     - `core-group-system-carousel.css`
 

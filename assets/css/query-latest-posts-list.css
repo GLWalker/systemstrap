@@ -16,20 +16,12 @@
 .query-latest-posts.has-background {
 	--query-latest-posts-muted-color:
 		var(--wp--preset--color--current-mix-color, currentColor);
-	--strap-pagination-current-bg: currentColor;
-	--strap-pagination-current-border-color: currentColor;
-	--strap-pagination-current-color: var(--wp--preset--color--base);
-	--strap-pagination-dots-color: currentColor;
 }
 
 .wp-block-group.has-background .query-latest-posts,
 .wp-block-cover.has-background .query-latest-posts {
 	--query-latest-posts-muted-color:
 		var(--wp--preset--color--current-mix-color, currentColor);
-	--strap-pagination-current-bg: currentColor;
-	--strap-pagination-current-border-color: currentColor;
-	--strap-pagination-current-color: var(--wp--preset--color--base);
-	--strap-pagination-dots-color: currentColor;
 }
 
 .query-latest-posts.has-text-color,
@@ -37,10 +29,6 @@
 .wp-block-cover.has-text-color .query-latest-posts {
 	--query-latest-posts-muted-color:
 		var(--wp--preset--color--current-mix-color, currentColor);
-	--strap-pagination-current-bg: currentColor;
-	--strap-pagination-current-border-color: currentColor;
-	--strap-pagination-current-color: var(--wp--preset--color--base);
-	--strap-pagination-dots-color: currentColor;
 }
 
 .query-latest-posts.has-background .query-latest-posts__header {

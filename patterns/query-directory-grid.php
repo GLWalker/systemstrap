@@ -47,7 +47,7 @@
 		<!-- wp:group {"className":"query-directory-grid__footer","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"right"}} -->
 		<div class="wp-block-group query-directory-grid__footer"><!-- wp:query-total {"displayType":"range-display","style":{"layout":{"selfStretch":"fill","flexSize":null}}} /-->
 
-			<!-- wp:query-pagination {"paginationArrow":"chevron","showLabel":false,"className":"query-directory-grid__pagination query-directory-listing__pagination","layout":{"type":"flex","justifyContent":"right","flexWrap":"nowrap"}} -->
+			<!-- wp:query-pagination {"paginationArrow":"chevron","showLabel":false,"className":"query-directory-grid__pagination query-directory-listing__pagination is-style-system-ui-pagination","layout":{"type":"flex","justifyContent":"right","flexWrap":"nowrap"}} -->
 			<!-- wp:query-pagination-previous /-->
 
 			<!-- wp:query-pagination-numbers /-->

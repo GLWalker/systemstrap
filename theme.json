@@ -328,7 +328,7 @@
 					"slug": "tertiary-color"
 				},
 				{
-					"color": "#9CA3AF",
+					"color": "color-mix(in srgb, currentColor 30%, transparent)",
 					"name": "Border Color",
 					"slug": "border-color"
 				},
@@ -377,7 +377,7 @@
 			"border-radius-lg": "0.5rem",
 			"border-radius-xl": "1rem",
 			"border-radius-pill": "50rem",
-			"shadow": "var:preset|shadow|sm",
+			"shadow": "var:preset|shadow|md",
 			"link-color": "var:preset|color|info",
 			"link-hover-color": "color-mix(in srgb, var(--wp--custom--link-color) 70%, var(--wp--preset--color--base))",
 			"btn-border-width": "1px",
@@ -417,7 +417,7 @@
 			"system-ui-surface-banner": "color-mix(in srgb, var(--wp--preset--color--base) 6%, transparent)",
 			"system-ui-active-bg": "color-mix(in srgb, currentColor 1%, transparent)",
 			"system-ui-surface-nested": "transparent",
-			"system-ui-border-color": "color-mix(in srgb, currentColor 30%, transparent)",
+			"system-ui-border-color": "var:preset|color|border-color",
 			"system-ui-list-hover-bg": "color-mix(in srgb, currentColor 10%, transparent)",
 			"system-ui-panel-hover-bg": "color-mix(in srgb, currentColor 2%, transparent)",
 			"system-ui-backdrop-filter": "none",
@@ -425,24 +425,24 @@
 			"system-ui-background-image-nested": "none"
 		},
 		"layout": {
-			"contentSize": "min(100%, 1040px)",
-			"wideSize": "min(100%, 1280px)"
+			"contentSize": "min(100%, 1200px)",
+			"wideSize": "min(100%, 1320px)"
 		},
 		"shadow": {
 			"presets": [
 				{
 					"name": "Small",
-					"shadow": "0 .125rem .25rem rgba(0, 0, 0, .075)",
+					"shadow": "0 1px 2px rgba(0, 0, 0, 0.08), 0 3px 8px rgba(0, 0, 0, 0.04)",
 					"slug": "sm"
 				},
 				{
 					"name": "Medium",
-					"shadow": "0 .5rem 1rem rgba(0, 0, 0, .15)",
+					"shadow": "0 2px 4px rgba(0, 0, 0, 0.10), 0 8px 20px rgba(0, 0, 0, 0.07)",
 					"slug": "md"
 				},
 				{
 					"name": "Large",
-					"shadow": "0 1rem 3rem rgba(0, 0, 0, .175)",
+					"shadow": "0 4px 10px rgba(0, 0, 0, 0.12), 0 18px 40px rgba(0, 0, 0, 0.10)",
 					"slug": "lg"
 				},
 				{
@@ -657,8 +657,8 @@
 		"spacing": {
 			"blockGap": "var:preset|spacing|30",
 			"padding": {
-				"left": "var:preset|spacing|30",
-				"right": "var:preset|spacing|30"
+				"left": "clamp(1rem, 2vw, 2rem)",
+				"right": "clamp(1rem, 2vw, 2rem)"
 			}
 		},
 		"typography": {
@@ -732,7 +732,10 @@
 			},
 			"core/buttons": {
 				"spacing": {
-					"blockGap": "var:preset|spacing|10"
+					"blockGap": {
+						"top": "var:preset|spacing|20",
+						"left": "var:preset|spacing|20"
+					}
 				}
 			},
 			"core/calendar": {
@@ -777,7 +780,11 @@
 			},
 			"core/columns": {
 				"spacing": {
-					"blockGap": "var:preset|spacing|30"
+					"blockGap": {
+						"top": "var:preset|spacing|30",
+						"left": "var:preset|spacing|40",
+						"right": "var:preset|spacing|40"
+					}
 				}
 			},
 			"core/comment-author-name": {
@@ -870,21 +877,63 @@
 				}
 			},
 			"core/comments-pagination": {
+				"spacing": {
+					"blockGap": {
+						"top": "var:preset|spacing|20",
+						"left": "var:preset|spacing|20"
+					}
+				},
 				"typography": {
 					"fontSize": "var:preset|font-size|small"
 				}
 			},
 			"core/comments-pagination-next": {
+				"elements": {
+					"link": {
+						"typography": {
+							"textDecoration": "none"
+						},
+						":hover": {
+							"typography": {
+								"textDecoration": "underline"
+							}
+						}
+					}
+				},
 				"typography": {
 					"fontSize": "var:preset|font-size|small"
 				}
 			},
 			"core/comments-pagination-numbers": {
+				"elements": {
+					"link": {
+						"typography": {
+							"textDecoration": "none"
+						},
+						":hover": {
+							"typography": {
+								"textDecoration": "underline"
+							}
+						}
+					}
+				},
 				"typography": {
 					"fontSize": "var:preset|font-size|small"
 				}
 			},
 			"core/comments-pagination-previous": {
+				"elements": {
+					"link": {
+						"typography": {
+							"textDecoration": "none"
+						},
+						":hover": {
+							"typography": {
+								"textDecoration": "underline"
+							}
+						}
+					}
+				},
 				"typography": {
 					"fontSize": "var:preset|font-size|small"
 				}
@@ -924,7 +973,10 @@
 			},
 			"core/gallery": {
 				"spacing": {
-					"blockGap": "var:preset|spacing|20",
+					"blockGap": {
+						"top": "var:preset|spacing|20",
+						"left": "var:preset|spacing|20"
+					},
 					"margin": {
 						"bottom": "var:preset|spacing|30"
 					}
@@ -1155,7 +1207,7 @@
 						},
 						":hover": {
 							"typography": {
-								"textDecoration": "none"
+								"textDecoration": "underline"
 							}
 						}
 					}
@@ -1268,7 +1320,10 @@
 			},
 			"core/query-pagination": {
 				"spacing": {
-					"blockGap": "var:preset|spacing|20"
+					"blockGap": {
+						"top": "var:preset|spacing|20",
+						"left": "var:preset|spacing|20"
+					}
 				},
 				"typography": {
 					"fontSize": "var:preset|font-size|small",
@@ -1283,7 +1338,7 @@
 						},
 						":hover": {
 							"typography": {
-								"textDecoration": "none"
+								"textDecoration": "underline"
 							}
 						}
 					}
@@ -1293,6 +1348,18 @@
 				}
 			},
 			"core/query-pagination-numbers": {
+				"elements": {
+					"link": {
+						"typography": {
+							"textDecoration": "none"
+						},
+						":hover": {
+							"typography": {
+								"textDecoration": "underline"
+							}
+						}
+					}
+				},
 				"typography": {
 					"fontSize": "var:preset|font-size|small"
 				}
@@ -1305,7 +1372,7 @@
 						},
 						":hover": {
 							"typography": {
-								"textDecoration": "none"
+								"textDecoration": "underline"
 							}
 						}
 					}
@@ -1481,7 +1548,10 @@
 			},
 			"core/social-links": {
 				"spacing": {
-					"blockGap": "var:preset|spacing|20"
+					"blockGap": {
+						"top": "var:preset|spacing|20",
+						"left": "var:preset|spacing|20"
+					}
 				}
 			},
 			"core/table": {
@@ -1490,7 +1560,7 @@
 					"style": "var(--wp--custom--border-style)",
 					"width": "var(--wp--custom--border-width)"
 				},
-				"css": "& { overflow: hidden; } & table, & th, & td { border-color: var(--wp--preset--color--border-color); border-style: var(--wp--custom--border-style); border-width: var(--wp--custom--border-width); }",
+				"css": "& { overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; } & table, & th, & td { border-color: var(--wp--preset--color--border-color); border-style: var(--wp--custom--border-style); border-width: var(--wp--custom--border-width); }",
 				"spacing": {
 					"padding": {
 						"bottom": "calc(var(--wp--preset--font-size--medium) * .5)",

@@ -1,0 +1,230 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "Workshop Layout",
+	"description": "Layout: The primary SystemStrap blogging and System UI framework, with durable controls, restrained material surfaces, complete state routing, a full spacing scale, readable content widths, and palette-neutral inheritance.",
+	"settings": {
+		"custom": {
+			"font-weight-light": "300",
+			"font-weight-body": "400",
+			"font-weight-button": "600",
+			"font-weight-heading": "700",
+			"font-weight-nav": "600",
+			"font-weight-bold": "700",
+			"code-color": "var:preset|color|danger",
+			"highlight-color": "var(--wp--preset--color--primary-text)",
+			"highlight-bg": "var:preset|color|primary",
+			"border-radius": "0.25rem",
+			"border-radius-sm": "0.125rem",
+			"border-radius-lg": "0.375rem",
+			"border-radius-xl": "0.5rem",
+			"border-radius-pill": "50rem",
+			"shadow": "var:preset|shadow|md",
+			"link-color": "var:preset|color|primary",
+			"link-hover-color": "var(--wp--preset--color--primary-40)",
+			"btn-border-width": "1px",
+			"btn-border-color": "rgba(var(--wp--preset--color--primary-shadow-rgb), 0.62)",
+			"btn-hover-border-color": "rgba(var(--wp--preset--color--primary-shadow-rgb), 0.82)",
+			"btn-border-radius": "var(--wp--custom--border-radius, .25rem)",
+			"btn-transform": "none",
+			"btn-hover-transform": "translateY(-1px)",
+			"btn-transition": "color 0.12s ease-in-out, background-color 0.12s ease-in-out, border-color 0.12s ease-in-out, box-shadow 0.12s ease-in-out, transform 0.12s ease-in-out",
+			"form-bg-color": "var(--wp--preset--color--light)",
+			"form-text-color": "var(--wp--preset--color--contrast)",
+			"form-border-width": "var(--wp--custom--border-width, 1px)",
+			"form-border-color": "var(--wp--preset--color--border-color)",
+			"form-border-radius": "var(--wp--custom--border-radius, .25rem)",
+			"form-transition": "border-color .12s ease-in-out, box-shadow .12s ease-in-out",
+			"form-focus-border-color": "var(--wp--preset--color--primary-50)",
+			"form-valid-color": "var:preset|color|success",
+			"form-valid-border-color": "var:preset|color|success",
+			"form-invalid-color": "var:preset|color|danger",
+			"form-invalid-border-color": "var:preset|color|danger",
+			"dropdown-border-width": "1px",
+			"dropdown-border-color": "var(--wp--preset--color--border-color)",
+			"dropdown-border-radius": "var(--wp--custom--border-radius-lg, .375rem)",
+			"badge-font-size": ".75em",
+			"badge-font-weight": "var(--wp--custom--font-weight-nav)",
+			"badge-padding-x": ".65em",
+			"badge-padding-y": ".35em",
+			"badge-border-radius": "var(--wp--custom--border-radius-sm)",
+			"focus-ring-width": ".25rem",
+			"focus-ring-color": "rgba(var(--wp--preset--color--primary-shadow-rgb), 0.30)",
+			"disabled-bg": "var(--wp--preset--color--tertiary-bg)",
+			"disabled-opacity": ".68",
+			"disabled-filter": "grayscale(45%) brightness(98%)",
+			"offcanvas-bg": "var(--wp--preset--color--base)",
+			"offcanvas-text": "var(--wp--preset--color--contrast)",
+			"system-ui-surface": "color-mix(in srgb, currentColor 2%, transparent)",
+			"system-ui-surface-banner": "color-mix(in srgb, currentColor 3.5%, transparent)",
+			"system-ui-active-bg": "color-mix(in srgb, currentColor 7%, transparent)",
+			"system-ui-surface-nested": "color-mix(in srgb, currentColor 1%, transparent)",
+			"system-ui-list-hover-bg": "color-mix(in srgb, currentColor 8%, transparent)",
+			"system-ui-panel-hover-bg": "color-mix(in srgb, currentColor 3%, transparent)",
+			"system-ui-backdrop-filter": "none",
+			"system-ui-background-image": "linear-gradient(180deg, rgba(255,255,255,.028) 0%, rgba(255,255,255,.006) 44%, rgba(0,0,0,.028) 100%)",
+			"system-ui-background-image-nested": "linear-gradient(180deg, rgba(0,0,0,.022) 0%, rgba(0,0,0,.004) 42%, rgba(255,255,255,.016) 100%)"
+		},
+		"layout": {
+			"contentSize": "min(100%, 900px)",
+			"wideSize": "min(100%, 1280px)"
+		},
+		"shadow": {
+			"presets": [
+				{
+					"name": "Small",
+					"shadow": "0 1px 2px rgba(33, 31, 26, 0.16), 0 4px 10px rgba(33, 31, 26, 0.06)",
+					"slug": "sm"
+				},
+				{
+					"name": "Medium",
+					"shadow": "0 2px 4px rgba(33, 31, 26, 0.18), 0 12px 28px rgba(33, 31, 26, 0.12)",
+					"slug": "md"
+				},
+				{
+					"name": "Large",
+					"shadow": "0 4px 10px rgba(33, 31, 26, 0.20), 0 24px 52px rgba(33, 31, 26, 0.16)",
+					"slug": "lg"
+				},
+				{
+					"name": "Inset",
+					"shadow": "inset 0 1px 2px rgba(33, 31, 26, 0.22), inset 0 -1px 0 rgba(255, 255, 255, 0.12)",
+					"slug": "inset"
+				},
+				{
+					"name": "Dropdown Menu",
+					"shadow": "0 3px 8px rgba(33, 31, 26, 0.18), 0 18px 36px rgba(33, 31, 26, 0.16)",
+					"slug": "dropdown-menu"
+				},
+				{
+					"name": "Form Focus",
+					"slug": "form-focus",
+					"shadow": "var(--wp--preset--shadow--form-control-shadow, none), 0 0 0 .25rem rgba(var(--wp--preset--color--primary-shadow-rgb), 0.38)"
+				},
+				{
+					"name": "Form Shadow",
+					"shadow": "inset 0 1px 2px rgba(33, 31, 26, 0.16), inset 0 -1px 0 rgba(255, 255, 255, 0.18)",
+					"slug": "form-control-shadow"
+				},
+				{
+					"name": "Button Resting",
+					"slug": "btn-resting",
+					"shadow": "inset 0 1px 0 rgba(var(--local-btn-highlight-rgb, 255, 255, 255), 0.20), 0 1px 1px rgba(var(--local-btn-shadow-rgb, 0, 0, 0), 0.32)"
+				},
+				{
+					"name": "Button Hover",
+					"slug": "btn-hover",
+					"shadow": "inset 0 1px 0 rgba(var(--local-btn-highlight-rgb, 255, 255, 255), 0.24), 0 2px 3px rgba(var(--local-btn-shadow-rgb, 0, 0, 0), 0.38)"
+				},
+				{
+					"name": "Button Active",
+					"slug": "btn-active",
+					"shadow": "inset 0 3px 5px rgba(var(--local-btn-shadow-rgb, 0, 0, 0), 0.50), inset 0 1px 1px rgba(0, 0, 0, 0.16)"
+				}
+			]
+		},
+		"spacing": {
+			"spacingSizes": [
+				{
+					"name": "Ten",
+					"size": "0.25rem",
+					"slug": "10"
+				},
+				{
+					"name": "Twenty",
+					"size": "0.5rem",
+					"slug": "20"
+				},
+				{
+					"name": "Thirty",
+					"size": "1rem",
+					"slug": "30"
+				},
+				{
+					"name": "Forty",
+					"size": "2rem",
+					"slug": "40"
+				},
+				{
+					"name": "Fifty",
+					"size": "3rem",
+					"slug": "50"
+				},
+				{
+					"name": "Sixty",
+					"size": "5rem",
+					"slug": "60"
+				},
+				{
+					"name": "Seventy",
+					"size": "clamp(4rem, 4vw, 7rem)",
+					"slug": "70"
+				},
+				{
+					"name": "Eighty",
+					"size": "clamp(6rem, 6vw, 10rem)",
+					"slug": "80"
+				}
+			]
+		}
+	},
+	"styles": {
+		"spacing": {
+			"blockGap": "var:preset|spacing|30"
+		},
+		"typography": {
+			"fontFamily": "var:preset|font-family|body",
+			"fontSize": "var:preset|font-size|medium",
+			"fontWeight": "var:custom|font-weight-body",
+			"lineHeight": "1.68"
+		},
+		"elements": {
+			"heading": {
+				"typography": {
+					"fontFamily": "var:preset|font-family|heading",
+					"fontWeight": "var:custom|font-weight-heading",
+					"letterSpacing": "-0.015em",
+					"lineHeight": "1.15"
+				}
+			},
+			"button": {
+				"border": {
+					"radius": "var:custom|btn-border-radius"
+				},
+				"typography": {
+					"fontFamily": "var:preset|font-family|button",
+					"fontWeight": "var:custom|font-weight-button",
+					"letterSpacing": "0.045em"
+				}
+			},
+			"link": {
+				"color": {
+					"text": "var:custom|link-color"
+				},
+				":hover": {
+					"color": {
+						"text": "var:custom|link-hover-color"
+					}
+				}
+			}
+		},
+		"blocks": {
+			"core/button": {
+				"border": {
+					"color": "var:custom|btn-border-color",
+					"radius": "var:custom|btn-border-radius",
+					"style": "var:custom|border-style",
+					"width": "var:custom|btn-border-width"
+				},
+				"spacing": {
+					"padding": {
+						"bottom": "calc(var(--wp--preset--font-size--small) * .55)",
+						"left": "var:preset|spacing|30",
+						"right": "var:preset|spacing|30",
+						"top": "calc(var(--wp--preset--font-size--small) * .55)"
+					}
+				}
+			}
+		}
+	}
+}

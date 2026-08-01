@@ -41,6 +41,7 @@ if ( ! function_exists( 'strap_generate_dynamic_colors' ) ) {
 		$directory_css    = "\n/* Dynamic Query Directory Header-to-Badge Color Routing */\n";
 		$latest_posts_css = "\n/* Dynamic Latest Posts Header-to-Badge Color Routing */\n";
 		$a11y_text_css    = "\n/* Accessible Text Overrides */\n";
+		$pagination_css   = "\n/* Dynamic Pagination Background Routing */\n";
 
 		// Extract base background color for text contrast calculations
 		$base_color = '#ffffff';
@@ -62,6 +63,60 @@ if ( ! function_exists( 'strap_generate_dynamic_colors' ) ) {
 				continue;
 			}
 
+			$pagination_text_color = 'inherit';
+			if ( isset( $fixed_contrast_map[ $slug ] ) ) {
+				$pagination_text_color = "var(--wp--preset--color--{$fixed_contrast_map[ $slug ]})";
+			} elseif ( in_array( $slug, $target_slugs, true ) ) {
+				$pagination_text_color = "var(--wp--preset--color--{$slug}-text)";
+			}
+
+			$pagination_css .= "
+.wp-block-query-pagination.has-{$slug}-background-color,
+.wp-block-comments-pagination.has-{$slug}-background-color {
+    --strap-pagination-user-accent: var(--wp--preset--color--{$slug});
+    --strap-pagination-user-background: var(--wp--preset--color--{$slug});
+    --strap-pagination-user-color: inherit;
+    background-color: transparent !important;
+}
+
+.wp-block-query-pagination-previous.has-{$slug}-background-color,
+.wp-block-query-pagination-next.has-{$slug}-background-color,
+.wp-block-comments-pagination-previous.has-{$slug}-background-color,
+.wp-block-comments-pagination-next.has-{$slug}-background-color {
+    --strap-pagination-user-accent: var(--wp--preset--color--{$slug});
+    --strap-pagination-user-background: var(--wp--preset--color--{$slug});
+    --strap-pagination-user-color: {$pagination_text_color};
+    background-color: transparent !important;
+}
+
+.wp-block-query-pagination-numbers.has-{$slug}-background-color,
+.wp-block-comments-pagination-numbers.has-{$slug}-background-color {
+    --strap-pagination-user-accent: var(--wp--preset--color--{$slug});
+    --strap-pagination-user-background: var(--wp--preset--color--{$slug});
+    --strap-pagination-user-color: {$pagination_text_color};
+    background-color: transparent !important;
+    color: inherit !important;
+}
+
+.wp-block-query-pagination.has-{$slug}-background-color:not(:is(.is-style-system-ui-pagination, .is-style-system-ui-pagination-outline, .is-style-system-ui-pagination-pill, .is-style-system-ui-pagination-pill-outline, .is-style-system-ui-pagination-square, .is-style-system-ui-pagination-square-outline, .is-style-system-ui-pagination-badge)) > :is(.wp-block-query-pagination-previous, .wp-block-query-pagination-next),
+.wp-block-comments-pagination.has-{$slug}-background-color:not(:is(.is-style-system-ui-pagination, .is-style-system-ui-pagination-outline, .is-style-system-ui-pagination-pill, .is-style-system-ui-pagination-pill-outline, .is-style-system-ui-pagination-square, .is-style-system-ui-pagination-square-outline, .is-style-system-ui-pagination-badge)) > :is(.wp-block-comments-pagination-previous, .wp-block-comments-pagination-next),
+.wp-block-query-pagination.has-{$slug}-background-color:not(:is(.is-style-system-ui-pagination, .is-style-system-ui-pagination-outline, .is-style-system-ui-pagination-pill, .is-style-system-ui-pagination-pill-outline, .is-style-system-ui-pagination-square, .is-style-system-ui-pagination-square-outline, .is-style-system-ui-pagination-badge)) > .wp-block-query-pagination-numbers > :is(a, span.page-numbers:not(.dots)),
+.wp-block-comments-pagination.has-{$slug}-background-color:not(:is(.is-style-system-ui-pagination, .is-style-system-ui-pagination-outline, .is-style-system-ui-pagination-pill, .is-style-system-ui-pagination-pill-outline, .is-style-system-ui-pagination-square, .is-style-system-ui-pagination-square-outline, .is-style-system-ui-pagination-badge)) > .wp-block-comments-pagination-numbers > :is(a, span.page-numbers:not(.dots)) {
+    background-color: var(--wp--preset--color--{$slug}) !important;
+    color: inherit !important;
+}
+
+:is(.wp-block-query-pagination-previous, .wp-block-query-pagination-next, .wp-block-comments-pagination-previous, .wp-block-comments-pagination-next).has-{$slug}-background-color:not(:is(.is-style-system-ui-pagination, .is-style-system-ui-pagination-outline, .is-style-system-ui-pagination-pill, .is-style-system-ui-pagination-pill-outline, .is-style-system-ui-pagination-square, .is-style-system-ui-pagination-square-outline, .is-style-system-ui-pagination-badge)),
+:is(.wp-block-query-pagination-numbers, .wp-block-comments-pagination-numbers).has-{$slug}-background-color:not(:is(.is-style-system-ui-pagination, .is-style-system-ui-pagination-outline, .is-style-system-ui-pagination-pill, .is-style-system-ui-pagination-pill-outline, .is-style-system-ui-pagination-square, .is-style-system-ui-pagination-square-outline, .is-style-system-ui-pagination-badge)) > :is(a, span.page-numbers:not(.dots)) {
+    background-color: var(--wp--preset--color--{$slug}) !important;
+    color: {$pagination_text_color} !important;
+}
+
+:is(.wp-block-query-pagination-numbers, .wp-block-comments-pagination-numbers).has-{$slug}-background-color > :is(.dots, .page-numbers.dots) {
+    color: inherit !important;
+}
+";
+
 			$tabs_css .= "
 body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs .system-tabs__tab.has-{$slug}-background-color[aria-selected=\"true\"],
 body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs-vertical .system-tabs__tab.has-{$slug}-background-color[aria-selected=\"true\"] {
@@ -77,9 +132,6 @@ $directory_css .= "
 .query-latest-posts.has-{$slug}-color {
     --query-directory-listing-muted-color: var(--wp--preset--color--current-mix-color);
     --directory-grid-card-muted-color: var(--wp--preset--color--current-mix-color);
-    --strap-pagination-current-bg: var(--wp--preset--color--{$slug});
-    --strap-pagination-current-border-color: var(--wp--preset--color--{$slug});
-    --strap-pagination-current-color: var(--wp--preset--color--base);
 }
 
 .query-directory-listing.has-{$slug}-background-color,
@@ -89,9 +141,6 @@ $directory_css .= "
 .query-latest-posts.has-{$slug}-background-color {
     --query-directory-listing-muted-color: var(--wp--preset--color--current-mix-color);
     --directory-grid-card-muted-color: var(--wp--preset--color--current-mix-color);
-    --strap-pagination-current-bg: var(--wp--preset--color--{$slug}-text);
-    --strap-pagination-current-border-color: var(--wp--preset--color--{$slug}-text);
-    --strap-pagination-current-color: var(--wp--preset--color--{$slug});
 }
 
 .query-directory-listing:has(> .query-directory-listing__header.has-{$slug}-background-color),
@@ -128,18 +177,12 @@ $latest_posts_css .= "
 .systemstrap-latest-posts:has(> .systemstrap-latest-posts__header .systemstrap-latest-posts__heading.has-{$slug}-color) {
     --query-directory-listing-badge-bg: var(--wp--preset--color--{$slug});
     --query-directory-listing-badge-border-color: var(--wp--preset--color--{$slug});
-    --strap-pagination-current-bg: var(--wp--preset--color--{$slug});
-    --strap-pagination-current-border-color: var(--wp--preset--color--{$slug});
-    --strap-pagination-current-color: var(--wp--preset--color--base);
 }
 
 .query-latest-posts:has(> .query-latest-posts__header .query-latest-posts__header-icon.has-{$slug}-color),
 .systemstrap-latest-posts:has(> .systemstrap-latest-posts__header .systemstrap-latest-posts__header-icon.has-{$slug}-color) {
     --query-directory-listing-badge-bg: var(--wp--preset--color--{$slug});
     --query-directory-listing-badge-border-color: var(--wp--preset--color--{$slug});
-    --strap-pagination-current-bg: var(--wp--preset--color--{$slug});
-    --strap-pagination-current-border-color: var(--wp--preset--color--{$slug});
-    --strap-pagination-current-color: var(--wp--preset--color--base);
 }
 
 .query-latest-posts:has(> .query-latest-posts__header.has-{$slug}-background-color),
@@ -148,9 +191,6 @@ $latest_posts_css .= "
 .systemstrap-latest-posts:has(> .systemstrap-latest-posts__header .systemstrap-latest-posts__heading.has-{$slug}-background-color) {
     --query-directory-listing-badge-bg: var(--wp--preset--color--{$slug});
     --query-directory-listing-badge-border-color: var(--wp--preset--color--{$slug});
-    --strap-pagination-current-bg: var(--wp--preset--color--{$slug});
-    --strap-pagination-current-border-color: var(--wp--preset--color--{$slug});
-    --strap-pagination-current-color: var(--wp--preset--color--base);
 }
 ";
 
@@ -299,9 +339,6 @@ $latest_posts_css .= "
 .query-latest-posts.has-{$background_slug}-background-color.has-{$text_slug}-color {
     --query-directory-listing-muted-color: var(--wp--preset--color--current-mix-color);
     --directory-grid-card-muted-color: var(--wp--preset--color--current-mix-color);
-    --strap-pagination-current-bg: var(--wp--preset--color--{$text_slug});
-    --strap-pagination-current-border-color: var(--wp--preset--color--{$text_slug});
-    --strap-pagination-current-color: var(--wp--preset--color--{$background_slug});
 }
 
 .query-latest-posts:has(> .query-latest-posts__header.has-{$background_slug}-background-color.has-{$text_slug}-color),
@@ -311,7 +348,6 @@ $latest_posts_css .= "
 .systemstrap-latest-posts:has(> .systemstrap-latest-posts__header.has-{$background_slug}-background-color .systemstrap-latest-posts__heading.has-{$text_slug}-color),
 .systemstrap-latest-posts:has(> .systemstrap-latest-posts__header .systemstrap-latest-posts__heading.has-{$background_slug}-background-color.has-{$text_slug}-color) {
     --query-directory-listing-badge-color: var(--wp--preset--color--{$text_slug});
-    --strap-pagination-current-color: var(--wp--preset--color--{$text_slug});
 }
 
 .wp-block-post-terms.is-style-system-badge.has-{$background_slug}-background-color.has-{$text_slug}-color {
@@ -338,6 +374,7 @@ $latest_posts_css .= "
 		$css .= $directory_css;
 		$css .= $latest_posts_css;
 		$css .= $a11y_text_css;
+		$css .= $pagination_css;
 
 		// Add Gradient background routing for Latest Posts
 		$gradients = $settings['color']['gradients']['theme'] ?? [];

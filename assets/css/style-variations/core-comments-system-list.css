@@ -1,0 +1,60 @@
+/*
+ * System List variation for the Comments block.
+ * The root variation owns thread rhythm only; individual comment templates
+ * and their inner blocks remain native, editable WordPress markup.
+ */
+
+.wp-block-comments:is(.is-style-system-list, .is-style-system-list-flush) {
+    color: inherit;
+}
+
+.wp-block-comments:is(.is-style-system-list, .is-style-system-list-flush) .wp-block-comment-template {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.wp-block-comments:is(.is-style-system-list, .is-style-system-list-flush) .wp-block-comment-template > .wp-block-comment {
+    list-style: none;
+    margin: 0;
+    padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
+    background-color: var(--wp--custom--system-ui-surface);
+    background-image: var(--wp--custom--system-ui-background-image, none);
+    color: inherit;
+}
+
+.wp-block-comments:is(.is-style-system-list, .is-style-system-list-flush) .wp-block-comment-template > .wp-block-comment + .wp-block-comment {
+    border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+}
+
+.wp-block-comments.is-style-system-list .wp-block-comment-template {
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+    border-radius: var(--wp--custom--border-radius);
+    overflow: hidden;
+}
+
+.wp-block-comments.is-style-system-list-flush .wp-block-comment-template {
+    border: 0;
+    border-radius: 0;
+    overflow: visible;
+}
+
+.wp-block-comments:is(.is-style-system-list, .is-style-system-list-flush) .wp-block-comment-template .wp-block-comment-template {
+    margin-top: var(--wp--preset--spacing--20);
+    margin-left: var(--wp--preset--spacing--30);
+}
+
+.wp-block-comments:is(.is-style-system-list, .is-style-system-list-flush) .wp-block-comment-template .wp-block-comment-template > .wp-block-comment {
+    background-color: var(--wp--custom--system-ui-surface-nested, transparent);
+    background-image: var(--wp--custom--system-ui-background-image-nested, none);
+}
+
+.wp-block-comments:is(.is-style-system-list, .is-style-system-list-flush) .wp-block-comment-content {
+    margin-top: var(--wp--preset--spacing--20);
+}
+
+.wp-block-comments:is(.is-style-system-list, .is-style-system-list-flush) .comment-respond {
+    margin-top: var(--wp--preset--spacing--30);
+    padding-top: var(--wp--preset--spacing--30);
+    border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+}

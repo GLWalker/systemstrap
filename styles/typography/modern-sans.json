@@ -1,0 +1,37 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "Modern Sans",
+	"description": "Typography: A clean contemporary sans system with a restrained rounded display voice and polished controls.",
+	"settings": {
+		"typography": {
+			"fontFamilies": [
+				{
+					"fontFamily": "\"Inter\", \"SF Pro\", \"Segoe UI\", Roboto, Oxygen, Ubuntu, \"Helvetica Neue\", Helvetica, Arial, sans-serif",
+					"name": "Modern Sans Body",
+					"slug": "body"
+				},
+				{
+					"fontFamily": "\"Inter\", \"SF Pro\", \"Segoe UI\", Roboto, Oxygen, Ubuntu, \"Helvetica Neue\", Helvetica, Arial, sans-serif",
+					"name": "Modern Sans Heading",
+					"slug": "heading"
+				},
+				{
+					"fontFamily": "ui-rounded, \"Hiragino Maru Gothic ProN\", Quicksand, Comfortaa, \"Arial Rounded MT Bold\", \"Arial Rounded MT\", sans-serif",
+					"name": "Rounded Display",
+					"slug": "display"
+				},
+				{
+					"fontFamily": "\"Avenir Next\", Avenir, \"Century Gothic\", \"Helvetica Neue\", Helvetica, Arial, sans-serif",
+					"name": "Modern Sans Button",
+					"slug": "button"
+				},
+				{
+					"fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+					"name": "Modern Sans Monospace",
+					"slug": "monospace"
+				}
+			]
+		}
+	}
+}

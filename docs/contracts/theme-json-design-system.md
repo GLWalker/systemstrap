@@ -6,11 +6,63 @@ This file is a CONTRACT.
 
 ## Contract Version
 
-Current Version: 1.4
+Current Version: 1.17
 
-Last Updated: 2026-07-15
+Last Updated: 2026-07-31
 
 ## Change Log
+
+### 1.17
+
+Finalized the explicit `system-ui-pagination*` contract without changing any `theme.json` variable names. Visible pagination borders now resolve through `--wp--custom--system-ui-border-color`; the component layers its base background, a capped `--wp--custom--system-ui-surface`, `--wp--custom--system-ui-background-image`, active or hover overlay, border, and content. The current page consumes `--wp--custom--system-ui-active-bg`, hover consumes `--wp--custom--system-ui-list-hover-bg`, and the badge variation consumes the existing badge font, padding, and radius custom variables. Explicit pagination styles no longer consume button transitions, transforms, shadows, border tokens, or button radius.
+
+### 1.6
+
+Extended `inc/dynamic-styles.php` with palette-driven background routing for Query and Comments Pagination. A background selected on the pagination wrapper is removed from that layout container and applied to each rendered previous, number, and next control; a background selected on one of those nested blocks applies only to its own rendered control. The existing dynamic contrast class remains the text-color authority.
+
+### 1.7
+
+The shared `system-ui-pagination` family now supports the same selected variation on Query and Comments Pagination child blocks. Parent selection remains the bulk control; Previous, Page Numbers, and Next selection is a local override that reuses the same token contract.
+
+### 1.8
+
+Dynamic child-pagination color routing now uses the generated palette contrast token directly for colored Previous, Next, and page-number controls. A colored Page Numbers wrapper keeps its `...` separator unpainted and inheriting the pagination text color, so separator visibility is not coupled to the page-control background contrast.
+
+### 1.9
+
+Pagination now uses a layered System UI contract. Dynamic color routing exposes the editor-selected palette as pagination accent, background, and contrast context; explicit System UI variations consume that context to add their own translucent surface, border, hover, active, and arrow-geometry treatment. Without an explicit variation, pagination remains the native text-first baseline.
+
+### 1.10
+
+The explicit pagination family now owns component-specific density, interaction shadows, and translucent badge surfaces instead of directly inheriting button presentation. Styled previous and next controls use centered CSS chevrons inside intact control frames; the badge variation uses compact arrow controls without clipped button geometry.
+
+### 1.11
+
+When an explicit System UI pagination variation is selected, dynamic palette routing now supplies only the selected color context and no longer hard-paints rendered controls. The shared pagination component is therefore the sole styled-surface authority, keeping badge arrows and page numbers visually identical.
+
+### 1.12
+
+Pagination arrows now have an explicit component token contract. `--strap-pagination-arrow-control-size` and `--strap-pagination-arrow-padding-inline` are independent from number-control sizing, allowing each variation to make arrows narrower while preserving the shared vertical rhythm and centered CSS chevron. The arrow inline padding remains `2px` smaller than its matching number control.
+
+### 1.13
+
+Pagination arrow controls now assign their own border-box `inline-size`, `min-inline-size`, and flex basis from `--strap-pagination-arrow-control-size`. The shared number-control geometry can no longer expand a styled previous or next control after the arrow token has resolved.
+
+### 1.14
+
+Pagination arrows now have independent `--strap-pagination-arrow-control-height` and `--strap-pagination-arrow-padding-block` tokens. Arrow controls resolve their own border-box block size and vertical padding while remaining centered in the pagination row.
+
+### 1.15
+
+All explicit pagination families now resolve arrow controls six pixels shorter than their matching number controls by default. This shared height offset keeps filled, outline, and badge arrows visibly compact without altering number-control dimensions.
+
+### 1.16
+
+Pagination now exposes a local border-width token with the theme button border width as its fallback. `system-ui-pagination-square-outline` sets that token to `1px`, preventing sharp-cornered pagination controls from inheriting an overly heavy variation-level button border.
+
+### 1.5
+
+Replaced the legacy Query and Comments pagination chrome with a native block-style family shared by Query Pagination, Comments Pagination, and Post Navigation Link. `theme.json` now owns the text-only baseline; `assets/css/system-ui-pagination.css` loads only when an explicit `system-ui-pagination*` variation is selected. The retired `system-pagination`, `system-ui-circle`, `system-ui-rounded`, and `system-ui-square` classes intentionally fall back to the baseline.
 
 ### 1.4
 
@@ -495,6 +547,8 @@ The current global-styles extension also includes palette-driven active join-col
 - `.wp-block-accordion.is-style-system-tabs .system-tabs__tab.has-*-background-color[aria-selected="true"]`
 - `.wp-block-accordion.is-style-system-tabs-vertical .system-tabs__tab.has-*-background-color[aria-selected="true"]`
 
+It also routes editor-selected palette backgrounds for Query and Comments Pagination away from their layout wrappers and onto their rendered controls. Wrapper-level colors fan out to previous, number, and next controls; nested block colors stay local to that selected control. Generated palette contrast remains the source color context; an explicitly selected System UI variation may then apply its own surface presentation above it.
+
 These rules exist so palette-selected tab backgrounds can force the active joining edge to the same preset color on the frontend, instead of relying only on transparent surface blending.
 
 This extension is part of the design system because color legibility is not left to default WordPress output.
@@ -564,12 +618,13 @@ The current contract behavior is:
 
 This file naming and registration behavior is part of the current design-system runtime and MUST remain stable until replaced explicitly.
 
-Current pagination chrome for core pagination blocks is block-scoped through this mechanism, including:
+Pagination uses a text-only baseline in `theme.json` for Query Pagination, Comments Pagination, and Post Navigation Link. The explicit System UI family is block-scoped through `assets/css/system-ui-pagination.css`, which is a dependency of these registered variation files:
 
-- `assets/css/style-variations/core-query-pagination-system-pagination.css`
-- `assets/css/style-variations/core-comments-pagination-system-pagination.css`
+- `core-query-pagination-system-ui-pagination*.css`
+- `core-comments-pagination-system-ui-pagination*.css`
+- `core-post-navigation-link-system-ui-pagination*.css`
 
-These files are conditional block styles, not global stylesheet rules, and MUST remain in the block-style loading path unless the loading contract is explicitly replaced.
+The supported suffixes are `pagination`, `pagination-outline`, `pagination-pill`, `pagination-pill-outline`, `pagination-square`, `pagination-square-outline`, and `pagination-badge`. The shared stylesheet MUST remain conditional on an explicit style selection; default pagination MUST remain text-only.
 
 `inc/block-styles.php` also conditionally maps `assets/css/buddypress-blocks.css` to BuddyPress block surfaces through `wp_enqueue_block_style()`.
 
@@ -584,17 +639,7 @@ The current BuddyPress block base-style contract includes:
 - widget-scoped button and meta text stepping down to the x-small scale where the current sidebar density requires it
 - base navigation typography living in the BuddyPress sync/base layer so BuddyPress nav style variations inherit from a stable tokenized baseline
 
-`inc/enqueue-assets.php` currently adds a render-time enqueue safeguard for:
-
-- `core/query-pagination*`
-- `core/comments-pagination*`
-
-That safeguard MUST enqueue:
-
-- `core-query-pagination-system-pagination`
-- `core-comments-pagination-system-pagination`
-
-when the corresponding pagination blocks render on the frontend.
+`wp_enqueue_block_style()` loads the selected pagination variation and its shared `strap-system-ui-pagination` dependency. Runtime filters MUST NOT force every pagination variation onto a page.
 
 ## Carousel Image Width Token Contract
 

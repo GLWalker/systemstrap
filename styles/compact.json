@@ -1,0 +1,67 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "Compact",
+	"description": "Layout: Square geometry, tighter spacing, and small elevation using the native SystemStrap framework.",
+	"settings": {
+		"custom": {
+			"border-radius": "0",
+			"border-radius-sm": "0",
+			"border-radius-lg": "0",
+			"border-radius-xl": "0",
+			"shadow": "var:preset|shadow|sm"
+		},
+		"spacing": {
+			"spacingSizes": [
+				{
+					"name": "Ten",
+					"size": ".25rem",
+					"slug": "10"
+				},
+				{
+					"name": "Twenty",
+					"size": ".5rem",
+					"slug": "20"
+				},
+				{
+					"name": "Thirty",
+					"size": ".875rem",
+					"slug": "30"
+				},
+				{
+					"name": "Forty",
+					"size": "1.25rem",
+					"slug": "40"
+				},
+				{
+					"name": "Fifty",
+					"size": "2.5rem",
+					"slug": "50"
+				},
+				{
+					"name": "Sixty",
+					"size": "4rem",
+					"slug": "60"
+				},
+				{
+					"name": "Seventy",
+					"size": "clamp(3.5rem, 3.5vw, 6rem)",
+					"slug": "70"
+				},
+				{
+					"name": "Eighty",
+					"size": "clamp(5rem, 5vw, 8rem)",
+					"slug": "80"
+				}
+			]
+		}
+	},
+	"styles": {
+		"spacing": {
+			"padding": {
+				"left": "clamp(.75rem, 1.5vw, 1.5rem)",
+				"right": "clamp(.75rem, 1.5vw, 1.5rem)"
+			}
+		}
+	}
+}

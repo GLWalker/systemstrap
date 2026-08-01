@@ -19,6 +19,7 @@
 
 .wp-block-latest-posts.is-style-system-panel > li {
     position: relative;
+    isolation: isolate;
     margin: 0;
     overflow: hidden;
     border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);

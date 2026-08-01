@@ -46,7 +46,7 @@
 
     <!-- wp:group {"align":"wide","layout":{"type":"constrained"}} -->
     <div class="wp-block-group alignwide">
-        <!-- wp:query-pagination {"paginationArrow":"chevron","showLabel":false,"layout":{"type":"flex","justifyContent":"right","flexWrap":"nowrap"}} -->
+        <!-- wp:query-pagination {"paginationArrow":"chevron","showLabel":false,"className":"is-style-system-ui-pagination","layout":{"type":"flex","justifyContent":"right","flexWrap":"nowrap"}} -->
         <!-- wp:query-pagination-previous /-->
         <!-- wp:query-pagination-numbers /-->
         <!-- wp:query-pagination-next /-->

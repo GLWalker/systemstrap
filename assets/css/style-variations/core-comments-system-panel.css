@@ -1,0 +1,50 @@
+/*
+ * System Panel variation for the Comments block.
+ * It provides one chat-like thread surface without changing comment markup.
+ */
+
+.wp-block-comments.is-style-system-panel {
+    overflow: hidden;
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+    border-radius: var(--wp--custom--border-radius);
+    background-color: var(--wp--custom--system-ui-surface);
+    background-image: var(--wp--custom--system-ui-background-image, none);
+    backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    box-shadow: var(--wp--custom--shadow);
+    color: inherit;
+}
+
+.wp-block-comments.is-style-system-panel .wp-block-comment-template {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.wp-block-comments.is-style-system-panel .wp-block-comment-template > .wp-block-comment {
+    list-style: none;
+    margin: 0;
+    padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
+    background-color: var(--wp--custom--system-ui-surface-nested, transparent);
+    background-image: var(--wp--custom--system-ui-background-image-nested, none);
+    color: inherit;
+}
+
+.wp-block-comments.is-style-system-panel .wp-block-comment-template > .wp-block-comment + .wp-block-comment,
+.wp-block-comments.is-style-system-panel .comment-respond {
+    border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+}
+
+.wp-block-comments.is-style-system-panel .wp-block-comment-template .wp-block-comment-template {
+    margin-top: var(--wp--preset--spacing--20);
+    margin-left: var(--wp--preset--spacing--30);
+}
+
+.wp-block-comments.is-style-system-panel .wp-block-comment-content {
+    margin-top: var(--wp--preset--spacing--20);
+}
+
+.wp-block-comments.is-style-system-panel .comment-respond {
+    margin-top: var(--wp--preset--spacing--30);
+    padding: var(--wp--preset--spacing--30);
+}

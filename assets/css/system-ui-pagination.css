@@ -1,0 +1,571 @@
+/* Shared control contract loaded only by an explicit System UI pagination variation. */
+:is(.is-style-system-ui-pagination, .is-style-system-ui-pagination-pill, .is-style-system-ui-pagination-square) {
+    --strap-pagination-accent: var(--strap-pagination-user-accent, var(--wp--preset--color--primary));
+    --strap-pagination-surface-color: var(--strap-pagination-user-background, var(--strap-pagination-accent));
+    --strap-pagination-bg: var(--strap-pagination-surface-color);
+    --strap-pagination-border-color: var(--wp--custom--system-ui-border-color);
+    --strap-pagination-color: var(--strap-pagination-user-color, var(--wp--preset--color--primary-text));
+    --strap-pagination-current-bg: var(--strap-pagination-surface-color);
+    --strap-pagination-current-border-color: var(--wp--custom--system-ui-border-color);
+    --strap-pagination-current-color: var(--strap-pagination-user-color, var(--wp--preset--color--primary-text));
+    --strap-pagination-hover-bg: var(--strap-pagination-surface-color);
+    --strap-pagination-hover-border-color: var(--wp--custom--system-ui-border-color);
+    --strap-pagination-hover-color: var(--strap-pagination-user-color, var(--wp--preset--color--primary-text));
+    --strap-pagination-control-size: calc(var(--wp--preset--font-size--medium) * 2.35);
+    --strap-pagination-arrow-control-size: calc(var(--strap-pagination-control-size) * .88);
+    --strap-pagination-arrow-control-height: max(0px, calc(var(--strap-pagination-control-size) - 6px));
+    --strap-pagination-padding-block: calc(var(--wp--preset--font-size--small) * .42);
+    --strap-pagination-padding-inline: calc(var(--wp--preset--spacing--20) * .9);
+    --strap-pagination-arrow-padding-block: max(0px, calc(var(--strap-pagination-padding-block) - 1px));
+    --strap-pagination-arrow-padding-inline: max(0px, calc(var(--strap-pagination-padding-inline) - 2px));
+    --strap-pagination-padding: var(--strap-pagination-padding-block) var(--strap-pagination-padding-inline);
+    --strap-pagination-radius: var(--wp--custom--border-radius);
+}
+
+.is-style-system-ui-pagination-pill {
+    --strap-pagination-radius: 50rem;
+}
+
+.is-style-system-ui-pagination-square {
+    --strap-pagination-radius: 0;
+}
+
+:is(.is-style-system-ui-pagination-outline, .is-style-system-ui-pagination-pill-outline, .is-style-system-ui-pagination-square-outline) {
+    --strap-pagination-accent: var(--strap-pagination-user-accent, currentColor);
+    --strap-pagination-surface-color: var(--strap-pagination-user-background, var(--strap-pagination-accent));
+    --strap-pagination-bg: color-mix(in srgb, var(--strap-pagination-user-background, transparent) 14%, transparent);
+    --strap-pagination-border-color: var(--wp--custom--system-ui-border-color);
+    --strap-pagination-color: var(--strap-pagination-user-accent, inherit);
+    --strap-pagination-current-bg: color-mix(in srgb, var(--strap-pagination-user-background, transparent) 20%, transparent);
+    --strap-pagination-current-border-color: var(--wp--custom--system-ui-border-color);
+    --strap-pagination-current-color: var(--strap-pagination-user-accent, inherit);
+    --strap-pagination-hover-bg: color-mix(in srgb, var(--strap-pagination-user-background, transparent) 18%, transparent);
+    --strap-pagination-hover-border-color: var(--wp--custom--system-ui-border-color);
+    --strap-pagination-hover-color: var(--strap-pagination-user-accent, inherit);
+    --strap-pagination-control-size: calc(var(--wp--preset--font-size--medium) * 2.35);
+    --strap-pagination-arrow-control-size: calc(var(--strap-pagination-control-size) * .88);
+    --strap-pagination-arrow-control-height: max(0px, calc(var(--strap-pagination-control-size) - 6px));
+    --strap-pagination-padding-block: calc(var(--wp--preset--font-size--small) * .42);
+    --strap-pagination-padding-inline: calc(var(--wp--preset--spacing--20) * .9);
+    --strap-pagination-arrow-padding-block: max(0px, calc(var(--strap-pagination-padding-block) - 1px));
+    --strap-pagination-arrow-padding-inline: max(0px, calc(var(--strap-pagination-padding-inline) - 2px));
+    --strap-pagination-padding: var(--strap-pagination-padding-block) var(--strap-pagination-padding-inline);
+    --strap-pagination-radius: var(--wp--custom--border-radius);
+}
+
+.is-style-system-ui-pagination-pill-outline {
+    --strap-pagination-radius: 50rem;
+}
+
+.is-style-system-ui-pagination-square-outline {
+    --strap-pagination-radius: 0;
+}
+
+.is-style-system-ui-pagination-badge {
+    --strap-pagination-accent: var(--strap-pagination-user-accent, currentColor);
+    --strap-pagination-surface-color: var(--strap-pagination-user-background, var(--strap-pagination-accent));
+    --strap-pagination-bg: color-mix(in srgb, var(--strap-pagination-surface-color) 10%, transparent);
+    --strap-pagination-border-color: var(--wp--custom--system-ui-border-color);
+    --strap-pagination-color: var(--strap-pagination-user-accent, inherit);
+    --strap-pagination-current-bg: color-mix(in srgb, var(--strap-pagination-surface-color) 18%, transparent);
+    --strap-pagination-current-border-color: var(--wp--custom--system-ui-border-color);
+    --strap-pagination-current-color: var(--strap-pagination-user-accent, inherit);
+    --strap-pagination-hover-bg: color-mix(in srgb, var(--strap-pagination-surface-color) 14%, transparent);
+    --strap-pagination-hover-border-color: var(--wp--custom--system-ui-border-color);
+    --strap-pagination-hover-color: var(--strap-pagination-user-accent, inherit);
+    --strap-pagination-control-size: calc(var(--wp--custom--badge-font-size) + (var(--wp--custom--badge-padding-y) * 2) + var(--wp--preset--spacing--20));
+    --strap-pagination-arrow-control-size: calc(var(--strap-pagination-control-size) * .78);
+    --strap-pagination-arrow-control-height: max(0px, calc(var(--strap-pagination-control-size) - 6px));
+    --strap-pagination-padding-block: var(--wp--custom--badge-padding-y);
+    --strap-pagination-padding-inline: var(--wp--custom--badge-padding-x);
+    --strap-pagination-arrow-padding-block: max(0px, calc(var(--strap-pagination-padding-block) - 1px));
+    --strap-pagination-arrow-padding-inline: max(0px, calc(var(--strap-pagination-padding-inline) - 2px));
+    --strap-pagination-padding: var(--strap-pagination-padding-block) var(--strap-pagination-padding-inline);
+    --strap-pagination-radius: var(--wp--custom--badge-border-radius);
+}
+
+:is(.is-style-system-ui-pagination,
+    .is-style-system-ui-pagination-outline,
+    .is-style-system-ui-pagination-pill,
+    .is-style-system-ui-pagination-pill-outline,
+    .is-style-system-ui-pagination-square,
+    .is-style-system-ui-pagination-square-outline,
+    .is-style-system-ui-pagination-badge) {
+    --strap-pagination-background-image: var(--wp--custom--system-ui-background-image, none);
+    --strap-pagination-border-width: var(--wp--custom--border-width, 1px);
+    --strap-pagination-font-size: inherit;
+    --strap-pagination-font-weight: inherit;
+    /* Keep an opaque variation surface from obscuring an editor-selected color. */
+    --strap-pagination-surface-layer: linear-gradient(color-mix(in srgb, var(--wp--custom--system-ui-surface) 18%, transparent), color-mix(in srgb, var(--wp--custom--system-ui-surface) 18%, transparent));
+    --strap-pagination-current-layer: linear-gradient(var(--wp--custom--system-ui-active-bg), var(--wp--custom--system-ui-active-bg));
+    --strap-pagination-hover-layer: linear-gradient(var(--wp--custom--system-ui-list-hover-bg), var(--wp--custom--system-ui-list-hover-bg));
+    --strap-pagination-transition: color .15s ease-in-out, background-color .15s ease-in-out, background-image .15s ease-in-out, border-color .15s ease-in-out;
+}
+
+.is-style-system-ui-pagination-square-outline {
+    --strap-pagination-border-width: 1px;
+}
+
+.is-style-system-ui-pagination-badge {
+    --strap-pagination-font-size: var(--wp--custom--badge-font-size);
+    --strap-pagination-font-weight: var(--wp--custom--badge-font-weight);
+}
+
+:is(.wp-block-query-pagination,
+    .wp-block-comments-pagination,
+    .wp-block-post-navigation-link):is(.is-style-system-ui-pagination,
+    .is-style-system-ui-pagination-outline,
+    .is-style-system-ui-pagination-pill,
+    .is-style-system-ui-pagination-pill-outline,
+    .is-style-system-ui-pagination-square,
+    .is-style-system-ui-pagination-square-outline,
+    .is-style-system-ui-pagination-badge) :is(.wp-block-query-pagination-previous,
+    .wp-block-query-pagination-next,
+    .wp-block-query-pagination-numbers > a,
+    .wp-block-query-pagination-numbers > span,
+    .wp-block-comments-pagination-previous,
+    .wp-block-comments-pagination-next,
+    .wp-block-comments-pagination-numbers > a,
+    .wp-block-comments-pagination-numbers > span,
+    a) {
+    align-items: center;
+    background-color: var(--strap-pagination-bg) !important;
+    background-image: var(--strap-pagination-surface-layer), var(--strap-pagination-background-image) !important;
+    border: var(--strap-pagination-border-width) solid var(--strap-pagination-border-color) !important;
+    border-radius: var(--strap-pagination-radius);
+    box-shadow: none;
+    color: var(--strap-pagination-color) !important;
+    display: inline-flex;
+    font-size: var(--strap-pagination-font-size);
+    font-weight: var(--strap-pagination-font-weight);
+    justify-content: center;
+    min-inline-size: var(--strap-pagination-control-size);
+    padding: var(--strap-pagination-padding);
+    text-decoration: none;
+    transition: var(--strap-pagination-transition);
+}
+
+/* Child variations override only their selected previous, number, or next control. */
+:is(.wp-block-query-pagination-previous,
+    .wp-block-query-pagination-next,
+    .wp-block-comments-pagination-previous,
+    .wp-block-comments-pagination-next):is(.is-style-system-ui-pagination,
+    .is-style-system-ui-pagination-outline,
+    .is-style-system-ui-pagination-pill,
+    .is-style-system-ui-pagination-pill-outline,
+    .is-style-system-ui-pagination-square,
+    .is-style-system-ui-pagination-square-outline,
+    .is-style-system-ui-pagination-badge),
+:is(.wp-block-query-pagination-numbers,
+    .wp-block-comments-pagination-numbers):is(.is-style-system-ui-pagination,
+    .is-style-system-ui-pagination-outline,
+    .is-style-system-ui-pagination-pill,
+    .is-style-system-ui-pagination-pill-outline,
+    .is-style-system-ui-pagination-square,
+    .is-style-system-ui-pagination-square-outline,
+    .is-style-system-ui-pagination-badge)> :is(a, span) {
+    align-items: center;
+    background-color: var(--strap-pagination-bg) !important;
+    background-image: var(--strap-pagination-surface-layer), var(--strap-pagination-background-image) !important;
+    border: var(--strap-pagination-border-width) solid var(--strap-pagination-border-color) !important;
+    border-radius: var(--strap-pagination-radius);
+    box-shadow: none;
+    color: var(--strap-pagination-color) !important;
+    display: inline-flex;
+    font-size: var(--strap-pagination-font-size);
+    font-weight: var(--strap-pagination-font-weight);
+    justify-content: center;
+    min-inline-size: var(--strap-pagination-control-size);
+    padding: var(--strap-pagination-padding);
+    text-decoration: none;
+    transition: var(--strap-pagination-transition);
+}
+
+.wp-block-post-navigation-link:is(.is-style-system-ui-pagination,
+    .is-style-system-ui-pagination-outline,
+    .is-style-system-ui-pagination-pill,
+    .is-style-system-ui-pagination-pill-outline,
+    .is-style-system-ui-pagination-square,
+    .is-style-system-ui-pagination-square-outline,
+    .is-style-system-ui-pagination-badge) {
+    align-items: center;
+    background-color: var(--strap-pagination-bg) !important;
+    background-image: var(--strap-pagination-surface-layer), var(--strap-pagination-background-image) !important;
+    border: var(--strap-pagination-border-width) solid var(--strap-pagination-border-color) !important;
+    border-radius: var(--strap-pagination-radius);
+    box-shadow: none;
+    color: var(--strap-pagination-color) !important;
+    display: inline-flex;
+    font-size: var(--strap-pagination-font-size);
+    font-weight: var(--strap-pagination-font-weight);
+    gap: 1ch;
+    justify-content: center;
+    min-inline-size: var(--strap-pagination-control-size);
+    padding: var(--strap-pagination-padding);
+    transition: var(--strap-pagination-transition);
+}
+
+.wp-block-post-navigation-link:is(.is-style-system-ui-pagination,
+    .is-style-system-ui-pagination-outline,
+    .is-style-system-ui-pagination-pill,
+    .is-style-system-ui-pagination-pill-outline,
+    .is-style-system-ui-pagination-square,
+    .is-style-system-ui-pagination-square-outline,
+    .is-style-system-ui-pagination-badge)>a,
+.wp-block-post-navigation-link:is(.is-style-system-ui-pagination,
+    .is-style-system-ui-pagination-outline,
+    .is-style-system-ui-pagination-pill,
+    .is-style-system-ui-pagination-pill-outline,
+    .is-style-system-ui-pagination-square,
+    .is-style-system-ui-pagination-square-outline,
+    .is-style-system-ui-pagination-badge)>a:is(:hover, :focus-visible) {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    color: inherit;
+    outline: none;
+    padding: 0;
+    transform: none;
+}
+
+.wp-block-post-navigation-link:is(.is-style-system-ui-pagination,
+    .is-style-system-ui-pagination-outline,
+    .is-style-system-ui-pagination-pill,
+    .is-style-system-ui-pagination-pill-outline,
+    .is-style-system-ui-pagination-square,
+    .is-style-system-ui-pagination-square-outline,
+    .is-style-system-ui-pagination-badge):is(:hover, :has(a:focus-visible)) {
+    background-color: var(--strap-pagination-hover-bg) !important;
+    background-image: var(--strap-pagination-hover-layer), var(--strap-pagination-background-image) !important;
+    border-color: var(--strap-pagination-hover-border-color) !important;
+    box-shadow: none !important;
+    color: var(--strap-pagination-hover-color) !important;
+    transform: none;
+}
+
+.wp-block-post-navigation-link:is(.is-style-system-ui-pagination,
+    .is-style-system-ui-pagination-outline,
+    .is-style-system-ui-pagination-pill,
+    .is-style-system-ui-pagination-pill-outline,
+    .is-style-system-ui-pagination-square,
+    .is-style-system-ui-pagination-square-outline,
+    .is-style-system-ui-pagination-badge):has(a:focus-visible) {
+    outline: var(--wp--custom--focus-ring-width) solid var(--wp--custom--focus-ring-color);
+    outline-offset: 2px;
+}
+
+:is(.wp-block-query-pagination,
+    .wp-block-comments-pagination):is(.is-style-system-ui-pagination,
+    .is-style-system-ui-pagination-outline,
+    .is-style-system-ui-pagination-pill,
+    .is-style-system-ui-pagination-pill-outline,
+    .is-style-system-ui-pagination-square,
+    .is-style-system-ui-pagination-square-outline,
+    .is-style-system-ui-pagination-badge)>* {
+    margin: 0;
+}
+
+:is(.wp-block-query-pagination,
+    .wp-block-comments-pagination,
+    .wp-block-post-navigation-link):is(.is-style-system-ui-pagination,
+    .is-style-system-ui-pagination-outline,
+    .is-style-system-ui-pagination-pill,
+    .is-style-system-ui-pagination-pill-outline,
+    .is-style-system-ui-pagination-square,
+    .is-style-system-ui-pagination-square-outline,
+    .is-style-system-ui-pagination-badge) :is(.wp-block-query-pagination-previous,
+    .wp-block-query-pagination-next,
+    .wp-block-query-pagination-numbers > a,
+    .wp-block-query-pagination-numbers > span,
+    .wp-block-comments-pagination-previous,
+    .wp-block-comments-pagination-next,
+    .wp-block-comments-pagination-numbers > a,
+    .wp-block-comments-pagination-numbers > span,
+    a):is(:hover, :focus-visible) {
+    background-color: var(--strap-pagination-hover-bg) !important;
+    background-image: var(--strap-pagination-hover-layer), var(--strap-pagination-background-image) !important;
+    border-color: var(--strap-pagination-hover-border-color) !important;
+    box-shadow: none !important;
+    color: var(--strap-pagination-hover-color) !important;
+    transform: none;
+}
+
+:is(.wp-block-query-pagination-previous,
+    .wp-block-query-pagination-next,
+    .wp-block-comments-pagination-previous,
+    .wp-block-comments-pagination-next):is(.is-style-system-ui-pagination,
+    .is-style-system-ui-pagination-outline,
+    .is-style-system-ui-pagination-pill,
+    .is-style-system-ui-pagination-pill-outline,
+    .is-style-system-ui-pagination-square,
+    .is-style-system-ui-pagination-square-outline,
+    .is-style-system-ui-pagination-badge):is(:hover, :focus-visible),
+:is(.wp-block-query-pagination-numbers,
+    .wp-block-comments-pagination-numbers):is(.is-style-system-ui-pagination,
+    .is-style-system-ui-pagination-outline,
+    .is-style-system-ui-pagination-pill,
+    .is-style-system-ui-pagination-pill-outline,
+    .is-style-system-ui-pagination-square,
+    .is-style-system-ui-pagination-square-outline,
+    .is-style-system-ui-pagination-badge)> :is(a, span):is(:hover, :focus-visible) {
+    background-color: var(--strap-pagination-hover-bg);
+    background-image: var(--strap-pagination-hover-layer), var(--strap-pagination-background-image);
+    border-color: var(--strap-pagination-hover-border-color);
+    box-shadow: none;
+    color: var(--strap-pagination-hover-color);
+    transform: none;
+}
+
+:is(.wp-block-query-pagination,
+    .wp-block-comments-pagination,
+    .wp-block-post-navigation-link):is(.is-style-system-ui-pagination,
+    .is-style-system-ui-pagination-outline,
+    .is-style-system-ui-pagination-pill,
+    .is-style-system-ui-pagination-pill-outline,
+    .is-style-system-ui-pagination-square,
+    .is-style-system-ui-pagination-square-outline,
+    .is-style-system-ui-pagination-badge) :is(.wp-block-query-pagination-previous,
+    .wp-block-query-pagination-next,
+    .wp-block-query-pagination-numbers > a,
+    .wp-block-comments-pagination-previous,
+    .wp-block-comments-pagination-next,
+    .wp-block-comments-pagination-numbers > a,
+    a):focus-visible {
+    outline: var(--wp--custom--focus-ring-width) solid var(--wp--custom--focus-ring-color);
+    outline-offset: 2px;
+}
+
+:is(.wp-block-query-pagination-previous,
+    .wp-block-query-pagination-next,
+    .wp-block-comments-pagination-previous,
+    .wp-block-comments-pagination-next):is(.is-style-system-ui-pagination,
+    .is-style-system-ui-pagination-outline,
+    .is-style-system-ui-pagination-pill,
+    .is-style-system-ui-pagination-pill-outline,
+    .is-style-system-ui-pagination-square,
+    .is-style-system-ui-pagination-square-outline,
+    .is-style-system-ui-pagination-badge):focus-visible,
+:is(.wp-block-query-pagination-numbers,
+    .wp-block-comments-pagination-numbers):is(.is-style-system-ui-pagination,
+    .is-style-system-ui-pagination-outline,
+    .is-style-system-ui-pagination-pill,
+    .is-style-system-ui-pagination-pill-outline,
+    .is-style-system-ui-pagination-square,
+    .is-style-system-ui-pagination-square-outline,
+    .is-style-system-ui-pagination-badge)>a:focus-visible {
+    outline: var(--wp--custom--focus-ring-width) solid var(--wp--custom--focus-ring-color);
+    outline-offset: 2px;
+}
+
+:is(.wp-block-query-pagination,
+    .wp-block-comments-pagination):is(.is-style-system-ui-pagination,
+    .is-style-system-ui-pagination-outline,
+    .is-style-system-ui-pagination-pill,
+    .is-style-system-ui-pagination-pill-outline,
+    .is-style-system-ui-pagination-square,
+    .is-style-system-ui-pagination-square-outline,
+    .is-style-system-ui-pagination-badge) :is(.dots, .page-numbers.dots) {
+    background-color: transparent !important;
+    background-image: none !important;
+    border: 0 !important;
+    box-shadow: none;
+    color: inherit !important;
+    min-inline-size: 0;
+    padding: 0;
+    pointer-events: none;
+    text-decoration: none;
+}
+
+:is(.wp-block-query-pagination-numbers,
+    .wp-block-comments-pagination-numbers):is(.is-style-system-ui-pagination,
+    .is-style-system-ui-pagination-outline,
+    .is-style-system-ui-pagination-pill,
+    .is-style-system-ui-pagination-pill-outline,
+    .is-style-system-ui-pagination-square,
+    .is-style-system-ui-pagination-square-outline,
+    .is-style-system-ui-pagination-badge)> :is(.dots, .page-numbers.dots) {
+    background-color: transparent !important;
+    background-image: none !important;
+    border: 0 !important;
+    box-shadow: none;
+    color: inherit !important;
+    min-inline-size: 0;
+    padding: 0;
+    pointer-events: none;
+    text-decoration: none;
+}
+
+:is(.wp-block-query-pagination,
+    .wp-block-comments-pagination):is(.is-style-system-ui-pagination,
+    .is-style-system-ui-pagination-outline,
+    .is-style-system-ui-pagination-pill,
+    .is-style-system-ui-pagination-pill-outline,
+    .is-style-system-ui-pagination-square,
+    .is-style-system-ui-pagination-square-outline,
+    .is-style-system-ui-pagination-badge) :is(.page-numbers.current, [aria-current="page"]) {
+    background-color: var(--strap-pagination-current-bg) !important;
+    background-image: var(--strap-pagination-current-layer), var(--strap-pagination-background-image) !important;
+    border-color: var(--strap-pagination-current-border-color) !important;
+    box-shadow: none !important;
+    color: var(--strap-pagination-current-color) !important;
+    filter: contrast(1.06);
+}
+
+:is(.wp-block-query-pagination,
+    .wp-block-comments-pagination):is(.is-style-system-ui-pagination,
+    .is-style-system-ui-pagination-outline,
+    .is-style-system-ui-pagination-pill,
+    .is-style-system-ui-pagination-pill-outline,
+    .is-style-system-ui-pagination-square,
+    .is-style-system-ui-pagination-square-outline,
+    .is-style-system-ui-pagination-badge) :is([aria-disabled="true"], :disabled) {
+    background-color: var(--wp--custom--disabled-bg) !important;
+    background-image: none !important;
+    cursor: default;
+    filter: var(--wp--custom--disabled-filter);
+    opacity: var(--wp--custom--disabled-opacity);
+    pointer-events: none;
+}
+
+/* Styled arrows use CSS chevrons so their control frames stay intact. */
+:is(.wp-block-query-pagination, .wp-block-comments-pagination):is(.is-style-system-ui-pagination,
+    .is-style-system-ui-pagination-outline,
+    .is-style-system-ui-pagination-pill,
+    .is-style-system-ui-pagination-pill-outline,
+    .is-style-system-ui-pagination-square,
+    .is-style-system-ui-pagination-square-outline,
+    .is-style-system-ui-pagination-badge)> :is(.wp-block-query-pagination-previous,
+    .wp-block-comments-pagination-previous,
+    .wp-block-query-pagination-next,
+    .wp-block-comments-pagination-next),
+:is(.wp-block-query-pagination-previous,
+    .wp-block-query-pagination-next,
+    .wp-block-comments-pagination-previous,
+    .wp-block-comments-pagination-next):is(.is-style-system-ui-pagination,
+    .is-style-system-ui-pagination-outline,
+    .is-style-system-ui-pagination-pill,
+    .is-style-system-ui-pagination-pill-outline,
+    .is-style-system-ui-pagination-square,
+    .is-style-system-ui-pagination-square-outline,
+    .is-style-system-ui-pagination-badge) {
+    align-self: center;
+    box-sizing: border-box;
+    flex: 0 0 var(--strap-pagination-arrow-control-size);
+    block-size: var(--strap-pagination-arrow-control-height) !important;
+    inline-size: var(--strap-pagination-arrow-control-size) !important;
+    min-block-size: var(--strap-pagination-arrow-control-height) !important;
+    min-inline-size: var(--strap-pagination-arrow-control-size) !important;
+    padding-block: var(--strap-pagination-arrow-padding-block) !important;
+    padding-inline: var(--strap-pagination-arrow-padding-inline) !important;
+    position: relative;
+}
+
+:is(.wp-block-query-pagination, .wp-block-comments-pagination):is(.is-style-system-ui-pagination,
+    .is-style-system-ui-pagination-outline,
+    .is-style-system-ui-pagination-pill,
+    .is-style-system-ui-pagination-pill-outline,
+    .is-style-system-ui-pagination-square,
+    .is-style-system-ui-pagination-square-outline,
+    .is-style-system-ui-pagination-badge)> :is(.wp-block-query-pagination-previous,
+    .wp-block-query-pagination-next,
+    .wp-block-comments-pagination-previous,
+    .wp-block-comments-pagination-next)> :is(.wp-block-query-pagination-previous-arrow,
+    .wp-block-query-pagination-next-arrow,
+    .wp-block-comments-pagination-previous-arrow,
+    .wp-block-comments-pagination-next-arrow),
+:is(.wp-block-query-pagination-previous,
+    .wp-block-query-pagination-next,
+    .wp-block-comments-pagination-previous,
+    .wp-block-comments-pagination-next):is(.is-style-system-ui-pagination,
+    .is-style-system-ui-pagination-outline,
+    .is-style-system-ui-pagination-pill,
+    .is-style-system-ui-pagination-pill-outline,
+    .is-style-system-ui-pagination-square,
+    .is-style-system-ui-pagination-square-outline,
+    .is-style-system-ui-pagination-badge)> :is(.wp-block-query-pagination-previous-arrow,
+    .wp-block-query-pagination-next-arrow,
+    .wp-block-comments-pagination-previous-arrow,
+    .wp-block-comments-pagination-next-arrow) {
+    display: none;
+}
+
+:is(.wp-block-query-pagination, .wp-block-comments-pagination):is(.is-style-system-ui-pagination,
+    .is-style-system-ui-pagination-outline,
+    .is-style-system-ui-pagination-pill,
+    .is-style-system-ui-pagination-pill-outline,
+    .is-style-system-ui-pagination-square,
+    .is-style-system-ui-pagination-square-outline,
+    .is-style-system-ui-pagination-badge)> :is(.wp-block-query-pagination-previous,
+    .wp-block-comments-pagination-previous,
+    .wp-block-query-pagination-next,
+    .wp-block-comments-pagination-next)::before,
+:is(.wp-block-query-pagination-previous,
+    .wp-block-query-pagination-next,
+    .wp-block-comments-pagination-previous,
+    .wp-block-comments-pagination-next):is(.is-style-system-ui-pagination,
+    .is-style-system-ui-pagination-outline,
+    .is-style-system-ui-pagination-pill,
+    .is-style-system-ui-pagination-pill-outline,
+    .is-style-system-ui-pagination-square,
+    .is-style-system-ui-pagination-square-outline,
+    .is-style-system-ui-pagination-badge)::before {
+    border-block-end: 0.14em solid currentColor;
+    border-inline-end: 0.14em solid currentColor;
+    content: "";
+    inline-size: 0.55rem;
+    block-size: 0.55rem;
+}
+
+:is(.wp-block-query-pagination, .wp-block-comments-pagination):is(.is-style-system-ui-pagination,
+    .is-style-system-ui-pagination-outline,
+    .is-style-system-ui-pagination-pill,
+    .is-style-system-ui-pagination-pill-outline,
+    .is-style-system-ui-pagination-square,
+    .is-style-system-ui-pagination-square-outline,
+    .is-style-system-ui-pagination-badge)> :is(.wp-block-query-pagination-previous,
+    .wp-block-comments-pagination-previous)::before,
+:is(.wp-block-query-pagination-previous,
+    .wp-block-comments-pagination-previous):is(.is-style-system-ui-pagination,
+    .is-style-system-ui-pagination-outline,
+    .is-style-system-ui-pagination-pill,
+    .is-style-system-ui-pagination-pill-outline,
+    .is-style-system-ui-pagination-square,
+    .is-style-system-ui-pagination-square-outline,
+    .is-style-system-ui-pagination-badge)::before {
+    transform: rotate(135deg);
+}
+
+:is(.wp-block-query-pagination, .wp-block-comments-pagination):is(.is-style-system-ui-pagination,
+    .is-style-system-ui-pagination-outline,
+    .is-style-system-ui-pagination-pill,
+    .is-style-system-ui-pagination-pill-outline,
+    .is-style-system-ui-pagination-square,
+    .is-style-system-ui-pagination-square-outline,
+    .is-style-system-ui-pagination-badge)> :is(.wp-block-query-pagination-next,
+    .wp-block-comments-pagination-next)::before,
+:is(.wp-block-query-pagination-next,
+    .wp-block-comments-pagination-next):is(.is-style-system-ui-pagination,
+    .is-style-system-ui-pagination-outline,
+    .is-style-system-ui-pagination-pill,
+    .is-style-system-ui-pagination-pill-outline,
+    .is-style-system-ui-pagination-square,
+    .is-style-system-ui-pagination-square-outline,
+    .is-style-system-ui-pagination-badge)::before {
+    transform: rotate(-45deg);
+}
+
+:is(.wp-block-query-pagination-numbers,
+    .wp-block-comments-pagination-numbers):is(.is-style-system-ui-pagination,
+    .is-style-system-ui-pagination-outline,
+    .is-style-system-ui-pagination-pill,
+    .is-style-system-ui-pagination-pill-outline,
+    .is-style-system-ui-pagination-square,
+    .is-style-system-ui-pagination-square-outline,
+    .is-style-system-ui-pagination-badge)> :is(.page-numbers.current, [aria-current="page"]) {
+    background-color: var(--strap-pagination-current-bg) !important;
+    background-image: var(--strap-pagination-current-layer), var(--strap-pagination-background-image) !important;
+    border-color: var(--strap-pagination-current-border-color) !important;
+    box-shadow: none !important;
+    color: var(--strap-pagination-current-color) !important;
+    filter: contrast(1.06);
+}

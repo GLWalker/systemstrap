@@ -426,14 +426,8 @@ html body .wp-block-button.is-style-system-btn-icon button.wp-block-button__link
 
 .wp-block-latest-posts:not(.is-grid) .wp-block-latest-posts__post-title .title,
 
-.is-style-system-panel .wp-block-details summary,
 .is-style-system-panel .wp-block-accordion .wp-block-accordion-heading__toggle {
     font-size: var(--wp--preset--font-size--medium, 1rem);
-}
-
-.is-style-system-panel .wp-block-details summary::after {
-    width: 1rem;
-    height: 1rem;
 }
 
 /* Ensure latest posts titles reliably inherit the correct heading properties */

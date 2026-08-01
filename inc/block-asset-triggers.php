@@ -81,27 +81,3 @@ function strap_enqueue_query_directory_styles( $block_content, $block ) {
 	return $block_content;
 }
 add_filter( 'render_block', 'strap_enqueue_query_directory_styles', 10, 2 );
-
-/**
- * Enqueue pagination block styles only when pagination blocks render.
- *
- * @param string $block_content Rendered block content.
- * @param array  $block Parsed block data.
- * @return string
- */
-function strap_enqueue_pagination_block_styles( $block_content, $block ) {
-	if ( empty( $block['blockName'] ) ) {
-		return $block_content;
-	}
-
-	if ( str_starts_with( $block['blockName'], 'core/query-pagination' ) ) {
-		wp_enqueue_style( 'core-query-pagination-system-pagination' );
-	}
-
-	if ( str_starts_with( $block['blockName'], 'core/comments-pagination' ) ) {
-		wp_enqueue_style( 'core-comments-pagination-system-pagination' );
-	}
-
-	return $block_content;
-}
-add_filter( 'render_block', 'strap_enqueue_pagination_block_styles', 10, 2 );

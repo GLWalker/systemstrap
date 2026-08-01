@@ -100,8 +100,27 @@ ol.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) > li {
     background-color: var(--wp--custom--system-ui-list-hover-bg);
 }
 
-.wp-block-group.is-style-system-panel > .wp-block-list:is(.is-style-system-list, .is-style-system-list-flush),
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) {
+.wp-block-group.is-style-system-panel > .wp-block-list.is-style-system-list,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-list.is-style-system-list {
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+    overflow: hidden;
+}
+
+.wp-block-group.is-style-system-panel > .wp-block-list.is-style-system-list:first-child,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-list.is-style-system-list:first-child {
+    border-top: 0;
+}
+
+.wp-block-group.is-style-system-panel > .wp-block-list.is-style-system-list:last-child,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-list.is-style-system-list:last-child,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-list.is-style-system-list:has(+ .block-list-appender) {
+    border-bottom: 0;
+}
+
+.wp-block-group.is-style-system-panel > .wp-block-list.is-style-system-list-flush,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-list.is-style-system-list-flush {
     border: 0;
     border-radius: inherit;
     overflow: hidden;

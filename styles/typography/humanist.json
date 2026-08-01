@@ -1,0 +1,37 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "Humanist",
+	"description": "Typography: A sturdy humanist sans system with a condensed technical display voice.",
+	"settings": {
+		"typography": {
+			"fontFamilies": [
+				{
+					"fontFamily": "\"Helvetica Neue\", Helvetica, Roboto, Arial, sans-serif",
+					"name": "Humanist Body",
+					"slug": "body"
+				},
+				{
+					"fontFamily": "\"Helvetica Neue\", Helvetica, Roboto, Arial, sans-serif",
+					"name": "Humanist Heading",
+					"slug": "heading"
+				},
+				{
+					"fontFamily": "Bahnschrift, \"DIN Alternate\", \"Franklin Gothic Medium\", \"Nimbus Sans Narrow\", \"Arial Narrow\", sans-serif-condensed, sans-serif",
+					"name": "Condensed Display",
+					"slug": "display"
+				},
+				{
+					"fontFamily": "\"Helvetica Neue\", Helvetica, Roboto, Arial, sans-serif",
+					"name": "Humanist Button",
+					"slug": "button"
+				},
+				{
+					"fontFamily": "Consolas, \"Liberation Mono\", Courier, monospace",
+					"name": "Humanist Monospace",
+					"slug": "monospace"
+				}
+			]
+		}
+	}
+}

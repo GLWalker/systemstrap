@@ -661,7 +661,7 @@ extend only where the project decides.</pre>
 				<!-- /wp:paragraph -->
 			<!-- /wp:query-no-results -->
 
-			<!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"space-between"}} -->
+			<!-- wp:query-pagination {"className":"is-style-system-ui-pagination","layout":{"type":"flex","justifyContent":"space-between"}} -->
 				<!-- wp:query-pagination-previous {"label":"Previous"} /-->
 				<!-- wp:query-pagination-numbers /-->
 				<!-- wp:query-pagination-next {"label":"Next"} /-->

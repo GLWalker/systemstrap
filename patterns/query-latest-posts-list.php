@@ -58,7 +58,7 @@
 		<!-- wp:group {"className":"query-latest-posts__footer query-directory-listing__footer","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"right"}} -->
 		<div class="wp-block-group query-latest-posts__footer query-directory-listing__footer"><!-- wp:query-total {"displayType":"range-display","style":{"layout":{"selfStretch":"fill","flexSize":null}}} /-->
 
-			<!-- wp:query-pagination {"paginationArrow":"chevron","showLabel":false,"className":"query-latest-posts__pagination query-directory-listing__pagination","layout":{"type":"flex","justifyContent":"right","flexWrap":"nowrap"}} -->
+			<!-- wp:query-pagination {"paginationArrow":"chevron","showLabel":false,"className":"query-latest-posts__pagination query-directory-listing__pagination is-style-system-ui-pagination","layout":{"type":"flex","justifyContent":"right","flexWrap":"nowrap"}} -->
 			<!-- wp:query-pagination-previous /-->
 
 			<!-- wp:query-pagination-numbers /-->

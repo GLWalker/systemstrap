@@ -1,0 +1,37 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "Wylde Typography",
+	"description": "Typography: A bright, high-contrast style variation inspired by Bootswatch Brite.",
+	"settings": {
+		"typography": {
+			"fontFamilies": [
+				{
+					"fontFamily": "\"Avenir Next\", Avenir, \"Segoe UI\", system-ui, sans-serif",
+					"name": "Body Font",
+					"slug": "body"
+				},
+				{
+					"fontFamily": "\"Franklin Gothic Medium\", \"Avenir Next\", Avenir, \"Segoe UI\", system-ui, sans-serif",
+					"name": "Heading Font",
+					"slug": "heading"
+				},
+				{
+					"fontFamily": "\"Arial Black\", Impact, Haettenschweiler, \"Avenir Next\", sans-serif",
+					"name": "Display Font",
+					"slug": "display"
+				},
+				{
+					"fontFamily": "\"Avenir Next\", Avenir, \"Segoe UI Semibold\", \"Segoe UI\", system-ui, sans-serif",
+					"name": "Button Font",
+					"slug": "button"
+				},
+				{
+					"fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+					"name": "Monospace Font",
+					"slug": "monospace"
+				}
+			]
+		}
+	}
+}

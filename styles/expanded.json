@@ -1,0 +1,70 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "Expanded",
+	"description": "Layout: Generous geometry, roomier spacing, and large elevation using the native SystemStrap framework.",
+	"settings": {
+		"custom": {
+			"border-radius": "0.75rem",
+			"border-radius-sm": "0.5rem",
+			"border-radius-lg": "1rem",
+			"border-radius-xl": "1.5rem",
+			"btn-border-radius": "0.5rem",
+			"form-border-radius": "0.625rem",
+			"dropdown-border-radius": "0.75rem",
+			"shadow": "var:preset|shadow|lg"
+		},
+		"spacing": {
+			"spacingSizes": [
+				{
+					"name": "Ten",
+					"size": ".25rem",
+					"slug": "10"
+				},
+				{
+					"name": "Twenty",
+					"size": ".625rem",
+					"slug": "20"
+				},
+				{
+					"name": "Thirty",
+					"size": "1.25rem",
+					"slug": "30"
+				},
+				{
+					"name": "Forty",
+					"size": "2rem",
+					"slug": "40"
+				},
+				{
+					"name": "Fifty",
+					"size": "3.5rem",
+					"slug": "50"
+				},
+				{
+					"name": "Sixty",
+					"size": "6rem",
+					"slug": "60"
+				},
+				{
+					"name": "Seventy",
+					"size": "clamp(5rem, 5vw, 8rem)",
+					"slug": "70"
+				},
+				{
+					"name": "Eighty",
+					"size": "clamp(7rem, 7vw, 12rem)",
+					"slug": "80"
+				}
+			]
+		}
+	},
+	"styles": {
+		"spacing": {
+			"padding": {
+				"left": "clamp(1.25rem, 2.5vw, 2.5rem)",
+				"right": "clamp(1.25rem, 2.5vw, 2.5rem)"
+			}
+		}
+	}
+}

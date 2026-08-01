@@ -32,6 +32,7 @@
 
 .is-style-system-panel .wp-block-details[class*="wp-block-details"]:is(.is-style-system-details) summary {
     border-radius: 0;
+    background: var(--wp--custom--system-ui-surface-banner, var(--wp--custom--system-ui-surface-nested, transparent));
 }
 
 /* Collapse borders and radii between adjacent system-details accordions */
@@ -49,17 +50,20 @@
 }
 
 .wp-block-details.is-style-system-details summary {
-    list-style: none; /* Hide default triangle */
-    padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
+    list-style: none !important; /* Hide default triangle */
+    display: flex;
+    align-items: center;
+    min-height: calc(var(--wp--preset--spacing--40) + var(--wp--preset--spacing--30));
+    padding: var(--wp--preset--spacing--20) calc(var(--wp--preset--spacing--30) + var(--wp--preset--spacing--40)) var(--wp--preset--spacing--20) var(--wp--preset--spacing--40);
     color: var(--wp--preset--color--inherit);
     background: var(--wp--custom--system-ui-surface-banner, var(--wp--custom--system-ui-surface, transparent));
     cursor: pointer;
     border-bottom: var(--wp--custom--border-width, 1px) solid transparent;
     border-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px));
-    transition: background-color 0.15s ease-in-out;
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, color 0.15s ease-in-out;
     position: relative;
     font-weight: var(--wp--custom--font-weight-heading);
-    line-height: 1.2;
+    line-height: 1.3;
 }
 
 /* Sync summary inner radii with the outer container when stacked */
@@ -167,10 +171,15 @@
 .wp-block-details.is-style-system-details summary {
     position: relative;
     font-size: var(--wp--preset--font-size--medium, 1rem);
-    list-style: none; /* remove default arrow */
+    list-style: none !important; /* remove default arrow */
+}
+.wp-block-details.is-style-system-details summary::marker {
+    content: "";
+    display: none;
+    font-size: 0;
 }
 .wp-block-details.is-style-system-details summary::-webkit-details-marker {
-    display: none; /* WebKit fallback */
+    display: none !important; /* WebKit fallback */
 }
 .wp-block-details.is-style-system-details summary::after {
     content: "";

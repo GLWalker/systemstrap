@@ -42,25 +42,6 @@
     --directory-grid-card-muted-color:
         var(--wp--preset--color--current-mix-color,
             currentColor);
-    --strap-pagination-control-color:
-        var(--wp--preset--color--contrast,
-            inherit);
-    --strap-pagination-control-bg:
-        rgba(var(--wp--preset--color--base-rgb, 255, 255, 255), 0.92);
-    --strap-pagination-control-border-color:
-        rgba(var(--wp--preset--color--contrast-rgb, 0, 0, 0), 0.14);
-    --strap-pagination-control-hover-bg:
-        rgba(var(--wp--preset--color--base-rgb, 255, 255, 255), 1);
-    --strap-pagination-control-hover-border-color:
-        rgba(var(--wp--preset--color--contrast-rgb, 0, 0, 0), 0.22);
-    --strap-pagination-control-hover-color:
-        var(--wp--preset--color--contrast,
-            inherit);
-    --strap-pagination-current-bg: currentColor;
-    --strap-pagination-current-border-color: currentColor;
-    --strap-pagination-current-color:
-        var(--wp--preset--color--base);
-    --strap-pagination-dots-color: currentColor;
 }
 
 .query-directory-grid.has-text-color,
@@ -72,11 +53,6 @@
     --directory-grid-card-muted-color:
         var(--wp--preset--color--current-mix-color,
             currentColor);
-    --strap-pagination-current-bg: currentColor;
-    --strap-pagination-current-border-color: currentColor;
-    --strap-pagination-current-color:
-        var(--wp--preset--color--base);
-    --strap-pagination-dots-color: currentColor;
 }
 
 .query-directory-grid__query,
