@@ -18,8 +18,9 @@ if ( ! function_exists( 'strap_generate_dynamic_colors' ) ) {
 			return '';
 		}
 
-		$settings = wp_get_global_settings();
-		$colors   = $settings['color']['palette']['theme'] ?? [];
+		$settings  = wp_get_global_settings();
+		$colors    = $settings['color']['palette']['theme'] ?? [];
+		$gradients = $settings['color']['gradients']['theme'] ?? [];
 
 		if ( empty( $colors ) ) {
 			return '';
@@ -42,6 +43,38 @@ if ( ! function_exists( 'strap_generate_dynamic_colors' ) ) {
 		$latest_posts_css = "\n/* Dynamic Latest Posts Header-to-Badge Color Routing */\n";
 		$a11y_text_css    = "\n/* Accessible Text Overrides */\n";
 		$pagination_css   = "\n/* Dynamic Pagination Background Routing */\n";
+		$pattern_css      = "\n/* Dynamic Pattern Gradient Background Routing */\n";
+		$pattern_tone_css = "\n/* Dynamic Pattern Tone Routing */\n";
+
+		if ( ! empty( $gradients ) ) {
+			foreach ( $gradients as $g ) {
+				$g_slug = sanitize_title( $g['slug'] ?? '' );
+				if ( empty( $g_slug ) || strpos( $g_slug, 'pattern-' ) !== 0 ) {
+					continue;
+				}
+
+				$pattern_css .= "
+.has-{$g_slug}-gradient-background {
+	--wp--custom--system-ui-pattern-color: currentColor;
+	background-image: var(--wp--preset--gradient--{$g_slug}) !important;
+}
+";
+
+				foreach ( $colors as $c_item ) {
+					$c_slug = sanitize_title( $c_item['slug'] ?? '' );
+					if ( empty( $c_slug ) ) {
+						continue;
+					}
+
+					$pattern_css .= "
+.has-{$c_slug}-background-color.has-{$g_slug}-gradient-background {
+	background-color: var(--wp--preset--color--{$c_slug}) !important;
+	background-image: var(--wp--preset--gradient--{$g_slug}) !important;
+}
+";
+				}
+			}
+		}
 
 		// Extract base background color for text contrast calculations
 		$base_color = '#ffffff';
@@ -57,6 +90,25 @@ if ( ! function_exists( 'strap_generate_dynamic_colors' ) ) {
 			if ( empty( $slug ) ) {
 				continue;
 			}
+
+			if ( in_array( $slug, $target_slugs, true ) ) {
+				$pattern_tone_css .= "
+.has-{$slug}-color {
+	--wp--custom--system-ui-pattern-color:
+		var(--wp--preset--color--{$slug});
+
+	--wp--custom--system-ui-pattern-tone-low:
+		var(--wp--preset--color--{$slug}-30);
+
+	--wp--custom--system-ui-pattern-tone-mid:
+		var(--wp--preset--color--{$slug}-60);
+
+	--wp--custom--system-ui-pattern-tone-high:
+		var(--wp--preset--color--{$slug}-90);
+}
+";
+			}
+
 			$color_value = $color['color'];
 
 			if ( strpos( $color_value, 'var(' ) !== false ) {
@@ -375,8 +427,29 @@ $latest_posts_css .= "
 		$css .= $latest_posts_css;
 		$css .= $a11y_text_css;
 		$css .= $pagination_css;
+		$css .= $pattern_css;
+		$css .= $pattern_tone_css;
 
-		// Add Gradient background routing for Latest Posts
+		// Add Gradient background routing for Latest Posts and Gradient Contrast Routing
+		$accent_gradient_color_map = [
+			'accent-10'  => 'primary',
+			'accent-20'  => 'primary',
+			'accent-30'  => 'secondary',
+			'accent-40'  => 'secondary',
+			'accent-50'  => 'success',
+			'accent-60'  => 'success',
+			'accent-70'  => 'info',
+			'accent-80'  => 'info',
+			'accent-90'  => 'warning',
+			'accent-100' => 'warning',
+			'accent-110' => 'danger',
+			'accent-120' => 'danger',
+			'accent-130' => 'light',
+			'accent-140' => 'light',
+			'accent-150' => 'dark',
+			'accent-160' => 'dark',
+		];
+
 		$gradients = $settings['color']['gradients']['theme'] ?? [];
 		if ( ! empty( $gradients ) ) {
 			foreach ( $gradients as $gradient ) {
@@ -384,6 +457,16 @@ $latest_posts_css .= "
 				if ( empty( $slug ) ) {
 					continue;
 				}
+				$color_slug = $accent_gradient_color_map[ $slug ] ?? str_replace( '-hover', '', $slug );
+				if ( in_array( $color_slug, $target_slugs, true ) ) {
+					$css .= "
+/* Dynamic Gradient Background Contrast Routing */
+.has-{$slug}-gradient-background:not(.has-text-color) {
+    color: var(--wp--preset--color--{$color_slug}-text) !important;
+}
+";
+				}
+
 				$css .= "
 /* Latest Posts Widget Gradient Fix */
 ul.wp-block-latest-posts.has-{$slug}-gradient-background,

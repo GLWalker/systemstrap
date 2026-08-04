@@ -681,32 +681,38 @@ extend only where the project decides.</pre>
 		<p>The Comments block is context-sensitive. On a post with comments enabled, this complete unit displays its title, comment template, pagination, and reply form together.</p>
 		<!-- /wp:paragraph -->
 
-		<!-- wp:comments -->
-		<div class="wp-block-comments">
+		<!-- wp:comments {"className":"comments use-form-control use-validation use-form-check use-form-label"} -->
+		<div class="wp-block-comments comments use-form-control use-validation use-form-check use-form-label">
 			<!-- wp:comments-title {"level":3} /-->
 			<!-- wp:comment-template -->
-				<!-- wp:columns -->
-				<div class="wp-block-columns">
-					<!-- wp:column {"width":"48px"} -->
-					<div class="wp-block-column" style="flex-basis:48px"><!-- wp:avatar {"size":48} /--></div>
-					<!-- /wp:column -->
-					<!-- wp:column -->
-					<div class="wp-block-column">
-						<!-- wp:comment-author-name /-->
-						<!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap"}} -->
-						<div class="wp-block-group">
-							<!-- wp:comment-date /-->
-							<!-- wp:comment-edit-link /-->
-						</div>
+				<!-- wp:group {"tagName":"article","metadata":{"name":"Comment Body"},"className":"comment-body","style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"default"}} -->
+				<article class="wp-block-group comment-body">
+					<!-- wp:group {"className":"comment-stack","style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"flex","orientation":"vertical"}} -->
+					<div class="wp-block-group comment-stack">
+						<!-- wp:group {"tagName":"footer","className":"comment-meta","style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+						<footer class="wp-block-group comment-meta">
+							<!-- wp:avatar {"size":60} /-->
+							<!-- wp:group {"className":"comment-author-info","style":{"spacing":{"blockGap":"var:preset|spacing|10"},"layout":{"selfStretch":"fill","flexSize":null}},"layout":{"type":"flex","orientation":"vertical"}} -->
+							<div class="wp-block-group comment-author-info">
+								<!-- wp:comment-author-name {"style":{"elements":{"link":{"color":{"text":"var:preset|color|current"}}}},"backgroundColor":"base"} /-->
+								<!-- wp:comment-date {"style":{"elements":{"link":{"color":{"text":"var:preset|color|current"}}}}} /-->
+							</div>
+							<!-- /wp:group -->
+						</footer>
 						<!-- /wp:group -->
 						<!-- wp:comment-content /-->
-						<!-- wp:comment-reply-link /-->
+						<!-- wp:group {"className":"comment-actions","style":{"spacing":{"blockGap":"var:preset|spacing|20"},"margin":{"bottom":"var:preset|spacing|20"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center","justifyContent":"left"}} -->
+						<div class="wp-block-group comment-actions" style="margin-bottom:var(--wp--preset--spacing--20)">
+							<!-- wp:comment-edit-link /-->
+							<!-- wp:comment-reply-link /-->
+						</div>
+						<!-- /wp:group -->
 					</div>
-					<!-- /wp:column -->
-				</div>
-				<!-- /wp:columns -->
+					<!-- /wp:group -->
+				</article>
+				<!-- /wp:group -->
 			<!-- /wp:comment-template -->
-			<!-- wp:comments-pagination {"layout":{"type":"flex","justifyContent":"space-between"}} -->
+			<!-- wp:comments-pagination {"paginationArrow":"chevron","layout":{"type":"flex","justifyContent":"space-between"}} -->
 				<!-- wp:comments-pagination-previous /-->
 				<!-- wp:comments-pagination-numbers /-->
 				<!-- wp:comments-pagination-next /-->

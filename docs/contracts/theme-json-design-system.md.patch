@@ -1,0 +1,26 @@
+--- docs/contracts/theme-json-design-system.md
++++ docs/contracts/theme-json-design-system.md
+@@ -280,4 +280,25 @@
+ 
++### Canonical Pattern Registry Lock
++
++The root Pattern registry is complete and locked at twenty contextual gradient presets:
++
++- eight Expressive Patterns;
++- twelve Practical Textures.
++
++The registry uses the sequential `pattern-10` through `pattern-200` namespace.
++
++Existing slugs, names, order, and formulas MUST remain stable unless the Pattern contract is deliberately revised. New experiments MUST NOT be appended casually to the root registry.
++
++Changes to the canonical registry require:
++
++1. a documented design-system reason;
++2. reference-impact review;
++3. visual testing across light, dark, semantic, and custom color contexts;
++4. contract revision;
++5. validation of backward compatibility.
++
++Fully colored promotional gradients, art-directed hero treatments, and layout-dependent materials do not belong in the contextual Pattern registry. Those treatments should be evaluated separately through stylesheet-driven block styles, theme variations, patterns, or child-theme design work.
++
+ ### Gradient Governance Rules

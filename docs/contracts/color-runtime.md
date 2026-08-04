@@ -123,11 +123,98 @@ Palette slug renames MUST be treated as breaking runtime changes.
 
 ## Gradient and Duotone Contract
 
-SystemStrap currently owns custom `gradients` and `duotone` registries in `theme.json`.
+SystemStrap owns custom `gradients` and `duotone` registries in `theme.json`.
+
+SystemStrap organizes gradient presets into three explicit namespaces:
+- **Absolute** (`absolute-01` through `absolute-04`)
+- **Accent** (`accent-10` through `accent-160` base/Alt pairs)
+- **Pattern** (`pattern-*` transparent contextual patterns)
+
+Legacy `*-hover` gradient slugs are deprecated and superseded by Alt presets (`accent-20`, `accent-40`, etc.).
 
 Those registries MUST be treated as theme-owned design surfaces.
 
 The editor MAY hide Core defaults while still preserving compatibility with Core preset-backed content at runtime.
+
+## Contextual Pattern Gradient Routing
+
+SystemStrap dynamic CSS generation in `inc/dynamic-styles.php` detects all active gradient presets prefixed with `pattern-` (e.g. `pattern-10`) and generates block-agnostic pattern routing rules.
+
+### Runtime Behavior
+1. A Pattern gradient (`pattern-*`) may coexist with a preset background-color class in saved markup.
+2. WordPress Core gradient utilities may emit the `background` shorthand, which erases solid background colors.
+3. SystemStrap restores the preset background using `background-color` and reapplies the pattern using `background-image`.
+4. Pattern tint originates dynamically from `currentColor`.
+5. The wrapper text-color class may be used as the pattern tint input.
+6. Child elements may apply their own readable text colors without altering the wrapper pattern tint.
+
+### Generated Runtime CSS Pattern
+```css
+.has-pattern-10-gradient-background {
+	--wp--custom--system-ui-pattern-color: currentColor;
+	background-image: var(--wp--preset--gradient--pattern-10) !important;
+}
+
+.has-primary-background-color.has-pattern-10-gradient-background {
+	background-color: var(--wp--preset--color--primary) !important;
+	background-image: var(--wp--preset--gradient--pattern-10) !important;
+}
+```
+
+### Pattern Custom Token Surface
+- `--wp--custom--system-ui-pattern-color` (default `currentColor`)
+- `--wp--custom--system-ui-pattern-highlight-color` (default `color-mix(in srgb, currentColor 35%, white)`)
+- `--wp--custom--system-ui-pattern-shadow-color` (default `color-mix(in srgb, currentColor 70%, white)`)
+- `--wp--custom--system-ui-pattern-opacity` (default `9%`)
+- `--wp--custom--system-ui-pattern-shadow-opacity` (default `6%`)
+- `--wp--custom--system-ui-pattern-tone-low` (default `var(--wp--custom--system-ui-pattern-shadow-color, currentColor)`)
+- `--wp--custom--system-ui-pattern-tone-mid` (default `var(--wp--custom--system-ui-pattern-color, currentColor)`)
+- `--wp--custom--system-ui-pattern-tone-high` (default `var(--wp--custom--system-ui-pattern-highlight-color, currentColor)`)
+
+### Constraints
+- Pattern routing MUST remain block-agnostic.
+- Pattern routing MUST NOT be restricted to Group, Cover, Panel, or System UI block styles.
+- Pattern routing MUST NOT use the `background` shorthand.
+
+## Contextual Pattern Tone Routing
+
+SystemStrap exposes optional generated tone channels for contextual pattern gradients.
+
+When an element carries a registered semantic text-color class (`.has-{slug}-color` for `primary`, `secondary`, `success`, `info`, `warning`, `danger`, `light`, or `dark`), Dynamic Styles maps that semantic color’s generated shade ladder into the pattern tone variables. Utility colors without shade ladders (`base`, `contrast`, etc.) and custom inline colors fall through cleanly to the `currentColor`-based pattern fallback system.
+
+### Tone Variable Mapping
+
+| Pattern variable | Generated source |
+| :--- | :--- |
+| `--wp--custom--system-ui-pattern-color` | `--wp--preset--color--{slug}` |
+| `--wp--custom--system-ui-pattern-tone-low` | `--wp--preset--color--{slug}-30` |
+| `--wp--custom--system-ui-pattern-tone-mid` | `--wp--preset--color--{slug}-60` |
+| `--wp--custom--system-ui-pattern-tone-high` | `--wp--preset--color--{slug}-90` |
+
+### Architectural Rules
+- Pattern geometry lives in `theme.json`.
+- Dynamic Styles supplies contextual tonal ingredients.
+- Generated pattern tone variables are emitted ONLY for semantic palette colors that receive generated shade ladders (`$target_slugs`).
+- PHP MUST NOT contain pattern-specific geometry or pattern-specific slug exceptions.
+- All `pattern-*` presets MAY consume the same shared tone variables.
+- Custom colors and non-ladder utility colors remain supported through `currentColor` fallbacks.
+
+### Generated Tone CSS Example
+```css
+.has-primary-color {
+	--wp--custom--system-ui-pattern-color:
+		var(--wp--preset--color--primary);
+
+	--wp--custom--system-ui-pattern-tone-low:
+		var(--wp--preset--color--primary-30);
+
+	--wp--custom--system-ui-pattern-tone-mid:
+		var(--wp--preset--color--primary-60);
+
+	--wp--custom--system-ui-pattern-tone-high:
+		var(--wp--preset--color--primary-90);
+}
+```
 
 ## Approved Modification Mechanisms
 

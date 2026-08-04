@@ -44,6 +44,8 @@
 
 .is-style-system-panel .wp-block-accordion[class*="wp-block-accordion"]:is(.is-style-system-accordion) .wp-block-accordion-heading__toggle {
     border-radius: 0;
+    background: var(--wp--custom--system-ui-surface-banner, var(--wp--custom--system-ui-surface-nested, transparent));
+    background-image: var(--wp--custom--system-ui-background-image-nested, none) !important;
 }
 
 /* Collapse borders and radii between adjacent accordion items */
@@ -70,6 +72,7 @@
     padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
     color: var(--wp--preset--color--inherit);
     background: var(--wp--custom--system-ui-surface-banner, var(--wp--custom--system-ui-surface, transparent));
+    background-image: var(--wp--custom--system-ui-background-image, none);
     border-bottom: var(--wp--custom--border-width, 1px) solid transparent;
     border-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px));
     transition: background-color 0.15s ease-in-out;

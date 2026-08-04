@@ -226,17 +226,148 @@ The theme currently defines a custom duotone set in `theme.json`.
 
 The theme MUST treat these duotones as theme-owned presets rather than inherited core defaults.
 
-### Gradient contract
+## Gradient Preset Registry
 
-The theme currently defines a custom gradient set in `theme.json`.
+SystemStrap organizes theme gradient presets into three strictly ordered namespaces:
 
-The gradient registry includes at least these families:
+1. **Absolute** (`absolute-*`): Structural surface gradients.
+2. **Accent** (`accent-*`): Palette-aligned base and Alt material gradients.
+3. **Pattern** (`pattern-*`): Contextual transparent pattern gradients.
 
-- generic surface gradients such as `gradient`, `gradient-alt`, `body`, and `element`
-- accent gradients such as `primary`, `secondary`, `success`, `info`, `warning`, `danger`, `light`, and `dark`
-- corresponding hover gradients such as `primary-hover`, `secondary-hover`, `success-hover`, `info-hover`, `warning-hover`, `danger-hover`, `light-hover`, and `dark-hover`
+### Canonical Gradient Preset Table
 
-These gradients are part of the design-system contract because they reference preset colors and are intended to stay inside the same token family.
+| Slug | Name | Role |
+| :--- | :--- | :--- |
+| `absolute-01` | `Absolute: Gradient` | General structural gradient |
+| `absolute-02` | `Absolute: Gradient Alt` | Alternate structural gradient |
+| `absolute-03` | `Absolute: Body` | Page-level atmospheric background |
+| `absolute-04` | `Absolute: Element` | Restrained element surface |
+| `accent-10` | `Accent: Primary` | Primary accent material |
+| `accent-20` | `Accent: Primary Alt` | Alternate primary material |
+| `accent-30` | `Accent: Secondary` | Secondary accent material |
+| `accent-40` | `Accent: Secondary Alt` | Alternate secondary material |
+| `accent-50` | `Accent: Success` | Success accent material |
+| `accent-60` | `Accent: Success Alt` | Alternate success material |
+| `accent-70` | `Accent: Info` | Informational accent material |
+| `accent-80` | `Accent: Info Alt` | Alternate informational material |
+| `accent-90` | `Accent: Warning` | Warning accent material |
+| `accent-100` | `Accent: Warning Alt` | Alternate warning material |
+| `accent-110` | `Accent: Danger` | Danger accent material |
+| `accent-120` | `Accent: Danger Alt` | Alternate danger material |
+| `accent-130` | `Accent: Light` | Light accent material |
+| `accent-140` | `Accent: Light Alt` | Alternate light material |
+| `accent-150` | `Accent: Dark` | Dark accent material |
+| `accent-160` | `Accent: Dark Alt` | Alternate dark material |
+| `pattern-10` | `Pattern: Starburst` | Contextual radial/conic starburst pattern |
+| `pattern-20` | `Pattern: Starburst Alt` | Alternate upper-right focal starburst pattern |
+| `pattern-30` | `Pattern: Spiral Ring` | Broad offset concentric ring pattern |
+| `pattern-40` | `Pattern: Spiral Ring Alt` | Shifted tighter concentric ring pattern |
+| `pattern-50` | `Pattern: Topographic Lines` | Fluid contour-line pattern |
+| `pattern-60` | `Pattern: Topographic Lines Alt` | Shifted tighter topographic contour pattern |
+| `pattern-70` | `Pattern: Wood Grain` | Directional fibers and growth-ring pattern |
+| `pattern-80` | `Pattern: Wood Grain Alt` | Shifted descending wood grain pattern |
+| `pattern-90` | `Texture: Fine Grain` | Subtle micro-grain surface texture |
+| `pattern-100` | `Texture: Pressed Paper` | Soft editorial fiber texture with paper flecks |
+| `pattern-110` | `Texture: Woven Linen` | Contextual fabric weave |
+| `pattern-120` | `Texture: Blueprint Grid` | Fine technical grid with major divisions |
+| `pattern-130` | `Texture: Carbon Fiber` | Tight diagonal technical composite weave |
+| `pattern-140` | `Texture: Low Poly` | Broad angular tessellated texture |
+| `pattern-150` | `Texture: Terrazzo` | Scattered contextual mineral-chip texture |
+| `pattern-160` | `Texture: Dark Brushed Metal` | Directional brushed technical texture |
+| `pattern-170` | `Texture: Dot Matrix` | Fluid geometric dot field |
+| `pattern-180` | `Texture: Honeycomb` | Contextual hexagonal mesh texture |
+| `pattern-190` | `Texture: Cabinet Mesh` | Industrial enclosure equipment grid |
+| `pattern-200` | `Texture: Brickwork` | Restrained offset masonry pattern |
+
+### Accent Gradient Composition
+
+Accent gradients are semantic, variation-aware surfaces generated from canonical semantic shade ladders.
+
+Each semantic family provides:
+
+- one Base gradient for calm, reusable tonal movement;
+- one Alt gradient for a related but compositionally distinct treatment.
+
+Base and Alt gradients MUST differ through more than direction alone. Stop selection, semantic emphasis, midpoint placement, or tonal progression MUST provide visible distinction.
+
+Accent gradients SHOULD:
+
+- use two or three purposeful stops;
+- favor neighboring shades and restrained luminance distance;
+- remain smooth and free of hard seams;
+- preserve the identity of their owning semantic family;
+- avoid pure white and black endpoints;
+- remain useful beyond showcase previews.
+
+Accent gradients MUST NOT:
+
+- hardcode hexadecimal, RGB, HSL, or named colors;
+- use Pattern runtime variables;
+- use repeating, conic, or texture geometry;
+- depend on block-specific CSS;
+- become aliases for fully art-directed promotional materials.
+
+### Canonical Pattern Registry Lock
+
+The root Pattern registry is complete and locked at twenty contextual gradient presets:
+
+- eight Expressive Patterns;
+- twelve Practical Textures.
+
+The registry uses the sequential `pattern-10` through `pattern-200` namespace.
+
+Existing slugs, names, order, and formulas MUST remain stable unless the Pattern contract is deliberately revised. New experiments MUST NOT be appended casually to the root registry.
+
+Changes to the canonical registry require:
+
+1. a documented design-system reason;
+2. reference-impact review;
+3. visual testing across light, dark, semantic, and custom color contexts;
+4. contract revision;
+5. validation of backward compatibility.
+
+Fully colored promotional gradients, art-directed hero treatments, and layout-dependent materials do not belong in the contextual Pattern registry. Those treatments should be evaluated separately through stylesheet-driven block styles, theme variations, patterns, or child-theme design work.
+
+### Gradient Governance Rules
+
+- Absolute presets are structural and MUST remain first in `theme.json.settings.color.gradients`.
+- Accent presets occur in base/Alt pairs.
+- "Alt" means an alternate material, not an interaction state (do not use "Hover" in names or slugs).
+- Pattern presets (`pattern-*`) are transparent contextual materials.
+- Pattern presets consume `currentColor` through the System UI pattern variable surface (`--wp--custom--system-ui-pattern-*`).
+- Pattern gradients may consume the shared pattern tone channels.
+- Pattern tone channels are optional and must provide `currentColor`-compatible fallbacks.
+- Pattern gradients MUST remain neutral, block-agnostic, and MUST NOT reference a fixed semantic color family.
+- Variations may add additional `pattern-*` presets without PHP changes.
+- Pattern-specific geometry belongs in gradient presets, not runtime PHP.
+- `pattern-10` establishes the neutral starburst pattern with lower-left focal origin.
+- `pattern-20` establishes the alternate starburst pattern with upper-right focal origin.
+- `pattern-30` and `pattern-40` establish the Spiral Ring Base and Alt concentric ring textures.
+- `pattern-50` and `pattern-60` establish the Topographic Lines Base and Alt contour textures.
+- `pattern-70` and `pattern-80` establish the Wood Grain Base and Alt organic textures.
+- The canonical registry MUST contain eight expressive patterns and twelve practical textures unless the contract is intentionally revised.
+- All entries MUST use the `pattern-*` namespace so the generic contextual runtime applies consistently.
+- Practical textures MUST remain transparent and MUST derive color from the active contextual pattern variables.
+- Practical textures MUST NOT embed fixed semantic palette colors.
+- Texture geometry MUST work as a standalone `theme.json` gradient value.
+- Textures MUST NOT require `background-size`, `background-position`, masks, pseudo-elements, external images, or block-specific runtime logic.
+- Visual similarity to a physical material is desirable, but readability and broad contextual usefulness take priority over literal realism.
+- A texture that reads as noise, mud, visual interference, or an unrelated geometric pattern MUST be removed rather than retained for registry completeness.
+- All pattern formulas must scale gracefully across small cards and large panels using percentage-based geometry or rem-based/em-based spacing.
+- Numeric spacing (`10`, `20`, ..., `200`) leaves insertion room for future presets.
+- Gradient arrays are deliberately ordered and MUST NOT be alphabetized.
+
+Public Pattern Token Surface:
+- `system-ui-pattern-color`
+- `system-ui-pattern-highlight-color`
+- `system-ui-pattern-shadow-color`
+- `system-ui-pattern-opacity`
+- `system-ui-pattern-shadow-opacity`
+- `system-ui-pattern-tone-low`
+- `system-ui-pattern-tone-mid`
+- `system-ui-pattern-tone-high`
+
+*(Note: Legacy gradient slugs `gradient`, `gradient-alt`, `body`, `element`, `primary`, `primary-hover`, `secondary`, `secondary-hover`, `success`, `success-hover`, `info`, `info-hover`, `warning`, `warning-hover`, `danger`, `danger-hover`, `light`, `light-hover`, `dark`, `dark-hover`, and `neutral-starburst` are superseded by this contract and are no longer active root gradient presets).*
 
 ### Custom token contract
 

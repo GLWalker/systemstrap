@@ -204,80 +204,80 @@
                     <!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"center"}} -->
                     <div class="wp-block-group">
 
-                        <!-- wp:paragraph {"className":"p-1 rounded-circle border shadow-inset","style":{"layout":{"selfStretch":"fit","flexSize":null}},"gradient":"bs-gradient"} -->
-                        <p class="p-1 rounded-circle border shadow-inset has-bs-gradient-gradient-background has-background"><a href="#bs-gradient"><img style="width: 30px;" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/transparent-bg.png" alt="Transparent Background Placeholder"></a></p>
+                        <!-- wp:paragraph {"className":"p-1 rounded-circle border shadow-inset","style":{"layout":{"selfStretch":"fit","flexSize":null}},"gradient":"pattern-90"} -->
+                        <p class="p-1 rounded-circle border shadow-inset has-pattern-90-gradient-background has-background"><a href="#pattern-90"><img style="width: 30px;" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/transparent-bg.png" alt="Transparent Background Placeholder"></a></p>
                         <!-- /wp:paragraph -->
 
-                        <!-- wp:paragraph {"className":"p-1 rounded-circle border shadow-inset","style":{"layout":{"selfStretch":"fit","flexSize":null}},"gradient":"bs-gradient-alt"} -->
-                        <p class="p-1 rounded-circle border shadow-inset has-bs-gradient-alt-gradient-background has-background"><a href="#bs-gradient-alt"><img style="width: 30px;" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/transparent-bg.png" alt="Transparent Background Placeholder"></a></p>
+                        <!-- wp:paragraph {"className":"p-1 rounded-circle border shadow-inset","style":{"layout":{"selfStretch":"fit","flexSize":null}},"gradient":"pattern-70"} -->
+                        <p class="p-1 rounded-circle border shadow-inset has-pattern-70-gradient-background has-background"><a href="#pattern-70"><img style="width: 30px;" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/transparent-bg.png" alt="Transparent Background Placeholder"></a></p>
                         <!-- /wp:paragraph -->
 
                         <!-- wp:paragraph {"className":"p-1 rounded-circle border shadow-inset","style":{"layout":{"selfStretch":"fit","flexSize":null}},"gradient":"body"} -->
                         <p class="p-1 rounded-circle border shadow-inset has-body-gradient-background has-background"><a href="#body"><img style="width: 30px;" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/transparent-bg.png" alt="Transparent Background Placeholder"></a></p>
                         <!-- /wp:paragraph -->
 
-                        <!-- wp:paragraph {"className":"p-1 rounded-circle border shadow-inset","style":{"layout":{"selfStretch":"fit","flexSize":null}},"gradient":"primary"} -->
-                        <p class="p-1 rounded-circle border shadow-inset has-primary-gradient-background has-background"><a href="#primary"><img style="width: 30px;" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/transparent-bg.png" alt="Transparent Background Placeholder"></a></p>
+                        <!-- wp:paragraph {"className":"p-1 rounded-circle border shadow-inset","style":{"layout":{"selfStretch":"fit","flexSize":null}},"gradient":"accent-10"} -->
+                        <p class="p-1 rounded-circle border shadow-inset has-accent-10-gradient-background has-background"><a href="#accent-10"><img style="width: 30px;" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/transparent-bg.png" alt="Transparent Background Placeholder"></a></p>
                         <!-- /wp:paragraph -->
 
-                        <!-- wp:paragraph {"className":"p-1 rounded-circle border shadow-inset","style":{"layout":{"selfStretch":"fit","flexSize":null}},"gradient":"primary-hover"} -->
-                        <p class="p-1 rounded-circle border shadow-inset has-primary-hover-gradient-background has-background"><a href="#primary-hover"><img style="width: 30px;" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/transparent-bg.png" alt="Transparent Background Placeholder"></a></p>
+                        <!-- wp:paragraph {"className":"p-1 rounded-circle border shadow-inset","style":{"layout":{"selfStretch":"fit","flexSize":null}},"gradient":"accent-20"} -->
+                        <p class="p-1 rounded-circle border shadow-inset has-accent-20-gradient-background has-background"><a href="#accent-20"><img style="width: 30px;" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/transparent-bg.png" alt="Transparent Background Placeholder"></a></p>
                         <!-- /wp:paragraph -->
 
-                        <!-- wp:paragraph {"className":"p-1 rounded-circle border shadow-inset","style":{"layout":{"selfStretch":"fit","flexSize":null}},"gradient":"secondary"} -->
-                        <p class="p-1 rounded-circle border shadow-inset has-secondary-gradient-background has-background"><a href="#secondary"><img style="width: 30px;" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/transparent-bg.png" alt="Transparent Background Placeholder"></a></p>
+                        <!-- wp:paragraph {"className":"p-1 rounded-circle border shadow-inset","style":{"layout":{"selfStretch":"fit","flexSize":null}},"gradient":"accent-30"} -->
+                        <p class="p-1 rounded-circle border shadow-inset has-accent-30-gradient-background has-background"><a href="#accent-30"><img style="width: 30px;" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/transparent-bg.png" alt="Transparent Background Placeholder"></a></p>
                         <!-- /wp:paragraph -->
 
-                        <!-- wp:paragraph {"className":"p-1 rounded-circle border shadow-inset","style":{"layout":{"selfStretch":"fit","flexSize":null}},"gradient":"secondary-hover"} -->
-                        <p class="p-1 rounded-circle border shadow-inset has-secondary-hover-gradient-background has-background"><a href="#secondary-hover"><img style="width: 30px;" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/transparent-bg.png" alt="Transparent Background Placeholder"></a></p>
+                        <!-- wp:paragraph {"className":"p-1 rounded-circle border shadow-inset","style":{"layout":{"selfStretch":"fit","flexSize":null}},"gradient":"accent-40"} -->
+                        <p class="p-1 rounded-circle border shadow-inset has-accent-40-gradient-background has-background"><a href="#accent-40"><img style="width: 30px;" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/transparent-bg.png" alt="Transparent Background Placeholder"></a></p>
                         <!-- /wp:paragraph -->
 
-                        <!-- wp:paragraph {"className":"p-1 rounded-circle border shadow-inset","style":{"layout":{"selfStretch":"fit","flexSize":null}},"gradient":"success"} -->
-                        <p class="p-1 rounded-circle border shadow-inset has-success-gradient-background has-background"><a href="#success"><img style="width: 30px;" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/transparent-bg.png" alt="Transparent Background Placeholder"></a></p>
+                        <!-- wp:paragraph {"className":"p-1 rounded-circle border shadow-inset","style":{"layout":{"selfStretch":"fit","flexSize":null}},"gradient":"accent-50"} -->
+                        <p class="p-1 rounded-circle border shadow-inset has-accent-50-gradient-background has-background"><a href="#accent-50"><img style="width: 30px;" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/transparent-bg.png" alt="Transparent Background Placeholder"></a></p>
                         <!-- /wp:paragraph -->
 
-                        <!-- wp:paragraph {"className":"p-1 rounded-circle border shadow-inset","style":{"layout":{"selfStretch":"fit","flexSize":null}},"gradient":"success-hover"} -->
-                        <p class="p-1 rounded-circle border shadow-inset has-success-hover-gradient-background has-background"><a href="#success-hover"><img style="width: 30px;" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/transparent-bg.png" alt="Transparent Background Placeholder"></a></p>
+                        <!-- wp:paragraph {"className":"p-1 rounded-circle border shadow-inset","style":{"layout":{"selfStretch":"fit","flexSize":null}},"gradient":"accent-60"} -->
+                        <p class="p-1 rounded-circle border shadow-inset has-accent-60-gradient-background has-background"><a href="#accent-60"><img style="width: 30px;" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/transparent-bg.png" alt="Transparent Background Placeholder"></a></p>
                         <!-- /wp:paragraph -->
 
-                        <!-- wp:paragraph {"className":"p-1 rounded-circle border shadow-inset","style":{"layout":{"selfStretch":"fit","flexSize":null}},"gradient":"info"} -->
-                        <p class="p-1 rounded-circle border shadow-inset has-info-gradient-background has-background"><a href="#info"><img style="width: 30px;" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/transparent-bg.png" alt="Transparent Background Placeholder"></a></p>
+                        <!-- wp:paragraph {"className":"p-1 rounded-circle border shadow-inset","style":{"layout":{"selfStretch":"fit","flexSize":null}},"gradient":"accent-70"} -->
+                        <p class="p-1 rounded-circle border shadow-inset has-accent-70-gradient-background has-background"><a href="#accent-70"><img style="width: 30px;" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/transparent-bg.png" alt="Transparent Background Placeholder"></a></p>
                         <!-- /wp:paragraph -->
 
-                        <!-- wp:paragraph {"className":"p-1 rounded-circle border shadow-inset","style":{"layout":{"selfStretch":"fit","flexSize":null}},"gradient":"info-hover"} -->
-                        <p class="p-1 rounded-circle border shadow-inset has-info-hover-gradient-background has-background"><a href="#info-hover"><img style="width: 30px;" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/transparent-bg.png" alt="Transparent Background Placeholder"></a></p>
+                        <!-- wp:paragraph {"className":"p-1 rounded-circle border shadow-inset","style":{"layout":{"selfStretch":"fit","flexSize":null}},"gradient":"accent-80"} -->
+                        <p class="p-1 rounded-circle border shadow-inset has-accent-80-gradient-background has-background"><a href="#accent-80"><img style="width: 30px;" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/transparent-bg.png" alt="Transparent Background Placeholder"></a></p>
                         <!-- /wp:paragraph -->
 
-                        <!-- wp:paragraph {"className":"p-1 rounded-circle border shadow-inset","style":{"layout":{"selfStretch":"fit","flexSize":null}},"gradient":"warning"} -->
-                        <p class="p-1 rounded-circle border shadow-inset has-warning-gradient-background has-background"><a href="#warning"><img style="width: 30px;" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/transparent-bg.png" alt="Transparent Background Placeholder"></a></p>
+                        <!-- wp:paragraph {"className":"p-1 rounded-circle border shadow-inset","style":{"layout":{"selfStretch":"fit","flexSize":null}},"gradient":"accent-90"} -->
+                        <p class="p-1 rounded-circle border shadow-inset has-accent-90-gradient-background has-background"><a href="#accent-90"><img style="width: 30px;" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/transparent-bg.png" alt="Transparent Background Placeholder"></a></p>
                         <!-- /wp:paragraph -->
 
-                        <!-- wp:paragraph {"className":"p-1 rounded-circle border shadow-inset","style":{"layout":{"selfStretch":"fit","flexSize":null}},"gradient":"warning-hover"} -->
-                        <p class="p-1 rounded-circle border shadow-inset has-warning-hover-gradient-background has-background"><a href="#warning-hover"><img style="width: 30px;" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/transparent-bg.png" alt="Transparent Background Placeholder"></a></p>
+                        <!-- wp:paragraph {"className":"p-1 rounded-circle border shadow-inset","style":{"layout":{"selfStretch":"fit","flexSize":null}},"gradient":"accent-100"} -->
+                        <p class="p-1 rounded-circle border shadow-inset has-accent-100-gradient-background has-background"><a href="#accent-100"><img style="width: 30px;" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/transparent-bg.png" alt="Transparent Background Placeholder"></a></p>
                         <!-- /wp:paragraph -->
 
-                        <!-- wp:paragraph {"className":"p-1 rounded-circle border shadow-inset","style":{"layout":{"selfStretch":"fit","flexSize":null}},"gradient":"danger"} -->
-                        <p class="p-1 rounded-circle border shadow-inset has-danger-gradient-background has-background"><a href="#danger"><img style="width: 30px;" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/transparent-bg.png" alt="Transparent Background Placeholder"></a></p>
+                        <!-- wp:paragraph {"className":"p-1 rounded-circle border shadow-inset","style":{"layout":{"selfStretch":"fit","flexSize":null}},"gradient":"accent-110"} -->
+                        <p class="p-1 rounded-circle border shadow-inset has-accent-110-gradient-background has-background"><a href="#accent-110"><img style="width: 30px;" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/transparent-bg.png" alt="Transparent Background Placeholder"></a></p>
                         <!-- /wp:paragraph -->
 
-                        <!-- wp:paragraph {"className":"p-1 rounded-circle border shadow-inset","style":{"layout":{"selfStretch":"fit","flexSize":null}},"gradient":"danger-hover"} -->
-                        <p class="p-1 rounded-circle border shadow-inset has-danger-hover-gradient-background has-background"><a href="#danger-hover"><img style="width: 30px;" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/transparent-bg.png" alt="Transparent Background Placeholder"></a></p>
+                        <!-- wp:paragraph {"className":"p-1 rounded-circle border shadow-inset","style":{"layout":{"selfStretch":"fit","flexSize":null}},"gradient":"accent-120"} -->
+                        <p class="p-1 rounded-circle border shadow-inset has-accent-120-gradient-background has-background"><a href="#accent-120"><img style="width: 30px;" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/transparent-bg.png" alt="Transparent Background Placeholder"></a></p>
                         <!-- /wp:paragraph -->
 
-                        <!-- wp:paragraph {"className":"p-1 rounded-circle border shadow-inset","style":{"layout":{"selfStretch":"fit","flexSize":null}},"gradient":"light"} -->
-                        <p class="p-1 rounded-circle border shadow-inset has-light-gradient-background has-background"><a href="#light"><img style="width: 30px;" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/transparent-bg.png" alt="Transparent Background Placeholder"></a></p>
+                        <!-- wp:paragraph {"className":"p-1 rounded-circle border shadow-inset","style":{"layout":{"selfStretch":"fit","flexSize":null}},"gradient":"accent-130"} -->
+                        <p class="p-1 rounded-circle border shadow-inset has-accent-130-gradient-background has-background"><a href="#accent-130"><img style="width: 30px;" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/transparent-bg.png" alt="Transparent Background Placeholder"></a></p>
                         <!-- /wp:paragraph -->
 
-                        <!-- wp:paragraph {"className":"p-1 rounded-circle border shadow-inset","style":{"layout":{"selfStretch":"fit","flexSize":null}},"gradient":"light-hover"} -->
-                        <p class="p-1 rounded-circle border shadow-inset has-light-hover-gradient-background has-background"><a href="#light-hover"><img style="width: 30px;" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/transparent-bg.png" alt="Transparent Background Placeholder"></a></p>
+                        <!-- wp:paragraph {"className":"p-1 rounded-circle border shadow-inset","style":{"layout":{"selfStretch":"fit","flexSize":null}},"gradient":"accent-140"} -->
+                        <p class="p-1 rounded-circle border shadow-inset has-accent-140-gradient-background has-background"><a href="#accent-140"><img style="width: 30px;" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/transparent-bg.png" alt="Transparent Background Placeholder"></a></p>
                         <!-- /wp:paragraph -->
 
-                        <!-- wp:paragraph {"className":"p-1 rounded-circle border shadow-inset","style":{"layout":{"selfStretch":"fit","flexSize":null}},"gradient":"dark"} -->
-                        <p class="p-1 rounded-circle border shadow-inset has-dark-gradient-background has-background"><a href="#dark"><img style="width: 30px;" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/transparent-bg.png" alt="Transparent Background Placeholder"></a></p>
+                        <!-- wp:paragraph {"className":"p-1 rounded-circle border shadow-inset","style":{"layout":{"selfStretch":"fit","flexSize":null}},"gradient":"accent-150"} -->
+                        <p class="p-1 rounded-circle border shadow-inset has-accent-150-gradient-background has-background"><a href="#accent-150"><img style="width: 30px;" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/transparent-bg.png" alt="Transparent Background Placeholder"></a></p>
                         <!-- /wp:paragraph -->
 
-                        <!-- wp:paragraph {"className":"p-1 rounded-circle border shadow-inset","style":{"layout":{"selfStretch":"fit","flexSize":null}},"gradient":"dark-hover"} -->
-                        <p class="p-1 rounded-circle border shadow-inset has-dark-hover-gradient-background has-background"><a href="#dark-hover"><img style="width: 30px;" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/transparent-bg.png" alt="Transparent Background Placeholder"></a></p>
+                        <!-- wp:paragraph {"className":"p-1 rounded-circle border shadow-inset","style":{"layout":{"selfStretch":"fit","flexSize":null}},"gradient":"accent-160"} -->
+                        <p class="p-1 rounded-circle border shadow-inset has-accent-160-gradient-background has-background"><a href="#accent-160"><img style="width: 30px;" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/transparent-bg.png" alt="Transparent Background Placeholder"></a></p>
                         <!-- /wp:paragraph -->
                     </div>
                     <!-- /wp:group -->

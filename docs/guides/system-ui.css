@@ -100,6 +100,9 @@
  * - core-accordion-system-tabs-vertical.css
  * - core-comments-system-list.css
  * - core-comments-system-panel.css
+ * - theme.json core/comments
+ * - theme.json core/latest-comments
+ * - theme.json core/post-comments-form
  * - core-query-system-ui-query.css
  * - assets/css/system-ui-pagination.css
  * - core-*-pagination-system-ui-pagination*.css
@@ -249,6 +252,8 @@
     .wp-block-latest-posts:not(.is-style-system-list):not(.is-style-system-list-flush),
     .wp-block-latest-comments:not(.is-style-system-list):not(.is-style-system-list-flush),
     .wp-block-terms-query:not(.is-style-system-list):not(.is-style-system-list-flush),
+    .wp-block-comments:not(.is-style-system-list):not(.is-style-system-panel),
+    .wp-block-post-comments-form,
     .wp-block-list:not(.is-style-system-list):not(.is-style-system-list-flush)
 ) {
     padding: var(--strap-system-panel-padding-y) var(--strap-system-panel-padding-x);
@@ -585,6 +590,27 @@
  * nested list surface routing.
  * Latest Comments uses the same explicit list contract while owning its
  * compact comment header rhythm and avatar scale.
+ *
+ * Comment-family baseline rhythm now lives in theme.json:
+ * - core/comments owns the shared body/meta/actions stack used by plain,
+ *   list, and panel comments.
+ * - core/post-comments-form owns the baseline reply-form stack, including
+ *   the native `form.comment-form` gap and submit-control offset.
+ * - core/latest-comments owns the plain compact avatar/meta/excerpt rhythm
+ *   with the shared comment avatar/content gap. Explicit Latest Comments
+ *   System UI list cards mirror that lane with
+ *   `--strap-latest-comments-content-gap`.
+ *
+ * The runtime comment variation files add explicit surface ownership, reply
+ * thread rails, framed avatars, and surfaced respond blocks for list/panel
+ * comment variants.
+ * Comments list row rules target direct rendered comment rows as
+ * `.wp-block-comment`, `.comment`, or `li` so native and pattern-rendered
+ * comment templates receive the same System UI row padding. The list shell
+ * owns the outer border/shadow; rows own padding, seams, and hover treatment.
+ * Comments panel row rules use the same direct-row target contract, but the
+ * top-level parent thread owns the panel surface while nested replies remain
+ * inside that parent panel on an indented rail.
  */
 
 .wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) {

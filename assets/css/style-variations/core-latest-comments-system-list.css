@@ -7,6 +7,8 @@
 :is(
     .wp-block-latest-comments:is(.is-style-system-list, .is-style-system-list-flush)
 ) {
+    --strap-latest-comments-avatar-size: 56px;
+    --strap-latest-comments-content-gap: var(--wp--preset--spacing--30);
     list-style: none;
     margin: 0;
     padding: 0;
@@ -16,6 +18,11 @@
 .wp-block-latest-comments.is-style-system-list {
     border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
     border-radius: var(--wp--custom--border-radius);
+    background-color: var(--wp--custom--system-ui-surface);
+    background-image: var(--wp--custom--system-ui-background-image, none);
+    backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    box-shadow: var(--wp--custom--shadow);
     overflow: hidden;
 }
 
@@ -31,10 +38,13 @@
     margin: 0;
     padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30) !important;
     color: inherit;
-    background-color: var(--wp--custom--system-ui-surface);
-    background-image: var(--wp--custom--system-ui-background-image, none);
+    background-color: transparent;
+    background-image: none;
     backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    position: relative;
+    isolation: isolate;
+    transition: background-color 0.2s ease;
 }
 
 :is(
@@ -47,9 +57,15 @@
     .wp-block-latest-comments:is(.is-style-system-list, .is-style-system-list-flush)
 ) > li > article {
     display: grid;
-    grid-template-columns: 60px minmax(0, 1fr);
+    grid-template-columns: var(--strap-latest-comments-avatar-size) minmax(0, 1fr);
     align-items: start;
-    column-gap: var(--wp--preset--spacing--20);
+    column-gap: var(--strap-latest-comments-content-gap);
+    padding: var(--wp--preset--spacing--20);
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+    border-radius: var(--wp--custom--border-radius);
+    background-color: var(--wp--custom--system-ui-surface-nested, var(--wp--custom--system-ui-surface));
+    background-image: var(--wp--custom--system-ui-background-image-nested, var(--wp--custom--system-ui-background-image, none));
+    box-shadow: var(--wp--custom--shadow);
 }
 
 :is(
@@ -63,10 +79,11 @@
     .wp-block-latest-comments:is(.is-style-system-list, .is-style-system-list-flush)
 ) .wp-block-latest-comments__comment-avatar {
     display: block;
-    width: 60px;
-    height: 60px;
+    width: var(--strap-latest-comments-avatar-size);
+    height: var(--strap-latest-comments-avatar-size);
     border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
     border-radius: 50%;
+    background-color: var(--wp--custom--system-ui-surface-nested, transparent);
 }
 
 :is(
@@ -169,6 +186,12 @@
 :is(
     .wp-block-latest-comments:is(.is-style-system-list, .is-style-system-list-flush)
 ):not(.is-not-action) > li:hover {
+    background-color: transparent;
+}
+
+:is(
+    .wp-block-latest-comments:is(.is-style-system-list, .is-style-system-list-flush)
+):not(.is-not-action) > li:hover > article {
     background-color: var(--wp--custom--system-ui-list-hover-bg);
 }
 
@@ -194,9 +217,16 @@
 
 .wp-block-group.is-style-system-panel > .wp-block-latest-comments:is(.is-style-system-list, .is-style-system-list-flush) > li,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-latest-comments:is(.is-style-system-list, .is-style-system-list-flush) > li {
-    background-color: var(--wp--custom--system-ui-surface-nested, transparent);
-    background-image: var(--wp--custom--system-ui-background-image-nested, none);
+    background-color: transparent;
+    background-image: none;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     box-shadow: none !important;
+}
+
+.wp-block-group.is-style-system-panel > .wp-block-latest-comments:is(.is-style-system-list, .is-style-system-list-flush) > li > article,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-latest-comments:is(.is-style-system-list, .is-style-system-list-flush) > li > article {
+    background-color: var(--wp--custom--system-ui-surface-nested, transparent);
+    background-image: var(--wp--custom--system-ui-background-image-nested, none);
+    box-shadow: none;
 }

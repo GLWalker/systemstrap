@@ -25,14 +25,14 @@
 				{
 					"colors": [
 						"#212529",
-						"#a2e436"
+						"#8b5cf6"
 					],
 					"name": "Base to Primary",
 					"slug": "duotone-3"
 				},
 				{
 					"colors": [
-						"#a2e436",
+						"#8b5cf6",
 						"#212529"
 					],
 					"name": "Primary to Base",
@@ -57,14 +57,14 @@
 				{
 					"colors": [
 						"#212529",
-						"#68d391"
+						"#a2e436"
 					],
 					"name": "Base to Success",
 					"slug": "duotone-5"
 				},
 				{
 					"colors": [
-						"#68d391",
+						"#a2e436",
 						"#212529"
 					],
 					"name": "Success to Base",
@@ -73,14 +73,14 @@
 				{
 					"colors": [
 						"#212529",
-						"#22d2ed"
+						"#00d9ff"
 					],
 					"name": "Base to Info",
 					"slug": "duotone-6"
 				},
 				{
 					"colors": [
-						"#22d2ed",
+						"#00d9ff",
 						"#212529"
 					],
 					"name": "Info to Base",
@@ -89,14 +89,14 @@
 				{
 					"colors": [
 						"#212529",
-						"#ffc700"
+						"#ff7a00"
 					],
 					"name": "Base to Warning",
 					"slug": "duotone-7"
 				},
 				{
 					"colors": [
-						"#ffc700",
+						"#ff7a00",
 						"#212529"
 					],
 					"name": "Warning to Base",
@@ -147,7 +147,7 @@
 					"slug": "contrast"
 				},
 				{
-					"color": "#a2e436",
+					"color": "#8b5cf6",
 					"name": "Primary",
 					"slug": "primary"
 				},
@@ -157,17 +157,17 @@
 					"slug": "secondary"
 				},
 				{
-					"color": "#68d391",
+					"color": "#a2e436",
 					"name": "Success",
 					"slug": "success"
 				},
 				{
-					"color": "#22d2ed",
+					"color": "#00d9ff",
 					"name": "Info",
 					"slug": "info"
 				},
 				{
-					"color": "#ffc700",
+					"color": "#ff7a00",
 					"name": "Warning",
 					"slug": "warning"
 				},
@@ -239,104 +239,24 @@
 			],
 			"gradients": [
 				{
-					"slug": "gradient",
-					"gradient": "linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0) 100%)",
-					"name": "Gradient"
-				},
-				{
-					"slug": "gradient-alt",
-					"gradient": "linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.2) 100%)",
-					"name": "Gradient Alt"
-				},
-				{
 					"slug": "body",
-					"gradient": "linear-gradient(135deg, var(--wp--preset--color--secondary-bg) 0%, var(--wp--preset--color--tertiary-bg) 100%)",
+					"gradient": "repeating-radial-gradient(circle at 18% 12%, rgba(255, 255, 255, 0.03) 0 0.55rem, rgba(0, 0, 0, 0.024) 0.55rem 1.1rem, transparent 1.1rem 1.65rem), linear-gradient(135deg, var(--wp--preset--color--secondary-bg) 0%, var(--wp--preset--color--base) 62%, var(--wp--preset--color--tertiary-bg) 100%)",
 					"name": "Body Background"
 				},
 				{
 					"slug": "element",
-					"gradient": "linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%)",
+					"gradient": "linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.018) 42%, rgba(0, 0, 0, 0.08) 100%)",
 					"name": "Element Background"
-				},
-				{
-					"name": "Primary",
-					"slug": "primary",
-					"gradient": "linear-gradient(rgba(var(--wp--preset--color--primary-shadow-rgb),0.7), var(--wp--preset--color--primary) 60%, rgba(var(--wp--preset--color--primary-shadow-rgb),0.7))"
-				},
-				{
-					"name": "Primary Hover",
-					"slug": "primary-hover",
-					"gradient": "linear-gradient(var(--wp--preset--color--primary), var(--wp--preset--color--primary-50) 60%, var(--wp--preset--color--primary-40))"
-				},
-				{
-					"name": "Secondary",
-					"slug": "secondary",
-					"gradient": "linear-gradient(rgba(var(--wp--preset--color--secondary-shadow-rgb),0.7), var(--wp--preset--color--secondary) 60%, rgba(var(--wp--preset--color--secondary-shadow-rgb),0.7))"
-				},
-				{
-					"name": "Secondary Hover",
-					"slug": "secondary-hover",
-					"gradient": "linear-gradient(var(--wp--preset--color--secondary), var(--wp--preset--color--secondary-50) 60%, var(--wp--preset--color--secondary-40))"
-				},
-				{
-					"name": "Success",
-					"slug": "success",
-					"gradient": "linear-gradient(rgba(var(--wp--preset--color--success-shadow-rgb),0.7), var(--wp--preset--color--success) 60%, rgba(var(--wp--preset--color--success-shadow-rgb),0.7))"
-				},
-				{
-					"name": "Success Hover",
-					"slug": "success-hover",
-					"gradient": "linear-gradient(var(--wp--preset--color--success), var(--wp--preset--color--success-50) 60%, var(--wp--preset--color--success-40))"
-				},
-				{
-					"name": "Info",
-					"slug": "info",
-					"gradient": "linear-gradient(rgba(var(--wp--preset--color--info-shadow-rgb),0.7), var(--wp--preset--color--info) 60%, rgba(var(--wp--preset--color--info-shadow-rgb),0.7))"
-				},
-				{
-					"name": "Info Hover",
-					"slug": "info-hover",
-					"gradient": "linear-gradient(var(--wp--preset--color--info), var(--wp--preset--color--info-50) 60%, var(--wp--preset--color--info-40))"
-				},
-				{
-					"name": "Warning",
-					"slug": "warning",
-					"gradient": "linear-gradient(rgba(var(--wp--preset--color--warning-shadow-rgb),0.7), var(--wp--preset--color--warning) 60%, rgba(var(--wp--preset--color--warning-shadow-rgb),0.7))"
-				},
-				{
-					"name": "Warning Hover",
-					"slug": "warning-hover",
-					"gradient": "linear-gradient(var(--wp--preset--color--warning), var(--wp--preset--color--warning-50) 60%, var(--wp--preset--color--warning-40))"
 				},
 				{
 					"name": "Danger",
 					"slug": "danger",
-					"gradient": "linear-gradient(rgba(var(--wp--preset--color--danger-shadow-rgb),0.7), var(--wp--preset--color--danger) 60%, rgba(var(--wp--preset--color--danger-shadow-rgb),0.7))"
+					"gradient": "linear-gradient(165deg, rgba(255,255,255,.15) 0%, rgba(255,255,255,.025) 31%, transparent 48%, rgba(0,0,0,.09) 100%), repeating-conic-gradient(from 12deg at 20% 80%, rgba(255,255,255,.13) 0deg 9deg, rgba(var(--wp--preset--color--danger-shadow-rgb),.095) 9deg 13deg, transparent 13deg 22deg), radial-gradient(circle at 20% 80%, var(--wp--preset--color--danger-40), var(--wp--preset--color--danger) 58%, var(--wp--preset--color--danger-60))"
 				},
 				{
 					"name": "Danger Hover",
 					"slug": "danger-hover",
-					"gradient": "linear-gradient(var(--wp--preset--color--danger), var(--wp--preset--color--danger-50) 60%, var(--wp--preset--color--danger-40))"
-				},
-				{
-					"name": "Light",
-					"slug": "light",
-					"gradient": "linear-gradient(rgba(var(--wp--preset--color--light-shadow-rgb),0.7), var(--wp--preset--color--light) 60%, rgba(var(--wp--preset--color--light-shadow-rgb),0.7))"
-				},
-				{
-					"name": "Light Hover",
-					"slug": "light-hover",
-					"gradient": "linear-gradient(var(--wp--preset--color--light), var(--wp--preset--color--light-50) 60%, var(--wp--preset--color--light-40))"
-				},
-				{
-					"name": "Dark",
-					"slug": "dark",
-					"gradient": "linear-gradient(rgba(var(--wp--preset--color--dark-shadow-rgb),0.7), var(--wp--preset--color--dark) 60%, rgba(var(--wp--preset--color--dark-shadow-rgb),0.7))"
-				},
-				{
-					"name": "Dark Hover",
-					"slug": "dark-hover",
-					"gradient": "linear-gradient(var(--wp--preset--color--dark), var(--wp--preset--color--dark-50) 60%, var(--wp--preset--color--dark-40))"
+					"gradient": "linear-gradient(165deg, rgba(255,255,255,.15) 0%, rgba(255,255,255,.025) 31%, transparent 48%, rgba(0,0,0,.09) 100%), repeating-conic-gradient(from 28deg at 78% 22%, rgba(255,255,255,.16) 0deg 7deg, rgba(var(--wp--preset--color--danger-shadow-rgb),.12) 7deg 11deg, transparent 11deg 18deg), radial-gradient(circle at 78% 22%, var(--wp--preset--color--danger-30), var(--wp--preset--color--danger-50) 58%, var(--wp--preset--color--danger-60))"
 				}
 			]
 		}

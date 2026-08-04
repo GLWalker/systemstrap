@@ -97,6 +97,8 @@
     .wp-block-latest-comments:not(.is-style-system-list):not(.is-style-system-list-flush),
     .wp-block-rss:not(.is-style-system-list):not(.is-style-system-list-flush),
     .wp-block-terms-query:not(.is-style-system-list):not(.is-style-system-list-flush),
+    .wp-block-comments:not(.is-style-system-list):not(.is-style-system-panel),
+    .wp-block-post-comments-form,
     .wp-block-list:not(.is-style-system-list):not(.is-style-system-list-flush)
 ) {
     padding: var(--strap-system-panel-padding-y) var(--strap-system-panel-padding-x);
@@ -210,6 +212,28 @@
    opt-in, and the gap matches the theme's native Group and Column rhythm. */
 :is(.wp-block-group, .wp-block-column):not(.is-style-system-panel) > :is(.wp-block-archives, .wp-block-categories, .wp-block-page-list, .wp-block-rss, .wp-block-latest-posts, .wp-block-latest-comments, .wp-block-terms-query):is(.is-style-system-list, .is-style-system-list-flush) + :is(.wp-block-archives, .wp-block-categories, .wp-block-page-list, .wp-block-rss, .wp-block-latest-posts, .wp-block-latest-comments, .wp-block-terms-query):is(.is-style-system-list, .is-style-system-list-flush) {
     margin-block-start: var(--wp--preset--spacing--30) !important;
+}
+
+/* Explicit System UI list shells outside panels are real surfaced containers,
+   so they share the same shadow treatment as other surfaced components. */
+:is(.wp-block-list, .wp-block-archives, .wp-block-categories, .wp-block-page-list, .wp-block-rss, .wp-block-latest-posts, .wp-block-latest-comments).is-style-system-list,
+:is(.wp-block-archives-list, .wp-block-categories-list).is-style-system-list,
+.wp-block-terms-query.is-style-system-list > .wp-block-term-template,
+.wp-block-comments.is-style-system-list .wp-block-comment-template {
+    box-shadow: var(--wp--custom--shadow);
+}
+
+/* Nested list shells inside a panel remain flat so the panel keeps ownership
+   of the outer surface and only the rows provide internal seams. */
+.wp-block-group.is-style-system-panel > :is(.wp-block-list, .wp-block-archives, .wp-block-categories, .wp-block-page-list, .wp-block-rss, .wp-block-latest-posts, .wp-block-latest-comments).is-style-system-list,
+.wp-block-group.is-style-system-panel > :is(.wp-block-archives-list, .wp-block-categories-list).is-style-system-list,
+.wp-block-group.is-style-system-panel > .wp-block-terms-query.is-style-system-list > .wp-block-term-template,
+.wp-block-group.is-style-system-panel > .wp-block-comments.is-style-system-list .wp-block-comment-template,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > :is(.wp-block-list, .wp-block-archives, .wp-block-categories, .wp-block-page-list, .wp-block-rss, .wp-block-latest-posts, .wp-block-latest-comments).is-style-system-list,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > :is(.wp-block-archives-list, .wp-block-categories-list).is-style-system-list,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-terms-query.is-style-system-list > .wp-block-term-template,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-comments.is-style-system-list .wp-block-comment-template {
+    box-shadow: none !important;
 }
 
 /* Panel lists share the surface without outer chrome. Restore one seam only

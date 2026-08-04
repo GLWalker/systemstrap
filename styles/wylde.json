@@ -23,9 +23,8 @@
 			"btn-transform": "translate(-3px, -3px)",
 			"btn-hover-transform": "translate(0, 0)",
 			"btn-transition": "all 0.3s",
-			"system-ui-surface": "var:preset|color|base",
-			"system-ui-surface-nested": "none",
-			"system-ui-background-image": "var:preset|gradient|element",
+			"system-ui-surface": "color-mix(in srgb, currentColor 3%, transparent)",
+			"system-ui-surface-nested": "color-mix(in srgb, currentColor 1.5%, transparent)",
 			"system-ui-border-color": "var:preset|color|border-color",
 			"font-weight-light": "300",
 			"font-weight-body": "400",
@@ -34,7 +33,9 @@
 			"font-weight-nav": "500",
 			"font-weight-bold": "700",
 			"link-color": "var:preset|color|primary",
-			"link-hover-color": "color-mix(in srgb, var(--wp--custom--link-color) 70%, var(--wp--preset--color--contrast))"
+			"link-hover-color": "color-mix(in srgb, var(--wp--custom--link-color) 70%, var(--wp--preset--color--contrast))",
+			"system-ui-surface-banner": "color-mix(in srgb, currentColor 4.5%, transparent)",
+			"system-ui-backdrop-filter": "blur(0.5px) saturate(1.04) contrast(1.02)"
 		},
 		"shadow": {
 			"presets": [
