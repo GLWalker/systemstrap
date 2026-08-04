@@ -1,8 +1,8 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
 	"version": 3,
-	"title": "Wylde Typography",
-	"description": "Typography: A bright, high-contrast style variation inspired by Bootswatch Brite.",
+	"title": "High Impact",
+	"description": "Typography: Avenir body, Franklin Gothic headings, and Arial Black/Impact display give it a strong promotional voice.",
 	"settings": {
 		"typography": {
 			"fontFamilies": [
