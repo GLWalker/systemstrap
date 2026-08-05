@@ -17,7 +17,6 @@ class Strap_ColorGenerator
 {
     private string $color;
     private array $cache = [];
-    private array $luminanceCache = [];
 
     /**
      * Constructor for the color palette generator.
@@ -231,6 +230,22 @@ class Strap_ColorGenerator
     public function passes_wcag_contrast(string $fg_hex, string $bg_hex, float $threshold = 4.5): bool
     {
         return $this->wcag_contrast_ratio($fg_hex, $bg_hex) >= $threshold;
+    }
+
+    /**
+     * Return the stronger opaque foreground candidate for a background.
+     *
+     * @param string $background Background color.
+     * @param string $dark Dark foreground candidate.
+     * @param string $light Light foreground candidate.
+     * @return string
+     */
+    public function get_best_contrast_color(string $background, string $dark = '#111111', string $light = '#ffffff'): string
+    {
+        $dark_ratio  = $this->wcag_contrast_ratio($dark, $background);
+        $light_ratio = $this->wcag_contrast_ratio($light, $background);
+
+        return $dark_ratio >= $light_ratio ? $dark : $light;
     }
 
     /**
@@ -650,52 +665,22 @@ class Strap_ColorGenerator
     private function relative_luminance(string $rgb): float
     {
         [$r, $g, $b] = array_map('intval', $this->parse_rgb($rgb));
-        $normalize = fn(float $v): float => $v / 255.0 <= 0.03928 ? $v / 12.92 / 255.0 : pow(($v / 255.0 + 0.055) / 1.055, 2.4);
+        $normalize = fn(float $v): float => $v / 255.0 <= 0.04045 ? $v / 12.92 / 255.0 : pow(($v / 255.0 + 0.055) / 1.055, 2.4);
         return 0.2126 * $normalize((float)$r) + 0.7152 * $normalize((float)$g) + 0.0722 * $normalize((float)$b);
     }
 
     /**
-     * Determines base contrast color (#111111 or #ffffff).
+     * Determines the strongest opaque contrast color.
      *
      * @param string $color Color to check contrast for.
-     * @param string $comparisonColor Color to compare against (default #000000).
+     * @param string $comparisonColor Deprecated compatibility argument.
      * @return string Hex color (#111111 or #ffffff).
      */
     public function parse_the_contrast(string $color, string $comparisonColor = '#000000'): string
     {
-        $l1 = $this->calculate_luminance($color) + 0.05;
-        $l2 = $this->calculate_luminance($comparisonColor) + 0.05;
+        unset($comparisonColor);
 
-        $contrastRatio = max($l1, $l2) / min($l1, $l2);
-
-        // Raise the threshold from 5 to 6.5 so that medium-dark colors (like Yeti's #008cba)
-        // fall back to white (#ffffff) instead of getting forced to dark text.
-        return $contrastRatio > 6 ? '#111111' : '#ffffff';
-    }
-
-    /**
-     * Calculates luminance of a hex color.
-     *
-     * @param string $color Hex color to calculate luminance for.
-     * @return float Luminance value.
-     */
-    private function calculate_luminance(string $color): float
-    {
-        if (isset($this->luminanceCache[$color])) {
-            return $this->luminanceCache[$color];
-        }
-
-        $color = $this->validate_hex($color);
-        $rgb = array_map('hexdec', str_split($color, 2));
-
-        foreach ($rgb as &$component) {
-            $component /= 255;
-            $component = $component <= 0.03928
-                ? $component / 12.92
-                : pow(($component + 0.055) / 1.055, 2.4);
-        }
-
-        return $this->luminanceCache[$color] = 0.2126 * $rgb[0] + 0.7152 * $rgb[1] + 0.0722 * $rgb[2];
+        return $this->get_best_contrast_color($color);
     }
 
     /**
@@ -717,7 +702,6 @@ class Strap_ColorGenerator
     public function clearCache(): void
     {
         $this->cache = [];
-        $this->luminanceCache = [];
     }
 
     /**

@@ -279,6 +279,8 @@ SystemStrap organizes theme gradient presets into three strictly ordered namespa
 | `pattern-190` | `Texture: Cabinet Mesh` | Industrial enclosure equipment grid |
 | `pattern-200` | `Texture: Brickwork` | Restrained offset masonry pattern |
 
+Every retained color variation replaces the complete gradient array with this same ordered 40-entry registry: four Absolute entries, sixteen Accent entries, and twenty Pattern entries. The four Absolute formulas are routinely variation-owned. Accent formulas match root `theme.json` and rely on the active semantic shade ladders; a dark-mode Accent exception requires visual evidence and documentation. Pattern formulas are copied from root byte-for-byte.
+
 ### Accent Gradient Composition
 
 Accent gradients are semantic, variation-aware surfaces generated from canonical semantic shade ladders.
@@ -338,7 +340,7 @@ Fully colored promotional gradients, art-directed hero treatments, and layout-de
 - Pattern gradients may consume the shared pattern tone channels.
 - Pattern tone channels are optional and must provide `currentColor`-compatible fallbacks.
 - Pattern gradients MUST remain neutral, block-agnostic, and MUST NOT reference a fixed semantic color family.
-- Variations may add additional `pattern-*` presets without PHP changes.
+- Every retained color variation MUST restate the complete canonical Pattern registry byte-for-byte. Variations MUST NOT add, remove, rename, reorder, or alter `pattern-*` entries.
 - Pattern-specific geometry belongs in gradient presets, not runtime PHP.
 - `pattern-10` establishes the neutral starburst pattern with lower-left focal origin.
 - `pattern-20` establishes the alternate starburst pattern with upper-right focal origin.

@@ -25,14 +25,14 @@
 				{
 					"colors": [
 						"#111827",
-						"#38BDF8"
+						"#0085BA"
 					],
 					"name": "Base to Accent",
 					"slug": "duotone-2"
 				},
 				{
 					"colors": [
-						"#38BDF8",
+						"#0085BA",
 						"#111827"
 					],
 					"name": "Accent to Base",
@@ -41,14 +41,14 @@
 				{
 					"colors": [
 						"#111827",
-						"#5B7FA3"
+						"#2D4054"
 					],
 					"name": "Base to Primary",
 					"slug": "duotone-3"
 				},
 				{
 					"colors": [
-						"#5B7FA3",
+						"#2D4054",
 						"#111827"
 					],
 					"name": "Base to Primary to Base",
@@ -57,14 +57,14 @@
 				{
 					"colors": [
 						"#111827",
-						"#9CA3AF"
+						"#ACAEB0"
 					],
 					"name": "Base to Secondary",
 					"slug": "duotone-4"
 				},
 				{
 					"colors": [
-						"#9CA3AF",
+						"#ACAEB0",
 						"#111827"
 					],
 					"name": "Secondary to Base",
@@ -73,14 +73,14 @@
 				{
 					"colors": [
 						"#111827",
-						"#22C55E"
+						"#009933"
 					],
 					"name": "Base to Success",
 					"slug": "duotone-5"
 				},
 				{
 					"colors": [
-						"#22C55E",
+						"#009933",
 						"#111827"
 					],
 					"name": "Success to Base",
@@ -89,14 +89,14 @@
 				{
 					"colors": [
 						"#111827",
-						"#38BDF8"
+						"#0085BA"
 					],
 					"name": "Base to Info",
 					"slug": "duotone-6"
 				},
 				{
 					"colors": [
-						"#38BDF8",
+						"#0085BA",
 						"#111827"
 					],
 					"name": "Info to Base",
@@ -105,14 +105,14 @@
 				{
 					"colors": [
 						"#111827",
-						"#F59E0B"
+						"#DD823B"
 					],
 					"name": "Base to Warning",
 					"slug": "duotone-7"
 				},
 				{
 					"colors": [
-						"#F59E0B",
+						"#DD823B",
 						"#111827"
 					],
 					"name": "Warning to Base",
@@ -121,14 +121,14 @@
 				{
 					"colors": [
 						"#111827",
-						"#EF4444"
+						"#C1403B"
 					],
 					"name": "Base to Danger",
 					"slug": "duotone-8"
 				},
 				{
 					"colors": [
-						"#EF4444",
+						"#C1403B",
 						"#111827"
 					],
 					"name": "Danger to Base",
@@ -163,32 +163,32 @@
 					"slug": "contrast"
 				},
 				{
-					"color": "#5B7FA3",
+					"color": "#2D4054",
 					"name": "Primary",
 					"slug": "primary"
 				},
 				{
-					"color": "#9CA3AF",
+					"color": "#ACAEB0",
 					"name": "Secondary",
 					"slug": "secondary"
 				},
 				{
-					"color": "#22C55E",
+					"color": "#009933",
 					"name": "Success",
 					"slug": "success"
 				},
 				{
-					"color": "#38BDF8",
+					"color": "#0085BA",
 					"name": "Info",
 					"slug": "info"
 				},
 				{
-					"color": "#F59E0B",
+					"color": "#DD823B",
 					"name": "Warning",
 					"slug": "warning"
 				},
 				{
-					"color": "#EF4444",
+					"color": "#C1403B",
 					"name": "Danger",
 					"slug": "danger"
 				},

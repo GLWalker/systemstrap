@@ -237,27 +237,29 @@ If a color variation applies a body gradient, it must also set body text color:
 }
 ```
 
+Every retained color variation MUST explicitly set `background` to `var:preset|color|base` and `text` to `var:preset|color|contrast`. When it uses the Body gradient, it MUST reference `var:preset|gradient|absolute-03`.
+
 Never move variation identity into reset CSS.
 
 ## Element Background
 
 Used for chrome, panels, cards, surfaces, and containers.
 
-If the source theme provides a card/chrome gradient, map it to the `element` gradient.
+The Element layer is always `absolute-04`. Each retained color variation owns its first four Absolute formulas and must include this layer; a transparent no-op gradient is valid when no visible overlay is desired.
 
-Then consume it from the layout variation through existing System UI custom variables:
+Root `theme.json` routes the existing System UI surface-image custom token to that preset:
 
 ```json
 {
 	"settings": {
 		"custom": {
-			"system-ui-background-image": "var:preset|gradient|element"
+			"system-ui-background-image": "var:preset|gradient|absolute-04"
 		}
 	}
 }
 ```
 
-Do not hardcode the element gradient into every block unless the System UI variables cannot express the effect.
+Color-only variations MUST NOT declare `settings.custom`; the variation classifier treats that as layout ownership. The root token continues to resolve the active variation's `absolute-04` preset. Do not hardcode the Element gradient into individual blocks.
 
 ---
 

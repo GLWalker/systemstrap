@@ -167,45 +167,118 @@ if ( ! function_exists( 'systemstrap_inject_variation_body_classes' ) ) {
 	);
 }
 
-if ( ! function_exists( 'strap_get_style_variation_sync_map' ) ) {
+if ( ! function_exists( 'strap_extract_typography_properties' ) ) {
 	/**
-	 * Build the editor sync map between layout, color, and typography partials.
+	 * Retain only typography values while preserving their nested paths.
 	 *
-	 * @return array<string, array<string, string>>
+	 * @param mixed $value Source value.
+	 * @return mixed
 	 */
-	function strap_get_style_variation_sync_map() {
-		$theme_styles_dir = get_template_directory() . '/styles';
-		$layout_files     = glob( $theme_styles_dir . '/*.json' );
-		$sync_map         = array();
-
-		if ( empty( $layout_files ) ) {
-			return $sync_map;
+	function strap_extract_typography_properties( $value ) {
+		if ( ! is_array( $value ) ) {
+			return array();
 		}
 
-		foreach ( $layout_files as $layout_file ) {
-			$slug            = basename( $layout_file, '.json' );
-			$color_file      = $theme_styles_dir . '/colors/' . $slug . '.json';
-			$typography_file = $theme_styles_dir . '/typography/' . $slug . '.json';
+		$result = array();
 
-			if ( ! file_exists( $color_file ) || ! file_exists( $typography_file ) ) {
+		foreach ( $value as $key => $item ) {
+			if ( 'typography' === $key ) {
+				$result[ $key ] = $item;
 				continue;
 			}
 
-			$layout_data     = wp_json_file_decode( $layout_file, array( 'associative' => true ) );
+			if ( is_array( $item ) ) {
+				$nested = strap_extract_typography_properties( $item );
+				if ( ! empty( $nested ) ) {
+					$result[ $key ] = $nested;
+				}
+			}
+		}
+
+		return $result;
+	}
+}
+
+if ( ! function_exists( 'strap_get_typography_pairing_manifest' ) ) {
+	/**
+	 * Resolve editor-safe typography data from the data-only pairing manifest.
+	 *
+	 * @return array<string, mixed>
+	 */
+	function strap_get_typography_pairing_manifest() {
+		$stylesheet_dir = get_stylesheet_directory();
+		$template_dir   = get_template_directory();
+		$resolve_file   = static function ( $relative_path ) use ( $stylesheet_dir, $template_dir ) {
+			if ( ! is_string( $relative_path ) || '' === $relative_path || str_contains( $relative_path, '..' ) ) {
+				return '';
+			}
+
+			foreach ( array_unique( array( $stylesheet_dir, $template_dir ) ) as $theme_dir ) {
+				$file = $theme_dir . '/' . ltrim( $relative_path, '/' );
+
+				if ( is_file( $file ) ) {
+					return $file;
+				}
+			}
+
+			return '';
+		};
+		$manifest_file  = $resolve_file( 'assets/typography-pairing-manifest.json' );
+		$theme_file     = $resolve_file( 'theme.json' );
+
+		if ( '' === $manifest_file || '' === $theme_file ) {
+			return array();
+		}
+
+		$manifest      = wp_json_file_decode( $manifest_file, array( 'associative' => true ) );
+		$theme_data    = wp_json_file_decode( $theme_file, array( 'associative' => true ) );
+		$pairings      = array();
+
+		if ( ! is_array( $manifest ) || ! is_array( $theme_data ) || empty( $manifest['pairings'] ) || ! is_array( $manifest['pairings'] ) ) {
+			return array();
+		}
+
+		foreach ( $manifest['pairings'] as $pairing ) {
+			$color_path      = $pairing['color'] ?? '';
+			$typography_path = $pairing['typography'] ?? '';
+			$is_color_variation = is_string( $color_path ) && 0 === strpos( $color_path, 'styles/colors/' );
+			$is_typography_variation = is_string( $typography_path ) && 0 === strpos( $typography_path, 'styles/typography/' );
+			$is_default_typography = 'theme.json' === $typography_path;
+
+			if ( ! $is_color_variation || ( ! $is_typography_variation && ! $is_default_typography ) ) {
+				continue;
+			}
+
+			$color_file      = $resolve_file( $color_path );
+			$typography_file = $is_typography_variation ? $resolve_file( $typography_path ) : '';
+
+			if ( '' === $color_file || ( $is_typography_variation && '' === $typography_file ) ) {
+				continue;
+			}
+
 			$color_data      = wp_json_file_decode( $color_file, array( 'associative' => true ) );
-			$typography_data = wp_json_file_decode( $typography_file, array( 'associative' => true ) );
+			$typography_data = $is_typography_variation ? wp_json_file_decode( $typography_file, array( 'associative' => true ) ) : array();
 
-			if ( ! is_array( $layout_data ) || ! is_array( $color_data ) || ! is_array( $typography_data ) ) {
+			if ( ! is_array( $color_data ) || empty( $color_data['title'] ) || empty( $color_data['settings']['color']['palette'] ) || ( $is_typography_variation && ( ! is_array( $typography_data ) || empty( $typography_data['title'] ) ) ) ) {
 				continue;
 			}
 
-			$sync_map[ $slug ] = array(
-				'layoutTitle'     => isset( $layout_data['title'] ) ? (string) $layout_data['title'] : $slug,
-				'colorTitle'      => isset( $color_data['title'] ) ? (string) $color_data['title'] : $slug,
-				'typographyTitle' => isset( $typography_data['title'] ) ? (string) $typography_data['title'] : $slug,
+			$pairings[] = array(
+				'isDefaultTypography' => $is_default_typography,
+				'palette'         => $color_data['settings']['color']['palette'],
+				'typography'      => array(
+					'settings' => $is_typography_variation ? strap_extract_typography_properties( $typography_data['settings'] ?? array() ) : strap_extract_typography_properties( $theme_data['settings'] ?? array() ),
+					'styles'   => $is_typography_variation ? strap_extract_typography_properties( $typography_data['styles'] ?? array() ) : strap_extract_typography_properties( $theme_data['styles'] ?? array() ),
+				),
 			);
 		}
 
-		return $sync_map;
+		return array(
+			'pairings' => $pairings,
+			'defaultTypography' => array(
+				'settings' => strap_extract_typography_properties( $theme_data['settings'] ?? array() ),
+				'styles'   => strap_extract_typography_properties( $theme_data['styles'] ?? array() ),
+			),
+		);
 	}
 }

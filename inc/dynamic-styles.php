@@ -41,7 +41,7 @@ if ( ! function_exists( 'strap_generate_dynamic_colors' ) ) {
 		$tabs_css       = "\n/* Dynamic System Tabs Active Join Color Routing */\n";
 		$directory_css    = "\n/* Dynamic Query Directory Header-to-Badge Color Routing */\n";
 		$latest_posts_css = "\n/* Dynamic Latest Posts Header-to-Badge Color Routing */\n";
-		$a11y_text_css    = "\n/* Accessible Text Overrides */\n";
+		$same_element_contrast_css = "\n/* Same-Element Preset Contrast Routing */\n";
 		$pagination_css   = "\n/* Dynamic Pagination Background Routing */\n";
 		$pattern_css      = "\n/* Dynamic Pattern Gradient Background Routing */\n";
 		$pattern_tone_css = "\n/* Dynamic Pattern Tone Routing */\n";
@@ -76,12 +76,13 @@ if ( ! function_exists( 'strap_generate_dynamic_colors' ) ) {
 			}
 		}
 
-		// Extract base background color for text contrast calculations
-		$base_color = '#ffffff';
+		$palette_by_slug = array();
 		foreach ( $colors as $c ) {
-			if ( isset( $c['slug'] ) && $c['slug'] === 'base' ) {
-				$base_color = $c['color'];
-				break;
+			$palette_slug  = sanitize_title( $c['slug'] ?? '' );
+			$palette_color = $c['color'] ?? '';
+
+			if ( $palette_slug && is_string( $palette_color ) && strpos( $palette_color, 'var(' ) === false ) {
+				$palette_by_slug[ $palette_slug ] = $palette_color;
 			}
 		}
 
@@ -293,26 +294,6 @@ $latest_posts_css .= "
 				$shadow_rgb_raw    = str_replace( [ 'rgb(', 'rgba(', ')' ], '', $shadow_rgb_string );
 				$css              .= sprintf( "\t--wp--preset--color--%s-shadow-rgb: %s;\n", $slug, $shadow_rgb_raw );
 
-				// Native WCAG Accessible Text Override
-				if ( ! $generator->passes_wcag_contrast( $color_value, $base_color, 4.5 ) ) {
-					$accessible_shade_suffix = null;
-					$is_dark_bg = $generator->passes_wcag_contrast( '#ffffff', $base_color, 4.5 );
-
-					// For dark bg, look at lighter shades (indices 5-8). For light bg, darker shades (indices 3-0).
-					$check_order = $is_dark_bg ? [ 5, 6, 7, 8, 3, 2, 1, 0 ] : [ 3, 2, 1, 0, 5, 6, 7, 8 ];
-
-					foreach ( $check_order as $idx ) {
-						if ( $generator->passes_wcag_contrast( $palette[ $idx ], $base_color, 4.5 ) ) {
-							$accessible_shade_suffix = $suffixes[ $idx ];
-							break;
-						}
-					}
-
-					if ( $accessible_shade_suffix ) {
-						$a11y_text_css .= "body .has-{$slug}-color, .editor-styles-wrapper .has-{$slug}-color { color: var(--wp--preset--color--{$slug}-{$accessible_shade_suffix}) !important; }\n";
-					}
-				}
-
 				// Generate dynamic component CSS for this color
 				$button_css .= "
 /* Dynamic Background Contrast Routing */
@@ -371,6 +352,43 @@ ul.wp-block-post-template.has-{$slug}-background-color > li {
 			}
 		}
 
+		$semantic_text_slugs = array( 'primary', 'secondary', 'success', 'info', 'warning', 'danger' );
+		$background_slugs    = array_merge( array( 'base', 'secondary-bg', 'tertiary-bg' ), $semantic_text_slugs );
+		$suffixes            = array( 10, 20, 30, 40, 50, 60, 70, 80, 90 );
+
+		foreach ( $semantic_text_slugs as $text_slug ) {
+			if ( empty( $palette_by_slug[ $text_slug ] ) ) {
+				continue;
+			}
+
+			$text_generator = new Strap_ColorGenerator( $palette_by_slug[ $text_slug ] );
+			$text_palette   = $text_generator->createExtendedPalette( 10.0 );
+
+			foreach ( $background_slugs as $background_slug ) {
+				if ( $text_slug === $background_slug || empty( $palette_by_slug[ $background_slug ] ) ) {
+					continue;
+				}
+
+				$background_color = $palette_by_slug[ $background_slug ];
+				if ( $text_generator->passes_wcag_contrast( $palette_by_slug[ $text_slug ], $background_color, 4.5 ) ) {
+					continue;
+				}
+
+				$check_order = $text_generator->passes_wcag_contrast( '#ffffff', $background_color, 4.5 )
+					? array( 5, 6, 7, 8, 3, 2, 1, 0 )
+					: array( 3, 2, 1, 0, 5, 6, 7, 8 );
+
+				foreach ( $check_order as $index ) {
+					if ( ! isset( $text_palette[ $index ] ) || ! $text_generator->passes_wcag_contrast( $text_palette[ $index ], $background_color, 4.5 ) ) {
+						continue;
+					}
+
+					$same_element_contrast_css .= ".has-{$background_slug}-background-color.has-{$text_slug}-color { color: var(--wp--preset--color--{$text_slug}-{$suffixes[ $index ]}) !important; }\n";
+					break;
+				}
+			}
+		}
+
 		foreach ( $colors as $background_color ) {
 			$background_slug = sanitize_title( $background_color['slug'] );
 			if ( empty( $background_slug ) ) {
@@ -425,7 +443,7 @@ $latest_posts_css .= "
 		$css .= $tabs_css;
 		$css .= $directory_css;
 		$css .= $latest_posts_css;
-		$css .= $a11y_text_css;
+		$css .= $same_element_contrast_css;
 		$css .= $pagination_css;
 		$css .= $pattern_css;
 		$css .= $pattern_tone_css;

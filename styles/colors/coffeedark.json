@@ -25,14 +25,14 @@
 				{
 					"colors": [
 						"#211d1a",
-						"#8eb1ba"
+						"#567b86"
 					],
 					"name": "Base to Accent",
 					"slug": "duotone-2"
 				},
 				{
 					"colors": [
-						"#8eb1ba",
+						"#567b86",
 						"#211d1a"
 					],
 					"name": "Accent to Base",
@@ -41,14 +41,14 @@
 				{
 					"colors": [
 						"#211d1a",
-						"#c7a589"
+						"#6b5547"
 					],
 					"name": "Base to Primary",
 					"slug": "duotone-3"
 				},
 				{
 					"colors": [
-						"#c7a589",
+						"#6b5547",
 						"#211d1a"
 					],
 					"name": "Base to Primary to Base",
@@ -57,14 +57,14 @@
 				{
 					"colors": [
 						"#211d1a",
-						"#a99a8e"
+						"#8a7b70"
 					],
 					"name": "Base to Secondary",
 					"slug": "duotone-4"
 				},
 				{
 					"colors": [
-						"#a99a8e",
+						"#8a7b70",
 						"#211d1a"
 					],
 					"name": "Secondary to Base",
@@ -73,14 +73,14 @@
 				{
 					"colors": [
 						"#211d1a",
-						"#a4b184"
+						"#6f8157"
 					],
 					"name": "Base to Success",
 					"slug": "duotone-5"
 				},
 				{
 					"colors": [
-						"#a4b184",
+						"#6f8157",
 						"#211d1a"
 					],
 					"name": "Success to Base",
@@ -89,14 +89,14 @@
 				{
 					"colors": [
 						"#211d1a",
-						"#8eb1ba"
+						"#567b86"
 					],
 					"name": "Base to Info",
 					"slug": "duotone-6"
 				},
 				{
 					"colors": [
-						"#8eb1ba",
+						"#567b86",
 						"#211d1a"
 					],
 					"name": "Info to Base",
@@ -105,14 +105,14 @@
 				{
 					"colors": [
 						"#211d1a",
-						"#d2a265"
+						"#a56f35"
 					],
 					"name": "Base to Warning",
 					"slug": "duotone-7"
 				},
 				{
 					"colors": [
-						"#d2a265",
+						"#a56f35",
 						"#211d1a"
 					],
 					"name": "Warning to Base",
@@ -121,14 +121,14 @@
 				{
 					"colors": [
 						"#211d1a",
-						"#d18176"
+						"#a65349"
 					],
 					"name": "Base to Danger",
 					"slug": "duotone-8"
 				},
 				{
 					"colors": [
-						"#d18176",
+						"#a65349",
 						"#211d1a"
 					],
 					"name": "Danger to Base",
@@ -163,32 +163,32 @@
 					"slug": "contrast"
 				},
 				{
-					"color": "#c7a589",
+					"color": "#6b5547",
 					"name": "Primary",
 					"slug": "primary"
 				},
 				{
-					"color": "#a99a8e",
+					"color": "#8a7b70",
 					"name": "Secondary",
 					"slug": "secondary"
 				},
 				{
-					"color": "#a4b184",
+					"color": "#6f8157",
 					"name": "Success",
 					"slug": "success"
 				},
 				{
-					"color": "#8eb1ba",
+					"color": "#567b86",
 					"name": "Info",
 					"slug": "info"
 				},
 				{
-					"color": "#d2a265",
+					"color": "#a56f35",
 					"name": "Warning",
 					"slug": "warning"
 				},
 				{
-					"color": "#d18176",
+					"color": "#a65349",
 					"name": "Danger",
 					"slug": "danger"
 				},
@@ -255,104 +255,204 @@
 			],
 			"gradients": [
 				{
-					"slug": "gradient",
-					"gradient": "linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0) 100%)",
-					"name": "Gradient"
+					"name": "Absolute: Gradient",
+					"slug": "absolute-01",
+					"gradient": "linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0) 100%)"
 				},
 				{
-					"slug": "gradient-alt",
-					"gradient": "linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.24) 100%)",
-					"name": "Gradient Alt"
+					"name": "Absolute: Gradient Alt",
+					"slug": "absolute-02",
+					"gradient": "linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.24) 100%)"
 				},
 				{
-					"slug": "body",
-					"gradient": "linear-gradient(135deg, var(--wp--preset--color--base) 0%, var(--wp--preset--color--tertiary-bg) 52%, var(--wp--preset--color--secondary-bg) 100%)",
-					"name": "Body Background"
+					"name": "Absolute: Body",
+					"slug": "absolute-03",
+					"gradient": "linear-gradient(135deg, var(--wp--preset--color--base) 0%, var(--wp--preset--color--tertiary-bg) 52%, var(--wp--preset--color--secondary-bg) 100%)"
 				},
 				{
-					"slug": "element",
-					"gradient": "linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.02) 100%)",
-					"name": "Element Background"
+					"name": "Absolute: Element",
+					"slug": "absolute-04",
+					"gradient": "linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.02) 100%)"
 				},
 				{
-					"name": "Primary",
-					"slug": "primary",
-					"gradient": "linear-gradient(rgba(var(--wp--preset--color--primary-shadow-rgb),0.7), var(--wp--preset--color--primary) 60%, rgba(var(--wp--preset--color--primary-shadow-rgb),0.7))"
+					"name": "Accent: Primary",
+					"slug": "accent-10",
+					"gradient": "linear-gradient(140deg, var(--wp--preset--color--primary-40) 0%, var(--wp--preset--color--primary-60) 100%)"
 				},
 				{
-					"name": "Primary Hover",
-					"slug": "primary-hover",
-					"gradient": "linear-gradient(var(--wp--preset--color--primary), var(--wp--preset--color--primary-50) 60%, var(--wp--preset--color--primary-40))"
+					"name": "Accent: Primary Alt",
+					"slug": "accent-20",
+					"gradient": "linear-gradient(125deg, var(--wp--preset--color--primary-90) 0%, var(--wp--preset--color--primary-70) 48%, var(--wp--preset--color--primary-50) 100%)"
 				},
 				{
-					"name": "Secondary",
-					"slug": "secondary",
-					"gradient": "linear-gradient(rgba(var(--wp--preset--color--secondary-shadow-rgb),0.7), var(--wp--preset--color--secondary) 60%, rgba(var(--wp--preset--color--secondary-shadow-rgb),0.7))"
+					"name": "Accent: Secondary",
+					"slug": "accent-30",
+					"gradient": "linear-gradient(145deg, var(--wp--preset--color--secondary-40) 0%, var(--wp--preset--color--secondary-60) 100%)"
 				},
 				{
-					"name": "Secondary Hover",
-					"slug": "secondary-hover",
-					"gradient": "linear-gradient(var(--wp--preset--color--secondary), var(--wp--preset--color--secondary-50) 60%, var(--wp--preset--color--secondary-40))"
+					"name": "Accent: Secondary Alt",
+					"slug": "accent-40",
+					"gradient": "linear-gradient(120deg, var(--wp--preset--color--secondary-90) 0%, var(--wp--preset--color--secondary-70) 46%, var(--wp--preset--color--secondary-50) 100%)"
 				},
 				{
-					"name": "Success",
-					"slug": "success",
-					"gradient": "linear-gradient(rgba(var(--wp--preset--color--success-shadow-rgb),0.7), var(--wp--preset--color--success) 60%, rgba(var(--wp--preset--color--success-shadow-rgb),0.7))"
+					"name": "Accent: Success",
+					"slug": "accent-50",
+					"gradient": "linear-gradient(150deg, var(--wp--preset--color--success-40) 0%, var(--wp--preset--color--success-60) 100%)"
 				},
 				{
-					"name": "Success Hover",
-					"slug": "success-hover",
-					"gradient": "linear-gradient(var(--wp--preset--color--success), var(--wp--preset--color--success-50) 60%, var(--wp--preset--color--success-40))"
+					"name": "Accent: Success Alt",
+					"slug": "accent-60",
+					"gradient": "linear-gradient(115deg, var(--wp--preset--color--success-60) 0%, var(--wp--preset--color--success-50) 42%, var(--wp--preset--color--success-40) 100%)"
 				},
 				{
-					"name": "Info",
-					"slug": "info",
-					"gradient": "linear-gradient(rgba(var(--wp--preset--color--info-shadow-rgb),0.7), var(--wp--preset--color--info) 60%, rgba(var(--wp--preset--color--info-shadow-rgb),0.7))"
+					"name": "Accent: Info",
+					"slug": "accent-70",
+					"gradient": "linear-gradient(150deg, var(--wp--preset--color--info-40) 0%, var(--wp--preset--color--info-60) 100%)"
 				},
 				{
-					"name": "Info Hover",
-					"slug": "info-hover",
-					"gradient": "linear-gradient(var(--wp--preset--color--info), var(--wp--preset--color--info-50) 60%, var(--wp--preset--color--info-40))"
+					"name": "Accent: Info Alt",
+					"slug": "accent-80",
+					"gradient": "linear-gradient(120deg, var(--wp--preset--color--info-80) 0%, var(--wp--preset--color--info-70) 45%, var(--wp--preset--color--info-50) 100%)"
 				},
 				{
-					"name": "Warning",
-					"slug": "warning",
-					"gradient": "linear-gradient(rgba(var(--wp--preset--color--warning-shadow-rgb),0.7), var(--wp--preset--color--warning) 60%, rgba(var(--wp--preset--color--warning-shadow-rgb),0.7))"
+					"name": "Accent: Warning",
+					"slug": "accent-90",
+					"gradient": "linear-gradient(135deg, var(--wp--preset--color--warning-50) 0%, var(--wp--preset--color--warning-60) 100%)"
 				},
 				{
-					"name": "Warning Hover",
-					"slug": "warning-hover",
-					"gradient": "linear-gradient(var(--wp--preset--color--warning), var(--wp--preset--color--warning-50) 60%, var(--wp--preset--color--warning-40))"
+					"name": "Accent: Warning Alt",
+					"slug": "accent-100",
+					"gradient": "linear-gradient(110deg, var(--wp--preset--color--warning-70) 0%, var(--wp--preset--color--warning-50) 38%, var(--wp--preset--color--warning-40) 100%)"
 				},
 				{
-					"name": "Danger",
-					"slug": "danger",
-					"gradient": "linear-gradient(rgba(var(--wp--preset--color--danger-shadow-rgb),0.7), var(--wp--preset--color--danger) 60%, rgba(var(--wp--preset--color--danger-shadow-rgb),0.7))"
+					"name": "Accent: Danger",
+					"slug": "accent-110",
+					"gradient": "linear-gradient(155deg, var(--wp--preset--color--danger-50) 0%, var(--wp--preset--color--danger-60) 100%)"
 				},
 				{
-					"name": "Danger Hover",
-					"slug": "danger-hover",
-					"gradient": "linear-gradient(var(--wp--preset--color--danger), var(--wp--preset--color--danger-50) 60%, var(--wp--preset--color--danger-40))"
+					"name": "Accent: Danger Alt",
+					"slug": "accent-120",
+					"gradient": "linear-gradient(125deg, var(--wp--preset--color--danger-70) 0%, var(--wp--preset--color--danger-50) 44%, var(--wp--preset--color--danger-40) 100%)"
 				},
 				{
-					"name": "Light",
-					"slug": "light",
-					"gradient": "linear-gradient(rgba(var(--wp--preset--color--light-shadow-rgb),0.7), var(--wp--preset--color--light) 60%, rgba(var(--wp--preset--color--light-shadow-rgb),0.7))"
+					"name": "Accent: Light",
+					"slug": "accent-130",
+					"gradient": "linear-gradient(145deg, var(--wp--preset--color--light-30) 0%, var(--wp--preset--color--light-50) 100%)"
 				},
 				{
-					"name": "Light Hover",
-					"slug": "light-hover",
-					"gradient": "linear-gradient(var(--wp--preset--color--light), var(--wp--preset--color--light-50) 60%, var(--wp--preset--color--light-40))"
+					"name": "Accent: Light Alt",
+					"slug": "accent-140",
+					"gradient": "linear-gradient(120deg, var(--wp--preset--color--light-60) 0%, var(--wp--preset--color--light-40) 40%, var(--wp--preset--color--light-20) 100%)"
 				},
 				{
-					"name": "Dark",
-					"slug": "dark",
-					"gradient": "linear-gradient(rgba(var(--wp--preset--color--dark-shadow-rgb),0.7), var(--wp--preset--color--dark) 60%, rgba(var(--wp--preset--color--dark-shadow-rgb),0.7))"
+					"name": "Accent: Dark",
+					"slug": "accent-150",
+					"gradient": "linear-gradient(150deg, var(--wp--preset--color--dark-50) 0%, var(--wp--preset--color--dark-70) 100%)"
 				},
 				{
-					"name": "Dark Hover",
-					"slug": "dark-hover",
-					"gradient": "linear-gradient(var(--wp--preset--color--dark), var(--wp--preset--color--dark-50) 60%, var(--wp--preset--color--dark-40))"
+					"name": "Accent: Dark Alt",
+					"slug": "accent-160",
+					"gradient": "linear-gradient(115deg, var(--wp--preset--color--dark-90) 0%, var(--wp--preset--color--dark-70) 44%, var(--wp--preset--color--dark-50) 100%)"
+				},
+				{
+					"name": "Pattern: Starburst",
+					"slug": "pattern-10",
+					"gradient": "linear-gradient(165deg, rgba(255,255,255,.06) 0%, transparent 42%, rgba(0,0,0,.035) 100%), repeating-conic-gradient(from 12deg at 20% 80%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, var(--wp--custom--system-ui-pattern-highlight-color, currentColor)) var(--wp--custom--system-ui-pattern-opacity, 9%), transparent) 0deg 9deg, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-mid, var(--wp--custom--system-ui-pattern-shadow-color, currentColor)) var(--wp--custom--system-ui-pattern-shadow-opacity, 6%), transparent) 9deg 13deg, transparent 13deg 22deg)"
+				},
+				{
+					"name": "Pattern: Starburst Alt",
+					"slug": "pattern-20",
+					"gradient": "linear-gradient(345deg, rgba(255,255,255,.06) 0%, transparent 42%, rgba(0,0,0,.035) 100%), repeating-conic-gradient(from 192deg at 80% 20%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, var(--wp--custom--system-ui-pattern-highlight-color, currentColor)) var(--wp--custom--system-ui-pattern-opacity, 9%), transparent) 0deg 9deg, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-mid, var(--wp--custom--system-ui-pattern-shadow-color, currentColor)) var(--wp--custom--system-ui-pattern-shadow-opacity, 6%), transparent) 9deg 13deg, transparent 13deg 22deg)"
+				},
+				{
+					"name": "Pattern: Spiral Ring",
+					"slug": "pattern-30",
+					"gradient": "repeating-radial-gradient(circle at 35% 45%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, var(--wp--custom--system-ui-pattern-highlight-color, currentColor)) var(--wp--custom--system-ui-pattern-opacity, 9%), transparent) 0 .34rem, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-mid, var(--wp--custom--system-ui-pattern-shadow-color, currentColor)) var(--wp--custom--system-ui-pattern-shadow-opacity, 6%), transparent) .34rem .68rem, transparent .68rem 1.02rem)"
+				},
+				{
+					"name": "Pattern: Spiral Ring Alt",
+					"slug": "pattern-40",
+					"gradient": "repeating-radial-gradient(circle at 65% 55%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, var(--wp--custom--system-ui-pattern-highlight-color, currentColor)) var(--wp--custom--system-ui-pattern-opacity, 12%), transparent) 0 .24rem, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-mid, var(--wp--custom--system-ui-pattern-shadow-color, currentColor)) var(--wp--custom--system-ui-pattern-shadow-opacity, 8%), transparent) .24rem .48rem, transparent .48rem .72rem)"
+				},
+				{
+					"name": "Pattern: Topographic Lines",
+					"slug": "pattern-50",
+					"gradient": "repeating-radial-gradient(ellipse 46% 72% at 18% 82%, transparent 0 8%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, currentColor) 13%, transparent) 8% 8.7%, transparent 8.7% 16%), repeating-radial-gradient(ellipse 62% 48% at 76% 24%, transparent 0 10%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-mid, currentColor) 11%, transparent) 10% 10.7%, transparent 10.7% 19%), repeating-radial-gradient(ellipse 86% 64% at 52% 58%, transparent 0 13%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-low, currentColor) 10%, transparent) 13% 13.6%, transparent 13.6% 23%)"
+				},
+				{
+					"name": "Pattern: Topographic Lines Alt",
+					"slug": "pattern-60",
+					"gradient": "repeating-radial-gradient(ellipse 38% 64% at 82% 18%, transparent 0 6%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, currentColor) 15%, transparent) 6% 6.6%, transparent 6.6% 12%), repeating-radial-gradient(ellipse 54% 38% at 24% 76%, transparent 0 8%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-mid, currentColor) 13%, transparent) 8% 8.6%, transparent 8.6% 15%), repeating-radial-gradient(ellipse 78% 54% at 48% 42%, transparent 0 11%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-low, currentColor) 11%, transparent) 11% 11.5%, transparent 11.5% 20%)"
+				},
+				{
+					"name": "Pattern: Wood Grain",
+					"slug": "pattern-70",
+					"gradient": "repeating-radial-gradient(ellipse 84% 34% at 22% 58%, transparent 0 7%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, currentColor) 10%, transparent) 7% 7.8%, transparent 7.8% 14%), repeating-radial-gradient(ellipse 116% 42% at 78% 44%, transparent 0 9%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-low, currentColor) 9%, transparent) 9% 9.8%, transparent 9.8% 18%), repeating-linear-gradient(4deg, transparent 0 1.1rem, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-mid, currentColor) 8%, transparent) 1.1rem 1.18rem, transparent 1.18rem 2.3rem)"
+				},
+				{
+					"name": "Pattern: Wood Grain Alt",
+					"slug": "pattern-80",
+					"gradient": "repeating-radial-gradient(ellipse 72% 28% at 82% 38%, transparent 0 5%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, currentColor) 11%, transparent) 5% 5.7%, transparent 5.7% 10%), repeating-radial-gradient(ellipse 98% 36% at 18% 62%, transparent 0 7%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-low, currentColor) 10%, transparent) 7% 7.7%, transparent 7.7% 14%), repeating-linear-gradient(-6deg, transparent 0 .8rem, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-mid, currentColor) 9%, transparent) .8rem .86rem, transparent .86rem 1.7rem)"
+				},
+				{
+					"name": "Texture: Fine Grain",
+					"slug": "pattern-90",
+					"gradient": "radial-gradient(circle at 8% 18%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, currentColor) 12%, transparent) 0 1px, transparent 1.5px), radial-gradient(circle at 24% 72%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-low, currentColor) 11%, transparent) 0 1px, transparent 1.5px), radial-gradient(circle at 43% 31%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-mid, currentColor) 10%, transparent) 0 1px, transparent 1.5px), radial-gradient(circle at 61% 83%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, currentColor) 11%, transparent) 0 1px, transparent 1.5px), radial-gradient(circle at 79% 42%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-low, currentColor) 10%, transparent) 0 1px, transparent 1.5px), radial-gradient(circle at 93% 68%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-mid, currentColor) 11%, transparent) 0 1px, transparent 1.5px), radial-gradient(ellipse 75% 75% at 38% 62%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-mid, currentColor) 15%, transparent) 0%, transparent 75%), linear-gradient(157deg, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, currentColor) 5%, transparent), transparent 42%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-low, currentColor) 5%, transparent))"
+				},
+				{
+					"name": "Texture: Pressed Paper",
+					"slug": "pattern-100",
+					"gradient": "radial-gradient(circle at 12% 38%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-low, currentColor) 14%, transparent) 0 1px, transparent 2.5px), radial-gradient(circle at 78% 62%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, currentColor) 13%, transparent) 0 1.5px, transparent 3px), repeating-linear-gradient(6deg, transparent 0 .46rem, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, currentColor) 12%, transparent) .46rem .50rem, transparent .50rem .96rem), repeating-linear-gradient(98deg, transparent 0 .62rem, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-low, currentColor) 11%, transparent) .62rem .66rem, transparent .66rem 1.28rem), radial-gradient(ellipse 74% 46% at 16% 22%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, currentColor) 13%, transparent), transparent 64%), radial-gradient(ellipse 70% 54% at 84% 76%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-low, currentColor) 12%, transparent), transparent 66%)"
+				},
+				{
+					"name": "Texture: Woven Linen",
+					"slug": "pattern-110",
+					"gradient": "repeating-linear-gradient(45deg, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, var(--wp--custom--system-ui-pattern-highlight-color, currentColor)) 8%, transparent) 0 1px, transparent 1px .46rem), repeating-linear-gradient(-45deg, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-low, var(--wp--custom--system-ui-pattern-shadow-color, currentColor)) 7%, transparent) 0 1px, transparent 1px .46rem), repeating-linear-gradient(90deg, transparent 0 .22rem, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-mid, currentColor) 3%, transparent) .22rem .24rem, transparent .24rem .46rem)"
+				},
+				{
+					"name": "Texture: Blueprint Grid",
+					"slug": "pattern-120",
+					"gradient": "repeating-linear-gradient(0deg, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-low, var(--wp--custom--system-ui-pattern-shadow-color, currentColor)) 9%, transparent) 0 1px, transparent 1px .75rem), repeating-linear-gradient(90deg, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, var(--wp--custom--system-ui-pattern-highlight-color, currentColor)) 8%, transparent) 0 1px, transparent 1px .75rem), repeating-linear-gradient(0deg, transparent 0 2.95rem, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-mid, currentColor) 11%, transparent) 2.95rem 3rem), repeating-linear-gradient(90deg, transparent 0 2.95rem, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-mid, currentColor) 10%, transparent) 2.95rem 3rem)"
+				},
+				{
+					"name": "Texture: Carbon Fiber",
+					"slug": "pattern-130",
+					"gradient": "repeating-linear-gradient(135deg, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-low, var(--wp--custom--system-ui-pattern-shadow-color, currentColor)) 18%, transparent) 0 .12rem, transparent .12rem .24rem), repeating-linear-gradient(45deg, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, var(--wp--custom--system-ui-pattern-highlight-color, currentColor)) 14%, transparent) 0 .12rem, transparent .12rem .24rem), linear-gradient(155deg, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, currentColor) 8%, transparent), transparent 48%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-low, currentColor) 9%, transparent))"
+				},
+				{
+					"name": "Texture: Low Poly",
+					"slug": "pattern-140",
+					"gradient": "conic-gradient(from 32deg at 18% 72%, transparent 0deg 52deg, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, currentColor) 16%, transparent) 52deg 116deg, transparent 116deg 188deg, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-mid, currentColor) 13%, transparent) 188deg 246deg, transparent 246deg 360deg), conic-gradient(from 214deg at 78% 28%, transparent 0deg 58deg, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-low, currentColor) 14%, transparent) 58deg 126deg, transparent 126deg 206deg, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, currentColor) 12%, transparent) 206deg 272deg, transparent 272deg 360deg), linear-gradient(145deg, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-low, currentColor) 7%, transparent), transparent 44%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, currentColor) 7%, transparent))"
+				},
+				{
+					"name": "Texture: Terrazzo",
+					"slug": "pattern-150",
+					"gradient": "radial-gradient(ellipse 1.6% 2.8% at 9% 24%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, currentColor) 20%, transparent) 0 74%, transparent 78%), radial-gradient(ellipse 2.4% 1.4% at 22% 73%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-low, currentColor) 19%, transparent) 0 74%, transparent 78%), radial-gradient(ellipse 1.7% 2.5% at 39% 38%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-mid, currentColor) 18%, transparent) 0 74%, transparent 78%), radial-gradient(ellipse 2.8% 1.8% at 57% 84%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, currentColor) 19%, transparent) 0 74%, transparent 78%), radial-gradient(ellipse 1.4% 2.6% at 71% 19%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-low, currentColor) 20%, transparent) 0 74%, transparent 78%), radial-gradient(ellipse 2.2% 1.6% at 88% 61%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-mid, currentColor) 18%, transparent) 0 74%, transparent 78%)"
+				},
+				{
+					"name": "Texture: Dark Brushed Metal",
+					"slug": "pattern-160",
+					"gradient": "repeating-linear-gradient(135deg, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-low, var(--wp--custom--system-ui-pattern-shadow-color, currentColor)) 12%, transparent) 0 .12rem, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, var(--wp--custom--system-ui-pattern-highlight-color, currentColor)) 6%, transparent) .12rem .24rem, transparent .24rem .38rem), linear-gradient(165deg, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, currentColor) 5%, transparent), transparent 36%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-low, currentColor) 7%, transparent))"
+				},
+				{
+					"name": "Texture: Dot Matrix",
+					"slug": "pattern-170",
+					"gradient": "radial-gradient(circle at 12% 22%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, currentColor) 17%, transparent) 0 .2rem, transparent .22rem), radial-gradient(circle at 36% 22%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-mid, currentColor) 15%, transparent) 0 .2rem, transparent .22rem), radial-gradient(circle at 60% 22%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-low, currentColor) 16%, transparent) 0 .2rem, transparent .22rem), radial-gradient(circle at 84% 22%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, currentColor) 17%, transparent) 0 .2rem, transparent .22rem), radial-gradient(circle at 12% 52%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-mid, currentColor) 15%, transparent) 0 .2rem, transparent .22rem), radial-gradient(circle at 36% 52%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-low, currentColor) 16%, transparent) 0 .2rem, transparent .22rem), radial-gradient(circle at 60% 52%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, currentColor) 17%, transparent) 0 .2rem, transparent .22rem), radial-gradient(circle at 84% 52%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-mid, currentColor) 15%, transparent) 0 .2rem, transparent .22rem), radial-gradient(circle at 12% 82%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-low, currentColor) 16%, transparent) 0 .2rem, transparent .22rem), radial-gradient(circle at 36% 82%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, currentColor) 17%, transparent) 0 .2rem, transparent .22rem), radial-gradient(circle at 60% 82%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-mid, currentColor) 15%, transparent) 0 .2rem, transparent .22rem), radial-gradient(circle at 84% 82%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-low, currentColor) 16%, transparent) 0 .2rem, transparent .22rem)"
+				},
+				{
+					"name": "Texture: Honeycomb",
+					"slug": "pattern-180",
+					"gradient": "repeating-linear-gradient(60deg, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, var(--wp--custom--system-ui-pattern-highlight-color, currentColor)) 12%, transparent) 0 1px, transparent 1px .72rem), repeating-linear-gradient(-60deg, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-low, var(--wp--custom--system-ui-pattern-shadow-color, currentColor)) 11%, transparent) 0 1px, transparent 1px .72rem), repeating-linear-gradient(0deg, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-mid, currentColor) 5%, transparent) 0 1px, transparent 1px 1.24rem)"
+				},
+				{
+					"name": "Texture: Cabinet Mesh",
+					"slug": "pattern-190",
+					"gradient": "repeating-linear-gradient(0deg, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-low, var(--wp--custom--system-ui-pattern-shadow-color, currentColor)) 13%, transparent) 0 1px, transparent 1px .52rem), repeating-linear-gradient(90deg, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, var(--wp--custom--system-ui-pattern-highlight-color, currentColor)) 12%, transparent) 0 1px, transparent 1px .52rem), repeating-linear-gradient(0deg, transparent 0 .48rem, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-mid, currentColor) 8%, transparent) .48rem .52rem), repeating-linear-gradient(90deg, transparent 0 .48rem, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-mid, currentColor) 8%, transparent) .48rem .52rem)"
+				},
+				{
+					"name": "Texture: Brickwork",
+					"slug": "pattern-200",
+					"gradient": "repeating-linear-gradient(0deg, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-low, var(--wp--custom--system-ui-pattern-shadow-color, currentColor)) 11%, transparent) 0 1px, transparent 1px .72rem), repeating-linear-gradient(90deg, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, var(--wp--custom--system-ui-pattern-highlight-color, currentColor)) 4%, transparent) 0 1px, transparent 1px 1.45rem), repeating-linear-gradient(90deg, transparent 0 .72rem, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-mid, currentColor) 10%, transparent) .72rem .73rem, transparent .73rem 1.45rem)"
 				}
 			]
 		}

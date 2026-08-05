@@ -2,7 +2,7 @@
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
 	"version": 3,
 	"title": "Editorial",
-	"description": "Typography: A blogging-first Inter and Cardo system carried by the Workshop framework, with stable semantic family slugs for body, heading, display, button, and monospace roles.",
+	"description": "Typography: A blogging-first Inter and Cardo system with stable semantic family slugs for body, heading, display, button, and monospace roles.",
 	"settings": {
 		"typography": {
 			"fontFamilies": [

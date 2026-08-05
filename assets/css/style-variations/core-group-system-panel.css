@@ -25,19 +25,19 @@
 }
 
 /* Zero out border radius globally for all direct children (prevents inward curves on flush elements) */
-.wp-block-group.is-style-system-panel > *,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > * {
+.wp-block-group.is-style-system-panel > *:not(.is-style-system-panel),
+.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > *:not(.is-style-system-panel) {
     border-radius: 0 !important;
 }
 
 /* Rounded corner containment for direct children without overflow: hidden */
-.wp-block-group.is-style-system-panel > *:first-child,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > *:first-child {
+.wp-block-group.is-style-system-panel > *:not(.is-style-system-panel):first-child,
+.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > *:not(.is-style-system-panel):first-child {
     border-top-left-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
     border-top-right-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
 }
-.wp-block-group.is-style-system-panel > *:last-child,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > *:last-child {
+.wp-block-group.is-style-system-panel > *:not(.is-style-system-panel):last-child,
+.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > *:not(.is-style-system-panel):last-child {
     border-bottom-left-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
     border-bottom-right-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
 }
@@ -371,12 +371,21 @@
 /* ========================================================= */
 /* Prevent Double-Chrome on Nested Surfaces                  */
 /* ========================================================= */
-/* When a System List or Panel is nested inside a System Panel, strip its 
+/* When a System List is nested inside a System Panel, strip its 
    glassmorphism so it doesn't double-blur against the parent's blur. */
-.wp-block-group.is-style-system-panel :is(.is-style-system-list, .is-style-system-list-flush) > li,
-.wp-block-group.is-style-system-panel :is(.is-style-system-list, .is-style-system-list-flush) > a,
-.wp-block-group.is-style-system-panel .is-style-system-panel {
+.wp-block-group.is-style-system-panel > :is(.is-style-system-list, .is-style-system-list-flush) > li,
+.wp-block-group.is-style-system-panel > :is(.is-style-system-list, .is-style-system-list-flush) > a,
+.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > :is(.is-style-system-list, .is-style-system-list-flush) > li,
+.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > :is(.is-style-system-list, .is-style-system-list-flush) > a {
     background-image: none !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
+}
+
+/* An independent nested Panel consumes the neutral nested lane at any depth 
+   to prevent duplicate haze against parent surfaces. */
+.is-style-system-panel .wp-block-group.is-style-system-panel {
+    --wp--custom--system-ui-surface: var(--wp--custom--system-ui-surface-nested, transparent);
+    --wp--custom--system-ui-background-image: var(--wp--custom--system-ui-background-image-nested, none);
+    --wp--custom--system-ui-backdrop-filter: none;
 }

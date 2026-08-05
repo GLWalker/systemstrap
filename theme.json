@@ -529,7 +529,7 @@
 			"system-ui-list-hover-bg": "color-mix(in srgb, currentColor 10%, transparent)",
 			"system-ui-panel-hover-bg": "color-mix(in srgb, currentColor 2%, transparent)",
 			"system-ui-backdrop-filter": "none",
-			"system-ui-background-image": "none",
+			"system-ui-background-image": "var:preset|gradient|absolute-04",
 			"system-ui-background-image-nested": "none"
 		},
 		"layout": {

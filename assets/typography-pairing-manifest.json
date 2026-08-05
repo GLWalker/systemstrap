@@ -1,0 +1,110 @@
+{
+	"schema": "systemstrap/typography-pairing-manifest/v1",
+	"description": "Non-binding color-to-typography recommendations. This manifest does not activate or merge style variations.",
+	"pairings": [
+		{
+			"color": "theme.json",
+			"typography": "theme.json"
+		},
+		{
+			"color": "styles/colors/adefaultdark.json",
+			"typography": "theme.json"
+		},
+		{
+			"color": "styles/colors/aurora.json",
+			"typography": "styles/typography/rounded-sans.json"
+		},
+		{
+			"color": "styles/colors/auroradark.json",
+			"typography": "styles/typography/rounded-sans.json"
+		},
+		{
+			"color": "styles/colors/cobalt.json",
+			"typography": "styles/typography/technical.json"
+		},
+		{
+			"color": "styles/colors/cobaltdark.json",
+			"typography": "styles/typography/technical.json"
+		},
+		{
+			"color": "styles/colors/coffee.json",
+			"typography": "styles/typography/editorial.json"
+		},
+		{
+			"color": "styles/colors/coffeedark.json",
+			"typography": "styles/typography/editorial.json"
+		},
+		{
+			"color": "styles/colors/forest.json",
+			"typography": "styles/typography/humanist.json"
+		},
+		{
+			"color": "styles/colors/forestdark.json",
+			"typography": "styles/typography/humanist.json"
+		},
+		{
+			"color": "styles/colors/neonpop.json",
+			"typography": "styles/typography/high-impact.json"
+		},
+		{
+			"color": "styles/colors/neonpopdark.json",
+			"typography": "styles/typography/high-impact.json"
+		},
+		{
+			"color": "styles/colors/ocean.json",
+			"typography": "styles/typography/humanist.json"
+		},
+		{
+			"color": "styles/colors/oceandark.json",
+			"typography": "styles/typography/humanist.json"
+		},
+		{
+			"color": "styles/colors/radioactivecactus.json",
+			"typography": "styles/typography/high-impact.json"
+		},
+		{
+			"color": "styles/colors/radioactivecactusdark.json",
+			"typography": "styles/typography/high-impact.json"
+		},
+		{
+			"color": "styles/colors/rosewood.json",
+			"typography": "styles/typography/editorial.json"
+		},
+		{
+			"color": "styles/colors/rosewooddark.json",
+			"typography": "styles/typography/editorial.json"
+		},
+		{
+			"color": "styles/colors/sand.json",
+			"typography": "styles/typography/humanist.json"
+		},
+		{
+			"color": "styles/colors/sanddark.json",
+			"typography": "styles/typography/humanist.json"
+		},
+		{
+			"color": "styles/colors/slate.json",
+			"typography": "styles/typography/technical.json"
+		},
+		{
+			"color": "styles/colors/slatedark.json",
+			"typography": "styles/typography/technical.json"
+		},
+		{
+			"color": "styles/colors/wordsmith.json",
+			"typography": "styles/typography/editorial.json"
+		},
+		{
+			"color": "styles/colors/wordsmithdark.json",
+			"typography": "styles/typography/editorial.json"
+		},
+		{
+			"color": "styles/colors/wylde.json",
+			"typography": "styles/typography/high-impact.json"
+		},
+		{
+			"color": "styles/colors/wyldedark.json",
+			"typography": "styles/typography/high-impact.json"
+		}
+	]
+}

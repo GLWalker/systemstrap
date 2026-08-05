@@ -288,7 +288,7 @@ Derived variables are deterministic outputs and MUST NOT be directly user-author
 
 ## Contrast Derivation Contract
 
-`inc/class-color-generator.php` currently determines contrast-aware text values through `Strap_ColorGenerator::parse_the_contrast()`.
+`inc/class-color-generator.php` determines contrast-aware text values by comparing the actual contrast ratios of `#111111` and `#ffffff` against an opaque background. `Strap_ColorGenerator::parse_the_contrast()` remains as a compatibility wrapper for that comparison.
 
 The current runtime behavior selects either:
 
@@ -300,6 +300,12 @@ for the `-text` contrast variable family.
 SystemStrap MUST treat this contrast routing as part of the accessibility contract for color-aware surfaces.
 
 If the contrast algorithm changes, that change MUST be documented as a runtime behavior change.
+
+### Same-element preset pair contract
+
+For literal theme palette values, `inc/dynamic-styles.php` compares the six semantic text presets (`primary`, `secondary`, `success`, `info`, `warning`, and `danger`) against `base`, `secondary-bg`, `tertiary-bg`, and the other semantic accent backgrounds. It emits a `.has-{background}-background-color.has-{text}-color` override only when the authored text preset fails the 4.5:1 threshold and a generated shade passes it.
+
+This routing applies only when both WordPress preset classes belong to the same element. SystemStrap MUST NOT emit a broad `.has-{slug}-color` rewrite derived only from the page Base background, because nested and composited surfaces are not deterministically knowable from PHP.
 
 ## Global Styles Extension Contract
 

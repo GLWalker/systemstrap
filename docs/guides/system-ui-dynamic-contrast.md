@@ -1,6 +1,16 @@
 Proceeding from the current GitHub PHP, your diagnosis is correct—and there is one sharper bug hiding underneath it.
 
-## Conclusion
+## Implemented server-side pass
+
+The first contrast pass is implemented in local source:
+
+1. `parse_the_contrast()` now compares opaque dark and light foreground candidates directly.
+2. The broad Base-derived `.has-{slug}-color` override is removed.
+3. Failure-only same-element preset-pair rules are generated for semantic text over known preset surfaces.
+
+The editor-side live update companion remains a separate task. Saved palette changes are correct after the next editor or frontend load.
+
+## Original diagnosis
 
 The current implementation handles two different contrast jobs:
 

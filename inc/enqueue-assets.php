@@ -283,11 +283,7 @@ function strap_enqueue_block_editor_assets() {
 			if ( 'strap-style-sync' === $basename ) {
 				wp_add_inline_script(
 					'strap-variation-' . $basename,
-					'window.systemstrapStyleSync = ' . wp_json_encode(
-						array(
-							'variationMap' => strap_get_style_variation_sync_map(),
-						)
-					) . ';',
+					'window.systemstrapStyleSync = ' . wp_json_encode( strap_get_typography_pairing_manifest() ) . ';',
 					'before'
 				);
 			}

@@ -309,58 +309,26 @@ SystemStrap currently has one active base global theme configuration source:
 
 - `theme.json`
 
-SystemStrap currently also ships active filesystem variation JSON files in:
+SystemStrap ships the following active filesystem variation JSON files:
 
-- `styles/breeze.json`
-- `styles/brite.json`
-- `styles/capsule.json`
-- `styles/colony.json`
-- `styles/forge.json`
-- `styles/polymer.json`
-- `styles/reboot.json`
-- `styles/slab.json`
-- `styles/twenty.json`
-- `styles/colors/a-default-dark.json`
-- `styles/colors/breeze-dark.json`
-- `styles/colors/breeze.json`
-- `styles/colors/brite-dark.json`
-- `styles/colors/brite.json`
-- `styles/colors/capsule-dark.json`
-- `styles/colors/capsule.json`
-- `styles/colors/colony-dark.json`
-- `styles/colors/colony.json`
-- `styles/colors/forge-dark.json`
-- `styles/colors/forge.json`
-- `styles/colors/polymer-dark.json`
-- `styles/colors/polymer.json`
-- `styles/colors/reboot-dark.json`
-- `styles/colors/reboot.json`
-- `styles/colors/slab-dark.json`
-- `styles/colors/slab.json`
-- `styles/colors/twenty-dark.json`
-- `styles/colors/twenty.json`
-- `styles/typography/breeze.json`
-- `styles/typography/brite.json`
-- `styles/typography/capsule.json`
-- `styles/typography/colony.json`
-- `styles/typography/forge.json`
-- `styles/typography/polymer.json`
-- `styles/typography/reboot.json`
-- `styles/typography/slab.json`
-- `styles/typography/twenty.json`
+- color systems: `adefaultdark`, `aurora`, `auroradark`, `cobalt`, `cobaltdark`, `coffee`, `coffeedark`, `forest`, `forestdark`, `neonpop`, `neonpopdark`, `ocean`, `oceandark`, `radioactivecactus`, `radioactivecactusdark`, `rosewood`, `rosewooddark`, `sand`, `sanddark`, `slate`, `slatedark`, `wordsmith`, `wordsmithdark`, `wylde`, and `wyldedark` under `styles/colors/`;
+- typography systems: `editorial`, `high-impact`, `humanist`, `rounded-sans`, and `technical` under `styles/typography/`.
+
+The root `theme.json` is the Default light color system. WordSmith is a retained parent color identity, and Wylde remains an available parent color variation; neither implies a layout variation.
 
 These files are active runtime variation sources layered onto the base `theme.json` configuration.
 
-SystemStrap currently also ships a theme-owned editor sync layer that auto-merges matching color and typography partials after a root layout variation is selected in the Site Editor:
+SystemStrap ships a theme-owned editor recommendation layer that applies the manifest-suggested typography after a recognized color variation is selected in the Site Editor:
 
 - `assets/js/variations/strap-style-sync.js`
 
-That editor-side behavior is derived from the live `styles/`, `styles/colors/`, and `styles/typography/` filenames through `strap_get_style_variation_sync_map()` in `inc/style-variations.php`.
+That editor-side behavior is derived from `assets/typography-pairing-manifest.json`. When a child theme provides that file, it is the active manifest; otherwise the parent manifest is used. Each manifest path resolves child-first, then parent, so a child can provide only the variation JSON files it needs to override. The localized pairing data uses the active palette as its color identity and carries only the selected typography settings and styles as its target, so parent typography sources remain usable when the active child does not expose them as selectable variation records.
 
 The current sync rule is one-way:
 
-- selecting a root `styles/{slug}.json` variation MUST merge the matching `styles/colors/{slug}.json` and `styles/typography/{slug}.json` partials when they exist
-- selecting a color-only or typography-only partial MUST NOT force a layout variation change
+- selecting a recognized color variation applies its one suggested typography variation once
+- manually selecting typography afterward remains in effect until another recognized color variation is selected
+- selecting a color variation MUST NOT alter layout settings or merge a color partial
 
 ### Reserved directory intent
 
@@ -393,6 +361,10 @@ This rule is especially relevant for:
 
 If a variation file overrides one item in an array-backed family, that variation file MUST restate the full array needed for the intended result.
 
+Retained color variations therefore replace the complete ordered 40-entry gradient registry. Only their four Absolute formulas are routinely variation-owned; Accent and Pattern formulas inherit the root contract, with a documented visual exception required before a dark variation may alter an Accent formula.
+
+Dark color variations own their structural surface tokens (`base`, `contrast`, `light`, `dark`, `secondary-bg`, `secondary-color`, `tertiary-bg`, `tertiary-color`, and `border-color`). Their semantic tokens (`primary`, `secondary`, `success`, `info`, `warning`, and `danger`) MUST retain the corresponding light variation values. An exception requires a demonstrated component defect that the existing contrast and generated-shade system cannot solve, the smallest hue-preserving adjustment, and explicit user approval documented by family and token.
+
 ### Pipeline mapping rule
 
 Custom-property consumers in SystemStrap SHOULD continue to point at preset and custom slugs rather than literal values.
@@ -408,6 +380,12 @@ This currently appears in `theme.json` through pipeline syntax such as:
 ```
 
 Future filesystem global variations SHOULD prefer changing token slugs and preset values over redefining unrelated custom-property families in parallel.
+
+## Typography Pairing Manifest
+
+`assets/typography-pairing-manifest.json` is the data-only recommendation registry for matching each retained color presentation to one suggested typography presentation. It uses canonical relative filenames so the editor sync consumer can resolve existing source files without relying on display titles. A child theme may supply its own manifest at the same relative path; its referenced files resolve from the child first and then from SystemStrap.
+
+The manifest is the canonical recommendation source for the editor sync layer. It does not select colors, alter layout settings, or merge color partials. Root `theme.json` is the Default color and typography target.
 
 ## Body/Admin Variation Class Contract
 
@@ -970,45 +948,7 @@ When adding or modifying a variation template:
 
 SystemStrap currently supports modular global variation layering through the `styles/` directory structure.
 
-The current active JSON variation files are:
-
-- `styles/breeze.json`
-- `styles/brite.json`
-- `styles/capsule.json`
-- `styles/colony.json`
-- `styles/forge.json`
-- `styles/polymer.json`
-- `styles/reboot.json`
-- `styles/slab.json`
-- `styles/twenty.json`
-- `styles/colors/a-default-dark.json`
-- `styles/colors/breeze-dark.json`
-- `styles/colors/breeze.json`
-- `styles/colors/brite-dark.json`
-- `styles/colors/brite.json`
-- `styles/colors/capsule-dark.json`
-- `styles/colors/capsule.json`
-- `styles/colors/colony-dark.json`
-- `styles/colors/colony.json`
-- `styles/colors/forge-dark.json`
-- `styles/colors/forge.json`
-- `styles/colors/polymer-dark.json`
-- `styles/colors/polymer.json`
-- `styles/colors/reboot-dark.json`
-- `styles/colors/reboot.json`
-- `styles/colors/slab-dark.json`
-- `styles/colors/slab.json`
-- `styles/colors/twenty-dark.json`
-- `styles/colors/twenty.json`
-- `styles/typography/breeze.json`
-- `styles/typography/brite.json`
-- `styles/typography/capsule.json`
-- `styles/typography/colony.json`
-- `styles/typography/forge.json`
-- `styles/typography/polymer.json`
-- `styles/typography/reboot.json`
-- `styles/typography/slab.json`
-- `styles/typography/twenty.json`
+The current active JSON variation files are the 25 retained color files under `styles/colors/` and the five retained typography files under `styles/typography/` listed in the Global Theme Variation Contract above. Root `theme.json` supplies the Default light color system.
 
 Future additions to those directories MUST be documented here with exact file names and scope boundaries.
 

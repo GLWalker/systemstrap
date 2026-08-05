@@ -1,8 +1,8 @@
 /**
  * SystemStrap global style variation sync.
  *
- * When a root layout variation is selected in the Site Editor, automatically
- * merge the matching color and typography partials that share the same stem.
+ * When a color variation is selected in the Site Editor, apply its suggested
+ * typography variation from the localized pairing manifest.
  */
 ;( function( wp ) {
 	if ( ! wp || ! wp.data ) {
@@ -10,11 +10,11 @@
 	}
 
 	var store = window.systemstrapStyleSync || {};
-	var variationMap = store.variationMap || {};
+	var typographyPairings = store.pairings || [];
+	var defaultTypography = store.defaultTypography || {};
 	var select = wp.data.select;
 	var dispatch = wp.data.dispatch;
-	var lastAppliedSignature = '';
-	var lastLayoutSelectionSignature = '';
+	var lastColorSelectionSignature = '';
 	var isApplying = false;
 	var isInitialBoot = true;
 
@@ -67,57 +67,84 @@
 		return stripped;
 	}
 
-	function getVariationTitle( variation ) {
-		if ( ! variation || typeof variation !== 'object' ) {
-			return '';
+	function extractPropertiesDeep( value, properties ) {
+		if ( Array.isArray( value ) ) {
+			return value.map( function( item ) {
+				return extractPropertiesDeep( item, properties );
+			} );
 		}
 
-		if ( variation.title && typeof variation.title === 'object' && variation.title.raw ) {
-			return variation.title.raw;
+		if ( ! value || typeof value !== 'object' ) {
+			return {};
 		}
 
-		return variation.title || '';
-	}
+		var extracted = {};
 
-	function getLayoutSlugByTitle( title ) {
-		var matchedSlug = '';
-
-		Object.keys( variationMap ).some( function( slug ) {
-			if ( variationMap[ slug ].layoutTitle === title ) {
-				matchedSlug = slug;
-				return true;
+		Object.keys( value ).forEach( function( key ) {
+			if ( properties.indexOf( key ) !== -1 ) {
+				extracted[ key ] = value[ key ];
+				return;
 			}
 
-			return false;
+			var nextValue = extractPropertiesDeep( value[ key ], properties );
+			if ( Object.keys( nextValue ).length ) {
+				extracted[ key ] = nextValue;
+			}
 		} );
 
-		return matchedSlug;
+		return extracted;
 	}
 
-	function getVariationByTitle( variations, title ) {
-		return ( variations || [] ).find( function( variation ) {
-			return getVariationTitle( variation ) === title;
-		} ) || null;
-	}
-
-	function findMatchedRootSlug( rootVariations, currentRecord ) {
-		var currentSignature = stableStringify( {
-			settings: stripPropertiesDeep( currentRecord.settings || {}, [ 'color', 'typography' ] ),
-			styles: stripPropertiesDeep( currentRecord.styles || {}, [ 'color', 'typography' ] ),
-		} );
-
-		var matchedVariation = rootVariations.find( function( variation ) {
-			return currentSignature === stableStringify( {
-				settings: stripPropertiesDeep( variation.settings || {}, [ 'color', 'typography' ] ),
-				styles: stripPropertiesDeep( variation.styles || {}, [ 'color', 'typography' ] ),
-			} );
-		} );
-
-		if ( ! matchedVariation ) {
-			return '';
+	function getThemePreset( preset ) {
+		if ( preset && ! Array.isArray( preset ) && Array.isArray( preset.theme ) ) {
+			return preset.theme;
 		}
 
-		return getLayoutSlugByTitle( getVariationTitle( matchedVariation ) );
+		return Array.isArray( preset ) ? preset : [];
+	}
+
+	function getPaletteSignature( palette ) {
+		return stableStringify(
+			getThemePreset( palette ).map( function( color ) {
+				return {
+					slug: color.slug || '',
+					color: typeof color.color === 'string' ? color.color.toLowerCase() : '',
+				};
+			} )
+		);
+	}
+
+	function normalizeTypographySettings( value ) {
+		if ( Array.isArray( value ) ) {
+			return value.map( normalizeTypographySettings );
+		}
+
+		if ( ! value || typeof value !== 'object' ) {
+			return value;
+		}
+
+		var normalized = {};
+
+		Object.keys( value ).forEach( function( key ) {
+			var item = value[ key ];
+			if ( ( key === 'fontFamilies' || key === 'fontSizes' ) && Array.isArray( item ) ) {
+				normalized[ key ] = { theme: item };
+				return;
+			}
+
+			normalized[ key ] = normalizeTypographySettings( item );
+		} );
+
+		return normalized;
+	}
+
+	function findPairing( currentRecord ) {
+		var activePalette = currentRecord.settings && currentRecord.settings.color && currentRecord.settings.color.palette;
+		var activePaletteSignature = getPaletteSignature( activePalette );
+
+		return typographyPairings.find( function( pairing ) {
+			return activePaletteSignature === getPaletteSignature( pairing.palette );
+		} ) || null;
 	}
 
 	function mergeObjects( base, overlay ) {
@@ -151,7 +178,7 @@
 		}
 
 		var coreSelect = select( 'core' );
-		if ( ! coreSelect || ! coreSelect.getEditedEntityRecord || ! coreSelect.__experimentalGetCurrentThemeGlobalStylesVariations ) {
+		if ( ! coreSelect || ! coreSelect.getEditedEntityRecord ) {
 			return;
 		}
 
@@ -161,75 +188,54 @@
 		}
 
 		var currentRecord = coreSelect.getEditedEntityRecord( 'root', 'globalStyles', globalStylesId );
-		var variations = coreSelect.__experimentalGetCurrentThemeGlobalStylesVariations();
-		if ( ! currentRecord || ! Array.isArray( variations ) || ! variations.length ) {
+		if ( ! currentRecord ) {
 			return;
 		}
 
-		var rootVariations = variations.filter( function( variation ) {
-			return !! getLayoutSlugByTitle( getVariationTitle( variation ) );
-		} );
-		var matchedSlug = findMatchedRootSlug( rootVariations, currentRecord );
-		var layoutSelectionSignature = stableStringify( {
-			settings: stripPropertiesDeep( currentRecord.settings || {}, [ 'color', 'typography' ] ),
-			styles: stripPropertiesDeep( currentRecord.styles || {}, [ 'color', 'typography' ] ),
-		} );
+		var pairing = findPairing( currentRecord );
+		var colorSelectionSignature = getPaletteSignature(
+			currentRecord.settings && currentRecord.settings.color && currentRecord.settings.color.palette
+		);
 
 		if ( isInitialBoot ) {
 			isInitialBoot = false;
-			lastLayoutSelectionSignature = layoutSelectionSignature;
-			lastAppliedSignature = matchedSlug ? ( matchedSlug + '::' + stableStringify( { settings: currentRecord.settings || {}, styles: currentRecord.styles || {} } ) ) : '';
+			lastColorSelectionSignature = colorSelectionSignature;
 			return;
 		}
 
-		if ( ! matchedSlug || ! variationMap[ matchedSlug ] ) {
-			lastAppliedSignature = '';
-			lastLayoutSelectionSignature = layoutSelectionSignature;
+		if ( colorSelectionSignature === lastColorSelectionSignature ) {
 			return;
 		}
 
-		if ( layoutSelectionSignature === lastLayoutSelectionSignature ) {
+		lastColorSelectionSignature = colorSelectionSignature;
+
+		if ( ! pairing ) {
 			return;
 		}
 
-		var rootSignature = matchedSlug + '::' + stableStringify( {
-			settings: currentRecord.settings || {},
-			styles: currentRecord.styles || {},
-		} );
-
-		if ( rootSignature === lastAppliedSignature ) {
-			return;
-		}
-
-		var colorVariation = getVariationByTitle( variations, variationMap[ matchedSlug ].colorTitle );
-		var typographyVariation = getVariationByTitle( variations, variationMap[ matchedSlug ].typographyTitle );
-
-		if ( ! colorVariation || ! typographyVariation ) {
-			lastAppliedSignature = rootSignature;
-			return;
-		}
+		var typography = pairing.typography || defaultTypography;
+		var typographySettings = normalizeTypographySettings(
+			extractPropertiesDeep( typography.settings || {}, [ 'typography' ] )
+		);
+		var typographyStyles = extractPropertiesDeep( typography.styles || {}, [ 'typography' ] );
 
 		var mergedSettings = mergeObjects(
-			mergeObjects( currentRecord.settings || {}, colorVariation.settings || {} ),
-			typographyVariation.settings || {}
+			stripPropertiesDeep( currentRecord.settings || {}, [ 'typography' ] ),
+			typographySettings
 		);
 		var mergedStyles = mergeObjects(
-			mergeObjects( currentRecord.styles || {}, colorVariation.styles || {} ),
-			typographyVariation.styles || {}
+			stripPropertiesDeep( currentRecord.styles || {}, [ 'typography' ] ),
+			typographyStyles
 		);
 
 		if (
 			stableStringify( mergedSettings ) === stableStringify( currentRecord.settings || {} ) &&
 			stableStringify( mergedStyles ) === stableStringify( currentRecord.styles || {} )
 		) {
-			lastLayoutSelectionSignature = layoutSelectionSignature;
-			lastAppliedSignature = rootSignature;
 			return;
 		}
 
 		isApplying = true;
-		lastLayoutSelectionSignature = layoutSelectionSignature;
-		lastAppliedSignature = rootSignature;
 
 		dispatch( 'core' ).editEntityRecord(
 			'root',
