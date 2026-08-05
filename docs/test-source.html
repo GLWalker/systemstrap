@@ -19185,6 +19185,31 @@
 
             /*# sourceURL=wp-img-auto-sizes-contain-inline-css */
         </style>
+        <link rel='stylesheet' id='dashicons-css'
+            href='https://system.local/wp-includes/css/dashicons.min.css?ver=7.0.2' media='all' />
+        <link rel='stylesheet' id='admin-bar-css'
+            href='https://system.local/wp-includes/css/admin-bar.min.css?ver=7.0.2' media='all' />
+        <style id="admin-bar-inline-css">
+            @media screen {
+                html {
+                    margin-top: 32px !important;
+                }
+            }
+
+            @media screen and (max-width: 782px) {
+                html {
+                    margin-top: 46px !important;
+                }
+            }
+
+            @media print {
+                #wpadminbar {
+                    display: none;
+                }
+            }
+
+            /*# sourceURL=admin-bar-inline-css */
+        </style>
         <style id="core-group-system-panel-footer-inline-css">
             /*
  * System Panel Footer Variation
@@ -19819,7 +19844,123 @@
     </head>
 
     <body
-        class="wp-singular post-template-default single single-post postid-4169 single-format-standard wp-custom-logo wp-embed-responsive wp-theme-systemstrap is-layout-system is-color-system is-typography-system">
+        class="wp-singular post-template-default single single-post postid-4169 single-format-standard logged-in admin-bar no-customize-support wp-custom-logo wp-embed-responsive wp-theme-systemstrap is-layout-system is-color-system is-typography-system">
+        <div id="wpadminbar" class="nojq nojs">
+            <div class="quicklinks" id="wp-toolbar" role="navigation" aria-label="Toolbar">
+                <ul role='menu' id='wp-admin-bar-root-default' class="ab-top-menu">
+                    <li role='group' id='wp-admin-bar-wp-logo' class="menupop"><a class='ab-item' role="menuitem"
+                            aria-expanded="false" href='https://system.local/wp-admin/about.php'><span class="ab-icon"
+                                aria-hidden="true"></span><span class="screen-reader-text">About WordPress</span></a>
+                        <div class="ab-sub-wrapper">
+                            <ul role='menu' aria-label='About WordPress' id='wp-admin-bar-wp-logo-default'
+                                class="ab-submenu">
+                                <li role='group' id='wp-admin-bar-about'><a class='ab-item' role="menuitem"
+                                        href='https://system.local/wp-admin/about.php'>About WordPress</a></li>
+                                <li role='group' id='wp-admin-bar-contribute'><a class='ab-item' role="menuitem"
+                                        href='https://system.local/wp-admin/contribute.php'>Get Involved</a></li>
+                            </ul>
+                            <ul role='menu' aria-label='About WordPress' id='wp-admin-bar-wp-logo-external'
+                                class="ab-sub-secondary ab-submenu">
+                                <li role='group' id='wp-admin-bar-wporg'><a class='ab-item' role="menuitem"
+                                        href='https://wordpress.org/'>WordPress.org</a></li>
+                                <li role='group' id='wp-admin-bar-documentation'><a class='ab-item' role="menuitem"
+                                        href='https://wordpress.org/documentation/'>Documentation</a></li>
+                                <li role='group' id='wp-admin-bar-learn'><a class='ab-item' role="menuitem"
+                                        href='https://learn.wordpress.org/'>Learn WordPress</a></li>
+                                <li role='group' id='wp-admin-bar-support-forums'><a class='ab-item' role="menuitem"
+                                        href='https://wordpress.org/support/forums/'>Support</a></li>
+                                <li role='group' id='wp-admin-bar-feedback'><a class='ab-item' role="menuitem"
+                                        href='https://wordpress.org/support/forum/requests-and-feedback'>Feedback</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li role='group' id='wp-admin-bar-site-name' class="menupop"><a class='ab-item' role="menuitem"
+                            aria-expanded="false" href='https://system.local/wp-admin/'>SystemStrap</a>
+                        <div class="ab-sub-wrapper">
+                            <ul role='menu' aria-label='SystemStrap' id='wp-admin-bar-site-name-default'
+                                class="ab-submenu">
+                                <li role='group' id='wp-admin-bar-dashboard'><a class='ab-item' role="menuitem"
+                                        href='https://system.local/wp-admin/'>Dashboard</a></li>
+                                <li role='group' id='wp-admin-bar-plugins'><a class='ab-item' role="menuitem"
+                                        href='https://system.local/wp-admin/plugins.php'>Plugins</a></li>
+                            </ul>
+                            <ul role='menu' aria-label='SystemStrap' id='wp-admin-bar-appearance' class="ab-submenu">
+                                <li role='group' id='wp-admin-bar-themes'><a class='ab-item' role="menuitem"
+                                        href='https://system.local/wp-admin/themes.php'>Themes</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li role='group' id='wp-admin-bar-site-editor'><a class='ab-item' role="menuitem"
+                            href='https://system.local/wp-admin/site-editor.php?postType=wp_template&#038;postId=systemstrap//single&#038;canvas=edit'>Edit
+                            Site</a></li>
+                    <li role='group' id='wp-admin-bar-updates'><a class='ab-item' role="menuitem"
+                            href='https://system.local/wp-admin/update-core.php'><span class="ab-icon"
+                                aria-hidden="true"></span><span class="ab-label" aria-hidden="true">3</span><span
+                                class="screen-reader-text updates-available-text">3 updates available</span></a></li>
+                    <li role='group' id='wp-admin-bar-comments'><a class='ab-item' role="menuitem"
+                            href='https://system.local/wp-admin/edit-comments.php'><span class="ab-icon"
+                                aria-hidden="true"></span><span class="ab-label awaiting-mod pending-count count-15"
+                                aria-hidden="true">15</span><span
+                                class="screen-reader-text comments-in-moderation-text">15 Comments in
+                                moderation</span></a></li>
+                    <li role='group' id='wp-admin-bar-new-content' class="menupop"><a class='ab-item' role="menuitem"
+                            aria-expanded="false" href='https://system.local/wp-admin/post-new.php'><span
+                                class="ab-icon" aria-hidden="true"></span><span class="ab-label">New</span></a>
+                        <div class="ab-sub-wrapper">
+                            <ul role='menu' aria-label='New' id='wp-admin-bar-new-content-default' class="ab-submenu">
+                                <li role='group' id='wp-admin-bar-new-post'><a class='ab-item' role="menuitem"
+                                        href='https://system.local/wp-admin/post-new.php'>Post</a></li>
+                                <li role='group' id='wp-admin-bar-new-media'><a class='ab-item' role="menuitem"
+                                        href='https://system.local/wp-admin/media-new.php'>Media</a></li>
+                                <li role='group' id='wp-admin-bar-new-page'><a class='ab-item' role="menuitem"
+                                        href='https://system.local/wp-admin/post-new.php?post_type=page'>Page</a></li>
+                                <li role='group' id='wp-admin-bar-new-user'><a class='ab-item' role="menuitem"
+                                        href='https://system.local/wp-admin/user-new.php'>User</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li role='group' id='wp-admin-bar-edit'><a class='ab-item' role="menuitem"
+                            href='https://system.local/wp-admin/post.php?post=4169&#038;action=edit'>Edit Post</a></li>
+                </ul>
+                <ul role='menu' id='wp-admin-bar-top-secondary' class="ab-top-secondary ab-top-menu">
+                    <li role='group' id='wp-admin-bar-my-account' class="menupop with-avatar"><a class='ab-item'
+                            role="menuitem" aria-expanded="false"
+                            href='https://system.local/wp-admin/profile.php'>Howdy, <span
+                                class="display-name">walker</span><img alt=''
+                                src='https://secure.gravatar.com/avatar/11520731fcf892806b32d86d99c60d360c402c334a7a4a07b884dd4354ca5d83?s=26&#038;d=mm&#038;r=g'
+                                srcset='https://secure.gravatar.com/avatar/11520731fcf892806b32d86d99c60d360c402c334a7a4a07b884dd4354ca5d83?s=52&#038;d=mm&#038;r=g 2x'
+                                class='avatar avatar-26 photo' height='26' width='26' loading='lazy'
+                                decoding='async' /></a>
+                        <div class="ab-sub-wrapper">
+                            <ul role='menu' aria-label='Howdy, walker' id='wp-admin-bar-user-actions'
+                                class="ab-submenu">
+                                <li role='group' id='wp-admin-bar-user-info'><a class='ab-item' role="menuitem"
+                                        href='https://system.local/wp-admin/profile.php'><img alt=''
+                                            src='https://secure.gravatar.com/avatar/11520731fcf892806b32d86d99c60d360c402c334a7a4a07b884dd4354ca5d83?s=64&#038;d=mm&#038;r=g'
+                                            srcset='https://secure.gravatar.com/avatar/11520731fcf892806b32d86d99c60d360c402c334a7a4a07b884dd4354ca5d83?s=128&#038;d=mm&#038;r=g 2x'
+                                            class='avatar avatar-64 photo' height='64' width='64' loading='lazy'
+                                            decoding='async' /><span class='display-name'>walker</span><span
+                                            class='display-name edit-profile'>Edit Profile</span></a></li>
+                                <li role='group' id='wp-admin-bar-logout'><a class='ab-item' role="menuitem"
+                                        href='https://system.local/wp-login.php?action=logout&#038;_wpnonce=1fa9887fa2'>Log
+                                        Out</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li role='group' id='wp-admin-bar-search' class="admin-bar-search">
+                        <div class="ab-item ab-empty-item" tabindex="-1" role="menuitem">
+                            <form action="https://system.local/" method="get" id="adminbarsearch"><input
+                                    class="adminbar-input" name="s" id="adminbar-search" type="text" value=""
+                                    maxlength="150" /><label for="adminbar-search"
+                                    class="screen-reader-text">Search</label><input type="submit"
+                                    class="adminbar-button" value="Search" /></form>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
 
         <a class="skip-link screen-reader-text" id="wp-skip-link" href="#wp--skip-link--target">Skip to content</a>
         <div class="wp-site-blocks">
@@ -19993,25 +20134,19 @@
                             class="entry-content alignfull wp-block-post-content has-global-padding is-layout-constrained wp-block-post-content-is-layout-constrained">
                             <div
                                 class="wp-block-group alignwide is-style-system-panel has-global-padding is-layout-constrained wp-container-core-group-is-layout-45cce92b wp-block-group-is-layout-constrained">
-
-
                                 <div
                                     class="wp-block-group is-style-system-panel-header is-content-justification-space-between is-layout-flex wp-container-core-group-is-layout-f01d84c1 wp-block-group-is-layout-flex">
-
                                     <h2 class="wp-block-heading">System UI Nesting Stress Test</h2>
 
 
 
                                     <p class="wp-block-paragraph">Frontend + editor ownership fixture</p>
-
                                 </div>
 
 
 
                                 <div
                                     class="wp-block-group has-global-padding is-layout-constrained wp-container-core-group-is-layout-e1df59cb wp-block-group-is-layout-constrained">
-
-
                                     <h3 class="wp-block-heading">A — Deep background content</h3>
 
 
@@ -20028,39 +20163,32 @@
 
 
                                     <ul class="wp-block-list has-secondary-bg-background-color has-background">
-
                                         <li>PASS: ordinary background List keeps wrapper padding.</li>
 
 
+
                                         <li>FAIL: text touches the colored edge.</li>
-
                                     </ul>
-
                                 </div>
 
 
 
                                 <div
                                     class="wp-block-group has-tertiary-bg-background-color has-background is-content-justification-space-between is-layout-flex wp-container-core-group-is-layout-f01d84c1 wp-block-group-is-layout-flex">
-
-
                                     <div
                                         class="wp-block-group has-global-padding is-layout-constrained wp-block-group-is-layout-constrained">
-
                                         <h3 class="wp-block-heading">B — Structural Row</h3>
 
 
 
                                         <p class="wp-block-paragraph">REVIEW: the Row should not acquire unexplained
                                             surface padding merely because it has an editor background.</p>
-
                                     </div>
 
 
 
                                     <div
                                         class="wp-block-buttons is-content-justification-right is-layout-flex wp-container-core-buttons-is-layout-0eda9169 wp-block-buttons-is-layout-flex">
-
                                         <div class="wp-block-button"><a aria-disabled="true" tabindex="-1"
                                                 class="wp-block-button__link wp-element-button">Primary action</a></div>
 
@@ -20070,60 +20198,46 @@
                                                 aria-disabled="true" tabindex="-1"
                                                 class="wp-block-button__link wp-element-button">Secondary action</a>
                                         </div>
-
                                     </div>
-
                                 </div>
 
 
 
                                 <div
                                     class="wp-block-columns has-secondary-bg-background-color has-background is-layout-flex wp-container-core-columns-is-layout-7163882b wp-block-columns-is-layout-flex">
-
-
                                     <div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow">
-
                                         <div
                                             class="wp-block-group is-style-system-panel has-tertiary-bg-background-color has-background has-global-padding is-layout-constrained wp-block-group-is-layout-constrained">
-
-
                                             <h3 class="wp-block-heading">C1 — Panel in Column</h3>
 
 
 
                                             <p class="wp-block-paragraph">PASS: this Panel owns its border, radius,
                                                 shadow, padding, and nested surface lane.</p>
-
                                         </div>
-
                                     </div>
 
 
 
                                     <div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow">
-
                                         <ul class="wp-block-list is-style-system-list">
-
                                             <li>Independent list row one</li>
+
 
 
                                             <li>Independent list row two</li>
 
 
+
                                             <li>Independent list row three</li>
-
                                         </ul>
-
                                     </div>
-
                                 </div>
 
 
 
                                 <div
                                     class="wp-block-group is-style-system-panel has-secondary-bg-background-color has-background has-global-padding is-layout-constrained wp-block-group-is-layout-constrained">
-
-
                                     <h3 class="wp-block-heading">D — Direct nested System Panel</h3>
 
 
@@ -20135,32 +20249,23 @@
 
                                     <div
                                         class="wp-block-group is-style-system-panel has-tertiary-bg-background-color has-background has-global-padding is-layout-constrained wp-block-group-is-layout-constrained">
-
                                         <h4 class="wp-block-heading">D1 — Panel inside direct nested Panel</h4>
 
 
 
                                         <p class="wp-block-paragraph">PASS: another authored Panel boundary remains
                                             shaped and legible without turning the stack into haze.</p>
-
                                     </div>
-
                                 </div>
 
 
 
                                 <div
                                     class="wp-block-group has-global-padding is-layout-constrained wp-block-group-is-layout-constrained">
-
-
                                     <div
                                         class="wp-block-group has-global-padding is-layout-constrained wp-block-group-is-layout-constrained">
-
-
                                         <div
                                             class="wp-block-group is-style-system-panel has-tertiary-bg-background-color has-background has-global-padding is-layout-constrained wp-block-group-is-layout-constrained">
-
-
                                             <h3 class="wp-block-heading">E — Deep independent Panel</h3>
 
 
@@ -20174,36 +20279,28 @@
                                             <details
                                                 class="wp-block-details is-style-system-details is-layout-flow wp-block-details-is-layout-flow">
                                                 <summary>System Details inside independent Panel</summary>
-
                                                 <p class="wp-block-paragraph">REVIEW: the Details component should keep
                                                     its documented integrated behavior without flattening unrelated
                                                     descendants.</p>
-
                                             </details>
 
 
 
                                             <ul class="wp-block-list is-style-system-list">
-
                                                 <li>PASS: deep System List row owns its normal surface.</li>
 
 
+
                                                 <li>PASS: border and radius read as a standalone component.</li>
-
                                             </ul>
-
                                         </div>
-
                                     </div>
-
                                 </div>
 
 
 
                                 <div
                                     class="wp-block-group has-global-padding is-layout-constrained wp-block-group-is-layout-constrained">
-
-
                                     <h3 class="wp-block-heading">F — Direct List comparison</h3>
 
 
@@ -20214,49 +20311,68 @@
 
 
                                     <ul class="wp-block-list is-style-system-list">
-
                                         <li>Direct regular System List</li>
 
 
-                                        <li>Integrated row treatment retained</li>
 
+                                        <li>Integrated row treatment retained</li>
                                     </ul>
 
 
 
                                     <ul class="wp-block-list is-style-system-list-flush">
-
                                         <li>Direct System List Flush</li>
 
 
+
                                         <li>Should join the parent shell without duplicate chrome</li>
-
                                     </ul>
-
                                 </div>
 
 
 
                                 <div
+                                    class="wp-block-group is-style-system-panel-header has-global-padding is-layout-constrained wp-block-group-is-layout-constrained">
+                                    <h3 class="wp-block-heading">is-style-system-panel-header &#8211; working for
+                                        list-group<br><em><sub><sup>&#8230;but my border top does not
+                                                    exist</sup></sub></em></h3>
+                                </div>
+
+
+
+                                <ul class="wp-block-list is-style-system-list">
+                                    <li>hello system-list</li>
+
+
+
+                                    <li>goodby system-list</li>
+                                </ul>
+
+
+
+                                <ul class="wp-block-list is-style-system-list-flush">
+                                    <li>hello system-list-flush</li>
+
+
+
+                                    <li>goodby system-list-flush</li>
+                                </ul>
+
+
+
+                                <div
                                     class="wp-block-group is-style-system-panel-footer is-content-justification-space-between is-layout-flex wp-container-core-group-is-layout-f01d84c1 wp-block-group-is-layout-flex">
-
-
                                     <p class="wp-block-paragraph"><strong>Review result:</strong> mark each section
                                         Pass, Fail, or Review.</p>
 
 
 
                                     <div class="wp-block-buttons is-layout-flex wp-block-buttons-is-layout-flex">
-
                                         <div class="wp-block-button"><a aria-disabled="true" tabindex="-1"
                                                 class="wp-block-button__link wp-element-button">Fixture complete</a>
                                         </div>
-
                                     </div>
-
                                 </div>
-
-
                             </div>
                         </div>
                         <footer aria-label="Entry meta"
@@ -20270,7 +20386,13 @@
                                             class="post-navigation-link__label">Previous: </span> <span
                                             class="post-navigation-link__title">Pattern 06: Knowledge Base FAQ
                                             Grid</span></a></div>
-                                <div class="post-navigation-link-next wp-block-post-navigation-link"></div>
+                                <div class="post-navigation-link-next wp-block-post-navigation-link"><a
+                                        href="https://system.local/pattern-07-the-aerospace-glass-cockpit/"
+                                        rel="next"><span class="post-navigation-link__label">Next: </span> <span
+                                            class="post-navigation-link__title">Pattern 07: The Aerospace Glass
+                                            Cockpit</span></a><span
+                                        class="wp-block-post-navigation-link__arrow-next is-arrow-chevron"
+                                        aria-hidden="true">»</span></div>
                             </nav>
                         </footer>
                     </div>
@@ -20298,34 +20420,27 @@
                                                 reply</a></small></h3>
                                     <form action="https://system.local/wp-comments-post.php" method="post"
                                         id="commentform" class="comment-form">
-                                        <p class="comment-notes"><span id="email-notes">Your email address will not be
-                                                published.</span> <span class="required-field-message">Required fields
-                                                are marked <span class="required">*</span></span></p>
+                                        <p class="logged-in-as">Logged in as walker. <a
+                                                href="https://system.local/wp-admin/profile.php">Edit your profile</a>.
+                                            <a
+                                                href="https://system.local/wp-login.php?action=logout&amp;redirect_to=https%3A%2F%2Fsystem.local%2Fsystemstrap-stress-test%2F&amp;_wpnonce=1fa9887fa2">Log
+                                                out?</a> <span class="required-field-message">Required fields are marked
+                                                <span class="required">*</span></span></p>
                                         <p class="comment-form-comment"><label for="comment">Comment <span
                                                     class="required">*</span></label> <textarea id="comment"
                                                 name="comment" cols="45" rows="8" maxlength="65525" required></textarea>
                                         </p>
-                                        <p class="comment-form-author"><label for="author">Name <span
-                                                    class="required">*</span></label> <input id="author" name="author"
-                                                type="text" value="" size="30" maxlength="245" autocomplete="name"
-                                                required /></p>
-                                        <p class="comment-form-email"><label for="email">Email <span
-                                                    class="required">*</span></label> <input id="email" name="email"
-                                                type="email" value="" size="30" maxlength="100"
-                                                aria-describedby="email-notes" autocomplete="email" required /></p>
-                                        <p class="comment-form-url"><label for="url">Website</label> <input id="url"
-                                                name="url" type="url" value="" size="30" maxlength="200"
-                                                autocomplete="url" /></p>
-                                        <p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent"
-                                                name="wp-comment-cookies-consent" type="checkbox" value="yes" /> <label
-                                                for="wp-comment-cookies-consent">Save my name, email, and website in
-                                                this browser for the next time I comment.</label></p>
                                         <p class="form-submit wp-block-button"><input name="submit" type="submit"
                                                 id="submit" class="wp-block-button__link wp-element-button"
                                                 value="Post Comment" /> <input type='hidden' name='comment_post_ID'
                                                 value='4169' id='comment_post_ID' />
                                             <input type='hidden' name='comment_parent' id='comment_parent' value='0' />
-                                        </p>
+                                        </p><input type="hidden" id="_wp_unfiltered_html_comment_disabled"
+                                            name="_wp_unfiltered_html_comment_disabled" value="a610753c0e" />
+                                        <script>
+                                            ( function () { if ( window === window.parent ) { document.getElementById( '_wp_unfiltered_html_comment_disabled' ).name = '_wp_unfiltered_html_comment'; } } )();
+                                            //# sourceURL=wp_comment_form_unfiltered_html_nonce
+                                        </script>
                                     </form>
                                 </div><!-- #respond -->
                             </div>
@@ -20385,13 +20500,12 @@
                                     <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
                                         <meta itemprop="position" content="1" />
                                         <article itemprop="item" itemscope itemtype="https://schema.org/Article">
-                                            <link itemprop="mainEntityOfPage url"
-                                                href="https://system.local/systemstrap-stress-test/" />
-                                            <meta itemprop="headline" content="SystemStrap Stress Test" />
-                                            <meta itemprop="description" content="SystemStrap Stress Test" /><a
+                                            <link itemprop="mainEntityOfPage url" href="https://system.local/shark/" />
+                                            <meta itemprop="headline" content="Shark" />
+                                            <meta itemprop="description" content="Shark" /><a
                                                 class="wp-block-latest-posts__post-title"
-                                                href="https://system.local/systemstrap-stress-test/">SystemStrap Stress
-                                                Test</a><time datetime="2026-08-05T12:23:22+00:00"
+                                                href="https://system.local/shark/">Shark</a><time
+                                                datetime="2026-08-05T13:51:55+00:00"
                                                 class="wp-block-latest-posts__post-date">August 5, 2026</time>
                                         </article>
                                     </li>
@@ -20399,14 +20513,15 @@
                                         <meta itemprop="position" content="2" />
                                         <article itemprop="item" itemscope itemtype="https://schema.org/Article">
                                             <link itemprop="mainEntityOfPage url"
-                                                href="https://system.local/pattern-06-knowledge-base-faq-grid/" />
-                                            <meta itemprop="headline" content="Pattern 06: Knowledge Base FAQ Grid" />
+                                                href="https://system.local/pattern-07-the-aerospace-glass-cockpit/" />
+                                            <meta itemprop="headline"
+                                                content="Pattern 07: The Aerospace Glass Cockpit" />
                                             <meta itemprop="description"
-                                                content="Pattern 06: Knowledge Base FAQ Grid" /><a
+                                                content="Pattern 07: The Aerospace Glass Cockpit" /><a
                                                 class="wp-block-latest-posts__post-title"
-                                                href="https://system.local/pattern-06-knowledge-base-faq-grid/">Pattern
-                                                06: Knowledge Base FAQ Grid</a><time
-                                                datetime="2026-08-05T12:17:42+00:00"
+                                                href="https://system.local/pattern-07-the-aerospace-glass-cockpit/">Pattern
+                                                07: The Aerospace Glass Cockpit</a><time
+                                                datetime="2026-08-05T12:37:46+00:00"
                                                 class="wp-block-latest-posts__post-date">August 5, 2026</time>
                                         </article>
                                     </li>
@@ -20414,15 +20529,12 @@
                                         <meta itemprop="position" content="3" />
                                         <article itemprop="item" itemscope itemtype="https://schema.org/Article">
                                             <link itemprop="mainEntityOfPage url"
-                                                href="https://system.local/pattern-05-the-api-tech-stack-integration-dock/" />
-                                            <meta itemprop="headline"
-                                                content="Pattern 05: The API / Tech Stack Integration Dock" />
-                                            <meta itemprop="description"
-                                                content="Pattern 05: The API / Tech Stack Integration Dock" /><a
+                                                href="https://system.local/systemstrap-stress-test/" />
+                                            <meta itemprop="headline" content="SystemStrap Stress Test" />
+                                            <meta itemprop="description" content="SystemStrap Stress Test" /><a
                                                 class="wp-block-latest-posts__post-title"
-                                                href="https://system.local/pattern-05-the-api-tech-stack-integration-dock/">Pattern
-                                                05: The API / Tech Stack Integration Dock</a><time
-                                                datetime="2026-08-05T11:42:57+00:00"
+                                                href="https://system.local/systemstrap-stress-test/">SystemStrap Stress
+                                                Test</a><time datetime="2026-08-05T12:23:22+00:00"
                                                 class="wp-block-latest-posts__post-date">August 5, 2026</time>
                                         </article>
                                     </li>
@@ -20551,7 +20663,7 @@
 
 
             </footer>
-            <dialog id="strap-dialog-33beb288-b8d3-4ce9-aed2-2bcb77c6e8d9" class="strap-dialog strap-dialog-pos-start"
+            <dialog id="strap-dialog-02b2d31b-20da-408a-b66f-3bb67267fd35" class="strap-dialog strap-dialog-pos-start"
                 aria-modal="true" aria-label="offcanvas-part">
                 <div class="strap-dialog-content" role="document">
                     <div class="wp-block-button is-style-system-btn-icon strap-dialog-close-btn">
@@ -20670,7 +20782,7 @@
                                 </li>
                                 <li class="cat-item cat-item-1"><a
                                         href="https://system.local/category/uncategorized/">Uncategorized</a> <span
-                                        class="wp-block-categories__count"><span class="count-paren">(</span>27<span
+                                        class="wp-block-categories__count"><span class="count-paren">(</span>29<span
                                             class="count-paren">)</span></span>
                                 </li>
                                 <li class="cat-item cat-item-17"><a
@@ -20831,7 +20943,7 @@
                     </div>
                 </div>
             </dialog>
-            <dialog id="strap-dialog-c3d7d518-35a7-4e02-9105-d0eaa6fd8d72" class="strap-dialog strap-dialog-pos-center"
+            <dialog id="strap-dialog-21e51acd-cd54-4f6f-905a-d7f380a57c02" class="strap-dialog strap-dialog-pos-center"
                 aria-modal="true" aria-label="modal-search">
                 <div class="strap-dialog-content" role="document">
                     <div class="wp-block-button is-style-system-btn-icon strap-dialog-close-btn">
@@ -20931,13 +21043,13 @@
             </dialog>
 
         </div>
-        <script type="speculationrules">
-{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/systemstrap/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
-</script>
         <script data-wp-router-options="{&quot;loadOnClientNavigation&quot;:true}" fetchpriority="low"
             id="@wordpress/block-library/navigation/view-js-module"
             src="https://system.local/wp-includes/js/dist/script-modules/block-library/navigation/view.min.js?ver=96a846e1d7b789c39ab9"
             type="module"></script>
+        <script id="hoverintent-js-js"
+            src="https://system.local/wp-includes/js/hoverintent-js.min.js?ver=2.2.1"></script>
+        <script id="admin-bar-js" src="https://system.local/wp-includes/js/admin-bar.min.js?ver=7.0.2"></script>
         <script async data-wp-strategy="async" fetchpriority="low" id="comment-reply-js"
             src="https://system.local/wp-includes/js/comment-reply.min.js?ver=7.0.2"></script>
         <script id="strap-main-scripts-js"

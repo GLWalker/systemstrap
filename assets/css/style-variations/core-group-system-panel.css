@@ -25,19 +25,19 @@
 }
 
 /* Zero out border radius globally for all direct children (prevents inward curves on flush elements) */
-.wp-block-group.is-style-system-panel > *:not(.is-style-system-panel),
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > *:not(.is-style-system-panel) {
+.wp-block-group.is-style-system-panel > *,
+.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > * {
     border-radius: 0 !important;
 }
 
 /* Rounded corner containment for direct children without overflow: hidden */
-.wp-block-group.is-style-system-panel > *:not(.is-style-system-panel):first-child,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > *:not(.is-style-system-panel):first-child {
+.wp-block-group.is-style-system-panel > *:first-child,
+.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > *:first-child {
     border-top-left-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
     border-top-right-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
 }
-.wp-block-group.is-style-system-panel > *:not(.is-style-system-panel):last-child,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > *:not(.is-style-system-panel):last-child {
+.wp-block-group.is-style-system-panel > *:last-child,
+.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > *:last-child {
     border-bottom-left-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
     border-bottom-right-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
 }
@@ -111,8 +111,8 @@
 
 /* A plain List remains native inside a direct Group, but keeps its marker clear
    of the panel edge. Explicit System List styles keep their own layout. */
-.wp-block-group.is-style-system-panel > .wp-block-group:not(.is-style-system-panel-header):not(.is-style-system-panel-footer) > .wp-block-list:not(.is-style-system-list):not(.is-style-system-list-flush),
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > .wp-block-group:not(.is-style-system-panel-header):not(.is-style-system-panel-footer) > .wp-block-list:not(.is-style-system-list):not(.is-style-system-list-flush) {
+.wp-block-group.is-style-system-panel > .wp-block-group:not(.is-style-system-panel-header):not(.is-style-system-panel-footer) > .wp-block-list:not(.is-style-system-list):not(.is-style-system-list-flush):not(.has-background),
+.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > .wp-block-group:not(.is-style-system-panel-header):not(.is-style-system-panel-footer) > .wp-block-list:not(.is-style-system-list):not(.is-style-system-list-flush):not(.has-background) {
     padding-inline-start: var(--wp--preset--spacing--20);
 }
 
@@ -369,6 +369,21 @@
 }
 
 /* ========================================================= */
+/* Panel Header Seam Ownership                               */
+/* ========================================================= */
+/* Add one top separator when a direct Panel Header follows preceding content */
+.wp-block-group.is-style-system-panel > .is-style-system-panel-header:not(:first-child),
+.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > .is-style-system-panel-header:not(:first-child) {
+    border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color) !important;
+}
+
+/* Prevent double seam by stripping top border when Header follows components that already own a bottom border */
+.wp-block-group.is-style-system-panel > :is(.is-style-system-panel-header, .is-style-system-list-flush, .is-style-system-accordion, .is-style-system-details) + .is-style-system-panel-header,
+.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > :is(.is-style-system-panel-header, .is-style-system-list-flush, *:has(> .is-style-system-accordion), *:has(> .is-style-system-details)) + .is-style-system-panel-header {
+    border-top: 0 !important;
+}
+
+/* ========================================================= */
 /* Prevent Double-Chrome on Nested Surfaces                  */
 /* ========================================================= */
 /* When a System List is nested inside a System Panel, strip its 
@@ -388,4 +403,16 @@
     --wp--custom--system-ui-surface: var(--wp--custom--system-ui-surface-nested, transparent);
     --wp--custom--system-ui-background-image: var(--wp--custom--system-ui-background-image-nested, none);
     --wp--custom--system-ui-backdrop-filter: none;
+}
+
+/* ========================================================= */
+/* Separation for Direct Nested Panels                       */
+/* ========================================================= */
+/* Direct nested System Panels remain independent components and receive separation from the parent shell */
+.wp-block-group.is-style-system-panel > .wp-block-group.is-style-system-panel,
+.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > .wp-block-group.is-style-system-panel {
+    margin-inline: var(--strap-system-panel-padding-x) !important;
+    margin-block: var(--strap-system-panel-padding-y) !important;
+    max-width: calc(100% - var(--strap-system-panel-padding-x) - var(--strap-system-panel-padding-x)) !important;
+    box-sizing: border-box;
 }
