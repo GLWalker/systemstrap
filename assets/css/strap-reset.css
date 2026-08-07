@@ -454,18 +454,6 @@ p.has-drop-cap.has-background {
     overflow: hidden;
 }
 
-:where(p, h1, h2, h3, h4, h5, h6, blockquote, pre, ul, ol, dl).has-background {
-    padding: var(--wp--preset--spacing--30);
-}
-
-:where(ul, ol).has-background {
-    padding-inline-start: calc(var(--wp--preset--spacing--30) + 2rem);
-}
-
-:where(p, h1, h2, h3, h4, h5, h6, blockquote, pre, ul, ol, dl).has-background[class*="is-style-system-"] {
-    padding: 0;
-}
-
 :where(p.has-text-color:not(.has-link-color)) a {
     color: inherit;
 }

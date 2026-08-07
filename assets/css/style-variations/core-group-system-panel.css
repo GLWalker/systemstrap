@@ -1,8 +1,7 @@
-/* 
+/*
  * System Panel Container
  * Acts like a Card. Contains powerful native flush logic.
  */
-
 /* Core Panel Wrapper */
 .wp-block-group.is-style-system-panel {
     --strap-system-panel-padding-y: var(--wp--preset--spacing--20);
@@ -14,7 +13,7 @@
     -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     border-radius: var(--wp--custom--border-radius);
     box-shadow: var(--wp--custom--shadow);
-    padding: 0 !important; 
+    padding: 0 !important;
     overflow: hidden;
     transition: border-color 0.15s ease-in-out;
 }
@@ -25,19 +24,20 @@
 }
 
 /* Zero out border radius globally for all direct children (prevents inward curves on flush elements) */
-.wp-block-group.is-style-system-panel > *,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > * {
+.wp-block-group.is-style-system-panel>*,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>* {
     border-radius: 0 !important;
 }
 
 /* Rounded corner containment for direct children without overflow: hidden */
-.wp-block-group.is-style-system-panel > *:first-child,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > *:first-child {
+.wp-block-group.is-style-system-panel>*:first-child,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*:first-child {
     border-top-left-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
     border-top-right-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
 }
-.wp-block-group.is-style-system-panel > *:last-child,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > *:last-child {
+
+.wp-block-group.is-style-system-panel>*:last-child,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*:last-child {
     border-bottom-left-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
     border-bottom-right-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
 }
@@ -59,17 +59,15 @@
 /* ========================================================= */
 /* Global Child Normalization                                */
 /* ========================================================= */
-/* Vaporize native Gutenberg block gaps and margins on direct children */
-.wp-block-group.is-style-system-panel > *,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > * {
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
+/* Preserve native Gutenberg blockGap; normalize only direct-child width. */
+.wp-block-group.is-style-system-panel>*,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>* {
     width: 100%;
-    max-width: none !important; /* Overrides Gutenberg constrained layout widths */
+    max-width: none !important;
+    /* Overrides Gutenberg constrained layout widths */
 }
 
-.wp-block-group.is-style-system-panel > :is(
-    p,
+.wp-block-group.is-style-system-panel> :is(p,
     h1,
     h2,
     h3,
@@ -99,82 +97,159 @@
     .wp-block-terms-query:not(.is-style-system-list):not(.is-style-system-list-flush),
     .wp-block-comments:not(.is-style-system-list):not(.is-style-system-panel),
     .wp-block-post-comments-form,
-    .wp-block-list:not(.is-style-system-list):not(.is-style-system-list-flush)
-) {
-    padding: var(--strap-system-panel-padding-y) var(--strap-system-panel-padding-x);
+    .wp-block-list:not(.is-style-system-list):not(.is-style-system-list-flush),
+    .wp-block-columns),
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout> :is(p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    blockquote,
+    pre,
+    .wp-block-code,
+    .wp-block-verse,
+    .wp-block-post-author-name,
+    .wp-block-post-date,
+    .wp-block-post-excerpt,
+    .wp-block-post-title,
+    .wp-block-post-terms,
+    .wp-block-read-more,
+    .wp-block-buttons,
+    .wp-block-search,
+    .wp-block-archives:not(.is-style-system-list):not(.is-style-system-list-flush),
+    .wp-block-archives-list:not(.is-style-system-list):not(.is-style-system-list-flush),
+    .wp-block-categories:not(.is-style-system-list):not(.is-style-system-list-flush),
+    .wp-block-categories-list:not(.is-style-system-list):not(.is-style-system-list-flush),
+    .wp-block-page-list:not(.is-style-system-list):not(.is-style-system-list-flush),
+    .wp-block-latest-posts:not(.is-style-system-list):not(.is-style-system-list-flush),
+    .wp-block-latest-comments:not(.is-style-system-list):not(.is-style-system-list-flush),
+    .wp-block-rss:not(.is-style-system-list):not(.is-style-system-list-flush),
+    .wp-block-terms-query:not(.is-style-system-list):not(.is-style-system-list-flush),
+    .wp-block-comments:not(.is-style-system-list):not(.is-style-system-panel),
+    .wp-block-post-comments-form,
+    .wp-block-list:not(.is-style-system-list):not(.is-style-system-list-flush),
+    .wp-block-columns) {
+    padding-inline: var(--strap-system-panel-padding-x);
 }
 
-.wp-block-group.is-style-system-panel > .wp-block-group:not(.is-style-system-panel-header):not(.is-style-system-panel-footer),
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > .wp-block-group:not(.is-style-system-panel-header):not(.is-style-system-panel-footer) {
-    padding: var(--strap-system-panel-padding-y) var(--strap-system-panel-padding-x);
+.wp-block-group.is-style-system-panel>.wp-block-group:not(.is-style-system-panel):not(.is-style-system-panel-header):not(.is-style-system-panel-footer),
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>.wp-block-group:not(.is-style-system-panel):not(.is-style-system-panel-header):not(.is-style-system-panel-footer) {
+    padding-inline: var(--strap-system-panel-padding-x);
+}
+
+/* Core owns standalone painted-block padding. A direct ordinary Panel child
+   keeps the Panel inline inset, while vertical inset remains boundary-owned. */
+.wp-block-group.is-style-system-panel> :is(h1, h2, h3, h4, h5, h6, .wp-block-buttons, .wp-block-list:not(.is-style-system-list):not(.is-style-system-list-flush), .wp-block-columns).has-background,
+.wp-block-group.is-style-system-panel>.wp-block-group:not(.is-style-system-panel):not(.is-style-system-panel-header):not(.is-style-system-panel-footer).has-background,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout> :is(h1, h2, h3, h4, h5, h6, .wp-block-list:not(.is-style-system-list):not(.is-style-system-list-flush), .wp-block-columns).has-background,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>.wp-block-group:not(.is-style-system-panel):not(.is-style-system-panel-header):not(.is-style-system-panel-footer).has-background {
+    padding-block: 0;
+}
+
+/* Ordinary children own only inline inset. Vertical inset belongs to a Panel
+   opening/closing boundary or to an adjacent flush seam. */
+.wp-block-group.is-style-system-panel> :is(p, h1, h2, h3, h4, h5, h6, .wp-block-buttons, .wp-block-list:not(.is-style-system-list):not(.is-style-system-list-flush), .wp-block-columns):first-child,
+.wp-block-group.is-style-system-panel>.wp-block-group:not(.is-style-system-panel):not(.is-style-system-panel-header):not(.is-style-system-panel-footer):first-child,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout> :is(p, h1, h2, h3, h4, h5, h6, .wp-block-buttons, .wp-block-list:not(.is-style-system-list):not(.is-style-system-list-flush), .wp-block-columns):first-child,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>.wp-block-group:not(.is-style-system-panel):not(.is-style-system-panel-header):not(.is-style-system-panel-footer):first-child {
+    padding-block-start: var(--strap-system-panel-padding-y);
+}
+
+.wp-block-group.is-style-system-panel> :is(p, h1, h2, h3, h4, h5, h6, .wp-block-buttons, .wp-block-list:not(.is-style-system-list):not(.is-style-system-list-flush), .wp-block-columns):last-child,
+.wp-block-group.is-style-system-panel>.wp-block-group:not(.is-style-system-panel):not(.is-style-system-panel-header):not(.is-style-system-panel-footer):last-child,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout> :is(p, h1, h2, h3, h4, h5, h6, .wp-block-buttons, .wp-block-list:not(.is-style-system-list):not(.is-style-system-list-flush), .wp-block-columns):last-child,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>.wp-block-group:not(.is-style-system-panel):not(.is-style-system-panel-header):not(.is-style-system-panel-footer):last-child {
+    padding-block-end: var(--strap-system-panel-padding-y);
+}
+
+/* Flush components join ordinary content and each other, but never suppress
+   the native blockGap before an independent nested Panel. */
+.wp-block-group.is-style-system-panel> :is(.is-style-system-panel-header, .is-style-system-panel-footer, .is-style-system-list, .is-style-system-list-flush, .is-style-system-details, .is-style-system-accordion)+ :is(p, h1, h2, h3, h4, h5, h6, .wp-block-buttons, .wp-block-list:not(.is-style-system-list):not(.is-style-system-list-flush), .wp-block-group:not(.is-style-system-panel):not(.is-style-system-panel-header):not(.is-style-system-panel-footer), .wp-block-columns, .is-style-system-panel-header, .is-style-system-panel-footer, .is-style-system-list, .is-style-system-list-flush, .is-style-system-details, .is-style-system-accordion),
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout> :is(.is-style-system-panel-header, .is-style-system-panel-footer, .is-style-system-list, .is-style-system-list-flush, .is-style-system-details, .is-style-system-accordion)+ :is(p, h1, h2, h3, h4, h5, h6, .wp-block-buttons, .wp-block-list:not(.is-style-system-list):not(.is-style-system-list-flush), .wp-block-group:not(.is-style-system-panel):not(.is-style-system-panel-header):not(.is-style-system-panel-footer), .wp-block-columns, .is-style-system-panel-header, .is-style-system-panel-footer, .is-style-system-list, .is-style-system-list-flush, .is-style-system-details, .is-style-system-accordion),
+.wp-block-group.is-style-system-panel> :is(p, h1, h2, h3, h4, h5, h6, .wp-block-buttons, .wp-block-list:not(.is-style-system-list):not(.is-style-system-list-flush), .wp-block-group:not(.is-style-system-panel):not(.is-style-system-panel-header):not(.is-style-system-panel-footer), .wp-block-columns, .wp-block-group.is-style-system-panel, .is-style-system-panel-header, .is-style-system-panel-footer, .is-style-system-list, .is-style-system-list-flush, .is-style-system-details, .is-style-system-accordion)+ :is(.is-style-system-panel-header, .is-style-system-panel-footer, .is-style-system-list, .is-style-system-list-flush, .is-style-system-details, .is-style-system-accordion),
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout> :is(p, h1, h2, h3, h4, h5, h6, .wp-block-buttons, .wp-block-list:not(.is-style-system-list):not(.is-style-system-list-flush), .wp-block-group:not(.is-style-system-panel):not(.is-style-system-panel-header):not(.is-style-system-panel-footer), .wp-block-columns, .wp-block-group.is-style-system-panel, .is-style-system-panel-header, .is-style-system-panel-footer, .is-style-system-list, .is-style-system-list-flush, .is-style-system-details, .is-style-system-accordion)+ :is(.is-style-system-panel-header, .is-style-system-panel-footer, .is-style-system-list, .is-style-system-list-flush, .is-style-system-details, .is-style-system-accordion) {
+    margin-block-start: 0;
+}
+
+/* The ordinary box supplies the half-step inset at a flush seam. */
+.wp-block-group.is-style-system-panel> :is(.is-style-system-panel-header, .is-style-system-panel-footer, .is-style-system-list, .is-style-system-list-flush, .is-style-system-details, .is-style-system-accordion)+ :is(p, h1, h2, h3, h4, h5, h6, .wp-block-buttons, .wp-block-list:not(.is-style-system-list):not(.is-style-system-list-flush), .wp-block-group:not(.is-style-system-panel):not(.is-style-system-panel-header):not(.is-style-system-panel-footer), .wp-block-columns),
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout> :is(.is-style-system-panel-header, .is-style-system-panel-footer, .is-style-system-list, .is-style-system-list-flush, .is-style-system-details, .is-style-system-accordion)+ :is(p, h1, h2, h3, h4, h5, h6, .wp-block-buttons, .wp-block-list:not(.is-style-system-list):not(.is-style-system-list-flush), .wp-block-group:not(.is-style-system-panel):not(.is-style-system-panel-header):not(.is-style-system-panel-footer), .wp-block-columns) {
+    padding-block-start: var(--strap-system-panel-padding-y);
+}
+
+.wp-block-group.is-style-system-panel> :is(p, h1, h2, h3, h4, h5, h6, .wp-block-buttons, .wp-block-list:not(.is-style-system-list):not(.is-style-system-list-flush), .wp-block-group:not(.is-style-system-panel):not(.is-style-system-panel-header):not(.is-style-system-panel-footer), .wp-block-columns):has(+ :is(.is-style-system-panel-header, .is-style-system-panel-footer, .is-style-system-list, .is-style-system-list-flush, .is-style-system-details, .is-style-system-accordion)),
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout> :is(p, h1, h2, h3, h4, h5, h6, .wp-block-buttons, .wp-block-list:not(.is-style-system-list):not(.is-style-system-list-flush), .wp-block-group:not(.is-style-system-panel):not(.is-style-system-panel-header):not(.is-style-system-panel-footer), .wp-block-columns):has(+ :is(.is-style-system-panel-header, .is-style-system-panel-footer, .is-style-system-list, .is-style-system-list-flush, .is-style-system-details, .is-style-system-accordion)) {
+    padding-block-end: var(--strap-system-panel-padding-y);
 }
 
 /* A plain List remains native inside a direct Group, but keeps its marker clear
    of the panel edge. Explicit System List styles keep their own layout. */
-.wp-block-group.is-style-system-panel > .wp-block-group:not(.is-style-system-panel-header):not(.is-style-system-panel-footer) > .wp-block-list:not(.is-style-system-list):not(.is-style-system-list-flush):not(.has-background),
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > .wp-block-group:not(.is-style-system-panel-header):not(.is-style-system-panel-footer) > .wp-block-list:not(.is-style-system-list):not(.is-style-system-list-flush):not(.has-background) {
+.wp-block-group.is-style-system-panel>.wp-block-group:not(.is-style-system-panel-header):not(.is-style-system-panel-footer)>.wp-block-list:not(.is-style-system-list):not(.is-style-system-list-flush):not(.has-background),
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>.wp-block-group:not(.is-style-system-panel-header):not(.is-style-system-panel-footer)>.wp-block-list:not(.is-style-system-list):not(.is-style-system-list-flush):not(.has-background) {
     padding-inline-start: var(--wp--preset--spacing--20);
 }
 
-.wp-block-group.is-style-system-panel > .wp-block-separator,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > * > .wp-block-separator {
+.wp-block-group.is-style-system-panel>.wp-block-separator,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.wp-block-separator {
     border-color: var(--wp--custom--system-ui-border-color);
 }
 
 /* Plain Details blocks inside panels should keep their native look but inherit
    the same breathing room as other direct panel children. */
-.wp-block-group.is-style-system-panel > .wp-block-details > summary,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > * > .wp-block-details > summary {
+.wp-block-group.is-style-system-panel>.wp-block-details>summary,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.wp-block-details>summary {
     padding: var(--strap-system-panel-padding-y) var(--strap-system-panel-padding-x);
 }
 
-.wp-block-group.is-style-system-panel > .wp-block-details[open] > *:not(summary),
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > * > .wp-block-details[open] > *:not(summary) {
+.wp-block-group.is-style-system-panel>.wp-block-details[open]>*:not(summary),
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.wp-block-details[open]>*:not(summary) {
     margin: 0 !important;
     padding: var(--wp--preset--spacing--10) var(--strap-system-panel-padding-x);
 }
 
 /* Plain Accordion blocks inside panels should keep native behavior but inherit
    the same spacing and seam contract as other direct panel children. */
-.wp-block-group.is-style-system-panel > .wp-block-accordion,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > * > .wp-block-accordion {
+.wp-block-group.is-style-system-panel>.wp-block-accordion,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.wp-block-accordion {
     margin: 0 !important;
 }
 
-.wp-block-group.is-style-system-panel > .wp-block-accordion .wp-block-accordion-item,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > * > .wp-block-accordion .wp-block-accordion-item {
+.wp-block-group.is-style-system-panel>.wp-block-accordion .wp-block-accordion-item,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.wp-block-accordion .wp-block-accordion-item {
     margin: 0 !important;
     border: 0 !important;
     background: transparent !important;
     box-shadow: none !important;
 }
 
-.wp-block-group.is-style-system-panel > .wp-block-accordion .wp-block-accordion-item + .wp-block-accordion-item,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > * > .wp-block-accordion .wp-block-accordion-item + .wp-block-accordion-item {
+.wp-block-group.is-style-system-panel>.wp-block-accordion .wp-block-accordion-item+.wp-block-accordion-item,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.wp-block-accordion .wp-block-accordion-item+.wp-block-accordion-item {
     margin-top: 0 !important;
 }
 
-.wp-block-group.is-style-system-panel > .wp-block-accordion .wp-block-accordion-heading,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > * > .wp-block-accordion .wp-block-accordion-heading {
+.wp-block-group.is-style-system-panel>.wp-block-accordion .wp-block-accordion-heading,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.wp-block-accordion .wp-block-accordion-heading {
     margin: 0 !important;
 }
 
-.wp-block-group.is-style-system-panel > .wp-block-accordion .wp-block-accordion-heading__toggle,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > * > .wp-block-accordion .wp-block-accordion-heading__toggle {
+.wp-block-group.is-style-system-panel>.wp-block-accordion .wp-block-accordion-heading__toggle,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.wp-block-accordion .wp-block-accordion-heading__toggle {
     padding: var(--strap-system-panel-padding-y) var(--strap-system-panel-padding-x);
     min-height: calc(var(--wp--preset--spacing--40) + var(--wp--preset--spacing--30));
 }
 
-.wp-block-group.is-style-system-panel > .wp-block-accordion .wp-block-accordion-panel,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > * > .wp-block-accordion .wp-block-accordion-panel {
+.wp-block-group.is-style-system-panel>.wp-block-accordion .wp-block-accordion-panel,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.wp-block-accordion .wp-block-accordion-panel {
     margin: 0 !important;
     padding: var(--wp--preset--spacing--10) var(--strap-system-panel-padding-x);
 }
 
-.wp-block-group.is-style-system-panel > .wp-block-accordion .wp-block-accordion-panel > *,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > * > .wp-block-accordion .wp-block-accordion-panel > *,
-.wp-block-group.is-style-system-panel > .wp-block-accordion .wp-block-accordion-panel .block-editor-block-list__layout > *,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > * > .wp-block-accordion .wp-block-accordion-panel .block-editor-block-list__layout > * {
+.wp-block-group.is-style-system-panel>.wp-block-accordion .wp-block-accordion-panel>*,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.wp-block-accordion .wp-block-accordion-panel>*,
+.wp-block-group.is-style-system-panel>.wp-block-accordion .wp-block-accordion-panel .block-editor-block-list__layout>*,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.wp-block-accordion .wp-block-accordion-panel .block-editor-block-list__layout>* {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
 }
@@ -182,35 +257,36 @@
 /* Allow true full-width shells to break out of padded content wrappers. Plain
    utility/list blocks stay padded unless they explicitly opt into System List
    presentation. */
-.wp-block-group.is-style-system-panel > *:has(> :is(.query-directory-listing, .directory-listing, .query-latest-posts, .systemstrap-directory-grid, .is-style-system-list, .is-style-system-list-flush):only-child) > :is(.query-directory-listing, .directory-listing, .query-latest-posts, .systemstrap-directory-grid, .is-style-system-list, .is-style-system-list-flush),
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > *:has(> :is(.query-directory-listing, .directory-listing, .query-latest-posts, .systemstrap-directory-grid, .is-style-system-list, .is-style-system-list-flush):only-child) > :is(.query-directory-listing, .directory-listing, .query-latest-posts, .systemstrap-directory-grid, .is-style-system-list, .is-style-system-list-flush) {
+.wp-block-group.is-style-system-panel>*:has(> :is(.query-directory-listing, .directory-listing, .query-latest-posts, .systemstrap-directory-grid, .is-style-system-list, .is-style-system-list-flush):only-child)> :is(.query-directory-listing, .directory-listing, .query-latest-posts, .systemstrap-directory-grid, .is-style-system-list, .is-style-system-list-flush),
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*:has(> :is(.query-directory-listing, .directory-listing, .query-latest-posts, .systemstrap-directory-grid, .is-style-system-list, .is-style-system-list-flush):only-child)> :is(.query-directory-listing, .directory-listing, .query-latest-posts, .systemstrap-directory-grid, .is-style-system-list, .is-style-system-list-flush) {
     margin: calc(var(--strap-system-panel-padding-y) * -1) calc(var(--strap-system-panel-padding-x) * -1) !important;
     width: auto;
 }
 
 /* Let nested panel footers fill edge-to-edge like direct-child panel headers. */
-.wp-block-group.is-style-system-panel > *:has(> .wp-block-group.is-style-system-panel-footer:only-child) > .wp-block-group.is-style-system-panel-footer,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > *:has(> .wp-block-group.is-style-system-panel-footer:only-child) > .wp-block-group.is-style-system-panel-footer {
+.wp-block-group.is-style-system-panel>*:has(> .wp-block-group.is-style-system-panel-footer:only-child)>.wp-block-group.is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*:has(> .wp-block-group.is-style-system-panel-footer:only-child)>.wp-block-group.is-style-system-panel-footer {
     margin: calc(var(--strap-system-panel-padding-y) * -1) calc(var(--strap-system-panel-padding-x) * -1) !important;
     width: calc(100% + (var(--strap-system-panel-padding-x) * 2));
     max-width: none !important;
 }
 
 /* Force Image Caps to naturally span 100% without using dangerous .alignfull rules */
-.wp-block-group.is-style-system-panel > .wp-block-image,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-image {
+.wp-block-group.is-style-system-panel>.wp-block-image,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout>.wp-block-image {
     width: 100% !important;
     max-width: 100% !important;
 }
-.wp-block-group.is-style-system-panel > .wp-block-image img,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-image img {
+
+.wp-block-group.is-style-system-panel>.wp-block-image img,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout>.wp-block-image img {
     width: 100%;
     border-radius: 0 !important;
 }
 
 /* Separate explicit System UI widgets outside panels. Their row presentation is
    opt-in, and the gap matches the theme's native Group and Column rhythm. */
-:is(.wp-block-group, .wp-block-column):not(.is-style-system-panel) > :is(.wp-block-archives, .wp-block-categories, .wp-block-page-list, .wp-block-rss, .wp-block-latest-posts, .wp-block-latest-comments, .wp-block-terms-query):is(.is-style-system-list, .is-style-system-list-flush) + :is(.wp-block-archives, .wp-block-categories, .wp-block-page-list, .wp-block-rss, .wp-block-latest-posts, .wp-block-latest-comments, .wp-block-terms-query):is(.is-style-system-list, .is-style-system-list-flush) {
+:is(.wp-block-group, .wp-block-column):not(.is-style-system-panel)> :is(.wp-block-archives, .wp-block-categories, .wp-block-page-list, .wp-block-rss, .wp-block-latest-posts, .wp-block-latest-comments, .wp-block-terms-query):is(.is-style-system-list, .is-style-system-list-flush)+ :is(.wp-block-archives, .wp-block-categories, .wp-block-page-list, .wp-block-rss, .wp-block-latest-posts, .wp-block-latest-comments, .wp-block-terms-query):is(.is-style-system-list, .is-style-system-list-flush) {
     margin-block-start: var(--wp--preset--spacing--30) !important;
 }
 
@@ -218,38 +294,38 @@
    so they share the same shadow treatment as other surfaced components. */
 :is(.wp-block-list, .wp-block-archives, .wp-block-categories, .wp-block-page-list, .wp-block-rss, .wp-block-latest-posts, .wp-block-latest-comments).is-style-system-list,
 :is(.wp-block-archives-list, .wp-block-categories-list).is-style-system-list,
-.wp-block-terms-query.is-style-system-list > .wp-block-term-template,
+.wp-block-terms-query.is-style-system-list>.wp-block-term-template,
 .wp-block-comments.is-style-system-list .wp-block-comment-template {
     box-shadow: var(--wp--custom--shadow);
 }
 
 /* Nested list shells inside a panel remain flat so the panel keeps ownership
    of the outer surface and only the rows provide internal seams. */
-.wp-block-group.is-style-system-panel > :is(.wp-block-list, .wp-block-archives, .wp-block-categories, .wp-block-page-list, .wp-block-rss, .wp-block-latest-posts, .wp-block-latest-comments).is-style-system-list,
-.wp-block-group.is-style-system-panel > :is(.wp-block-archives-list, .wp-block-categories-list).is-style-system-list,
-.wp-block-group.is-style-system-panel > .wp-block-terms-query.is-style-system-list > .wp-block-term-template,
-.wp-block-group.is-style-system-panel > .wp-block-comments.is-style-system-list .wp-block-comment-template,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > :is(.wp-block-list, .wp-block-archives, .wp-block-categories, .wp-block-page-list, .wp-block-rss, .wp-block-latest-posts, .wp-block-latest-comments).is-style-system-list,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > :is(.wp-block-archives-list, .wp-block-categories-list).is-style-system-list,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-terms-query.is-style-system-list > .wp-block-term-template,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-comments.is-style-system-list .wp-block-comment-template {
+.wp-block-group.is-style-system-panel> :is(.wp-block-list, .wp-block-archives, .wp-block-categories, .wp-block-page-list, .wp-block-rss, .wp-block-latest-posts, .wp-block-latest-comments).is-style-system-list,
+.wp-block-group.is-style-system-panel> :is(.wp-block-archives-list, .wp-block-categories-list).is-style-system-list,
+.wp-block-group.is-style-system-panel>.wp-block-terms-query.is-style-system-list>.wp-block-term-template,
+.wp-block-group.is-style-system-panel>.wp-block-comments.is-style-system-list .wp-block-comment-template,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout> :is(.wp-block-list, .wp-block-archives, .wp-block-categories, .wp-block-page-list, .wp-block-rss, .wp-block-latest-posts, .wp-block-latest-comments).is-style-system-list,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout> :is(.wp-block-archives-list, .wp-block-categories-list).is-style-system-list,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout>.wp-block-terms-query.is-style-system-list>.wp-block-term-template,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout>.wp-block-comments.is-style-system-list .wp-block-comment-template {
     box-shadow: none !important;
 }
 
 /* Panel lists share the surface without outer chrome. Restore one seam only
    where two separately opted-in widget blocks meet. */
-.wp-block-group.is-style-system-panel > :is(.wp-block-archives, .wp-block-categories, .wp-block-page-list, .wp-block-rss, .wp-block-latest-posts, .wp-block-latest-comments, .wp-block-terms-query):is(.is-style-system-list, .is-style-system-list-flush) + :is(.wp-block-archives, .wp-block-categories, .wp-block-page-list, .wp-block-rss, .wp-block-latest-posts, .wp-block-latest-comments, .wp-block-terms-query):is(.is-style-system-list, .is-style-system-list-flush),
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > *:has(> :is(.wp-block-archives, .wp-block-categories, .wp-block-page-list, .wp-block-rss, .wp-block-latest-posts, .wp-block-latest-comments, .wp-block-terms-query):is(.is-style-system-list, .is-style-system-list-flush)) + * > :is(.wp-block-archives, .wp-block-categories, .wp-block-page-list, .wp-block-rss, .wp-block-latest-posts, .wp-block-latest-comments, .wp-block-terms-query):is(.is-style-system-list, .is-style-system-list-flush) {
+.wp-block-group.is-style-system-panel> :is(.wp-block-archives, .wp-block-categories, .wp-block-page-list, .wp-block-rss, .wp-block-latest-posts, .wp-block-latest-comments, .wp-block-terms-query):is(.is-style-system-list, .is-style-system-list-flush)+ :is(.wp-block-archives, .wp-block-categories, .wp-block-page-list, .wp-block-rss, .wp-block-latest-posts, .wp-block-latest-comments, .wp-block-terms-query):is(.is-style-system-list, .is-style-system-list-flush),
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*:has(> :is(.wp-block-archives, .wp-block-categories, .wp-block-page-list, .wp-block-rss, .wp-block-latest-posts, .wp-block-latest-comments, .wp-block-terms-query):is(.is-style-system-list, .is-style-system-list-flush))+*> :is(.wp-block-archives, .wp-block-categories, .wp-block-page-list, .wp-block-rss, .wp-block-latest-posts, .wp-block-latest-comments, .wp-block-terms-query):is(.is-style-system-list, .is-style-system-list-flush) {
     border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color) !important;
 }
 
 /* ========================================================= */
 /* Flush Logic for System Lists                              */
 /* ========================================================= */
-.wp-block-group.is-style-system-panel > .is-style-system-list-flush > li,
-.wp-block-group.is-style-system-panel > .is-style-system-list-flush > a,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > * > .is-style-system-list-flush > li,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > * > .is-style-system-list-flush > a {
+.wp-block-group.is-style-system-panel>.is-style-system-list-flush>li,
+.wp-block-group.is-style-system-panel>.is-style-system-list-flush>a,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.is-style-system-list-flush>li,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.is-style-system-list-flush>a {
     border-left: 0 !important;
     border-right: 0 !important;
     border-radius: 0 !important;
@@ -257,22 +333,22 @@
 }
 
 /* If the list is the first child of the panel, kill the top border of its first item and round its corners */
-.wp-block-group.is-style-system-panel > .is-style-system-list-flush:first-child > li:first-child,
-.wp-block-group.is-style-system-panel > .is-style-system-list-flush:first-child > a:first-child,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:first-child > .is-style-system-list-flush > li:first-child,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:first-child > .is-style-system-list-flush > a:first-child {
+.wp-block-group.is-style-system-panel>.is-style-system-list-flush:first-child>li:first-child,
+.wp-block-group.is-style-system-panel>.is-style-system-list-flush:first-child>a:first-child,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout>*:first-child>.is-style-system-list-flush>li:first-child,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout>*:first-child>.is-style-system-list-flush>a:first-child {
     border-top: 0 !important;
     border-top-left-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
     border-top-right-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
 }
 
 /* If the list is the last child of the panel, kill the bottom border of its last item and round its corners */
-.wp-block-group.is-style-system-panel > .is-style-system-list-flush:last-child > li:last-child,
-.wp-block-group.is-style-system-panel > .is-style-system-list-flush:last-child > a:last-child,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:last-child > .is-style-system-list-flush > li:last-child,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:last-child > .is-style-system-list-flush > a:last-child,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:has(+ .block-list-appender) > .is-style-system-list-flush > li:last-child,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:has(+ .block-list-appender) > .is-style-system-list-flush > a:last-child {
+.wp-block-group.is-style-system-panel>.is-style-system-list-flush:last-child>li:last-child,
+.wp-block-group.is-style-system-panel>.is-style-system-list-flush:last-child>a:last-child,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout>*:last-child>.is-style-system-list-flush>li:last-child,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout>*:last-child>.is-style-system-list-flush>a:last-child,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout>*:has(+ .block-list-appender)>.is-style-system-list-flush>li:last-child,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout>*:has(+ .block-list-appender)>.is-style-system-list-flush>a:last-child {
     border-bottom: 0 !important;
     border-bottom-left-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
     border-bottom-right-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
@@ -281,8 +357,8 @@
 /* ========================================================= */
 /* Flush Logic for System Accordions                         */
 /* ========================================================= */
-.wp-block-group.is-style-system-panel > .is-style-system-accordion .wp-block-accordion-item,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > * > .is-style-system-accordion .wp-block-accordion-item {
+.wp-block-group.is-style-system-panel>.is-style-system-accordion .wp-block-accordion-item,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.is-style-system-accordion .wp-block-accordion-item {
     border-left: 0 !important;
     border-right: 0 !important;
     border-radius: 0 !important;
@@ -291,21 +367,21 @@
     margin: 0 !important;
 }
 
-.wp-block-group.is-style-system-panel > .is-style-system-accordion .wp-block-accordion-heading__toggle,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > * > .is-style-system-accordion .wp-block-accordion-heading__toggle {
+.wp-block-group.is-style-system-panel>.is-style-system-accordion .wp-block-accordion-heading__toggle,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.is-style-system-accordion .wp-block-accordion-heading__toggle {
     padding: var(--strap-system-panel-padding-y) var(--strap-system-panel-padding-x) !important;
     min-height: calc(var(--wp--preset--spacing--40) + var(--wp--preset--spacing--30));
 }
 
-.wp-block-group.is-style-system-panel > .is-style-system-accordion .wp-block-accordion-item.is-open .wp-block-accordion-panel,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > * > .is-style-system-accordion .wp-block-accordion-item.is-open .wp-block-accordion-panel {
+.wp-block-group.is-style-system-panel>.is-style-system-accordion .wp-block-accordion-item.is-open .wp-block-accordion-panel,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.is-style-system-accordion .wp-block-accordion-item.is-open .wp-block-accordion-panel {
     padding: var(--wp--preset--spacing--10) var(--strap-system-panel-padding-x) !important;
 }
 
 /* If the accordion is the last child of the panel, kill the bottom border of its last item and round its corners */
-.wp-block-group.is-style-system-panel > .is-style-system-accordion:last-child .wp-block-accordion-item:last-child,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:last-child > .is-style-system-accordion .wp-block-accordion-item:last-child,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:has(+ .block-list-appender) > .is-style-system-accordion .wp-block-accordion-item:last-child {
+.wp-block-group.is-style-system-panel>.is-style-system-accordion:last-child .wp-block-accordion-item:last-child,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout>*:last-child>.is-style-system-accordion .wp-block-accordion-item:last-child,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout>*:has(+ .block-list-appender)>.is-style-system-accordion .wp-block-accordion-item:last-child {
     border-bottom: 0 !important;
     border-bottom-left-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
     border-bottom-right-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
@@ -314,8 +390,8 @@
 /* ========================================================= */
 /* Flush Logic for System Details                            */
 /* ========================================================= */
-.wp-block-group.is-style-system-panel > .is-style-system-details,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > * > .is-style-system-details {
+.wp-block-group.is-style-system-panel>.is-style-system-details,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.is-style-system-details {
     border-left: 0 !important;
     border-right: 0 !important;
     border-radius: 0 !important;
@@ -324,26 +400,26 @@
     margin: 0 !important;
 }
 
-.wp-block-group.is-style-system-panel > .is-style-system-details summary,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > * > .is-style-system-details summary {
+.wp-block-group.is-style-system-panel>.is-style-system-details summary,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.is-style-system-details summary {
     border-radius: 0 !important;
     padding: var(--wp--preset--spacing--20) calc(var(--wp--preset--spacing--30) + var(--wp--preset--spacing--40)) var(--wp--preset--spacing--20) var(--wp--preset--spacing--40) !important;
     min-height: calc(var(--wp--preset--spacing--40) + var(--wp--preset--spacing--30));
 }
 
 /* If details is the first child of the panel, round its top corners */
-.wp-block-group.is-style-system-panel > .is-style-system-details:first-child,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:first-child > .is-style-system-details,
-.wp-block-group.is-style-system-panel > .is-style-system-details:first-child summary,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:first-child > .is-style-system-details summary {
+.wp-block-group.is-style-system-panel>.is-style-system-details:first-child,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout>*:first-child>.is-style-system-details,
+.wp-block-group.is-style-system-panel>.is-style-system-details:first-child summary,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout>*:first-child>.is-style-system-details summary {
     border-top-left-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
     border-top-right-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
 }
 
 /* If details is the last child of the panel, kill its bottom border and round its corners */
-.wp-block-group.is-style-system-panel > .is-style-system-details:last-child,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:last-child > .is-style-system-details,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:has(+ .block-list-appender) > .is-style-system-details {
+.wp-block-group.is-style-system-panel>.is-style-system-details:last-child,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout>*:last-child>.is-style-system-details,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout>*:has(+ .block-list-appender)>.is-style-system-details {
     border-bottom: 0 !important;
     border-bottom-left-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
     border-bottom-right-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
@@ -355,16 +431,16 @@
 /* If a Footer immediately follows a true shell-level flush component, kill its
    top border so the shell owns the seam. Specialized list/query families keep
    their own border contract and should not suppress the footer line here. */
-.wp-block-group.is-style-system-panel > .is-style-system-accordion + .is-style-system-panel-footer,
-.wp-block-group.is-style-system-panel > .is-style-system-details + .is-style-system-panel-footer,
-.wp-block-group.is-style-system-panel > .query-directory-listing + .is-style-system-panel-footer,
-.wp-block-group.is-style-system-panel > .directory-listing + .is-style-system-panel-footer,
-.wp-block-group.is-style-system-panel > .systemstrap-directory-grid + .is-style-system-panel-footer,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:has(> .is-style-system-accordion) + * > .is-style-system-panel-footer,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:has(> .is-style-system-details) + * > .is-style-system-panel-footer,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing + * > .is-style-system-panel-footer,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .directory-listing + * > .is-style-system-panel-footer,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .systemstrap-directory-grid + * > .is-style-system-panel-footer {
+.wp-block-group.is-style-system-panel>.is-style-system-accordion+.is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel>.is-style-system-details+.is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel>.query-directory-listing+.is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel>.directory-listing+.is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel>.systemstrap-directory-grid+.is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout>*:has(> .is-style-system-accordion)+*>.is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout>*:has(> .is-style-system-details)+*>.is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout>.query-directory-listing+*>.is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout>.directory-listing+*>.is-style-system-panel-footer,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout>.systemstrap-directory-grid+*>.is-style-system-panel-footer {
     border-top: 0 !important;
 }
 
@@ -372,32 +448,32 @@
 /* Panel Header Seam Ownership                               */
 /* ========================================================= */
 /* Add one top separator when a direct Panel Header follows preceding content */
-.wp-block-group.is-style-system-panel > .is-style-system-panel-header:not(:first-child),
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > .is-style-system-panel-header:not(:first-child) {
+.wp-block-group.is-style-system-panel>.is-style-system-panel-header:not(:first-child),
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>.is-style-system-panel-header:not(:first-child) {
     border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color) !important;
 }
 
 /* Prevent double seam by stripping top border when Header follows components that already own a bottom border */
-.wp-block-group.is-style-system-panel > :is(.is-style-system-panel-header, .is-style-system-list-flush, .is-style-system-accordion, .is-style-system-details) + .is-style-system-panel-header,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > :is(.is-style-system-panel-header, .is-style-system-list-flush, *:has(> .is-style-system-accordion), *:has(> .is-style-system-details)) + .is-style-system-panel-header {
+.wp-block-group.is-style-system-panel> :is(.is-style-system-panel-header, .is-style-system-list-flush, .is-style-system-accordion, .is-style-system-details)+.is-style-system-panel-header,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout> :is(.is-style-system-panel-header, .is-style-system-list-flush, *:has(> .is-style-system-accordion), *:has(> .is-style-system-details))+.is-style-system-panel-header {
     border-top: 0 !important;
 }
 
 /* ========================================================= */
 /* Prevent Double-Chrome on Nested Surfaces                  */
 /* ========================================================= */
-/* When a System List is nested inside a System Panel, strip its 
+/* When a System List is nested inside a System Panel, strip its
    glassmorphism so it doesn't double-blur against the parent's blur. */
-.wp-block-group.is-style-system-panel > :is(.is-style-system-list, .is-style-system-list-flush) > li,
-.wp-block-group.is-style-system-panel > :is(.is-style-system-list, .is-style-system-list-flush) > a,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > :is(.is-style-system-list, .is-style-system-list-flush) > li,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > :is(.is-style-system-list, .is-style-system-list-flush) > a {
+.wp-block-group.is-style-system-panel> :is(.is-style-system-list, .is-style-system-list-flush)>li,
+.wp-block-group.is-style-system-panel> :is(.is-style-system-list, .is-style-system-list-flush)>a,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout> :is(.is-style-system-list, .is-style-system-list-flush)>li,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout> :is(.is-style-system-list, .is-style-system-list-flush)>a {
     background-image: none !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
 }
 
-/* An independent nested Panel consumes the neutral nested lane at any depth 
+/* An independent nested Panel consumes the neutral nested lane at any depth
    to prevent duplicate haze against parent surfaces. */
 .is-style-system-panel .wp-block-group.is-style-system-panel {
     --wp--custom--system-ui-surface: var(--wp--custom--system-ui-surface-nested, transparent);
@@ -409,10 +485,36 @@
 /* Separation for Direct Nested Panels                       */
 /* ========================================================= */
 /* Direct nested System Panels remain independent components and receive separation from the parent shell */
-.wp-block-group.is-style-system-panel > .wp-block-group.is-style-system-panel,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > .wp-block-group.is-style-system-panel {
+.wp-block-group.is-style-system-panel>.wp-block-group.is-style-system-panel,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>.wp-block-group.is-style-system-panel {
     margin-inline: var(--strap-system-panel-padding-x) !important;
-    margin-block: var(--strap-system-panel-padding-y) !important;
     max-width: calc(100% - var(--strap-system-panel-padding-x) - var(--strap-system-panel-padding-x)) !important;
     box-sizing: border-box;
+}
+
+/* Nested Panels receive only shell-boundary inset when first or last. */
+.wp-block-group.is-style-system-panel>.wp-block-group.is-style-system-panel:first-child,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>.wp-block-group.is-style-system-panel:first-child {
+    margin-block-start: var(--strap-system-panel-padding-y);
+}
+
+.wp-block-group.is-style-system-panel>.wp-block-group.is-style-system-panel:last-child,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>.wp-block-group.is-style-system-panel:last-child {
+    margin-block-end: var(--strap-system-panel-padding-y);
+}
+
+/* Panel owns direct Paragraph geometry, background or not. */
+.wp-block-group.is-style-system-panel>p,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>p {
+    margin-block: 0;
+    padding-block: var(--strap-system-panel-padding-y);
+    padding-inline: var(--strap-system-panel-padding-x);
+}
+
+/* Panel owns direct Buttons wrapper geometry, background or not. */
+.wp-block-group.is-style-system-panel>.wp-block-buttons,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>.wp-block-buttons {
+    margin-block: 0;
+    padding-block: var(--strap-system-panel-padding-y);
+    padding-inline: var(--strap-system-panel-padding-x);
 }

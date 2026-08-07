@@ -1,0 +1,60 @@
+/*
+ * System Panel Variation for Latest Comments
+ * Provides a modern chat-like feel where each latest comment
+ * is a separate panel bubble.
+ */
+
+.wp-block-latest-comments.is-style-system-panel {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: var(--wp--preset--spacing--30);
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.wp-block-latest-comments.is-style-system-panel > li {
+    margin: 0;
+    padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30) !important;
+    color: inherit;
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+    border-radius: var(--wp--custom--border-radius);
+    background-color: var(--wp--custom--system-ui-surface);
+    background-image: var(--wp--custom--system-ui-background-image, none);
+    backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    box-shadow: var(--wp--custom--shadow);
+    position: relative;
+    isolation: isolate;
+    transition: background-color 0.2s ease;
+}
+
+.wp-block-latest-comments.is-style-system-panel .wp-block-latest-comments__comment-author,
+.wp-block-latest-comments.is-style-system-panel .wp-block-latest-comments__comment-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.wp-block-latest-comments.is-style-system-panel .wp-block-latest-comments__comment-author:hover,
+.wp-block-latest-comments.is-style-system-panel .wp-block-latest-comments__comment-link:hover {
+    text-decoration: underline;
+}
+
+.wp-block-latest-comments.is-style-system-panel .wp-block-latest-comments__comment-date,
+.wp-block-latest-comments.is-style-system-panel .wp-block-latest-comments__comment-on {
+    color: inherit;
+    opacity: 0.68;
+}
+
+.wp-block-latest-comments.is-style-system-panel .wp-block-latest-comments__comment-excerpt {
+    color: inherit;
+    opacity: 0.9;
+}
+
+.wp-block-latest-comments.is-style-system-panel:not(.is-not-action) > li:hover {
+    background-color: var(--wp--custom--system-ui-panel-hover-bg, var(--wp--custom--system-ui-surface));
+}

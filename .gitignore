@@ -11,3 +11,6 @@ tests/
 .vscode/
 *.py
 .backups/
+docs/**
+!docs/contracts/
+!docs/contracts/**

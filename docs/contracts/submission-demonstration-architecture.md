@@ -268,7 +268,7 @@ It SHOULD teach users how to think in SystemStrap.
 Because this file is a TEMPORARY CONTRACT:
 
 - it MAY be removed after the submission demonstration architecture is fully built and no longer needs a dedicated governing document
-- it MAY be collapsed into `docs/START.md` or another permanent contract if the demonstration architecture becomes stable long-term project behavior
+- it MAY be collapsed into `agents.md` or another permanent contract if the demonstration architecture becomes stable long-term project behavior
 - it MUST remain explicit while implementation work is still using it as the architectural target
 
 ## Prohibited Regressions

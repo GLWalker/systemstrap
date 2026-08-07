@@ -1,50 +1,49 @@
 /*
  * System Panel variation for the Comments block.
- * It provides one chat-like thread surface without changing comment markup.
+ * It provides a modern chat-like feel where each conversation 
+ * (top-level comment + replies) is a single cohesive panel.
  */
 
 .wp-block-comments.is-style-system-panel {
-    --strap-comments-avatar-size: 56px;
     --strap-comments-row-padding-x: var(--wp--preset--spacing--30);
     --strap-comments-row-padding-y: var(--wp--preset--spacing--30);
     --strap-comments-thread-gap: var(--wp--preset--spacing--30);
     --strap-comments-thread-indent: clamp(1.25rem, 8vw, 3.5rem);
     --strap-comments-thread-rail-gap: var(--wp--preset--spacing--20);
-    display: grid;
-    gap: var(--strap-comments-thread-gap);
-    overflow: visible;
-    border: 0;
-    border-radius: 0;
-    background: transparent;
-    background-image: none;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    box-shadow: none;
-    color: inherit;
-}
-
-.wp-block-comments.is-style-system-panel .wp-block-comment-template {
+    
     display: flex;
     flex-direction: column;
     gap: var(--strap-comments-thread-gap);
+    overflow: visible;
+    color: inherit;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.wp-block-comments.is-style-system-panel .wp-block-comment-template {
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
-.wp-block-comments.is-style-system-panel .wp-block-comment-template > :is(.wp-block-comment, .comment, li) {
-    list-style: none;
-    margin: 0;
-    padding: var(--strap-comments-row-padding-y) var(--strap-comments-row-padding-x) !important;
-    background-color: transparent;
-    background-image: none;
-    color: inherit;
-    position: relative;
-    isolation: isolate;
-    transition: background-color 0.2s ease;
+/* Top-level template spacing between panels */
+.wp-block-comments.is-style-system-panel > .wp-block-comment-template {
+    display: flex;
+    flex-direction: column;
+    gap: var(--strap-comments-thread-gap);
 }
 
+/* Base list item resets */
+.wp-block-comments.is-style-system-panel .wp-block-comment-template > :is(.wp-block-comment, .comment, li) {
+    margin: 0;
+    position: relative;
+    isolation: isolate;
+}
+
+/* ONLY Top-level comments get the panel styles */
 .wp-block-comments.is-style-system-panel > .wp-block-comment-template > :is(.wp-block-comment, .comment, li) {
+    padding: var(--strap-comments-row-padding-y) var(--strap-comments-row-padding-x);
     border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
     border-radius: var(--wp--custom--border-radius);
     background-color: var(--wp--custom--system-ui-surface);
@@ -52,86 +51,36 @@
     backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     box-shadow: var(--wp--custom--shadow);
+    transition: background-color 0.2s ease;
 }
 
-.wp-block-comments.is-style-system-panel .wp-block-comment-template .wp-block-comment-template > :is(.wp-block-comment, .comment, li) + :is(.wp-block-comment, .comment, li) {
-    border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+.wp-block-comments.is-style-system-panel > .wp-block-comment-template > :is(.wp-block-comment, .comment, li):hover,
+.wp-block-comments.is-style-system-panel > .wp-block-comment-template > :is(.wp-block-comment, .comment, li):focus-within {
+    background-color: var(--wp--custom--system-ui-panel-hover-bg, var(--wp--custom--system-ui-surface));
 }
 
+/* Nested replies indentation and spacing */
 .wp-block-comments.is-style-system-panel .wp-block-comment-template .wp-block-comment-template {
     margin-top: var(--wp--preset--spacing--20);
     margin-left: var(--strap-comments-thread-indent);
     padding-left: var(--strap-comments-thread-rail-gap);
     border-left: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+    display: flex;
+    flex-direction: column;
+    gap: var(--wp--preset--spacing--20);
 }
 
-.wp-block-comments.is-style-system-panel .comment-meta .wp-block-avatar img {
-    display: block;
-    width: var(--strap-comments-avatar-size);
-    height: var(--strap-comments-avatar-size);
-    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
-    background-color: var(--wp--custom--system-ui-surface);
-}
-
-.wp-block-comments.is-style-system-panel .comment-meta {
-    gap: var(--wp--preset--spacing--30);
-}
-
-.wp-block-comments.is-style-system-panel .comment-stack {
+.wp-block-comments.is-style-system-panel .wp-block-comment-template .wp-block-comment-template > :is(.wp-block-comment, .comment, li) {
     padding: 0;
     border: 0;
-    border-radius: 0;
-    background-color: transparent;
-    background-image: none;
+    background: transparent;
+    box-shadow: none;
 }
 
-.wp-block-comments.is-style-system-panel .comment-author-info {
-    justify-content: center;
-}
-
-.wp-block-comments.is-style-system-panel .comment-author-info .wp-block-comment-author-name {
-    font-size: var(--wp--preset--font-size--medium);
-    font-weight: var(--wp--custom--font-weight-heading);
-    letter-spacing: 0.01em;
-    line-height: 1.2;
-}
-
-.wp-block-comments.is-style-system-panel .comment-author-info .wp-block-comment-date {
-    opacity: 0.72;
-}
-
-.wp-block-comments.is-style-system-panel .wp-block-comment-content {
-    line-height: 1.6;
-}
-
-.wp-block-comments.is-style-system-panel .comment-actions {
-    margin-top: var(--wp--preset--spacing--10);
-    padding-top: var(--wp--preset--spacing--10);
-    border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
-}
-
-.wp-block-comments.is-style-system-panel .comment-actions a {
-    opacity: 0.78;
-}
-
-.wp-block-comments.is-style-system-panel .comment-actions a:hover,
-.wp-block-comments.is-style-system-panel .comment-actions a:focus-visible {
-    opacity: 1;
-}
-
-.wp-block-comments.is-style-system-panel .wp-block-comment-template > :is(.wp-block-comment, .comment, li):hover,
-.wp-block-comments.is-style-system-panel .wp-block-comment-template > :is(.wp-block-comment, .comment, li):focus-within {
-    background-color: transparent;
-}
-
-.wp-block-comments.is-style-system-panel > .wp-block-comment-template > :is(.wp-block-comment, .comment, li):hover,
-.wp-block-comments.is-style-system-panel > .wp-block-comment-template > :is(.wp-block-comment, .comment, li):focus-within {
-    background-color: var(--wp--custom--system-ui-panel-hover-bg);
-}
-
+/* The Respond Form Panel */
 .wp-block-comments.is-style-system-panel .comment-respond {
     margin-top: 0;
-    padding: var(--wp--preset--spacing--30);
+    padding: var(--strap-comments-row-padding-y) var(--strap-comments-row-padding-x);
     border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
     border-radius: var(--wp--custom--border-radius);
     background-color: var(--wp--custom--system-ui-surface);

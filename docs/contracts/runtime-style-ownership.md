@@ -42,7 +42,7 @@ The terms MUST, MUST NOT, SHOULD, SHOULD NOT, and MAY in this contract are to be
 
 The current runtime style ownership layer is implemented through these files:
 
-- `docs/START.md`
+- `agents.md`
 - `docs/contracts/theme-json-design-system.md`
 - `docs/contracts/color-runtime.md`
 - `docs/contracts/variation-architecture.md`

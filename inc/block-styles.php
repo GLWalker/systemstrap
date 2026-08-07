@@ -186,7 +186,7 @@ function strap_register_block_styles() {
 			}
 
 			// 3. Auto-register a Flush variation for any System List component
-			if ( str_starts_with( $variation_name, 'system-list' ) ) {
+			if ( str_starts_with( $variation_name, 'system-list' ) && ! in_array( $block_name, array( 'core/comments', 'core/latest-comments' ), true ) ) {
 				register_block_style(
 					$block_name,
 					array(

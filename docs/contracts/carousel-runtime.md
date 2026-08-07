@@ -44,7 +44,7 @@ The terms MUST, MUST NOT, SHOULD, SHOULD NOT, and MAY in this contract are to be
 
 The current carousel runtime is implemented through these files:
 
-- `docs/START.md`
+- `agents.md`
 - `docs/contracts/variation-architecture.md`
 - `docs/contracts/theme-json-design-system.md`
 - `docs/contracts/runtime-style-ownership.md`
