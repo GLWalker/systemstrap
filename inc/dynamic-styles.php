@@ -117,10 +117,12 @@ if ( ! function_exists( 'strap_generate_dynamic_colors' ) ) {
 			}
 
 			$pagination_text_color = 'inherit';
+			$pagination_contrast_color = '';
 			if ( isset( $fixed_contrast_map[ $slug ] ) ) {
 				$pagination_text_color = "var(--wp--preset--color--{$fixed_contrast_map[ $slug ]})";
 			} elseif ( in_array( $slug, $target_slugs, true ) ) {
 				$pagination_text_color = "var(--wp--preset--color--{$slug}-text)";
+				$pagination_contrast_color = "\n    --strap-pagination-contrast-color: var(--wp--preset--color--{$slug}-text);";
 			}
 
 			$pagination_css .= "
@@ -128,6 +130,7 @@ if ( ! function_exists( 'strap_generate_dynamic_colors' ) ) {
 .wp-block-comments-pagination.has-{$slug}-background-color {
     --strap-pagination-user-accent: var(--wp--preset--color--{$slug});
     --strap-pagination-user-background: var(--wp--preset--color--{$slug});
+{$pagination_contrast_color}
     --strap-pagination-user-color: inherit;
     background-color: transparent !important;
 }
@@ -138,6 +141,7 @@ if ( ! function_exists( 'strap_generate_dynamic_colors' ) ) {
 .wp-block-comments-pagination-next.has-{$slug}-background-color {
     --strap-pagination-user-accent: var(--wp--preset--color--{$slug});
     --strap-pagination-user-background: var(--wp--preset--color--{$slug});
+{$pagination_contrast_color}
     --strap-pagination-user-color: {$pagination_text_color};
     background-color: transparent !important;
 }
@@ -146,6 +150,7 @@ if ( ! function_exists( 'strap_generate_dynamic_colors' ) ) {
 .wp-block-comments-pagination-numbers.has-{$slug}-background-color {
     --strap-pagination-user-accent: var(--wp--preset--color--{$slug});
     --strap-pagination-user-background: var(--wp--preset--color--{$slug});
+{$pagination_contrast_color}
     --strap-pagination-user-color: {$pagination_text_color};
     background-color: transparent !important;
     color: inherit !important;

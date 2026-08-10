@@ -25,7 +25,8 @@
     color: inherit;
 }
 
-.wp-block-table.is-style-system-panel > table > caption {
+.wp-block-table.is-style-system-panel > table > caption,
+.wp-block-table.is-style-system-panel > figcaption {
     caption-side: top;
     padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
     background: var(--wp--custom--system-ui-surface-banner);
@@ -74,12 +75,12 @@
     border-color: var(--wp--custom--system-ui-border-color);
 }
 
-.wp-block-table.is-style-system-panel.has-background > table > caption,
+.wp-block-table.is-style-system-panel.has-background > :is(table > caption, figcaption),
 .wp-block-table.is-style-system-panel.has-background > table > thead > tr > th,
 .wp-block-table.is-style-system-panel.has-background > table > tbody > tr > th,
 .wp-block-table.is-style-system-panel.has-background > table > tbody > tr > td,
 .wp-block-table.is-style-system-panel.has-background > table > tfoot > tr > td,
-.has-background .wp-block-table.is-style-system-panel:not(.has-background) > table > caption,
+.has-background .wp-block-table.is-style-system-panel:not(.has-background) > :is(table > caption, figcaption),
 .has-background .wp-block-table.is-style-system-panel:not(.has-background) > table > thead > tr > th,
 .has-background .wp-block-table.is-style-system-panel:not(.has-background) > table > tbody > tr > th,
 .has-background .wp-block-table.is-style-system-panel:not(.has-background) > table > tbody > tr > td,

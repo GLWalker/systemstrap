@@ -29,7 +29,6 @@
     --directory-grid-card-shadow:
         var(--wp--preset--shadow--sm);
 
-    margin-block: 0;
 }
 
 .query-directory-grid.has-background,
@@ -57,7 +56,6 @@
 
 .query-directory-grid__query,
 .systemstrap-directory-grid__query {
-    margin: 0;
     padding: 0 !important;
     width: 100%;
     list-style: none;

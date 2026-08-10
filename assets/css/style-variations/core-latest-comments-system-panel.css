@@ -6,7 +6,6 @@
 
 .wp-block-latest-comments.is-style-system-panel {
     list-style: none;
-    margin: 0;
     padding: 0;
     color: inherit;
     display: flex;
@@ -53,8 +52,4 @@
 .wp-block-latest-comments.is-style-system-panel .wp-block-latest-comments__comment-excerpt {
     color: inherit;
     opacity: 0.9;
-}
-
-.wp-block-latest-comments.is-style-system-panel:not(.is-not-action) > li:hover {
-    background-color: var(--wp--custom--system-ui-panel-hover-bg, var(--wp--custom--system-ui-surface));
 }

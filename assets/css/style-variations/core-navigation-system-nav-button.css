@@ -7,7 +7,8 @@
 .wp-block-navigation.is-style-system-nav-button {
 	width: 100%;
 	color: inherit;
-    background-color: transparent !important; /* Remove background from parent */
+    background: transparent !important;
+    box-shadow: none !important;
 }
 
 /* Top-level container */
@@ -237,9 +238,7 @@
 
 /* Mobile/offcanvas */
 .wp-block-navigation.is-style-system-nav-button .wp-block-navigation__responsive-dialog {
-	background-color: var(--wp--custom--system-ui-surface, #fff);
 	border-radius: 0;
-	box-shadow: var(--wp--custom--shadow);
 }
 
 .wp-block-navigation.is-style-system-nav-button .wp-block-navigation__responsive-container.is-menu-open {
@@ -410,4 +409,3 @@
 .wp-block-navigation.is-style-system-nav-button.has-dark-background-color .wp-block-navigation__responsive-container-content > .wp-block-navigation__container > .wp-block-navigation-item:hover { 
     background-color: color-mix(in srgb, var(--wp--preset--color--dark) 85%, black) !important; 
 }
-

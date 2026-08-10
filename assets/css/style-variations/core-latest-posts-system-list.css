@@ -8,7 +8,6 @@
     .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush)
 ) {
     list-style: none;
-    margin: 0;
     padding: 0;
     color: inherit;
 }

@@ -45,8 +45,6 @@ h3,
 h4,
 h5,
 h6 {
-    margin-top: 0;
-    margin-bottom: 0.5rem;
     line-height: 1.2;
 }
 
@@ -64,23 +62,9 @@ address {
     line-height: inherit;
 }
 
-ol,
-ul {
-    padding-left: 2rem;
-}
-
-ol,
-ul,
 dl {
     margin-top: 0;
     margin-bottom: 1rem;
-}
-
-ol ol,
-ul ul,
-ol ul,
-ul ol {
-    margin-bottom: 0;
 }
 
 dt {
@@ -90,10 +74,6 @@ dt {
 dd {
     margin-bottom: .5rem;
     margin-left: 0;
-}
-
-blockquote {
-    margin: 0 0 1rem;
 }
 
 b,
@@ -142,8 +122,6 @@ samp {
 
 pre {
     display: block;
-    margin-top: 0;
-    margin-bottom: 1rem;
     overflow: auto;
     font-size: var(--wp--preset--font-size--small, .875rem);
 }
@@ -173,10 +151,6 @@ kbd {
 kbd kbd {
     padding: 0;
     font-size: var(--wp--preset--font-size--medium, 1rem);
-}
-
-figure {
-    margin: 0 0 1rem;
 }
 
 img,
@@ -367,7 +341,6 @@ figcaption,
     font-size: var(--wp--preset--font-size--small, .875rem);
     color: var(--wp--preset--color--secondary-color, #343a40);
     background-color: var(--wp--preset--color--secondary-bg, #f8f9fa);
-    padding: .5rem;
 
 }
 

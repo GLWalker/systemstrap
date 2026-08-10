@@ -46,23 +46,6 @@
     z-index: 1;
 }
 
-/* Recursive Indentation Levels */
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li > ul > li > a {
-    padding-left: calc(var(--wp--preset--spacing--30) + 1.5rem);
-}
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li > ul > li > ul > li > a {
-    padding-left: calc(var(--wp--preset--spacing--30) + 3rem);
-}
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li > ul > li > ul > li > ul > li > a {
-    padding-left: calc(var(--wp--preset--spacing--30) + 4.5rem);
-}
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li > ul > li > ul > li > ul > li > ul > li > a {
-    padding-left: calc(var(--wp--preset--spacing--30) + 6rem);
-}
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li > ul > li > ul > li > ul > li > ul > li > ul > li > a {
-    padding-left: calc(var(--wp--preset--spacing--30) + 7.5rem);
-}
-
 /* Hover States on Anchor */
 .wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush):not(.is-not-action) li:hover:not(:has(li:hover)) > a,
 .wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush):not(.is-not-action) li:hover:not(:has(li:hover)) > a {

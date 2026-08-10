@@ -43,23 +43,6 @@
     z-index: 1;
 }
 
-/* Recursive Indentation Levels */
-.wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush) li > ul > li > a {
-    padding-left: calc(var(--wp--preset--spacing--30) + 1.5rem);
-}
-.wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush) li > ul > li > ul > li > a {
-    padding-left: calc(var(--wp--preset--spacing--30) + 3rem);
-}
-.wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush) li > ul > li > ul > li > ul > li > a {
-    padding-left: calc(var(--wp--preset--spacing--30) + 4.5rem);
-}
-.wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush) li > ul > li > ul > li > ul > li > ul > li > a {
-    padding-left: calc(var(--wp--preset--spacing--30) + 6rem);
-}
-.wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush) li > ul > li > ul > li > ul > li > ul > li > ul > li > a {
-    padding-left: calc(var(--wp--preset--spacing--30) + 7.5rem);
-}
-
 /* Hover States */
 .wp-block-categories:is(.is-style-system-list, .is-style-system-list-flush):not(.is-not-action) li:hover:not(:has(li:hover))::before,
 .wp-block-categories-list:is(.is-style-system-list, .is-style-system-list-flush):not(.is-not-action) li:hover:not(:has(li:hover))::before {

@@ -6,7 +6,6 @@
 
 .wp-block-latest-comments.is-style-system-list {
     list-style: none;
-    margin: 0;
     padding: 0;
     color: inherit;
     border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
@@ -58,21 +57,12 @@
     opacity: 0.9;
 }
 
-.wp-block-latest-comments.is-style-system-list:not(.is-not-action) > li:hover {
-    background-color: var(--wp--custom--system-ui-list-hover-bg);
-}
-
 .wp-block-latest-comments.is-style-system-list.has-background > li,
 .has-background > .wp-block-latest-comments.is-style-system-list:not(.has-background) > li {
     background: transparent;
     background-image: none;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
-}
-
-.wp-block-latest-comments.is-style-system-list.has-background:not(.is-not-action) > li:hover,
-.has-background > .wp-block-latest-comments.is-style-system-list:not(.has-background):not(.is-not-action) > li:hover {
-    background: var(--wp--custom--system-ui-list-hover-bg);
 }
 
 /* Panel overrides */

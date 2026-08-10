@@ -5,7 +5,7 @@
     --strap-pagination-bg: var(--strap-pagination-surface-color);
     --strap-pagination-border-color: var(--wp--custom--system-ui-border-color);
     --strap-pagination-color: var(--strap-pagination-user-color, var(--wp--preset--color--primary-text));
-    --strap-pagination-current-bg: var(--strap-pagination-surface-color);
+    --strap-pagination-current-bg: color-mix(in srgb, var(--strap-pagination-surface-color) 70%, var(--strap-pagination-contrast-color, color-mix(in srgb, currentColor 60%, var(--strap-pagination-surface-color))));
     --strap-pagination-current-border-color: var(--wp--custom--system-ui-border-color);
     --strap-pagination-current-color: var(--strap-pagination-user-color, var(--wp--preset--color--primary-text));
     --strap-pagination-hover-bg: var(--strap-pagination-surface-color);
@@ -34,13 +34,13 @@
     --strap-pagination-accent: var(--strap-pagination-user-accent, currentColor);
     --strap-pagination-surface-color: var(--strap-pagination-user-background, var(--strap-pagination-accent));
     --strap-pagination-bg: color-mix(in srgb, var(--strap-pagination-user-background, transparent) 14%, transparent);
-    --strap-pagination-border-color: var(--wp--custom--system-ui-border-color);
+    --strap-pagination-border-color: var(--strap-pagination-accent);
     --strap-pagination-color: var(--strap-pagination-user-accent, inherit);
-    --strap-pagination-current-bg: color-mix(in srgb, var(--strap-pagination-user-background, transparent) 20%, transparent);
-    --strap-pagination-current-border-color: var(--wp--custom--system-ui-border-color);
+    --strap-pagination-current-bg: color-mix(in srgb, color-mix(in srgb, var(--strap-pagination-surface-color) 40%, var(--strap-pagination-contrast-color, var(--strap-pagination-surface-color))) 18%, transparent);
+    --strap-pagination-current-border-color: var(--strap-pagination-accent);
     --strap-pagination-current-color: var(--strap-pagination-user-accent, inherit);
     --strap-pagination-hover-bg: color-mix(in srgb, var(--strap-pagination-user-background, transparent) 18%, transparent);
-    --strap-pagination-hover-border-color: var(--wp--custom--system-ui-border-color);
+    --strap-pagination-hover-border-color: var(--strap-pagination-accent);
     --strap-pagination-hover-color: var(--strap-pagination-user-accent, inherit);
     --strap-pagination-control-size: calc(var(--wp--preset--font-size--medium) * 2.35);
     --strap-pagination-arrow-control-size: calc(var(--strap-pagination-control-size) * .88);
@@ -187,7 +187,7 @@
     .is-style-system-ui-pagination-pill-outline,
     .is-style-system-ui-pagination-square,
     .is-style-system-ui-pagination-square-outline,
-    .is-style-system-ui-pagination-badge) {
+    .is-style-system-ui-pagination-badge) > a {
     align-items: center;
     background-color: var(--strap-pagination-bg) !important;
     background-image: var(--strap-pagination-surface-layer), var(--strap-pagination-background-image) !important;
@@ -211,30 +211,7 @@
     .is-style-system-ui-pagination-pill-outline,
     .is-style-system-ui-pagination-square,
     .is-style-system-ui-pagination-square-outline,
-    .is-style-system-ui-pagination-badge)>a,
-.wp-block-post-navigation-link:is(.is-style-system-ui-pagination,
-    .is-style-system-ui-pagination-outline,
-    .is-style-system-ui-pagination-pill,
-    .is-style-system-ui-pagination-pill-outline,
-    .is-style-system-ui-pagination-square,
-    .is-style-system-ui-pagination-square-outline,
-    .is-style-system-ui-pagination-badge)>a:is(:hover, :focus-visible) {
-    background: transparent;
-    border: 0;
-    box-shadow: none;
-    color: inherit;
-    outline: none;
-    padding: 0;
-    transform: none;
-}
-
-.wp-block-post-navigation-link:is(.is-style-system-ui-pagination,
-    .is-style-system-ui-pagination-outline,
-    .is-style-system-ui-pagination-pill,
-    .is-style-system-ui-pagination-pill-outline,
-    .is-style-system-ui-pagination-square,
-    .is-style-system-ui-pagination-square-outline,
-    .is-style-system-ui-pagination-badge):is(:hover, :has(a:focus-visible)) {
+    .is-style-system-ui-pagination-badge) > a:is(:hover, :focus-visible) {
     background-color: var(--strap-pagination-hover-bg) !important;
     background-image: var(--strap-pagination-hover-layer), var(--strap-pagination-background-image) !important;
     border-color: var(--strap-pagination-hover-border-color) !important;
@@ -249,7 +226,7 @@
     .is-style-system-ui-pagination-pill-outline,
     .is-style-system-ui-pagination-square,
     .is-style-system-ui-pagination-square-outline,
-    .is-style-system-ui-pagination-badge):has(a:focus-visible) {
+    .is-style-system-ui-pagination-badge) > a:focus-visible {
     outline: var(--wp--custom--focus-ring-width) solid var(--wp--custom--focus-ring-color);
     outline-offset: 2px;
 }
@@ -406,7 +383,7 @@
     background-color: var(--strap-pagination-current-bg) !important;
     background-image: var(--strap-pagination-current-layer), var(--strap-pagination-background-image) !important;
     border-color: var(--strap-pagination-current-border-color) !important;
-    box-shadow: none !important;
+    box-shadow: inset 0 0 0 1px var(--strap-pagination-contrast-color, currentColor) !important;
     color: var(--strap-pagination-current-color) !important;
     filter: contrast(1.06);
 }
@@ -565,7 +542,7 @@
     background-color: var(--strap-pagination-current-bg) !important;
     background-image: var(--strap-pagination-current-layer), var(--strap-pagination-background-image) !important;
     border-color: var(--strap-pagination-current-border-color) !important;
-    box-shadow: none !important;
+    box-shadow: inset 0 0 0 1px var(--strap-pagination-contrast-color, currentColor) !important;
     color: var(--strap-pagination-current-color) !important;
     filter: contrast(1.06);
 }

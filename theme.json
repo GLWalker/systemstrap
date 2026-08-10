@@ -1421,6 +1421,11 @@
 					"blockGap": "var:preset|spacing|30"
 				}
 			},
+			"core/query-total": {
+				"typography": {
+					"fontSize": "var:preset|font-size|small"
+				}
+			},
 			"core/query-no-results": {
 				"spacing": {
 					"padding": {

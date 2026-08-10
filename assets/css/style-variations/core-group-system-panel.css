@@ -4,7 +4,7 @@
  */
 /* Core Panel Wrapper */
 .wp-block-group.is-style-system-panel {
-    --strap-system-panel-padding-y: var(--wp--preset--spacing--20);
+    --strap-system-panel-padding-y: var(--wp--preset--spacing--30);
     --strap-system-panel-padding-x: var(--wp--preset--spacing--30);
 
     border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
@@ -282,12 +282,6 @@
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout>.wp-block-image img {
     width: 100%;
     border-radius: 0 !important;
-}
-
-/* Separate explicit System UI widgets outside panels. Their row presentation is
-   opt-in, and the gap matches the theme's native Group and Column rhythm. */
-:is(.wp-block-group, .wp-block-column):not(.is-style-system-panel)> :is(.wp-block-archives, .wp-block-categories, .wp-block-page-list, .wp-block-rss, .wp-block-latest-posts, .wp-block-latest-comments, .wp-block-terms-query):is(.is-style-system-list, .is-style-system-list-flush)+ :is(.wp-block-archives, .wp-block-categories, .wp-block-page-list, .wp-block-rss, .wp-block-latest-posts, .wp-block-latest-comments, .wp-block-terms-query):is(.is-style-system-list, .is-style-system-list-flush) {
-    margin-block-start: var(--wp--preset--spacing--30) !important;
 }
 
 /* Explicit System UI list shells outside panels are real surfaced containers,

@@ -32,7 +32,7 @@
 
 .is-style-system-panel .wp-block-details[class*="wp-block-details"]:is(.is-style-system-details) summary {
     border-radius: 0;
-    background: var(--wp--custom--system-ui-surface-banner, var(--wp--custom--system-ui-surface-nested, transparent));
+    background: var(--wp--custom--system-ui-surface-nested, transparent) !important;
     background-image: var(--wp--custom--system-ui-background-image-nested, none) !important;
 }
 
