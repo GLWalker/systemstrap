@@ -18,6 +18,48 @@
 
 ## Internal Contributor Reference — Coding Standards
 
+## Release Workflow — SystemStrap
+
+Never commit or push from the live development theme:
+
+```txt
+/Users/glwalker/DevKinsta/public/system/wp-content/themes/systemstrap
+```
+
+For a SystemStrap distribution and GitHub release, use the staging workflow:
+
+1. Run:
+
+    ```sh
+    /Users/glwalker/DevKinsta/public/git/build-project-backup.sh system theme systemstrap
+    ```
+
+    This synchronizes the live theme to:
+
+    ```txt
+    /Users/glwalker/DevKinsta/public/git/systemstrap
+    ```
+
+    and creates the clean distribution archive:
+
+    ```txt
+    /Users/glwalker/DevKinsta/public/git/systemstrap.zip
+    ```
+
+2. Inspect the staging scope. Include only confirmed release files; never stage
+   `.backups`, runtime data, machine files, or private `docs/**` content.
+
+3. Commit and push from the staging repository only:
+
+    ```sh
+    git -C /Users/glwalker/DevKinsta/public/git/systemstrap add <approved paths>
+    git -C /Users/glwalker/DevKinsta/public/git/systemstrap commit -m "<release summary>"
+    git -C /Users/glwalker/DevKinsta/public/git/systemstrap push origin main
+    ```
+
+The staging script preserves the staging repository's `.git` directory and
+includes only `agents.md` plus `docs/contracts/**` from SystemStrap's docs.
+
 **Purpose:**
 Provide a concise, neutral, reusable description of preferred coding practices for JavaScript, PHP, and CSS across the SystemStrap project.
 
