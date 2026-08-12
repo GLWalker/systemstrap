@@ -17,8 +17,11 @@
     overflow: visible;
     color: inherit;
     border: 0;
-    background: transparent;
     box-shadow: none;
+}
+
+.wp-block-comments.is-style-system-panel:not(.has-background) {
+    background: transparent;
 }
 
 .wp-block-comments.is-style-system-panel .wp-block-comment-template {
@@ -46,12 +49,15 @@
     padding: var(--strap-comments-row-padding-y) var(--strap-comments-row-padding-x);
     border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
     border-radius: var(--wp--custom--border-radius);
-    background-color: var(--wp--custom--system-ui-surface);
-    background-image: var(--wp--custom--system-ui-background-image, none);
     backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     box-shadow: var(--wp--custom--shadow);
     transition: background-color 0.2s ease;
+}
+
+.wp-block-comments.is-style-system-panel:not(.has-background) > .wp-block-comment-template > :is(.wp-block-comment, .comment, li) {
+    background-color: var(--wp--custom--system-ui-surface);
+    background-image: var(--wp--custom--system-ui-background-image, none);
 }
 
 .wp-block-comments.is-style-system-panel > .wp-block-comment-template > :is(.wp-block-comment, .comment, li):hover,

@@ -631,17 +631,21 @@
  *
  * Comment-family baseline rhythm now lives in theme.json:
  * - core/comments owns the shared body/meta/actions stack used by plain,
- *   list, and panel comments.
+ *   list, and panel comments. The content/action avatar offset applies only
+ *   when the rendered comment stack contains a Core Avatar.
  * - core/post-comments-form owns the baseline reply-form stack, including
  *   the native `form.comment-form` gap and submit-control offset.
- * - core/latest-comments owns the plain compact avatar/meta/excerpt rhythm
- *   with the shared comment avatar/content gap. Explicit Latest Comments
- *   System UI list cards mirror that lane with
- *   `--strap-latest-comments-content-gap`.
+ * - core/latest-comments owns the plain compact avatar/meta/excerpt rhythm.
+ *   Its article grid uses the avatar column only when Core emits
+ *   `.has-avatars`; avatar-off rows use a single content column.
+ * - Latest Comments System List and System Panel paint their default System
+ *   UI surfaces only when the block lacks `.has-background`. A selected
+ *   WordPress background and explicit text color remain authoritative.
  *
  * The runtime comment variation files add explicit surface ownership, reply
  * thread rails, framed avatars, and surfaced respond blocks for list/panel
- * comment variants.
+ * comment variants. List shells and panel cards paint their default System UI
+ * surfaces only when the owning Comments block lacks `.has-background`.
  * Comments list row rules target direct rendered comment rows as
  * `.wp-block-comment`, `.comment`, or `li` so native and pattern-rendered
  * comment templates receive the same System UI row padding. The list shell
@@ -983,8 +987,6 @@ ol.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) > li {
 /* 2. System Details Variation  */
 .wp-block-details.is-style-system-details {
     border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
-    background: var(--wp--custom--system-ui-surface);
-    background-image: var(--wp--custom--system-ui-background-image, none);
     backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     border-radius: var(--wp--custom--border-radius);
@@ -992,8 +994,13 @@ ol.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) > li {
     box-shadow: var(--wp--custom--shadow);
 }
 
+.wp-block-details.is-style-system-details:not(.has-background) {
+    background: var(--wp--custom--system-ui-surface);
+    background-image: var(--wp--custom--system-ui-background-image, none);
+}
+
 /* Nested Outer Borders & Flush Edges */
-.is-style-system-panel .wp-block-details[class*="wp-block-details"]:is(.is-style-system-details) {
+.is-style-system-panel .wp-block-details[class*="wp-block-details"]:is(.is-style-system-details):not(.has-background) {
     border-color: var(--wp--custom--system-ui-border-color) !important;
     border-left: 0;
     border-right: 0;
@@ -1011,9 +1018,12 @@ ol.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) > li {
     border-bottom: 0;
 }
 
-.is-style-system-panel .wp-block-details[class*="wp-block-details"]:is(.is-style-system-details) summary {
+.is-style-system-panel .wp-block-details[class*="wp-block-details"]:is(.is-style-system-details):not(.has-background) summary {
     border-radius: 0;
-    background: var(--wp--custom--system-ui-surface-nested, transparent) !important;
+    background: var(
+        --wp--custom--system-ui-surface-banner,
+        var(--wp--custom--system-ui-surface-nested, transparent)
+    ) !important;
     background-image: var(--wp--custom--system-ui-background-image-nested, none) !important;
 }
 
@@ -1035,7 +1045,6 @@ ol.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) > li {
     list-style: none;
     padding: var(--wp--preset--spacing--20) 1.25rem;
     color: var(--wp--preset--color--inherit);
-    background: var(--wp--custom--system-ui-surface-banner, var(--wp--custom--system-ui-surface, transparent));
     cursor: pointer;
     border-bottom: var(--wp--custom--border-width, 1px) solid transparent;
     border-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px));
@@ -1043,6 +1052,11 @@ ol.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) > li {
     position: relative;
     font-weight: var(--wp--custom--font-weight-heading);
     line-height: 1.2;
+}
+
+.wp-block-details.is-style-system-details:not(.has-background) summary {
+    background: var(--wp--custom--system-ui-surface-banner, var(--wp--custom--system-ui-surface, transparent));
+    background-image: var(--wp--custom--system-ui-background-image, none);
 }
 
 /* Sync summary inner radii with the outer container when stacked */
@@ -1075,7 +1089,7 @@ ol.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) > li {
     border-bottom-color: var(--wp--custom--system-ui-border-color);
 }
 
-.is-style-system-panel .wp-block-details[class*="wp-block-details"]:is(.is-style-system-details)[open] {
+.is-style-system-panel .wp-block-details[class*="wp-block-details"]:is(.is-style-system-details):not(.has-background)[open] {
     border-bottom-color: var(--wp--custom--system-ui-border-color);
     background: var(--wp--custom--system-ui-surface-nested, transparent) !important;
     background-image: var(--wp--custom--system-ui-background-image-nested, none) !important;
@@ -1087,14 +1101,14 @@ ol.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) > li {
     border-bottom-right-radius: 0;
 }
 
-.is-style-system-panel .wp-block-details[class*="wp-block-details"]:is(.is-style-system-details)[open] > summary {
+.is-style-system-panel .wp-block-details[class*="wp-block-details"]:is(.is-style-system-details):not(.has-background)[open] > summary {
     border-bottom-color: var(--wp--custom--system-ui-border-color);
     background: var(--wp--custom--system-ui-surface-nested, transparent) !important;
     background-image: var(--wp--custom--system-ui-background-image-nested, none) !important;
 }
 
-.is-style-system-panel.has-background .wp-block-details[class*="wp-block-details"]:is(.is-style-system-details)[open] > summary,
-.has-background > .is-style-system-panel .wp-block-details[class*="wp-block-details"]:is(.is-style-system-details)[open] > summary {
+.is-style-system-panel.has-background .wp-block-details[class*="wp-block-details"]:is(.is-style-system-details):not(.has-background)[open] > summary,
+.has-background > .is-style-system-panel .wp-block-details[class*="wp-block-details"]:is(.is-style-system-details):not(.has-background)[open] > summary {
     border-bottom-color: var(--wp--custom--system-ui-border-color);
     background: var(--wp--custom--system-ui-surface-nested, transparent) !important;
     background-image: var(--wp--custom--system-ui-background-image-nested, none) !important;
@@ -1123,8 +1137,8 @@ ol.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) > li {
     border-color: var(--wp--custom--system-ui-border-color) !important;
 }
 
-.is-style-system-panel.has-background .wp-block-details[class*="wp-block-details"]:is(.is-style-system-details),
-.has-background > .is-style-system-panel .wp-block-details[class*="wp-block-details"]:is(.is-style-system-details) {
+.is-style-system-panel.has-background .wp-block-details[class*="wp-block-details"]:is(.is-style-system-details):not(.has-background),
+.has-background > .is-style-system-panel .wp-block-details[class*="wp-block-details"]:is(.is-style-system-details):not(.has-background) {
     border-color: var(--wp--custom--system-ui-border-color) !important;
     background: var(--wp--custom--system-ui-surface-nested, transparent) !important;
     background-image: var(--wp--custom--system-ui-background-image-nested, none) !important;

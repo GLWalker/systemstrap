@@ -10,12 +10,15 @@
     color: inherit;
     border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
     border-radius: var(--wp--custom--border-radius);
-    background-color: var(--wp--custom--system-ui-surface);
-    background-image: var(--wp--custom--system-ui-background-image, none);
     backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     box-shadow: var(--wp--custom--shadow);
     overflow: hidden;
+}
+
+.wp-block-latest-comments.is-style-system-list:not(.has-background) {
+    background-color: var(--wp--custom--system-ui-surface);
+    background-image: var(--wp--custom--system-ui-background-image, none);
 }
 
 .wp-block-latest-comments.is-style-system-list > li {

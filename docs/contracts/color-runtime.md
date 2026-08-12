@@ -126,11 +126,10 @@ Palette slug renames MUST be treated as breaking runtime changes.
 SystemStrap owns custom `gradients` and `duotone` registries in `theme.json`.
 
 SystemStrap organizes gradient presets into three explicit namespaces:
+
 - **Absolute** (`absolute-01` through `absolute-04`)
 - **Accent** (`accent-10` through `accent-160` base/Alt pairs)
 - **Pattern** (`pattern-*` transparent contextual patterns)
-
-Legacy `*-hover` gradient slugs are deprecated and superseded by Alt presets (`accent-20`, `accent-40`, etc.).
 
 Those registries MUST be treated as theme-owned design surfaces.
 
@@ -141,6 +140,7 @@ The editor MAY hide Core defaults while still preserving compatibility with Core
 SystemStrap dynamic CSS generation in `inc/dynamic-styles.php` detects all active gradient presets prefixed with `pattern-` (e.g. `pattern-10`) and generates block-agnostic pattern routing rules.
 
 ### Runtime Behavior
+
 1. A Pattern gradient (`pattern-*`) may coexist with a preset background-color class in saved markup.
 2. WordPress Core gradient utilities may emit the `background` shorthand, which erases solid background colors.
 3. SystemStrap restores the preset background using `background-color` and reapplies the pattern using `background-image`.
@@ -149,6 +149,7 @@ SystemStrap dynamic CSS generation in `inc/dynamic-styles.php` detects all activ
 6. Child elements may apply their own readable text colors without altering the wrapper pattern tint.
 
 ### Generated Runtime CSS Pattern
+
 ```css
 .has-pattern-10-gradient-background {
 	--wp--custom--system-ui-pattern-color: currentColor;
@@ -162,6 +163,7 @@ SystemStrap dynamic CSS generation in `inc/dynamic-styles.php` detects all activ
 ```
 
 ### Pattern Custom Token Surface
+
 - `--wp--custom--system-ui-pattern-color` (default `currentColor`)
 - `--wp--custom--system-ui-pattern-highlight-color` (default `color-mix(in srgb, currentColor 35%, white)`)
 - `--wp--custom--system-ui-pattern-shadow-color` (default `color-mix(in srgb, currentColor 70%, white)`)
@@ -172,6 +174,7 @@ SystemStrap dynamic CSS generation in `inc/dynamic-styles.php` detects all activ
 - `--wp--custom--system-ui-pattern-tone-high` (default `var(--wp--custom--system-ui-pattern-highlight-color, currentColor)`)
 
 ### Constraints
+
 - Pattern routing MUST remain block-agnostic.
 - Pattern routing MUST NOT be restricted to Group, Cover, Panel, or System UI block styles.
 - Pattern routing MUST NOT use the `background` shorthand.
@@ -184,14 +187,15 @@ When an element carries a registered semantic text-color class (`.has-{slug}-col
 
 ### Tone Variable Mapping
 
-| Pattern variable | Generated source |
-| :--- | :--- |
-| `--wp--custom--system-ui-pattern-color` | `--wp--preset--color--{slug}` |
-| `--wp--custom--system-ui-pattern-tone-low` | `--wp--preset--color--{slug}-30` |
-| `--wp--custom--system-ui-pattern-tone-mid` | `--wp--preset--color--{slug}-60` |
+| Pattern variable                            | Generated source                 |
+| :------------------------------------------ | :------------------------------- |
+| `--wp--custom--system-ui-pattern-color`     | `--wp--preset--color--{slug}`    |
+| `--wp--custom--system-ui-pattern-tone-low`  | `--wp--preset--color--{slug}-30` |
+| `--wp--custom--system-ui-pattern-tone-mid`  | `--wp--preset--color--{slug}-60` |
 | `--wp--custom--system-ui-pattern-tone-high` | `--wp--preset--color--{slug}-90` |
 
 ### Architectural Rules
+
 - Pattern geometry lives in `theme.json`.
 - Dynamic Styles supplies contextual tonal ingredients.
 - Generated pattern tone variables are emitted ONLY for semantic palette colors that receive generated shade ladders (`$target_slugs`).
@@ -200,19 +204,22 @@ When an element carries a registered semantic text-color class (`.has-{slug}-col
 - Custom colors and non-ladder utility colors remain supported through `currentColor` fallbacks.
 
 ### Generated Tone CSS Example
+
 ```css
 .has-primary-color {
-	--wp--custom--system-ui-pattern-color:
-		var(--wp--preset--color--primary);
+	--wp--custom--system-ui-pattern-color: var(--wp--preset--color--primary);
 
-	--wp--custom--system-ui-pattern-tone-low:
-		var(--wp--preset--color--primary-30);
+	--wp--custom--system-ui-pattern-tone-low: var(
+		--wp--preset--color--primary-30
+	);
 
-	--wp--custom--system-ui-pattern-tone-mid:
-		var(--wp--preset--color--primary-60);
+	--wp--custom--system-ui-pattern-tone-mid: var(
+		--wp--preset--color--primary-60
+	);
 
-	--wp--custom--system-ui-pattern-tone-high:
-		var(--wp--preset--color--primary-90);
+	--wp--custom--system-ui-pattern-tone-high: var(
+		--wp--preset--color--primary-90
+	);
 }
 ```
 
@@ -280,7 +287,7 @@ For each target slug, the current runtime MUST generate:
 - a `-text` contrast variable
 - a `-shadow-rgb` variable
 
-*(Note: `-text-rgb` was removed to reduce payload bloat).*
+_(Note: `-text-rgb` was removed to reduce payload bloat)._
 
 These derived variables are part of the color-runtime contract because gradients, buttons, and contrast-aware surfaces consume them directly.
 
@@ -315,8 +322,8 @@ The current behavior is:
 
 - Core enqueues `global-styles` normally.
 - `strap_enqueue_all_dynamic_css()` runs after Core on:
-  - `wp_enqueue_scripts` (priority 9999)
-  - `enqueue_block_editor_assets` (priority 9999)
+    - `wp_enqueue_scripts` (priority 9999)
+    - `enqueue_block_editor_assets` (priority 9999)
 - the function dynamically generates the layout and color utility overrides.
 - the function appends the generated CSS to the existing `global-styles` handle using `wp_add_inline_style()`.
 
@@ -375,7 +382,7 @@ The current dynamic color CSS appended to `global-styles` includes runtime behav
 - latest-posts background and text fixes
 - outline button focus behavior
 
-*(Note: button hover, focus, and active background behavior has been shifted to `main-styles.css` using universal `color-mix` overlays, removing the dependency on discrete shade variables for interaction).*
+_(Note: button hover, focus, and active background behavior has been shifted to `main-styles.css` using universal `color-mix` overlays, removing the dependency on discrete shade variables for interaction)._
 
 This list is exhaustive as of the current contract version.
 

@@ -198,58 +198,73 @@
 
 /* Plain Details blocks inside panels should keep their native look but inherit
    the same breathing room as other direct panel children. */
-.wp-block-group.is-style-system-panel>.wp-block-details>summary,
-.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.wp-block-details>summary {
+.wp-block-group.is-style-system-panel>.wp-block-details:not(.is-style-system-details)>summary,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.wp-block-details:not(.is-style-system-details)>summary {
     padding: var(--strap-system-panel-padding-y) var(--strap-system-panel-padding-x);
 }
 
-.wp-block-group.is-style-system-panel>.wp-block-details[open]>*:not(summary),
-.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.wp-block-details[open]>*:not(summary) {
+.wp-block-group.is-style-system-panel>.wp-block-details:not(.is-style-system-details)[open]>*:not(summary),
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.wp-block-details:not(.is-style-system-details)[open]>*:not(summary) {
     margin: 0 !important;
     padding: var(--wp--preset--spacing--10) var(--strap-system-panel-padding-x);
 }
 
+.wp-block-group.is-style-system-panel>.wp-block-group.is-style-system-panel-header+.wp-block-details:not(.is-style-system-details),
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*:has(> .wp-block-group.is-style-system-panel-header)+*>.wp-block-details:not(.is-style-system-details) {
+    margin-block-start: 0;
+}
+
 /* Plain Accordion blocks inside panels should keep native behavior but inherit
    the same spacing and seam contract as other direct panel children. */
-.wp-block-group.is-style-system-panel>.wp-block-accordion,
-.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.wp-block-accordion {
+.wp-block-group.is-style-system-panel>.wp-block-accordion:not(.is-style-system-accordion),
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.wp-block-accordion:not(.is-style-system-accordion) {
     margin: 0 !important;
 }
 
-.wp-block-group.is-style-system-panel>.wp-block-accordion .wp-block-accordion-item,
-.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.wp-block-accordion .wp-block-accordion-item {
+.wp-block-group.is-style-system-panel>.wp-block-accordion:not(.is-style-system-accordion)+.wp-block-accordion:not(.is-style-system-accordion),
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*:has(> .wp-block-accordion:not(.is-style-system-accordion))+*:has(> .wp-block-accordion:not(.is-style-system-accordion)) {
+    margin-block-start: 0;
+}
+
+.wp-block-group.is-style-system-panel>.wp-block-accordion:not(.is-style-system-accordion)+.wp-block-accordion.is-style-system-accordion,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*:has(> .wp-block-accordion:not(.is-style-system-accordion))+*:has(> .wp-block-accordion.is-style-system-accordion) {
+    margin-block-start: 0;
+}
+
+.wp-block-group.is-style-system-panel>.wp-block-accordion:not(.is-style-system-accordion) .wp-block-accordion-item,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.wp-block-accordion:not(.is-style-system-accordion) .wp-block-accordion-item {
     margin: 0 !important;
     border: 0 !important;
     background: transparent !important;
     box-shadow: none !important;
 }
 
-.wp-block-group.is-style-system-panel>.wp-block-accordion .wp-block-accordion-item+.wp-block-accordion-item,
-.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.wp-block-accordion .wp-block-accordion-item+.wp-block-accordion-item {
+.wp-block-group.is-style-system-panel>.wp-block-accordion:not(.is-style-system-accordion) .wp-block-accordion-item+.wp-block-accordion-item,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.wp-block-accordion:not(.is-style-system-accordion) .wp-block-accordion-item+.wp-block-accordion-item {
     margin-top: 0 !important;
 }
 
-.wp-block-group.is-style-system-panel>.wp-block-accordion .wp-block-accordion-heading,
-.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.wp-block-accordion .wp-block-accordion-heading {
+.wp-block-group.is-style-system-panel>.wp-block-accordion:not(.is-style-system-accordion) .wp-block-accordion-heading,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.wp-block-accordion:not(.is-style-system-accordion) .wp-block-accordion-heading {
     margin: 0 !important;
 }
 
-.wp-block-group.is-style-system-panel>.wp-block-accordion .wp-block-accordion-heading__toggle,
-.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.wp-block-accordion .wp-block-accordion-heading__toggle {
+.wp-block-group.is-style-system-panel>.wp-block-accordion:not(.is-style-system-accordion) .wp-block-accordion-heading__toggle,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.wp-block-accordion:not(.is-style-system-accordion) .wp-block-accordion-heading__toggle {
     padding: var(--strap-system-panel-padding-y) var(--strap-system-panel-padding-x);
     min-height: calc(var(--wp--preset--spacing--40) + var(--wp--preset--spacing--30));
 }
 
-.wp-block-group.is-style-system-panel>.wp-block-accordion .wp-block-accordion-panel,
-.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.wp-block-accordion .wp-block-accordion-panel {
+.wp-block-group.is-style-system-panel>.wp-block-accordion:not(.is-style-system-accordion) .wp-block-accordion-panel,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.wp-block-accordion:not(.is-style-system-accordion) .wp-block-accordion-panel {
     margin: 0 !important;
     padding: var(--wp--preset--spacing--10) var(--strap-system-panel-padding-x);
 }
 
-.wp-block-group.is-style-system-panel>.wp-block-accordion .wp-block-accordion-panel>*,
-.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.wp-block-accordion .wp-block-accordion-panel>*,
-.wp-block-group.is-style-system-panel>.wp-block-accordion .wp-block-accordion-panel .block-editor-block-list__layout>*,
-.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.wp-block-accordion .wp-block-accordion-panel .block-editor-block-list__layout>* {
+.wp-block-group.is-style-system-panel>.wp-block-accordion:not(.is-style-system-accordion) .wp-block-accordion-panel>*,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.wp-block-accordion:not(.is-style-system-accordion) .wp-block-accordion-panel>*,
+.wp-block-group.is-style-system-panel>.wp-block-accordion:not(.is-style-system-accordion) .wp-block-accordion-panel .block-editor-block-list__layout>*,
+.wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*>.wp-block-accordion:not(.is-style-system-accordion) .wp-block-accordion-panel .block-editor-block-list__layout>* {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
 }
