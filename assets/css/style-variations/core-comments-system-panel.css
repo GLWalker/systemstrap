@@ -60,11 +60,6 @@
     background-image: var(--wp--custom--system-ui-background-image, none);
 }
 
-.wp-block-comments.is-style-system-panel > .wp-block-comment-template > :is(.wp-block-comment, .comment, li):hover,
-.wp-block-comments.is-style-system-panel > .wp-block-comment-template > :is(.wp-block-comment, .comment, li):focus-within {
-    background-color: var(--wp--custom--system-ui-panel-hover-bg, var(--wp--custom--system-ui-surface));
-}
-
 /* Nested replies indentation and spacing */
 .wp-block-comments.is-style-system-panel .wp-block-comment-template .wp-block-comment-template {
     margin-top: var(--wp--preset--spacing--20);

@@ -229,6 +229,47 @@ header.wp-block-template-part {
     box-shadow: var(--wp--preset--shadow--btn-active, none);
 }
 
+/* Button-only interpretation of Core font-size selection classes. */
+.wp-block-button:not(.is-style-system-btn-icon) .wp-block-button__link {
+    font-size: 1rem;
+    line-height: 1.35;
+}
+
+.wp-block-button:not(.is-style-system-btn-icon) .wp-block-button__link.has-x-small-font-size {
+    font-size: .75rem;
+    line-height: 1.3;
+}
+
+.wp-block-button:not(.is-style-system-btn-icon) .wp-block-button__link.has-small-font-size {
+    font-size: .875rem;
+    line-height: 1.3;
+}
+
+.wp-block-button:not(.is-style-system-btn-icon) .wp-block-button__link.has-large-font-size {
+    font-size: 1.125rem;
+    line-height: 1.3;
+}
+
+.wp-block-button:not(.is-style-system-btn-icon) .wp-block-button__link.has-x-large-font-size {
+    font-size: 1.25rem;
+    line-height: 1.25;
+}
+
+.wp-block-button:not(.is-style-system-btn-icon) .wp-block-button__link.has-xx-large-font-size {
+    font-size: 1.375rem;
+    line-height: 1.2;
+}
+
+.wp-block-button:not(.is-style-system-btn-icon) .wp-block-button__link.has-xxx-large-font-size {
+    font-size: 1.5rem;
+    line-height: 1.15;
+}
+
+.wp-block-button:not(.is-style-system-btn-icon) .wp-block-button__link.has-huge-font-size {
+    font-size: 1.75rem;
+    line-height: 1.15;
+}
+
 /* Universal Dynamic Hover Wash (Calculates automatically based on text color) */
 .wp-block-button__link:not(:disabled):hover,
 .wp-element-button:not(:disabled):hover,
@@ -375,6 +416,15 @@ html body .wp-block-button.is-style-system-btn-icon button.wp-block-button__link
 /* ==========================================================================
    9. Navigation & Menu Block Variations & Enhancements
    ========================================================================== */
+
+.wp-block-navigation {
+    position: relative;
+    z-index: 10;
+}
+
+.wp-block-navigation:has(.wp-block-navigation-submenu__toggle[aria-expanded="true"]) {
+    z-index: 20;
+}
 
 .wp-block-navigation,
 .wp-block-navigation .wp-block-navigation-item,

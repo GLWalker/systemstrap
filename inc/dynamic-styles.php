@@ -435,7 +435,7 @@ $latest_posts_css .= "
 			}
 		}
 
-		// Inject WordPress native image sizes for responsive carousels
+		// Inject WordPress native media widths for responsive block and pattern geometry.
 		$thumbnail_width = absint( get_option( 'thumbnail_size_w', 150 ) );
 		$medium_width    = absint( get_option( 'medium_size_w', 300 ) );
 		$thumbnail_width = $thumbnail_width > 0 ? $thumbnail_width : 150;

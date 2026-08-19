@@ -135,6 +135,14 @@
  */
 
 /*
+ * System Nav Button dropdown offset
+ * Runtime: assets/css/style-variations/core-navigation-system-nav-button.css
+ * Desktop submenus retain Core's top: 100% positioning and use spacing-10
+ * (0.25rem) as their intentional trigger-to-surface separation. The paired
+ * transparent hover bridge and boundary-flipped offset use the same token.
+ */
+
+/*
  * Generic reset padding must not own System UI spacing.
  * System UI surfaces own their own padding, joins, and nested routing.
  */
@@ -146,6 +154,55 @@
  * - background images
  * - blur/backdrop filters
  */
+
+/*
+ * Button Control Typography
+ * Runtime: assets/css/main-styles.css
+ *
+ * Core font-size selection classes keep their native editor controls. On
+ * textual Core Buttons only, SystemStrap maps those selections to a stable
+ * control scale instead of the global heading scale. The icon-only Button
+ * contract remains fixed at 44px and is explicitly excluded.
+ */
+.wp-block-button:not(.is-style-system-btn-icon) .wp-block-button__link {
+    font-size: 1rem;
+    line-height: 1.35;
+}
+
+.wp-block-button:not(.is-style-system-btn-icon) .wp-block-button__link.has-x-small-font-size {
+    font-size: .75rem;
+    line-height: 1.3;
+}
+
+.wp-block-button:not(.is-style-system-btn-icon) .wp-block-button__link.has-small-font-size {
+    font-size: .875rem;
+    line-height: 1.3;
+}
+
+.wp-block-button:not(.is-style-system-btn-icon) .wp-block-button__link.has-large-font-size {
+    font-size: 1.125rem;
+    line-height: 1.3;
+}
+
+.wp-block-button:not(.is-style-system-btn-icon) .wp-block-button__link.has-x-large-font-size {
+    font-size: 1.25rem;
+    line-height: 1.25;
+}
+
+.wp-block-button:not(.is-style-system-btn-icon) .wp-block-button__link.has-xx-large-font-size {
+    font-size: 1.375rem;
+    line-height: 1.2;
+}
+
+.wp-block-button:not(.is-style-system-btn-icon) .wp-block-button__link.has-xxx-large-font-size {
+    font-size: 1.5rem;
+    line-height: 1.15;
+}
+
+.wp-block-button:not(.is-style-system-btn-icon) .wp-block-button__link.has-huge-font-size {
+    font-size: 1.75rem;
+    line-height: 1.15;
+}
 
 /* ========================================================================
    4. SYSTEM PANEL
@@ -629,27 +686,28 @@
  * Latest Comments uses the same explicit list contract while owning its
  * compact comment header rhythm and avatar scale.
  *
- * Comment-family baseline rhythm now lives in theme.json:
- * - core/comments owns the shared body/meta/actions stack used by plain,
- *   list, and panel comments. The content/action avatar offset applies only
- *   when the rendered comment stack contains a Core Avatar.
+ * Comment-family ownership:
+ * - WordPress Core owns Default Latest Comments list, avatar, metadata,
+ *   excerpt, and optional-avatar structure. SystemStrap owns typography and
+ *   semantic link/opacity treatment only.
+ * - WordPress Core and the saved nested Comment Template blocks own Default
+ *   Comments structure. SystemStrap retains semantic action-link treatment.
  * - core/post-comments-form owns the baseline reply-form stack, including
  *   the native `form.comment-form` gap and submit-control offset.
- * - core/latest-comments owns the plain compact avatar/meta/excerpt rhythm.
- *   Its article grid uses the avatar column only when Core emits
- *   `.has-avatars`; avatar-off rows use a single content column.
  * - Latest Comments System List and System Panel paint their default System
  *   UI surfaces only when the block lacks `.has-background`. A selected
  *   WordPress background and explicit text color remain authoritative.
  *
  * The runtime comment variation files add explicit surface ownership, reply
- * thread rails, framed avatars, and surfaced respond blocks for list/panel
- * comment variants. List shells and panel cards paint their default System UI
- * surfaces only when the owning Comments block lacks `.has-background`.
+ * thread rails, and surfaced respond blocks for list/panel comment variants.
+ * Latest Comments System List keeps Core's internal comment structure;
+ * System Panel may own selected card geometry. List shells and panel cards
+ * paint their default System UI surfaces only when the owning Comments block
+ * lacks `.has-background`.
  * Comments list row rules target direct rendered comment rows as
  * `.wp-block-comment`, `.comment`, or `li` so native and pattern-rendered
  * comment templates receive the same System UI row padding. The list shell
- * owns the outer border/shadow; rows own padding, seams, and hover treatment.
+ * owns the outer border/shadow; rows own padding and seams.
  * Comments panel row rules use the same direct-row target contract, but the
  * top-level parent thread owns the panel surface while nested replies remain
  * inside that parent panel on an indented rail.

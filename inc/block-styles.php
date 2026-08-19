@@ -26,74 +26,6 @@ function strap_register_block_styles() {
 		);
 	}
 
-	$bp_block_stylesheet = "{$theme_dir}assets/css/buddypress-blocks.css";
-
-	if ( class_exists( 'BuddyPress' ) && file_exists( $bp_block_stylesheet ) ) {
-		$bp_block_names = array(
-			'bp/primary-nav',
-			'bp/login-form',
-			'bp/member',
-			'bp/members',
-			'bp/dynamic-members',
-			'bp/online-members',
-			'bp/active-members',
-			'bp/latest-activities',
-			'bp/friends',
-			'bp/group',
-			'bp/groups',
-			'bp/dynamic-groups',
-			'bp/sitewide-notices',
-		);
-
-		foreach ( $bp_block_names as $bp_block_name ) {
-			wp_enqueue_block_style(
-				$bp_block_name,
-				array(
-					'handle' => 'strap-buddypress-blocks',
-					'src'    => $theme_uri . 'assets/css/buddypress-blocks.css',
-					'path'   => $bp_block_stylesheet,
-					'deps'   => array( 'strap-buddypress-sync' ),
-				)
-			);
-		}
-	}
-
-	$bp_widget_panel_header_stylesheet = "{$theme_dir}assets/css/style-variations/bp-widget-system-panel-header.css";
-
-	if ( class_exists( 'BuddyPress' ) && file_exists( $bp_widget_panel_header_stylesheet ) ) {
-		$bp_widget_panel_header_blocks = array(
-			'bp/primary-nav',
-			'bp/dynamic-members',
-			'bp/online-members',
-			'bp/active-members',
-			'bp/latest-activities',
-			'bp/friends',
-			'bp/dynamic-groups',
-			'bp/sitewide-notices',
-		);
-
-		foreach ( $bp_widget_panel_header_blocks as $bp_widget_panel_header_block ) {
-			wp_enqueue_block_style(
-				$bp_widget_panel_header_block,
-				array(
-					'handle' => 'bp-widget-system-panel-header',
-					'src'    => $theme_uri . 'assets/css/style-variations/bp-widget-system-panel-header.css',
-					'path'   => $bp_widget_panel_header_stylesheet,
-					'deps'   => array( 'strap-buddypress-blocks', 'strap-buddypress-variation-anchor' ),
-				)
-			);
-
-			register_block_style(
-				$bp_widget_panel_header_block,
-				array(
-					'name'         => 'system-panel-header',
-					'label'        => 'System Panel Header',
-					'style_handle' => 'bp-widget-system-panel-header',
-				)
-			);
-		}
-	}
-
 	// Auto-register and map stylesheets to specific blocks via wp_enqueue_block_style
 	// Expected filename format: [namespace]-[block]-[variation].css (e.g., core-details-system-details.css)
 	foreach ( glob( "{$theme_dir}assets/css/style-variations/*.css" ) as $file ) {
@@ -102,8 +34,7 @@ function strap_register_block_styles() {
 		// Find where the variation name starts (assuming all our variations start with 'system-')
 		$var_pos = strpos( $filename, '-system-' );
 		
-		// Skip files that are strictly for block variations rather than block styles
-		if ( in_array( $filename, array( 'core-group-system-carousel', 'core-button-system-icon', 'bp-widget-system-panel-header' ), true ) ) {
+		if ( 'core-button-system-icon' === $filename ) {
 			continue;
 		}
 		
@@ -118,13 +49,7 @@ function strap_register_block_styles() {
 			$handle = $filename;
 			$deps   = array();
 
-			if ( str_starts_with( $block_name, 'bp/' ) ) {
-				if ( ! class_exists( 'BuddyPress' ) ) {
-					continue;
-				}
-				$deps[] = 'strap-buddypress-blocks';
-				$deps[] = 'strap-buddypress-variation-anchor';
-			}
+
 
 			if ( str_starts_with( $variation_name, 'system-ui-pagination' ) ) {
 				$deps[] = 'strap-system-ui-pagination';

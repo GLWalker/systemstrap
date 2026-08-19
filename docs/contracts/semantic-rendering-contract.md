@@ -6,11 +6,15 @@ This file is a CONTRACT.
 
 ## Contract Version
 
-Current Version: 1.1
+Current Version: 1.2
 
-Last Updated: 2026-06-15
+Last Updated: 2026-08-18
 
 ## Change Log
+
+### 1.2
+
+Documented Content Router landmark ownership and deterministic BuddyPress fallback behavior.
 
 ### 1.1
 
@@ -209,6 +213,19 @@ That surface currently owns:
 `patterns/content-router.php` generates `site-main main-{slug}` or `site-main main-page`.
 
 `inc/block-filters.php` depends on those class names to assign page-type semantics to template-part output.
+
+### Content Router landmark and BuddyPress fallback contract
+
+When a Router-backed template uses `part-blank`, that part MUST remain a neutral structural shell. The Content Router MUST own the one `main` landmark and its `site-main main-*` class signal.
+
+Direct templates that do not use the Content Router MUST retain landmark ownership on their selected template part.
+
+BuddyPress routing MUST use the following deterministic fallback order:
+
+- a mapped component part for `activity`, `blogs`, `groups`, or `members` when available;
+- `part-buddypress` for an unknown or empty BuddyPress component, or when the mapped part is unavailable;
+- `part-page` when the generic BuddyPress part is unavailable;
+- a Router-owned `main` containing Post Content when `part-page` is unavailable.
 
 ## Current Semantic and Machine-Readable Layer
 

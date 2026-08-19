@@ -22,5 +22,4 @@ require_once get_template_directory() . '/inc/block-filters.php';
 require_once get_template_directory() . '/inc/block-styles.php';
 require_once get_template_directory() . '/inc/block-asset-triggers.php';
 require_once get_template_directory() . '/inc/style-runtime.php';
-require_once get_template_directory() . '/inc/buddypress-assets.php';
 require_once get_template_directory() . '/inc/dialog-renderer.php';

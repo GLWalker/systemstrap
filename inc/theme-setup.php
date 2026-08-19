@@ -32,7 +32,6 @@ if ( ! function_exists( 'strap_theme_setup' ) ) {
 		$editor_styles = array(
 			'assets/css/strap-reset.css',
 			'assets/css/main-styles.css',
-			'assets/css/style-variations/core-group-system-carousel.css',
 		);
 
 		if ( is_child_theme() ) {

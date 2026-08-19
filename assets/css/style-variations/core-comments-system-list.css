@@ -52,11 +52,6 @@
     border-left: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
 }
 
-.wp-block-comments.is-style-system-list .wp-block-comment-template > :is(.wp-block-comment, .comment, li):hover,
-.wp-block-comments.is-style-system-list .wp-block-comment-template > :is(.wp-block-comment, .comment, li):focus-within {
-    background-color: var(--wp--custom--system-ui-list-hover-bg);
-}
-
 .wp-block-comments.is-style-system-list .comment-respond {
     margin-top: var(--wp--preset--spacing--30);
     padding: var(--wp--preset--spacing--30);

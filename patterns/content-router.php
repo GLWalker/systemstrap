@@ -6,39 +6,45 @@
  * Description: Dynamically routes main content to BuddyPress-specific or generic page template parts.
  */
 
-$bp_component = '';
 $bp_template_file = '';
-$checked_files = []; // Cache for locate_template() calls
 
-// Strengthened BP detection: Broader check for user context + general BP pages
-if (function_exists('bp_current_component')) {
-  // Broader check: Ensure we're in a user context, active component, or any BP page
-  // FIX: replaced bp_is_current_component() with bp_current_component() to prevent ArgumentCountError
-  if (bp_is_user() || bp_current_component() || function_exists('buddypress')) {
-    $component = sanitize_key(bp_current_component());
-    if ($component) {
-      $bp_component = $component; // Sanitized component (e.g., 'profile')
-      $bp_specific_part = "parts/part-buddypress-{$bp_component}.html";
+$bp_parts = array(
+  'activity' => 'part-buddypress-activity',
+  'blogs'    => 'part-buddypress-blogs',
+  'groups'   => 'part-buddypress-groups',
+  'members'  => 'part-buddypress-members',
+);
 
-      // Check BP-specific part first
-      if (locate_template($bp_specific_part, false, false, $checked_files)) { // Cache via ref
-        $bp_template_file = $bp_specific_part;
-        // Fallback to generic BP
-      } elseif (locate_template('parts/part-buddypress.html', false, false, $checked_files)) {
-        $bp_template_file = 'parts/part-buddypress.html';
-      }
+$is_buddypress = function_exists('is_buddypress') && is_buddypress();
+
+if ($is_buddypress) {
+  $component = function_exists('bp_current_component')
+    ? sanitize_key(bp_current_component())
+    : '';
+
+  if ($component && isset($bp_parts[$component])) {
+    $bp_specific_part = 'parts/' . $bp_parts[$component] . '.html';
+
+    if (locate_template($bp_specific_part, false, false)) {
+      $bp_template_file = $bp_specific_part;
     }
+  }
+
+  if (empty($bp_template_file) && locate_template('parts/part-buddypress.html', false, false)) {
+    $bp_template_file = 'parts/part-buddypress.html';
   }
 }
 
-// Final fallback to page part (or minimal content if missing)
 if (empty($bp_template_file)) {
-  if (locate_template('parts/part-page.html', false, false, $checked_files)) {
+  if (locate_template('parts/part-page.html', false, false)) {
     $bp_template_file = 'parts/part-page.html';
   } else {
-    // Universal fallback: Basic post content block to avoid blank pages
+    echo '<!-- wp:group {"tagName":"main","className":"site-main main-page"} -->';
+    echo '<main class="wp-block-group site-main main-page">';
     echo '<!-- wp:post-content /-->';
-    return; // Bail early
+    echo '</main>';
+    echo '<!-- /wp:group -->';
+    return;
   }
 }
 

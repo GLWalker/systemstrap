@@ -96,10 +96,6 @@ function strap_reorder_frontend_style_queue() {
 	$queue     = array_values( array_unique( $wp_styles->queue ) );
 	$buckets   = array(
 		'reset'         => array(),
-		'bp_plugin'     => array(),
-		'bp_sync'       => array(),
-		'bp_blocks'     => array(),
-		'bp_variations' => array(),
 		'core_blocks'   => array(),
 		'global'        => array(),
 		'main'          => array(),
@@ -121,31 +117,8 @@ function strap_reorder_frontend_style_queue() {
 			continue;
 		}
 
-		if ( 'strap-buddypress-sync' === $handle ) {
-			$buckets['bp_sync'][] = $handle;
-			continue;
-		}
-
-		if ( 'strap-buddypress-blocks' === $handle ) {
-			$buckets['bp_blocks'][] = $handle;
-			continue;
-		}
-
-		if ( str_contains( $src, $theme_uri . 'assets/css/style-variations/bp-' ) ) {
-			$buckets['bp_variations'][] = $handle;
-			continue;
-		}
-
 		if ( 'wp-block-custom-css' === $handle || 'global-styles-custom-css' === $handle ) {
 			$buckets['custom_css'][] = $handle;
-			continue;
-		}
-
-		if (
-			str_contains( $src, '/wp-content/plugins/buddypress/' ) ||
-			( str_starts_with( $handle, 'bp-' ) && ! str_contains( $src, $theme_uri . 'assets/css/style-variations/bp-' ) )
-		) {
-			$buckets['bp_plugin'][] = $handle;
 			continue;
 		}
 
@@ -182,23 +155,26 @@ function strap_reorder_frontend_style_queue() {
 		$buckets['remainder'][] = $handle;
 	}
 
-	$wp_styles->queue = array_values(
-		array_unique(
-			array_merge(
-				$buckets['reset'],
-				$buckets['bp_plugin'],
-				$buckets['bp_sync'],
-				$buckets['bp_blocks'],
-				$buckets['core_blocks'],
-				$buckets['global'],
-				$buckets['main'],
-				$buckets['child'],
-				$buckets['bp_variations'],
-				$buckets['theme_rest'],
-				$buckets['custom_css'],
-				$buckets['remainder']
-			)
-		)
-	);
+	$buckets = apply_filters( 'strap_style_buckets', $buckets, $wp_styles );
+
+	$bucket_order = apply_filters( 'strap_style_bucket_order', array(
+		'reset',
+		'core_blocks',
+		'global',
+		'main',
+		'child',
+		'theme_rest',
+		'custom_css',
+		'remainder'
+	) );
+
+	$merged = array();
+	foreach ( $bucket_order as $bucket_name ) {
+		if ( ! empty( $buckets[ $bucket_name ] ) ) {
+			$merged = array_merge( $merged, $buckets[ $bucket_name ] );
+		}
+	}
+
+	$wp_styles->queue = array_values( array_unique( $merged ) );
 }
 add_action( 'wp_print_styles', 'strap_reorder_frontend_style_queue', 1 );
