@@ -118,3 +118,43 @@ if ( ! function_exists( 'strap_custom_pattern_category' ) ) {
 
 	add_action( 'init', 'strap_custom_pattern_category' );
 }
+
+if ( ! function_exists( 'strap_filter_assignable_block_templates' ) ) {
+	/**
+	 * Limit the post and page template picker to content-layout templates.
+	 *
+	 * Runtime templates remain available to WordPress's hierarchy and Site Editor.
+	 *
+	 * @param WP_Block_Template[] $templates     Available block templates.
+	 * @param array               $query         Template query arguments.
+	 * @param string              $template_type Requested template type.
+	 * @return WP_Block_Template[]
+	 */
+	function strap_filter_assignable_block_templates( $templates, $query, $template_type ) {
+		if (
+			'wp_template' !== $template_type ||
+			empty( $query['post_type'] ) ||
+			! in_array( $query['post_type'], array( 'post', 'page' ), true )
+		) {
+			return $templates;
+		}
+
+		$assignable_slugs = array(
+			'blank',
+			'no-title',
+			'single-secondary',
+			'three-column',
+		);
+
+		return array_values(
+			array_filter(
+				$templates,
+				function ( $template ) use ( $assignable_slugs ) {
+					return in_array( $template->slug, $assignable_slugs, true );
+				}
+			)
+		);
+	}
+
+	add_filter( 'get_block_templates', 'strap_filter_assignable_block_templates', 20, 3 );
+}

@@ -532,6 +532,115 @@ if ( ! function_exists( 'strap_render_block_widget_badges' ) ) {
 /**
  * Add structured data to template parts.
  */
+function strap_get_main_page_semantics( string $class_name ): array {
+	$semantics = array(
+		'itemtype'   => 'WebPage',
+		'aria_label' => 'Main content',
+	);
+
+	if ( str_contains( $class_name, 'main-search' ) ) {
+		$semantics['itemtype']   = 'SearchResultsPage';
+		$semantics['aria_label'] = str_contains( $class_name, 'main-woocommerce-product-search' )
+			? 'Product search results'
+			: 'Search results';
+		return $semantics;
+	}
+
+	if ( str_contains( $class_name, 'main-woocommerce-single-product' ) ) {
+		$semantics['itemtype']   = 'ItemPage';
+		$semantics['aria_label'] = 'Product';
+		return $semantics;
+	}
+
+	if ( str_contains( $class_name, 'main-woocommerce-catalog' ) ) {
+		$semantics['itemtype']   = 'CollectionPage';
+		$semantics['aria_label'] = 'Product catalog';
+		return $semantics;
+	}
+
+	if ( str_contains( $class_name, 'main-woocommerce-cart' ) ) {
+		$semantics['aria_label'] = 'Shopping cart';
+		return $semantics;
+	}
+
+	if ( str_contains( $class_name, 'main-woocommerce-checkout' ) ) {
+		$semantics['aria_label'] = 'Checkout';
+		return $semantics;
+	}
+
+	if ( str_contains( $class_name, 'main-woocommerce-order-confirmation' ) ) {
+		$semantics['aria_label'] = 'Order confirmation';
+		return $semantics;
+	}
+
+	if ( str_contains( $class_name, 'main-woocommerce-account' ) ) {
+		$semantics['aria_label'] = 'My account';
+		return $semantics;
+	}
+
+	if ( str_contains( $class_name, 'main-buddypress' ) && function_exists( 'is_buddypress' ) && is_buddypress() ) {
+		if ( function_exists( 'bp_is_register_page' ) && bp_is_register_page() ) {
+			$semantics['aria_label'] = 'Registration';
+			return $semantics;
+		}
+
+		if ( function_exists( 'bp_is_activation_page' ) && bp_is_activation_page() ) {
+			$semantics['aria_label'] = 'Activation';
+			return $semantics;
+		}
+
+		if ( function_exists( 'bp_is_messages_component' ) && bp_is_messages_component() ) {
+			$semantics['aria_label'] = 'Messages';
+			return $semantics;
+		}
+
+		if ( function_exists( 'bp_is_notifications_component' ) && bp_is_notifications_component() ) {
+			$semantics['aria_label'] = 'Notifications';
+			return $semantics;
+		}
+
+		if ( function_exists( 'bp_is_settings_component' ) && bp_is_settings_component() ) {
+			$semantics['aria_label'] = 'Settings';
+			return $semantics;
+		}
+
+		if ( function_exists( 'bp_is_user' ) && bp_is_user() ) {
+			$semantics['itemtype']   = 'ProfilePage';
+			$semantics['aria_label'] = 'Member profile';
+			return $semantics;
+		}
+
+		if ( function_exists( 'bp_is_group' ) && bp_is_group() ) {
+			$semantics['aria_label'] = 'Group';
+			return $semantics;
+		}
+
+		$directory_contexts = array(
+			'bp_is_activity_directory' => 'Activity',
+			'bp_is_members_directory'  => 'Members directory',
+			'bp_is_groups_directory'   => 'Groups directory',
+			'bp_is_blogs_directory'    => 'Sites directory',
+		);
+
+		foreach ( $directory_contexts as $callback => $label ) {
+			if ( function_exists( $callback ) && $callback() ) {
+				$semantics['itemtype']   = 'CollectionPage';
+				$semantics['aria_label'] = $label;
+				return $semantics;
+			}
+		}
+
+		$semantics['aria_label'] = 'BuddyPress';
+		return $semantics;
+	}
+
+	if ( str_contains( $class_name, 'main-home' ) || str_contains( $class_name, 'main-index' ) || str_contains( $class_name, 'main-archive' ) ) {
+		$semantics['itemtype'] = 'CollectionPage';
+	}
+
+	return $semantics;
+}
+
 add_filter( 'render_block_core/template-part', 'strap_structured_data_parts_block_filter', 10, 2 );
 function strap_structured_data_parts_block_filter( string $block_content, array $block ): string {
 	$class_name = strap_get_class_name( $block );
@@ -539,14 +648,6 @@ function strap_structured_data_parts_block_filter( string $block_content, array 
 
 	if ( ! $class_name || ! $processor || ! $processor->next_tag() ) {
 		return $block_content;
-	}
-
-	if ( str_contains( $class_name, 'main-search' ) ) {
-		$itemtype = 'SearchResultsPage';
-	} elseif ( str_contains( $class_name, 'main-index' ) || str_contains( $class_name, 'main-single' ) || str_contains( $class_name, 'main-archive' ) ) {
-		$itemtype = 'Blog';
-	} else {
-		$itemtype = 'WebPage';
 	}
 
 	if ( str_contains( $class_name, 'site-header' ) ) {
@@ -564,13 +665,15 @@ function strap_structured_data_parts_block_filter( string $block_content, array 
 	}
 
 	if ( str_contains( $class_name, 'site-main' ) ) {
+		$semantics = strap_get_main_page_semantics( $class_name );
+
 		strap_html_processor_set_attributes(
 			$processor,
 			array(
 				'role'       => 'main',
-				'aria-label' => 'Main content',
+				'aria-label' => $semantics['aria_label'],
 				'itemscope'  => true,
-				'itemtype'   => 'https://schema.org/' . $itemtype,
+				'itemtype'   => 'https://schema.org/' . $semantics['itemtype'],
 			)
 		);
 		return $processor->get_updated_html();
@@ -618,7 +721,7 @@ function strap_single_content_block_filter( string $block_content, array $block 
 		return $block_content;
 	}
 
-	$post_type = 'Article';
+	$post_type = 'CreativeWork';
 	if ( is_singular() ) {
 		$queried_post_type = get_post_type( get_queried_object_id() );
 		if ( 'post' === $queried_post_type ) {

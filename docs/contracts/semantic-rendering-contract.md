@@ -6,15 +6,24 @@ This file is a CONTRACT.
 
 ## Contract Version
 
-Current Version: 1.2
+Current Version: 1.4
 
-Last Updated: 2026-08-18
+Last Updated: 2026-08-20
 
 ## Change Log
+
+### 1.4
+
+- Route page-schema mapping now distinguishes `WebPage`, `CollectionPage`, `SearchResultsPage`, `ProfilePage`, and `ItemPage` at the theme-owned main shell.
+- Product, Offer, rating, order, member, forum, and other application/entity semantics remain plugin or companion-owned.
 
 ### 1.2
 
 Documented Content Router landmark ownership and deterministic BuddyPress fallback behavior.
+
+### 1.3
+
+Documented direct WooCommerce template landmark ownership and the guarded WooCommerce My Account Router branch.
 
 ### 1.1
 
@@ -69,6 +78,12 @@ The class and pattern signals consumed by that layer are defined in these conten
 - `patterns/content-buddypress-members.php`
 - `patterns/content-buddypress-groups.php`
 - `patterns/content-buddypress-blogs.php`
+- `patterns/content-woocommerce-catalog.php`
+- `patterns/content-woocommerce-product-search.php`
+- `patterns/content-woocommerce-single-product.php`
+- `patterns/content-woocommerce-cart.php`
+- `patterns/content-woocommerce-checkout.php`
+- `patterns/content-woocommerce-order-confirmation.php`
 - `patterns/posts-meta.php`
 - `patterns/query-posts-grid.php`
 - `patterns/query-media-object.php`
@@ -210,7 +225,7 @@ That surface currently owns:
 
 ### Route-derived class detection
 
-`patterns/content-router.php` generates `site-main main-{slug}` or `site-main main-page`.
+`patterns/content-router.php` generates `site-main main-{slug}` or `site-main main-page`, including `site-main main-woocommerce-account` for the guarded WooCommerce My Account Page context.
 
 `inc/block-filters.php` depends on those class names to assign page-type semantics to template-part output.
 
@@ -227,7 +242,27 @@ BuddyPress routing MUST use the following deterministic fallback order:
 - `part-page` when the generic BuddyPress part is unavailable;
 - a Router-owned `main` containing Post Content when `part-page` is unavailable.
 
+When WooCommerce is active, the Router MUST select `part-woocommerce-account` before BuddyPress or Page fallback only when `is_account_page()` exists, returns true, and the corresponding filesystem part exists. WooCommerce account endpoints remain application state inside that one routed Page context.
+
+## WooCommerce Direct-Template Landmark Contract
+
+WooCommerce deterministic routes use SystemStrap direct templates for `archive-product`, `product-search-results`, `single-product`, `page-cart`, `page-checkout`, and `order-confirmation`. Each selected WooCommerce template part MUST emit the one `site-main main-woocommerce-*` main landmark.
+
+The Catalog, product-search, and single-product patterns MUST preserve WooCommerce application blocks. Cart and Checkout MUST preserve WooCommerce's `page-content-wrapper` plus Core Post Content composition. Order confirmation MUST preserve WooCommerce order-confirmation application blocks. These patterns MUST NOT add `hentry`, `Article`, or `CreativeWork` semantics to WooCommerce product entities.
+
+Product search additionally emits `main-search`, so the main filter assigns `SearchResultsPage`. Catalog routes receive `CollectionPage`; Single Product receives `ItemPage`; Cart, Checkout, Order Confirmation, and My Account remain `WebPage`. WooCommerce continues to own Product, Offer, rating, cart, checkout, order, and endpoint semantics.
+
 ## Current Semantic and Machine-Readable Layer
+
+### Three-level route semantic ownership
+
+SystemStrap owns the outer landmark and page schema for its template shells. Application plugins retain ownership of their entities and component relationships. The levels MUST remain distinct:
+
+1. **Landmark** — SystemStrap supplies the page-level HTML landmarks and their route-aware labels.
+2. **Page schema** — SystemStrap supplies the `WebPage` subtype appropriate to the route on `site-main`.
+3. **Application/entity schema** — WooCommerce, BuddyPress, bbPress, or a focused companion supplies application entities such as Product, Offer, Person, forum, topic, reply, group, and activity objects.
+
+Theme-authored `hentry` wrappers remain the documented exception: they own their inner `BlogPosting` or `CreativeWork` content-object type and are not application-plugin entity repairs.
 
 ### Theme support contract
 
@@ -271,12 +306,15 @@ The first rendered tag of the template part receives semantics derived from clas
     - MUST receive `itemtype="https://schema.org/WPHeader"`.
 - `site-main`
     - MUST receive `role="main"`.
-    - MUST receive `aria-label="Main content"`.
+    - MUST receive a concise route label when the route materially identifies a separate main landmark; otherwise it MUST retain `aria-label="Main content"`.
     - MUST receive `itemscope`.
     - MUST receive page-type `itemtype`.
     - `main-search` maps to `https://schema.org/SearchResultsPage`.
-    - `main-index`, `main-single`, and `main-archive` map to `https://schema.org/Blog`.
+    - `main-home`, `main-index`, `main-archive`, and `main-woocommerce-catalog` map to `https://schema.org/CollectionPage`.
+    - `main-woocommerce-single-product` maps to `https://schema.org/ItemPage`.
+    - a guarded BuddyPress member route maps to `https://schema.org/ProfilePage`; guarded BuddyPress directory routes map to `https://schema.org/CollectionPage`.
     - all other `site-main` surfaces map to `https://schema.org/WebPage`.
+    - the main shell MUST NOT carry application/entity types such as `Product`, `Offer`, `AggregateRating`, `Review`, `Person`, or forum entities.
 - `site-footer`
     - MUST receive `id="colophon"`.
     - MUST receive `role="contentinfo"`.
@@ -813,6 +851,6 @@ Changes affecting this contract SHOULD be manually verified against:
 
 ## Current Expansion Queue
 
-The following surface remains a later expansion target and is not part of the current core and BuddyPress completion pass:
+The following surface remains a later expansion target and is not part of the current page-level WooCommerce template contract:
 
-- WooCommerce render surfaces when introduced into the theme’s semantic layer
+- WooCommerce component-level render surfaces beyond the current page-level direct-template semantics

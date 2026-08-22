@@ -6,6 +6,7 @@
  * Description: Dynamically routes main content to BuddyPress-specific or generic page template parts.
  */
 
+$wc_template_file = '';
 $bp_template_file = '';
 
 $bp_parts = array(
@@ -14,6 +15,12 @@ $bp_parts = array(
   'groups'   => 'part-buddypress-groups',
   'members'  => 'part-buddypress-members',
 );
+
+$is_woocommerce_account = function_exists('is_account_page') && is_account_page();
+
+if ($is_woocommerce_account && locate_template('parts/part-woocommerce-account.html', false, false)) {
+  $wc_template_file = 'parts/part-woocommerce-account.html';
+}
 
 $is_buddypress = function_exists('is_buddypress') && is_buddypress();
 
@@ -35,7 +42,11 @@ if ($is_buddypress) {
   }
 }
 
-if (empty($bp_template_file)) {
+if (!empty($wc_template_file)) {
+  $template_file = $wc_template_file;
+} elseif (!empty($bp_template_file)) {
+  $template_file = $bp_template_file;
+} else {
   if (locate_template('parts/part-page.html', false, false)) {
     $bp_template_file = 'parts/part-page.html';
   } else {
@@ -46,13 +57,17 @@ if (empty($bp_template_file)) {
     echo '<!-- /wp:group -->';
     return;
   }
+
+  $template_file = $bp_template_file;
 }
 
 // FIX: Inline the logic instead of declaring a function to avoid 'Cannot redeclare' fatal error
-$slug = str_replace(['parts/part-', '.html'], '', $bp_template_file);
+$slug = str_replace(['parts/part-', '.html'], '', $template_file);
 $class_name = (strpos($slug, 'page') !== false)
   ? 'site-main main-page'
-  : "site-main main-buddypress main-{$slug}";
+  : ((strpos($slug, 'woocommerce-account') !== false)
+    ? 'site-main main-woocommerce-account'
+    : "site-main main-buddypress main-{$slug}");
 
 // Output the dynamic template part block
 $block_attrs = [

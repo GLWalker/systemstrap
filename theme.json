@@ -1899,7 +1899,7 @@
 		{
 			"area": "uncategorized",
 			"name": "part-buddypress",
-			"title": "Buddypress Part"
+			"title": "BuddyPress Part"
 		},
 		{
 			"area": "uncategorized",
@@ -1948,6 +1948,51 @@
 		},
 		{
 			"area": "uncategorized",
+			"name": "part-woocommerce-account",
+			"title": "WooCommerce Account Part"
+		},
+		{
+			"area": "uncategorized",
+			"name": "part-woocommerce-cart",
+			"title": "WooCommerce Cart Part"
+		},
+		{
+			"area": "uncategorized",
+			"name": "part-woocommerce-catalog",
+			"title": "WooCommerce Catalog Part"
+		},
+		{
+			"area": "uncategorized",
+			"name": "part-woocommerce-checkout",
+			"title": "WooCommerce Checkout Part"
+		},
+		{
+			"area": "uncategorized",
+			"name": "part-woocommerce-order-confirmation",
+			"title": "WooCommerce Order Confirmation Part"
+		},
+		{
+			"area": "uncategorized",
+			"name": "part-woocommerce-product-search",
+			"title": "WooCommerce Product Search Part"
+		},
+		{
+			"area": "uncategorized",
+			"name": "part-woocommerce-single-product",
+			"title": "WooCommerce Single Product Part"
+		},
+		{
+			"area": "uncategorized",
+			"name": "part-woocommerce-product-sidebar",
+			"title": "Product Sidebar"
+		},
+		{
+			"area": "uncategorized",
+			"name": "part-woocommerce-product-sidebar-secondary",
+			"title": "Product Sidebar 2"
+		},
+		{
+			"area": "uncategorized",
 			"name": "part-sidebar-secondary",
 			"title": "Sidebar Secondary Part"
 		},
@@ -1969,7 +2014,7 @@
 				"page",
 				"post"
 			],
-			"title": "No Title Template"
+			"title": "No Title"
 		},
 		{
 			"name": "blank",
@@ -1977,14 +2022,23 @@
 				"page",
 				"post"
 			],
-			"title": "Blank Template"
+			"title": "Blank"
 		},
 		{
 			"name": "single-secondary",
 			"postTypes": [
-				"post"
+				"post",
+				"page"
 			],
-			"title": "Single with Sidebar"
+			"title": "Main + Sidebar"
+		},
+		{
+			"name": "three-column",
+			"postTypes": [
+				"post",
+				"page"
+			],
+			"title": "Three Column"
 		}
 	]
 }
