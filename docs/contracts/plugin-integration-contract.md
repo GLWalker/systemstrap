@@ -231,6 +231,51 @@ theme MUST emit it conditionally from the compatibility layer and attach it to
 an existing theme stylesheet. It MUST NOT remain in a generic theme stylesheet
 or emit when the application is inactive.
 
+### Generated block presentation compatibility exception
+
+SystemStrap MAY conditionally normalize a normal WordPress block presentation
+control when an application block's generated public markup causes that control
+to paint the wrong structural level. This is theme compatibility when it
+preserves native application layout and behavior while restoring ordinary
+Gutenberg presentation ownership.
+
+Such a normalization MUST target only source-proven public roots or direct
+public descendants, emit only while the application is active, and leave
+application interaction, private markup, and optional System UI appearance
+untouched. It MUST remain available when a companion is inactive.
+
+### Baseline public-output compatibility exception
+
+SystemStrap MAY conditionally normalize a source-proven public plugin component
+when that component must share the theme's ordinary typography, form-control,
+spacing, focus, or responsive baseline while its companion is inactive. Such a
+rule MUST use existing theme tokens and public roots only. It MUST NOT add
+optional System UI surfaces, list chrome, shadows, or application behavior.
+
+For supported plugins, this baseline MAY normalize source-proven public output
+to SystemStrap's ordinary design-system contract where safe: typography,
+heading hierarchy and weights, spacing, forms, buttons, semantic tables,
+focus, disabled and invalid states, responsive spacing, and ordinary
+Gutenberg presentation fidelity. Optional System UI presentation remains
+companion-owned and opt-in.
+
+Before a companion ports a named SystemStrap component treatment, it MUST audit
+the authoritative master CSS, inventory its complete visual and interactive
+contract, map each master DOM role to a source-proven public application role,
+and record every property as direct, adapted, or not applicable. A companion
+MUST adapt the master component contract; it MUST NOT approximate, redesign, or
+partially imitate it. Any non-applicable master behavior requires a structural
+justification from the application's public markup.
+
+## Style-capability gate
+
+Before a plugin companion registers a block-style variation, it MUST verify
+that the candidate block has a useful editor Styles UI, a saved `is-style-*`
+class round trip, matching editor and frontend asset loading, a stable public
+root, and normal user removal through the editor. A block that fails this gate
+MUST use conditional theme baseline compatibility plus a companion component
+mapping or public-boundary adapter instead of fake block-style controls.
+
 ------------------------------------------------------------------------
 
 # 7. Generic Design System vs Application Styling
@@ -291,11 +336,17 @@ Examples:
 -   theme-owned query/list schema
 -   sidebar landmarks
 -   page header semantics
+-   conditional generated-block presentation compatibility that restores a
+    normal Gutenberg control to its source-proven public visual owner
 
 ## Companion-owned filters
 
 A filter belongs in the companion when it describes or repairs
 application internals.
+
+A companion filter MUST NOT own baseline generated-block presentation
+compatibility that the active theme can safely provide and that must continue
+to work when the companion is inactive.
 
 Examples:
 

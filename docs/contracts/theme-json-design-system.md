@@ -6,11 +6,32 @@ This file is a CONTRACT.
 
 ## Contract Version
 
-Current Version: 1.17
+Current Version: 1.19
 
-Last Updated: 2026-07-31
+Last Updated: 2026-08-23
 
 ## Change Log
+
+### 1.18
+
+Added the WooCommerce Product Template compatibility append lane. When
+WooCommerce is active, `inc/plugin-compatibility.php` appends narrowly scoped
+rules to `global-styles` on the frontend and in the editor. Those rules move
+authored Product Template background or gradient paint from the generated public
+template root to its direct product items and restore the native Stack item seam
+with the existing block-gap token. The lane adds no System UI chrome and remains
+available without the optional Woo companion. A narrowly scoped editor adapter
+mirrors safe custom background/gradient values onto Woo's React-rendered public
+template `ul`; it does not replace Woo's Edit component or its inner blocks.
+
+### 1.19
+
+Moved the un-authored Product Button `small` typography default for direct
+Product Template cards from the optional Woo companion into SystemStrap's
+conditional Product Template compatibility lane. The selector excludes all
+theme preset font-size classes and inline custom sizes, so authored Product
+Button typography remains authoritative while the supported Woo baseline stays
+active without the companion.
 
 ### 1.17
 
@@ -679,6 +700,19 @@ The current global-styles extension also includes palette-driven active join-col
 
 - `.wp-block-accordion.is-style-system-tabs .system-tabs__tab.has-*-background-color[aria-selected="true"]`
 - `.wp-block-accordion.is-style-system-tabs-vertical .system-tabs__tab.has-*-background-color[aria-selected="true"]`
+
+When WooCommerce is active, the same native `global-styles` append lane also
+provides baseline Product Template presentation compatibility. It neutralizes
+only the corresponding background or gradient property on the public template
+root and applies it to direct `li.wc-block-product` children. The custom-value
+route is added by the guarded Product Template render filter; preset routes use
+the existing theme palette and gradient tokens. Native Stack item seams consume
+the established block-gap variable. This compatibility rule is theme-owned and
+does not require, or create, a System UI variation. The same conditional lane
+also assigns direct, un-authored Product Template Button children the existing
+`small` font preset. The selector excludes every SystemStrap font-size class
+and inline custom `font-size`, preserving authored Button typography and leaving
+standalone/single-product actions outside the compatibility boundary.
 
 It also routes editor-selected palette backgrounds for Query and Comments Pagination away from their layout wrappers and onto their rendered controls. Wrapper-level colors fan out to previous, number, and next controls; nested block colors stay local to that selected control. Generated palette contrast remains the source color context; an explicitly selected System UI variation may then apply its own surface presentation above it.
 

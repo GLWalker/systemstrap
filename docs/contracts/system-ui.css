@@ -108,6 +108,44 @@
  * - core-*-pagination-system-ui-pagination*.css
  */
 
+/*
+ * Woo Product Template — System Panel Woo
+ * Runtime: systemstrap-woocommerce/assets/css/style-variations/
+ * woocommerce-product-template-system-panel-woo.css
+ *
+ * Direct li.wc-block-product items receive Panel surface, border, radius,
+ * shadow, padding, and internal rhythm in Stack, Grid, and Carousel modes.
+ * Carousel retains WooCommerce ownership of its Product Template root, track,
+ * widths, overflow, scrolling, controls, and hydration. System List Woo and
+ * System List Flush Woo intentionally remain unavailable in Carousel mode.
+ */
+
+/*
+ * Woo My Account mapped presentations
+ * Runtime: systemstrap-woocommerce/assets/css/style-variations/
+ * woocommerce-my-account-mapped-woo.css
+ *
+ * Account Navigation, Orders Table, Downloads, Account Forms, and Notices are
+ * Class C application components. They receive an optional whole-component
+ * mapping only through the companion settings resolver and public Woo hooks.
+ * Native WooCommerce is terminal. The SystemStrap theme compatibility layer
+ * owns unselected Account typography, form controls, semantic table rhythm,
+ * focus, invalid/disabled states, and responsive baseline; it does not add
+ * optional System UI chrome.
+ *
+ * Account Navigation maps the Page List System List DOM roles directly:
+ * mapped wrapper → component root; Woo nav → list root; Woo li → row; Woo a →
+ * interactive item; Woo is-active/aria-current → current state. The shared
+ * System List shell rule in `core-group-system-panel.css` gives the standalone
+ * Page List, Archives, and Categories System List roots their outer
+ * `--wp--custom--shadow`, in addition to each block's border, radius, and
+ * overflow. A direct-child System List inside a System Panel is explicitly
+ * flattened with `box-shadow: none !important`, because that Panel owns the
+ * card shadow instead. An Account System List mapping must port the standalone
+ * System List shadow token at its mapped shell; System List Flush remains
+ * without standalone outer chrome.
+ */
+
 /* Pagination layering contract: dynamic color routing supplies the raw editor
  * palette accent, background, and contrast context. Explicit System UI
  * pagination styles then layer base background, a capped system-ui-surface,

@@ -187,8 +187,16 @@ function strap_enqueue_block_editor_assets() {
 			$basename = basename( $file, '.js' );
 			$deps     = array( 'wp-blocks', 'wp-element', 'wp-components', 'wp-i18n' );
 
+			if ( 'strap-woocommerce-product-template-compatibility' === $basename && ! class_exists( 'WooCommerce' ) ) {
+				continue;
+			}
+
 			if ( 'strap-style-sync' === $basename ) {
 				$deps = array( 'wp-data', 'wp-core-data' );
+			}
+
+			if ( 'strap-woocommerce-product-template-compatibility' === $basename ) {
+				$deps = array( 'wp-compose', 'wp-element', 'wp-hooks' );
 			}
 
 			wp_enqueue_script(
