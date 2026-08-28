@@ -109,15 +109,36 @@
  */
 
 /*
- * Woo Product Template — System Panel Woo
+ * Woo Product Template — System Panel Woo / System List Woo / System List Flush Woo
  * Runtime: systemstrap-woocommerce/assets/css/style-variations/
- * woocommerce-product-template-system-panel-woo.css
+ * woocommerce-product-template-system-panel-woo.css and
+ * woocommerce-product-template-system-list-woo.css
  *
  * Direct li.wc-block-product items receive Panel surface, border, radius,
  * shadow, padding, and internal rhythm in Stack, Grid, and Carousel modes.
+ * System List Woo supplies the standalone List shell border, radius, overflow,
+ * and shared `--wp--custom--shadow`; List Flush remains without outer chrome.
+ * Both List treatments preserve WooCommerce Stack/Grid layout and item sizing.
  * Carousel retains WooCommerce ownership of its Product Template root, track,
  * widths, overflow, scrolling, controls, and hydration. System List Woo and
  * System List Flush Woo intentionally remain unavailable in Carousel mode.
+ */
+
+/*
+ * Woo Product Reviews mapped presentations
+ * Runtime: systemstrap-woocommerce/assets/css/style-variations/
+ * woocommerce-product-reviews-system-list-woo.css and
+ * woocommerce-product-reviews-system-panel-woo.css
+ *
+ * Reviews are Class C component mappings. The mapped Reviews root receives a
+ * selected class through the public Product Reviews render adapter; it does not
+ * register a block-style variation. System List Woo maps the public review
+ * template/comment list to the Comments List shell and direct reviews to rows.
+ * System List Flush Woo maps that list to the generic flush List contract.
+ * System Panel Woo maps only top-level review items to Comments Panels. Nested
+ * replies retain Woo list markup and receive the corresponding thread rail,
+ * indentation, and spacing treatment. Ratings, author/meta/content data,
+ * review submission, and pagination behavior remain WooCommerce-owned.
  */
 
 /*
@@ -125,13 +146,17 @@
  * Runtime: systemstrap-woocommerce/assets/css/style-variations/
  * woocommerce-my-account-mapped-woo.css
  *
- * Account Navigation, Orders Table, Downloads, Account Forms, and Notices are
- * Class C application components. They receive an optional whole-component
- * mapping only through the companion settings resolver and public Woo hooks.
- * Native WooCommerce is terminal. The SystemStrap theme compatibility layer
- * owns unselected Account typography, form controls, semantic table rhythm,
- * focus, invalid/disabled states, and responsive baseline; it does not add
- * optional System UI chrome.
+ * Account Navigation is the sole current Class C application component. It
+ * receives an optional whole-component mapping through the companion settings
+ * resolver and public Woo hooks. Native WooCommerce is terminal. The
+ * SystemStrap theme compatibility layer owns Account typography, form controls,
+ * semantic table rhythm, notices, focus, invalid/disabled states, and responsive
+ * baseline; it does not add optional System UI chrome.
+ *
+ * Account Forms and Notices do not have companion mappings or companion-only
+ * presentation CSS. Orders Table and Downloads structural treatments are
+ * deferred until one unified Woo Tables decision has a validated master and
+ * public-DOM contract.
  *
  * Account Navigation maps the Page List System List DOM roles directly:
  * mapped wrapper → component root; Woo nav → list root; Woo li → row; Woo a →
@@ -201,6 +226,20 @@
  * textual Core Buttons only, SystemStrap maps those selections to a stable
  * control scale instead of the global heading scale. The icon-only Button
  * contract remains fixed at 44px and is explicitly excluded.
+ */
+
+/*
+ * Shared Icon Button Contract
+ * Runtime: assets/css/main-styles.css
+ *
+ * `.strap-icon-button` owns element-neutral 44px icon-button geometry and
+ * paint. Dialog Close consumes it on its real button. The legacy
+ * `.wp-block-button.is-style-system-btn-icon .wp-block-button__link` selector
+ * remains a consumer for existing SystemStrap carousel markup. WooCommerce
+ * Product Collection Carousel receives the utility through its companion's
+ * public render adapter. Its `strap-icon-button--woo` marker keeps native
+ * disabled-state gating, SVG-centering, and focus-visible behavior as
+ * Woo-owned adapter concerns while consuming the shared hover paint values.
  */
 .wp-block-button:not(.is-style-system-btn-icon) .wp-block-button__link {
     font-size: 1rem;
@@ -2734,7 +2773,11 @@ body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[clas
  * - is-style-system-ui-pagination-badge
  *
  * The shared runtime owns only surfaces and interaction. Typography remains
- * inherited from theme.json. Page-break navigation is baseline-only.
+ * inherited from theme.json. Page-break navigation is baseline-only. The
+ * SystemStrap WooCommerce companion may adapt this exact token contract to
+ * public Product Reviews pagination only after its selected Class C mapping
+ * adds a `-woo` treatment class; WooCommerce retains pagination markup,
+ * navigation, and state semantics.
  */
 
 /* ========================================================================

@@ -346,8 +346,15 @@ header.wp-block-template-part {
     border-radius: 0 !important;
 }
 
-/* Shared icon-only button treatment used by carousel arrows and dialog close buttons. */
-.wp-block-button.is-style-system-btn-icon .wp-block-button__link {
+/* Shared icon-button utility. The legacy Button selector remains a consumer so
+   existing SystemStrap carousel markup continues to receive this contract. */
+:is(.strap-icon-button, .wp-block-button.is-style-system-btn-icon .wp-block-button__link) {
+    --strap-icon-button-hover-background: rgba(var(--wp--preset--color--secondary-bg-rgb), .75);
+    --strap-icon-button-hover-color: var(--wp--preset--color--contrast);
+    --strap-icon-button-hover-border-color: var(--wp--custom--btn-icon-hover-border-color, var(--wp--custom--system-ui-border-color));
+    --strap-icon-button-hover-shadow: var(--wp--preset--shadow--btn-icon-hover, none);
+    --strap-icon-button-hover-transform: var(--wp--custom--btn-icon-hover-transform, none);
+
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -364,17 +371,12 @@ header.wp-block-template-part {
     text-decoration: none;
 }
 
-html body .wp-block-button.is-style-system-btn-icon a.wp-block-button__link:hover,
-html body .wp-block-button.is-style-system-btn-icon a.wp-block-button__link:focus,
-html body .wp-block-button.is-style-system-btn-icon a.wp-block-button__link:active,
-html body .wp-block-button.is-style-system-btn-icon button.wp-block-button__link:hover,
-html body .wp-block-button.is-style-system-btn-icon button.wp-block-button__link:focus,
-html body .wp-block-button.is-style-system-btn-icon button.wp-block-button__link:active {
-    background-color: rgba(var(--wp--preset--color--secondary-bg-rgb), .75);
-    color: var(--wp--preset--color--contrast) !important;
-    border-color: var(--wp--custom--btn-icon-hover-border-color, var(--wp--custom--system-ui-border-color)) !important;
-    box-shadow: var(--wp--preset--shadow--btn-icon-hover, none);
-    transform: var(--wp--custom--btn-icon-hover-transform, none);
+html body :is(.strap-icon-button:not(.strap-icon-button--woo), .wp-block-button.is-style-system-btn-icon .wp-block-button__link):is(:hover, :focus, :active) {
+    background-color: var(--strap-icon-button-hover-background);
+    color: var(--strap-icon-button-hover-color) !important;
+    border-color: var(--strap-icon-button-hover-border-color) !important;
+    box-shadow: var(--strap-icon-button-hover-shadow);
+    transform: var(--strap-icon-button-hover-transform);
 }
 
 .system-icon {

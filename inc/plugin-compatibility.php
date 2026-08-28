@@ -238,7 +238,7 @@ function strap_get_woocommerce_account_compatibility_css() {
 	return '
 /* Woo My Account baseline: public application semantics remain Woo-owned. */
 .woocommerce-account .woocommerce-MyAccount-navigation > ul { list-style: none; margin: 0; padding: 0; }
-.woocommerce-account .woocommerce-MyAccount-navigation li { margin: 0; padding: 0; }
+.woocommerce-account .woocommerce-MyAccount-navigation li { margin: 0; padding: 0 !important; }
 .woocommerce-account .woocommerce-MyAccount-navigation li + li { margin-top: 0; }
 .woocommerce-account .woocommerce-MyAccount-navigation a { display: block; padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--20); font-family: var(--wp--preset--font-family--button); font-weight: var(--wp--custom--font-weight-nav); line-height: 1.3; text-decoration: none; }
 .woocommerce-account .woocommerce-MyAccount-navigation a:hover { text-decoration: underline; }

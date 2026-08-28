@@ -201,14 +201,24 @@ frontend head
 
 ## Shared Utility Style Contract
 
-The shared `is-style-system-btn-icon` treatment is now owned by:
+The shared icon-button paint and geometry contract is owned by:
 
 - `assets/css/main-styles.css`
+
+Its element-neutral utility class is `.strap-icon-button`. The legacy
+`is-style-system-btn-icon` Button selector remains a consumer for existing
+SystemStrap carousel markup.
 
 This utility styling remains intentionally available to:
 
 - carousel navigation buttons
 - dialog close buttons
+
+WooCommerce Product Collection Carousel maps its native previous/next buttons
+to `.strap-icon-button` through the SystemStrap WooCommerce public render
+adapter with a `strap-icon-button--woo` adapter marker. Woo retains its native
+disabled-state gating, SVG centering reset, and focus-visible policy while
+consuming the shared hover paint variables.
 
 It MUST NOT be exposed through block-style auto-registration unless that behavior is intentionally restored and documented in the same change set.
 

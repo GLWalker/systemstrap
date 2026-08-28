@@ -304,7 +304,7 @@ class SystemStrap_Dialog_Renderer {
                     '<dialog id="%1$s" class="%2$s" aria-modal="true" aria-label="%3$s">
                     <div class="strap-dialog-content" role="document">
                         <div class="wp-block-button is-style-system-btn-icon strap-dialog-close-btn">
-                            <button class="wp-block-button__link -close" aria-label="Close dialog" type="button">
+                            <button class="wp-block-button__link -close strap-icon-button" aria-label="Close dialog" type="button">
                                 <span class="system-icon system-icon-close"></span>
                             </button>
                         </div>
