@@ -4,18 +4,7 @@
  */
 /* Core Panel Wrapper */
 .wp-block-group.is-style-system-panel {
-    --strap-system-panel-padding-y: var(--wp--preset--spacing--30);
-    --strap-system-panel-padding-x: var(--wp--preset--spacing--30);
-
-    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
-    background-image: var(--wp--custom--system-ui-background-image, none);
-    backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
-    -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
-    border-radius: var(--wp--custom--border-radius);
-    box-shadow: var(--wp--custom--shadow);
     padding: 0 !important;
-    overflow: hidden;
-    transition: border-color 0.15s ease-in-out;
 }
 
 /* Allow dropdown menus to escape the overflow if a navigation block is nested inside */
@@ -40,15 +29,6 @@
 .wp-block-group.is-style-system-panel>.block-editor-block-list__layout>*:last-child {
     border-bottom-left-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
     border-bottom-right-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
-}
-
-/* Only apply default background if no background is set by user */
-.wp-block-group.is-style-system-panel:not(.has-background):not([style*="background-color"]) {
-    background-color: var(--wp--custom--system-ui-surface);
-}
-
-.wp-block-group.is-style-system-panel.has-background {
-    border-color: var(--wp--custom--system-ui-border-color);
 }
 
 .wp-block-group.is-style-system-panel.is-style-system-modal {

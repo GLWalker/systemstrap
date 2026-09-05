@@ -1779,6 +1779,7 @@
 					"fontSize": "var:preset|font-size|medium",
 					"fontWeight": "var:custom|font-weight-button",
 					"letterSpacing": "0.03em",
+					"lineHeight": "1.45",
 					"textDecoration": "none"
 				},
 				"spacing": {
@@ -1788,6 +1789,60 @@
 						"left": "var:preset|spacing|30",
 						"right": "var:preset|spacing|30"
 					}
+				}
+			},
+			"textInput": {
+				"border": {
+					"color": "var:custom|form-border-color",
+					"radius": "var:custom|form-border-radius",
+					"style": "var(--wp--custom--border-style)",
+					"width": "var:custom|form-border-width"
+				},
+				"color": {
+					"background": "var:custom|form-bg-color",
+					"text": "var:custom|form-text-color"
+				},
+				"shadow": "var:preset|shadow|form-control-shadow",
+				"spacing": {
+					"padding": {
+						"bottom": "calc(var(--wp--preset--font-size--small) * 0.75)",
+						"left": "var:preset|spacing|30",
+						"right": "var:preset|spacing|30",
+						"top": "calc(var(--wp--preset--font-size--small) * 0.75)"
+					}
+				},
+				"typography": {
+					"fontFamily": "var:preset|font-family|body",
+					"fontSize": "var:preset|font-size|medium",
+					"fontWeight": "var:custom|font-weight-body",
+					"lineHeight": "1.6"
+				}
+			},
+			"select": {
+				"border": {
+					"color": "var:custom|form-border-color",
+					"radius": "var:custom|form-border-radius",
+					"style": "var(--wp--custom--border-style)",
+					"width": "var:custom|form-border-width"
+				},
+				"color": {
+					"background": "var:custom|form-bg-color",
+					"text": "var:custom|form-text-color"
+				},
+				"shadow": "var:preset|shadow|form-control-shadow",
+				"spacing": {
+					"padding": {
+						"bottom": "calc(var(--wp--preset--font-size--small) * 0.75)",
+						"left": "var:preset|spacing|30",
+						"right": "var:preset|spacing|30",
+						"top": "calc(var(--wp--preset--font-size--small) * 0.75)"
+					}
+				},
+				"typography": {
+					"fontFamily": "var:preset|font-family|body",
+					"fontSize": "var:preset|font-size|medium",
+					"fontWeight": "var:custom|font-weight-body",
+					"lineHeight": "1.6"
 				}
 			},
 			"caption": {

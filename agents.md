@@ -11,8 +11,12 @@
 > Any change to carousel variations, carousel runtime JavaScript, carousel runtime CSS, navigation-position handling, or carousel sizing behavior MUST be checked against that contract in the same change set.
 > Theme token, preset, global-style, and editor/frontend design-system behavior is governed by `docs/contracts/theme-json-design-system.md`.
 > Any change to `theme.json`, token consumers, global-style extension, or style-variation loading MUST be checked against that contract in the same change set.
+> Reusable spacing, typography, border, radius, shadow, width, and motion constants are indexed by `docs/contracts/systemstrap-design-tokens.md`.
+> Before introducing or replacing a literal design value, agents MUST check that contract, confirm the authoritative source, and reuse a token only when its documented semantic role matches the requirement. **A matching resolved numeric value alone does not establish token equivalence. If no existing token represents the intended role, agents MUST report the design-system gap rather than inventing a token solely to eliminate a literal.**
+> Any addition, removal, rename, or semantic change to an authoritative reusable token MUST update `docs/contracts/systemstrap-design-tokens.md` in the same change set.
 > Theme variation creation, scope boundaries, and external theme porting (e.g., Bootswatch/Bootstrap) are governed by `docs/guides/theme-variation-porting-guide.md` and `docs/contracts/variation-architecture.md`.
 > Any creation of new variations or architectural changes to variations MUST be checked against these guides.
+> Development-only guides may not be present in distribution or staging repositories; when absent, the applicable contract remains authoritative.
 > System UI styling conventions, documentation maps, and runtime CSS contracts are governed by `docs/contracts/system-ui.css`. This file is the authoritative map of all UI classes, CSS variables, and rules used across the theme (including those in `main-styles.css`). It exists to provide a single, scannable reference to prevent overlap, collision, and nesting issues. Any changes to live System UI surfaces MUST be reflected in this map.
 > Accessibility standards, interactivity API implementation, starter content, and submission demonstration architecture are governed by `docs/contracts/accessibility-focus.md`, `docs/contracts/interactivity-api.md`, `docs/contracts/starter-content.md`, and `docs/contracts/submission-demonstration-architecture.md` respectively.
 
@@ -155,3 +159,10 @@ Provide a concise, neutral, reusable description of preferred coding practices f
 3. **Cleanliness:** Readable, concise, and free of bloat.
 4. **Utility bias:** When something repeats, turn it into a reusable tool.
 5. **Professional craftsmanship:** Strong, exact, efficient, and clean.
+
+────────────────────────────────────────
+
+### Post-change diff discipline
+
+────────────────────────────────────────
+Do not run an unrestricted repository-wide git diff as routine verification. Track files modified during the current task and diff only those files or the smallest relevant path set. Use repository-wide diff/status inspection only when explicitly required for release, cleanup, regression, or when the changed-file scope is uncertain.

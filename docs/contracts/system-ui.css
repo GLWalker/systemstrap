@@ -80,9 +80,34 @@
 /*
  * Authority 1: System Panel
  * Runtime:
+ * - assets/css/system-ui-panel-surface.css
  * - assets/css/style-variations/core-group-system-panel.css
  * - assets/css/style-variations/core-group-system-panel-header.css
  * - assets/css/style-variations/core-group-system-panel-footer.css
+ */
+
+/*
+ * Shared Panel Surface
+ * Runtime: assets/css/system-ui-panel-surface.css
+ *
+ * `.strap-panel-surface` owns the neutral System Panel paint: surface,
+ * background image, backdrop filter, border, radius, shadow, overflow, and
+ * transition. Core Group System Panel consumes the same master, then owns its
+ * Group-specific flush-child composition. Integrations may adapt only a stable
+ * public application root to `.strap-panel-surface`; any necessary inset or
+ * parent-layout preservation remains a thin structural adapter and must not
+ * duplicate Panel paint.
+ */
+
+/*
+ * Shared Table Surface
+ * Runtime: assets/css/system-ui-table-surface.css
+ *
+ * `.strap-table-surface` owns the neutral System Panel surface and semantic
+ * table seams. Core Table System Panel consumes the same authority through its
+ * variation dependency. Integrations may adapt a stable wrapper to that class,
+ * but retain their own table semantics, responsive transformation, and action
+ * controls.
  */
 
 /*
@@ -125,20 +150,39 @@
  */
 
 /*
- * Woo Product Reviews mapped presentations
- * Runtime: systemstrap-woocommerce/assets/css/style-variations/
- * woocommerce-product-reviews-system-list-woo.css and
- * woocommerce-product-reviews-system-panel-woo.css
+ * Woo Product Reviews baseline
+ * Runtime: systemstrap-woocommerce/inc/assets.php,
+ * systemstrap-woocommerce/inc/presentation.php, and
+ * systemstrap-woocommerce/assets/js/editor-compatibility.js
  *
- * Reviews are Class C component mappings. The mapped Reviews root receives a
- * selected class through the public Product Reviews render adapter; it does not
- * register a block-style variation. System List Woo maps the public review
- * template/comment list to the Comments List shell and direct reviews to rows.
- * System List Flush Woo maps that list to the generic flush List contract.
- * System Panel Woo maps only top-level review items to Comments Panels. Nested
- * replies retain Woo list markup and receive the corresponding thread rail,
- * indentation, and spacing treatment. Ratings, author/meta/content data,
- * review submission, and pagination behavior remain WooCommerce-owned.
+ * Woo's style-capable Product Review Template, All Reviews, Reviews by Product,
+ * and Reviews by Category blocks may consume the existing Comments System List
+ * or System Panel masters through their normal Styles UI. The companion adds
+ * only a selected public-root `.strap-comments-thread` bridge; ratings,
+ * author/meta/content data, review submission, query, hydration, and form
+ * behavior remain WooCommerce-owned. The client editor bridge belongs on the
+ * selected BlockListBlock wrapper because Woo's review edit components do not
+ * forward block attributes into their rendered `useBlockProps()` root. The
+ * shared Comments masters map that neutral wrapper to the equivalent editor
+ * Product Review Template root or archive `ul.wc-block-review-list`; no
+ * companion editor paint exists. Legacy Product Details Reviews remains native.
+ */
+
+/*
+ * Woo Reviews Pagination bridge
+ * Runtime: assets/css/system-ui-pagination.css and
+ * systemstrap-woocommerce/inc/presentation.php
+ *
+ * The companion registers all seven System UI Pagination Styles UI treatments
+ * for modern Product Reviews Pagination and its public Previous, Numbers, and
+ * Next child blocks. The shared master consumes those public block classes
+ * directly; parent treatment variables inherit to children and an authored
+ * child treatment overrides only that role. Legacy Product Details pagination
+ * remains native because it has no block Styles UI or companion mapping. The
+ * shared theme master owns the modern public block form, including standard
+ * controls, current state, and unframed non-interactive dots. Woo retains
+ * anchors, current-page semantics, links, router directives, and review
+ * behavior.
  */
 
 /*
@@ -146,17 +190,35 @@
  * Runtime: systemstrap-woocommerce/assets/css/style-variations/
  * woocommerce-my-account-mapped-woo.css
  *
- * Account Navigation is the sole current Class C application component. It
- * receives an optional whole-component mapping through the companion settings
- * resolver and public Woo hooks. Native WooCommerce is terminal. The
+ * Account Navigation, Woo Tables, and Woo Addresses are the current Class C application
+ * components. They receive optional whole-component mappings through the
+ * companion settings resolver and public Woo hooks. Native WooCommerce is terminal. The
  * SystemStrap theme compatibility layer owns Account typography, form controls,
  * semantic table rhythm, notices, focus, invalid/disabled states, and responsive
  * baseline; it does not add optional System UI chrome.
  *
  * Account Forms and Notices do not have companion mappings or companion-only
- * presentation CSS. Orders Table and Downloads structural treatments are
- * deferred until one unified Woo Tables decision has a validated master and
- * public-DOM contract.
+ * presentation CSS. Woo Tables is one optional Class C mapping: Native leaves
+ * the stable Account Orders, Downloads, Payment Methods, and View Order
+ * semantic tables untouched; System Panel adapts only their public output
+ * wrapper to `.strap-table-surface`. The shared theme master owns the surface
+ * and table seams while Woo retains `shop_table_responsive`, `data-title`,
+ * action controls, and narrow-screen reflow.
+ * When Woo renders a native Orders notice before its semantic table, the
+ * companion adapter gives only that direct notice the shared `spacing--20`
+ * logical inline gutter with narrowly scoped cascade protection and normalizes
+ * only the following table boundary against the existing
+ * Account notice `spacing--30` end margin; the notice remains native.
+ * Woo Addresses is one optional Class C mapping limited to the My Account
+ * address overview and authenticated View Order customer details. The
+ * companion adds `.strap-panel-surface` directly to Woo's public
+ * `.woocommerce-Address` cards and View Order `<address>` elements, so the
+ * shared Panel master owns the single border, radius, dynamic surface, and
+ * shadow. Overview cards receive only the standard `spacing--30` component
+ * inset because native Woo supplies none; View Order retains its existing Woo
+ * address padding. Woo retains titles, populated-or-empty address content,
+ * Add/Edit actions, columns, and responsive behavior. Edit Address, Checkout
+ * Fields, and Order Confirmation address blocks remain outside the mapping.
  *
  * Account Navigation maps the Page List System List DOM roles directly:
  * mapped wrapper → component root; Woo nav → list root; Woo li → row; Woo a →
@@ -183,9 +245,23 @@
  * --wp--custom--system-ui-active-bg; hover uses
  * --wp--custom--system-ui-list-hover-bg. The compact badge variation also
  * consumes badge-font-size, badge-font-weight, badge-padding-x,
- * badge-padding-y, and badge-border-radius. Ellipses remain non-interactive
- * text, while previous and next controls use the same token contract and
- * centered CSS chevrons. Default pagination remains text-first and unthemed. */
+ * badge-padding-y, and badge-border-radius. Number controls retain compact
+ * geometry. Ellipses remain non-interactive text. Previous and next controls
+ * use the same token contract and retain intrinsic inline width so their
+ * textual labels remain whole controls. Core Query, Core Comments, and modern
+ * Woo Reviews Pagination retain each block's native `none`, `arrow`, and
+ * `chevron` output so an authored icon state is never replaced; `none` emits
+ * no icon. Post Navigation uses the same native arrow output and spacing-10
+ * separator, but has no hidden-label state. Previous/next controls whose
+ * visible label is moved to `aria-label` consume the compact arrow padding
+ * with no label gap. Native arrow-span margins are reset inside styled
+ * pagination, leaving the shared spacing-10 flex gap as the sole visible-label
+ * separator. An individually selected icon-only previous/next treatment uses
+ * the selected number-control geometry on both axes, preventing Pill and
+ * Square controls from becoming oval beside sibling numbers. Current-
+ * page paint is restricted to Pagination Numbers roles, never previous/next
+ * links. Default
+ * pagination remains text-first and unthemed. */
 
 /* ========================================================================
    3. SHARED SYSTEM UI RULES
@@ -2763,7 +2839,8 @@ body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[clas
 /* Runtime: assets/css/system-ui-pagination.css.
  * Default pagination is defined in theme.json and remains text-only.
  * Explicit styles are registered for core/query-pagination,
- * core/comments-pagination, and core/post-navigation-link:
+ * core/comments-pagination, core/post-navigation-link, and modern Woo
+ * Product Reviews Pagination:
  * - is-style-system-ui-pagination
  * - is-style-system-ui-pagination-outline
  * - is-style-system-ui-pagination-pill
@@ -2774,10 +2851,9 @@ body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[clas
  *
  * The shared runtime owns only surfaces and interaction. Typography remains
  * inherited from theme.json. Page-break navigation is baseline-only. The
- * SystemStrap WooCommerce companion may adapt this exact token contract to
- * public Product Reviews pagination only after its selected Class C mapping
- * adds a `-woo` treatment class; WooCommerce retains pagination markup,
- * navigation, and state semantics.
+ * SystemStrap WooCommerce consumes this exact token contract through normal
+ * modern parent/child block styles and a legacy-only public markup bridge.
+ * WooCommerce retains pagination markup, navigation, and state semantics.
  */
 
 /* ========================================================================

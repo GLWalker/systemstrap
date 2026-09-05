@@ -16,11 +16,31 @@ function strap_register_block_styles() {
 	$theme_dir = get_template_directory() . '/';
 	$theme_uri = get_template_directory_uri() . '/';
 	$pagination_stylesheet = "{$theme_dir}assets/css/system-ui-pagination.css";
+	$panel_surface_stylesheet = "{$theme_dir}assets/css/system-ui-panel-surface.css";
+	$table_surface_stylesheet = "{$theme_dir}assets/css/system-ui-table-surface.css";
 
 	if ( file_exists( $pagination_stylesheet ) ) {
 		wp_register_style(
 			'strap-system-ui-pagination',
 			$theme_uri . 'assets/css/system-ui-pagination.css',
+			array(),
+			wp_get_theme()->get( 'Version' )
+		);
+	}
+
+	if ( file_exists( $panel_surface_stylesheet ) ) {
+		wp_register_style(
+			'strap-panel-surface',
+			$theme_uri . 'assets/css/system-ui-panel-surface.css',
+			array(),
+			wp_get_theme()->get( 'Version' )
+		);
+	}
+
+	if ( file_exists( $table_surface_stylesheet ) ) {
+		wp_register_style(
+			'strap-table-surface',
+			$theme_uri . 'assets/css/system-ui-table-surface.css',
 			array(),
 			wp_get_theme()->get( 'Version' )
 		);
@@ -53,6 +73,14 @@ function strap_register_block_styles() {
 
 			if ( str_starts_with( $variation_name, 'system-ui-pagination' ) ) {
 				$deps[] = 'strap-system-ui-pagination';
+			}
+
+			if ( 'core-table-system-panel' === $filename ) {
+				$deps[] = 'strap-table-surface';
+			}
+
+			if ( 'core-group-system-panel' === $filename ) {
+				$deps[] = 'strap-panel-surface';
 			}
 
 			// 1. Register the conditional block stylesheet using absolute path

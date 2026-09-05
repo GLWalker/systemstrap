@@ -1,0 +1,27 @@
+/*
+ * Neutral System Panel surface authority.
+ *
+ * Group owns its own child composition. Integrations may consume this class
+ * only on a stable public application root and retain native child structure.
+ */
+:is(.wp-block-group.is-style-system-panel, .strap-panel-surface) {
+    --strap-system-panel-padding-y: var(--wp--preset--spacing--30);
+    --strap-system-panel-padding-x: var(--wp--preset--spacing--30);
+
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+    background-image: var(--wp--custom--system-ui-background-image, none);
+    backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    border-radius: var(--wp--custom--border-radius);
+    box-shadow: var(--wp--custom--shadow);
+    overflow: hidden;
+    transition: border-color 0.15s ease-in-out;
+}
+
+:is(.wp-block-group.is-style-system-panel, .strap-panel-surface):not(.has-background):not([style*="background-color"]) {
+    background-color: var(--wp--custom--system-ui-surface);
+}
+
+:is(.wp-block-group.is-style-system-panel, .strap-panel-surface).has-background {
+    border-color: var(--wp--custom--system-ui-border-color);
+}

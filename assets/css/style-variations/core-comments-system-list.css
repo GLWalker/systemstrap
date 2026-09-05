@@ -4,7 +4,7 @@
  * and their inner blocks remain native, editable WordPress markup.
  */
 
-.wp-block-comments.is-style-system-list {
+:is(.wp-block-comments, .strap-comments-thread).is-style-system-list {
     --strap-comments-row-padding-x: var(--wp--preset--spacing--30);
     --strap-comments-row-padding-y: var(--wp--preset--spacing--20);
     --strap-comments-thread-indent: var(--wp--preset--spacing--30);
@@ -12,7 +12,10 @@
     color: inherit;
 }
 
-.wp-block-comments.is-style-system-list > .wp-block-comment-template {
+:is(.wp-block-comments.is-style-system-list > .wp-block-comment-template,
+    ol.strap-comments-thread.is-style-system-list,
+    .strap-comments-thread.is-style-system-list > ul,
+    .strap-comments-thread.is-style-system-list .wc-block-review-list) {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -24,12 +27,18 @@
     overflow: hidden;
 }
 
-.wp-block-comments.is-style-system-list:not(.has-background) > .wp-block-comment-template {
+:is(.wp-block-comments.is-style-system-list:not(.has-background) > .wp-block-comment-template,
+    ol.strap-comments-thread.is-style-system-list:not(.has-background),
+    .strap-comments-thread.is-style-system-list:not(.has-background) > ul,
+    .strap-comments-thread.is-style-system-list:not(.has-background) .wc-block-review-list) {
     background-color: var(--wp--custom--system-ui-surface);
     background-image: var(--wp--custom--system-ui-background-image, none);
 }
 
-.wp-block-comments.is-style-system-list .wp-block-comment-template > :is(.wp-block-comment, .comment, li) {
+:is(.wp-block-comments.is-style-system-list .wp-block-comment-template,
+    ol.strap-comments-thread.is-style-system-list,
+    .strap-comments-thread.is-style-system-list > ul,
+    .strap-comments-thread.is-style-system-list .wc-block-review-list) > :is(.wp-block-comment, .comment, li) {
     list-style: none;
     margin: 0;
     padding: var(--strap-comments-row-padding-y) var(--strap-comments-row-padding-x) !important;
@@ -41,11 +50,16 @@
     transition: background-color 0.2s ease;
 }
 
-.wp-block-comments.is-style-system-list .wp-block-comment-template > :is(.wp-block-comment, .comment, li) + :is(.wp-block-comment, .comment, li) {
+:is(.wp-block-comments.is-style-system-list .wp-block-comment-template,
+    ol.strap-comments-thread.is-style-system-list,
+    .strap-comments-thread.is-style-system-list > ul,
+    .strap-comments-thread.is-style-system-list .wc-block-review-list) > :is(.wp-block-comment, .comment, li) + :is(.wp-block-comment, .comment, li) {
     border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
 }
 
-.wp-block-comments.is-style-system-list .wp-block-comment-template .wp-block-comment-template {
+:is(.wp-block-comments.is-style-system-list .wp-block-comment-template .wp-block-comment-template,
+    ol.strap-comments-thread.is-style-system-list li > ol,
+    .strap-comments-thread.is-style-system-list > ul li > ol) {
     list-style: none;
     margin: var(--wp--preset--spacing--20) 0 0 var(--strap-comments-thread-indent);
     padding: var(--wp--preset--spacing--20) 0 0 var(--strap-comments-thread-rail-gap);

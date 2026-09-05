@@ -6,11 +6,28 @@ This file is a CONTRACT.
 
 ## Contract Version
 
-Current Version: 1.19
+Current Version: 1.21
 
-Last Updated: 2026-08-23
+Last Updated: 2026-09-03
 
 ## Change Log
+
+### 1.20
+
+Added `assets/css/system-ui-table-surface.css` as the neutral, theme-owned
+SystemStrap Table Surface authority. It owns only reusable System Panel table
+surface paint and semantic table seams. Core Table System Panel consumes that
+authority through its conditional style dependency; integrations may bridge a
+stable wrapper to `.strap-table-surface` without taking ownership of table
+semantics, responsive reflow, or action controls.
+
+### 1.21
+
+Added `assets/css/system-ui-panel-surface.css` as the neutral, theme-owned
+System Panel paint authority. Core Group System Panel depends on that master
+and retains its Group-specific child composition. Integrations may map a
+stable public application root to `.strap-panel-surface` without inheriting
+Group layout resets or duplicating Panel paint.
 
 ### 1.18
 
@@ -141,6 +158,7 @@ The design-system layer is currently implemented through these files:
 - `wp-content/themes/systemstrap/assets/css/main-styles.css`
 - `wp-content/themes/systemstrap/assets/css/buddypress-blocks.css`
 - `wp-content/themes/systemstrap/assets/css/strap-reset.css`
+- `wp-content/themes/systemstrap/assets/css/system-ui-table-surface.css`
 - `wp-content/themes/systemstrap/assets/css/style-variations/*.css`
 - `wp-content/themes/systemstrap/assets/js/variations/*.js`
 - `wp-content/themes/systemstrap/patterns/*.php`

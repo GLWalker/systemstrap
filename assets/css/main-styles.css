@@ -229,47 +229,6 @@ header.wp-block-template-part {
     box-shadow: var(--wp--preset--shadow--btn-active, none);
 }
 
-/* Button-only interpretation of Core font-size selection classes. */
-.wp-block-button:not(.is-style-system-btn-icon) .wp-block-button__link {
-    font-size: 1rem;
-    line-height: 1.35;
-}
-
-.wp-block-button:not(.is-style-system-btn-icon) .wp-block-button__link.has-x-small-font-size {
-    font-size: .75rem;
-    line-height: 1.3;
-}
-
-.wp-block-button:not(.is-style-system-btn-icon) .wp-block-button__link.has-small-font-size {
-    font-size: .875rem;
-    line-height: 1.3;
-}
-
-.wp-block-button:not(.is-style-system-btn-icon) .wp-block-button__link.has-large-font-size {
-    font-size: 1.125rem;
-    line-height: 1.3;
-}
-
-.wp-block-button:not(.is-style-system-btn-icon) .wp-block-button__link.has-x-large-font-size {
-    font-size: 1.25rem;
-    line-height: 1.25;
-}
-
-.wp-block-button:not(.is-style-system-btn-icon) .wp-block-button__link.has-xx-large-font-size {
-    font-size: 1.375rem;
-    line-height: 1.2;
-}
-
-.wp-block-button:not(.is-style-system-btn-icon) .wp-block-button__link.has-xxx-large-font-size {
-    font-size: 1.5rem;
-    line-height: 1.15;
-}
-
-.wp-block-button:not(.is-style-system-btn-icon) .wp-block-button__link.has-huge-font-size {
-    font-size: 1.75rem;
-    line-height: 1.15;
-}
-
 /* Universal Dynamic Hover Wash (Calculates automatically based on text color) */
 .wp-block-button__link:not(:disabled):hover,
 .wp-element-button:not(:disabled):hover,
@@ -512,8 +471,26 @@ html body :is(.strap-icon-button:not(.strap-icon-button--woo), .wp-block-button.
 }
 
 /* ==========================================================================
-   Global Form Controls
+   Native Form Semantics
+   theme.json owns text-control paint, geometry, and typography. CSS retains
+   only native-label typography and the focus-state behavior unavailable to
+   theme.json textInput/select elements.
    ========================================================================== */
+label {
+    font-family: var(--wp--preset--font-family--body);
+    font-size: var(--wp--preset--font-size--medium);
+    font-weight: var(--wp--custom--font-weight-body);
+    line-height: 1.6;
+}
+
+button:not(.wp-block-icon) {
+    font-family: var(--wp--preset--font-family--button);
+    font-size: var(--wp--preset--font-size--medium);
+    font-weight: var(--wp--custom--font-weight-button);
+    letter-spacing: 0.03em;
+    line-height: 1.45;
+}
+
 input[type="text"],
 input[type="email"],
 input[type="password"],
@@ -523,14 +500,6 @@ input[type="url"],
 input[type="number"],
 textarea,
 select {
-    padding: calc(var(--wp--preset--font-size--small) * 0.75) var(--wp--preset--spacing--30);
-    border-width: var(--wp--custom--form-border-width);
-    border-style: solid;
-    border-color: var(--wp--custom--form-border-color);
-    border-radius: var(--wp--custom--form-border-radius);
-    background-color: var(--wp--custom--form-bg-color);
-    color: var(--wp--custom--form-text-color);
-    box-shadow: var(--wp--preset--shadow--form-control-shadow, none);
     transition: var(--wp--custom--form-transition);
 }
 

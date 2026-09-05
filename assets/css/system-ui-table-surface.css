@@ -1,0 +1,87 @@
+/*
+ * SystemStrap Table Surface
+ *
+ * Shared visual authority for semantic tables placed on a System UI surface.
+ * It deliberately does not set table display, responsive behavior, or action
+ * control layout; the owning block or integration retains those concerns.
+ */
+
+:is(.strap-table-surface, .wp-block-table.is-style-system-panel) {
+	border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+	background: var(--wp--custom--system-ui-surface);
+	background-image: var(--wp--custom--system-ui-background-image, none);
+	backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+	-webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+	border-radius: var(--wp--custom--border-radius);
+	box-shadow: var(--wp--custom--shadow);
+	overflow: hidden;
+	padding: 0 !important;
+}
+
+:is(.strap-table-surface, .wp-block-table.is-style-system-panel) table {
+	width: 100%;
+	margin: 0;
+	border: 0;
+	border-collapse: collapse;
+	background: transparent;
+	color: inherit;
+}
+
+:is(.strap-table-surface, .wp-block-table.is-style-system-panel) > figcaption,
+:is(.strap-table-surface, .wp-block-table.is-style-system-panel) table > caption {
+	caption-side: top;
+	padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
+	background: var(--wp--custom--system-ui-surface-banner);
+	border-bottom: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+	color: inherit;
+	font-weight: var(--wp--custom--font-weight-heading, inherit);
+	text-align: left;
+}
+
+:is(.strap-table-surface, .wp-block-table.is-style-system-panel) table > thead > tr > th,
+:is(.strap-table-surface, .wp-block-table.is-style-system-panel) table > tfoot > tr > :is(th, td) {
+	background: var(--wp--custom--system-ui-surface-banner);
+	color: inherit;
+	font-weight: var(--wp--custom--font-weight-heading, inherit);
+	text-align: left;
+}
+
+:is(.strap-table-surface, .wp-block-table.is-style-system-panel) table > thead > tr > th,
+:is(.strap-table-surface, .wp-block-table.is-style-system-panel) table > tbody > tr > :is(th, td),
+:is(.strap-table-surface, .wp-block-table.is-style-system-panel) table > tfoot > tr > :is(th, td) {
+	padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
+	border-color: var(--wp--custom--system-ui-border-color);
+	border-style: solid;
+	vertical-align: top;
+}
+
+:is(.strap-table-surface, .wp-block-table.is-style-system-panel) table > thead > tr > th {
+	border-width: 0 0 var(--wp--custom--border-width, 1px) 0;
+}
+
+:is(.strap-table-surface, .wp-block-table.is-style-system-panel) table > tbody > tr > :is(th, td),
+:is(.strap-table-surface, .wp-block-table.is-style-system-panel) table > tfoot > tr > :is(th, td) {
+	border-width: var(--wp--custom--border-width, 1px) 0 0;
+}
+
+:is(.strap-table-surface, .wp-block-table.is-style-system-panel) table > tbody > tr:first-child > * {
+	border-top-width: 0;
+}
+
+:is(.strap-table-surface, .wp-block-table.is-style-system-panel).has-background {
+	border-color: var(--wp--custom--system-ui-border-color);
+	background: transparent;
+}
+
+.has-background :is(.strap-table-surface, .wp-block-table.is-style-system-panel):not(.has-background) {
+	border-color: var(--wp--custom--system-ui-border-color);
+}
+
+:is(.strap-table-surface, .wp-block-table.is-style-system-panel).has-background > figcaption,
+:is(.strap-table-surface, .wp-block-table.is-style-system-panel).has-background table > caption,
+:is(.strap-table-surface, .wp-block-table.is-style-system-panel).has-background table > :is(thead, tbody, tfoot) > tr > :is(th, td),
+.has-background :is(.strap-table-surface, .wp-block-table.is-style-system-panel):not(.has-background) > figcaption,
+.has-background :is(.strap-table-surface, .wp-block-table.is-style-system-panel):not(.has-background) table > caption,
+.has-background :is(.strap-table-surface, .wp-block-table.is-style-system-panel):not(.has-background) table > :is(thead, tbody, tfoot) > tr > :is(th, td) {
+	border-color: var(--wp--custom--system-ui-border-color);
+}

@@ -246,11 +246,11 @@ function strap_get_woocommerce_account_compatibility_css() {
 .woocommerce-account .woocommerce-MyAccount-content { display: grid; gap: var(--wp--preset--spacing--30); }
 .woocommerce-account .woocommerce :is(h2, h3) { font-family: var(--wp--preset--font-family--heading); font-weight: var(--wp--custom--font-weight-heading); }
 .woocommerce-account .woocommerce :is(.woocommerce-form-row, .form-row) { margin: 0 0 var(--wp--preset--spacing--20); }
-.woocommerce-account .woocommerce :is(.woocommerce-form-row, .form-row) > label { display: block; margin-bottom: var(--wp--preset--spacing--10); font-family: var(--wp--preset--font-family--body); font-weight: var(--wp--custom--font-weight-button); }
-.woocommerce-account .woocommerce :is(input, select, textarea) { font: inherit; line-height: 1.5; }
+.woocommerce-account .woocommerce :is(.woocommerce-form-row, .form-row) > label { display: block; margin-bottom: var(--wp--preset--spacing--10); line-height: 1.6 !important; }
+/* Woo block-theme form-row selectors load after global styles; preserve only the theme-owned text-control typography. */
+.woocommerce-account .woocommerce :is(input.input-text, textarea.input-text, select) { font-family: var(--wp--preset--font-family--body) !important; font-size: var(--wp--preset--font-size--medium) !important; font-weight: var(--wp--custom--font-weight-body) !important; line-height: 1.6 !important; }
 .woocommerce-account .woocommerce :is(input, select, textarea):disabled { cursor: not-allowed; opacity: .65; }
 .woocommerce-account .woocommerce .woocommerce-invalid :is(input, select, textarea) { border-color: var(--wp--custom--form-invalid-border-color); }
-.woocommerce-account .woocommerce :is(.woocommerce-button.button, .button) { font-family: var(--wp--preset--font-family--button); font-size: var(--wp--preset--font-size--small); font-weight: var(--wp--custom--font-weight-button); line-height: 1.3; }
 .woocommerce-account .woocommerce-MyAccount-content table { width: 100%; border-collapse: collapse; font-family: var(--wp--preset--font-family--body); }
 .woocommerce-account .woocommerce-MyAccount-content :is(th, td) { padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30); border-color: var(--wp--preset--color--border-color); border-style: var(--wp--custom--border-style); border-width: 0 0 var(--wp--custom--border-width); text-align: start; }
 .woocommerce-account .woocommerce-MyAccount-content th { font-weight: var(--wp--custom--font-weight-heading); }
