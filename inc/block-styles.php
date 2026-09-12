@@ -17,6 +17,7 @@ function strap_register_block_styles() {
 	$theme_uri = get_template_directory_uri() . '/';
 	$pagination_stylesheet = "{$theme_dir}assets/css/system-ui-pagination.css";
 	$panel_surface_stylesheet = "{$theme_dir}assets/css/system-ui-panel-surface.css";
+	$panel_structure_stylesheet = "{$theme_dir}assets/css/system-ui-panel-structure.css";
 	$table_surface_stylesheet = "{$theme_dir}assets/css/system-ui-table-surface.css";
 
 	if ( file_exists( $pagination_stylesheet ) ) {
@@ -37,6 +38,15 @@ function strap_register_block_styles() {
 		);
 	}
 
+	if ( file_exists( $panel_structure_stylesheet ) ) {
+		wp_register_style(
+			'strap-panel-structure',
+			$theme_uri . 'assets/css/system-ui-panel-structure.css',
+			array(),
+			wp_get_theme()->get( 'Version' )
+		);
+	}
+
 	if ( file_exists( $table_surface_stylesheet ) ) {
 		wp_register_style(
 			'strap-table-surface',
@@ -46,9 +56,39 @@ function strap_register_block_styles() {
 		);
 	}
 
+	$variation_order = array(
+		'core/group' => array(
+			'system-flat-panel',
+			'system-panel',
+			'system-panel-header',
+			'system-panel-footer',
+		),
+	);
+
+	$all_files = glob( "{$theme_dir}assets/css/style-variations/*.css" );
+	$ordered_files = array();
+	$file_map      = array();
+
+	foreach ( $all_files as $file ) {
+		$file_map[ basename( $file ) ] = $file;
+	}
+
+	foreach ( $variation_order as $block_name => $variations ) {
+		$block_prefix = str_replace( '/', '-', $block_name );
+		foreach ( $variations as $var ) {
+			$filename = "{$block_prefix}-{$var}.css";
+			if ( isset( $file_map[ $filename ] ) ) {
+				$ordered_files[] = $file_map[ $filename ];
+				unset( $file_map[ $filename ] );
+			}
+		}
+	}
+
+	$files_to_process = array_merge( $ordered_files, array_values( $file_map ) );
+
 	// Auto-register and map stylesheets to specific blocks via wp_enqueue_block_style
 	// Expected filename format: [namespace]-[block]-[variation].css (e.g., core-details-system-details.css)
-	foreach ( glob( "{$theme_dir}assets/css/style-variations/*.css" ) as $file ) {
+	foreach ( $files_to_process as $file ) {
 		$filename = basename( $file, '.css' );
 		
 		// Find where the variation name starts (assuming all our variations start with 'system-')
@@ -79,8 +119,9 @@ function strap_register_block_styles() {
 				$deps[] = 'strap-table-surface';
 			}
 
-			if ( 'core-group-system-panel' === $filename ) {
+			if ( 'core-group-system-panel' === $filename || 'core-group-system-flat-panel' === $filename ) {
 				$deps[] = 'strap-panel-surface';
+				$deps[] = 'strap-panel-structure';
 			}
 
 			// 1. Register the conditional block stylesheet using absolute path
@@ -97,7 +138,9 @@ function strap_register_block_styles() {
 			// 2. Register the Block Style Variation and map it to the handle
 			$variation_label = ucwords( str_replace( '-', ' ', $variation_name ) );
 
-			if ( str_starts_with( $variation_name, 'system-ui-pagination' ) ) {
+			if ( 'system-flat-panel' === $variation_name ) {
+				$variation_label = 'System Flat';
+			} elseif ( str_starts_with( $variation_name, 'system-ui-pagination' ) ) {
 				$variation_label = str_replace( 'System Ui', 'System UI', $variation_label );
 			}
 

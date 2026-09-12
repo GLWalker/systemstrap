@@ -4,24 +4,72 @@
  * Group owns its own child composition. Integrations may consume this class
  * only on a stable public application root and retain native child structure.
  */
-:is(.wp-block-group.is-style-system-panel, .strap-panel-surface) {
-    --strap-system-panel-padding-y: var(--wp--preset--spacing--30);
-    --strap-system-panel-padding-x: var(--wp--preset--spacing--30);
+
+/* =========================================================
+   PANEL SURFACE FAMILY
+   Panels consume context inherited from their ancestors.
+   ========================================================= */
+
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel, .strap-panel-surface) {
+    /* Neutral Panel content contract. Consumers may use these values without
+       inheriting Group-specific child composition. */
+    --strap-system-panel-content-inset-x: var(--wp--preset--spacing--30);
+    --strap-system-panel-content-inset-y: var(--wp--preset--spacing--30);
+    --strap-system-panel-content-gap: var(--wp--preset--spacing--10);
+    --strap-system-panel-heading-font-family: var(--wp--preset--font-family--heading);
+    --strap-system-panel-heading-font-weight: var(--wp--custom--font-weight-heading);
+    --strap-system-panel-heading-line-height: 1.2;
+    --strap-system-panel-body-font-family: var(--wp--preset--font-family--body);
+    --strap-system-panel-body-font-size: var(--wp--preset--font-size--medium);
+    --strap-system-panel-body-font-weight: var(--wp--custom--font-weight-body);
+    --strap-system-panel-body-line-height: 1.6;
+    --strap-system-panel-padding-y: var(--strap-system-panel-content-inset-y);
+    --strap-system-panel-padding-x: var(--strap-system-panel-content-inset-x);
 
     border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
-    background-image: var(--wp--custom--system-ui-background-image, none);
-    backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
-    -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     border-radius: var(--wp--custom--border-radius);
-    box-shadow: var(--wp--custom--shadow);
     overflow: hidden;
     transition: border-color 0.15s ease-in-out;
 }
 
-:is(.wp-block-group.is-style-system-panel, .strap-panel-surface):not(.has-background):not([style*="background-color"]) {
-    background-color: var(--wp--custom--system-ui-surface);
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel, .strap-panel-surface):not(.has-background):not([style*="background-color"]) {
+    background-color: var(--strap-system-panel-context-surface, var(--wp--custom--system-ui-surface));
 }
 
-:is(.wp-block-group.is-style-system-panel, .strap-panel-surface).has-background {
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel, .strap-panel-surface).has-background {
     border-color: var(--wp--custom--system-ui-border-color);
+}
+
+/* =========================================================
+   ENHANCED PANEL
+   Consumes the enhancement context supplied by its nearest
+   enclosing panel context.
+   ========================================================= */
+
+:is(.wp-block-group.is-style-system-panel, .strap-panel-surface) {
+    background-image: var(--strap-system-panel-context-background-image, var(--wp--custom--system-ui-background-image, none));
+    backdrop-filter: var(--strap-system-panel-context-backdrop-filter, var(--wp--custom--system-ui-backdrop-filter, none));
+    -webkit-backdrop-filter: var(--strap-system-panel-context-backdrop-filter, var(--wp--custom--system-ui-backdrop-filter, none));
+    box-shadow: var(--wp--custom--shadow);
+}
+
+/* =========================================================
+   SHARED NESTED SURFACE STATE
+   Both panel types establish the nested semantic surface
+   for their descendant subtree.
+   ========================================================= */
+
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel, .strap-panel-surface) > * {
+    --strap-system-panel-context-surface: var(--wp--custom--system-ui-surface-nested, transparent);
+}
+
+/* =========================================================
+   SYSTEM PANEL OUTGOING CONTEXT
+   Descendant enhanced panels use nested enhancement and no
+   backdrop blur, preventing double haze.
+   ========================================================= */
+
+:is(.wp-block-group.is-style-system-panel, .strap-panel-surface) > * {
+    --strap-system-panel-context-background-image: var(--wp--custom--system-ui-background-image-nested, none);
+    --strap-system-panel-context-backdrop-filter: none;
 }

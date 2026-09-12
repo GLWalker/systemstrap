@@ -275,7 +275,34 @@ Color-bearing button tokens are intentionally excluded.
 
 ---
 
-# 12. Badge Constants
+# 12. System Panel Content Contract
+
+Authoritative runtime source: `assets/css/system-ui-panel-surface.css`.
+
+The neutral System Panel master exposes these consumer aliases. They are not
+new `theme.json` tokens; each resolves through an existing SystemStrap token
+whose semantic role matches the Panel content contract.
+
+| Role | Consumer alias | Authoritative value | Definition |
+| --- | --- | --- | --- |
+| Content inset, inline | `--strap-system-panel-content-inset-x` | Spacing 30 | Standard Panel content inset. |
+| Content inset, block | `--strap-system-panel-content-inset-y` | Spacing 30 | Standard Panel content inset. |
+| Internal content gap | `--strap-system-panel-content-gap` | Spacing 10 | Tight separation between compact Panel content roles. |
+| Heading family | `--strap-system-panel-heading-font-family` | Heading family | Panel heading/title family. |
+| Heading weight | `--strap-system-panel-heading-font-weight` | Heading weight | Panel heading/title emphasis. |
+| Heading line height | `--strap-system-panel-heading-line-height` | `1.2` | Panel heading/title rhythm. |
+| Body family | `--strap-system-panel-body-font-family` | Body family | Panel body/meta family. |
+| Body size | `--strap-system-panel-body-font-size` | Medium | Panel body/meta default size. |
+| Body weight | `--strap-system-panel-body-font-weight` | Body weight | Panel body/meta default weight. |
+| Body line height | `--strap-system-panel-body-line-height` | `1.6` | Panel body/meta rhythm. |
+
+Consumers may define a compact semantic heading size appropriate to their
+component only when the authored block has not selected a font size. Authored
+block attributes and Global Styles remain authoritative over these defaults.
+
+---
+
+# 13. Badge Constants
 
 | Role                 | CSS variable                        |             Value | Definition                            |
 | -------------------- | ----------------------------------- | ----------------: | ------------------------------------- |
@@ -287,7 +314,7 @@ Color-bearing button tokens are intentionally excluded.
 
 ---
 
-# 13. Interaction and State Constants
+# 14. Interaction and State Constants
 
 | Role              | CSS variable/value                                               | Definition                            |
 | ----------------- | ---------------------------------------------------------------- | ------------------------------------- |
@@ -299,7 +326,7 @@ Color-bearing button tokens are intentionally excluded.
 
 ---
 
-# 14. System UI Structural Constants
+# 15. System UI Structural Constants
 
 Stable structural expectations:
 
@@ -318,7 +345,7 @@ Do not duplicate those values inside plugin adapters when the shared token is av
 
 ---
 
-# 15. Style-Dependent Color and Gradient Tokens
+# 16. Style-Dependent Color and Gradient Tokens
 
 **Values intentionally omitted from this contract.**
 
@@ -332,7 +359,7 @@ That reference should document semantic role and token name without encouraging 
 
 ---
 
-# 16. Dynamic / Runtime Tokens
+# 17. Dynamic / Runtime Tokens
 
 Not every reusable SystemStrap constant originates in `theme.json`.
 

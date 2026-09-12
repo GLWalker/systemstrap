@@ -1,151 +1,151 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
 	"version": 3,
-	"title": "Dark Wylde Colors",
-	"description": "Colors: A dark high-contrast color variation.",
+	"title": "Wylde Dark",
+	"description": "Colors: Deep electric violet, stage gold, acid green, blackened chrome, and high-contrast light surfaces.",
 	"settings": {
 		"color": {
 			"duotone": [
 				{
 					"colors": [
-						"#212529",
-						"#dee2e6"
+						"#0D0912",
+						"#F4EEF9"
 					],
 					"name": "Base to Contrast",
 					"slug": "duotone-1"
 				},
 				{
 					"colors": [
-						"#dee2e6",
-						"#212529"
+						"#F4EEF9",
+						"#0D0912"
 					],
 					"name": "Contast to Base",
 					"slug": "duotone-11"
 				},
 				{
 					"colors": [
-						"#212529",
-						"#8b5cf6"
+						"#0D0912",
+						"#8A38FF"
 					],
 					"name": "Base to Accent",
 					"slug": "duotone-2"
 				},
 				{
 					"colors": [
-						"#8b5cf6",
-						"#212529"
+						"#8A38FF",
+						"#0D0912"
 					],
 					"name": "Accent to Base",
 					"slug": "duotone-12"
 				},
 				{
 					"colors": [
-						"#212529",
-						"#8b5cf6"
+						"#0D0912",
+						"#8A38FF"
 					],
 					"name": "Base to Primary",
 					"slug": "duotone-3"
 				},
 				{
 					"colors": [
-						"#8b5cf6",
-						"#212529"
+						"#8A38FF",
+						"#0D0912"
 					],
-					"name": "Primary to Base",
+					"name": "Base to Primary to Base",
 					"slug": "duotone-13"
 				},
 				{
 					"colors": [
-						"#212529",
-						"#fcfdfd"
+						"#0D0912",
+						"#9A86B3"
 					],
 					"name": "Base to Secondary",
 					"slug": "duotone-4"
 				},
 				{
 					"colors": [
-						"#fcfdfd",
-						"#212529"
+						"#9A86B3",
+						"#0D0912"
 					],
 					"name": "Secondary to Base",
 					"slug": "duotone-14"
 				},
 				{
 					"colors": [
-						"#212529",
-						"#a2e436"
+						"#0D0912",
+						"#78C91D"
 					],
 					"name": "Base to Success",
 					"slug": "duotone-5"
 				},
 				{
 					"colors": [
-						"#a2e436",
-						"#212529"
+						"#78C91D",
+						"#0D0912"
 					],
 					"name": "Success to Base",
 					"slug": "duotone-15"
 				},
 				{
 					"colors": [
-						"#212529",
-						"#00d9ff"
+						"#0D0912",
+						"#FFD43B"
 					],
 					"name": "Base to Info",
 					"slug": "duotone-6"
 				},
 				{
 					"colors": [
-						"#00d9ff",
-						"#212529"
+						"#FFD43B",
+						"#0D0912"
 					],
 					"name": "Info to Base",
 					"slug": "duotone-16"
 				},
 				{
 					"colors": [
-						"#212529",
-						"#ff7a00"
+						"#0D0912",
+						"#FF7A1A"
 					],
 					"name": "Base to Warning",
 					"slug": "duotone-7"
 				},
 				{
 					"colors": [
-						"#ff7a00",
-						"#212529"
+						"#FF7A1A",
+						"#0D0912"
 					],
 					"name": "Warning to Base",
 					"slug": "duotone-17"
 				},
 				{
 					"colors": [
-						"#212529",
-						"#f56565"
+						"#0D0912",
+						"#E64F69"
 					],
 					"name": "Base to Danger",
 					"slug": "duotone-8"
 				},
 				{
 					"colors": [
-						"#f56565",
-						"#212529"
+						"#E64F69",
+						"#0D0912"
 					],
 					"name": "Danger to Base",
 					"slug": "duotone-18"
 				},
 				{
 					"colors": [
-						"#eaedef",
-						"#080808"
+						"#F4EFF8",
+						"#120D18"
 					],
 					"name": "Light to Dark",
 					"slug": "duotone-9"
 				},
 				{
 					"colors": [
-						"#080808",
-						"#eaedef"
+						"#120D18",
+						"#F4EFF8"
 					],
 					"name": "Dark to Light",
 					"slug": "duotone-10"
@@ -153,77 +153,77 @@
 			],
 			"palette": [
 				{
-					"color": "#212529",
+					"color": "#0D0912",
 					"name": "Base/Body",
 					"slug": "base"
 				},
 				{
-					"color": "#dee2e6",
+					"color": "#F4EEF9",
 					"name": "Contrast",
 					"slug": "contrast"
 				},
 				{
-					"color": "#8b5cf6",
+					"color": "#8A38FF",
 					"name": "Primary",
 					"slug": "primary"
 				},
 				{
-					"color": "#fcfdfd",
+					"color": "#9A86B3",
 					"name": "Secondary",
 					"slug": "secondary"
 				},
 				{
-					"color": "#a2e436",
+					"color": "#78C91D",
 					"name": "Success",
 					"slug": "success"
 				},
 				{
-					"color": "#00d9ff",
+					"color": "#FFD43B",
 					"name": "Info",
 					"slug": "info"
 				},
 				{
-					"color": "#ff7a00",
+					"color": "#FF7A1A",
 					"name": "Warning",
 					"slug": "warning"
 				},
 				{
-					"color": "#f56565",
+					"color": "#E64F69",
 					"name": "Danger",
 					"slug": "danger"
 				},
 				{
-					"color": "#eaedef",
+					"color": "#F4EFF8",
 					"name": "Light",
 					"slug": "light"
 				},
 				{
-					"color": "#080808",
+					"color": "#120D18",
 					"name": "Dark",
 					"slug": "dark"
 				},
 				{
-					"color": "#343a40",
+					"color": "#21172C",
 					"name": "Secondary Body BG",
 					"slug": "secondary-bg"
 				},
 				{
-					"color": "rgba(222, 226, 230, 0.75)",
+					"color": "#E8DDF2",
 					"name": "Secondary Body Contrast",
 					"slug": "secondary-color"
 				},
 				{
-					"color": "#2b3035",
+					"color": "#2B2035",
 					"name": "Tertiary Body BG",
 					"slug": "tertiary-bg"
 				},
 				{
-					"color": "rgba(222, 226, 230, 0.5)",
+					"color": "#D8CBE3",
 					"name": "Tertiary Body Contrast",
 					"slug": "tertiary-color"
 				},
 				{
-					"color": "#000000",
+					"color": "#62536F",
 					"name": "Border Color",
 					"slug": "border-color"
 				},
@@ -257,22 +257,22 @@
 				{
 					"name": "Absolute: Gradient",
 					"slug": "absolute-01",
-					"gradient": "linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0.1) 100%)"
+					"gradient": "linear-gradient(135deg,#09060D 0%,#1A0B25 16%,#43146B 34%,var(--wp--preset--color--primary) 57%,#B45CFF 72%,var(--wp--preset--color--info) 91%,#FFF0A0 95%,#1B0B27 100%)"
 				},
 				{
 					"name": "Absolute: Gradient Alt",
 					"slug": "absolute-02",
-					"gradient": "linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.2) 100%)"
+					"gradient": "linear-gradient(145deg,#F8F3FA 0%,#CFC4D9 16%,#887A98 34%,#4A3A59 52%,var(--wp--preset--color--secondary-bg) 72%,var(--wp--preset--color--base) 100%)"
 				},
 				{
 					"name": "Absolute: Body",
 					"slug": "absolute-03",
-					"gradient": "repeating-radial-gradient(circle at 18% 12%, rgba(255, 255, 255, 0.03) 0 0.55rem, rgba(0, 0, 0, 0.024) 0.55rem 1.1rem, transparent 1.1rem 1.65rem), linear-gradient(135deg, var(--wp--preset--color--secondary-bg) 0%, var(--wp--preset--color--base) 62%, var(--wp--preset--color--tertiary-bg) 100%)"
+					"gradient": "radial-gradient(circle at 8% 7%,color-mix(in srgb,var(--wp--preset--color--info) 16%,transparent) 0%,transparent 20%),radial-gradient(circle at 88% 12%,color-mix(in srgb,var(--wp--preset--color--primary) 42%,transparent) 0%,transparent 34%),radial-gradient(circle at 72% 84%,color-mix(in srgb,var(--wp--preset--color--primary) 20%,transparent) 0%,transparent 35%),radial-gradient(circle at 16% 88%,color-mix(in srgb,var(--wp--preset--color--success) 7%,transparent) 0%,transparent 22%),linear-gradient(135deg,var(--wp--preset--color--base) 0%,#130B1B 38%,#1B1025 67%,#0A080D 100%)"
 				},
 				{
 					"name": "Absolute: Element",
 					"slug": "absolute-04",
-					"gradient": "linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.018) 42%, rgba(0, 0, 0, 0.08) 100%)"
+					"gradient": "linear-gradient(145deg,color-mix(in srgb,var(--wp--preset--color--primary) 30%,transparent) 0%,rgba(255,255,255,.12) 24%,rgba(255,255,255,.025) 48%,color-mix(in srgb,var(--wp--preset--color--secondary) 12%,transparent) 70%,color-mix(in srgb,var(--wp--preset--color--primary) 18%,transparent) 100%)"
 				},
 				{
 					"name": "Accent: Primary",
@@ -375,6 +375,16 @@
 					"gradient": "repeating-radial-gradient(circle at 65% 55%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, var(--wp--custom--system-ui-pattern-highlight-color, currentColor)) var(--wp--custom--system-ui-pattern-opacity, 12%), transparent) 0 .24rem, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-mid, var(--wp--custom--system-ui-pattern-shadow-color, currentColor)) var(--wp--custom--system-ui-pattern-shadow-opacity, 8%), transparent) .24rem .48rem, transparent .48rem .72rem)"
 				},
 				{
+					"name": "Pattern: Navigation",
+					"slug": "pattern-41",
+					"gradient": "repeating-radial-gradient(circle at 28% 55%, transparent 0 2.4rem, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, var(--wp--custom--system-ui-pattern-highlight-color, currentColor)) 15%, transparent) 2.4rem 2.56rem, transparent 2.56rem 4.9rem, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-mid, var(--wp--custom--system-ui-pattern-shadow-color, currentColor)) 11%, transparent) 4.9rem 5.06rem, transparent 5.06rem 7.4rem), repeating-conic-gradient(from 2deg at 28% 55%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, var(--wp--custom--system-ui-pattern-highlight-color, currentColor)) 16%, transparent) 0deg 1.75deg, transparent 1.75deg 43.25deg, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-mid, var(--wp--custom--system-ui-pattern-shadow-color, currentColor)) 10%, transparent) 43.25deg 45deg, transparent 45deg 90deg), radial-gradient(circle at 28% 55%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, var(--wp--custom--system-ui-pattern-highlight-color, currentColor)) 18%, transparent) 0 .22rem, transparent .28rem)"
+				},
+				{
+					"name": "Pattern: Navigation Alt",
+					"slug": "pattern-42",
+					"gradient": "repeating-radial-gradient(circle at 72% 55%, transparent 0 2.4rem, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, var(--wp--custom--system-ui-pattern-highlight-color, currentColor)) 15%, transparent) 2.4rem 2.56rem, transparent 2.56rem 4.9rem, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-mid, var(--wp--custom--system-ui-pattern-shadow-color, currentColor)) 11%, transparent) 4.9rem 5.06rem, transparent 5.06rem 7.4rem), repeating-conic-gradient(from -2deg at 72% 55%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, var(--wp--custom--system-ui-pattern-highlight-color, currentColor)) 16%, transparent) 0deg 1.75deg, transparent 1.75deg 43.25deg, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-mid, var(--wp--custom--system-ui-pattern-shadow-color, currentColor)) 10%, transparent) 43.25deg 45deg, transparent 45deg 90deg), radial-gradient(circle at 72% 55%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, var(--wp--custom--system-ui-pattern-highlight-color, currentColor)) 18%, transparent) 0 .22rem, transparent .28rem)"
+				},
+				{
 					"name": "Pattern: Topographic Lines",
 					"slug": "pattern-50",
 					"gradient": "repeating-radial-gradient(ellipse 46% 72% at 18% 82%, transparent 0 8%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-high, currentColor) 13%, transparent) 8% 8.7%, transparent 8.7% 16%), repeating-radial-gradient(ellipse 62% 48% at 76% 24%, transparent 0 10%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-mid, currentColor) 11%, transparent) 10% 10.7%, transparent 10.7% 19%), repeating-radial-gradient(ellipse 86% 64% at 52% 58%, transparent 0 13%, color-mix(in srgb, var(--wp--custom--system-ui-pattern-tone-low, currentColor) 10%, transparent) 13% 13.6%, transparent 13.6% 23%)"
@@ -459,9 +469,9 @@
 	},
 	"styles": {
 		"color": {
-			"gradient": "var:preset|gradient|absolute-03",
+			"background": "var:preset|color|base",
 			"text": "var:preset|color|contrast",
-			"background": "var:preset|color|base"
+			"gradient": "var:preset|gradient|absolute-03"
 		}
 	}
 }

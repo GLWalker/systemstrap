@@ -6,11 +6,21 @@ This file is a CONTRACT.
 
 ## Contract Version
 
-Current Version: 1.21
+Current Version: 1.22
 
 Last Updated: 2026-09-03
 
 ## Change Log
+
+### 1.22
+
+Extended `assets/css/system-ui-panel-surface.css` with the neutral System Panel
+content contract. The master now exposes semantic aliases for standard Panel
+insets, compact internal gap, and heading/body typography roles, all resolving
+through existing theme tokens. Product Panel and future structural adapters may
+consume those aliases without duplicating Panel paint or establishing an
+independent Panel typography system. Authored block and Global Styles values
+remain authoritative over presentation defaults.
 
 ### 1.20
 

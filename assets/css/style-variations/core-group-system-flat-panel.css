@@ -1,0 +1,22 @@
+/*
+ * Flat System Panel Variation
+ * explicitly flattens the surface and breaks any outer haze chain.
+ */
+
+/* =========================================================
+   FLAT PANEL
+   Flatness belongs only to this element.
+   ========================================================= */
+
+
+
+/* =========================================================
+   FLAT PANEL OUTGOING CONTEXT
+   Because the outer panel has no enhancement, descendant
+   System Panels regain the normal enhanced presentation.
+   ========================================================= */
+
+.wp-block-group.is-style-system-flat-panel > * {
+    --strap-system-panel-context-background-image: var(--wp--custom--system-ui-background-image, none);
+    --strap-system-panel-context-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+}

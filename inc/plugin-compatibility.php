@@ -33,6 +33,39 @@ function strap_enqueue_woocommerce_width_compatibility() {
 add_action( 'wp_enqueue_scripts', 'strap_enqueue_woocommerce_width_compatibility', 9 );
 
 /**
+ * Preserve compact grouped-product quantity dimensions within the form baseline.
+ */
+function strap_enqueue_woocommerce_grouped_product_quantity_compatibility() {
+	if ( ! class_exists( 'WooCommerce' ) ) {
+		return;
+	}
+
+	$css = '
+/*
+ * Grouped product quantity controls
+ *
+ * WooCommerce only constrains the native grouped quantity input width and
+ * alignment. SystemStrap\'s global form-control defaults therefore remain in
+ * force and are intentionally too generous for this compact table context.
+ *
+ * Preserve the SystemStrap form-control surface, border, radius, shadow,
+ * colors, and focus treatment; only adapt the dimensional properties required
+ * by the grouped-product quantity role.
+ */
+.wp-block-woocommerce-add-to-cart-form .woocommerce-grouped-product-list-item__quantity .quantity .qty {
+	box-sizing: border-box;
+	font-size: var(--wp--preset--font-size--small);
+	line-height: 1.4;
+	padding-block: var(--wp--preset--spacing--20);
+	padding-inline: var(--wp--preset--spacing--20);
+}
+';
+
+	wp_add_inline_style( 'strap-main-styles', $css );
+}
+add_action( 'wp_enqueue_scripts', 'strap_enqueue_woocommerce_grouped_product_quantity_compatibility', 9 );
+
+/**
  * Return safe custom Product Template surface declarations.
  *
  * @param array $parsed_block Parsed block data.
@@ -207,6 +240,13 @@ function strap_get_woocommerce_reviews_compatibility_css() {
 .wp-block-woocommerce-product-reviews .comment-respond :is(.comment-form-author, .comment-form-email, .comment-form-url, .comment-form-comment, .comment-form-rating) > label { display: block; margin-bottom: var(--wp--preset--spacing--10); }
 .wp-block-woocommerce-product-reviews .comment-respond form.comment-form { display: grid; gap: var(--wp--preset--spacing--20); }
 .wp-block-woocommerce-product-reviews .comment-respond form.comment-form > .form-submit { margin-top: var(--wp--preset--spacing--10) !important; }
+.wp-block-woocommerce-product-details #reviews .comment-respond { display: grid; gap: var(--wp--preset--spacing--20); }
+.wp-block-woocommerce-product-details #reviews .comment-respond :is(.comment-form-author, .comment-form-email, .comment-form-url, .comment-form-comment, .comment-form-rating, .comment-form-cookies-consent, .form-submit) { margin: 0; }
+.wp-block-woocommerce-product-details #reviews .comment-respond :is(.comment-form-author, .comment-form-email, .comment-form-url, .comment-form-comment, .comment-form-rating) > label { display: block; margin-bottom: var(--wp--preset--spacing--10); }
+.wp-block-woocommerce-product-details #reviews .comment-respond form.comment-form { display: grid; gap: var(--wp--preset--spacing--20); }
+.wp-block-woocommerce-product-details #reviews .comment-respond :is(.comment-form-author, .comment-form-email, .comment-form-url) > input,
+.wp-block-woocommerce-product-details #reviews .comment-respond .comment-form-comment > textarea { box-sizing: border-box; display: block; inline-size: 100%; }
+.wp-block-woocommerce-product-details #reviews .comment-respond form.comment-form > .form-submit { margin-top: var(--wp--preset--spacing--10) !important; }
 .wp-block-woocommerce-product-reviews :is(.wp-block-woocommerce-product-reviews-pagination, .woocommerce-pagination) { display: flex; flex-wrap: wrap; gap: var(--wp--preset--spacing--20); font-size: var(--wp--preset--font-size--small); }
 ';
 }

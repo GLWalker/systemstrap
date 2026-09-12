@@ -5,23 +5,23 @@
 
 :is(
     .query-directory-listing__query,
-    .directory-listing__query
+    .query-directory-listing__query
 ).is-style-system-ui-query :is(
     .query-directory-listing__row,
-    .directory-listing__row,
+    .query-directory-listing__row,
     .query-directory-listing__empty,
-    .directory-listing__empty
+    .query-directory-listing__empty
 ) {
     border-color: transparent;
     border-color: var(--wp--custom--system-ui-border-color);
 }
 
-.query-directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .query-directory-listing__pagination,
-.query-directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .query-directory-listing__pagination a,
-.query-directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .query-directory-listing__pagination span,
-.directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .directory-listing__pagination,
-.directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .directory-listing__pagination a,
-.directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .directory-listing__pagination span {
+.query-directory-listing:has(> :is(.query-directory-listing__query, .query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__pagination,
+.query-directory-listing:has(> :is(.query-directory-listing__query, .query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__pagination a,
+.query-directory-listing:has(> :is(.query-directory-listing__query, .query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__pagination span,
+.query-directory-listing:has(> :is(.query-directory-listing__query, .query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__pagination,
+.query-directory-listing:has(> :is(.query-directory-listing__query, .query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__pagination a,
+.query-directory-listing:has(> :is(.query-directory-listing__query, .query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__pagination span {
     color: inherit;
 }
 
@@ -39,7 +39,7 @@
     --strap-term-badge-hover-color: inherit;
 }
 
-:is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query {
+:is(.query-directory-listing__query, .query-directory-listing__query).is-style-system-ui-query {
     margin: 0;
 }
 
@@ -49,18 +49,18 @@
    row-shell treatment as System List without hijacking specialized patterns.
    ========================================================================== */
 
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) {
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)) {
     color: inherit;
 }
 
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template {
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)) > .wp-block-post-template {
     list-style: none;
     margin: 0;
     padding: 0;
     color: inherit;
 }
 
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template > li {
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)) > .wp-block-post-template > li {
     display: flex;
     flex-direction: column;
     position: relative;
@@ -76,28 +76,28 @@
     -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
 }
 
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template > li > * {
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)) > .wp-block-post-template > li > * {
     width: 100%;
     max-width: none;
     border-radius: 0 !important;
 }
 
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template > li .wp-block-post-featured-image,
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template > li .wp-block-post-featured-image * {
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)) > .wp-block-post-template > li .wp-block-post-featured-image,
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)) > .wp-block-post-template > li .wp-block-post-featured-image * {
     border-radius: 0 !important;
 }
 
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template:not(.is-layout-grid) > li + li {
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)) > .wp-block-post-template:not(.is-layout-grid) > li + li {
     border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
 }
 
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template.is-layout-grid > li {
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)) > .wp-block-post-template.is-layout-grid > li {
     border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
     border-radius: var(--wp--custom--border-radius);
     box-shadow: var(--wp--custom--shadow);
 }
 
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template > li > article {
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)) > .wp-block-post-template > li > article {
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;
@@ -105,7 +105,7 @@
 }
 
 /* Ensure padding on bog-standard query loop inner content so text doesn't touch edges */
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template > li > article > *:not(.wp-block-post-featured-image):not(.wp-block-cover):not(.wp-block-columns) {
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)) > .wp-block-post-template > li > article > *:not(.wp-block-post-featured-image):not(.wp-block-cover):not(.wp-block-columns) {
     padding-left: var(--wp--preset--spacing--30);
     padding-right: var(--wp--preset--spacing--30);
     padding-top: var(--wp--preset--spacing--20);
@@ -113,45 +113,45 @@
 }
 
 /* Remove top padding if the element is NOT the first visible block */
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template > li > article > *:not(meta):not(style):not(script):not(link) ~ *:not(.wp-block-post-featured-image):not(.wp-block-cover):not(.wp-block-columns) {
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)) > .wp-block-post-template > li > article > *:not(meta):not(style):not(script):not(link) ~ *:not(.wp-block-post-featured-image):not(.wp-block-cover):not(.wp-block-columns) {
     padding-top: 0;
 }
 
 /* Remove bottom padding if the element is NOT the last visible block */
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template > li > article > *:not(.wp-block-post-featured-image):not(.wp-block-cover):not(.wp-block-columns):has(~ *:not(meta):not(style):not(script):not(link)) {
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)) > .wp-block-post-template > li > article > *:not(.wp-block-post-featured-image):not(.wp-block-cover):not(.wp-block-columns):has(~ *:not(meta):not(style):not(script):not(link)) {
     padding-bottom: 0;
 }
 
 /* Remove all previous featured image structural hacks because the li overflow: hidden handles it */
 
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template > li .wp-block-post-title,
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template > li .wp-block-post-title a,
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template > li .wp-block-post-excerpt,
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template > li .wp-block-post-excerpt p,
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template > li .wp-block-post-date,
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template > li .wp-block-post-author,
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template > li .wp-block-post-terms,
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template > li .wp-block-post-terms a,
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template > li .wp-block-read-more,
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-query-pagination,
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-query-no-results {
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)) > .wp-block-post-template > li .wp-block-post-title,
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)) > .wp-block-post-template > li .wp-block-post-title a,
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)) > .wp-block-post-template > li .wp-block-post-excerpt,
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)) > .wp-block-post-template > li .wp-block-post-excerpt p,
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)) > .wp-block-post-template > li .wp-block-post-date,
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)) > .wp-block-post-template > li .wp-block-post-author,
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)) > .wp-block-post-template > li .wp-block-post-terms,
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)) > .wp-block-post-template > li .wp-block-post-terms a,
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)) > .wp-block-post-template > li .wp-block-read-more,
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)) > .wp-block-query-pagination,
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)) > .wp-block-query-no-results {
     color: inherit;
 }
 
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template > li .wp-block-post-excerpt,
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template > li .wp-block-post-excerpt p {
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)) > .wp-block-post-template > li .wp-block-post-excerpt,
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)) > .wp-block-post-template > li .wp-block-post-excerpt p {
     line-height: 1.5;
     opacity: 0.88;
 }
 
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template > li .wp-block-post-date,
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template > li .wp-block-post-author {
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)) > .wp-block-post-template > li .wp-block-post-date,
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)) > .wp-block-post-template > li .wp-block-post-author {
     opacity: 0.72;
 }
 
 
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)).has-background > .wp-block-post-template > li,
-.has-background > .wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)):not(.has-background) > .wp-block-post-template > li {
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)).has-background > .wp-block-post-template > li,
+.has-background > .wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)):not(.has-background) > .wp-block-post-template > li {
     background-color: transparent;
     background-image: none;
     backdrop-filter: none;
@@ -159,8 +159,8 @@
 }
 
 /* Bog standard query pagination - default (list) layout: acts as a flush footer */
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template:not(.is-layout-grid) ~ .wp-block-query-pagination,
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template:not(.is-layout-grid) ~ .wp-block-query-no-results {
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)) > .wp-block-post-template:not(.is-layout-grid) ~ .wp-block-query-pagination,
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)) > .wp-block-post-template:not(.is-layout-grid) ~ .wp-block-query-no-results {
     margin: 0;
     padding: var(--wp--preset--spacing--20);
     border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
@@ -171,8 +171,8 @@
 }
 
 /* Bog standard query pagination - grid layout: detached pill/box */
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template.is-layout-grid ~ .wp-block-query-pagination,
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template.is-layout-grid ~ .wp-block-query-no-results {
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)) > .wp-block-post-template.is-layout-grid ~ .wp-block-query-pagination,
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)) > .wp-block-post-template.is-layout-grid ~ .wp-block-query-no-results {
     margin: var(--wp--preset--spacing--30) 0 0 0;
     padding: var(--wp--preset--spacing--20);
     border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
@@ -184,20 +184,20 @@
     box-shadow: var(--wp--custom--shadow);
 }
 
-.query-directory-listing.is-style-system-panel > :is(.query-directory-listing__query, .directory-listing__query).has-global-padding,
-.directory-listing.is-style-system-panel > :is(.query-directory-listing__query, .directory-listing__query).has-global-padding,
+.query-directory-listing.is-style-system-panel > :is(.query-directory-listing__query, .query-directory-listing__query).has-global-padding,
+.query-directory-listing.is-style-system-panel > :is(.query-directory-listing__query, .query-directory-listing__query).has-global-padding,
 .query-latest-posts.is-style-system-panel > .query-latest-posts__query.has-global-padding,
-.systemstrap-directory-grid.is-style-system-panel.is-style-system-ui-query.has-global-padding,
+.query-directory-image-grid.is-style-system-panel.is-style-system-ui-query.has-global-padding,
 .wp-block-group.is-style-system-panel > .wp-block-query.is-style-system-ui-query.has-global-padding,
-.wp-block-group.is-style-system-panel > .query-directory-listing :is(.query-directory-listing__query, .directory-listing__query).has-global-padding,
-.wp-block-group.is-style-system-panel > .directory-listing :is(.query-directory-listing__query, .directory-listing__query).has-global-padding,
+.wp-block-group.is-style-system-panel > .query-directory-listing :is(.query-directory-listing__query, .query-directory-listing__query).has-global-padding,
+.wp-block-group.is-style-system-panel > .query-directory-listing :is(.query-directory-listing__query, .query-directory-listing__query).has-global-padding,
 .wp-block-group.is-style-system-panel > .query-latest-posts .query-latest-posts__query.has-global-padding,
-.wp-block-group.is-style-system-panel > .systemstrap-directory-grid.is-style-system-ui-query.has-global-padding,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing :is(.query-directory-listing__query, .directory-listing__query).has-global-padding,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .directory-listing :is(.query-directory-listing__query, .directory-listing__query).has-global-padding,
+.wp-block-group.is-style-system-panel > .query-directory-image-grid.is-style-system-ui-query.has-global-padding,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing :is(.query-directory-listing__query, .query-directory-listing__query).has-global-padding,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing :is(.query-directory-listing__query, .query-directory-listing__query).has-global-padding,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-latest-posts .query-latest-posts__query.has-global-padding,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-query.is-style-system-ui-query.has-global-padding,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .systemstrap-directory-grid.is-style-system-ui-query.has-global-padding {
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-image-grid.is-style-system-ui-query.has-global-padding {
     padding: 0 !important;
     width: 100%;
     max-width: none !important;
@@ -243,8 +243,8 @@
 }
 
 .query-directory-grid__query.is-style-system-ui-query,
-.systemstrap-directory-grid__query.is-style-system-ui-query,
-.systemstrap-directory-grid.is-style-system-ui-query {
+.query-directory-image-grid__query.is-style-system-ui-query,
+.query-directory-image-grid.is-style-system-ui-query {
     --directory-grid-border-color:
         var(--wp--custom--system-ui-border-color);
     --directory-grid-card-bg:
@@ -269,10 +269,10 @@
 
 .query-directory-grid__query.is-style-system-ui-query .query-directory-grid__items > li,
 .query-directory-grid__query.is-style-system-ui-query .query-directory-grid__empty,
-.systemstrap-directory-grid__query.is-style-system-ui-query .systemstrap-directory-grid__items > li,
-.systemstrap-directory-grid__query.is-style-system-ui-query .systemstrap-directory-grid__empty,
-.systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__items > li,
-.systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__empty {
+.query-directory-image-grid__query.is-style-system-ui-query .query-directory-image-grid__items > li,
+.query-directory-image-grid__query.is-style-system-ui-query .query-directory-image-grid__empty,
+.query-directory-image-grid.is-style-system-ui-query .query-directory-image-grid__items > li,
+.query-directory-image-grid.is-style-system-ui-query .query-directory-image-grid__empty {
     border-color: transparent;
     border-color: var(--wp--custom--system-ui-border-color);
     background-color: var(--wp--custom--system-ui-surface);
@@ -283,31 +283,31 @@
 }
 
 .query-directory-grid__query.is-style-system-ui-query .query-directory-grid__media,
-.systemstrap-directory-grid__query.is-style-system-ui-query .systemstrap-directory-grid__media,
-.systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__media {
+.query-directory-image-grid__query.is-style-system-ui-query .query-directory-image-grid__media,
+.query-directory-image-grid.is-style-system-ui-query .query-directory-image-grid__media {
     background-color: var(--wp--custom--system-ui-surface-banner);
     background-image: var(--wp--custom--system-ui-background-image, none);
     backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
 }
 
-.systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__card-footer,
-.systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__arrow,
+.query-directory-image-grid.is-style-system-ui-query .query-directory-image-grid__card-footer,
+.query-directory-image-grid.is-style-system-ui-query .query-directory-image-grid__arrow,
 .query-directory-grid__query.is-style-system-ui-query .query-directory-grid__card-footer,
 .query-directory-grid__query.is-style-system-ui-query .query-directory-grid__arrow {
     color: inherit;
 }
 
-.systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__items > li:hover,
-.systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__items > li:hover .systemstrap-directory-grid__image img,
-.systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__card-footer:hover .systemstrap-directory-grid__arrow,
+.query-directory-image-grid.is-style-system-ui-query .query-directory-image-grid__items > li:hover,
+.query-directory-image-grid.is-style-system-ui-query .query-directory-image-grid__items > li:hover .query-directory-image-grid__image img,
+.query-directory-image-grid.is-style-system-ui-query .query-directory-image-grid__card-footer:hover .query-directory-image-grid__arrow,
 .query-directory-grid__query.is-style-system-ui-query .query-directory-grid__items > li:hover,
 .query-directory-grid__query.is-style-system-ui-query .query-directory-grid__items > li:hover .query-directory-grid__image img,
 .query-directory-grid__query.is-style-system-ui-query .query-directory-grid__card-footer:hover .query-directory-grid__arrow {
     transform: none;
 }
 
-.systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__items > li:hover,
+.query-directory-image-grid.is-style-system-ui-query .query-directory-image-grid__items > li:hover,
 .query-directory-grid__query.is-style-system-ui-query .query-directory-grid__items > li:hover {
     background: var(--wp--custom--system-ui-surface);
     background-image: var(--wp--custom--system-ui-background-image, none);
@@ -317,14 +317,14 @@
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-grid:has(> .query-directory-grid__query.is-style-system-ui-query) .query-directory-grid__empty,
 .wp-block-group.is-style-system-panel > .query-directory-grid .query-directory-grid__items > li,
 .wp-block-group.is-style-system-panel > .query-directory-grid .query-directory-grid__empty,
-.wp-block-group.is-style-system-panel > .systemstrap-directory-grid:has(> .systemstrap-directory-grid__query.is-style-system-ui-query) .systemstrap-directory-grid__items > li,
-.wp-block-group.is-style-system-panel > .systemstrap-directory-grid:has(> .systemstrap-directory-grid__query.is-style-system-ui-query) .systemstrap-directory-grid__empty,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .systemstrap-directory-grid:has(> .systemstrap-directory-grid__query.is-style-system-ui-query) .systemstrap-directory-grid__items > li,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .systemstrap-directory-grid:has(> .systemstrap-directory-grid__query.is-style-system-ui-query) .systemstrap-directory-grid__empty,
-.wp-block-group.is-style-system-panel > .systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__items > li,
-.wp-block-group.is-style-system-panel > .systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__empty,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__items > li,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__empty {
+.wp-block-group.is-style-system-panel > .query-directory-image-grid:has(> .query-directory-image-grid__query.is-style-system-ui-query) .query-directory-image-grid__items > li,
+.wp-block-group.is-style-system-panel > .query-directory-image-grid:has(> .query-directory-image-grid__query.is-style-system-ui-query) .query-directory-image-grid__empty,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-image-grid:has(> .query-directory-image-grid__query.is-style-system-ui-query) .query-directory-image-grid__items > li,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-image-grid:has(> .query-directory-image-grid__query.is-style-system-ui-query) .query-directory-image-grid__empty,
+.wp-block-group.is-style-system-panel > .query-directory-image-grid.is-style-system-ui-query .query-directory-image-grid__items > li,
+.wp-block-group.is-style-system-panel > .query-directory-image-grid.is-style-system-ui-query .query-directory-image-grid__empty,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-image-grid.is-style-system-ui-query .query-directory-image-grid__items > li,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-image-grid.is-style-system-ui-query .query-directory-image-grid__empty {
     background-color: var(--wp--custom--system-ui-surface-nested, transparent);
     background-image: var(--wp--custom--system-ui-background-image-nested, none);
     backdrop-filter: none !important;
@@ -334,28 +334,28 @@
 
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-grid:has(> .query-directory-grid__query.is-style-system-ui-query) .query-directory-grid__media,
 .wp-block-group.is-style-system-panel > .query-directory-grid .query-directory-grid__media,
-.wp-block-group.is-style-system-panel > .systemstrap-directory-grid:has(> .systemstrap-directory-grid__query.is-style-system-ui-query) .systemstrap-directory-grid__media,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .systemstrap-directory-grid:has(> .systemstrap-directory-grid__query.is-style-system-ui-query) .systemstrap-directory-grid__media,
-.wp-block-group.is-style-system-panel > .systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__media,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__media {
+.wp-block-group.is-style-system-panel > .query-directory-image-grid:has(> .query-directory-image-grid__query.is-style-system-ui-query) .query-directory-image-grid__media,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-image-grid:has(> .query-directory-image-grid__query.is-style-system-ui-query) .query-directory-image-grid__media,
+.wp-block-group.is-style-system-panel > .query-directory-image-grid.is-style-system-ui-query .query-directory-image-grid__media,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-image-grid.is-style-system-ui-query .query-directory-image-grid__media {
     background-color: var(--wp--custom--system-ui-surface-nested, transparent);
     background-image: var(--wp--custom--system-ui-background-image-nested, none);
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
 }
 
-.wp-block-group.is-style-system-panel > .wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)),
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)),
+.wp-block-group.is-style-system-panel > .wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)),
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)),
 .wp-block-group.is-style-system-panel > .query-directory-listing,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing,
-.wp-block-group.is-style-system-panel > .directory-listing,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .directory-listing,
+.wp-block-group.is-style-system-panel > .query-directory-listing,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing,
 .wp-block-group.is-style-system-panel > .query-latest-posts,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-latest-posts,
 .wp-block-group.is-style-system-panel > .query-directory-grid,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-grid,
-.wp-block-group.is-style-system-panel > .systemstrap-directory-grid,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .systemstrap-directory-grid {
+.wp-block-group.is-style-system-panel > .query-directory-image-grid,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-image-grid {
     border-color: transparent;
     background-color: transparent;
     background-image: none !important;
@@ -369,21 +369,21 @@
 
 .wp-block-group.is-style-system-panel > .query-directory-listing.has-global-padding,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing.has-global-padding,
-.wp-block-group.is-style-system-panel > .directory-listing.has-global-padding,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .directory-listing.has-global-padding,
+.wp-block-group.is-style-system-panel > .query-directory-listing.has-global-padding,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing.has-global-padding,
 .wp-block-group.is-style-system-panel > .query-latest-posts.has-global-padding,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-latest-posts.has-global-padding,
 .wp-block-group.is-style-system-panel > .query-directory-grid.has-global-padding,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-grid.has-global-padding,
-.wp-block-group.is-style-system-panel > .systemstrap-directory-grid.has-global-padding,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .systemstrap-directory-grid.has-global-padding,
-.wp-block-group.is-style-system-panel > .wp-block-query.is-style-system-ui-query.has-global-padding:not(.query-directory-grid__query):not(.systemstrap-directory-grid__query),
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-query.is-style-system-ui-query.has-global-padding:not(.query-directory-grid__query):not(.systemstrap-directory-grid__query) {
+.wp-block-group.is-style-system-panel > .query-directory-image-grid.has-global-padding,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-image-grid.has-global-padding,
+.wp-block-group.is-style-system-panel > .wp-block-query.is-style-system-ui-query.has-global-padding:not(.query-directory-grid__query):not(.query-directory-image-grid__query),
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-query.is-style-system-ui-query.has-global-padding:not(.query-directory-grid__query):not(.query-directory-image-grid__query) {
     padding: 0 !important;
 }
 
-.wp-block-group.is-style-system-panel > .wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template:not(.is-layout-grid) > li,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template:not(.is-layout-grid) > li {
+.wp-block-group.is-style-system-panel > .wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)) > .wp-block-post-template:not(.is-layout-grid) > li,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)) > .wp-block-post-template:not(.is-layout-grid) > li {
     background-color: var(--wp--custom--system-ui-surface-nested, transparent);
     background-image: var(--wp--custom--system-ui-background-image-nested, none);
     backdrop-filter: none !important;
@@ -391,10 +391,10 @@
     box-shadow: none !important;
 }
 
-.wp-block-group.is-style-system-panel > .wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-query-pagination,
-.wp-block-group.is-style-system-panel > .wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-query-no-results,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-query-pagination,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-query-no-results {
+.wp-block-group.is-style-system-panel > .wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)) > .wp-block-query-pagination,
+.wp-block-group.is-style-system-panel > .wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)) > .wp-block-query-no-results,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)) > .wp-block-query-pagination,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)) > .wp-block-query-no-results {
     background-color: var(--wp--custom--system-ui-surface-nested, transparent);
     background-image: var(--wp--custom--system-ui-background-image-nested, none);
 }
@@ -403,10 +403,10 @@
 .wp-block-group.is-style-system-panel > .query-directory-listing .query-directory-listing__footer,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing .query-directory-listing__header,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing .query-directory-listing__footer,
-.wp-block-group.is-style-system-panel > .directory-listing .directory-listing__header,
-.wp-block-group.is-style-system-panel > .directory-listing .directory-listing__footer,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .directory-listing .directory-listing__header,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .directory-listing .directory-listing__footer,
+.wp-block-group.is-style-system-panel > .query-directory-listing .query-directory-listing__header,
+.wp-block-group.is-style-system-panel > .query-directory-listing .query-directory-listing__footer,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing .query-directory-listing__header,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing .query-directory-listing__footer,
 .wp-block-group.is-style-system-panel > .query-latest-posts .query-latest-posts__header,
 .wp-block-group.is-style-system-panel > .query-latest-posts .query-latest-posts__footer,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-latest-posts .query-latest-posts__header,
@@ -416,8 +416,8 @@
 }
 
 
-.wp-block-group.is-style-system-panel > :is(.query-directory-listing, .directory-listing) :is(.query-directory-listing__title, .query-directory-listing__title a, .query-directory-listing__excerpt, .query-directory-listing__excerpt p, .query-directory-listing__arrow, .query-directory-listing__item-icon, .query-directory-listing__footer, .query-directory-listing__footer .wp-block-query-total, .query-directory-listing__pagination, .query-directory-listing__pagination a, .query-directory-listing__pagination span, .query-directory-listing__empty, .directory-listing__title, .directory-listing__title a, .directory-listing__excerpt, .directory-listing__excerpt p, .directory-listing__arrow, .directory-listing__item-icon, .directory-listing__footer, .directory-listing__footer .wp-block-query-total, .directory-listing__pagination, .directory-listing__pagination a, .directory-listing__pagination span, .directory-listing__empty),
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > :is(.query-directory-listing, .directory-listing) :is(.query-directory-listing__title, .query-directory-listing__title a, .query-directory-listing__excerpt, .query-directory-listing__excerpt p, .query-directory-listing__arrow, .query-directory-listing__item-icon, .query-directory-listing__footer, .query-directory-listing__footer .wp-block-query-total, .query-directory-listing__pagination, .query-directory-listing__pagination a, .query-directory-listing__pagination span, .query-directory-listing__empty, .directory-listing__title, .directory-listing__title a, .directory-listing__excerpt, .directory-listing__excerpt p, .directory-listing__arrow, .directory-listing__item-icon, .directory-listing__footer, .directory-listing__footer .wp-block-query-total, .directory-listing__pagination, .directory-listing__pagination a, .directory-listing__pagination span, .directory-listing__empty) {
+.wp-block-group.is-style-system-panel > :is(.query-directory-listing, .query-directory-listing) :is(.query-directory-listing__title, .query-directory-listing__title a, .query-directory-listing__excerpt, .query-directory-listing__excerpt p, .query-directory-listing__arrow, .query-directory-listing__item-icon, .query-directory-listing__footer, .query-directory-listing__footer .wp-block-query-total, .query-directory-listing__pagination, .query-directory-listing__pagination a, .query-directory-listing__pagination span, .query-directory-listing__empty, .query-directory-listing__title, .query-directory-listing__title a, .query-directory-listing__excerpt, .query-directory-listing__excerpt p, .query-directory-listing__arrow, .query-directory-listing__item-icon, .query-directory-listing__footer, .query-directory-listing__footer .wp-block-query-total, .query-directory-listing__pagination, .query-directory-listing__pagination a, .query-directory-listing__pagination span, .query-directory-listing__empty),
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > :is(.query-directory-listing, .query-directory-listing) :is(.query-directory-listing__title, .query-directory-listing__title a, .query-directory-listing__excerpt, .query-directory-listing__excerpt p, .query-directory-listing__arrow, .query-directory-listing__item-icon, .query-directory-listing__footer, .query-directory-listing__footer .wp-block-query-total, .query-directory-listing__pagination, .query-directory-listing__pagination a, .query-directory-listing__pagination span, .query-directory-listing__empty, .query-directory-listing__title, .query-directory-listing__title a, .query-directory-listing__excerpt, .query-directory-listing__excerpt p, .query-directory-listing__arrow, .query-directory-listing__item-icon, .query-directory-listing__footer, .query-directory-listing__footer .wp-block-query-total, .query-directory-listing__pagination, .query-directory-listing__pagination a, .query-directory-listing__pagination span, .query-directory-listing__empty) {
     color: inherit;
 }
 

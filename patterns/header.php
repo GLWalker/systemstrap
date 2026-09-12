@@ -1,9 +1,78 @@
 <?php
+
 /**
  * Title: Header
  * Slug: systemstrap/header
- * Categories: systemstrap, header
+ * Categories: header, systemstrap
+ * Keywords: header, masthead, navigation, brand, utilities, systemstrap
+ * Description: A responsive site header with branding, primary navigation, search, offcanvas utilities, and WooCommerce controls.
  * Block Types: core/template-part/header
+ * Viewport Width: 1440
  */
+
 ?>
- <!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20","left":"var:preset|spacing|30","right":"var:preset|spacing|30"}}},"backgroundColor":"bs-secondary-bg","className":" ","layout":{"type":"constrained","justifyContent":"center"}} --> <div class="wp-block-group alignwide has-bs-secondary-bg-background-color has-background" style="padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--30)"> <!-- wp:group {"align":"wide","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"center"}} --> <div class="wp-block-group alignwide"><!-- wp:site-logo {"width":60,"style":{"layout":{"selfStretch":"fit","flexSize":null}}} /--> <!-- wp:site-title {"level":0,"textAlign":"left","style":{"layout":{"selfStretch":"fill","flexSize":null}}} /--> <!-- wp:group {"align":"wide","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} --> <div class="wp-block-group alignwide"> <!-- wp:navigation {"overlayMenu":"mobile","layout":{"type":"flex","justifyContent":"left","flexWrap":"nowrap"},"style":{"spacing":{"blockGap":"var:preset|spacing|30"}}} --> <!-- wp:navigation-link {"label":"Home","url":"/","kind":"custom","isTopLevelLink":true} /--> <!-- wp:home-link {"label":"Home"} /--> <!-- wp:navigation-link {"label":"Services","url":"/services","kind":"custom","isTopLevelLink":true} /--> <!-- wp:navigation-link {"label":"About","url":"/about","kind":"custom","isTopLevelLink":true} /--> <!-- wp:navigation-link {"label":"Contact","url":"/contact","kind":"custom","isTopLevelLink":true} /--> <!-- /wp:navigation --> <!-- wp:group {"style":{"layout":{"selfStretch":"fixed","flexSize":"80px"},"spacing":{"blockGap":"var:preset|spacing|30","margin":{"top":"var:preset|spacing|20"}}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"left","orientation":"horizontal"}} --> <div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--20)"> <!-- wp:icon {"icon":"menu","systemDialogAction":true,"systemDialogPattern":"systemstrap/offcanvas-left","systemDialogPosition":"start","metadata":{"name":"Offcanvas Trigger"},"className":"strap-icon-group"} /--> <!-- wp:icon {"icon":"search","systemDialogAction":true,"systemDialogPattern":"systemstrap/modal-search","systemDialogPosition":"center","metadata":{"name":"Search Modal Trigger"},"className":"strap-icon-group"} /--> <!-- wp:group {"className":"dark-mode dropdown dropstart","style":{"spacing":{"margin":{"top":"var:preset|spacing|10"}}},"layout":{"type":"flex","orientation":"horizontal"}} --> <div class="wp-block-group dark-mode dropdown dropstart" style="margin-top:var(--wp--preset--spacing--10)"> <!-- wp:separator {"className":"strap-action-hook strap_hook_dark_mode"} --> <hr class="wp-block-separator has-alpha-channel-opacity strap-action-hook strap_hook_dark_mode" /> <!-- /wp:separator --> </div> <!-- /wp:group --> </div> <!-- /wp:group --> </div> <!-- /wp:group --> </div> <!-- /wp:group --> </div> <!-- /wp:group -->
+
+<!-- wp:group {"metadata":{"name":"Header"},"align":"full","style":{"border":{"top":{"width":"0"},"right":{"width":"0"},"bottom":{"color":"var:preset|color|border-color","style":"solid","width":"1px"},"left":{"width":"0"}},"spacing":{"padding":{"top":"var:preset|spacing|10","right":"var:preset|spacing|20","bottom":"var:preset|spacing|10","left":"var:preset|spacing|20"}},"background":{"gradient":"var:preset|gradient|absolute-03"}},"backgroundColor":"base","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull has-base-background-color has-background" style="border-top-width:0;border-right-width:0;border-bottom-color:var(--wp--preset--color--border-color);border-bottom-style:solid;border-bottom-width:1px;border-left-width:0;padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--20)">
+
+    <!-- wp:group {"align":"wide","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between","verticalAlignment":"center"}} -->
+    <div class="wp-block-group alignwide">
+
+        <!-- wp:group {"metadata":{"name":"Brand"},"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+        <div class="wp-block-group">
+
+            <!-- wp:image {"width":"42px","sizeSlug":"full","linkDestination":"custom","style":{"color":{"duotone":"var:preset|duotone|duotone-11"}}} -->
+            <figure class="wp-block-image size-full is-resized">
+                <a href="<?php echo esc_url(home_url('/')); ?>">
+                    <img
+                        src="<?php echo esc_url(get_template_directory_uri() . '/assets/media/SystemStrap-Logo.png'); ?>"
+                        alt="<?php echo esc_attr(get_bloginfo('name')); ?>"
+                        style="width:42px;height:auto" />
+                </a>
+            </figure>
+            <!-- /wp:image -->
+
+            <!-- wp:site-title {"level":0,"style":{"layout":{"selfStretch":"fit","flexSize":null},"typography":{"textAlign":"left"}}} /-->
+
+        </div>
+        <!-- /wp:group -->
+
+        <!-- wp:group {"metadata":{"name":"Primary Navigation and Utilities"},"style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"right","verticalAlignment":"center"}} -->
+        <div class="wp-block-group">
+
+            <!-- wp:navigation {"metadata":{"ignoredHookedBlocks":["woocommerce/customer-account","woocommerce/mini-cart"]},"style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"flex","justifyContent":"right","flexWrap":"nowrap"}} -->
+
+            <!-- wp:home-link {"label":"Home"} /-->
+
+            <!-- wp:navigation-link {"label":"Patterns","url":"/patterns/","kind":"custom","isTopLevelLink":true} /-->
+
+            <!-- wp:navigation-link {"label":"Components","url":"/components/","kind":"custom","isTopLevelLink":true} /-->
+
+            <!-- wp:navigation-link {"label":"Sites","url":"/sites/","kind":"custom","isTopLevelLink":true} /-->
+
+            <!-- wp:navigation-link {"label":"Docs","url":"/docs/","kind":"custom","isTopLevelLink":true} /-->
+
+            <!-- /wp:navigation -->
+
+            <!-- wp:group {"metadata":{"name":"Header Utilities"},"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"right","verticalAlignment":"center"}} -->
+            <div class="wp-block-group">
+
+                <!-- wp:icon {"icon":"core/search","metadata":{"name":"Advanced Search"},"style":{"dimensions":{"width":"32px"}},"systemDialogAction":true,"systemDialogTemplatePart":"modal-search","systemDialogPosition":"center"} /-->
+
+                <!-- wp:icon {"icon":"core/drawer-left","metadata":{"name":"Offcanvas Menu"},"style":{"dimensions":{"width":"32px"}},"systemDialogAction":true,"systemDialogTemplatePart":"offcanvas-part"} /-->
+
+                <!-- wp:woocommerce/customer-account {"displayStyle":"icon_only","hasDropdownNavigation":true} /-->
+
+                <!-- wp:woocommerce/mini-cart /-->
+
+            </div>
+            <!-- /wp:group -->
+
+        </div>
+        <!-- /wp:group -->
+
+    </div>
+    <!-- /wp:group -->
+
+</div>
+<!-- /wp:group -->

@@ -78,25 +78,119 @@
    ======================================================================== */
 
 /*
- * Authority 1: System Panel
+ * Authority 1: System Panel Family
+ *
  * Runtime:
+ * - assets/css/system-ui-panel-structure.css
  * - assets/css/system-ui-panel-surface.css
+ * - assets/css/style-variations/core-group-system-flat-panel.css
  * - assets/css/style-variations/core-group-system-panel.css
  * - assets/css/style-variations/core-group-system-panel-header.css
  * - assets/css/style-variations/core-group-system-panel-footer.css
+ *
+ * The Group Panel family consists of:
+ *
+ * - System Flat
+ * - System Panel
+ * - System Header
+ * - System Footer
+ *
+ * System Flat and System Panel share the same Group-level structural
+ * contract. They differ only in surface enhancement.
+ *
+ * System Flat is the neutral starting surface. It retains the shared
+ * semantic surface, border, radius, spacing, flush-child composition,
+ * nested-panel geometry, and authored WordPress background controls,
+ * but does not apply the System Panel enhancement layer.
+ *
+ * System Panel adds the normal System UI enhancement layer:
+ * background image, backdrop filter, and shadow.
+ *
+ * System Header and System Footer remain structural companion variations
+ * used within the Panel family.
+ */
+
+/*
+ * Shared Panel Structure
+ * Runtime: assets/css/system-ui-panel-structure.css
+ *
+ * Shared structural behavior for Core Group System Flat and System Panel
+ * lives here.
+ *
+ * The shared structure owns:
+ * - Panel padding variables
+ * - shell geometry
+ * - direct-child normalization
+ * - ordinary body inset
+ * - first/last-child boundary handling
+ * - flush-child composition
+ * - System List joins
+ * - System Accordion joins
+ * - System Details joins
+ * - Header/Footer junctions
+ * - nested Panel separation
+ * - editor equivalents of those structural relationships
+ *
+ * Structural selectors treat System Flat and System Panel as members of
+ * the same Panel family:
+ *
+ * :is(
+ *     .wp-block-group.is-style-system-panel,
+ *     .wp-block-group.is-style-system-flat-panel
+ * )
+ *
+ * A child Panel-family member is excluded from ordinary body inset and
+ * receives the dedicated nested-panel geometry instead.
+ *
+ * This produces the complete structural nesting matrix:
+ *
+ * System Panel > System Panel
+ * System Panel > System Flat
+ * System Flat > System Panel
+ * System Flat > System Flat
  */
 
 /*
  * Shared Panel Surface
  * Runtime: assets/css/system-ui-panel-surface.css
  *
- * `.strap-panel-surface` owns the neutral System Panel paint: surface,
- * background image, backdrop filter, border, radius, shadow, overflow, and
- * transition. Core Group System Panel consumes the same master, then owns its
- * Group-specific flush-child composition. Integrations may adapt only a stable
- * public application root to `.strap-panel-surface`; any necessary inset or
- * parent-layout preservation remains a thin structural adapter and must not
- * duplicate Panel paint.
+ * The shared surface authority owns the semantic Panel surface contract:
+ * default surface color, border, radius, overflow behavior, transition,
+ * and the reusable `.strap-panel-surface` integration contract.
+ *
+ * System Panel additionally consumes the enhancement layer:
+ *
+ * - --wp--custom--system-ui-background-image
+ * - --wp--custom--system-ui-backdrop-filter
+ * - --wp--custom--shadow
+ *
+ * System Flat intentionally does not consume that enhancement layer.
+ *
+ * Flatness is achieved by omission, not by destructive CSS resets.
+ * System Flat must not force:
+ *
+ * background-image: none !important;
+ * backdrop-filter: none !important;
+ * box-shadow: none !important;
+ *
+ * and must not locally overwrite the global
+ * `--wp--custom--system-ui-*` theme tokens merely to become flat.
+ *
+ * This distinction is important because native WordPress authored
+ * backgrounds remain authoritative. A System Flat block may therefore
+ * begin as a neutral semantic surface and subsequently receive:
+ *
+ * - an authored solid background
+ * - a preset gradient
+ * - a custom gradient
+ * - other supported native block background treatment
+ *
+ * without the variation suppressing that authored presentation.
+ *
+ * `.strap-panel-surface` remains the neutral reusable application surface
+ * for integrations. Integrations may adapt a stable public application
+ * root to it and consume its exposed content variables; they must not
+ * duplicate Panel paint or independent Panel typography.
  */
 
 /*
@@ -139,8 +233,10 @@
  * woocommerce-product-template-system-panel-woo.css and
  * woocommerce-product-template-system-list-woo.css
  *
- * Direct li.wc-block-product items receive Panel surface, border, radius,
- * shadow, padding, and internal rhythm in Stack, Grid, and Carousel modes.
+ * Direct li.wc-block-product items receive `.strap-panel-surface`, then
+ * consume its Panel insets, compact content gap, and heading/body typography
+ * roles in Stack, Grid, and Carousel modes. Explicit authored Product
+ * Template typography controls remain authoritative.
  * System List Woo supplies the standalone List shell border, radius, overflow,
  * and shared `--wp--custom--shadow`; List Flush remains without outer chrome.
  * Both List treatments preserve WooCommerce Stack/Grid layout and item sizing.
@@ -358,429 +454,306 @@
 }
 
 /* ========================================================================
-   4. SYSTEM PANEL
+   4. SYSTEM PANEL FAMILY
    Runtime mirrors:
+   - assets/css/system-ui-panel-structure.css
+   - assets/css/system-ui-panel-surface.css
+   - assets/css/style-variations/core-group-system-flat-panel.css
    - assets/css/style-variations/core-group-system-panel.css
    - assets/css/style-variations/core-group-system-panel-header.css
    - assets/css/style-variations/core-group-system-panel-footer.css
+
+   Styles UI order:
+   - Default
+   - System Flat
+   - System Panel
+   - System Header
+   - System Footer
    ======================================================================== */
 
-/* 
- * System Panel Container
- * Acts like a Card. Contains powerful native flush logic.
+/*
+ * SYSTEM PANEL FAMILY CONTRACT
+ *
+ * System Flat and System Panel are presentation variants of the same
+ * structural Panel architecture.
+ *
+ * Shared structure is owned by:
+ *
+ * assets/css/system-ui-panel-structure.css
+ *
+ * Shared semantic surface behavior is owned by:
+ *
+ * assets/css/system-ui-panel-surface.css
+ *
+ * Variation files define only the behavior that distinguishes a
+ * particular member of the family.
  */
 
-/* Core Panel Wrapper */
-.wp-block-group.is-style-system-panel {
-    --strap-system-panel-padding-y: var(--wp--preset--spacing--20);
-    --strap-system-panel-padding-x: var(--wp--preset--spacing--30);
-
-    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
-    background-image: var(--wp--custom--system-ui-background-image, none);
-    backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
-    -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
-    border-radius: var(--wp--custom--border-radius);
-    box-shadow: var(--wp--custom--shadow);
-    padding: 0 !important;
-    /* overflow: hidden; -- Disabled to allow nested absolute dropdown menus to escape */
-    transition: border-color 0.15s ease-in-out;
-}
-
-/* Rounded corner containment for direct children without overflow: hidden */
-.wp-block-group.is-style-system-panel > *:first-child,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > *:first-child,
-.wp-block-group.is-style-system-panel > .wp-block-group.is-style-system-panel-header:first-child,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > .wp-block-group.is-style-system-panel-header:first-child {
-    border-top-left-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
-    border-top-right-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
-}
-
-.wp-block-group.is-style-system-panel > *:last-child,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > *:last-child,
-.wp-block-group.is-style-system-panel > .wp-block-group.is-style-system-panel-footer:last-child,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > .wp-block-group.is-style-system-panel-footer:last-child {
-    border-bottom-left-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
-    border-bottom-right-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
-}
-
-/* Only apply default background if no background is set by user */
-.wp-block-group.is-style-system-panel:not(.has-background):not([style*="background-color"]) {
-    background-color: var(--wp--custom--system-ui-surface);
-}
-
-.wp-block-group.is-style-system-panel.has-background {
-    border-color: var(--wp--custom--system-ui-border-color);
-}
-
-.wp-block-group.is-style-system-panel.is-style-system-modal {
-    --strap-system-panel-padding-y: var(--wp--preset--spacing--40);
-    --strap-system-panel-padding-x: var(--wp--preset--spacing--40);
-}
-
-/* ========================================================= */
-/* Global Child Normalization                                */
-/* ========================================================= */
-/* Vaporize native Gutenberg block gaps and margins on direct children */
-.wp-block-group.is-style-system-panel > *,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > * {
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-    width: 100%;
-    max-width: none !important;
-}
+/* =========================================================
+   Shared Panel Structure
+   ========================================================= */
 
 /*
- * Direct text-like children get panel-body spacing.
- * Structural direct children stay flush and own their internals.
- * Nested descendants are expected to fall back to their immediate container.
+ * Runtime selectors use the Panel-family target:
+ *
+ * :is(
+ *     .wp-block-group.is-style-system-panel,
+ *     .wp-block-group.is-style-system-flat-panel
+ * )
+ *
+ * Both variations therefore receive the same:
+ *
+ * - padding variables
+ * - zeroed shell padding
+ * - border/radius geometry
+ * - direct-child normalization
+ * - body inset rules
+ * - first/last-child containment
+ * - flush component seams
+ * - Header/Footer composition
+ * - modal spacing override
+ * - nested Panel separation
+ * - editor structural behavior
+ *
+ * System Flat is not a reduced structural Panel.
+ * It is the same Panel structure with a different surface treatment.
  */
-.wp-block-group.is-style-system-panel > :is(
-    p,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    blockquote,
-    pre,
-    .wp-block-code,
-    .wp-block-verse,
-    .wp-block-post-author-name,
-    .wp-block-post-date,
-    .wp-block-post-excerpt,
-    .wp-block-post-title,
-    .wp-block-post-terms,
-    .wp-block-read-more,
-    .wp-block-buttons,
-    .wp-block-search,
-    .wp-block-archives:not(.is-style-system-list):not(.is-style-system-list-flush),
-    .wp-block-archives-list:not(.is-style-system-list):not(.is-style-system-list-flush),
-    .wp-block-categories:not(.is-style-system-list):not(.is-style-system-list-flush),
-    .wp-block-page-list:not(.is-style-system-list):not(.is-style-system-list-flush),
-    .wp-block-rss:not(.is-style-system-list):not(.is-style-system-list-flush),
-    .wp-block-latest-posts:not(.is-style-system-list):not(.is-style-system-list-flush),
-    .wp-block-latest-comments:not(.is-style-system-list):not(.is-style-system-list-flush),
-    .wp-block-terms-query:not(.is-style-system-list):not(.is-style-system-list-flush),
-    .wp-block-comments:not(.is-style-system-list):not(.is-style-system-panel),
-    .wp-block-post-comments-form,
-    .wp-block-list:not(.is-style-system-list):not(.is-style-system-list-flush)
-) {
-    padding: var(--strap-system-panel-padding-y) var(--strap-system-panel-padding-x);
-}
 
-.wp-block-group.is-style-system-panel > .wp-block-group:not(.is-style-system-panel-header):not(.is-style-system-panel-footer),
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > .wp-block-group:not(.is-style-system-panel-header):not(.is-style-system-panel-footer) {
-    padding: var(--strap-system-panel-padding-y) var(--strap-system-panel-padding-x);
-}
+/* =========================================================
+   Shared Semantic Surface
+   ========================================================= */
 
 /*
- * Vertical rhythm contract:
+ * Both Panel-family variations participate in the semantic surface
+ * contract.
  *
- * Native blockGap owns spacing between independent direct children. Ordinary
- * children own the shared Panel inline inset; their vertical inset occurs only
- * at a Panel opening/closing boundary or beside a verified flush seam.
+ * Without an authored WordPress background, the Panel family uses:
  *
- * Core owns standalone background padding. SystemStrap adds no reset-level
- * background-padding policy. A direct surfaced ordinary Panel child clears
- * Core block padding and uses the same inline/boundary ownership as a
- * transparent equivalent; that ownership stops at authored Group boundaries.
- * Styled System UI components retain their own internal-padding contracts.
+ * --wp--custom--system-ui-surface
  *
- * Nested Panels remain horizontally inset independent components. Native
- * blockGap separates them from all independent siblings, including a preceding
- * flush component; only a first/last direct nested Panel receives shell-boundary
- * inset.
+ * Border geometry uses:
  *
- * Header, Footer, regular System List, List Flush, System Details, and System
- * Accordion join ordinary or flush siblings through zero-gap seams, never a
- * following independent nested Panel.
- * Images currently have no System Panel vertical-rhythm contract.
+ * --wp--custom--system-ui-border-color
+ * --wp--custom--border-width
+ * --wp--custom--border-radius
+ *
+ * Authored WordPress background controls remain authoritative.
  */
+
+/* =========================================================
+   System Flat
+   ========================================================= */
 
 /*
- * Site-wide fallback contract:
+ * `.is-style-system-flat-panel`
  *
- * spacing-30 is the normal vertical stack token. WordPress native Flow and
- * Constrained layouts remain the primary margin authority, while Flex and
- * Grid retain their native gap authority. A bare ordinary Group with none of
- * those layout classes receives the same spacing-30 sibling fallback.
+ * System Flat is the neutral starting member of the Panel family.
  *
- * System Panels remain excluded: their internal shell and seam behavior is
- * separately governed. Adjacent System Details roots are the verified
- * tight-stack exception. Core background padding is vertically neutralized
- * only for direct Panel Paragraph, Heading, native List, and Columns blocks.
+ * It has the full shared Panel structure and semantic surface but does
+ * not consume the System Panel enhancement layer.
+ *
+ * It therefore begins without:
+ *
+ * - System UI background-image enhancement
+ * - System UI backdrop blur
+ * - System UI shadow
+ *
+ * This flatness is achieved by omission from the enhancement selector,
+ * not by overriding native CSS properties with `none !important`.
+ *
+ * Consequently, selecting System Flat does not disable WordPress block
+ * supports. Authors may subsequently apply a solid background, preset
+ * gradient, custom gradient, or other supported native background.
+ *
+ * System Flat must also leave the global System UI theme tokens intact.
+ * It must not redefine `--wp--custom--system-ui-background-image` or
+ * `--wp--custom--system-ui-backdrop-filter` on itself merely to suppress
+ * its own enhancement.
  */
 
-/* A native List inside a direct Group keeps native presentation, with a small
- * marker inset so it does not crowd the panel edge. */
-.wp-block-group.is-style-system-panel > .wp-block-group:not(.is-style-system-panel-header):not(.is-style-system-panel-footer) > .wp-block-list:not(.is-style-system-list):not(.is-style-system-list-flush) {
-    padding-inline-start: var(--wp--preset--spacing--20);
-}
+/* =========================================================
+   System Panel
+   ========================================================= */
 
-/* Only true full-width shells break out of panel padding. Plain utility/list
-   blocks stay padded unless they explicitly opt into System List styling. */
-.wp-block-group.is-style-system-panel > *:has(> :is(.query-directory-listing, .directory-listing, .query-latest-posts, .systemstrap-directory-grid, .is-style-system-list, .is-style-system-list-flush):only-child) > :is(.query-directory-listing, .directory-listing, .query-latest-posts, .systemstrap-directory-grid, .is-style-system-list, .is-style-system-list-flush),
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > *:has(> :is(.query-directory-listing, .directory-listing, .query-latest-posts, .systemstrap-directory-grid, .is-style-system-list, .is-style-system-list-flush):only-child) > :is(.query-directory-listing, .directory-listing, .query-latest-posts, .systemstrap-directory-grid, .is-style-system-list, .is-style-system-list-flush) {
-    margin: calc(var(--strap-system-panel-padding-y) * -1) calc(var(--strap-system-panel-padding-x) * -1) !important;
-    width: auto;
-}
-
-/* Let nested panel footers fill edge-to-edge like direct-child panel headers. */
-.wp-block-group.is-style-system-panel > *:has(> .wp-block-group.is-style-system-panel-footer:only-child) > .wp-block-group.is-style-system-panel-footer,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > *:has(> .wp-block-group.is-style-system-panel-footer:only-child) > .wp-block-group.is-style-system-panel-footer {
-    margin: calc(var(--strap-system-panel-padding-y) * -1) calc(var(--strap-system-panel-padding-x) * -1) !important;
-    width: calc(100% + (var(--strap-system-panel-padding-x) * 2));
-    max-width: none !important;
-}
-
-/* Force Image Caps to naturally span 100% without using dangerous .alignfull rules */
-.wp-block-group.is-style-system-panel > .wp-block-image,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-image {
-    width: 100% !important;
-    max-width: 100% !important;
-}
-
-.wp-block-group.is-style-system-panel > .wp-block-image img,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-image img {
-    width: 100%;
-}
-
-/* ========================================================= */
-/* System Badges (Dynamic Color-Mix)                         */
-/* ========================================================= */
 /*
- * Native WordPress count classes (e.g. .wp-block-categories__count, .wp-block-archives__count, .wp-block-term-count) 
- * utilize centralized `color-mix` logic located in assets/css/main-styles.css when nested inside System Lists or Badge variations.
- * This logic allows badges to dynamically inherit and tint the active text color context.
+ * `.is-style-system-panel`
  *
- * DO NOT use hardcoded rgba() backgrounds in individual style variations for badge counts; allow this logic to cascade.
+ * System Panel is the enhanced member of the Panel family.
  *
- * Plain utility/list blocks inside a System Panel do not auto-inherit System
- * List presentation. Only explicit System List / System List Flush styles own
- * row borders, hover states, and list chrome.
+ * In addition to the shared structure and semantic surface it consumes:
+ *
+ * --wp--custom--system-ui-background-image
+ * --wp--custom--system-ui-backdrop-filter
+ * --wp--custom--shadow
+ *
+ * These provide the normal theme-controlled enhanced Panel treatment.
+ *
+ * The enhancement layer is contextual and may be suppressed or restored
+ * through the nested Panel context system without changing the global
+ * theme tokens.
  */
 
-:is(.is-style-system-list, .is-style-system-list-flush, .is-style-system-badge, .is-style-outline, .is-style-system-tags) :is(
-    .wp-block-categories__count,
-    .wp-block-archives__count,
-    .tag-link-count,
-    .wp-block-term-count
-) {
-    display: inline-block;
-    padding: var(--wp--custom--badge-padding-y) var(--wp--custom--badge-padding-x);
-    font-size: var(--wp--custom--badge-font-size);
-    font-weight: var(--wp--custom--badge-font-weight);
-    line-height: 1;
-    border-radius: var(--wp--custom--badge-border-radius);
+/* =========================================================
+   Nested Panel Context
+   ========================================================= */
 
-    /* Dynamic shading inherited from current text color */
-    background-color: color-mix(in srgb, currentColor 10%, transparent);
-    color: color-mix(in srgb, currentColor 90%, #000);
-    border: 1px solid color-mix(in srgb, currentColor 10%, transparent);
-}
-
-:is(.is-style-system-list, .is-style-system-list-flush, .is-style-system-badge, .is-style-outline, .is-style-system-tags) .tag-link-count {
-    margin-inline-start: var(--wp--preset--spacing--10, 0.5rem);
-}
-
-/* Hide the parentheses structurally when badges are active */
-:is(.is-style-system-list, .is-style-system-list-flush, .is-style-system-badge, .is-style-outline, .is-style-system-tags) :is(
-    .wp-block-categories__count,
-    .wp-block-archives__count,
-    .tag-link-count,
-    .wp-block-term-count
-) .count-paren {
-    display: none;
-}
-
-/* ========================================================= */
-/* Flush Logic for System Lists                              */
-/* Direct-child authority only; nested Groups become the     */
-/* spacing boundary and their inner lists keep their own box */
-/* ========================================================= */
-
-/* Adjacent explicit System UI widget blocks retain one shared seam inside a
- * panel. Outside panels, the same explicit widgets retain the theme's native
- * Group and Column block gap. Plain
- * widget blocks receive neither behavior until a System List style is chosen. */
-
-/* Interactive row overlays are family-owned: Categories and Terms Query use
- * hover-only washes, while RSS and Latest Posts use intentional full-row click
- * overlays. Each row establishes a local positioned, isolated stacking context
- * so its overlay cannot affect a sibling or ancestor surface. */
-.wp-block-group.is-style-system-panel > .is-style-system-list-flush > li,
-.wp-block-group.is-style-system-panel > .is-style-system-list-flush > a,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > * > .is-style-system-list-flush > li,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > * > .is-style-system-list-flush > a {
-    border-left: 0 !important;
-    border-right: 0 !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-}
-
-/* If the list is the first child of the panel, kill the top border of its first item and round its corners */
-.wp-block-group.is-style-system-panel > .is-style-system-list-flush:first-child > li:first-child,
-.wp-block-group.is-style-system-panel > .is-style-system-list-flush:first-child > a:first-child,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:first-child > .is-style-system-list-flush > li:first-child,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:first-child > .is-style-system-list-flush > a:first-child {
-    border-top: 0 !important;
-    border-top-left-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
-    border-top-right-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
-}
-
-/* If the list is the last child of the panel, kill the bottom border of its last item and round its corners */
-.wp-block-group.is-style-system-panel > .is-style-system-list-flush:last-child > li:last-child,
-.wp-block-group.is-style-system-panel > .is-style-system-list-flush:last-child > a:last-child,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:last-child > .is-style-system-list-flush > li:last-child,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:last-child > .is-style-system-list-flush > a:last-child,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:has(+ .block-list-appender) > .is-style-system-list-flush > li:last-child,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:has(+ .block-list-appender) > .is-style-system-list-flush > a:last-child {
-    border-bottom: 0 !important;
-    border-bottom-left-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
-    border-bottom-right-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
-}
-
-/* ========================================================= */
-/* Flush Logic for System Accordions                         */
-/* Direct-child authority only; nested accordions remain     */
-/* internal to their immediate wrapper                       */
-/* ========================================================= */
-.wp-block-group.is-style-system-panel > .is-style-system-accordion .wp-block-accordion-item,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > * > .is-style-system-accordion .wp-block-accordion-item {
-    border-left: 0 !important;
-    border-right: 0 !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    border-top: 0 !important;
-}
-
-/* If the accordion is the last child of the panel, kill the bottom border of its last item and round its corners */
-.wp-block-group.is-style-system-panel > .is-style-system-accordion:last-child .wp-block-accordion-item:last-child,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:last-child > .is-style-system-accordion .wp-block-accordion-item:last-child,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:has(+ .block-list-appender) > .is-style-system-accordion .wp-block-accordion-item:last-child {
-    border-bottom: 0 !important;
-    border-bottom-left-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
-    border-bottom-right-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
-}
-
-/* ========================================================= */
-/* Flush Logic for System Details                            */
-/* Direct-child authority only; nested details stay local    */
-/* ========================================================= */
-.wp-block-group.is-style-system-panel > .is-style-system-details,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > * > .is-style-system-details {
-    border-left: 0 !important;
-    border-right: 0 !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    border-top: 0 !important;
-    margin: 0 !important;
-}
-
-.wp-block-group.is-style-system-panel > .is-style-system-details summary,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > * > .is-style-system-details summary {
-    border-radius: 0 !important;
-}
-
-/* If details is the first child of the panel, round its top corners */
-.wp-block-group.is-style-system-panel > .is-style-system-details:first-child,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:first-child > .is-style-system-details,
-.wp-block-group.is-style-system-panel > .is-style-system-details:first-child summary,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:first-child > .is-style-system-details summary {
-    border-top-left-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
-    border-top-right-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
-}
-
-/* If details is the last child of the panel, kill its bottom border and round its corners */
-.wp-block-group.is-style-system-panel > .is-style-system-details:last-child,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:last-child > .is-style-system-details,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:has(+ .block-list-appender) > .is-style-system-details {
-    border-bottom: 0 !important;
-    border-bottom-left-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
-    border-bottom-right-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
-}
-
-/* ========================================================= */
-/* Strip Double Borders at Footer Junctions                  */
-/* ========================================================= */
-.wp-block-group.is-style-system-panel > .is-style-system-accordion + .is-style-system-panel-footer,
-.wp-block-group.is-style-system-panel > .is-style-system-details + .is-style-system-panel-footer,
-.wp-block-group.is-style-system-panel > .query-directory-listing + .is-style-system-panel-footer,
-.wp-block-group.is-style-system-panel > .directory-listing + .is-style-system-panel-footer,
-.wp-block-group.is-style-system-panel > .query-latest-posts + .is-style-system-panel-footer,
-.wp-block-group.is-style-system-panel > .systemstrap-directory-grid + .is-style-system-panel-footer,
-.wp-block-group.is-style-system-panel > .wp-block-latest-posts + .is-style-system-panel-footer,
-.wp-block-group.is-style-system-panel > .wp-block-latest-comments + .is-style-system-panel-footer,
-.wp-block-group.is-style-system-panel > .wp-block-archives + .is-style-system-panel-footer,
-.wp-block-group.is-style-system-panel > .wp-block-categories + .is-style-system-panel-footer,
-.wp-block-group.is-style-system-panel > .wp-block-page-list + .is-style-system-panel-footer,
-.wp-block-group.is-style-system-panel > .wp-block-rss + .is-style-system-panel-footer,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:has(> .is-style-system-accordion) + * > .is-style-system-panel-footer,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > *:has(> .is-style-system-details) + * > .is-style-system-panel-footer,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing + * > .is-style-system-panel-footer,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .directory-listing + * > .is-style-system-panel-footer,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-latest-posts + * > .is-style-system-panel-footer,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .systemstrap-directory-grid + * > .is-style-system-panel-footer,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-latest-posts + * > .is-style-system-panel-footer,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-latest-comments + * > .is-style-system-panel-footer,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-archives + * > .is-style-system-panel-footer,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-categories + * > .is-style-system-panel-footer,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-page-list + * > .is-style-system-panel-footer,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-rss + * > .is-style-system-panel-footer {
-    border-top: 0 !important;
-}
-
-/* ========================================================= */
-/* Prevent Double-Chrome on Nested Surfaces                  */
-/* ========================================================= */
-.wp-block-group.is-style-system-panel :is(.is-style-system-list, .is-style-system-list-flush) > li,
-.wp-block-group.is-style-system-panel :is(.is-style-system-list, .is-style-system-list-flush) > a,
-.wp-block-group.is-style-system-panel .is-style-system-panel {
-    background-image: none !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-}
-
-/* 
- * System Panel Header Variation
+/*
+ * Panel nesting is defined across all four combinations:
+ *
+ * System Panel > System Panel
+ * System Panel > System Flat
+ * System Flat > System Panel
+ * System Flat > System Flat
+ *
+ * Shared structural rules treat all four combinations identically for
+ * geometry. A nested Panel-family block is an independent component and
+ * is excluded from ordinary Panel body padding.
+ *
+ * Surface enhancement is handled separately.
+ *
+ * System Panel establishes the nested suppression context required to
+ * prevent repeated enhancement haze.
+ *
+ * System Flat acts as a neutral boundary. Because it does not poison the
+ * global System UI tokens, it may restore the normal enhancement context
+ * for a descendant System Panel.
+ *
+ * Important example:
+ *
+ * System Panel
+ * > System Flat
+ * > System Panel
+ *
+ * The outer Panel may suppress enhancement for its immediate nested
+ * context. The middle Flat Panel remains flat, while the innermost
+ * System Panel can regain the normal theme enhancement.
+ *
+ * This behavior is implemented with contextual
+ * `--strap-system-panel-context-*` properties rather than by rewriting
+ * the global `--wp--custom--system-ui-*` tokens.
  */
 
-.wp-block-group.is-style-system-panel-header {
-    padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--20) !important;
-    border-bottom: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
-    margin: 0 !important;
-    border-radius: 0 !important;
-    width: 100%;
-    font-family: var(--wp--preset--font-family--heading, inherit);
-    font-weight: var(--wp--custom--font-weight-heading, inherit);
-    background-image: var(--wp--custom--system-ui-background-image, none);
-}
+/* =========================================================
+   Authored Background Contract
+   ========================================================= */
 
-.wp-block-group.is-style-system-panel-header:not(.has-background):not([style*="background"]) {
-    background-color: var(--wp--custom--system-ui-surface-banner);
-}
+/*
+ * WordPress-authored presentation wins.
+ *
+ * A Panel-family variation must not unnecessarily suppress a background
+ * explicitly selected by the author.
+ *
+ * In particular, System Flat intentionally allows:
+ *
+ * - `.has-background`
+ * - preset gradient classes
+ * - custom gradient output
+ * - inline/native block-support background declarations
+ *
+ * The Flat variation describes the starting System UI treatment; it is
+ * not a permanent prohibition against richer authored presentation.
+ */
 
-.wp-block-group.is-style-system-panel.is-style-system-modal .wp-block-group.is-style-system-panel-header {
-    padding: var(--wp--preset--spacing--30) var(--wp--preset--spacing--50) !important;
-}
+/* =========================================================
+   System Header
+   ========================================================= */
 
-.wp-block-group.is-style-system-panel > .wp-block-group.is-style-system-panel-header,
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > .wp-block-group.is-style-system-panel-header {
-    border-bottom-color: var(--wp--custom--system-ui-border-color);
-    background-image: var(--wp--custom--system-ui-background-image-nested, none);
-}
+/*
+ * `.is-style-system-panel-header`
+ *
+ * System Header is a companion structural surface for the Panel family.
+ * It owns header padding, the lower seam, heading typography role, and
+ * banner surface behavior.
+ *
+ * When used inside either System Flat or System Panel, it participates
+ * in the shared Panel structural composition and first-child boundary
+ * handling.
+ *
+ * Authored backgrounds remain authoritative.
+ */
 
-.wp-block-group.is-style-system-panel > .wp-block-group.is-style-system-panel-header:not(.has-background):not([style*="background"]),
-.wp-block-group.is-style-system-panel > .block-editor-block-list__layout > .wp-block-group.is-style-system-panel-header:not(.has-background):not([style*="background"]) {
-    background-color: var(--wp--custom--system-ui-surface-banner);
-}
+/* =========================================================
+   System Footer
+   ========================================================= */
 
-.wp-block-group.is-style-system-panel-header > *,
-.wp-block-group.is-style-system-panel-header .block-editor-block-list__layout > * {
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-}
+/*
+ * `.is-style-system-panel-footer`
+ *
+ * System Footer is a companion structural surface for the Panel family.
+ * It owns footer padding, the upper seam, compact typography role, and
+ * footer surface behavior.
+ *
+ * When used inside either System Flat or System Panel, it participates
+ * in the shared Panel structural composition and last-child boundary
+ * handling.
+ *
+ * Authored backgrounds remain authoritative.
+ */
+
+/* =========================================================
+   System Modal
+   ========================================================= */
+
+/*
+ * `.is-style-system-modal`
+ *
+ * The modal modifier changes Panel-family geometry by overriding:
+ *
+ * --strap-system-panel-padding-y
+ * --strap-system-panel-padding-x
+ *
+ * The structural rule applies to both System Flat and System Panel.
+ * Modal spacing therefore belongs to the shared structural contract,
+ * not to the enhanced System Panel surface.
+ */
+
+/* =========================================================
+   System List Integration
+   ========================================================= */
+
+/*
+ * System List owns its own row presentation and nested integration.
+ *
+ * Enhanced System Panel may suppress duplicate List enhancement where
+ * the List would otherwise create double chrome.
+ *
+ * System Flat is intentionally distinct: because the outer Flat Panel
+ * has no enhancement layer, a nested enhanced System List may retain its
+ * own surface enhancement.
+ *
+ * Do not automatically generalize System Panel-specific List
+ * double-chrome suppression to System Flat unless the List component's
+ * own contract explicitly requires it.
+ */
+
+/* =========================================================
+   Ownership Boundary
+   ========================================================= */
+
+/*
+ * Structure:
+ * system-ui-panel-structure.css
+ *
+ * Shared semantic/application surface:
+ * system-ui-panel-surface.css
+ *
+ * Flat variation behavior/context:
+ * core-group-system-flat-panel.css
+ *
+ * Enhanced Panel variation behavior/context:
+ * core-group-system-panel.css
+ *
+ * Header:
+ * core-group-system-panel-header.css
+ *
+ * Footer:
+ * core-group-system-panel-footer.css
+ *
+ * Component integrations such as System List, Accordion, Details, Query,
+ * Pagination, and WooCommerce retain ownership of their own internal
+ * presentation. The Panel family owns only the relationship between those
+ * components and the Panel shell where explicitly defined.
+ */
 
 /* 
  * System Panel Footer Variation
@@ -1831,7 +1804,6 @@ body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs-vertic
         border-bottom-right-radius: 0;
         margin-bottom: calc(var(--system-tabs-border-width) * -1);
     }
-}
 
 /* 5. State delta lane */
 body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs-vertical .system-tabs__tab:hover {
@@ -1873,7 +1845,6 @@ body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs-vertic
         z-index: 2;
         border-right-color: var(--system-tabs-active-join-color);
     }
-}
 
 @media (max-width: 700px) {
     body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs-vertical .system-tabs__tab[aria-selected="true"] {
@@ -1882,7 +1853,6 @@ body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs-vertic
         padding-bottom: calc(var(--system-tabs-padding-y) + var(--system-tabs-active-overlap));
         margin-bottom: calc((var(--system-tabs-border-width) * -1) - var(--system-tabs-active-overlap));
     }
-}
 
 body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs-vertical .system-tabs__tab:focus-visible {
     outline: none;
@@ -1921,7 +1891,6 @@ body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs-vertic
     body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs-vertical .system-tabs__panel {
         border-radius: var(--system-tabs-radius);
     }
-}
 
 /* 7. Seam lane */
 body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs-vertical .system-tabs__panel::before {
@@ -1942,7 +1911,6 @@ body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs-vertic
         width: calc(var(--system-tabs-border-width) + 2px);
         height: var(--system-tabs-active-tab-height, 0px);
     }
-}
 
 @media (max-width: 700px) {
     body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs-vertical .system-tabs__panel::before {
@@ -1951,7 +1919,6 @@ body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs-vertic
         width: var(--system-tabs-active-tab-width, 0px);
         height: calc(var(--system-tabs-border-width) + 2px);
     }
-}
 
 /* 8. Editor fallback lane */
 .editor-styles-wrapper .wp-block-accordion.is-style-system-tabs-vertical {
@@ -2107,41 +2074,41 @@ body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[clas
    Owns query rows, footer, and query parts from a single core/query style.
    ========================================================================== */
 
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template > li {
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-grid, .query-directory-image-grid__query)) > .wp-block-post-template > li {
     background-color: var(--wp--custom--system-ui-surface);
     background-image: var(--wp--custom--system-ui-background-image, none);
     backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
 }
 
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template:not(.is-layout-grid) > li + li {
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-grid, .query-directory-image-grid__query)) > .wp-block-post-template:not(.is-layout-grid) > li + li {
     border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
 }
 
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template.is-layout-grid > li {
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-grid, .query-directory-image-grid__query)) > .wp-block-post-template.is-layout-grid > li {
     border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
     box-shadow: var(--wp--custom--shadow);
 }
 
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template > li .wp-block-post-title,
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template > li .wp-block-post-excerpt,
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template > li .wp-block-post-date,
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template > li .wp-block-post-author,
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template > li .wp-block-post-terms,
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-query-pagination,
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-query-no-results {
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-grid, .query-directory-image-grid__query)) > .wp-block-post-template > li .wp-block-post-title,
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-grid, .query-directory-image-grid__query)) > .wp-block-post-template > li .wp-block-post-excerpt,
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-grid, .query-directory-image-grid__query)) > .wp-block-post-template > li .wp-block-post-date,
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-grid, .query-directory-image-grid__query)) > .wp-block-post-template > li .wp-block-post-author,
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-grid, .query-directory-image-grid__query)) > .wp-block-post-template > li .wp-block-post-terms,
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-grid, .query-directory-image-grid__query)) > .wp-block-query-pagination,
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-grid, .query-directory-image-grid__query)) > .wp-block-query-no-results {
     color: inherit;
 }
 
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template:not(.is-layout-grid) ~ .wp-block-query-pagination,
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template:not(.is-layout-grid) ~ .wp-block-query-no-results {
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-grid, .query-directory-image-grid__query)) > .wp-block-post-template:not(.is-layout-grid) ~ .wp-block-query-pagination,
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-grid, .query-directory-image-grid__query)) > .wp-block-post-template:not(.is-layout-grid) ~ .wp-block-query-no-results {
     background-color: var(--wp--custom--system-ui-surface-banner);
     background-image: var(--wp--custom--system-ui-background-image, none);
     border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
 }
 
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template.is-layout-grid ~ .wp-block-query-pagination,
-.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .systemstrap-directory-grid__query)) > .wp-block-post-template.is-layout-grid ~ .wp-block-query-no-results {
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-grid, .query-directory-image-grid__query)) > .wp-block-post-template.is-layout-grid ~ .wp-block-query-pagination,
+.wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-grid, .query-directory-image-grid__query)) > .wp-block-post-template.is-layout-grid ~ .wp-block-query-no-results {
     background-color: var(--wp--custom--system-ui-surface-banner);
     background-image: var(--wp--custom--system-ui-background-image, none);
     border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
@@ -2149,7 +2116,7 @@ body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[clas
 }
 
 .query-directory-listing:has(> .query-directory-listing__query.is-style-system-ui-query),
-.directory-listing:has(> .directory-listing__query.is-style-system-ui-query) {
+.query-directory-listing:has(> .query-directory-listing__query.is-style-system-ui-query) {
     border-color: transparent;
     border-color: var(--wp--custom--system-ui-border-color);
     background-color: var(--wp--custom--system-ui-surface);
@@ -2161,15 +2128,15 @@ body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[clas
     overflow: hidden;
 }
 
-.query-directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query).has-background,
-.directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query).has-background {
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query).has-background,
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query).has-background {
     color: inherit;
 }
 
-.query-directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .query-directory-listing__header,
-.query-directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .query-directory-listing__footer,
-.directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .directory-listing__header,
-.directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .directory-listing__footer {
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__header,
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__footer,
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__header,
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__footer {
     border-color: transparent;
     border-color: var(--wp--custom--system-ui-border-color);
     background-color: var(--wp--custom--system-ui-surface-banner);
@@ -2178,54 +2145,54 @@ body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[clas
     -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
 }
 
-.query-directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .query-directory-listing__row,
-.query-directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .query-directory-listing__empty,
-.directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .directory-listing__row,
-.directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .directory-listing__empty {
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__row,
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__empty,
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__row,
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__empty {
     border-color: transparent;
     border-color: var(--wp--custom--system-ui-border-color);
 }
 
-.query-directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .query-directory-listing__row,
-.directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .directory-listing__row {
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__row,
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__row {
     background: transparent;
     transition: border-color 0.15s ease-in-out;
 }
 
-.query-directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .query-directory-listing__empty,
-.directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .directory-listing__empty {
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__empty,
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__empty {
     background: transparent;
 }
 
-.query-directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .query-directory-listing__title,
-.query-directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .query-directory-listing__title a,
-.query-directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .query-directory-listing__excerpt,
-.query-directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .query-directory-listing__excerpt p,
-.query-directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .query-directory-listing__arrow,
-.query-directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .query-directory-listing__item-icon,
-.query-directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .query-directory-listing__footer,
-.query-directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .query-directory-listing__footer .wp-block-query-total,
-.query-directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .query-directory-listing__pagination,
-.query-directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .query-directory-listing__pagination a,
-.query-directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .query-directory-listing__pagination span,
-.query-directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .query-directory-listing__empty,
-.directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .directory-listing__title,
-.directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .directory-listing__title a,
-.directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .directory-listing__excerpt,
-.directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .directory-listing__excerpt p,
-.directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .directory-listing__arrow,
-.directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .directory-listing__item-icon,
-.directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .directory-listing__footer,
-.directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .directory-listing__footer .wp-block-query-total,
-.directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .directory-listing__pagination,
-.directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .directory-listing__pagination a,
-.directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .directory-listing__pagination span,
-.directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .directory-listing__empty {
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__title,
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__title a,
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__excerpt,
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__excerpt p,
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__arrow,
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__item-icon,
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__footer,
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__footer .wp-block-query-total,
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__pagination,
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__pagination a,
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__pagination span,
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__empty,
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__title,
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__title a,
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__excerpt,
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__excerpt p,
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__arrow,
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__item-icon,
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__footer,
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__footer .wp-block-query-total,
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__pagination,
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__pagination a,
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__pagination span,
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__empty {
     color: inherit;
 }
 
-.query-directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .query-directory-listing__post-terms a,
-.directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .directory-listing__post-terms a {
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__post-terms a,
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__post-terms a {
     border-color: transparent;
     border-color: var(--wp--custom--system-ui-border-color);
     background-color: var(--wp--custom--system-ui-surface-nested, transparent);
@@ -2233,42 +2200,45 @@ body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[clas
     color: inherit;
 }
 
-.query-directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .query-directory-listing__post-terms a:hover,
-.query-directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .query-directory-listing__post-terms a:focus-visible,
-.directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .directory-listing__post-terms a:hover,
-.directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .directory-listing__post-terms a:focus-visible {
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__post-terms a:hover,
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__post-terms a:focus-visible,
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__post-terms a:hover,
+.query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__post-terms a:focus-visible {
     background: var(--wp--custom--system-ui-list-hover-bg);
     color: inherit;
 }
 
 .query-directory-listing__query.is-style-system-ui-query,
-.directory-listing__query.is-style-system-ui-query {
+.query-directory-listing__query.is-style-system-ui-query {
     margin: 0;
 }
 
 .query-directory-listing.is-style-system-panel > .query-directory-listing__query.is-style-system-ui-query.has-global-padding,
 .query-directory-listing.is-style-system-panel > .query-directory-listing__query.has-global-padding,
-.directory-listing.is-style-system-panel > .directory-listing__query.is-style-system-ui-query.has-global-padding,
-.directory-listing.is-style-system-panel > .directory-listing__query.has-global-padding,
+.query-directory-listing.is-style-system-panel > .query-directory-listing__query.is-style-system-ui-query.has-global-padding,
+.query-directory-listing.is-style-system-panel > .query-directory-listing__query.has-global-padding,
 .query-latest-posts.is-style-system-panel > .query-latest-posts__query.is-style-system-ui-query.has-global-padding,
 .query-latest-posts.is-style-system-panel > .query-latest-posts__query.has-global-padding,
-.systemstrap-directory-grid.is-style-system-panel.is-style-system-ui-query.has-global-padding,
+.query-directory-grid.is-style-system-panel.is-style-system-ui-query.has-global-padding,
+.query-directory-image-grid.is-style-system-panel.is-style-system-ui-query.has-global-padding,
 .wp-block-group.is-style-system-panel > .wp-block-query.is-style-system-ui-query.has-global-padding,
-.wp-block-group.is-style-system-panel > .query-directory-listing :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query.has-global-padding,
-.wp-block-group.is-style-system-panel > .query-directory-listing :is(.query-directory-listing__query, .directory-listing__query).has-global-padding,
-.wp-block-group.is-style-system-panel > .directory-listing :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query.has-global-padding,
-.wp-block-group.is-style-system-panel > .directory-listing :is(.query-directory-listing__query, .directory-listing__query).has-global-padding,
+.wp-block-group.is-style-system-panel > .query-directory-listing :is(.query-directory-listing__query).is-style-system-ui-query.has-global-padding,
+.wp-block-group.is-style-system-panel > .query-directory-listing :is(.query-directory-listing__query).has-global-padding,
+.wp-block-group.is-style-system-panel > .query-directory-listing :is(.query-directory-listing__query).is-style-system-ui-query.has-global-padding,
+.wp-block-group.is-style-system-panel > .query-directory-listing :is(.query-directory-listing__query).has-global-padding,
 .wp-block-group.is-style-system-panel > .query-latest-posts .query-latest-posts__query.is-style-system-ui-query.has-global-padding,
 .wp-block-group.is-style-system-panel > .query-latest-posts .query-latest-posts__query.has-global-padding,
-.wp-block-group.is-style-system-panel > .systemstrap-directory-grid.is-style-system-ui-query.has-global-padding,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query.has-global-padding,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing :is(.query-directory-listing__query, .directory-listing__query).has-global-padding,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .directory-listing :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query.has-global-padding,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .directory-listing :is(.query-directory-listing__query, .directory-listing__query).has-global-padding,
+.wp-block-group.is-style-system-panel > .query-directory-grid.is-style-system-ui-query.has-global-padding,
+.wp-block-group.is-style-system-panel > .query-directory-image-grid.is-style-system-ui-query.has-global-padding,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing :is(.query-directory-listing__query).is-style-system-ui-query.has-global-padding,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing :is(.query-directory-listing__query).has-global-padding,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing :is(.query-directory-listing__query).is-style-system-ui-query.has-global-padding,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing :is(.query-directory-listing__query).has-global-padding,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-latest-posts .query-latest-posts__query.is-style-system-ui-query.has-global-padding,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-latest-posts .query-latest-posts__query.has-global-padding,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-query.is-style-system-ui-query.has-global-padding,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .systemstrap-directory-grid.is-style-system-ui-query.has-global-padding {
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-grid.is-style-system-ui-query.has-global-padding,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-image-grid.is-style-system-ui-query.has-global-padding {
     padding: 0 !important;
     width: 100%;
     max-width: none !important;
@@ -2314,8 +2284,9 @@ body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[clas
 }
 
 .query-directory-grid__query.is-style-system-ui-query,
-.systemstrap-directory-grid__query.is-style-system-ui-query,
-.systemstrap-directory-grid.is-style-system-ui-query {
+.query-directory-image-grid__query.is-style-system-ui-query,
+.query-directory-grid.is-style-system-ui-query,
+.query-directory-image-grid.is-style-system-ui-query {
     --directory-grid-border-color:
         var(--wp--custom--system-ui-border-color);
     --directory-grid-card-bg:
@@ -2343,12 +2314,18 @@ body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[clas
 .query-directory-grid:has(> .query-directory-grid__query.is-style-system-ui-query) .query-directory-grid__empty,
 .query-directory-grid__query.is-style-system-ui-query .query-directory-grid__items > li,
 .query-directory-grid__query.is-style-system-ui-query .query-directory-grid__empty,
-.systemstrap-directory-grid:has(> .systemstrap-directory-grid__query.is-style-system-ui-query) .systemstrap-directory-grid__items > li,
-.systemstrap-directory-grid:has(> .systemstrap-directory-grid__query.is-style-system-ui-query) .systemstrap-directory-grid__empty,
-.systemstrap-directory-grid__query.is-style-system-ui-query .systemstrap-directory-grid__items > li,
-.systemstrap-directory-grid__query.is-style-system-ui-query .systemstrap-directory-grid__empty,
-.systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__items > li,
-.systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__empty {
+.query-directory-grid:has(> .query-directory-grid__query.is-style-system-ui-query) .query-directory-grid__items > li,
+.query-directory-image-grid:has(> .query-directory-image-grid__query.is-style-system-ui-query) .query-directory-image-grid__items > li,
+.query-directory-grid:has(> .query-directory-grid__query.is-style-system-ui-query) .query-directory-grid__empty,
+.query-directory-image-grid:has(> .query-directory-image-grid__query.is-style-system-ui-query) .query-directory-image-grid__empty,
+.query-directory-grid__query.is-style-system-ui-query .query-directory-grid__items > li,
+.query-directory-image-grid__query.is-style-system-ui-query .query-directory-image-grid__items > li,
+.query-directory-grid__query.is-style-system-ui-query .query-directory-grid__empty,
+.query-directory-image-grid__query.is-style-system-ui-query .query-directory-image-grid__empty,
+.query-directory-grid.is-style-system-ui-query .query-directory-grid__items > li,
+.query-directory-image-grid.is-style-system-ui-query .query-directory-image-grid__items > li,
+.query-directory-grid.is-style-system-ui-query .query-directory-grid__empty,
+.query-directory-image-grid.is-style-system-ui-query .query-directory-image-grid__empty {
     border-color: transparent;
     border-color: var(--wp--custom--system-ui-border-color);
     background-color: var(--wp--custom--system-ui-surface);
@@ -2360,9 +2337,12 @@ body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[clas
 
 .query-directory-grid:has(> .query-directory-grid__query.is-style-system-ui-query) .query-directory-grid__media,
 .query-directory-grid__query.is-style-system-ui-query .query-directory-grid__media,
-.systemstrap-directory-grid:has(> .systemstrap-directory-grid__query.is-style-system-ui-query) .systemstrap-directory-grid__media,
-.systemstrap-directory-grid__query.is-style-system-ui-query .systemstrap-directory-grid__media,
-.systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__media {
+.query-directory-grid:has(> .query-directory-grid__query.is-style-system-ui-query) .query-directory-grid__media,
+.query-directory-image-grid:has(> .query-directory-image-grid__query.is-style-system-ui-query) .query-directory-image-grid__media,
+.query-directory-grid__query.is-style-system-ui-query .query-directory-grid__media,
+.query-directory-image-grid__query.is-style-system-ui-query .query-directory-image-grid__media,
+.query-directory-grid.is-style-system-ui-query .query-directory-grid__media,
+.query-directory-image-grid.is-style-system-ui-query .query-directory-image-grid__media {
     background-color: var(--wp--custom--system-ui-surface-banner);
     background-image: var(--wp--custom--system-ui-background-image, none);
     backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
@@ -2371,41 +2351,52 @@ body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[clas
 
 .query-directory-grid:has(> .query-directory-grid__query.is-style-system-ui-query) .query-directory-grid__body,
 .query-directory-grid__query.is-style-system-ui-query .query-directory-grid__body,
-.systemstrap-directory-grid:has(> .systemstrap-directory-grid__query.is-style-system-ui-query) .systemstrap-directory-grid__body,
-.systemstrap-directory-grid__query.is-style-system-ui-query .systemstrap-directory-grid__body,
-.systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__body {
+.query-directory-grid:has(> .query-directory-grid__query.is-style-system-ui-query) .query-directory-grid__body,
+.query-directory-image-grid:has(> .query-directory-image-grid__query.is-style-system-ui-query) .query-directory-image-grid__body,
+.query-directory-grid__query.is-style-system-ui-query .query-directory-grid__body,
+.query-directory-image-grid__query.is-style-system-ui-query .query-directory-image-grid__body,
+.query-directory-grid.is-style-system-ui-query .query-directory-grid__body,
+.query-directory-image-grid.is-style-system-ui-query .query-directory-image-grid__body {
     background-color: transparent;
 }
 
-.systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__card-footer,
-.systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__arrow,
+.query-directory-grid.is-style-system-ui-query .query-directory-grid__card-footer,
+.query-directory-image-grid.is-style-system-ui-query .query-directory-image-grid__card-footer,
+.query-directory-grid.is-style-system-ui-query .query-directory-grid__arrow,
+.query-directory-image-grid.is-style-system-ui-query .query-directory-image-grid__arrow,
 .query-directory-grid__query.is-style-system-ui-query .query-directory-grid__card-footer,
 .query-directory-grid__query.is-style-system-ui-query .query-directory-grid__arrow {
     color: inherit;
 }
 
-.wp-block-group.is-style-system-panel > .query-directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query),
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query),
-.wp-block-group.is-style-system-panel > .directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query),
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query),
+.wp-block-group.is-style-system-panel > .query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query),
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query),
+.wp-block-group.is-style-system-panel > .query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query),
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query),
 .wp-block-group.is-style-system-panel > .query-latest-posts:has(> .query-latest-posts__query.is-style-system-ui-query),
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-latest-posts:has(> .query-latest-posts__query.is-style-system-ui-query),
 .wp-block-group.is-style-system-panel > .query-directory-grid:has(> .query-directory-grid__query.is-style-system-ui-query),
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-grid:has(> .query-directory-grid__query.is-style-system-ui-query),
-.wp-block-group.is-style-system-panel > .systemstrap-directory-grid:has(> .systemstrap-directory-grid__query.is-style-system-ui-query),
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .systemstrap-directory-grid:has(> .systemstrap-directory-grid__query.is-style-system-ui-query),
-.wp-block-group.is-style-system-panel > .systemstrap-directory-grid.is-style-system-ui-query,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .systemstrap-directory-grid.is-style-system-ui-query,
+.wp-block-group.is-style-system-panel > .query-directory-grid:has(> .query-directory-grid__query.is-style-system-ui-query),
+.wp-block-group.is-style-system-panel > .query-directory-image-grid:has(> .query-directory-image-grid__query.is-style-system-ui-query),
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-grid:has(> .query-directory-grid__query.is-style-system-ui-query),
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-image-grid:has(> .query-directory-image-grid__query.is-style-system-ui-query),
+.wp-block-group.is-style-system-panel > .query-directory-grid.is-style-system-ui-query,
+.wp-block-group.is-style-system-panel > .query-directory-image-grid.is-style-system-ui-query,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-grid.is-style-system-ui-query,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-image-grid.is-style-system-ui-query,
 .wp-block-group.is-style-system-panel > .query-directory-listing,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing,
-.wp-block-group.is-style-system-panel > .directory-listing,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .directory-listing,
+.wp-block-group.is-style-system-panel > .query-directory-listing,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing,
 .wp-block-group.is-style-system-panel > .query-latest-posts,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-latest-posts,
 .wp-block-group.is-style-system-panel > .query-directory-grid,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-grid,
-.wp-block-group.is-style-system-panel > .systemstrap-directory-grid,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .systemstrap-directory-grid {
+.wp-block-group.is-style-system-panel > .query-directory-grid,
+.wp-block-group.is-style-system-panel > .query-directory-image-grid,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-grid,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-image-grid {
     border-color: transparent;
     background-color: transparent;
     background-image: none !important;
@@ -2419,25 +2410,27 @@ body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[clas
 
 .wp-block-group.is-style-system-panel > .query-directory-listing.has-global-padding,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing.has-global-padding,
-.wp-block-group.is-style-system-panel > .directory-listing.has-global-padding,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .directory-listing.has-global-padding,
+.wp-block-group.is-style-system-panel > .query-directory-listing.has-global-padding,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing.has-global-padding,
 .wp-block-group.is-style-system-panel > .query-latest-posts.has-global-padding,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-latest-posts.has-global-padding,
 .wp-block-group.is-style-system-panel > .query-directory-grid.has-global-padding,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-grid.has-global-padding,
-.wp-block-group.is-style-system-panel > .systemstrap-directory-grid.has-global-padding,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .systemstrap-directory-grid.has-global-padding {
+.wp-block-group.is-style-system-panel > .query-directory-grid.has-global-padding,
+.wp-block-group.is-style-system-panel > .query-directory-image-grid.has-global-padding,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-grid.has-global-padding,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-image-grid.has-global-padding {
     padding: 0 !important;
 }
 
-.wp-block-group.is-style-system-panel > .query-directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .query-directory-listing__header,
-.wp-block-group.is-style-system-panel > .query-directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .query-directory-listing__footer,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .query-directory-listing__header,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .query-directory-listing__footer,
-.wp-block-group.is-style-system-panel > .directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .directory-listing__header,
-.wp-block-group.is-style-system-panel > .directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .directory-listing__footer,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .directory-listing__header,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .directory-listing__footer,
+.wp-block-group.is-style-system-panel > .query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__header,
+.wp-block-group.is-style-system-panel > .query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__footer,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__header,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__footer,
+.wp-block-group.is-style-system-panel > .query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__header,
+.wp-block-group.is-style-system-panel > .query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__footer,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__header,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__footer,
 .wp-block-group.is-style-system-panel > .query-latest-posts:has(> .query-latest-posts__query.is-style-system-ui-query) .query-latest-posts__header,
 .wp-block-group.is-style-system-panel > .query-latest-posts:has(> .query-latest-posts__query.is-style-system-ui-query) .query-latest-posts__footer,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-latest-posts:has(> .query-latest-posts__query.is-style-system-ui-query) .query-latest-posts__header,
@@ -2446,10 +2439,10 @@ body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[clas
 .wp-block-group.is-style-system-panel > .query-directory-listing .query-directory-listing__footer,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing .query-directory-listing__header,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing .query-directory-listing__footer,
-.wp-block-group.is-style-system-panel > .directory-listing .directory-listing__header,
-.wp-block-group.is-style-system-panel > .directory-listing .directory-listing__footer,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .directory-listing .directory-listing__header,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .directory-listing .directory-listing__footer,
+.wp-block-group.is-style-system-panel > .query-directory-listing .query-directory-listing__header,
+.wp-block-group.is-style-system-panel > .query-directory-listing .query-directory-listing__footer,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing .query-directory-listing__header,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing .query-directory-listing__footer,
 .wp-block-group.is-style-system-panel > .query-latest-posts .query-latest-posts__header,
 .wp-block-group.is-style-system-panel > .query-latest-posts .query-latest-posts__footer,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-latest-posts .query-latest-posts__header,
@@ -2458,20 +2451,20 @@ body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[clas
     background-image: var(--wp--custom--system-ui-background-image-nested, none);
 }
 
-.wp-block-group.is-style-system-panel > .query-directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .query-directory-listing__post-terms a,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .query-directory-listing__post-terms a,
-.wp-block-group.is-style-system-panel > .directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .directory-listing__post-terms a,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .directory-listing:has(> :is(.query-directory-listing__query, .directory-listing__query).is-style-system-ui-query) .directory-listing__post-terms a,
+.wp-block-group.is-style-system-panel > .query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__post-terms a,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__post-terms a,
+.wp-block-group.is-style-system-panel > .query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__post-terms a,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing:has(> :is(.query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__post-terms a,
 .wp-block-group.is-style-system-panel > .query-directory-listing .query-directory-listing__post-terms a,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing .query-directory-listing__post-terms a,
-.wp-block-group.is-style-system-panel > .directory-listing .directory-listing__post-terms a,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .directory-listing .directory-listing__post-terms a {
+.wp-block-group.is-style-system-panel > .query-directory-listing .query-directory-listing__post-terms a,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing .query-directory-listing__post-terms a {
     background-color: var(--wp--custom--system-ui-surface-nested, transparent);
     background-image: var(--wp--custom--system-ui-background-image-nested, none);
 }
 
-.wp-block-group.is-style-system-panel > :is(.query-directory-listing, .directory-listing) :is(.query-directory-listing__title, .query-directory-listing__title a, .query-directory-listing__excerpt, .query-directory-listing__excerpt p, .query-directory-listing__arrow, .query-directory-listing__item-icon, .query-directory-listing__footer, .query-directory-listing__footer .wp-block-query-total, .query-directory-listing__pagination, .query-directory-listing__pagination a, .query-directory-listing__pagination span, .query-directory-listing__empty, .directory-listing__title, .directory-listing__title a, .directory-listing__excerpt, .directory-listing__excerpt p, .directory-listing__arrow, .directory-listing__item-icon, .directory-listing__footer, .directory-listing__footer .wp-block-query-total, .directory-listing__pagination, .directory-listing__pagination a, .directory-listing__pagination span, .directory-listing__empty),
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > :is(.query-directory-listing, .directory-listing) :is(.query-directory-listing__title, .query-directory-listing__title a, .query-directory-listing__excerpt, .query-directory-listing__excerpt p, .query-directory-listing__arrow, .query-directory-listing__item-icon, .query-directory-listing__footer, .query-directory-listing__footer .wp-block-query-total, .query-directory-listing__pagination, .query-directory-listing__pagination a, .query-directory-listing__pagination span, .query-directory-listing__empty, .directory-listing__title, .directory-listing__title a, .directory-listing__excerpt, .directory-listing__excerpt p, .directory-listing__arrow, .directory-listing__item-icon, .directory-listing__footer, .directory-listing__footer .wp-block-query-total, .directory-listing__pagination, .directory-listing__pagination a, .directory-listing__pagination span, .directory-listing__empty) {
+.wp-block-group.is-style-system-panel > :is(.query-directory-listing) :is(.query-directory-listing__title a, .query-directory-listing__excerpt p, .query-directory-listing__arrow, .query-directory-listing__item-icon, .query-directory-listing__footer .wp-block-query-total, .query-directory-listing__pagination a, .query-directory-listing__pagination span, .query-directory-listing__empty, .query-directory-listing__title a, .query-directory-listing__excerpt p, .query-directory-listing__arrow, .query-directory-listing__item-icon, .query-directory-listing__footer .wp-block-query-total, .query-directory-listing__pagination a, .query-directory-listing__pagination span, .query-directory-listing__empty),
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > :is(.query-directory-listing) :is(.query-directory-listing__title a, .query-directory-listing__excerpt p, .query-directory-listing__arrow, .query-directory-listing__item-icon, .query-directory-listing__footer .wp-block-query-total, .query-directory-listing__pagination a, .query-directory-listing__pagination span, .query-directory-listing__empty, .query-directory-listing__title a, .query-directory-listing__excerpt p, .query-directory-listing__arrow, .query-directory-listing__item-icon, .query-directory-listing__footer .wp-block-query-total, .query-directory-listing__pagination a, .query-directory-listing__pagination span, .query-directory-listing__empty) {
     color: inherit;
 }
 
@@ -2479,10 +2472,14 @@ body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[clas
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-grid:has(> .query-directory-grid__query.is-style-system-ui-query) .query-directory-grid__empty,
 .wp-block-group.is-style-system-panel > .query-directory-grid .query-directory-grid__items > li,
 .wp-block-group.is-style-system-panel > .query-directory-grid .query-directory-grid__empty,
-.wp-block-group.is-style-system-panel > .systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__items > li,
-.wp-block-group.is-style-system-panel > .systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__empty,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__items > li,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__empty {
+.wp-block-group.is-style-system-panel > .query-directory-grid.is-style-system-ui-query .query-directory-grid__items > li,
+.wp-block-group.is-style-system-panel > .query-directory-image-grid.is-style-system-ui-query .query-directory-image-grid__items > li,
+.wp-block-group.is-style-system-panel > .query-directory-grid.is-style-system-ui-query .query-directory-grid__empty,
+.wp-block-group.is-style-system-panel > .query-directory-image-grid.is-style-system-ui-query .query-directory-image-grid__empty,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-grid.is-style-system-ui-query .query-directory-grid__items > li,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-image-grid.is-style-system-ui-query .query-directory-image-grid__items > li,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-grid.is-style-system-ui-query .query-directory-grid__empty,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-image-grid.is-style-system-ui-query .query-directory-image-grid__empty {
     background-color: var(--wp--custom--system-ui-surface-nested, transparent);
     background-image: var(--wp--custom--system-ui-background-image-nested, none);
     backdrop-filter: none !important;
@@ -2492,8 +2489,10 @@ body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[clas
 
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-grid:has(> .query-directory-grid__query.is-style-system-ui-query) .query-directory-grid__media,
 .wp-block-group.is-style-system-panel > .query-directory-grid .query-directory-grid__media,
-.wp-block-group.is-style-system-panel > .systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__media,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .systemstrap-directory-grid.is-style-system-ui-query .systemstrap-directory-grid__media {
+.wp-block-group.is-style-system-panel > .query-directory-grid.is-style-system-ui-query .query-directory-grid__media,
+.wp-block-group.is-style-system-panel > .query-directory-image-grid.is-style-system-ui-query .query-directory-image-grid__media,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-grid.is-style-system-ui-query .query-directory-grid__media,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-image-grid.is-style-system-ui-query .query-directory-image-grid__media {
     background-color: var(--wp--custom--system-ui-surface-nested, transparent);
     background-image: var(--wp--custom--system-ui-background-image-nested, none);
 }
@@ -2861,23 +2860,68 @@ body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[clas
    ======================================================================== */
 
 /*
- * Nested System UI surfaces route to:
- * - --wp--custom--system-ui-surface-nested
- * - --wp--custom--system-ui-background-image-nested
+ * Panel nesting has two independent concerns:
  *
- * Nested System UI surfaces suppress:
- * - duplicate outer borders
- * - duplicate shadows
- * - duplicate backdrop blur
+ * 1. structural composition
+ * 2. surface enhancement
  *
- * Primary enforcing runtime files:
- * - core-group-system-panel.css
- * - core-query-system-ui-query.css
- * - core-list-system-list.css
- * - core-accordion-system-accordion.css
- * - core-details-system-details.css
- * - core-accordion-system-tabs.css
- * - core-accordion-system-tabs-vertical.css
+ * Structural nesting is owned by:
+ *
+ * assets/css/system-ui-panel-structure.css
+ *
+ * Surface/context routing is owned by:
+ *
+ * assets/css/system-ui-panel-surface.css
+ * assets/css/style-variations/core-group-system-panel.css
+ * assets/css/style-variations/core-group-system-flat-panel.css
+ *
+ * System Flat and System Panel are members of the same structural family.
+ * All four direct nesting combinations therefore receive the same nested
+ * Panel geometry:
+ *
+ * Panel > Panel
+ * Panel > Flat
+ * Flat > Panel
+ * Flat > Flat
+ *
+ * Surface behavior is intentionally asymmetric.
+ *
+ * System Panel is enhanced.
+ * System Flat is neutral.
+ *
+ * Contextual custom properties route enhancement state without mutating
+ * the global theme tokens:
+ *
+ * --strap-system-panel-context-background-image
+ * --strap-system-panel-context-backdrop-filter
+ *
+ * Enhanced Panel descendants may therefore suppress repeated haze while
+ * a Flat Panel can act as a neutral boundary from which a later nested
+ * Panel regains the normal theme enhancement.
+ *
+ * Nested component integrations may additionally consume:
+ *
+ * --wp--custom--system-ui-surface-nested
+ * --wp--custom--system-ui-background-image-nested
+ *
+ * but component-specific suppression remains owned by the component.
+ *
+ * System List, Accordion, Details, Query, Pagination, and other System UI
+ * components must not be assumed to share identical Flat/Panel nesting
+ * semantics merely because they consume the same theme tokens.
+ *
+ * Primary runtime authorities:
+ *
+ * - assets/css/system-ui-panel-structure.css
+ * - assets/css/system-ui-panel-surface.css
+ * - assets/css/style-variations/core-group-system-panel.css
+ * - assets/css/style-variations/core-group-system-flat-panel.css
+ * - assets/css/style-variations/core-list-system-list.css
+ * - assets/css/style-variations/core-query-system-ui-query.css
+ * - assets/css/style-variations/core-accordion-system-accordion.css
+ * - assets/css/style-variations/core-details-system-details.css
+ * - assets/css/style-variations/core-accordion-system-tabs.css
+ * - assets/css/style-variations/core-accordion-system-tabs-vertical.css
  * - assets/css/system-ui-pagination.css
  */
 
