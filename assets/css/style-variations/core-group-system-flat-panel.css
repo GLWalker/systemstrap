@@ -16,7 +16,7 @@
    System Panels regain the normal enhanced presentation.
    ========================================================= */
 
-.wp-block-group.is-style-system-flat-panel > * {
+:is(.wp-block-group.is-style-system-flat-panel, .is-style-system-flat-panel:not(.wp-block-group)) > * {
     --strap-system-panel-context-background-image: var(--wp--custom--system-ui-background-image, none);
     --strap-system-panel-context-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
 }

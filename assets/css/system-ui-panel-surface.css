@@ -46,7 +46,7 @@
    enclosing panel context.
    ========================================================= */
 
-:is(.wp-block-group.is-style-system-panel, .strap-panel-surface) {
+:is(.wp-block-group.is-style-system-panel, .strap-panel-surface:not(.is-style-system-flat-panel)) {
     background-image: var(--strap-system-panel-context-background-image, var(--wp--custom--system-ui-background-image, none));
     backdrop-filter: var(--strap-system-panel-context-backdrop-filter, var(--wp--custom--system-ui-backdrop-filter, none));
     -webkit-backdrop-filter: var(--strap-system-panel-context-backdrop-filter, var(--wp--custom--system-ui-backdrop-filter, none));
@@ -69,7 +69,7 @@
    backdrop blur, preventing double haze.
    ========================================================= */
 
-:is(.wp-block-group.is-style-system-panel, .strap-panel-surface) > * {
+:is(.wp-block-group.is-style-system-panel, .strap-panel-surface:not(.is-style-system-flat-panel)) > * {
     --strap-system-panel-context-background-image: var(--wp--custom--system-ui-background-image-nested, none);
     --strap-system-panel-context-backdrop-filter: none;
 }
