@@ -607,8 +607,60 @@ select:focus {
 /* Search Block Baseline */
 .wp-block-search__inside-wrapper {
     display: flex;
-    align-items: center;
+    align-items: stretch;
+}
+
+.wp-block-search__button-outside .wp-block-search__inside-wrapper {
     gap: var(--wp--preset--spacing--10, 0.5rem);
+}
+
+.wp-block-search__input {
+    min-height: 100%;
+    padding-top: calc(var(--wp--preset--font-size--small) * .5);
+    padding-bottom: calc(var(--wp--preset--font-size--small) * .5);
+    padding-left: var(--wp--preset--font-size--small);
+    padding-right: var(--wp--preset--font-size--small);
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--border-color);
+    border-radius: var(--wp--custom--border-radius, 4px);
+    background-color: var(--wp--custom--system-ui-surface, #fff);
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+.wp-block-search__input:focus {
+    outline: none;
+    border-color: var(--wp--custom--form-focus-border-color, currentColor);
+    box-shadow: var(--wp--preset--shadow--form-focus, none);
+}
+
+/* Button Inside Baseline Fix */
+.wp-block-search__button-inside .wp-block-search__inside-wrapper {
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--border-color);
+    border-radius: var(--wp--custom--border-radius, 4px);
+    background-color: var(--wp--custom--system-ui-surface, #fff);
+    overflow: hidden;
+    transition: var(--wp--custom--form-transition);
+}
+
+.wp-block-search__button-inside .wp-block-search__inside-wrapper:focus-within {
+    border-color: var(--wp--custom--form-focus-border-color, currentColor);
+    box-shadow: var(--wp--preset--shadow--form-focus, none);
+}
+
+.wp-block-search__button-inside .wp-block-search__input {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.wp-block-search__button-inside .wp-block-search__button {
+    border: none !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    height: auto;
 }
 
 /* Separator Block Baseline */

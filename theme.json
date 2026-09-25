@@ -1658,8 +1658,7 @@
 			"core/search": {
 				"typography": {
 					"fontSize": "var:preset|font-size|small"
-				},
-				"css": "& .wp-block-search__inside-wrapper { background-color: transparent; border-color: transparent; }"
+				}
 			},
 			"core/separator": {
 				"border": {
@@ -1958,8 +1957,8 @@
 		},
 		{
 			"area": "uncategorized",
-			"name": "part-blank",
-			"title": "Blank Part"
+			"name": "part-archive-sidebar",
+			"title": "Archive Sidebar Part"
 		},
 		{
 			"area": "uncategorized",
@@ -1973,8 +1972,8 @@
 		},
 		{
 			"area": "uncategorized",
-			"name": "part-buddypress-members",
-			"title": "BuddyPress Members Part"
+			"name": "part-buddypress-blogs",
+			"title": "BuddyPress Blogs Part"
 		},
 		{
 			"area": "uncategorized",
@@ -1983,8 +1982,8 @@
 		},
 		{
 			"area": "uncategorized",
-			"name": "part-buddypress-blogs",
-			"title": "BuddyPress Blogs Part"
+			"name": "part-buddypress-members",
+			"title": "BuddyPress Members Part"
 		},
 		{
 			"area": "uncategorized",
@@ -1993,18 +1992,13 @@
 		},
 		{
 			"area": "uncategorized",
-			"name": "part-index",
-			"title": "Index Part"
-		},
-		{
-			"area": "uncategorized",
 			"name": "part-home",
 			"title": "Home Part"
 		},
 		{
 			"area": "uncategorized",
-			"name": "part-page-sidebar",
-			"title": "Page Sidebar Part"
+			"name": "part-index",
+			"title": "Index Part"
 		},
 		{
 			"area": "uncategorized",
@@ -2013,8 +2007,33 @@
 		},
 		{
 			"area": "uncategorized",
+			"name": "part-page-core",
+			"title": "Page Core Part"
+		},
+		{
+			"area": "uncategorized",
+			"name": "part-page-sidebar",
+			"title": "Page Sidebar Part"
+		},
+		{
+			"area": "uncategorized",
 			"name": "part-search",
 			"title": "Search Part"
+		},
+		{
+			"area": "uncategorized",
+			"name": "part-single",
+			"title": "Single Part"
+		},
+		{
+			"area": "uncategorized",
+			"name": "part-single-core",
+			"title": "Single Core Part"
+		},
+		{
+			"area": "uncategorized",
+			"name": "part-single-sidebar",
+			"title": "Single Sidebar Part"
 		},
 		{
 			"area": "uncategorized",
@@ -2050,31 +2069,6 @@
 			"area": "uncategorized",
 			"name": "part-woocommerce-single-product",
 			"title": "WooCommerce Single Product Part"
-		},
-		{
-			"area": "uncategorized",
-			"name": "part-woocommerce-product-sidebar",
-			"title": "Product Sidebar"
-		},
-		{
-			"area": "uncategorized",
-			"name": "part-woocommerce-product-sidebar-secondary",
-			"title": "Product Sidebar 2"
-		},
-		{
-			"area": "uncategorized",
-			"name": "part-single-core",
-			"title": "Single Core Part"
-		},
-		{
-			"area": "uncategorized",
-			"name": "part-single-sidebar",
-			"title": "Single Sidebar Part"
-		},
-		{
-			"area": "uncategorized",
-			"name": "part-single",
-			"title": "Single Part"
 		}
 	],
 	"customTemplates": [
@@ -2087,11 +2081,11 @@
 			"title": "Canvas"
 		},
 		{
-			"name": "single-sidebar",
+			"name": "page-core",
 			"postTypes": [
-				"post"
+				"page"
 			],
-			"title": "Single Sidebar"
+			"title": "Page Core"
 		},
 		{
 			"name": "page-sidebar",
@@ -2099,6 +2093,20 @@
 				"page"
 			],
 			"title": "Page Sidebar"
+		},
+		{
+			"name": "single-core",
+			"postTypes": [
+				"post"
+			],
+			"title": "Single Core"
+		},
+		{
+			"name": "single-sidebar",
+			"postTypes": [
+				"post"
+			],
+			"title": "Single Sidebar"
 		}
 	]
 }
