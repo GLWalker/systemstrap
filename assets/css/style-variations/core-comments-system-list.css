@@ -4,7 +4,7 @@
  * and their inner blocks remain native, editable WordPress markup.
  */
 
-:is(.wp-block-comments, .strap-comments-thread).is-style-system-list {
+:is(.wp-block-comments, .strap-comments-thread):is(.is-style-system-list, .is-style-system-flat-list) {
     --strap-comments-row-padding-x: var(--wp--preset--spacing--30);
     --strap-comments-row-padding-y: var(--wp--preset--spacing--20);
     --strap-comments-thread-indent: var(--wp--preset--spacing--30);
@@ -12,33 +12,43 @@
     color: inherit;
 }
 
-:is(.wp-block-comments.is-style-system-list > .wp-block-comment-template,
-    ol.strap-comments-thread.is-style-system-list,
-    .strap-comments-thread.is-style-system-list > ul,
-    .strap-comments-thread.is-style-system-list .wc-block-review-list) {
+:is(.wp-block-comments:is(.is-style-system-list, .is-style-system-flat-list) > .wp-block-comment-template,
+    ol.strap-comments-thread:is(.is-style-system-list, .is-style-system-flat-list),
+    .strap-comments-thread:is(.is-style-system-list, .is-style-system-flat-list) > ul,
+    .strap-comments-thread:is(.is-style-system-list, .is-style-system-flat-list) .wc-block-review-list) {
     list-style: none;
     margin: 0;
     padding: 0;
     border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
     border-radius: var(--wp--custom--border-radius);
-    backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    overflow: hidden;
+}
+
+:is(.wp-block-comments.is-style-system-list > .wp-block-comment-template,
+    ol.strap-comments-thread.is-style-system-list,
+    .strap-comments-thread.is-style-system-list > ul,
+    .strap-comments-thread.is-style-system-list .wc-block-review-list) {    backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     box-shadow: var(--wp--custom--shadow);
-    overflow: hidden;
+}
+
+:is(.wp-block-comments:is(.is-style-system-list, .is-style-system-flat-list):not(.has-background) > .wp-block-comment-template,
+    ol.strap-comments-thread:is(.is-style-system-list, .is-style-system-flat-list):not(.has-background),
+    .strap-comments-thread:is(.is-style-system-list, .is-style-system-flat-list):not(.has-background) > ul,
+    .strap-comments-thread:is(.is-style-system-list, .is-style-system-flat-list):not(.has-background) .wc-block-review-list) {
+    background-color: var(--wp--custom--system-ui-surface);
 }
 
 :is(.wp-block-comments.is-style-system-list:not(.has-background) > .wp-block-comment-template,
     ol.strap-comments-thread.is-style-system-list:not(.has-background),
     .strap-comments-thread.is-style-system-list:not(.has-background) > ul,
-    .strap-comments-thread.is-style-system-list:not(.has-background) .wc-block-review-list) {
-    background-color: var(--wp--custom--system-ui-surface);
-    background-image: var(--wp--custom--system-ui-background-image, none);
+    .strap-comments-thread.is-style-system-list:not(.has-background) .wc-block-review-list) {    background-image: var(--wp--custom--system-ui-background-image, none);
 }
 
-:is(.wp-block-comments.is-style-system-list .wp-block-comment-template,
-    ol.strap-comments-thread.is-style-system-list,
-    .strap-comments-thread.is-style-system-list > ul,
-    .strap-comments-thread.is-style-system-list .wc-block-review-list) > :is(.wp-block-comment, .comment, li) {
+:is(.wp-block-comments:is(.is-style-system-list, .is-style-system-flat-list) .wp-block-comment-template,
+    ol.strap-comments-thread:is(.is-style-system-list, .is-style-system-flat-list),
+    .strap-comments-thread:is(.is-style-system-list, .is-style-system-flat-list) > ul,
+    .strap-comments-thread:is(.is-style-system-list, .is-style-system-flat-list) .wc-block-review-list) > :is(.wp-block-comment, .comment, li) {
     list-style: none;
     margin: 0;
     padding: var(--strap-comments-row-padding-y) var(--strap-comments-row-padding-x) !important;
@@ -50,23 +60,23 @@
     transition: background-color 0.2s ease;
 }
 
-:is(.wp-block-comments.is-style-system-list .wp-block-comment-template,
-    ol.strap-comments-thread.is-style-system-list,
-    .strap-comments-thread.is-style-system-list > ul,
-    .strap-comments-thread.is-style-system-list .wc-block-review-list) > :is(.wp-block-comment, .comment, li) + :is(.wp-block-comment, .comment, li) {
+:is(.wp-block-comments:is(.is-style-system-list, .is-style-system-flat-list) .wp-block-comment-template,
+    ol.strap-comments-thread:is(.is-style-system-list, .is-style-system-flat-list),
+    .strap-comments-thread:is(.is-style-system-list, .is-style-system-flat-list) > ul,
+    .strap-comments-thread:is(.is-style-system-list, .is-style-system-flat-list) .wc-block-review-list) > :is(.wp-block-comment, .comment, li) + :is(.wp-block-comment, .comment, li) {
     border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
 }
 
-:is(.wp-block-comments.is-style-system-list .wp-block-comment-template .wp-block-comment-template,
-    ol.strap-comments-thread.is-style-system-list li > ol,
-    .strap-comments-thread.is-style-system-list > ul li > ol) {
+:is(.wp-block-comments:is(.is-style-system-list, .is-style-system-flat-list) .wp-block-comment-template .wp-block-comment-template,
+    ol.strap-comments-thread:is(.is-style-system-list, .is-style-system-flat-list) li > ol,
+    .strap-comments-thread:is(.is-style-system-list, .is-style-system-flat-list) > ul li > ol) {
     list-style: none;
     margin: var(--wp--preset--spacing--20) 0 0 var(--strap-comments-thread-indent);
     padding: var(--wp--preset--spacing--20) 0 0 var(--strap-comments-thread-rail-gap);
     border-left: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
 }
 
-.wp-block-comments.is-style-system-list .comment-respond {
+.wp-block-comments:is(.is-style-system-list, .is-style-system-flat-list) .comment-respond {
     margin-top: var(--wp--preset--spacing--30);
     padding: var(--wp--preset--spacing--30);
     border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
@@ -75,33 +85,33 @@
     background-image: var(--wp--custom--system-ui-background-image-nested, none);
 }
 
-.wp-block-comments.is-style-system-list .comment-respond > * {
+.wp-block-comments:is(.is-style-system-list, .is-style-system-flat-list) .comment-respond > * {
     margin-block: 0;
 }
 
-.wp-block-comments.is-style-system-list .comment-respond > * + * {
+.wp-block-comments:is(.is-style-system-list, .is-style-system-flat-list) .comment-respond > * + * {
     margin-top: var(--wp--preset--spacing--20);
 }
 
-.wp-block-comments.is-style-system-list .comment-respond form.comment-form {
+.wp-block-comments:is(.is-style-system-list, .is-style-system-flat-list) .comment-respond form.comment-form {
     display: grid;
     gap: var(--wp--preset--spacing--20);
 }
 
-.wp-block-comments.is-style-system-list .comment-respond form.comment-form > .form-submit {
+.wp-block-comments:is(.is-style-system-list, .is-style-system-flat-list) .comment-respond form.comment-form > .form-submit {
     margin-top: var(--wp--preset--spacing--10) !important;
 }
 
-.wp-block-group.is-style-system-panel > .wp-block-comments.is-style-system-list > .wp-block-comment-template,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-comments.is-style-system-list > .wp-block-comment-template {
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) > .wp-block-comments:is(.is-style-system-list, .is-style-system-flat-list) > .wp-block-comment-template,
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) .block-editor-block-list__layout > .wp-block-comments:is(.is-style-system-list, .is-style-system-flat-list) > .wp-block-comment-template {
     border: 0;
     border-radius: inherit;
     box-shadow: none;
     overflow: hidden;
 }
 
-.wp-block-group.is-style-system-panel > .wp-block-comments.is-style-system-list .wp-block-comment-template > :is(.wp-block-comment, .comment, li),
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-comments.is-style-system-list .wp-block-comment-template > :is(.wp-block-comment, .comment, li) {
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) > .wp-block-comments:is(.is-style-system-list, .is-style-system-flat-list) .wp-block-comment-template > :is(.wp-block-comment, .comment, li),
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) .block-editor-block-list__layout > .wp-block-comments:is(.is-style-system-list, .is-style-system-flat-list) .wp-block-comment-template > :is(.wp-block-comment, .comment, li) {
     background-color: transparent;
     background-image: none;
     backdrop-filter: none !important;

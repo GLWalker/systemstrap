@@ -3,7 +3,7 @@
 /**
  * Title: Content Router
  * Slug: systemstrap/content-router
- * Description: Dynamically routes main content to BuddyPress-specific or generic page template parts.
+ * Inserter: no
  */
 
 $wc_template_file = '';

@@ -1,0 +1,123 @@
+/*
+ * System Panel variation for the Comments block.
+ * It provides a modern chat-like feel where each conversation 
+ * (top-level comment + replies) is a single cohesive panel.
+ */
+
+:is(.wp-block-comments, .strap-comments-thread).is-style-system-flat-panel {
+    --strap-comments-row-padding-x: var(--wp--preset--spacing--30);
+    --strap-comments-row-padding-y: var(--wp--preset--spacing--30);
+    --strap-comments-thread-gap: var(--wp--preset--spacing--30);
+    --strap-comments-thread-indent: clamp(1.25rem, 8vw, 3.5rem);
+    --strap-comments-thread-rail-gap: var(--wp--preset--spacing--20);
+    
+    overflow: visible;
+    color: inherit;
+    border: 0;
+}
+
+:is(.wp-block-comments.is-style-system-flat-panel,
+    ol.strap-comments-thread.is-style-system-flat-panel,
+    .strap-comments-thread.is-style-system-flat-panel .wc-block-review-list) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--strap-comments-thread-gap);
+}
+
+:is(.wp-block-comments, .strap-comments-thread).is-style-system-flat-panel:not(.has-background) {
+    background: transparent;
+}
+
+:is(.wp-block-comments.is-style-system-flat-panel .wp-block-comment-template,
+    ol.strap-comments-thread.is-style-system-flat-panel,
+    .strap-comments-thread.is-style-system-flat-panel > ul,
+    .strap-comments-thread.is-style-system-flat-panel .wc-block-review-list) {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Top-level template spacing between panels */
+:is(.wp-block-comments.is-style-system-flat-panel > .wp-block-comment-template,
+    ol.strap-comments-thread.is-style-system-flat-panel,
+    .strap-comments-thread.is-style-system-flat-panel > ul,
+    .strap-comments-thread.is-style-system-flat-panel .wc-block-review-list) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--strap-comments-thread-gap);
+}
+
+/* Base list item resets */
+:is(.wp-block-comments.is-style-system-flat-panel .wp-block-comment-template,
+    ol.strap-comments-thread.is-style-system-flat-panel,
+    .strap-comments-thread.is-style-system-flat-panel > ul,
+    .strap-comments-thread.is-style-system-flat-panel .wc-block-review-list) > :is(.wp-block-comment, .comment, li) {
+    margin: 0;
+    position: relative;
+    isolation: isolate;
+}
+
+/* ONLY Top-level comments get the panel styles */
+:is(.wp-block-comments.is-style-system-flat-panel > .wp-block-comment-template,
+    ol.strap-comments-thread.is-style-system-flat-panel,
+    .strap-comments-thread.is-style-system-flat-panel > ul,
+    .strap-comments-thread.is-style-system-flat-panel .wc-block-review-list) > :is(.wp-block-comment, .comment, li) {
+    padding: var(--strap-comments-row-padding-y) var(--strap-comments-row-padding-x);
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+    border-radius: var(--wp--custom--border-radius);
+    transition: background-color 0.2s ease;
+}
+
+:is(.wp-block-comments.is-style-system-flat-panel:not(.has-background) > .wp-block-comment-template,
+    ol.strap-comments-thread.is-style-system-flat-panel:not(.has-background),
+    .strap-comments-thread.is-style-system-flat-panel:not(.has-background) > ul,
+    .strap-comments-thread.is-style-system-flat-panel:not(.has-background) .wc-block-review-list) > :is(.wp-block-comment, .comment, li) {
+    background-color: var(--wp--custom--system-ui-surface);
+}
+
+/* Nested replies indentation and spacing */
+:is(.wp-block-comments.is-style-system-flat-panel .wp-block-comment-template .wp-block-comment-template,
+    ol.strap-comments-thread.is-style-system-flat-panel li > ol,
+    .strap-comments-thread.is-style-system-flat-panel > ul li > ol) {
+    margin-top: var(--wp--preset--spacing--20);
+    margin-left: var(--strap-comments-thread-indent);
+    padding-left: var(--strap-comments-thread-rail-gap);
+    border-left: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+    display: flex;
+    flex-direction: column;
+    gap: var(--wp--preset--spacing--20);
+}
+
+:is(.wp-block-comments.is-style-system-flat-panel .wp-block-comment-template .wp-block-comment-template,
+    ol.strap-comments-thread.is-style-system-flat-panel li > ol,
+    .strap-comments-thread.is-style-system-flat-panel > ul li > ol) > :is(.wp-block-comment, .comment, li) {
+    padding: 0;
+    border: 0;
+    background: transparent;
+}
+
+/* The Respond Form Panel */
+.wp-block-comments.is-style-system-flat-panel .comment-respond {
+    margin-top: 0;
+    padding: var(--strap-comments-row-padding-y) var(--strap-comments-row-padding-x);
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+    border-radius: var(--wp--custom--border-radius);
+    background-color: var(--wp--custom--system-ui-surface);
+}
+
+.wp-block-comments.is-style-system-flat-panel .comment-respond > * {
+    margin-block: 0;
+}
+
+.wp-block-comments.is-style-system-flat-panel .comment-respond > * + * {
+    margin-top: var(--wp--preset--spacing--20);
+}
+
+.wp-block-comments.is-style-system-flat-panel .comment-respond form.comment-form {
+    display: grid;
+    gap: var(--wp--preset--spacing--20);
+}
+
+.wp-block-comments.is-style-system-flat-panel .comment-respond form.comment-form > .form-submit {
+    margin-top: var(--wp--preset--spacing--10) !important;
+}

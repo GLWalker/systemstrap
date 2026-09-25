@@ -10,17 +10,30 @@
 
 
 /* ROOT LIs */
-:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-list-flush) > li,
-:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-list-flush) > li {
+:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) > li,
+:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) > li {
     background-color: var(--wp--custom--system-ui-surface);
-    background-image: var(--wp--custom--system-ui-background-image, none);
+}/*
+ * System List Variation for Archives
+ * Replaces Default List Group while utilizing the System UI contract
+ */
+
+/* Container */
+
+
+/* Base LIs (Root level) */
+
+
+/* ROOT LIs */
+:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-list-flush) > li,
+:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-list-flush) > li {    background-image: var(--wp--custom--system-ui-background-image, none);
     backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
 }
 
 /* ALL LIs (including nested) */
-:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-list-flush) li,
-:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-list-flush) li {
+:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li,
+:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -32,8 +45,8 @@
 }
 
 /* Anchor tags inside LIs */
-:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-list-flush) li > a,
-:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-list-flush) li > a {
+:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > a,
+:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > a {
     display: block;
     padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
     flex-grow: 1;
@@ -47,24 +60,24 @@
 }
 
 /* Hover States */
-.wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush):not(.is-not-action) li:hover,
-.wp-block-archives-list:is(.is-style-system-list, .is-style-system-list-flush):not(.is-not-action) li:hover {
+.wp-block-archives:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush):not(.is-not-action) li:hover,
+.wp-block-archives-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush):not(.is-not-action) li:hover {
     background-color: var(--wp--custom--system-ui-list-hover-bg) !important;
     background-image: none !important;
 }
 
 /* Active State */
-.wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush) li.current,
-.wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush) li:has(> a[aria-current="page"]),
-.wp-block-archives-list:is(.is-style-system-list, .is-style-system-list-flush) li.current,
-.wp-block-archives-list:is(.is-style-system-list, .is-style-system-list-flush) li:has(> a[aria-current="page"]) {
+.wp-block-archives:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li.current,
+.wp-block-archives:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li:has(> a[aria-current="page"]),
+.wp-block-archives-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li.current,
+.wp-block-archives-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li:has(> a[aria-current="page"]) {
     background-color: var(--wp--custom--system-ui-list-hover-bg) !important;
     background-image: none !important;
 }
 
 /* System Badge Styling */
-:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-list-flush) li > .wp-block-archives__count,
-:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-list-flush) li > .wp-block-archives__count {
+:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > .wp-block-archives__count,
+:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > .wp-block-archives__count {
     align-self: center;
     line-height: 1;
     margin-right: var(--wp--preset--spacing--30);
@@ -73,8 +86,8 @@
 }
 
 /* Nested ULs (Kill SystemPress bleeds) */
-:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-list-flush) li > ul,
-:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-list-flush) li > ul {
+:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > ul,
+:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > ul {
     flex-basis: 100%;
     margin: 0 !important;
     padding: 0 !important;
@@ -87,35 +100,35 @@
 }
 
 /* Nested LIs */
-:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-list-flush) li > ul > li,
-:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-list-flush) li > ul > li {
+:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > ul > li,
+:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > ul > li {
     border: 0; /* Reset any bleeding borders */
     border-radius: 0 !important;
 }
 
 /* Has-background overrides */
-.wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush).has-background > li {
+.wp-block-archives:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush).has-background > li {
     background: transparent;
     border-color: var(--wp--custom--system-ui-border-color);
 }
-.wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush).has-background:not(.is-not-action) li:hover {
+.wp-block-archives:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush).has-background:not(.is-not-action) li:hover {
     background-color: var(--wp--custom--system-ui-list-hover-bg) !important;
     background-image: none !important;
 }
 
 
 
-.has-background > .wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) li > ul > li {
+.has-background > .wp-block-archives:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush):not(.has-background) li > ul > li {
     border-top-color: var(--wp--custom--system-ui-border-color) !important;
     background-color: var(--wp--custom--system-ui-surface-nested, transparent);
     background-image: var(--wp--custom--system-ui-background-image-nested, none);
 }
-.has-background > .wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background):not(.is-not-action) li:hover {
+.has-background > .wp-block-archives:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush):not(.has-background):not(.is-not-action) li:hover {
     background-color: var(--wp--custom--system-ui-list-hover-bg) !important;
     background-image: none !important;
 }
-.has-background > .wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) li.current,
-.has-background > .wp-block-archives:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) li:has(> a[aria-current="page"]) {
+.has-background > .wp-block-archives:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush):not(.has-background) li.current,
+.has-background > .wp-block-archives:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush):not(.has-background) li:has(> a[aria-current="page"]) {
     background-color: var(--wp--custom--system-ui-list-hover-bg) !important;
     background-image: none !important;
 }
@@ -123,44 +136,44 @@
 
 
 /* Premium System Borders between ROOT items */
-:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-list-flush) > li + li,
-:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-list-flush) > li + li {
+:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) > li + li,
+:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) > li + li {
     border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
 }
 
 
 /* Premium System Borders between NESTED items */
-:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-list-flush) li > ul > li,
-:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-list-flush) li > ul > li {
+:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > ul > li,
+:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > ul > li {
     border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
     background-color: var(--wp--custom--system-ui-surface-nested, transparent);
     background-image: var(--wp--custom--system-ui-background-image-nested, none);
 }
 
-.wp-block-group.is-style-system-panel > :is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-list-flush),
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > :is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-list-flush) {
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) > :is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush),
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) .block-editor-block-list__layout > :is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) {
     border: 0;
     border-radius: inherit;
     overflow: hidden;
 }
 
-.wp-block-group.is-style-system-panel > :is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-list-flush) > li,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > :is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-list-flush) > li {
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) > :is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) > li,
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) .block-editor-block-list__layout > :is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) > li {
     background-color: var(--wp--custom--system-ui-surface-nested, transparent);
     background-image: var(--wp--custom--system-ui-background-image-nested, none);
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
 }
 
-:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-list-flush),
-:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-list-flush) {
+:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush),
+:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) {
     list-style: none;
     margin: 0;
     padding: 0;
     color: inherit;
 }
 
-:is(.wp-block-archives, .wp-block-archives-list).is-style-system-list {
+:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list) {
     border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
     border-radius: var(--wp--custom--border-radius);
     overflow: hidden;

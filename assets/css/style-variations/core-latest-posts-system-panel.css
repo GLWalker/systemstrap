@@ -135,17 +135,17 @@
     opacity: 0.88;
 }
 
-.wp-block-latest-posts.is-style-system-panel:not(.is-not-action) > li:hover {
+.wp-block-latest-posts.is-style-system-panel:not(.is-not-action) > li:hover:not(:has(li:hover)) {
     background: var(--wp--custom--system-ui-panel-hover-bg);
 }
 
-.wp-block-latest-posts.is-style-system-panel.has-background > li,
-.has-background > .wp-block-latest-posts.is-style-system-panel:not(.has-background) > li {
+.wp-block-latest-posts.is-style-system-panel.has-background > li:not(:has(li:hover)),
+.has-background > .wp-block-latest-posts.is-style-system-panel:not(.has-background) > li:not(:has(li:hover)) {
     background: transparent;
 }
 
-.wp-block-latest-posts.is-style-system-panel.has-background:not(.is-not-action) > li:hover,
-.has-background > .wp-block-latest-posts.is-style-system-panel:not(.has-background):not(.is-not-action) > li:hover {
+.wp-block-latest-posts.is-style-system-panel.has-background:not(.is-not-action) > li:hover:not(:has(li:hover)),
+.has-background > .wp-block-latest-posts.is-style-system-panel:not(.has-background):not(.is-not-action) > li:hover:not(:has(li:hover)) {
     background: var(--wp--custom--system-ui-panel-hover-bg);
 }
 

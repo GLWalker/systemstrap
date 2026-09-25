@@ -621,7 +621,7 @@ select:focus {
    Applied via .is-style-system-list, .is-style-system-list-flush, or .is-style-system-badge
    ========================================================================== */
 
-:is(.is-style-system-list, .is-style-system-list-flush, .is-style-system-badge, .is-style-outline, .is-style-system-tags) :is(.wp-block-categories__count,
+:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush, .is-style-system-badge, .is-style-outline, .is-style-system-tags) :is(.wp-block-categories__count,
     .wp-block-archives__count,
     .tag-link-count,
     .wp-block-term-count) {
@@ -638,7 +638,7 @@ select:focus {
     border: 1px solid color-mix(in srgb, currentColor 10%, transparent);
 }
 
-:is(.is-style-system-list, .is-style-system-list-flush) :is(.wp-block-categories__count,
+:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) :is(.wp-block-categories__count,
     .wp-block-archives__count,
     .wp-block-term-count) {
     transform: translateY(1px);
@@ -662,12 +662,12 @@ select:focus {
     color: inherit;
 }
 
-:is(.is-style-system-list, .is-style-system-list-flush, .is-style-system-badge, .is-style-outline, .is-style-system-tags) .tag-link-count {
+:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush, .is-style-system-badge, .is-style-outline, .is-style-system-tags) .tag-link-count {
     margin-inline-start: var(--wp--preset--spacing--10, 0.5rem);
 }
 
 /* Hide the parentheses structurally when badges are active */
-:is(.is-style-system-list, .is-style-system-list-flush, .is-style-system-badge, .is-style-outline, .is-style-system-tags) :is(.wp-block-categories__count,
+:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush, .is-style-system-badge, .is-style-outline, .is-style-system-tags) :is(.wp-block-categories__count,
     .wp-block-archives__count,
     .tag-link-count,
     .wp-block-term-count) .count-paren {

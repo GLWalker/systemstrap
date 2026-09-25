@@ -5,14 +5,14 @@
  */
 
 :is(
-    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush)
+    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush)
 ) {
     list-style: none;
     padding: 0;
     color: inherit;
 }
 
-.wp-block-latest-posts.is-style-system-list {
+.wp-block-latest-posts:is(.is-style-system-list, .is-style-system-flat-list) {
     border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
     border-radius: var(--wp--custom--border-radius);
     overflow: hidden;
@@ -25,7 +25,7 @@
 }
 
 :is(
-    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush)
+    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush)
 ) > li {
     position: relative;
     isolation: isolate;
@@ -36,19 +36,23 @@
     padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30) !important;
     color: inherit;
     background-color: var(--wp--custom--system-ui-surface);
-    background-image: var(--wp--custom--system-ui-background-image, none);
+}
+
+:is(
+    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush)
+) > li {    background-image: var(--wp--custom--system-ui-background-image, none);
     backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
 }
 
 :is(
-    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush)
+    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush)
 ) > li + li {
     border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
 }
 
 :is(
-    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush)
+    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush)
 ) > li > article {
     display: flex;
     flex: 1 1 auto;
@@ -58,7 +62,7 @@
 }
 
 :is(
-    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush)
+    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush)
 ) > li .wp-block-latest-posts__featured-image {
     flex: 0 0 auto;
     margin: 0;
@@ -68,14 +72,14 @@
 }
 
 :is(
-    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush)
+    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush)
 ) > li .wp-block-latest-posts__featured-image img {
     display: block;
     object-fit: cover;
 }
 
 :is(
-    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush)
+    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush)
 ) > li .wp-block-latest-posts__post-title {
     line-height: 1.2;
     color: inherit;
@@ -83,7 +87,7 @@
 }
 
 :is(
-    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush)
+    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush)
 ) > li .wp-block-latest-posts__post-title::after {
     content: "";
     position: absolute;
@@ -92,27 +96,27 @@
 }
 
 :is(
-    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush)
+    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush)
 ) > li a:not(.wp-block-latest-posts__post-title) {
     position: relative;
     z-index: 2;
 }
 
 :is(
-    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush)
+    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush)
 ) > li .wp-block-latest-posts__post-author,
 :is(
-    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush)
+    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush)
 ) > li .wp-block-latest-posts__post-date {
     color: inherit;
     opacity: 0.72;
 }
 
 :is(
-    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush)
+    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush)
 ) > li .wp-block-latest-posts__post-excerpt,
 :is(
-    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush)
+    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush)
 ) > li .wp-block-latest-posts__post-full-content {
     color: inherit;
     line-height: 1.5;
@@ -120,40 +124,40 @@
 }
 
 :is(
-    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush)
+    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush)
 ) > li .wp-block-latest-posts__read-more {
     position: relative;
     z-index: 2;
 }
 
 :is(
-    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush)
-):not(.is-not-action) > li:hover {
+    .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush)
+):not(.is-not-action) > li:hover:not(:has(li:hover)) {
     background-color: var(--wp--custom--system-ui-list-hover-bg);
 }
 
-.wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush).has-background > li,
-.has-background > .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) > li {
+.wp-block-latest-posts:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush).has-background > li:not(:has(li:hover)),
+.has-background > .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush):not(.has-background) > li:not(:has(li:hover)) {
     background: transparent;
     background-image: none;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
 }
 
-.wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush).has-background:not(.is-not-action) > li:hover,
-.has-background > .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background):not(.is-not-action) > li:hover {
+.wp-block-latest-posts:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush).has-background:not(.is-not-action) > li:hover:not(:has(li:hover)),
+.has-background > .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush):not(.has-background):not(.is-not-action) > li:hover:not(:has(li:hover)) {
     background: var(--wp--custom--system-ui-list-hover-bg);
 }
 
-.wp-block-group.is-style-system-panel > .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush),
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush) {
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) > .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush),
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) .block-editor-block-list__layout > .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) {
     border: 0;
     border-radius: inherit;
     overflow: hidden;
 }
 
-.wp-block-group.is-style-system-panel > .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush) > li,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-list-flush) > li {
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) > .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) > li,
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) .block-editor-block-list__layout > .wp-block-latest-posts:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) > li {
     background-color: var(--wp--custom--system-ui-surface-nested, transparent);
     background-image: var(--wp--custom--system-ui-background-image-nested, none);
     backdrop-filter: none !important;

@@ -251,6 +251,27 @@ body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs-vertic
 }
 ";
 
+			$widget_text_color = "var(--wp--preset--color--{$slug}-text, inherit)";
+			if (in_array($slug, $rgb_only_slugs, true) && isset($fixed_contrast_map[$slug])) {
+				$widget_text_color = "var(--wp--preset--color--{$fixed_contrast_map[$slug]})";
+			}
+
+			$latest_posts_css .= "
+/* Post Template Widget Fix */
+ul.wp-block-post-template.has-{$slug}-background-color {
+    background-color: transparent !important;
+}
+ul.wp-block-post-template.has-{$slug}-background-color > li {
+    background-color: var(--wp--preset--color--{$slug}) !important;
+    color: {$widget_text_color} !important;
+}
+
+/* Latest Posts Contrast Fix */
+ul.wp-block-latest-posts.has-{$slug}-background-color > li {
+    color: {$widget_text_color} !important;
+}
+";
+
 			if (in_array($slug, $rgb_only_slugs, true)) {
 				$generator  = new Strap_ColorGenerator($color_value);
 				$rgb_string = $generator->hex_to_rgb($color_value);
@@ -309,17 +330,6 @@ body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs-vertic
 .system-badge.has-{$slug}-background-color,
 .has-system-badge mark.has-{$slug}-background-color {
     color: var(--wp--preset--color--{$slug}-text) !important;
-}
-
-/* Latest Posts Widget Fix */
-ul.wp-block-latest-posts.has-{$slug}-background-color,
-ul.wp-block-post-template.has-{$slug}-background-color {
-    background-color: transparent !important;
-}
-ul.wp-block-latest-posts.has-{$slug}-background-color > li,
-ul.wp-block-post-template.has-{$slug}-background-color > li {
-    background-color: var(--wp--preset--color--{$slug}) !important;
-    color: var(--wp--preset--color--{$slug}-text, inherit) !important;
 }
 
 .wp-block-button__link.has-{$slug}-background-color {
@@ -489,12 +499,10 @@ ul.wp-block-post-template.has-{$slug}-background-color > li {
 				}
 
 				$css .= "
-/* Latest Posts Widget Gradient Fix */
-ul.wp-block-latest-posts.has-{$slug}-gradient-background,
+/* Post Template Widget Gradient Fix */
 ul.wp-block-post-template.has-{$slug}-gradient-background {
     background: transparent !important;
 }
-ul.wp-block-latest-posts.has-{$slug}-gradient-background > li,
 ul.wp-block-post-template.has-{$slug}-gradient-background > li {
     background-image: var(--wp--preset--gradient--{$slug}) !important;
 }

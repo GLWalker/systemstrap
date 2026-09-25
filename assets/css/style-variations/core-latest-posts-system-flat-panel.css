@@ -1,0 +1,151 @@
+/*
+ * System Panel Variation for Latest Posts
+ * Uses the documented System Panel authority for shell chrome, panel media,
+ * nested surface routing, and hover treatment.
+ */
+
+.wp-block-latest-posts.is-style-system-flat-panel {
+    list-style: none;
+    padding: 0 !important;
+    color: inherit;
+    gap: var(--wp--style--block-gap, var(--wp--preset--spacing--30));
+}
+
+.wp-block-latest-posts.is-style-system-flat-panel:not(.is-grid) {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 600px) {
+    .wp-block-latest-posts.is-style-system-flat-panel.is-grid {
+        display: grid;
+    }
+
+    .wp-block-latest-posts.is-style-system-flat-panel.is-grid.columns-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .wp-block-latest-posts.is-style-system-flat-panel.is-grid.columns-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .wp-block-latest-posts.is-style-system-flat-panel.is-grid.columns-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .wp-block-latest-posts.is-style-system-flat-panel.is-grid.columns-5 {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    .wp-block-latest-posts.is-style-system-flat-panel.is-grid.columns-6 {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+
+    .wp-block-latest-posts.is-style-system-flat-panel.is-grid > li {
+        width: auto;
+    }
+}
+
+.wp-block-latest-posts.is-style-system-flat-panel > li {
+    position: relative;
+    isolation: isolate;
+    margin: 0;
+    overflow: hidden;
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+    border-radius: var(--wp--custom--border-radius);
+    background: var(--wp--custom--system-ui-surface);
+    color: inherit;
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.wp-block-latest-posts.is-style-system-flat-panel > li > article {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wp--preset--spacing--10);
+    min-height: 100%;
+}
+
+.wp-block-latest-posts.is-style-system-flat-panel > li > article > :not(.wp-block-latest-posts__featured-image) {
+    padding-inline: var(--wp--preset--spacing--30);
+}
+
+.wp-block-latest-posts.is-style-system-flat-panel > li > article > .wp-block-latest-posts__post-title {
+    padding-top: var(--wp--preset--spacing--30);
+}
+
+.wp-block-latest-posts.is-style-system-flat-panel > li > article > :last-child:not(.wp-block-latest-posts__featured-image) {
+    padding-bottom: var(--wp--preset--spacing--30);
+}
+
+.wp-block-latest-posts.is-style-system-flat-panel > li .wp-block-latest-posts__featured-image {
+    margin: 0;
+    overflow: hidden;
+    border: 0;
+    border-radius: 0;
+}
+
+.wp-block-latest-posts.is-style-system-flat-panel > li .wp-block-latest-posts__featured-image.alignleft,
+.wp-block-latest-posts.is-style-system-flat-panel > li .wp-block-latest-posts__featured-image.alignright,
+.wp-block-latest-posts.is-style-system-flat-panel > li .wp-block-latest-posts__featured-image.aligncenter {
+    margin: 0;
+}
+
+.wp-block-latest-posts.is-style-system-flat-panel > li .wp-block-latest-posts__featured-image img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    border-top-left-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px));
+    border-top-right-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px));
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.wp-block-latest-posts.is-style-system-flat-panel > li .wp-block-latest-posts__post-title {
+    line-height: 1.2;
+    color: inherit;
+    text-decoration: none;
+}
+
+.wp-block-latest-posts.is-style-system-flat-panel > li .wp-block-latest-posts__post-title::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.wp-block-latest-posts.is-style-system-flat-panel > li a:not(.wp-block-latest-posts__post-title) {
+    position: relative;
+    z-index: 2;
+}
+
+.wp-block-latest-posts.is-style-system-flat-panel > li .wp-block-latest-posts__post-author,
+.wp-block-latest-posts.is-style-system-flat-panel > li .wp-block-latest-posts__post-date {
+    color: inherit;
+    opacity: 0.72;
+}
+
+.wp-block-latest-posts.is-style-system-flat-panel > li .wp-block-latest-posts__post-excerpt,
+.wp-block-latest-posts.is-style-system-flat-panel > li .wp-block-latest-posts__post-full-content {
+    color: inherit;
+    line-height: 1.5;
+    opacity: 0.88;
+}
+
+.wp-block-latest-posts.is-style-system-flat-panel:not(.is-not-action) > li:hover {
+    background: var(--wp--custom--system-ui-panel-hover-bg);
+}
+
+.wp-block-latest-posts.is-style-system-flat-panel.has-background > li,
+.has-background > .wp-block-latest-posts.is-style-system-flat-panel:not(.has-background) > li {
+    background: transparent;
+}
+
+.wp-block-latest-posts.is-style-system-flat-panel.has-background:not(.is-not-action) > li:hover,
+.has-background > .wp-block-latest-posts.is-style-system-flat-panel:not(.has-background):not(.is-not-action) > li:hover {
+    background: var(--wp--custom--system-ui-panel-hover-bg);
+}
+
+.wp-block-group.is-style-system-flat-panel > .wp-block-latest-posts.is-style-system-flat-panel > li,
+.wp-block-group.is-style-system-flat-panel .block-editor-block-list__layout > .wp-block-latest-posts.is-style-system-flat-panel > li {
+    background: var(--wp--custom--system-ui-surface-nested, transparent);
+}

@@ -1,0 +1,6 @@
+/*
+ * Core Table -> System Flat Panel adapter.
+ *
+ * The neutral SystemStrap Table Surface is registered as this variation's
+ * dependency. The existing Core selector consumes that same shared authority.
+ */

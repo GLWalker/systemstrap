@@ -5,8 +5,8 @@
 		"appearanceTools": true,
 		"color": {
 			"defaultDuotone": false,
-			"defaultGradients": false,
-			"defaultPalette": false,
+			"defaultGradients": true,
+			"defaultPalette": true,
 			"duotone": [
 				{
 					"colors": [
@@ -2003,6 +2003,11 @@
 		},
 		{
 			"area": "uncategorized",
+			"name": "part-page-sidebar",
+			"title": "Page Sidebar Part"
+		},
+		{
+			"area": "uncategorized",
 			"name": "part-page",
 			"title": "Page Part"
 		},
@@ -2058,13 +2063,13 @@
 		},
 		{
 			"area": "uncategorized",
-			"name": "part-single-secondary",
-			"title": "Sidebar Secondary Part"
+			"name": "part-single-core",
+			"title": "Single Core Part"
 		},
 		{
 			"area": "uncategorized",
-			"name": "part-sidebar-tertiary",
-			"title": "Sidebar Tertiary Part"
+			"name": "part-single-sidebar",
+			"title": "Single Sidebar Part"
 		},
 		{
 			"area": "uncategorized",
@@ -2074,36 +2079,26 @@
 	],
 	"customTemplates": [
 		{
-			"name": "no-title",
+			"name": "canvas",
 			"postTypes": [
 				"page",
 				"post"
 			],
-			"title": "No Title"
+			"title": "Canvas"
 		},
 		{
-			"name": "blank",
+			"name": "single-sidebar",
 			"postTypes": [
-				"page",
 				"post"
 			],
-			"title": "Blank"
+			"title": "Single Sidebar"
 		},
 		{
-			"name": "single-secondary",
+			"name": "page-sidebar",
 			"postTypes": [
-				"post",
 				"page"
 			],
-			"title": "Main + Sidebar"
-		},
-		{
-			"name": "three-column",
-			"postTypes": [
-				"post",
-				"page"
-			],
-			"title": "Three Column"
+			"title": "Page Sidebar"
 		}
 	]
 }

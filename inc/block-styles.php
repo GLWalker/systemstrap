@@ -115,13 +115,17 @@ function strap_register_block_styles() {
 				$deps[] = 'strap-system-ui-pagination';
 			}
 
-			if ( 'core-table-system-panel' === $filename ) {
+			if ( 'core-table-system-panel' === $filename || 'core-table-system-flat-panel' === $filename ) {
 				$deps[] = 'strap-table-surface';
 			}
 
 			if ( 'core-group-system-panel' === $filename || 'core-group-system-flat-panel' === $filename ) {
 				$deps[] = 'strap-panel-surface';
 				$deps[] = 'strap-panel-structure';
+			}
+
+			if ( str_ends_with( $filename, '-system-flat-list' ) ) {
+				$deps[] = str_replace( '-system-flat-list', '-system-list', $filename );
 			}
 
 			// 1. Register the conditional block stylesheet using absolute path

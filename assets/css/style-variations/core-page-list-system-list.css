@@ -10,17 +10,30 @@
 
 
 /* ROOT LIs */
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) > li,
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) > li {
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) > li,
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) > li {
     background-color: var(--wp--custom--system-ui-surface);
-    background-image: var(--wp--custom--system-ui-background-image, none);
+}/* 
+ * System List Variation for Page List
+ * Replaces Default List Group while utilizing the System UI contract 
+ */
+
+/* Container */
+
+
+/* Base LIs (Root level) */
+
+
+/* ROOT LIs */
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) > li,
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) > li {    background-image: var(--wp--custom--system-ui-background-image, none);
     backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
 }
 
 /* ALL LIs (including nested) */
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li,
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li {
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li,
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -32,8 +45,8 @@
 }
 
 /* Anchor tags inside LIs */
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li > a,
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li > a {
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > a,
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > a {
     display: block;
     padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
     flex-grow: 1;
@@ -47,24 +60,24 @@
 }
 
 /* Hover States on Anchor */
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush):not(.is-not-action) li:hover:not(:has(li:hover)) > a,
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush):not(.is-not-action) li:hover:not(:has(li:hover)) > a {
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush):not(.is-not-action) li:hover:not(:has(li:hover)) > a,
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush):not(.is-not-action) li:hover:not(:has(li:hover)) > a {
     background: var(--wp--custom--system-ui-list-hover-bg);
 }
 
 /* Active State on Anchor */
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li.current_page_item > a,
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li.current_page_ancestor > a,
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li:has(> a[aria-current="page"]) > a,
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li.current_page_item > a,
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li.current_page_ancestor > a,
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li:has(> a[aria-current="page"]) > a {
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li.current_page_item > a,
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li.current_page_ancestor > a,
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li:has(> a[aria-current="page"]) > a,
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li.current_page_item > a,
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li.current_page_ancestor > a,
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li:has(> a[aria-current="page"]) > a {
     background: var(--wp--custom--system-ui-list-hover-bg);
 }
 
 /* Nested ULs (Kill SystemPress bleeds) */
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li > ul,
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li > ul {
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > ul,
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > ul {
     flex-basis: 100%;
     margin: 0 !important;
     padding: 0 !important;
@@ -77,78 +90,78 @@
 }
 
 /* Nested LIs */
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li > ul > li,
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li > ul > li {
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > ul > li,
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > ul > li {
     border: 0; /* Reset any bleeding borders */
     border-radius: 0 !important;
 }
 
 /* Has-background overrides */
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush).has-background > li {
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush).has-background > li {
     background: transparent;
     border-color: var(--wp--custom--system-ui-border-color);
 }
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush).has-background:not(.is-not-action) li:hover:not(:has(li:hover)) > a {
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush).has-background:not(.is-not-action) li:hover:not(:has(li:hover)) > a {
     background: var(--wp--custom--system-ui-list-hover-bg);
 }
 
 
 
-.has-background > .wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) li > ul > li {
+.has-background > .wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush):not(.has-background) li > ul > li {
     border-top-color: var(--wp--custom--system-ui-border-color) !important;
     background-color: var(--wp--custom--system-ui-surface-nested, transparent);
     background-image: var(--wp--custom--system-ui-background-image-nested, none);
 }
-.has-background > .wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background):not(.is-not-action) li:hover:not(:has(li:hover)) > a {
+.has-background > .wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush):not(.has-background):not(.is-not-action) li:hover:not(:has(li:hover)) > a {
     background: var(--wp--custom--system-ui-list-hover-bg);
 }
-.has-background > .wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) li.current_page_item > a,
-.has-background > .wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) li.current_page_ancestor > a,
-.has-background > .wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush):not(.has-background) li:has(> a[aria-current="page"]) > a {
+.has-background > .wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush):not(.has-background) li.current_page_item > a,
+.has-background > .wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush):not(.has-background) li.current_page_ancestor > a,
+.has-background > .wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush):not(.has-background) li:has(> a[aria-current="page"]) > a {
     background: var(--wp--custom--system-ui-list-hover-bg);
 }
 
 
 
 /* Premium System Borders between ROOT items */
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) > li + li,
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) > li + li {
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) > li + li,
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) > li + li {
     border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
 }
 
 
 /* Premium System Borders between NESTED items */
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li > ul > li,
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) li > ul > li {
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > ul > li,
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > ul > li {
     border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
     background-color: var(--wp--custom--system-ui-surface-nested, transparent);
     background-image: var(--wp--custom--system-ui-background-image-nested, none);
 }
 
-.wp-block-group.is-style-system-panel > .wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush),
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) {
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) > .wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush),
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) .block-editor-block-list__layout > .wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) {
     border: 0;
     border-radius: inherit;
     overflow: hidden;
 }
 
-.wp-block-group.is-style-system-panel > .wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) > li,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) > li {
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) > .wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) > li,
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) .block-editor-block-list__layout > .wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) > li {
     background-color: var(--wp--custom--system-ui-surface-nested, transparent);
     background-image: var(--wp--custom--system-ui-background-image-nested, none);
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
 }
 
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush),
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) {
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush),
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) {
     list-style: none;
     margin: 0;
     padding: 0;
     color: inherit;
 }
 
-.wp-block-page-list.is-style-system-list {
+.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list) {
     border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
     border-radius: var(--wp--custom--border-radius);
     overflow: hidden;

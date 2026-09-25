@@ -1,0 +1,56 @@
+/*
+ * System Panel Variation for Latest Comments
+ * Provides a modern chat-like feel where each latest comment
+ * is a separate panel bubble.
+ */
+
+.wp-block-latest-comments.is-style-system-flat-panel {
+    list-style: none;
+    padding: 0;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: var(--wp--preset--spacing--30);
+    border: 0;
+}
+
+.wp-block-latest-comments.is-style-system-flat-panel:not(.has-background) {
+    background: transparent;
+}
+
+.wp-block-latest-comments.is-style-system-flat-panel > li {
+    margin: 0;
+    padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30) !important;
+    color: inherit;
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+    border-radius: var(--wp--custom--border-radius);
+    position: relative;
+    isolation: isolate;
+    transition: background-color 0.2s ease;
+}
+
+.wp-block-latest-comments.is-style-system-flat-panel:not(.has-background) > li {
+    background-color: var(--wp--custom--system-ui-surface);
+}
+
+.wp-block-latest-comments.is-style-system-flat-panel .wp-block-latest-comments__comment-author,
+.wp-block-latest-comments.is-style-system-flat-panel .wp-block-latest-comments__comment-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.wp-block-latest-comments.is-style-system-flat-panel .wp-block-latest-comments__comment-author:hover,
+.wp-block-latest-comments.is-style-system-flat-panel .wp-block-latest-comments__comment-link:hover {
+    text-decoration: underline;
+}
+
+.wp-block-latest-comments.is-style-system-flat-panel .wp-block-latest-comments__comment-date,
+.wp-block-latest-comments.is-style-system-flat-panel .wp-block-latest-comments__comment-on {
+    color: inherit;
+    opacity: 0.68;
+}
+
+.wp-block-latest-comments.is-style-system-flat-panel .wp-block-latest-comments__comment-excerpt {
+    color: inherit;
+    opacity: 0.9;
+}
