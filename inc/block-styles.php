@@ -119,7 +119,7 @@ function strap_register_block_styles() {
 				$deps[] = 'strap-table-surface';
 			}
 
-			if ( 'core-group-system-panel' === $filename || 'core-group-system-flat-panel' === $filename ) {
+			if ( str_ends_with( $filename, '-system-panel' ) || str_ends_with( $filename, '-system-flat-panel' ) ) {
 				$deps[] = 'strap-panel-surface';
 				$deps[] = 'strap-panel-structure';
 			}
