@@ -264,6 +264,10 @@ ul.wp-block-post-template.has-{$slug}-background-color {
 ul.wp-block-post-template.has-{$slug}-background-color > li {
     background-color: var(--wp--preset--color--{$slug}) !important;
     color: {$widget_text_color} !important;
+    transition: var(--wp--custom--btn-transition, background-color 0.2s ease, box-shadow 0.2s ease);
+}
+ul.wp-block-post-template.has-{$slug}-background-color > li:hover {
+    box-shadow: inset 0 0 0 9999px color-mix(in srgb, currentColor 15%, transparent) !important;
 }
 
 /* Latest Posts Widget Fix */
@@ -273,6 +277,10 @@ ul.wp-block-latest-posts.has-{$slug}-background-color {
 ul.wp-block-latest-posts.has-{$slug}-background-color > li {
     background-color: var(--wp--preset--color--{$slug}) !important;
     color: {$widget_text_color} !important;
+    transition: var(--wp--custom--btn-transition, background-color 0.2s ease, box-shadow 0.2s ease);
+}
+ul.wp-block-latest-posts.has-{$slug}-background-color > li:hover {
+    box-shadow: inset 0 0 0 9999px color-mix(in srgb, currentColor 15%, transparent) !important;
 }
 ";
 
@@ -509,6 +517,11 @@ ul.wp-block-post-template.has-{$slug}-gradient-background {
 }
 ul.wp-block-post-template.has-{$slug}-gradient-background > li {
     background-image: var(--wp--preset--gradient--{$slug}) !important;
+    transition: var(--wp--custom--btn-transition, filter 0.2s ease, box-shadow 0.2s ease);
+}
+ul.wp-block-post-template.has-{$slug}-gradient-background > li:hover {
+    filter: brightness(1.15);
+    background-image: var(--wp--preset--gradient--{$slug}-hover, var(--wp--preset--gradient--{$slug})) !important;
 }
 
 /* Latest Posts Widget Gradient Fix */
@@ -517,6 +530,11 @@ ul.wp-block-latest-posts.has-{$slug}-gradient-background {
 }
 ul.wp-block-latest-posts.has-{$slug}-gradient-background > li {
     background-image: var(--wp--preset--gradient--{$slug}) !important;
+    transition: var(--wp--custom--btn-transition, filter 0.2s ease, box-shadow 0.2s ease);
+}
+ul.wp-block-latest-posts.has-{$slug}-gradient-background > li:hover {
+    filter: brightness(1.15);
+    background-image: var(--wp--preset--gradient--{$slug}-hover, var(--wp--preset--gradient--{$slug})) !important;
 }
 
 /* Gradient Button Hover & Active States */
