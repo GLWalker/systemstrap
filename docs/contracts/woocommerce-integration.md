@@ -6,9 +6,9 @@ This file is a CONTRACT.
 
 ## Contract Version
 
-Current Version: 2.1
+Current Version: 2.4
 
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 
 ## Ownership and bootstrap
 
@@ -39,8 +39,8 @@ The option name remains `strap_woocommerce_component_mappings`.
 
 | Component | Valid choices | Default |
 | --- | --- | --- |
-| Product Cards | Native, Panel, List, List Flush | Panel |
-| Linked Products / Upsells | Native, Panel, Flat Panel | Panel |
+| Product Cards | Native, Panel, Flat Panel, List, Flat List | Linked Products / Upsells selection |
+| Linked Products / Upsells | Native, Panel, Flat Panel, List, Flat List | Panel |
 | Product Images | Native | Native |
 | Product Button | Native plus canonical Button aliases | Native |
 | Account Navigation | Native, Panel, Flat Panel, List, Flat List, List Flush | Panel |
@@ -52,17 +52,29 @@ The option name remains `strap_woocommerce_component_mappings`.
 | Checkout Totals | Native, Panel, Flat Panel | Panel |
 
 Product Cards uses `is-style-native-woo` as its explicit Native opt-out. An
-authored Product Template style wins; otherwise the Panel registry default is
-applied. Stack, Grid, and Carousel retain Woo layout ownership. Presentation
-may style direct `li.wc-block-product` cards, but MUST NOT set Carousel track
-alignment, slide basis or width, scrolling, controls, directives, or behavior.
+authored Product Template style wins. A classless Gutenberg Default resolves
+the current Linked Products / Upsells selection at render time and does not
+write the inherited treatment into saved block content. Panel and Flat Panel
+share the Product Template Panel structure; Flat
+Panel adds the canonical `is-style-system-flat-panel` role to each direct card.
+List and Flat List share the Product Template media-object geometry; Flat List
+retains its borders, radius, and seams without shadow, background image, or
+backdrop filter. Between 601px and 900px, non-Carousel Grid presentations use
+two cards per row and cap their media lane at
+`--wp--custom--thumbnail-width`; below 601px they retain the accepted single-card
+mobile composition. Stack, Grid, and Carousel retain Woo layout ownership.
+Presentation may style direct `li.wc-block-product` cards, but MUST NOT set
+Carousel track alignment, slide basis or width, scrolling, controls,
+directives, or behavior.
 
-Linked Products maps Woo's stable legacy upsell loop and Cart cross-sell
-Product Template to the selected Native, Panel, or Flat Panel treatment. Panel
-and Flat Panel share the Product Template structural adapter; Flat Panel adds
-the canonical `is-style-system-flat-panel` role to each mapped card. Native is
-terminal. Cross-sells receive an explicit Native marker so the Product Cards
-default does not accidentally override the Linked Products setting.
+Linked Products maps Woo's stable legacy upsell loop and classless Product
+Templates to the selected Native, Panel, Flat Panel, List, or Flat List
+treatment. Panel and Flat Panel share the Product Template structural adapter;
+List and Flat List share the Product Template media-object adapter. Flat
+treatments retain their family geometry without shadow or atmosphere. Native
+is terminal. Block Cart cross-sells receive an explicit Native marker only when
+Native is selected; every non-Native Default uses the same shared resolver as
+all other Product Templates.
 
 Account Panel and Flat Panel apply their canonical Panel-family surface to the
 outer adapter. Existing Woo navigation and rows remain navigation, without
@@ -85,7 +97,10 @@ Comments assets. Reviews Pagination consumes the canonical System UI Pagination
 master. Neutral Panel and Table paint come from `strap-panel-surface` and
 `strap-table-surface`. Mapped Flat Panels additionally consume
 `core-group-system-flat-panel` or `core-table-system-flat-panel` according to
-their semantic root. Account Flat List consumes
+their semantic root. Product Cards Flat Panel shares the Product Template Panel
+adapter and consumes the canonical Group Flat Panel role. Product Cards Flat
+List and legacy Linked Products List-family treatments share the Product
+Template List adapter. Account Flat List consumes
 `core-page-list-system-flat-list`, including its canonical System List
 dependency.
 
@@ -105,6 +120,9 @@ The editor uses the same physical assets and canonical masters as the frontend.
 Client bridges may add only transient public role classes that server render
 adapters add on the frontend. They MUST NOT replace Woo Edit components or read
 Woo data stores without declaring the corresponding Woo script dependency.
+The localized Product Template Default is resolved from Linked Products /
+Upsells and is applied only to the live editor DOM; selecting Gutenberg Default
+MUST remain classless in serialized block attributes.
 
 Woo's dependency detector may report an inline/unknown access to
 `wc.wcBlocksData`. Source and asset-metadata tracing identifies WooCommerce's

@@ -1,5 +1,5 @@
-/* Woo Product Template — System Panel */
-:is(.wp-block-woocommerce-product-template, .wc-block-product-template).is-style-system-panel-woo:not(.is-product-collection-layout-carousel),
+/* Woo Product Template — System Panel and System Flat Panel */
+:is(.wp-block-woocommerce-product-template, .wc-block-product-template):is(.is-style-system-panel-woo, .is-style-system-flat-panel-woo):not(.is-product-collection-layout-carousel),
 :is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo {
     list-style: none;
     margin: 0;
@@ -63,7 +63,7 @@
     }
 }
 
-:is(.wp-block-woocommerce-product-template, .wc-block-product-template).is-style-system-panel-woo > li.wc-block-product,
+:is(.wp-block-woocommerce-product-template, .wc-block-product-template):is(.is-style-system-panel-woo, .is-style-system-flat-panel-woo) > li.wc-block-product,
 :is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo > li.product {
     display: flex;
     flex-direction: column;
@@ -113,11 +113,11 @@
     transform: rotate(8deg);
 }
 
-:is(.wp-block-woocommerce-product-template, .wc-block-product-template).is-style-system-panel-woo:not(.is-product-collection-layout-carousel) > li.wc-block-product {
+:is(.wp-block-woocommerce-product-template, .wc-block-product-template):is(.is-style-system-panel-woo, .is-style-system-flat-panel-woo):not(.is-product-collection-layout-carousel) > li.wc-block-product {
     min-width: 0;
 }
 
-:is(.wp-block-woocommerce-product-template, .wc-block-product-template).is-style-system-panel-woo > li.wc-block-product > *,
+:is(.wp-block-woocommerce-product-template, .wc-block-product-template):is(.is-style-system-panel-woo, .is-style-system-flat-panel-woo) > li.wc-block-product > *,
 :is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo > li.product > * {
     margin-block: 0 !important;
 }
@@ -155,39 +155,39 @@
 /* Override the Panel's normal structural margin reset only for the direct
    Woo action wrapper, allowing the vertical Panel card to consume its
    stretched height while retaining the Button's own presentation. */
-:is(.wp-block-woocommerce-product-template, .wc-block-product-template).is-product-collection-layout-carousel.is-style-system-panel-woo > li.wc-block-product > .wp-block-button.wc-block-components-product-button {
+:is(.wp-block-woocommerce-product-template, .wc-block-product-template).is-product-collection-layout-carousel:is(.is-style-system-panel-woo, .is-style-system-flat-panel-woo) > li.wc-block-product > .wp-block-button.wc-block-components-product-button {
     margin-block-start: auto !important;
     margin-block-end: 0 !important;
 }
 
-:is(.wp-block-woocommerce-product-template, .wc-block-product-template).is-style-system-panel-woo > li.wc-block-product > :not(:is(.wp-block-woocommerce-product-image, .wc-block-components-product-image)) {
+:is(.wp-block-woocommerce-product-template, .wc-block-product-template):is(.is-style-system-panel-woo, .is-style-system-flat-panel-woo) > li.wc-block-product > :not(:is(.wp-block-woocommerce-product-image, .wc-block-components-product-image)) {
     padding-inline: var(--strap-system-panel-content-inset-x);
 }
 
-:is(.wp-block-woocommerce-product-template, .wc-block-product-template).is-style-system-panel-woo > li.wc-block-product > :first-child:not(:is(.wp-block-woocommerce-product-image, .wc-block-components-product-image)),
-:is(.wp-block-woocommerce-product-template, .wc-block-product-template).is-style-system-panel-woo > li.wc-block-product > :is(.wp-block-woocommerce-product-image, .wc-block-components-product-image) + :not(:is(.wp-block-woocommerce-product-image, .wc-block-components-product-image)) {
+:is(.wp-block-woocommerce-product-template, .wc-block-product-template):is(.is-style-system-panel-woo, .is-style-system-flat-panel-woo) > li.wc-block-product > :first-child:not(:is(.wp-block-woocommerce-product-image, .wc-block-components-product-image)),
+:is(.wp-block-woocommerce-product-template, .wc-block-product-template):is(.is-style-system-panel-woo, .is-style-system-flat-panel-woo) > li.wc-block-product > :is(.wp-block-woocommerce-product-image, .wc-block-components-product-image) + :not(:is(.wp-block-woocommerce-product-image, .wc-block-components-product-image)) {
     padding-block-start: var(--strap-system-panel-content-inset-y);
 }
 
-:is(.wp-block-woocommerce-product-template, .wc-block-product-template).is-style-system-panel-woo > li.wc-block-product > :last-child:not(:is(.wp-block-woocommerce-product-image, .wc-block-components-product-image)) {
+:is(.wp-block-woocommerce-product-template, .wc-block-product-template):is(.is-style-system-panel-woo, .is-style-system-flat-panel-woo) > li.wc-block-product > :last-child:not(:is(.wp-block-woocommerce-product-image, .wc-block-components-product-image)) {
     padding-block-end: var(--strap-system-panel-content-inset-y);
 }
 
 /* Product Panel is a compact System Panel descendant. Its typography consumes
    the neutral Panel roles while explicit block font-size controls still win. */
-:is(.wp-block-woocommerce-product-template, .wc-block-product-template).is-style-system-panel-woo > li.wc-block-product > .wp-block-post-title,
+:is(.wp-block-woocommerce-product-template, .wc-block-product-template):is(.is-style-system-panel-woo, .is-style-system-flat-panel-woo) > li.wc-block-product > .wp-block-post-title,
 :is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo > li.product .woocommerce-loop-product__title {
     font-family: var(--strap-system-panel-heading-font-family);
     font-weight: var(--strap-system-panel-heading-font-weight);
     line-height: var(--strap-system-panel-heading-line-height);
 }
 
-:is(.wp-block-woocommerce-product-template, .wc-block-product-template).is-style-system-panel-woo > li.wc-block-product > .wp-block-post-title:not(.has-font-size),
+:is(.wp-block-woocommerce-product-template, .wc-block-product-template):is(.is-style-system-panel-woo, .is-style-system-flat-panel-woo) > li.wc-block-product > .wp-block-post-title:not(.has-font-size),
 :is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo > li.product .woocommerce-loop-product__title {
     font-size: var(--wp--preset--font-size--large);
 }
 
-:is(.wp-block-woocommerce-product-template, .wc-block-product-template).is-style-system-panel-woo > li.wc-block-product > .wp-block-woocommerce-product-price:not(.has-font-size),
+:is(.wp-block-woocommerce-product-template, .wc-block-product-template):is(.is-style-system-panel-woo, .is-style-system-flat-panel-woo) > li.wc-block-product > .wp-block-woocommerce-product-price:not(.has-font-size),
 :is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo > li.product .price {
     font-family: var(--strap-system-panel-body-font-family);
     font-size: var(--strap-system-panel-body-font-size);
@@ -195,13 +195,13 @@
     line-height: var(--strap-system-panel-body-line-height);
 }
 
-:is(.wp-block-woocommerce-product-template, .wc-block-product-template).is-style-system-panel-woo > li.wc-block-product > :is(.wp-block-woocommerce-product-image, .wc-block-components-product-image) {
+:is(.wp-block-woocommerce-product-template, .wc-block-product-template):is(.is-style-system-panel-woo, .is-style-system-flat-panel-woo) > li.wc-block-product > :is(.wp-block-woocommerce-product-image, .wc-block-components-product-image) {
     overflow: hidden;
     border-radius: 0 !important;
 }
 
-.wp-block-group.is-style-system-panel > :is(.wp-block-woocommerce-product-template, .wc-block-product-template).is-style-system-panel-woo > li.wc-block-product,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > :is(.wp-block-woocommerce-product-template, .wc-block-product-template).is-style-system-panel-woo > li.wc-block-product {
+.wp-block-group.is-style-system-panel > :is(.wp-block-woocommerce-product-template, .wc-block-product-template):is(.is-style-system-panel-woo, .is-style-system-flat-panel-woo) > li.wc-block-product,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > :is(.wp-block-woocommerce-product-template, .wc-block-product-template):is(.is-style-system-panel-woo, .is-style-system-flat-panel-woo) > li.wc-block-product {
     background-color: var(--wp--custom--system-ui-surface-nested, transparent);
     background-image: var(--wp--custom--system-ui-background-image-nested, none);
     backdrop-filter: none !important;

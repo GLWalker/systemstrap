@@ -20,18 +20,27 @@ if ( ! defined( 'ABSPATH' ) ) {
 function strap_woocommerce_component_registry() {
 	return array(
 		'product_cards' => array(
-			'label'         => __( 'Product Cards', 'systemstrap' ),
-			'block_name'    => 'woocommerce/product-template',
-			'sibling'       => 'core/post-template',
-			'default'       => 'system-panel-woo',
-			'application'   => 'authored_block_class',
-			'treatments'    => array(
+			'label'             => __( 'Product Cards', 'systemstrap' ),
+			'block_name'        => 'woocommerce/product-template',
+			'sibling'           => 'core/post-template',
+			'default_component' => 'linked_products_upsells',
+			'application'       => 'authored_block_class',
+			'treatments'        => array(
 				'native'                => array( 'label' => __( 'Native WooCommerce', 'systemstrap' ), 'class' => 'is-style-native-woo', 'style_name' => 'native-woo' ),
 				'system-panel-woo'      => array(
 					'label'              => __( 'System Panel', 'systemstrap' ),
 					'class'              => 'is-style-system-panel-woo',
 					'stylesheet'         => 'woocommerce-product-template-panel.css',
 					'theme_style_handle' => 'strap-panel-surface',
+					'presentation_depth' => 2,
+					'child_targets'      => array( '> li.wc-block-product' ),
+					'propagated_styles'  => array( 'background', 'background_image', 'color' ),
+				),
+				'system-flat-panel-woo' => array(
+					'label'              => __( 'System Flat Panel', 'systemstrap' ),
+					'class'              => 'is-style-system-flat-panel-woo',
+					'stylesheet'         => 'woocommerce-product-template-panel.css',
+					'theme_style_handle' => 'core-group-system-flat-panel',
 					'presentation_depth' => 2,
 					'child_targets'      => array( '> li.wc-block-product' ),
 					'propagated_styles'  => array( 'background', 'background_image', 'color' ),
@@ -43,9 +52,9 @@ function strap_woocommerce_component_registry() {
 					'presentation_depth' => 2,
 					'child_targets'      => array( '> li.wc-block-product' ),
 				),
-				'system-list-flush-woo' => array(
-					'label'              => __( 'System List Flush', 'systemstrap' ),
-					'class'              => 'is-style-system-list-flush-woo',
+				'system-flat-list-woo'  => array(
+					'label'              => __( 'System Flat List', 'systemstrap' ),
+					'class'              => 'is-style-system-flat-list-woo',
 					'stylesheet'         => 'woocommerce-product-template-list.css',
 					'presentation_depth' => 2,
 					'child_targets'      => array( '> li.wc-block-product' ),
@@ -71,6 +80,20 @@ function strap_woocommerce_component_registry() {
 					'class'              => 'is-style-system-panel-woo is-style-system-flat-panel',
 					'stylesheet'         => 'woocommerce-product-template-panel.css',
 					'theme_style_handle' => 'core-group-system-flat-panel',
+					'presentation_depth' => 2,
+					'child_targets'      => array( '> li.product' ),
+				),
+				'system-list-woo'       => array(
+					'label'              => __( 'System List', 'systemstrap' ),
+					'class'              => 'is-style-system-list-woo',
+					'stylesheet'         => 'woocommerce-product-template-list.css',
+					'presentation_depth' => 2,
+					'child_targets'      => array( '> li.product' ),
+				),
+				'system-flat-list-woo'  => array(
+					'label'              => __( 'System Flat List', 'systemstrap' ),
+					'class'              => 'is-style-system-flat-list-woo',
+					'stylesheet'         => 'woocommerce-product-template-list.css',
 					'presentation_depth' => 2,
 					'child_targets'      => array( '> li.product' ),
 				),
@@ -189,25 +212,55 @@ function strap_woocommerce_component_registry() {
 }
 
 /**
+ * Resolve a component's registry default, including a declared shared source.
+ *
+ * @param string $component_id Component registry identifier.
+ * @return string
+ */
+function strap_woocommerce_get_component_default_treatment( $component_id ) {
+	$registry = strap_woocommerce_component_registry();
+
+	if ( ! isset( $registry[ $component_id ] ) ) {
+		return '';
+	}
+
+	$component = $registry[ $component_id ];
+	$value     = isset( $component['default'] ) ? sanitize_key( $component['default'] ) : '';
+
+	if ( ! empty( $component['default_component'] ) && isset( $registry[ $component['default_component'] ] ) ) {
+		$value = strap_woocommerce_get_component_treatment( $component['default_component'] );
+	}
+
+	return isset( $component['treatments'][ $value ] ) ? $value : '';
+}
+
+/**
  * Resolve a component treatment without materializing registry defaults in the option.
  *
  * @param string $component_id Component registry identifier.
  * @return string
  */
 function strap_woocommerce_get_component_treatment( $component_id ) {
-	$registry        = strap_woocommerce_component_registry();
-	$stored_mappings = get_option( 'strap_woocommerce_component_mappings', array() );
-	$stored_mappings = is_array( $stored_mappings ) ? $stored_mappings : array();
+	$registry = strap_woocommerce_component_registry();
 
 	if ( ! isset( $registry[ $component_id ] ) ) {
 		return '';
 	}
 
-	$value = array_key_exists( $component_id, $stored_mappings ) && is_string( $stored_mappings[ $component_id ] )
-		? sanitize_key( $stored_mappings[ $component_id ] )
-		: $registry[ $component_id ]['default'];
+	$component = $registry[ $component_id ];
+	$default   = strap_woocommerce_get_component_default_treatment( $component_id );
 
-	return isset( $registry[ $component_id ]['treatments'][ $value ] ) ? $value : $registry[ $component_id ]['default'];
+	if ( 'admin_mapping' !== ( $component['application'] ?? '' ) ) {
+		return $default;
+	}
+
+	$stored_mappings = get_option( 'strap_woocommerce_component_mappings', array() );
+	$stored_mappings = is_array( $stored_mappings ) ? $stored_mappings : array();
+	$value           = array_key_exists( $component_id, $stored_mappings ) && is_string( $stored_mappings[ $component_id ] )
+		? sanitize_key( $stored_mappings[ $component_id ] )
+		: $default;
+
+	return isset( $component['treatments'][ $value ] ) ? $value : $default;
 }
 
 /**
@@ -616,8 +669,8 @@ function strap_woocommerce_resolve_block_presentation( $parsed_block, $context )
 	$component  = $registry[ $component_id ];
 	$attributes = isset( $parsed_block['attrs'] ) && is_array( $parsed_block['attrs'] ) ? $parsed_block['attrs'] : array();
 	$class_name = isset( $attributes['className'] ) && is_string( $attributes['className'] ) ? $attributes['className'] : '';
-	$treatment  = $component['default'];
-	$source     = 'default';
+	$treatment  = strap_woocommerce_get_component_default_treatment( $component_id );
+	$source     = empty( $component['default_component'] ) ? 'default' : 'admin';
 
 	foreach ( $component['treatments'] as $slug => $definition ) {
 		if ( empty( $definition['class'] ) || ! preg_match( '/(?:^|\\s)' . preg_quote( $definition['class'], '/' ) . '(?:\\s|$)/', $class_name ) ) {
@@ -710,10 +763,8 @@ function strap_woocommerce_validate_block_presentation( $contract ) {
  * @return string
  */
 function strap_woocommerce_render_product_template_presentation( $block_content, $parsed_block ) {
-	$context       = is_admin() ? 'editor' : 'frontend';
-	$contract      = strap_woocommerce_resolve_block_presentation( $parsed_block, $context );
-	$class_name    = isset( $parsed_block['attrs']['className'] ) && is_string( $parsed_block['attrs']['className'] ) ? $parsed_block['attrs']['className'] : '';
-	$is_flat_panel = preg_match( '/(?:^|\s)is-style-system-flat-panel(?:\s|$)/', $class_name );
+	$context  = is_admin() ? 'editor' : 'frontend';
+	$contract = strap_woocommerce_resolve_block_presentation( $parsed_block, $context );
 
 	if ( empty( $contract ) || $contract['native_opt_out'] ) {
 		return $block_content;
@@ -731,14 +782,14 @@ function strap_woocommerce_render_product_template_presentation( $block_content,
 				}
 			}
 
-			if ( 'system-panel-woo' === $contract['treatment'] ) {
+			if ( in_array( $contract['treatment'], array( 'system-panel-woo', 'system-flat-panel-woo' ), true ) ) {
 				while ( $processor->next_tag( array( 'tag_name' => 'li' ) ) ) {
 					$card_classes = (string) $processor->get_attribute( 'class' );
 
 					if ( preg_match( '/(?:^|\s)wc-block-product(?:\s|$)/', $card_classes ) ) {
 						$processor->add_class( 'strap-panel-surface' );
 
-						if ( $is_flat_panel ) {
+						if ( 'system-flat-panel-woo' === $contract['treatment'] ) {
 							$processor->add_class( 'is-style-system-flat-panel' );
 						}
 					}
@@ -753,7 +804,7 @@ function strap_woocommerce_render_product_template_presentation( $block_content,
 }
 
 /**
- * Bridge a selected System Panel-family treatment only to Woo's legacy Upsells loop.
+ * Bridge the selected Linked Products treatment to Woo's legacy product loop.
  *
  * Woo's `single-product/up-sells.php` sets the public loop name to `up-sells`
  * before it renders its existing `<ul class="products">`. The loop-start filter
@@ -766,7 +817,7 @@ function strap_woocommerce_render_product_template_presentation( $block_content,
 function strap_woocommerce_add_upsells_system_panel_class( $loop_start ) {
 	$treatment = strap_woocommerce_get_component_treatment( 'linked_products_upsells' );
 
-	if ( ! in_array( $treatment, array( 'system-panel-woo', 'system-flat-panel-woo' ), true ) || ! function_exists( 'wc_get_loop_prop' ) || ! in_array( wc_get_loop_prop( 'name' ), array( 'up-sells', 'cross-sells' ), true ) || ! class_exists( 'WP_HTML_Tag_Processor' ) ) {
+	if ( 'native' === $treatment || ! function_exists( 'wc_get_loop_prop' ) || ! in_array( wc_get_loop_prop( 'name' ), array( 'up-sells', 'cross-sells' ), true ) || ! class_exists( 'WP_HTML_Tag_Processor' ) ) {
 		return $loop_start;
 	}
 
@@ -865,12 +916,12 @@ foreach ( array(
 unset( $strap_woocommerce_application_block, $strap_woocommerce_application_component );
 
 /**
- * Bridge the Linked Products setting into Block Cart cross-sells.
+ * Preserve the explicit Native opt-out for Block Cart cross-sells.
  *
  * Cart cross-sells render as a `woocommerce/product-collection` containing a
- * `woocommerce/product-template`. By injecting the selected class into the
- * template's parsed attributes, we reuse the exact established System Panel
- * Product Template contract without creating a secondary implementation.
+ * `woocommerce/product-template`. Non-Native Default templates now resolve the
+ * shared Linked Products policy directly; only Native needs a terminal authored
+ * marker so no later presentation resolver can decorate it.
  *
  * @param array $parsed_block The parsed block data.
  * @return array
@@ -884,16 +935,14 @@ function strap_woocommerce_inject_cross_sells_template_style( $parsed_block ) {
 		return $parsed_block;
 	}
 
-	$registry  = strap_woocommerce_component_registry();
 	$treatment = strap_woocommerce_get_component_treatment( 'linked_products_upsells' );
 
-	$class_to_add = 'native' === $treatment
-		? $registry['product_cards']['treatments']['native']['class']
-		: ( $registry['linked_products_upsells']['treatments'][ $treatment ]['class'] ?? '' );
-
-	if ( '' === $class_to_add ) {
+	if ( 'native' !== $treatment ) {
 		return $parsed_block;
 	}
+
+	$registry     = strap_woocommerce_component_registry();
+	$class_to_add = $registry['product_cards']['treatments']['native']['class'];
 
 	if ( isset( $parsed_block['innerBlocks'] ) && is_array( $parsed_block['innerBlocks'] ) ) {
 		foreach ( $parsed_block['innerBlocks'] as &$inner_block ) {
@@ -1419,7 +1468,9 @@ function strap_woocommerce_register_product_template_styles() {
 
 		if ( 'system-panel-woo' === $treatment_id ) {
 			$style['style_handle'] = 'strap-woocommerce-product-panel';
-		} elseif ( in_array( $treatment_id, array( 'system-list-woo', 'system-list-flush-woo' ), true ) ) {
+		} elseif ( 'system-flat-panel-woo' === $treatment_id ) {
+			$style['style_handle'] = 'core-group-system-flat-panel';
+		} elseif ( in_array( $treatment_id, array( 'system-list-woo', 'system-flat-list-woo' ), true ) ) {
 			$style['style_handle'] = 'strap-woocommerce-product-list';
 		}
 
@@ -1441,7 +1492,8 @@ function strap_woocommerce_enqueue_mapped_presentation_styles() {
 	$linked_products = strap_woocommerce_get_component_treatment( 'linked_products_upsells' );
 
 	if ( ( ( function_exists( 'is_product' ) && is_product() ) || ( function_exists( 'is_cart' ) && is_cart() ) ) && 'native' !== $linked_products ) {
-		$requests['product-panel'] = $registry['linked_products_upsells']['treatments'][ $linked_products ]['theme_style_handle'] ?? '';
+		$asset_key              = in_array( $linked_products, array( 'system-list-woo', 'system-flat-list-woo' ), true ) ? 'product-list' : 'product-panel';
+		$requests[ $asset_key ] = $registry['linked_products_upsells']['treatments'][ $linked_products ]['theme_style_handle'] ?? '';
 	}
 
 	if ( function_exists( 'is_account_page' ) && is_account_page() && is_user_logged_in() ) {

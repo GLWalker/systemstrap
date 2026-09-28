@@ -198,7 +198,7 @@ function strap_enqueue_woocommerce_editor_compatibility() {
 		'strapWooEditorCompatibility',
 		array(
 			'applicationPanelBlocks' => function_exists( 'strap_woocommerce_get_selected_application_panel_blocks' ) ? strap_woocommerce_get_selected_application_panel_blocks() : array(),
-			'productTemplateDefault' => function_exists( 'strap_woocommerce_get_component_treatment' ) ? strap_woocommerce_get_component_treatment( 'product_cards' ) : 'native',
+			'productTemplateDefault' => function_exists( 'strap_woocommerce_get_component_default_treatment' ) ? strap_woocommerce_get_component_default_treatment( 'product_cards' ) : 'native',
 		)
 	);
 }

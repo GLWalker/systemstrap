@@ -228,21 +228,30 @@
  */
 
 /*
- * Woo Product Template — System Panel Woo / System List Woo / System List Flush Woo
+ * Woo Product Template — System Panel Woo / System Flat Panel Woo /
+ * System List Woo / System Flat List Woo
  * Runtime: assets/css/style-variations/woocommerce-product-template-panel.css
  * and assets/css/style-variations/woocommerce-product-template-list.css
  *
- * Direct li.wc-block-product items receive `.strap-panel-surface`, then
- * consume its Panel insets, compact content gap, and heading/body typography
- * roles in Stack, Grid, and Carousel modes. Explicit authored Product
- * Template typography controls remain authoritative.
- * System List Woo supplies the standalone List shell border, radius, overflow,
- * and shared `--wp--custom--shadow`; List Flush remains without outer chrome.
- * Both List treatments preserve WooCommerce Stack/Grid/Carousel layout and
- * item sizing.
+ * Panel-family direct li.wc-block-product items receive `.strap-panel-surface`,
+ * then consume its Panel insets, compact content gap, and heading/body
+ * typography roles in Stack, Grid, and Carousel modes. Flat Panel additionally
+ * receives `.is-style-system-flat-panel`, retaining Panel structure without
+ * shadow or atmosphere. Explicit authored Product Template typography controls
+ * remain authoritative.
+ * System List Woo and System Flat List Woo share the standalone List shell,
+ * media-object geometry, border, radius, seams, and responsive behavior. System
+ * List consumes `--wp--custom--shadow` and System UI atmosphere; Flat List does
+ * not consume shadow, background image, or backdrop filter.
+ * From 601px through 900px, non-Carousel Grid/Flex templates retain two cards
+ * per row, cap the media lane with `--wp--custom--thumbnail-width`, and keep the
+ * Button in normal content flow. The token is emitted by `inc/dynamic-styles.php`
+ * from WordPress `thumbnail_size_w`; desktop and mobile geometry remain separate.
  * Carousel retains WooCommerce ownership of its Product Template root, track,
- * widths, overflow, scrolling, controls, and hydration. All three authored
+ * widths, overflow, scrolling, controls, and hydration. All four System
  * presentations may style direct Carousel cards without styling its track.
+ * A classless Gutenberg Default resolves the current Linked Products/Upsells
+ * selection at runtime; authored treatment classes remain authoritative.
  */
 
 /*
@@ -318,10 +327,12 @@
  * Runtime: inc/woocommerce-integration.php and the Woo adapter files under
  * assets/css/style-variations/.
  *
- * Product Cards default to Panel and expose `is-style-native-woo` as a real
- * authored opt-out. Linked Products/Upsells maps only the stable legacy loop
- * and block Cross-sells Product Template. Linked Products Flat Panel adds the
- * canonical Flat Panel role to the same mapped cards. Account Navigation Panel
+ * Product Cards expose `is-style-native-woo` as a real authored opt-out and
+ * inherit their classless Default from Linked Products/Upsells. That shared
+ * setting maps the stable legacy loop and every classless Product Template to
+ * Native, Panel, Flat Panel, List, or Flat List. Legacy List-family cards use
+ * the Product Template media-object adapter; Flat treatments remove depth and
+ * atmosphere without changing family geometry. Account Navigation Panel
  * and Flat Panel paint only the outer adapter; List variants map the existing
  * navigation rows, while Flat List assigns the canonical Page List Flat List
  * roles to Woo's existing list. Tables and Addresses expose Panel and Flat
