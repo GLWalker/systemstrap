@@ -118,3 +118,90 @@ if ( ! function_exists( 'strap_custom_pattern_category' ) ) {
 
 	add_action( 'init', 'strap_custom_pattern_category' );
 }
+
+
+/**
+ * Limit the post/page template picker to intentional content-layout templates.
+ *
+ * Runtime hierarchy templates remain available to WordPress, WooCommerce,
+ * BuddyPress, and the Site Editor, but are not exposed as assignable
+ * post/page templates.
+ */
+if ( ! function_exists( 'strap_filter_assignable_block_templates' ) ) {
+	/**
+	 * Filter assignable block templates for posts and pages.
+	 *
+	 * @param WP_Block_Template[] $templates     Available block templates.
+	 * @param array               $query         Template query arguments.
+	 * @param string              $template_type Requested template type.
+	 * @return WP_Block_Template[]
+	 */
+	function strap_filter_assignable_block_templates( $templates, $query, $template_type ) {
+		if (
+			'wp_template' !== $template_type ||
+			empty( $query['post_type'] ) ||
+			! in_array( $query['post_type'], array( 'post', 'page' ), true )
+		) {
+			return $templates;
+		}
+
+		/**
+		 * Assignable template routing by post type.
+		 *
+		 * This includes current and planned SystemStrap content layouts.
+		 *
+		 * Child themes may add, remove, or replace template slugs here.
+		 *
+		 * @param array $template_routes Assignable template slugs by post type.
+		 * @param array $query           Template query arguments.
+		 */
+		$template_routes = apply_filters(
+			'strap_assignable_block_template_routes',
+			array(
+				'post' => array(
+					'single',
+					'single-sidebar',
+					'single-core',
+					'canvas',
+				),
+				'page' => array(
+					'page',
+					'page-sidebar',
+					'page-core',
+					'canvas',
+				),
+			),
+			$query
+		);
+
+		$assignable_slugs = $template_routes[ $query['post_type'] ] ?? array();
+
+		/**
+		 * Filter the final assignable template slugs for the current post type.
+		 *
+		 * Useful when a child theme only needs to add or remove a template
+		 * without replacing the complete routing map.
+		 *
+		 * @param string[] $assignable_slugs Assignable template slugs.
+		 * @param string   $post_type        Current post type.
+		 * @param array    $query            Template query arguments.
+		 */
+		$assignable_slugs = apply_filters(
+			'strap_assignable_block_template_slugs',
+			$assignable_slugs,
+			$query['post_type'],
+			$query
+		);
+
+		return array_values(
+			array_filter(
+				$templates,
+				static function ( $template ) use ( $assignable_slugs ) {
+					return in_array( $template->slug, $assignable_slugs, true );
+				}
+			)
+		);
+	}
+
+	add_filter( 'get_block_templates', 'strap_filter_assignable_block_templates', 20, 3 );
+}

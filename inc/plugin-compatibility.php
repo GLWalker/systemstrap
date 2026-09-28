@@ -10,6 +10,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Return whether the compatibility layer should initialize theme-owned Woo support.
+ *
+ * The legacy companion may remain installed. If it is still active, its early
+ * bootstrap is allowed to finish the request so duplicate historical hooks do
+ * not run beside the first-class theme implementation.
+ *
+ * @return bool
+ */
+function strap_should_load_woocommerce_integration() {
+	return class_exists( 'WooCommerce' ) && ! function_exists( 'strap_woocommerce_init' );
+}
+
+if ( strap_should_load_woocommerce_integration() ) {
+	require_once get_template_directory() . '/inc/woocommerce-integration.php';
+}
+
+/**
  * Restore the SystemStrap content-width contract on WooCommerce page wrappers.
  */
 function strap_enqueue_woocommerce_width_compatibility() {
@@ -134,9 +151,26 @@ function strap_register_woocommerce_product_template_compatibility() {
 		return;
 	}
 
-	add_filter( 'render_block_woocommerce/product-template', 'strap_render_woocommerce_product_template_compatibility', 10, 2 );
+	add_filter( 'render_block_woocommerce/product-template', 'strap_render_woocommerce_product_template', 10, 2 );
 }
 add_action( 'init', 'strap_register_woocommerce_product_template_compatibility', 20 );
+
+/**
+ * Coordinate Product Template paint compatibility and optional presentation.
+ *
+ * @param string $block_content Rendered block markup.
+ * @param array  $parsed_block  Parsed block data.
+ * @return string
+ */
+function strap_render_woocommerce_product_template( $block_content, $parsed_block ) {
+	$block_content = strap_render_woocommerce_product_template_compatibility( $block_content, $parsed_block );
+
+	if ( function_exists( 'strap_woocommerce_render_product_template_presentation' ) ) {
+		$block_content = strap_woocommerce_render_product_template_presentation( $block_content, $parsed_block );
+	}
+
+	return $block_content;
+}
 
 /**
  * Generate Product Template presentation compatibility CSS.
@@ -314,3 +348,128 @@ function strap_enqueue_woocommerce_account_compatibility() {
 	wp_add_inline_style( 'global-styles', strap_get_woocommerce_account_compatibility_css() );
 }
 add_action( 'wp_enqueue_scripts', 'strap_enqueue_woocommerce_account_compatibility', 9998 );
+
+/**
+ * Register Product Categories System UI compatibility.
+ */
+function strap_register_woocommerce_product_categories_compatibility() {
+	if ( ! class_exists( 'WooCommerce' ) || ! function_exists( 'register_block_style' ) ) {
+		return;
+	}
+
+	$styles = array(
+		'system-badge'      => array(
+			'label'        => 'System Badge',
+			'style_handle' => 'core-categories-system-badge'
+		),
+		'system-flat-list'  => array(
+			'label'        => 'System Flat List',
+			'style_handle' => 'core-categories-system-flat-list'
+		),
+		'system-list'       => array(
+			'label'        => 'System List',
+			'style_handle' => 'core-categories-system-list'
+		),
+		'system-list-flush' => array(
+			'label'        => 'System List Flush',
+			'style_handle' => 'core-categories-system-list'
+		),
+	);
+
+	foreach ( $styles as $name => $args ) {
+		register_block_style(
+			'woocommerce/product-categories',
+			array(
+				'name'         => $name,
+				'label'        => $args['label'],
+				'style_handle' => $args['style_handle'],
+			)
+		);
+	}
+}
+add_action( 'init', 'strap_register_woocommerce_product_categories_compatibility', 20 );
+
+/**
+ * Enqueue Product Categories System UI compatibility CSS.
+ */
+function strap_enqueue_woocommerce_product_categories_compatibility() {
+	if ( ! class_exists( 'WooCommerce' ) || ! function_exists( 'wp_enqueue_block_style' ) ) {
+		return;
+	}
+
+	$theme_uri  = get_template_directory_uri() . '/';
+	$theme_path = get_template_directory() . '/';
+
+	$files = array(
+		'core-categories-system-badge'      => array(),
+		'core-categories-system-flat-list'  => array( 'core-categories-system-list' ),
+		'core-categories-system-list'       => array(),
+	);
+
+	foreach ( $files as $file_handle => $deps ) {
+		$file_path = $theme_path . 'assets/css/style-variations/' . $file_handle . '.css';
+
+		wp_enqueue_block_style(
+			'woocommerce/product-categories',
+			array(
+				'handle' => $file_handle,
+				'src'    => $theme_uri . 'assets/css/style-variations/' . $file_handle . '.css',
+				'path'   => $file_path,
+				'deps'   => $deps,
+				'ver'    => filemtime( $file_path ),
+			)
+		);
+	}
+}
+add_action( 'init', 'strap_enqueue_woocommerce_product_categories_compatibility', 20 );
+
+/**
+ * Map Woo Product Categories list roles to the canonical Categories System UI.
+ *
+ * @param string $block_content Rendered Product Categories markup.
+ * @param array  $block         Parsed block data.
+ * @return string
+ */
+function strap_map_woocommerce_product_categories_system_ui( $block_content, $block ) {
+	$supported_styles = array(
+		'is-style-system-badge',
+		'is-style-system-flat-list',
+		'is-style-system-list',
+		'is-style-system-list-flush',
+	);
+	$block_classes    = preg_split( '/\s+/', $block['attrs']['className'] ?? '', -1, PREG_SPLIT_NO_EMPTY );
+	$selected_styles  = array_values( array_intersect( $supported_styles, $block_classes ) );
+	$is_editor_render = is_admin();
+
+	if ( function_exists( 'wp_is_serving_rest_request' ) && wp_is_serving_rest_request() ) {
+		$request_context  = isset( $_GET['context'] ) ? sanitize_key( wp_unslash( $_GET['context'] ) ) : '';
+		$is_editor_render = 'edit' === $request_context;
+	}
+
+	if ( ! $is_editor_render || empty( $selected_styles ) || ! class_exists( 'WP_HTML_Tag_Processor' ) ) {
+		return $block_content;
+	}
+
+	$processor = new WP_HTML_Tag_Processor( $block_content );
+
+	if ( ! $processor->next_tag( array( 'class_name' => 'wp-block-woocommerce-product-categories' ) ) ) {
+		return $block_content;
+	}
+
+	$processor->add_class( 'wp-block-categories' );
+	$processor->add_class( $selected_styles[0] );
+
+	if ( ! $processor->next_tag( array( 'class_name' => 'wc-block-product-categories-list' ) ) ) {
+		return $block_content;
+	}
+
+	$processor->add_class( 'wp-block-categories-list' );
+	$processor->add_class( $selected_styles[0] );
+
+	while ( $processor->next_tag( array( 'class_name' => 'wc-block-product-categories-list-item-count' ) ) ) {
+		$processor->add_class( 'wp-block-categories__count' );
+	}
+
+	return $processor->get_updated_html();
+}
+add_filter( 'render_block_woocommerce/product-categories', 'strap_map_woocommerce_product_categories_system_ui', 10, 2 );

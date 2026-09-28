@@ -6,11 +6,39 @@ This file is a CONTRACT.
 
 ## Contract Version
 
-Current Version: 1.22
+Current Version: 1.24
 
-Last Updated: 2026-09-03
+Last Updated: 2026-09-27
 
 ## Change Log
+
+### 1.24
+
+Added first-class Woo Product Button aliases to the canonical Button contract.
+Link, Pill, Pill Outline, Square, and Square Outline continue to be painted by
+`assets/css/main-styles.css`; the Woo aliases target only the stable Product
+Button root and public button child. Dynamic palette routing in
+`inc/dynamic-styles.php` now includes the two Woo outline aliases, and Product
+Button gains the normal Gutenberg gradient capability on both server and
+client schemas. Native remains the Product Button default.
+
+Woo Reviews List/Panel and Product Reviews Pagination registrations now reuse
+the existing Comments and Pagination assets with physical-file versions. Their
+narrow role adapters add only the neutral master hooks; WooCommerce retains
+review data, navigation, links, state, and interaction.
+
+### 1.23
+
+System UI block-style files and their shared masters now use each physical
+stylesheet's modification time as the registered asset version. The same
+`wp_enqueue_block_style()` path remains authoritative for frontend and editor
+loading, while changed CSS receives a new URL in Gutenberg instead of retaining
+the WordPress core version indefinitely. The frontend `strap-main-styles`
+handle uses the same physical-file cache identity; its editor copy continues to
+arrive through `add_editor_style()`. Woo Product Categories maps its stable list
+and count roles to the canonical Core Categories classes during dynamic
+rendering, so its four supported System UI variations consume the existing
+masters without a duplicated Woo stylesheet.
 
 ### 1.22
 
@@ -641,7 +669,6 @@ The current `customTemplates` registry includes:
 
 - `assets/css/strap-reset.css`
 - `assets/css/main-styles.css`
-- `assets/css/style-variations/core-group-system-carousel.css`
 
 If the theme is a child theme, `style.css` is added to that editor style list.
 
@@ -657,6 +684,10 @@ The current editor BuddyPress contract is:
 - enqueue `strap-buddypress-sync` in the editor only when BuddyPress exists
 - keep BuddyPress frontend theme-pack dependencies out of the editor path
 - preserve the same handle name across frontend and editor so `wp_enqueue_block_style()` dependencies remain stable
+
+`assets/css/main-styles.css` remains the shared foundational layer. Its
+frontend handle uses the physical file modification time as its asset version;
+the editor receives the same file through `add_editor_style()`.
 
 ### Frontend style enqueue contract
 
@@ -809,9 +840,24 @@ The current contract behavior is:
 - the variation name is normalized to `system-*`
 - the file is registered through `wp_enqueue_block_style()`
 - the variation is registered through `register_block_style()`
+- the physical file modification time is the asset version used by both the
+  frontend and the editor iframe
 - `core-group-system-carousel.css` is explicitly skipped from auto-registration
 
 This file naming and registration behavior is part of the current design-system runtime and MUST remain stable until replaced explicitly.
+
+The System UI shared masters registered in this file use the same physical-file
+versioning rule. A changed variation or shared master MUST receive a changed
+asset URL so editor parity cannot depend on a stale browser copy. Theme version
+or WordPress core version alone is not a valid cache identity for these files.
+
+Woo Product Categories is a dynamic-block compatibility consumer of this lane.
+`inc/plugin-compatibility.php` registers `system-badge`, `system-flat-list`,
+`system-list`, and `system-list-flush` against the existing Core Categories
+handles. Its render adapter adds only the canonical list-root, selected-style,
+and count-role classes to Woo's stable public markup. It does not copy the Core
+Categories declarations, alter category data, or participate in the literal
+parentheses render regex.
 
 Pagination uses a text-only baseline in `theme.json` for Query Pagination, Comments Pagination, and Post Navigation Link. The explicit System UI family is block-scoped through `assets/css/system-ui-pagination.css`, which is a dependency of these registered variation files:
 

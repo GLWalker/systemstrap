@@ -352,7 +352,11 @@ ul.wp-block-latest-posts.has-{$slug}-background-color > li:hover {
 .wp-block-button.is-style-button-square-outline .wp-block-button__link.has-{$slug}-color,
 .wp-block-button.is-style-outline .wp-block-button__link.has-{$slug}-background-color,
 .wp-block-button.is-style-button-pill-outline .wp-block-button__link.has-{$slug}-background-color,
-.wp-block-button.is-style-button-square-outline .wp-block-button__link.has-{$slug}-background-color {
+.wp-block-button.is-style-button-square-outline .wp-block-button__link.has-{$slug}-background-color,
+.wp-block-button.wc-block-components-product-button.is-style-button-pill-outline-woo > .wp-block-button__link.wc-block-components-product-button__button.has-{$slug}-color,
+.wp-block-button.wc-block-components-product-button.is-style-button-square-outline-woo > .wp-block-button__link.wc-block-components-product-button__button.has-{$slug}-color,
+.wp-block-button.wc-block-components-product-button.is-style-button-pill-outline-woo > .wp-block-button__link.wc-block-components-product-button__button.has-{$slug}-background-color,
+.wp-block-button.wc-block-components-product-button.is-style-button-square-outline-woo > .wp-block-button__link.wc-block-components-product-button__button.has-{$slug}-background-color {
     background-color: transparent !important;
     color: var(--wp--preset--color--{$slug}) !important;
     border-color: var(--wp--preset--color--{$slug}) !important;
@@ -371,7 +375,11 @@ ul.wp-block-latest-posts.has-{$slug}-background-color > li:hover {
 .wp-block-button.is-style-button-square-outline .wp-block-button__link.has-{$slug}-color:not(:disabled):focus,
 .wp-block-button.is-style-outline .wp-block-button__link.has-{$slug}-background-color:not(:disabled):focus,
 .wp-block-button.is-style-button-pill-outline .wp-block-button__link.has-{$slug}-background-color:not(:disabled):focus,
-.wp-block-button.is-style-button-square-outline .wp-block-button__link.has-{$slug}-background-color:not(:disabled):focus {
+.wp-block-button.is-style-button-square-outline .wp-block-button__link.has-{$slug}-background-color:not(:disabled):focus,
+.wp-block-button.wc-block-components-product-button.is-style-button-pill-outline-woo > .wp-block-button__link.wc-block-components-product-button__button.has-{$slug}-color:not(:disabled):focus,
+.wp-block-button.wc-block-components-product-button.is-style-button-square-outline-woo > .wp-block-button__link.wc-block-components-product-button__button.has-{$slug}-color:not(:disabled):focus,
+.wp-block-button.wc-block-components-product-button.is-style-button-pill-outline-woo > .wp-block-button__link.wc-block-components-product-button__button.has-{$slug}-background-color:not(:disabled):focus,
+.wp-block-button.wc-block-components-product-button.is-style-button-square-outline-woo > .wp-block-button__link.wc-block-components-product-button__button.has-{$slug}-background-color:not(:disabled):focus {
     box-shadow: 0 0 0 .25rem rgba(var(--wp--preset--color--{$slug}-rgb), 0.5);
 }
 ";

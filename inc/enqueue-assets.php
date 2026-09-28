@@ -36,15 +36,17 @@ if (! function_exists('strap_enqueue_assets')) {
 	 */
 	function strap_enqueue_assets()
 	{
-		$theme_version = wp_get_theme()->get('Version');
-		$version       = is_string($theme_version) ? $theme_version : false;
+		$theme_version           = wp_get_theme()->get('Version');
+		$version                 = is_string($theme_version) ? $theme_version : false;
+		$main_stylesheet         = get_template_directory() . '/assets/css/main-styles.css';
+		$main_stylesheet_version = file_exists($main_stylesheet) ? filemtime($main_stylesheet) : $version;
 
 		// Main Styles
 		wp_enqueue_style(
 			'strap-main-styles',
 			get_template_directory_uri() . '/assets/css/main-styles.css',
 			array('strap-reset', 'global-styles'),
-			$version
+			$main_stylesheet_version
 		);
 
 		wp_register_style(
@@ -168,6 +170,40 @@ if (! function_exists('strap_enqueue_reset_style')) {
 	}
 }
 add_action('wp_enqueue_scripts', 'strap_enqueue_reset_style', 0);
+
+/**
+ * Load Woo editor capability bridges before Woo registers its blocks.
+ */
+function strap_enqueue_woocommerce_editor_compatibility() {
+	if ( ! function_exists( 'strap_should_load_woocommerce_integration' ) || ! strap_should_load_woocommerce_integration() ) {
+		return;
+	}
+
+	$file = get_template_directory() . '/assets/js/variations/strap-woocommerce-editor-compatibility.js';
+
+	if ( ! file_exists( $file ) ) {
+		return;
+	}
+
+	wp_enqueue_script(
+		'strap-woocommerce-editor-compatibility',
+		get_template_directory_uri() . '/assets/js/variations/strap-woocommerce-editor-compatibility.js',
+		array( 'wp-hooks', 'wp-compose', 'wp-element', 'wp-components', 'wp-block-editor', 'wp-i18n' ),
+		filemtime( $file ),
+		true
+	);
+
+	wp_localize_script(
+		'strap-woocommerce-editor-compatibility',
+		'strapWooEditorCompatibility',
+		array(
+			'applicationPanelBlocks' => function_exists( 'strap_woocommerce_get_selected_application_panel_blocks' ) ? strap_woocommerce_get_selected_application_panel_blocks() : array(),
+			'productTemplateDefault' => function_exists( 'strap_woocommerce_get_component_treatment' ) ? strap_woocommerce_get_component_treatment( 'product_cards' ) : 'native',
+		)
+	);
+}
+add_action( 'enqueue_block_editor_assets', 'strap_enqueue_woocommerce_editor_compatibility', 0 );
+
 function strap_enqueue_block_editor_assets()
 {
 	wp_enqueue_style(
@@ -205,6 +241,10 @@ function strap_enqueue_block_editor_assets()
 			$basename = basename($file, '.js');
 			$deps     = array('wp-blocks', 'wp-element', 'wp-components', 'wp-i18n');
 
+			if ('strap-woocommerce-editor-compatibility' === $basename) {
+				continue;
+			}
+
 			if ('strap-woocommerce-product-template-compatibility' === $basename && ! class_exists('WooCommerce')) {
 				continue;
 			}
@@ -221,7 +261,7 @@ function strap_enqueue_block_editor_assets()
 				'strap-variation-' . $basename,
 				get_template_directory_uri() . '/assets/js/variations/' . basename($file),
 				$deps,
-				wp_get_theme()->get('Version'),
+				filemtime($file),
 				true
 			);
 			wp_add_inline_script(

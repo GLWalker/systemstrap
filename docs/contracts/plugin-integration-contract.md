@@ -4,6 +4,17 @@
 
 **NORMATIVE ARCHITECTURAL CONTRACT**
 
+## Approved first-class WooCommerce exception
+
+WooCommerce is an explicitly approved first-class SystemStrap integration.
+When WooCommerce is active, the theme owns the integration described by
+`docs/contracts/woocommerce-integration.md`; the legacy
+`systemstrap-woocommerce` companion is no longer required. A temporary
+coexistence guard yields to an already-active legacy bootstrap only to prevent
+duplicate historical hooks. This exception supersedes the generic companion
+preference below only for WooCommerce; WooCommerce itself remains authoritative
+for commerce data, behavior, state, and interaction.
+
 This document defines the ownership boundary between the SystemStrap
 theme, optional SystemStrap companion plugins, and third-party
 application plugins.
@@ -152,7 +163,8 @@ merely to achieve visual or semantic integration.
 
 When integration behavior exists solely because a particular optional
 application plugin exists, that behavior should normally belong to a
-SystemStrap companion plugin.
+SystemStrap companion plugin unless a first-class integration is explicitly
+approved and governed by its own contract.
 
 Examples:
 
@@ -183,7 +195,7 @@ SystemStrap itself must not depend on the companion.
 
 # 6. Hard CSS Boundary
 
-## Plugin-specific visual CSS must not live in SystemStrap core.
+## Plugin-specific visual CSS must not live in SystemStrap core without an approved first-class integration contract.
 
 This is a hard architectural rule.
 
@@ -195,7 +207,8 @@ Therefore:
 
 BuddyPress CSS → systemstrap-buddypress
 
-WooCommerce CSS → systemstrap-woocommerce
+WooCommerce CSS → SystemStrap's conditional first-class integration; the
+legacy `systemstrap-woocommerce` companion is reference-only and unnecessary
 
 bbPress CSS → systemstrap-bbpress
 
@@ -646,7 +659,8 @@ These APIs must remain application-neutral.
 
 SystemStrap must not contain hardcoded WooCommerce, BuddyPress, or
 bbPress branches inside otherwise generic infrastructure merely to
-satisfy a companion.
+satisfy a companion. An approved first-class integration MAY extend a
+generic filter surface through isolated, conditional callbacks.
 
 Application-specific categorization belongs to the companion using the
 generic API.
@@ -655,14 +669,15 @@ generic API.
 
 # 20. Editor Parity
 
-Where an application component can appear in the editor, companion
-integration should preserve reasonable frontend/editor visual parity.
+Where an application component can appear in the editor, its integration
+owner should preserve reasonable frontend/editor visual parity.
 
 Editor support belongs to the same owner as the corresponding frontend
 integration.
 
-Therefore application-specific editor CSS belongs to the companion
-plugin, not SystemStrap core.
+Therefore application-specific editor support belongs to the companion or to
+an explicitly approved first-class theme integration, matching frontend
+ownership.
 
 Editor support must not justify globally loading integration CSS on
 unrelated editor screens.
@@ -948,9 +963,9 @@ A SystemStrap application integration is complete only when:
 -   application schema is not duplicated unnecessarily
 -   width and alignment behavior remain correct
 -   Site Editor behavior remains intact
--   application-specific styling exists only in the companion
--   component-level application filters exist in the appropriate
-    companion
+-   application-specific styling exists only in its declared integration owner
+-   component-level application filters exist in the declared companion or
+    approved first-class integration
 -   theme-owned semantic filters remain in SystemStrap
 -   assets are scoped reasonably
 -   companion absence does not break SystemStrap
@@ -1016,7 +1031,8 @@ WooCommerce currently demonstrates at the page-architecture layer:
 -   preserved Woo Cart/Checkout
     `page-content-wrapper → core/post-content` application contract
 -   Woo-owned commerce state and commerce entity schema
--   no Woo-specific visual CSS in SystemStrap core
+-   conditional first-class Woo component integration governed by
+    `docs/contracts/woocommerce-integration.md`
 -   Woo-aware Product Sidebar and Product Sidebar 2 template parts for Site
     Editor composition; their content-bearing patterns remain separate from
     generic sidebars even where their Core Columns geometry matches
@@ -1025,10 +1041,13 @@ WooCommerce currently demonstrates at the page-architecture layer:
     override, rather than the Post/Page custom-template picker
 
 Generic `blank` and other Post/Page custom templates MUST NOT be exposed as
-WooCommerce Product assignments. Product-specific styling remains companion-owned.
+WooCommerce Product assignments. Product-specific styling remains owned by the
+conditional first-class integration while WooCommerce remains behaviorally
+authoritative.
 
-Woo presentation and component-level integration remain companion-owned
-and begin only after runtime/editor acceptance of the page architecture.
+Woo presentation and component-level integration are theme-owned when the
+legacy companion is absent. While that companion is active, it temporarily
+retains sole enhanced-integration ownership for coexistence safety.
 
 ## bbPress
 
@@ -1105,13 +1124,14 @@ Compatibility code must:
 -   be documented with the upstream behavior it corrects
 -   be removable when the upstream defect is verifiably fixed
 
-The companion plugin remains responsible for enhanced presentation,
+The declared integration owner remains responsible for enhanced presentation,
 component-level adaptation, visual synchronization, optional integration
 features, and any baseline compatibility repair that must execute before
-the theme can safely participate.
+the theme can safely participate. That owner is normally a companion; the
+approved WooCommerce integration is theme-owned under its dedicated contract.
 
 Baseline functionality belongs to the theme **when the WordPress
-lifecycle allows it**. Enhanced integration belongs to the companion.
+lifecycle allows it**. Enhanced integration belongs to the declared owner.
 Application behavior belongs to the application.
 
 Ownership test:

@@ -6,11 +6,20 @@ This file is a CONTRACT.
 
 ## Contract Version
 
-Current Version: 1.0
+Current Version: 1.1
 
 Last Updated: 2026-06-18
 
 ## Change Log
+
+### 1.1
+
+Added the conditional first-class WooCommerce runtime lanes. WooCommerce plugin
+CSS is classified immediately before Core block CSS; theme-owned Woo Review and
+Pagination variation aliases are classified immediately before the remaining
+theme variation layer. The callbacks are inert while the legacy SystemStrap
+WooCommerce companion is active, allowing that plugin to remain the sole
+enhanced-integration owner during coexistence.
 
 ### 1.0
 
@@ -48,6 +57,8 @@ The current runtime style ownership layer is implemented through these files:
 - `docs/contracts/variation-architecture.md`
 - `inc/enqueue-assets.php`
 - `inc/block-styles.php`
+- `inc/woocommerce-integration.php`
+- `inc/style-runtime.php`
 - `inc/dialog-renderer.php`
 - `assets/css/strap-reset.css`
 - `assets/css/main-styles.css`
@@ -122,6 +133,8 @@ SystemStrap currently owns these primary stylesheet lanes:
 - `strap-buddypress-blocks`
 - block style variation CSS under `assets/css/style-variations/`
 - explicit runtime exception handles such as `strap-carousel-styles` and dialog CSS
+- conditional Woo Review and Pagination aliases that reuse canonical theme
+  assets without duplicating them
 
 These handles are the theme-owned styling surface.
 
@@ -138,21 +151,28 @@ The file MUST NOT be described as dead code merely because it does not yet conta
 The current frontend queue contract is:
 
 1. `strap-reset`
-2. BuddyPress plugin/theme-pack CSS
-3. `strap-buddypress-sync`
-4. `strap-buddypress-blocks`
-5. Core block library styles
-6. `global-styles`
-7. `strap-main-styles`
-8. `strap-child-style`
-9. BuddyPress block style variation CSS
-10. remaining SystemStrap theme CSS
-11. `wp-block-custom-css` and `global-styles-custom-css`
-12. everything else
+2. WooCommerce plugin CSS when the first-class Woo integration owns the request
+3. BuddyPress plugin/theme-pack CSS
+4. `strap-buddypress-sync`
+5. `strap-buddypress-blocks`
+6. Core block library styles
+7. `global-styles`
+8. `strap-main-styles`
+9. `strap-child-style`
+10. BuddyPress block style variation CSS
+11. theme-owned Woo Review and Pagination variation aliases
+12. remaining SystemStrap theme CSS
+13. `wp-block-custom-css` and `global-styles-custom-css`
+14. everything else
 
 This order is implemented by `strap_reorder_frontend_style_queue()` in `inc/style-runtime.php`.
 
 This queue order is part of the runtime contract and MUST NOT be changed casually.
+
+The Woo buckets are added through isolated filters and exist only when
+WooCommerce is active and the legacy companion is absent. The Woo variation
+handles point to existing Comments and Pagination files and use each physical
+file's modification time as their cache identity.
 
 ## No-BuddyPress Ownership Tree
 
@@ -214,11 +234,11 @@ This utility styling remains intentionally available to:
 - carousel navigation buttons
 - dialog close buttons
 
-WooCommerce Product Collection Carousel maps its native previous/next buttons
-to `.strap-icon-button` through the SystemStrap WooCommerce public render
-adapter with a `strap-icon-button--woo` adapter marker. Woo retains its native
-disabled-state gating, SVG centering reset, and focus-visible policy while
-consuming the shared hover paint variables.
+WooCommerce Product Collection Carousel may map its native previous/next
+buttons to `.strap-icon-button` through the later first-class Carousel adapter
+with a `strap-icon-button--woo` marker. That Phase A-deferred adapter must leave
+Woo's native disabled-state gating, SVG centering reset, focus-visible policy,
+track, sizing, scrolling, and interaction authoritative.
 
 It MUST NOT be exposed through block-style auto-registration unless that behavior is intentionally restored and documented in the same change set.
 

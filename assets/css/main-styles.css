@@ -249,7 +249,9 @@ header.wp-block-template-part {
 /* Base style for outline buttons to ensure they have transparent background so the wash shows up properly */
 .wp-block-button.is-style-outline .wp-block-button__link,
 .wp-block-button.is-style-button-pill-outline .wp-block-button__link,
-.wp-block-button.is-style-button-square-outline .wp-block-button__link {
+.wp-block-button.is-style-button-square-outline .wp-block-button__link,
+.wp-block-button.wc-block-components-product-button.is-style-button-pill-outline-woo>.wp-block-button__link.wc-block-components-product-button__button,
+.wp-block-button.wc-block-components-product-button.is-style-button-square-outline-woo>.wp-block-button__link.wc-block-components-product-button__button {
     background-color: transparent;
 }
 
@@ -266,7 +268,8 @@ header.wp-block-template-part {
 }
 
 /* Link Button */
-.wp-block-button.is-style-button-link .wp-block-button__link {
+.wp-block-button.is-style-button-link .wp-block-button__link,
+.wp-block-button.wc-block-components-product-button.is-style-button-link-woo>.wp-block-button__link.wc-block-components-product-button__button {
     background: transparent !important;
     border: none !important;
     padding: 0 !important;
@@ -275,7 +278,8 @@ header.wp-block-template-part {
     text-decoration: none;
 }
 
-.wp-block-button.is-style-button-link .wp-block-button__link:hover {
+.wp-block-button.is-style-button-link .wp-block-button__link:hover,
+.wp-block-button.wc-block-components-product-button.is-style-button-link-woo>.wp-block-button__link.wc-block-components-product-button__button:hover {
     text-decoration: underline;
     transform: none !important;
     box-shadow: none !important;
@@ -284,7 +288,9 @@ header.wp-block-template-part {
 /* Base outline logic for all outline variations */
 .wp-block-button.is-style-outline .wp-block-button__link,
 .wp-block-button.is-style-button-pill-outline .wp-block-button__link,
-.wp-block-button.is-style-button-square-outline .wp-block-button__link {
+.wp-block-button.is-style-button-square-outline .wp-block-button__link,
+.wp-block-button.wc-block-components-product-button.is-style-button-pill-outline-woo>.wp-block-button__link.wc-block-components-product-button__button,
+.wp-block-button.wc-block-components-product-button.is-style-button-square-outline-woo>.wp-block-button__link.wc-block-components-product-button__button {
     background-color: transparent !important;
     border: var(--wp--custom--border-width, 1px) solid currentColor !important;
     color: inherit;
@@ -296,12 +302,16 @@ header.wp-block-template-part {
 
 /* Pill & Square Shape Overrides */
 .wp-block-button.is-style-button-pill .wp-block-button__link,
-.wp-block-button.is-style-button-pill-outline .wp-block-button__link {
+.wp-block-button.is-style-button-pill-outline .wp-block-button__link,
+.wp-block-button.wc-block-components-product-button.is-style-button-pill-woo>.wp-block-button__link.wc-block-components-product-button__button,
+.wp-block-button.wc-block-components-product-button.is-style-button-pill-outline-woo>.wp-block-button__link.wc-block-components-product-button__button {
     border-radius: 50rem !important;
 }
 
 .wp-block-button.is-style-button-square .wp-block-button__link,
-.wp-block-button.is-style-button-square-outline .wp-block-button__link {
+.wp-block-button.is-style-button-square-outline .wp-block-button__link,
+.wp-block-button.wc-block-components-product-button.is-style-button-square-woo>.wp-block-button__link.wc-block-components-product-button__button,
+.wp-block-button.wc-block-components-product-button.is-style-button-square-outline-woo>.wp-block-button__link.wc-block-components-product-button__button {
     border-radius: 0 !important;
 }
 
@@ -620,7 +630,7 @@ select:focus {
     padding-bottom: calc(var(--wp--preset--font-size--small) * .5);
     padding-left: var(--wp--preset--font-size--small);
     padding-right: var(--wp--preset--font-size--small);
-    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--border-color);
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--form-border-color);
     border-radius: var(--wp--custom--border-radius, 4px);
     background-color: var(--wp--custom--system-ui-surface, #fff);
     color: inherit;
@@ -637,7 +647,7 @@ select:focus {
 
 /* Button Inside Baseline Fix */
 .wp-block-search__button-inside .wp-block-search__inside-wrapper {
-    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--border-color);
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--form-border-color);
     border-radius: var(--wp--custom--border-radius, 4px);
     background-color: var(--wp--custom--system-ui-surface, #fff);
     overflow: hidden;
@@ -665,7 +675,7 @@ select:focus {
 
 /* Separator Block Baseline */
 .wp-block-separator:not(.is-style-system-divider) {
-    border-color: var(--wp--custom--border-color);
+    border-color: var(--wp--custom--form-border-color);
 }
 
 /* ==========================================================================
@@ -676,7 +686,8 @@ select:focus {
 :is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush, .is-style-system-badge, .is-style-outline, .is-style-system-tags) :is(.wp-block-categories__count,
     .wp-block-archives__count,
     .tag-link-count,
-    .wp-block-term-count) {
+    .wp-block-term-count,
+    .wc-block-product-categories-list-item-count) {
     display: inline-block;
     padding: var(--wp--custom--badge-padding-y) var(--wp--custom--badge-padding-x);
     font-size: var(--wp--custom--badge-font-size);
@@ -692,7 +703,8 @@ select:focus {
 
 :is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) :is(.wp-block-categories__count,
     .wp-block-archives__count,
-    .wp-block-term-count) {
+    .wp-block-term-count,
+    .wc-block-product-categories-list-item-count) {
     transform: translateY(1px);
 }
 
@@ -722,6 +734,13 @@ select:focus {
 :is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush, .is-style-system-badge, .is-style-outline, .is-style-system-tags) :is(.wp-block-categories__count,
     .wp-block-archives__count,
     .tag-link-count,
-    .wp-block-term-count) .count-paren {
+    .wp-block-term-count,
+    .wc-block-product-categories-list-item-count) .count-paren {
     display: none;
+}
+
+/* Woo emits count parentheses through pseudo-elements rather than markup. */
+:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush, .is-style-system-badge) .wc-block-product-categories-list-item-count::before,
+:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush, .is-style-system-badge) .wc-block-product-categories-list-item-count::after {
+    content: none;
 }

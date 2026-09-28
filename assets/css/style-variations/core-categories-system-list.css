@@ -182,15 +182,10 @@
     background-image: var(--wp--custom--system-ui-background-image-nested, none);
 }
 
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) > :is(.wp-block-categories, .wp-block-categories-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush),
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) .block-editor-block-list__layout > :is(.wp-block-categories, .wp-block-categories-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) {
-    border: 0;
-    border-radius: inherit;
-    overflow: hidden;
-}
-
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) > :is(.wp-block-categories, .wp-block-categories-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) > li,
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) .block-editor-block-list__layout > :is(.wp-block-categories, .wp-block-categories-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) > li {
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) > .wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) > .wc-block-product-categories-list > li,
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) > .wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) .wp-block-woocommerce-product-categories > .wc-block-product-categories-list > li,
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) .block-editor-block-list__layout > .wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) > .wc-block-product-categories-list > li,
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) .block-editor-block-list__layout > .wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) .wp-block-woocommerce-product-categories > .wc-block-product-categories-list > li {
     background-color: var(--wp--custom--system-ui-surface-nested, transparent);
     background-image: var(--wp--custom--system-ui-background-image-nested, none);
     backdrop-filter: none !important;
@@ -215,4 +210,191 @@
     border: 0;
     border-radius: 0;
     overflow: visible;
+}
+
+
+/* WooCommerce Product Categories Parity */
+.wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) > .wc-block-product-categories-list > li,
+.wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) .wp-block-woocommerce-product-categories > .wc-block-product-categories-list > li {
+    background-color: var(--wp--custom--system-ui-surface);
+}
+
+.wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-list-flush) > .wc-block-product-categories-list > li,
+.wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-list-flush) .wp-block-woocommerce-product-categories > .wc-block-product-categories-list > li {
+    background-image: var(--wp--custom--system-ui-background-image, none);
+    backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+}
+
+.wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) .wc-block-product-categories-list li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    position: relative;
+    isolation: isolate;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) .wc-block-product-categories-list li > a {
+    grid-column: 1;
+    padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.15s ease-in-out;
+    position: relative;
+    z-index: 1;
+}
+
+.wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush):not(.is-not-action) .wc-block-product-categories-list li:hover:not(:has(li:hover))::before {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    height: calc(1lh + (var(--wp--preset--spacing--20) * 2));
+    background-color: var(--wp--custom--system-ui-list-hover-bg) !important;
+    background-image: none !important;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) .wc-block-product-categories-list li:not(:has(ul)):not(:has(ol)).current-cat,
+.wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) .wc-block-product-categories-list li:not(:has(ul)):not(:has(ol)):has(> a[aria-current="page"]) {
+    background-color: var(--wp--custom--system-ui-list-hover-bg) !important;
+    background-image: none !important;
+}
+
+.wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) .wc-block-product-categories-list li:has(ul, ol).current-cat > a,
+.wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) .wc-block-product-categories-list li:has(ul, ol).current-cat-parent > a,
+.wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) .wc-block-product-categories-list li:has(ul, ol):has(> a[aria-current="page"]) > a {
+    background-color: var(--wp--custom--system-ui-list-hover-bg) !important;
+    background-image: none !important;
+}
+
+.wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) .wc-block-product-categories-list li > .wc-block-product-categories-list-item-count {
+    grid-column: 2;
+    position: relative;
+    z-index: 1;
+    margin-right: var(--wp--preset--spacing--30);
+}
+
+.wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) .wc-block-product-categories-list li > ul {
+    grid-column: 1 / -1;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex;
+    flex-direction: column;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+}
+
+.wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) .wc-block-product-categories-list li > ul > li {
+    border: 0;
+    border-radius: 0 !important;
+}
+
+.wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush).has-background > .wc-block-product-categories-list > li,
+.wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush).has-background .wp-block-woocommerce-product-categories > .wc-block-product-categories-list > li {
+    background: transparent;
+    border-color: var(--wp--custom--system-ui-border-color);
+}
+
+.wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush).has-background:not(.is-not-action) .wc-block-product-categories-list > li:hover:not(:has(li:hover))::before {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    height: calc(1lh + (var(--wp--preset--spacing--20) * 2));
+    background-color: var(--wp--custom--system-ui-list-hover-bg) !important;
+    background-image: none !important;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.has-background > .wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush):not(.has-background) .wc-block-product-categories-list li > ul > li {
+    border-top-color: var(--wp--custom--system-ui-border-color) !important;
+    background-color: var(--wp--custom--system-ui-surface-nested, transparent);
+    background-image: var(--wp--custom--system-ui-background-image-nested, none);
+}
+
+.has-background > .wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush):not(.has-background):not(.is-not-action) .wc-block-product-categories-list li:hover:not(:has(li:hover))::before {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    height: calc(1lh + (var(--wp--preset--spacing--20) * 2));
+    background-color: var(--wp--custom--system-ui-list-hover-bg) !important;
+    background-image: none !important;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.has-background > .wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush):not(.has-background) .wc-block-product-categories-list li:not(:has(ul)):not(:has(ol)).current-cat,
+.has-background > .wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush):not(.has-background) .wc-block-product-categories-list li:not(:has(ul)):not(:has(ol)):has(> a[aria-current="page"]) {
+    background-color: var(--wp--custom--system-ui-list-hover-bg) !important;
+    background-image: none !important;
+}
+
+.has-background > .wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush):not(.has-background) .wc-block-product-categories-list li:has(ul, ol).current-cat > a,
+.has-background > .wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush):not(.has-background) .wc-block-product-categories-list li:has(ul, ol).current-cat-parent > a,
+.has-background > .wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush):not(.has-background) .wc-block-product-categories-list li:has(ul, ol):has(> a[aria-current="page"]) > a {
+    background-color: var(--wp--custom--system-ui-list-hover-bg) !important;
+    background-image: none !important;
+}
+
+.wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) > .wc-block-product-categories-list > li + li,
+.wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) .wp-block-woocommerce-product-categories > .wc-block-product-categories-list > li + li {
+    border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+}
+
+.wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) .wc-block-product-categories-list li > ul > li {
+    border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+    background-color: var(--wp--custom--system-ui-surface-nested, transparent);
+    background-image: var(--wp--custom--system-ui-background-image-nested, none);
+}
+
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) > .wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) > .wc-block-product-categories-list > li,
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) > .wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) .wp-block-woocommerce-product-categories > .wc-block-product-categories-list > li,
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) .block-editor-block-list__layout > .wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) > .wc-block-product-categories-list > li,
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) .block-editor-block-list__layout > .wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) .wp-block-woocommerce-product-categories > .wc-block-product-categories-list > li {
+    background-color: var(--wp--custom--system-ui-surface-nested, transparent);
+    background-image: var(--wp--custom--system-ui-background-image-nested, none);
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+.wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color: inherit;
+}
+
+.wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list) {
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+    border-radius: var(--wp--custom--border-radius);
+    overflow: hidden;
+}
+
+.wp-block-woocommerce-product-categories.is-style-system-list-flush {
+    border: 0;
+    border-radius: 0;
+    overflow: visible;
+}
+
+.wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) > .wc-block-product-categories-list,
+.wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) .wp-block-woocommerce-product-categories > .wc-block-product-categories-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+
+/* Remove parentheses from Woo count badges in List mode */
+.wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) .wc-block-product-categories-list-item-count::before,
+.wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) .wc-block-product-categories-list-item-count::after {
+    display: none !important;
 }

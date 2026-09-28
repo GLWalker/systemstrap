@@ -1,0 +1,210 @@
+/* Woo Product Template — System Panel */
+:is(.wp-block-woocommerce-product-template, .wc-block-product-template).is-style-system-panel-woo:not(.is-product-collection-layout-carousel),
+:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color: inherit;
+}
+
+/* Woo's legacy loop is float-and-margin based. Translate its existing
+   `columns-N` output at the loop boundary so the SystemStrap Product Panel
+   grid uses the same standard component gap as modern Product Template. */
+:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo {
+    --strap-woo-legacy-product-columns: 4;
+    display: grid;
+    grid-template-columns: repeat(var(--strap-woo-legacy-product-columns), minmax(0, 1fr));
+    gap: var(--wp--preset--spacing--30);
+}
+
+/* Woo emits this raw legacy section without a block wrapper. Give the selected
+   composition the same logical page inset that surrounds the Single Product. */
+:is(.woocommerce.product, .woocommerce-cart) :is(.up-sells.upsells.products, .cross-sells.products):has(> ul.products.is-style-system-panel-woo) {
+    box-sizing: border-box;
+    inline-size: min(100%, var(--wp--style--global--wide-size));
+    padding-inline-start: calc(var(--wp--style--root--padding-left) + var(--wp--preset--spacing--30));
+    padding-inline-end: calc(var(--wp--style--root--padding-right) + var(--wp--preset--spacing--30));
+    margin-inline: auto;
+}
+
+/* Woo's float-loop clearfix pseudo-elements become grid items when the
+   selected legacy loop adopts the Product Panel grid contract. */
+:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo::before,
+:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo::after {
+    content: none;
+    display: none;
+}
+
+:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo.columns-1 {
+    --strap-woo-legacy-product-columns: 1;
+}
+
+:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo.columns-2 {
+    --strap-woo-legacy-product-columns: 2;
+}
+
+:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo.columns-3 {
+    --strap-woo-legacy-product-columns: 3;
+}
+
+:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo.columns-5 {
+    --strap-woo-legacy-product-columns: 5;
+}
+
+:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo.columns-6 {
+    --strap-woo-legacy-product-columns: 6;
+}
+
+/* Match Woo's own legacy small-screen loop contract: one-column loops remain
+   one column and all other `columns-N` loops reduce to two. */
+@media (max-width: 768px) {
+    :is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo:not(.columns-1) {
+        --strap-woo-legacy-product-columns: 2;
+    }
+}
+
+:is(.wp-block-woocommerce-product-template, .wc-block-product-template).is-style-system-panel-woo > li.wc-block-product,
+:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo > li.product {
+    display: flex;
+    flex-direction: column;
+    gap: var(--strap-system-panel-content-gap);
+    margin: 0;
+    color: inherit;
+}
+
+/* Legacy Linked Product Upsells exposes the same public product-card roles
+   through Woo's `ul.products > li.product` loop rather than Product Template. */
+:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo > li.product {
+    float: none;
+    width: auto;
+    min-width: 0;
+}
+
+/* Legacy Woo emits a compact `.onsale` span inside the product link. The
+   selected Panel mapping gives that existing sale state the promotional
+   SystemStrap treatment without changing Woo's markup or sale logic. */
+:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo > li.product > .woocommerce-LoopProduct-link > .onsale {
+    box-sizing: border-box;
+    display: grid;
+    place-items: center;
+    inline-size: fit-content;
+    min-inline-size: 0;
+    min-block-size: 0;
+    aspect-ratio: 1;
+    padding: var(--wp--custom--badge-padding-y) var(--wp--custom--badge-padding-x);
+    margin: 0;
+    border: var(--wp--custom--border-width) var(--wp--custom--border-style) var(--wp--preset--color--light);
+    border-radius: 50%;
+    background-color: var(--wp--preset--color--warning);
+    color: var(--wp--preset--color--contrast);
+    box-shadow: var(--wp--preset--shadow--lg);
+    font-family: var(--wp--preset--font-family--heading);
+    font-size: var(--wp--custom--badge-font-size);
+    font-weight: 900;
+    line-height: 1;
+    text-align: center;
+    text-transform: uppercase;
+    white-space: nowrap;
+    position: absolute;
+    inset-block-start: var(--wp--preset--spacing--20);
+    inset-inline-end: var(--wp--preset--spacing--20);
+    inset-inline-start: auto;
+    z-index: 1;
+    transform: rotate(8deg);
+}
+
+:is(.wp-block-woocommerce-product-template, .wc-block-product-template).is-style-system-panel-woo:not(.is-product-collection-layout-carousel) > li.wc-block-product {
+    min-width: 0;
+}
+
+:is(.wp-block-woocommerce-product-template, .wc-block-product-template).is-style-system-panel-woo > li.wc-block-product > *,
+:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo > li.product > * {
+    margin-block: 0 !important;
+}
+
+/* The legacy loop keeps image, title, and price inside Woo's existing product
+   link. Map only that structural nesting to the Product Panel content rhythm. */
+:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo > li.product > .woocommerce-LoopProduct-link {
+    display: flex;
+    flex-direction: column;
+    gap: var(--strap-system-panel-content-gap);
+    color: inherit;
+}
+
+:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo > li.product .woocommerce-loop-product__title,
+:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo > li.product .price {
+    margin-block: 0 !important;
+    padding-inline: var(--strap-system-panel-content-inset-x);
+    text-align: center;
+}
+
+:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo > li.product .woocommerce-loop-product__title {
+    padding-block-start: var(--strap-system-panel-content-inset-y);
+    color: var(--wp--custom--link-color);
+}
+
+:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo > li.product > .button {
+    align-self: center;
+    inline-size: fit-content;
+    max-inline-size: 100%;
+    margin-inline: var(--strap-system-panel-content-inset-x);
+    margin-block-end: var(--strap-system-panel-content-inset-y) !important;
+    text-align: center;
+}
+
+/* Override the Panel's normal structural margin reset only for the direct
+   Woo action wrapper, allowing the vertical Panel card to consume its
+   stretched height while retaining the Button's own presentation. */
+:is(.wp-block-woocommerce-product-template, .wc-block-product-template).is-product-collection-layout-carousel.is-style-system-panel-woo > li.wc-block-product > .wp-block-button.wc-block-components-product-button {
+    margin-block-start: auto !important;
+    margin-block-end: 0 !important;
+}
+
+:is(.wp-block-woocommerce-product-template, .wc-block-product-template).is-style-system-panel-woo > li.wc-block-product > :not(:is(.wp-block-woocommerce-product-image, .wc-block-components-product-image)) {
+    padding-inline: var(--strap-system-panel-content-inset-x);
+}
+
+:is(.wp-block-woocommerce-product-template, .wc-block-product-template).is-style-system-panel-woo > li.wc-block-product > :first-child:not(:is(.wp-block-woocommerce-product-image, .wc-block-components-product-image)),
+:is(.wp-block-woocommerce-product-template, .wc-block-product-template).is-style-system-panel-woo > li.wc-block-product > :is(.wp-block-woocommerce-product-image, .wc-block-components-product-image) + :not(:is(.wp-block-woocommerce-product-image, .wc-block-components-product-image)) {
+    padding-block-start: var(--strap-system-panel-content-inset-y);
+}
+
+:is(.wp-block-woocommerce-product-template, .wc-block-product-template).is-style-system-panel-woo > li.wc-block-product > :last-child:not(:is(.wp-block-woocommerce-product-image, .wc-block-components-product-image)) {
+    padding-block-end: var(--strap-system-panel-content-inset-y);
+}
+
+/* Product Panel is a compact System Panel descendant. Its typography consumes
+   the neutral Panel roles while explicit block font-size controls still win. */
+:is(.wp-block-woocommerce-product-template, .wc-block-product-template).is-style-system-panel-woo > li.wc-block-product > .wp-block-post-title,
+:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo > li.product .woocommerce-loop-product__title {
+    font-family: var(--strap-system-panel-heading-font-family);
+    font-weight: var(--strap-system-panel-heading-font-weight);
+    line-height: var(--strap-system-panel-heading-line-height);
+}
+
+:is(.wp-block-woocommerce-product-template, .wc-block-product-template).is-style-system-panel-woo > li.wc-block-product > .wp-block-post-title:not(.has-font-size),
+:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo > li.product .woocommerce-loop-product__title {
+    font-size: var(--wp--preset--font-size--large);
+}
+
+:is(.wp-block-woocommerce-product-template, .wc-block-product-template).is-style-system-panel-woo > li.wc-block-product > .wp-block-woocommerce-product-price:not(.has-font-size),
+:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo > li.product .price {
+    font-family: var(--strap-system-panel-body-font-family);
+    font-size: var(--strap-system-panel-body-font-size);
+    font-weight: var(--strap-system-panel-body-font-weight);
+    line-height: var(--strap-system-panel-body-line-height);
+}
+
+:is(.wp-block-woocommerce-product-template, .wc-block-product-template).is-style-system-panel-woo > li.wc-block-product > :is(.wp-block-woocommerce-product-image, .wc-block-components-product-image) {
+    overflow: hidden;
+    border-radius: 0 !important;
+}
+
+.wp-block-group.is-style-system-panel > :is(.wp-block-woocommerce-product-template, .wc-block-product-template).is-style-system-panel-woo > li.wc-block-product,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > :is(.wp-block-woocommerce-product-template, .wc-block-product-template).is-style-system-panel-woo > li.wc-block-product {
+    background-color: var(--wp--custom--system-ui-surface-nested, transparent);
+    background-image: var(--wp--custom--system-ui-background-image-nested, none);
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+}

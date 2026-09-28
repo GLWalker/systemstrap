@@ -178,3 +178,97 @@ function strap_reorder_frontend_style_queue() {
 	$wp_styles->queue = array_values( array_unique( $merged ) );
 }
 add_action( 'wp_print_styles', 'strap_reorder_frontend_style_queue', 1 );
+
+/**
+ * Add the first-class WooCommerce lanes while the legacy companion is absent.
+ *
+ * @param array $order Existing bucket order.
+ * @return array
+ */
+function strap_theme_woocommerce_style_bucket_order( $order ) {
+	if ( ! function_exists( 'strap_should_load_woocommerce_integration' ) || ! strap_should_load_woocommerce_integration() ) {
+		return $order;
+	}
+
+	$new_order = array();
+
+	foreach ( $order as $bucket ) {
+		if ( 'core_blocks' === $bucket ) {
+			$new_order[] = 'woocommerce_plugin';
+		}
+
+		if ( 'theme_rest' === $bucket ) {
+			$new_order[] = 'woocommerce_variations';
+		}
+
+		$new_order[] = $bucket;
+	}
+
+	return $new_order;
+}
+add_filter( 'strap_style_bucket_order', 'strap_theme_woocommerce_style_bucket_order' );
+
+/**
+ * Classify WooCommerce-owned styles and theme-owned Woo variation aliases.
+ *
+ * @param array     $buckets   Existing buckets.
+ * @param WP_Styles $wp_styles Styles registry.
+ * @return array
+ */
+function strap_theme_woocommerce_categorize_styles( $buckets, $wp_styles ) {
+	if ( ! function_exists( 'strap_should_load_woocommerce_integration' ) || ! strap_should_load_woocommerce_integration() ) {
+		return $buckets;
+	}
+
+	$buckets['woocommerce_plugin']     = $buckets['woocommerce_plugin'] ?? array();
+	$buckets['woocommerce_variations'] = $buckets['woocommerce_variations'] ?? array();
+	$variation_prefixes                = array(
+		'strap-woocommerce-product-panel',
+		'strap-woocommerce-product-list',
+		'strap-woocommerce-account-nav',
+		'strap-woocommerce-application',
+		'strap-woocommerce-tables',
+		'strap-woocommerce-addresses',
+		'strap-woocommerce-blocks',
+		'strap-woocommerce-product-review-template-',
+		'strap-woocommerce-archive-reviews-',
+		'strap-woocommerce-product-reviews-pagination-',
+	);
+
+	foreach ( array( 'remainder', 'theme_rest' ) as $pool ) {
+		if ( empty( $buckets[ $pool ] ) ) {
+			continue;
+		}
+
+		$remaining = array();
+
+		foreach ( $buckets[ $pool ] as $handle ) {
+			$src          = isset( $wp_styles->registered[ $handle ]->src ) && is_string( $wp_styles->registered[ $handle ]->src ) ? $wp_styles->registered[ $handle ]->src : '';
+			$is_variation = false;
+
+			foreach ( $variation_prefixes as $prefix ) {
+				if ( str_starts_with( $handle, $prefix ) ) {
+					$is_variation = true;
+					break;
+				}
+			}
+
+			if ( $is_variation ) {
+				$buckets['woocommerce_variations'][] = $handle;
+				continue;
+			}
+
+			if ( str_contains( $src, '/wp-content/plugins/woocommerce/' ) || str_starts_with( $handle, 'wc-' ) || str_starts_with( $handle, 'woocommerce-' ) ) {
+				$buckets['woocommerce_plugin'][] = $handle;
+				continue;
+			}
+
+			$remaining[] = $handle;
+		}
+
+		$buckets[ $pool ] = $remaining;
+	}
+
+	return $buckets;
+}
+add_filter( 'strap_style_buckets', 'strap_theme_woocommerce_categorize_styles', 10, 2 );

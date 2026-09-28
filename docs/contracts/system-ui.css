@@ -229,9 +229,8 @@
 
 /*
  * Woo Product Template — System Panel Woo / System List Woo / System List Flush Woo
- * Runtime: systemstrap-woocommerce/assets/css/style-variations/
- * woocommerce-product-template-system-panel-woo.css and
- * woocommerce-product-template-system-list-woo.css
+ * Runtime: assets/css/style-variations/woocommerce-product-template-panel.css
+ * and assets/css/style-variations/woocommerce-product-template-list.css
  *
  * Direct li.wc-block-product items receive `.strap-panel-surface`, then
  * consume its Panel insets, compact content gap, and heading/body typography
@@ -239,21 +238,53 @@
  * Template typography controls remain authoritative.
  * System List Woo supplies the standalone List shell border, radius, overflow,
  * and shared `--wp--custom--shadow`; List Flush remains without outer chrome.
- * Both List treatments preserve WooCommerce Stack/Grid layout and item sizing.
+ * Both List treatments preserve WooCommerce Stack/Grid/Carousel layout and
+ * item sizing.
  * Carousel retains WooCommerce ownership of its Product Template root, track,
- * widths, overflow, scrolling, controls, and hydration. System List Woo and
- * System List Flush Woo intentionally remain unavailable in Carousel mode.
+ * widths, overflow, scrolling, controls, and hydration. All three authored
+ * presentations may style direct Carousel cards without styling its track.
+ */
+
+/*
+ * Woo Product Categories — System Badge / System Flat List / System List /
+ * System List Flush
+ * Runtime:
+ * - inc/plugin-compatibility.php
+ * - assets/css/main-styles.css
+ * - assets/css/style-variations/core-categories-system-list.css
+ * - assets/css/style-variations/core-categories-system-flat-list.css
+ * - assets/css/style-variations/core-categories-system-badge.css
+ *
+ * Woo's dynamic render retains ownership of category queries, hierarchy,
+ * links, images, counts, and ServerSideRender. Native Woo selectors in the
+ * Categories component stylesheet retain frontend presentation ownership.
+ * Only admin renders and block-renderer REST requests with `context=edit` map
+ * Woo's public block root, list root, and count spans to the corresponding
+ * Core Categories roles so the canonical assets can match ServerSideRender
+ * markup inside the editor.
+ *
+ * Woo count parentheses are pseudo-elements. The narrow shared badge rule in
+ * `main-styles.css` suppresses only those pseudo-elements when one of the four
+ * supported System UI styles is active. Woo Product Categories must not enter the
+ * PHP regex that removes literal count-parenthesis markup.
+ *
+ * These canonical variation assets and shared System UI masters are loaded
+ * through `wp_enqueue_block_style()` and use their physical file modification
+ * time as the asset version. The shared `main-styles.css` badge rule is loaded
+ * through `add_editor_style()` in the editor and a file-versioned
+ * `strap-main-styles` handle on the frontend. Registration alone is not editor
+ * parity: the iframe must receive the resolved handle, current URL, and
+ * matching mapped roles.
  */
 
 /*
  * Woo Product Reviews baseline
- * Runtime: systemstrap-woocommerce/inc/assets.php,
- * systemstrap-woocommerce/inc/presentation.php, and
- * systemstrap-woocommerce/assets/js/editor-compatibility.js
+ * Runtime: inc/woocommerce-integration.php and
+ * assets/js/variations/strap-woocommerce-editor-compatibility.js
  *
  * Woo's style-capable Product Review Template, All Reviews, Reviews by Product,
  * and Reviews by Category blocks may consume the existing Comments System List
- * or System Panel masters through their normal Styles UI. The companion adds
+ * or System Panel masters through their normal Styles UI. The first-class integration adds
  * only a selected public-root `.strap-comments-thread` bridge; ratings,
  * author/meta/content data, review submission, query, hydration, and form
  * behavior remain WooCommerce-owned. The client editor bridge belongs on the
@@ -261,20 +292,21 @@
  * forward block attributes into their rendered `useBlockProps()` root. The
  * shared Comments masters map that neutral wrapper to the equivalent editor
  * Product Review Template root or archive `ul.wc-block-review-list`; no
- * companion editor paint exists. Legacy Product Details Reviews remains native.
+ * Woo-specific editor paint exists. Legacy Product Details Reviews remains native.
  */
 
 /*
  * Woo Reviews Pagination bridge
- * Runtime: assets/css/system-ui-pagination.css and
- * systemstrap-woocommerce/inc/presentation.php
+ * Runtime: assets/css/system-ui-pagination.css,
+ * inc/woocommerce-integration.php, and
+ * assets/js/variations/strap-woocommerce-editor-compatibility.js
  *
- * The companion registers all seven System UI Pagination Styles UI treatments
+ * The first-class integration registers all seven System UI Pagination Styles UI treatments
  * for modern Product Reviews Pagination and its public Previous, Numbers, and
  * Next child blocks. The shared master consumes those public block classes
  * directly; parent treatment variables inherit to children and an authored
  * child treatment overrides only that role. Legacy Product Details pagination
- * remains native because it has no block Styles UI or companion mapping. The
+ * remains native because it has no block Styles UI or first-class mapping. The
  * shared theme master owns the modern public block form, including standard
  * controls, current state, and unframed non-interactive dots. Woo retains
  * anchors, current-page semantics, links, router directives, and review
@@ -282,51 +314,22 @@
  */
 
 /*
- * Woo My Account mapped presentations
- * Runtime: systemstrap-woocommerce/assets/css/style-variations/
- * woocommerce-my-account-mapped-woo.css
+ * Woo mapped presentations
+ * Runtime: inc/woocommerce-integration.php and the Woo adapter files under
+ * assets/css/style-variations/.
  *
- * Account Navigation, Woo Tables, and Woo Addresses are the current Class C application
- * components. They receive optional whole-component mappings through the
- * companion settings resolver and public Woo hooks. Native WooCommerce is terminal. The
- * SystemStrap theme compatibility layer owns Account typography, form controls,
- * semantic table rhythm, notices, focus, invalid/disabled states, and responsive
- * baseline; it does not add optional System UI chrome.
- *
- * Account Forms and Notices do not have companion mappings or companion-only
- * presentation CSS. Woo Tables is one optional Class C mapping: Native leaves
- * the stable Account Orders, Downloads, Payment Methods, and View Order
- * semantic tables untouched; System Panel adapts only their public output
- * wrapper to `.strap-table-surface`. The shared theme master owns the surface
- * and table seams while Woo retains `shop_table_responsive`, `data-title`,
- * action controls, and narrow-screen reflow.
- * When Woo renders a native Orders notice before its semantic table, the
- * companion adapter gives only that direct notice the shared `spacing--20`
- * logical inline gutter with narrowly scoped cascade protection and normalizes
- * only the following table boundary against the existing
- * Account notice `spacing--30` end margin; the notice remains native.
- * Woo Addresses is one optional Class C mapping limited to the My Account
- * address overview and authenticated View Order customer details. The
- * companion adds `.strap-panel-surface` directly to Woo's public
- * `.woocommerce-Address` cards and View Order `<address>` elements, so the
- * shared Panel master owns the single border, radius, dynamic surface, and
- * shadow. Overview cards receive only the standard `spacing--30` component
- * inset because native Woo supplies none; View Order retains its existing Woo
- * address padding. Woo retains titles, populated-or-empty address content,
- * Add/Edit actions, columns, and responsive behavior. Edit Address, Checkout
- * Fields, and Order Confirmation address blocks remain outside the mapping.
- *
- * Account Navigation maps the Page List System List DOM roles directly:
- * mapped wrapper → component root; Woo nav → list root; Woo li → row; Woo a →
- * interactive item; Woo is-active/aria-current → current state. The shared
- * System List shell rule in `core-group-system-panel.css` gives the standalone
- * Page List, Archives, and Categories System List roots their outer
- * `--wp--custom--shadow`, in addition to each block's border, radius, and
- * overflow. A direct-child System List inside a System Panel is explicitly
- * flattened with `box-shadow: none !important`, because that Panel owns the
- * card shadow instead. An Account System List mapping must port the standalone
- * System List shadow token at its mapped shell; System List Flush remains
- * without standalone outer chrome.
+ * Product Cards default to Panel and expose `is-style-native-woo` as a real
+ * authored opt-out. Linked Products/Upsells maps only the stable legacy loop
+ * and block Cross-sells Product Template. Linked Products Flat Panel adds the
+ * canonical Flat Panel role to the same mapped cards. Account Navigation Panel
+ * and Flat Panel paint only the outer adapter; List variants map the existing
+ * navigation rows, while Flat List assigns the canonical Page List Flat List
+ * roles to Woo's existing list. Tables and Addresses expose Panel and Flat
+ * Panel through their canonical Table or Group surface masters. Cart and
+ * Checkout retain Woo markup and behavior and receive only selected neutral
+ * surface classes plus narrow structural composition.
+ * Carousel presentation is limited to direct cards and existing public control
+ * classes; track, sizing, scrolling, directives, and interaction remain Woo-owned.
  */
 
 /* Pagination layering contract: dynamic color routing supplies the raw editor
@@ -398,6 +401,13 @@
  * textual Core Buttons only, SystemStrap maps those selections to a stable
  * control scale instead of the global heading scale. The icon-only Button
  * contract remains fixed at 44px and is explicitly excluded.
+ *
+ * The first-class Woo Product Button integration registers Link, Pill, Pill
+ * Outline, Square, and Square Outline `-woo` aliases. Those aliases target
+ * only `.wp-block-button.wc-block-components-product-button` and its direct
+ * public button child, then consume these same canonical declarations and the
+ * palette-aware outline routing from `inc/dynamic-styles.php`. Native remains
+ * the default Product Button treatment.
  */
 
 /*
@@ -408,8 +418,8 @@
  * paint. Dialog Close consumes it on its real button. The legacy
  * `.wp-block-button.is-style-system-btn-icon .wp-block-button__link` selector
  * remains a consumer for existing SystemStrap carousel markup. WooCommerce
- * Product Collection Carousel receives the utility through its companion's
- * public render adapter. Its `strap-icon-button--woo` marker keeps native
+ * Product Collection Carousel may receive the utility through the later
+ * first-class Carousel adapter. Its `strap-icon-button--woo` marker keeps native
  * disabled-state gating, SVG-centering, and focus-visible behavior as
  * Woo-owned adapter concerns while consuming the shared hover paint values.
  */
@@ -2850,8 +2860,9 @@ body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[clas
  *
  * The shared runtime owns only surfaces and interaction. Typography remains
  * inherited from theme.json. Page-break navigation is baseline-only. The
- * SystemStrap WooCommerce consumes this exact token contract through normal
- * modern parent/child block styles and a legacy-only public markup bridge.
+ * The first-class SystemStrap WooCommerce integration consumes this exact
+ * token contract through normal modern parent/child block styles. Its narrow
+ * label adapter changes only visible text when an authored arrow remains;
  * WooCommerce retains pagination markup, navigation, and state semantics.
  */
 

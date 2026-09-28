@@ -6,11 +6,24 @@ This file is a CONTRACT.
 
 ## Contract Version
 
-Current Version: 3.24
+Current Version: 3.25
 
 Last Updated: 2026-07-30
 
 ## Change Log
+
+### 3.25
+
+Added the Phase A first-class Woo variation registrations. Product Button
+registers Link, Pill, Pill Outline, Square, and Square Outline aliases against
+the canonical Button CSS without new Woo stylesheets. Product Review Template
+and the three archive Review blocks reuse the canonical Comments List/Panel
+files through narrow frontend/editor role adapters. Product Reviews Pagination
+and its Previous, Numbers, and Next children reuse all seven canonical
+Pagination marker files and the shared master. Every migrated physical CSS or
+JavaScript asset uses its file modification time for cache identity. Later
+Product Cards, Account, Carousel, Upsells, Cart, Checkout, Addresses, and Table
+runtime mappings remain deferred.
 
 ### 3.24
 

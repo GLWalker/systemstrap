@@ -1,0 +1,106 @@
+/*
+ * Locked Woo application roots retain Woo's content structure. The shared
+ * Woo sidebar layout owns the major-column relationship; this adapter supplies
+ * its semantic gap only when both adjacent regions consume System Panel.
+ */
+.strap-woocommerce-application-panel {
+	/* Vertical padding is delegated to inner items to support full-bleed separators */
+}
+
+/*
+ * When the layout contains adjacent panel surfaces, prevent flex from
+ * stretching the columns to equal heights so they hug their content.
+ */
+:is(
+	.wc-block-components-sidebar-layout:has(> .wp-block-woocommerce-cart-items-block > .wp-block-woocommerce-cart-line-items-block.strap-panel-surface):has(> .wp-block-woocommerce-cart-totals-block > .wp-block-woocommerce-cart-order-summary-block.strap-panel-surface),
+	.wc-block-components-sidebar-layout:has(> .wp-block-woocommerce-checkout-fields-block.strap-panel-surface):has(> .wp-block-woocommerce-checkout-totals-block > .wp-block-woocommerce-checkout-order-summary-block.strap-panel-surface)
+) {
+	align-items: flex-start;
+	column-gap: var(--wp--preset--spacing--40);
+}
+
+:is(
+	.wc-block-components-sidebar-layout:has(> .wp-block-woocommerce-cart-items-block > .wp-block-woocommerce-cart-line-items-block.strap-panel-surface):has(> .wp-block-woocommerce-cart-totals-block > .wp-block-woocommerce-cart-order-summary-block.strap-panel-surface),
+	.wc-block-components-sidebar-layout:has(> .wp-block-woocommerce-checkout-fields-block.strap-panel-surface):has(> .wp-block-woocommerce-checkout-totals-block > .wp-block-woocommerce-checkout-order-summary-block.strap-panel-surface)
+) > .wc-block-components-main {
+	flex: 65 1 0;
+	padding-inline-end: 0;
+	width: auto;
+}
+
+:is(
+	.wc-block-components-sidebar-layout:has(> .wp-block-woocommerce-cart-items-block > .wp-block-woocommerce-cart-line-items-block.strap-panel-surface):has(> .wp-block-woocommerce-cart-totals-block > .wp-block-woocommerce-cart-order-summary-block.strap-panel-surface),
+	.wc-block-components-sidebar-layout:has(> .wp-block-woocommerce-checkout-fields-block.strap-panel-surface):has(> .wp-block-woocommerce-checkout-totals-block > .wp-block-woocommerce-checkout-order-summary-block.strap-panel-surface)
+) > .wc-block-components-sidebar {
+	flex: 35 1 0;
+	padding-inline-start: 0;
+	width: auto;
+}
+
+/*
+ * To ensure internal rules/borders run flush to the panel edges,
+ * the container itself must not have horizontal padding. Instead,
+ * padding is pushed to the inner items.
+ */
+.wp-block-woocommerce-cart-line-items-block.strap-woocommerce-application-panel {
+	border: 1px solid var(--wp--custom--system-ui-border-color);
+	border-collapse: separate;
+	border-spacing: 0;
+}
+.wp-block-woocommerce-cart-line-items-block.strap-woocommerce-application-panel :is(th, td):first-child {
+	padding-inline-start: var(--strap-system-panel-padding-x, var(--wp--preset--spacing--30));
+}
+
+.wp-block-woocommerce-cart-line-items-block.strap-woocommerce-application-panel :is(th, td):last-child {
+	padding-inline-end: var(--strap-system-panel-padding-x, var(--wp--preset--spacing--30));
+}
+
+/* Ensure sufficient vertical padding on the outer edges of the table */
+.wp-block-woocommerce-cart-line-items-block.strap-woocommerce-application-panel th {
+	padding-block-start: var(--strap-system-panel-padding-y, var(--wp--preset--spacing--30));
+}
+
+.wp-block-woocommerce-cart-line-items-block.strap-woocommerce-application-panel tr:last-child td {
+	padding-block-end: var(--strap-system-panel-padding-y, var(--wp--preset--spacing--30));
+}
+
+.wp-block-woocommerce-cart-order-summary-block.strap-woocommerce-application-panel > .wp-block-woocommerce-cart-order-summary-heading-block {
+	padding: var(--strap-system-panel-padding-y, var(--wp--preset--spacing--30)) var(--strap-system-panel-padding-x, var(--wp--preset--spacing--30));
+	border-bottom: 1px solid var(--wp--custom--system-ui-border-color);
+	margin: 0;
+}
+
+.wp-block-woocommerce-cart-order-summary-block.strap-woocommerce-application-panel > *:not(.wp-block-woocommerce-cart-order-summary-heading-block) {
+	padding-inline: var(--strap-system-panel-padding-x, var(--wp--preset--spacing--30));
+}
+
+.wp-block-woocommerce-cart-order-summary-block.strap-woocommerce-application-panel > *:last-child {
+	padding-block-end: var(--strap-system-panel-padding-y, var(--wp--preset--spacing--30));
+}
+
+.wp-block-woocommerce-checkout-order-summary-block.strap-woocommerce-application-panel {
+	padding: var(--strap-system-panel-padding-y, var(--wp--preset--spacing--30)) var(--strap-system-panel-padding-x, var(--wp--preset--spacing--30));
+}
+
+/* 
+ * Checkout Fields removes root horizontal padding to preserve full-bleed separators.
+ * We clear WooCommerce's native step-number left padding to ensure balanced spacing.
+ */
+.wp-block-woocommerce-checkout-fields-block.strap-woocommerce-application-panel {
+	padding-block: var(--strap-system-panel-padding-y, var(--wp--preset--spacing--30));
+	padding-inline: 0;
+}
+
+.wp-block-woocommerce-checkout-fields-block.strap-woocommerce-application-panel .wc-block-components-checkout-step--with-step-number {
+	padding-inline: 0;
+}
+
+/* Push horizontal padding to semantic inner wrappers */
+.wp-block-woocommerce-checkout-fields-block.strap-woocommerce-application-panel .wc-block-components-checkout-step__heading-container,
+.wp-block-woocommerce-checkout-fields-block.strap-woocommerce-application-panel .wc-block-components-checkout-step__content,
+.wp-block-woocommerce-checkout-fields-block.strap-woocommerce-application-panel .wc-block-checkout__terms,
+.wp-block-woocommerce-checkout-fields-block.strap-woocommerce-application-panel .wc-block-checkout__actions,
+.wp-block-woocommerce-checkout-fields-block.strap-woocommerce-application-panel .wc-block-checkout__guest-checkout-notice,
+.wp-block-woocommerce-checkout-fields-block.strap-woocommerce-application-panel .wc-block-checkout__login-prompt {
+	padding-inline: var(--strap-system-panel-padding-x, var(--wp--preset--spacing--30));
+}

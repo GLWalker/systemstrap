@@ -25,7 +25,7 @@ function strap_register_block_styles() {
 			'strap-system-ui-pagination',
 			$theme_uri . 'assets/css/system-ui-pagination.css',
 			array(),
-			wp_get_theme()->get( 'Version' )
+			filemtime( $pagination_stylesheet )
 		);
 	}
 
@@ -34,7 +34,7 @@ function strap_register_block_styles() {
 			'strap-panel-surface',
 			$theme_uri . 'assets/css/system-ui-panel-surface.css',
 			array(),
-			wp_get_theme()->get( 'Version' )
+			filemtime( $panel_surface_stylesheet )
 		);
 	}
 
@@ -43,7 +43,7 @@ function strap_register_block_styles() {
 			'strap-panel-structure',
 			$theme_uri . 'assets/css/system-ui-panel-structure.css',
 			array(),
-			wp_get_theme()->get( 'Version' )
+			filemtime( $panel_structure_stylesheet )
 		);
 	}
 
@@ -52,7 +52,7 @@ function strap_register_block_styles() {
 			'strap-table-surface',
 			$theme_uri . 'assets/css/system-ui-table-surface.css',
 			array(),
-			wp_get_theme()->get( 'Version' )
+			filemtime( $table_surface_stylesheet )
 		);
 	}
 
@@ -136,6 +136,7 @@ function strap_register_block_styles() {
 					'src'    => $theme_uri . 'assets/css/style-variations/' . basename( $file ),
 					'path'   => $file,
 					'deps'   => $deps,
+					'ver'    => filemtime( $file ),
 				)
 			);
 
@@ -171,6 +172,7 @@ function strap_register_block_styles() {
 							'src'    => $theme_uri . 'assets/css/style-variations/' . basename( $file ),
 							'path'   => $file,
 							'deps'   => $deps,
+							'ver'    => filemtime( $file ),
 						)
 					);
 
