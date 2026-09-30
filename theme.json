@@ -2047,6 +2047,11 @@
 		},
 		{
 			"area": "uncategorized",
+			"name": "part-woocommerce-catalog-sidebar",
+			"title": "WooCommerce Catalog Sidebar Part"
+		},
+		{
+			"area": "uncategorized",
 			"name": "part-woocommerce-catalog",
 			"title": "WooCommerce Catalog Part"
 		},

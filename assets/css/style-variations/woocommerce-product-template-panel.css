@@ -1,25 +1,24 @@
 /* Woo Product Template — System Panel and System Flat Panel */
 :is(.wp-block-woocommerce-product-template, .wc-block-product-template):is(.is-style-system-panel-woo, .is-style-system-flat-panel-woo):not(.is-product-collection-layout-carousel),
-:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo {
+ul.products.strap-woo-product-loop.is-style-system-panel-woo {
     list-style: none;
     margin: 0;
     padding: 0;
     color: inherit;
 }
 
-/* Woo's legacy loop is float-and-margin based. Translate its existing
-   `columns-N` output at the loop boundary so the SystemStrap Product Panel
-   grid uses the same standard component gap as modern Product Template. */
-:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo {
-    --strap-woo-legacy-product-columns: 4;
+/* Woo's classic loop is float-and-margin based. Translate its public loop
+   boundary to an intrinsic grid so unusable nominal columns cannot collapse
+   the shared Product Panel internals. */
+ul.products.strap-woo-product-loop.is-style-system-panel-woo {
     display: grid;
-    grid-template-columns: repeat(var(--strap-woo-legacy-product-columns), minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--wp--custom--medium-width)), 1fr));
     gap: var(--wp--preset--spacing--30);
 }
 
 /* Woo emits this raw legacy section without a block wrapper. Give the selected
    composition the same logical page inset that surrounds the Single Product. */
-:is(.woocommerce.product, .woocommerce-cart) :is(.up-sells.upsells.products, .cross-sells.products):has(> ul.products.is-style-system-panel-woo) {
+:is(.woocommerce.product, .woocommerce-cart) :is(.up-sells.upsells.products, .related.products, .cross-sells.products):has(> ul.products.strap-woo-product-loop.is-style-system-panel-woo) {
     box-sizing: border-box;
     inline-size: min(100%, var(--wp--style--global--wide-size));
     padding-inline-start: calc(var(--wp--style--root--padding-left) + var(--wp--preset--spacing--30));
@@ -27,44 +26,39 @@
     margin-inline: auto;
 }
 
+/* Single Product legacy loops retain empty tracks instead of expanding a
+   short Upsells/Related result set. Archives and Cart Cross-sells keep their
+   existing loop ownership. */
+.woocommerce.product :is(.up-sells.upsells.products, .related.products):has(> ul.products.strap-woo-product-loop.is-style-system-panel-woo) {
+    container: strap-woo-legacy-products / inline-size;
+}
+
+.woocommerce.product :is(.up-sells.upsells.products, .related.products) > ul.products.strap-woo-product-loop.is-style-system-panel-woo {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@container strap-woo-legacy-products (max-width: 900px) {
+    .woocommerce.product :is(.up-sells.upsells.products, .related.products) > ul.products.strap-woo-product-loop.is-style-system-panel-woo {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@container strap-woo-legacy-products (max-width: 600px) {
+    .woocommerce.product :is(.up-sells.upsells.products, .related.products) > ul.products.strap-woo-product-loop.is-style-system-panel-woo {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
 /* Woo's float-loop clearfix pseudo-elements become grid items when the
    selected legacy loop adopts the Product Panel grid contract. */
-:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo::before,
-:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo::after {
+ul.products.strap-woo-product-loop.is-style-system-panel-woo::before,
+ul.products.strap-woo-product-loop.is-style-system-panel-woo::after {
     content: none;
     display: none;
 }
 
-:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo.columns-1 {
-    --strap-woo-legacy-product-columns: 1;
-}
-
-:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo.columns-2 {
-    --strap-woo-legacy-product-columns: 2;
-}
-
-:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo.columns-3 {
-    --strap-woo-legacy-product-columns: 3;
-}
-
-:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo.columns-5 {
-    --strap-woo-legacy-product-columns: 5;
-}
-
-:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo.columns-6 {
-    --strap-woo-legacy-product-columns: 6;
-}
-
-/* Match Woo's own legacy small-screen loop contract: one-column loops remain
-   one column and all other `columns-N` loops reduce to two. */
-@media (max-width: 768px) {
-    :is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo:not(.columns-1) {
-        --strap-woo-legacy-product-columns: 2;
-    }
-}
-
 :is(.wp-block-woocommerce-product-template, .wc-block-product-template):is(.is-style-system-panel-woo, .is-style-system-flat-panel-woo) > li.wc-block-product,
-:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo > li.product {
+ul.products.strap-woo-product-loop.is-style-system-panel-woo > li.product {
     display: flex;
     flex-direction: column;
     gap: var(--strap-system-panel-content-gap);
@@ -72,9 +66,9 @@
     color: inherit;
 }
 
-/* Legacy Linked Product Upsells exposes the same public product-card roles
-   through Woo's `ul.products > li.product` loop rather than Product Template. */
-:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo > li.product {
+/* Classic Woo exposes the same public product-card roles through
+   `ul.products > li.product` rather than Product Template. */
+ul.products.strap-woo-product-loop.is-style-system-panel-woo > li.product {
     float: none;
     width: auto;
     min-width: 0;
@@ -83,7 +77,7 @@
 /* Legacy Woo emits a compact `.onsale` span inside the product link. The
    selected Panel mapping gives that existing sale state the promotional
    SystemStrap treatment without changing Woo's markup or sale logic. */
-:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo > li.product > .woocommerce-LoopProduct-link > .onsale {
+ul.products.strap-woo-product-loop.is-style-system-panel-woo > li.product > .woocommerce-LoopProduct-link > .onsale {
     box-sizing: border-box;
     display: grid;
     place-items: center;
@@ -118,35 +112,43 @@
 }
 
 :is(.wp-block-woocommerce-product-template, .wc-block-product-template):is(.is-style-system-panel-woo, .is-style-system-flat-panel-woo) > li.wc-block-product > *,
-:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo > li.product > * {
+ul.products.strap-woo-product-loop.is-style-system-panel-woo > li.product > * {
     margin-block: 0 !important;
 }
 
 /* The legacy loop keeps image, title, and price inside Woo's existing product
    link. Map only that structural nesting to the Product Panel content rhythm. */
-:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo > li.product > .woocommerce-LoopProduct-link {
+ul.products.strap-woo-product-loop.is-style-system-panel-woo > li.product > .woocommerce-LoopProduct-link {
     display: flex;
     flex-direction: column;
     gap: var(--strap-system-panel-content-gap);
     color: inherit;
 }
 
-:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo > li.product .woocommerce-loop-product__title,
-:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo > li.product .price {
+ul.products.strap-woo-product-loop.is-style-system-panel-woo > li.product > .woocommerce-LoopProduct-link > img {
+    display: block;
+    inline-size: 100%;
+    block-size: auto;
+    margin: 0;
+}
+
+ul.products.strap-woo-product-loop.is-style-system-panel-woo > li.product .woocommerce-loop-product__title,
+ul.products.strap-woo-product-loop.is-style-system-panel-woo > li.product .price {
     margin-block: 0 !important;
     padding-inline: var(--strap-system-panel-content-inset-x);
     text-align: center;
 }
 
-:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo > li.product .woocommerce-loop-product__title {
+ul.products.strap-woo-product-loop.is-style-system-panel-woo > li.product .woocommerce-loop-product__title {
     padding-block-start: var(--strap-system-panel-content-inset-y);
+    padding-block-end: 0;
     color: var(--wp--custom--link-color);
 }
 
-:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo > li.product > .button {
+ul.products.strap-woo-product-loop.is-style-system-panel-woo > li.product > .button {
     align-self: center;
     inline-size: fit-content;
-    max-inline-size: 100%;
+    max-inline-size: calc(100% - var(--strap-system-panel-content-inset-x) - var(--strap-system-panel-content-inset-x));
     margin-inline: var(--strap-system-panel-content-inset-x);
     margin-block-end: var(--strap-system-panel-content-inset-y) !important;
     text-align: center;
@@ -173,26 +175,38 @@
     padding-block-end: var(--strap-system-panel-content-inset-y);
 }
 
-/* Product Panel is a compact System Panel descendant. Its typography consumes
-   the neutral Panel roles while explicit block font-size controls still win. */
+/* Product Panel is a compact product-card role. Treatment typography wins over
+   producer-specific defaults so block and classic cards share one scale. */
 :is(.wp-block-woocommerce-product-template, .wc-block-product-template):is(.is-style-system-panel-woo, .is-style-system-flat-panel-woo) > li.wc-block-product > .wp-block-post-title,
-:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo > li.product .woocommerce-loop-product__title {
+ul.products.strap-woo-product-loop.is-style-system-panel-woo > li.product .woocommerce-loop-product__title {
     font-family: var(--strap-system-panel-heading-font-family);
+    font-size: var(--wp--preset--font-size--medium) !important;
     font-weight: var(--strap-system-panel-heading-font-weight);
     line-height: var(--strap-system-panel-heading-line-height);
 }
 
-:is(.wp-block-woocommerce-product-template, .wc-block-product-template):is(.is-style-system-panel-woo, .is-style-system-flat-panel-woo) > li.wc-block-product > .wp-block-post-title:not(.has-font-size),
-:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo > li.product .woocommerce-loop-product__title {
-    font-size: var(--wp--preset--font-size--large);
-}
-
-:is(.wp-block-woocommerce-product-template, .wc-block-product-template):is(.is-style-system-panel-woo, .is-style-system-flat-panel-woo) > li.wc-block-product > .wp-block-woocommerce-product-price:not(.has-font-size),
-:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-panel-woo > li.product .price {
+:is(.wp-block-woocommerce-product-template, .wc-block-product-template):is(.is-style-system-panel-woo, .is-style-system-flat-panel-woo) > li.wc-block-product > .wp-block-woocommerce-product-price,
+ul.products.strap-woo-product-loop.is-style-system-panel-woo > li.product .price {
     font-family: var(--strap-system-panel-body-font-family);
-    font-size: var(--strap-system-panel-body-font-size);
+    font-size: var(--wp--preset--font-size--small) !important;
     font-weight: var(--strap-system-panel-body-font-weight);
     line-height: var(--strap-system-panel-body-line-height);
+}
+
+:is(.wp-block-woocommerce-product-template, .wc-block-product-template):is(.is-style-system-panel-woo, .is-style-system-flat-panel-woo) > li.wc-block-product > .wp-block-button.wc-block-components-product-button > .wc-block-components-product-button__button,
+ul.products.strap-woo-product-loop.is-style-system-panel-woo > li.product > .button {
+    inline-size: fit-content;
+    padding-block: calc(var(--wp--preset--font-size--small) * .5);
+    padding-inline: var(--wp--preset--font-size--medium);
+    font-family: var(--wp--preset--font-family--button);
+    font-size: var(--wp--preset--font-size--small) !important;
+    font-weight: var(--wp--custom--font-weight-button);
+    letter-spacing: 0.03em;
+    line-height: 1.45;
+}
+
+:is(.wp-block-woocommerce-product-template, .wc-block-product-template):is(.is-style-system-panel-woo, .is-style-system-flat-panel-woo) > li.wc-block-product > .wp-block-button.wc-block-components-product-button > .wc-block-components-product-button__button {
+    max-inline-size: 100%;
 }
 
 :is(.wp-block-woocommerce-product-template, .wc-block-product-template):is(.is-style-system-panel-woo, .is-style-system-flat-panel-woo) > li.wc-block-product > :is(.wp-block-woocommerce-product-image, .wc-block-components-product-image) {
@@ -207,4 +221,111 @@
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     box-shadow: none !important;
+}
+
+/* Newest Products uses Woo's server-rendered block-grid roles rather than a
+   Product Template. Normalize those roles into the same Product Panel card
+   contract without taking ownership of Woo's selected rows or columns. */
+.wp-block-woocommerce-product-new.strap-woo-product-new.is-style-system-panel-woo.has-1-columns { --strap-woo-product-new-columns: 1; }
+.wp-block-woocommerce-product-new.strap-woo-product-new.is-style-system-panel-woo.has-2-columns { --strap-woo-product-new-columns: 2; }
+.wp-block-woocommerce-product-new.strap-woo-product-new.is-style-system-panel-woo.has-3-columns { --strap-woo-product-new-columns: 3; }
+.wp-block-woocommerce-product-new.strap-woo-product-new.is-style-system-panel-woo.has-4-columns { --strap-woo-product-new-columns: 4; }
+.wp-block-woocommerce-product-new.strap-woo-product-new.is-style-system-panel-woo.has-5-columns { --strap-woo-product-new-columns: 5; }
+.wp-block-woocommerce-product-new.strap-woo-product-new.is-style-system-panel-woo.has-6-columns { --strap-woo-product-new-columns: 6; }
+.wp-block-woocommerce-product-new.strap-woo-product-new.is-style-system-panel-woo.has-7-columns { --strap-woo-product-new-columns: 7; }
+.wp-block-woocommerce-product-new.strap-woo-product-new.is-style-system-panel-woo.has-8-columns { --strap-woo-product-new-columns: 8; }
+
+.wp-block-woocommerce-product-new.strap-woo-product-new.is-style-system-panel-woo > .wc-block-grid__products {
+    display: grid;
+    grid-template-columns: repeat(var(--strap-woo-product-new-columns, 1), minmax(0, 1fr));
+    gap: var(--wp--preset--spacing--30);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color: inherit;
+}
+
+.wp-block-woocommerce-product-new.strap-woo-product-new.is-style-system-panel-woo > .wc-block-grid__products > .wc-block-grid__product {
+    display: flex;
+    flex-direction: column;
+    gap: var(--strap-system-panel-content-gap);
+    inline-size: auto;
+    max-inline-size: none;
+    min-inline-size: 0;
+    margin: 0;
+    color: inherit;
+}
+
+@media (min-width: 481px) and (max-width: 600px) {
+    .wp-block-woocommerce-product-new.strap-woo-product-new.is-style-system-panel-woo:not(.has-1-columns) {
+        --strap-woo-product-new-columns: 2;
+    }
+}
+
+@media (max-width: 480px) {
+    .wp-block-woocommerce-product-new.strap-woo-product-new.is-style-system-panel-woo {
+        --strap-woo-product-new-columns: 1;
+    }
+}
+
+.wp-block-woocommerce-product-new.strap-woo-product-new.is-style-system-panel-woo .wc-block-grid__product-link {
+    display: flex;
+    flex-direction: column;
+    gap: var(--strap-system-panel-content-gap);
+    color: inherit;
+}
+
+.wp-block-woocommerce-product-new.strap-woo-product-new.is-style-system-panel-woo .wc-block-grid__product-image {
+    margin: 0;
+    overflow: hidden;
+    border-radius: 0 !important;
+}
+
+.wp-block-woocommerce-product-new.strap-woo-product-new.is-style-system-panel-woo .wc-block-grid__product-image img {
+    display: block;
+    inline-size: 100%;
+    block-size: auto;
+    margin: 0;
+}
+
+.wp-block-woocommerce-product-new.strap-woo-product-new.is-style-system-panel-woo :is(.wc-block-grid__product-title, .wc-block-grid__product-price, .wc-block-grid__product-rating) {
+    margin-block: 0;
+    padding-inline: var(--strap-system-panel-content-inset-x);
+    text-align: center;
+}
+
+.wp-block-woocommerce-product-new.strap-woo-product-new.is-style-system-panel-woo .wc-block-grid__product-title {
+    padding-block-start: var(--strap-system-panel-content-inset-y);
+    color: var(--wp--custom--link-color);
+    font-family: var(--strap-system-panel-heading-font-family);
+    font-size: var(--wp--preset--font-size--medium) !important;
+    font-weight: var(--strap-system-panel-heading-font-weight);
+    line-height: var(--strap-system-panel-heading-line-height);
+}
+
+.wp-block-woocommerce-product-new.strap-woo-product-new.is-style-system-panel-woo .wc-block-grid__product-price {
+    font-family: var(--strap-system-panel-body-font-family);
+    font-size: var(--wp--preset--font-size--small) !important;
+    font-weight: var(--strap-system-panel-body-font-weight);
+    line-height: var(--strap-system-panel-body-line-height);
+}
+
+.wp-block-woocommerce-product-new.strap-woo-product-new.is-style-system-panel-woo .wc-block-grid__product-add-to-cart {
+    align-self: center;
+    inline-size: fit-content;
+    max-inline-size: calc(100% - var(--strap-system-panel-content-inset-x) - var(--strap-system-panel-content-inset-x));
+    margin-inline: var(--strap-system-panel-content-inset-x);
+    margin-block-end: var(--strap-system-panel-content-inset-y);
+}
+
+.wp-block-woocommerce-product-new.strap-woo-product-new.is-style-system-panel-woo .wc-block-grid__product-add-to-cart > .wp-block-button__link {
+    inline-size: fit-content;
+    max-inline-size: 100%;
+    padding-block: calc(var(--wp--preset--font-size--small) * .5);
+    padding-inline: var(--wp--preset--font-size--medium);
+    font-family: var(--wp--preset--font-family--button);
+    font-size: var(--wp--preset--font-size--small) !important;
+    font-weight: var(--wp--custom--font-weight-button);
+    letter-spacing: 0.03em;
+    line-height: 1.45;
 }

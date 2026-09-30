@@ -804,12 +804,77 @@ function strap_woocommerce_render_product_template_presentation( $block_content,
 }
 
 /**
- * Bridge the selected Linked Products treatment to Woo's legacy product loop.
+ * Map Woo's Newest Products block grid to the global product-card treatment.
  *
- * Woo's `single-product/up-sells.php` sets the public loop name to `up-sells`
- * before it renders its existing `<ul class="products">`. The loop-start filter
- * is therefore the narrowest public boundary: no query, template, product
- * markup, or cross-sell loop is changed.
+ * Newest Products has no authored block-style control. Its presentation is
+ * therefore resolved directly from Linked Products / Upsells while Woo keeps
+ * ownership of its query, content visibility, rows, and native grid columns.
+ *
+ * @param string $block_content Rendered block markup.
+ * @return string
+ */
+function strap_woocommerce_render_newest_products_presentation( $block_content ) {
+	$treatment = strap_woocommerce_get_component_treatment( 'linked_products_upsells' );
+
+	if ( 'native' === $treatment || ! class_exists( 'WP_HTML_Tag_Processor' ) ) {
+		return $block_content;
+	}
+
+	$registry   = strap_woocommerce_component_registry();
+	$definition = $registry['linked_products_upsells']['treatments'][ $treatment ] ?? array();
+	$processor  = new WP_HTML_Tag_Processor( $block_content );
+
+	if ( ! $processor->next_tag( array( 'class_name' => 'wp-block-woocommerce-product-new' ) ) ) {
+		return $block_content;
+	}
+
+	$processor->add_class( 'strap-woo-product-new' );
+
+	foreach ( explode( ' ', $definition['class'] ?? '' ) as $class_name ) {
+		if ( '' !== $class_name ) {
+			$processor->add_class( $class_name );
+		}
+	}
+
+	if ( in_array( $treatment, array( 'system-panel-woo', 'system-flat-panel-woo' ), true ) ) {
+		while ( $processor->next_tag( array( 'class_name' => 'wc-block-grid__product' ) ) ) {
+			$processor->add_class( 'strap-panel-surface' );
+
+			if ( 'system-flat-panel-woo' === $treatment ) {
+				$processor->add_class( 'is-style-system-flat-panel' );
+			}
+		}
+	}
+
+	return $processor->get_updated_html();
+}
+add_filter( 'render_block_woocommerce/product-new', 'strap_woocommerce_render_newest_products_presentation', 20, 1 );
+
+/**
+ * Whether the current classic Woo loop is a mapped product-card producer.
+ *
+ * @return bool
+ */
+function strap_woocommerce_is_mapped_product_card_loop() {
+	if ( ! function_exists( 'wc_get_loop_prop' ) ) {
+		return false;
+	}
+
+	if ( in_array( wc_get_loop_prop( 'name' ), array( 'up-sells', 'cross-sells', 'related' ), true ) ) {
+		return true;
+	}
+
+	return ( function_exists( 'is_shop' ) && is_shop() )
+		|| ( function_exists( 'is_product_taxonomy' ) && is_product_taxonomy() )
+		|| ( is_search() && 'product' === get_query_var( 'post_type' ) );
+}
+
+/**
+ * Bridge the selected Product Card treatment to Woo's classic product loops.
+ *
+ * The loop-start filter is the narrowest public boundary shared by legacy
+ * Upsells, Related Products, Cross-sells, and classic catalog archives. No
+ * query, product data, link, price, sale state, or action markup is changed.
  *
  * @param string $loop_start Rendered Woo product-loop opening markup.
  * @return string
@@ -817,7 +882,7 @@ function strap_woocommerce_render_product_template_presentation( $block_content,
 function strap_woocommerce_add_upsells_system_panel_class( $loop_start ) {
 	$treatment = strap_woocommerce_get_component_treatment( 'linked_products_upsells' );
 
-	if ( 'native' === $treatment || ! function_exists( 'wc_get_loop_prop' ) || ! in_array( wc_get_loop_prop( 'name' ), array( 'up-sells', 'cross-sells' ), true ) || ! class_exists( 'WP_HTML_Tag_Processor' ) ) {
+	if ( 'native' === $treatment || ! strap_woocommerce_is_mapped_product_card_loop() || ! class_exists( 'WP_HTML_Tag_Processor' ) ) {
 		return $loop_start;
 	}
 
@@ -825,6 +890,8 @@ function strap_woocommerce_add_upsells_system_panel_class( $loop_start ) {
 	$processor = new WP_HTML_Tag_Processor( $loop_start );
 
 	if ( $processor->next_tag( array( 'tag_name' => 'ul' ) ) ) {
+		$processor->add_class( 'strap-woo-product-loop' );
+
 		foreach ( explode( ' ', $registry['linked_products_upsells']['treatments'][ $treatment ]['class'] ) as $class_name ) {
 			if ( '' !== $class_name ) {
 				$processor->add_class( $class_name );
@@ -837,15 +904,21 @@ function strap_woocommerce_add_upsells_system_panel_class( $loop_start ) {
 add_filter( 'woocommerce_product_loop_start', 'strap_woocommerce_add_upsells_system_panel_class', 20 );
 
 /**
- * Map only selected legacy Upsell cards to the canonical Panel-family master.
+ * Map selected classic product cards to the canonical Panel-family master.
  *
  * @param array $classes Existing Woo product classes.
  * @return array
  */
 function strap_woocommerce_add_upsells_system_panel_card_class( $classes ) {
+	/* Woo's block Single Product template merges wc_get_product_class() into
+	 * body_class(). Component presentation roles must never reach <body>. */
+	if ( doing_filter( 'body_class' ) ) {
+		return $classes;
+	}
+
 	$treatment = strap_woocommerce_get_component_treatment( 'linked_products_upsells' );
 
-	if ( in_array( $treatment, array( 'system-panel-woo', 'system-flat-panel-woo' ), true ) && function_exists( 'wc_get_loop_prop' ) && in_array( wc_get_loop_prop( 'name' ), array( 'up-sells', 'cross-sells' ), true ) ) {
+	if ( in_array( $treatment, array( 'system-panel-woo', 'system-flat-panel-woo' ), true ) && strap_woocommerce_is_mapped_product_card_loop() ) {
 		$classes[] = 'strap-panel-surface';
 
 		if ( 'system-flat-panel-woo' === $treatment ) {
@@ -1381,6 +1454,7 @@ function strap_woocommerce_get_selected_application_panel_blocks() {
 function strap_woocommerce_register_presentation_assets() {
 	$theme_dir = get_template_directory() . '/assets/css/style-variations/';
 	$theme_uri = get_template_directory_uri() . '/assets/css/style-variations/';
+	$registry  = strap_woocommerce_component_registry();
 	$assets    = array(
 		'product-panel' => array( 'file' => 'woocommerce-product-template-panel.css', 'deps' => array( 'strap-panel-surface' ) ),
 		'product-list'  => array( 'file' => 'woocommerce-product-template-list.css', 'deps' => array() ),
@@ -1437,6 +1511,34 @@ function strap_woocommerce_register_presentation_assets() {
 		);
 	}
 
+	/* Newest Products has no authored style selector. Register only the physical
+	 * adapter selected by Linked Products / Upsells for this exact block. */
+	$newest_products_treatment = strap_woocommerce_get_component_treatment( 'linked_products_upsells' );
+
+	if ( 'native' !== $newest_products_treatment ) {
+		$key  = in_array( $newest_products_treatment, array( 'system-list-woo', 'system-flat-list-woo' ), true ) ? 'product-list' : 'product-panel';
+		$file = $theme_dir . $assets[ $key ]['file'];
+
+		if ( file_exists( $file ) ) {
+			wp_enqueue_block_style(
+				'woocommerce/product-new',
+				array(
+					'handle' => 'strap-woocommerce-' . $key,
+					'src'    => $theme_uri . $assets[ $key ]['file'],
+					'path'   => $file,
+					'deps'   => $assets[ $key ]['deps'],
+					'ver'    => filemtime( $file ),
+				)
+			);
+		}
+
+		$master = $registry['linked_products_upsells']['treatments'][ $newest_products_treatment ]['theme_style_handle'] ?? '';
+
+		if ( '' !== $master && ! in_array( $master, $assets[ $key ]['deps'], true ) ) {
+			wp_enqueue_block_style( 'woocommerce/product-new', array( 'handle' => $master ) );
+		}
+	}
+
 	if ( wp_style_is( 'strap-woocommerce-blocks', 'registered' ) ) {
 		foreach ( array( 'woocommerce/product-collection', 'woocommerce/product-reviews' ) as $block_name ) {
 			wp_enqueue_block_style(
@@ -1491,7 +1593,13 @@ function strap_woocommerce_enqueue_mapped_presentation_styles() {
 	$requests        = array();
 	$linked_products = strap_woocommerce_get_component_treatment( 'linked_products_upsells' );
 
-	if ( ( ( function_exists( 'is_product' ) && is_product() ) || ( function_exists( 'is_cart' ) && is_cart() ) ) && 'native' !== $linked_products ) {
+	$has_classic_product_cards = ( function_exists( 'is_product' ) && is_product() )
+		|| ( function_exists( 'is_cart' ) && is_cart() )
+		|| ( function_exists( 'is_shop' ) && is_shop() )
+		|| ( function_exists( 'is_product_taxonomy' ) && is_product_taxonomy() )
+		|| ( is_search() && 'product' === get_query_var( 'post_type' ) );
+
+	if ( $has_classic_product_cards && 'native' !== $linked_products ) {
 		$asset_key              = in_array( $linked_products, array( 'system-list-woo', 'system-flat-list-woo' ), true ) ? 'product-list' : 'product-panel';
 		$requests[ $asset_key ] = $registry['linked_products_upsells']['treatments'][ $linked_products ]['theme_style_handle'] ?? '';
 	}

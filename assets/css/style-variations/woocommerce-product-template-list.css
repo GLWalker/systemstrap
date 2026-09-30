@@ -6,12 +6,15 @@
     color: inherit;
 }
 
-/* Legacy Linked Products retains Woo's public loop markup. Translate only its
-   existing root and cards to the same List media-object composition. */
-:is(.up-sells.upsells.products, .cross-sells.products) > ul.products:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) {
-    --strap-woo-legacy-product-columns: 4;
+/* Classic Woo retains its public loop markup. Translate only its existing root
+   and cards to the same List media-object composition. */
+:is(.wp-block-woocommerce-product-collection, .wc-block-product-collection):has(:is(.wp-block-woocommerce-product-template, .wc-block-product-template):not(.is-product-collection-layout-list, .is-product-collection-layout-carousel):is(.is-style-system-list-woo, .is-style-system-flat-list-woo)) {
+    container: strap-woo-product-cards / inline-size;
+}
+
+ul.products.strap-woo-product-loop:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) {
     display: grid;
-    grid-template-columns: repeat(var(--strap-woo-legacy-product-columns), minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--wp--custom--medium-width)), 1fr));
     gap: var(--wp--preset--spacing--30);
     list-style: none;
     margin: 0;
@@ -19,7 +22,7 @@
     color: inherit;
 }
 
-:is(.woocommerce.product, .woocommerce-cart) :is(.up-sells.upsells.products, .cross-sells.products):has(> ul.products:is(.is-style-system-list-woo, .is-style-system-flat-list-woo)) {
+:is(.woocommerce.product, .woocommerce-cart) :is(.up-sells.upsells.products, .related.products, .cross-sells.products):has(> ul.products.strap-woo-product-loop:is(.is-style-system-list-woo, .is-style-system-flat-list-woo)) {
     box-sizing: border-box;
     inline-size: min(100%, var(--wp--style--global--wide-size));
     padding-inline-start: calc(var(--wp--style--root--padding-left) + var(--wp--preset--spacing--30));
@@ -27,33 +30,35 @@
     margin-inline: auto;
 }
 
-:is(.up-sells.upsells.products, .cross-sells.products) > ul.products:is(.is-style-system-list-woo, .is-style-system-flat-list-woo)::before,
-:is(.up-sells.upsells.products, .cross-sells.products) > ul.products:is(.is-style-system-list-woo, .is-style-system-flat-list-woo)::after {
+/* Single Product legacy List loops retain the accepted container-aware 3/2/1
+   workflow. Archives and Cart Cross-sells keep their existing loop ownership. */
+.woocommerce.product :is(.up-sells.upsells.products, .related.products):has(> ul.products.strap-woo-product-loop:is(.is-style-system-list-woo, .is-style-system-flat-list-woo)) {
+    container: strap-woo-legacy-products / inline-size;
+}
+
+.woocommerce.product :is(.up-sells.upsells.products, .related.products) > ul.products.strap-woo-product-loop:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@container strap-woo-legacy-products (max-width: 900px) {
+    .woocommerce.product :is(.up-sells.upsells.products, .related.products) > ul.products.strap-woo-product-loop:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@container strap-woo-legacy-products (max-width: 600px) {
+    .woocommerce.product :is(.up-sells.upsells.products, .related.products) > ul.products.strap-woo-product-loop:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+ul.products.strap-woo-product-loop:is(.is-style-system-list-woo, .is-style-system-flat-list-woo)::before,
+ul.products.strap-woo-product-loop:is(.is-style-system-list-woo, .is-style-system-flat-list-woo)::after {
     content: none;
     display: none;
 }
 
-:is(.up-sells.upsells.products, .cross-sells.products) > ul.products:is(.is-style-system-list-woo, .is-style-system-flat-list-woo).columns-1 {
-    --strap-woo-legacy-product-columns: 1;
-}
-
-:is(.up-sells.upsells.products, .cross-sells.products) > ul.products:is(.is-style-system-list-woo, .is-style-system-flat-list-woo).columns-2 {
-    --strap-woo-legacy-product-columns: 2;
-}
-
-:is(.up-sells.upsells.products, .cross-sells.products) > ul.products:is(.is-style-system-list-woo, .is-style-system-flat-list-woo).columns-3 {
-    --strap-woo-legacy-product-columns: 3;
-}
-
-:is(.up-sells.upsells.products, .cross-sells.products) > ul.products:is(.is-style-system-list-woo, .is-style-system-flat-list-woo).columns-5 {
-    --strap-woo-legacy-product-columns: 5;
-}
-
-:is(.up-sells.upsells.products, .cross-sells.products) > ul.products:is(.is-style-system-list-woo, .is-style-system-flat-list-woo).columns-6 {
-    --strap-woo-legacy-product-columns: 6;
-}
-
-:is(.up-sells.upsells.products, .cross-sells.products) > ul.products:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) > li.product {
+ul.products.strap-woo-product-loop:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) > li.product {
     --strap-woo-product-list-media-width: var(--wp--custom--thumbnail-width);
     box-sizing: border-box;
     display: flex;
@@ -65,6 +70,7 @@
     min-block-size: calc(var(--wp--preset--spacing--20) + var(--strap-woo-product-list-media-width) + var(--wp--preset--spacing--20));
     margin: 0;
     padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
+    padding-inline-start: calc(var(--wp--preset--spacing--20) + var(--strap-woo-product-list-media-width) + var(--wp--preset--spacing--20));
     position: relative;
     border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
     border-radius: var(--wp--custom--border-radius);
@@ -73,62 +79,119 @@
     overflow: hidden;
 }
 
-:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-list-woo > li.product {
+ul.products.strap-woo-product-loop.is-style-system-list-woo > li.product {
     background-image: var(--wp--custom--system-ui-background-image, none);
     backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     box-shadow: var(--wp--custom--shadow);
 }
 
-:is(.up-sells.upsells.products, .cross-sells.products) > ul.products.is-style-system-flat-list-woo > li.product {
+ul.products.strap-woo-product-loop.is-style-system-flat-list-woo > li.product {
     background-image: none;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
     box-shadow: none;
 }
 
-:is(.up-sells.upsells.products, .cross-sells.products) > ul.products:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) > li.product > .woocommerce-LoopProduct-link {
-    display: grid;
-    grid-template-columns: var(--strap-woo-product-list-media-width) minmax(0, 1fr);
-    grid-template-rows: auto auto;
-    column-gap: var(--wp--preset--spacing--20);
-    row-gap: var(--wp--preset--spacing--10);
+ul.products.strap-woo-product-loop:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) > li.product > .woocommerce-LoopProduct-link {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wp--preset--spacing--10);
     color: inherit;
 }
 
-:is(.up-sells.upsells.products, .cross-sells.products) > ul.products:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) > li.product > .woocommerce-LoopProduct-link > img {
-    grid-column: 1;
-    grid-row: 1 / -1;
+ul.products.strap-woo-product-loop:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) > li.product > .woocommerce-LoopProduct-link > img {
     display: block;
+    position: absolute;
+    inset-block-start: var(--wp--preset--spacing--20);
+    inset-inline-start: var(--wp--preset--spacing--20);
     inline-size: var(--strap-woo-product-list-media-width);
     max-inline-size: var(--strap-woo-product-list-media-width);
-    block-size: auto;
+    block-size: var(--strap-woo-product-list-media-width);
+    max-block-size: var(--strap-woo-product-list-media-width);
     margin: 0;
+    object-fit: cover;
     border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
     border-radius: calc(var(--wp--custom--border-radius) / 1.5);
 }
 
-:is(.up-sells.upsells.products, .cross-sells.products) > ul.products:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) > li.product .woocommerce-loop-product__title,
-:is(.up-sells.upsells.products, .cross-sells.products) > ul.products:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) > li.product .price {
-    grid-column: 2;
+ul.products.strap-woo-product-loop:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) > li.product > .woocommerce-LoopProduct-link > .onsale {
+    box-sizing: border-box;
+    display: grid;
+    place-items: center;
+    inline-size: fit-content;
+    min-inline-size: 0;
+    min-block-size: 0;
+    aspect-ratio: 1;
+    padding: var(--wp--custom--badge-padding-y) var(--wp--custom--badge-padding-x);
+    margin: 0;
+    border: var(--wp--custom--border-width) var(--wp--custom--border-style) var(--wp--preset--color--light);
+    border-radius: 50%;
+    background-color: var(--wp--preset--color--warning);
+    color: var(--wp--preset--color--contrast);
+    box-shadow: var(--wp--preset--shadow--lg);
+    font-family: var(--wp--preset--font-family--heading);
+    font-size: var(--wp--custom--badge-font-size);
+    font-weight: 900;
+    line-height: 1;
+    text-align: center;
+    text-transform: uppercase;
+    white-space: nowrap;
+    position: absolute;
+    inset-block-start: var(--wp--preset--spacing--20);
+    inset-inline-start: calc(var(--wp--preset--spacing--20) + var(--strap-woo-product-list-media-width) - var(--wp--preset--spacing--20));
+    z-index: 1;
+    transform: translateX(-100%) rotate(8deg);
+}
+
+ul.products.strap-woo-product-loop:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) > li.product .woocommerce-loop-product__title,
+ul.products.strap-woo-product-loop:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) > li.product .price {
     margin: 0;
     padding: 0;
     text-align: start;
 }
 
-:is(.up-sells.upsells.products, .cross-sells.products) > ul.products:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) > li.product > .button {
+ul.products.strap-woo-product-loop:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) > li.product > .button {
+    box-sizing: border-box;
     align-self: flex-start;
     inline-size: fit-content;
-    max-inline-size: calc(100% - var(--strap-woo-product-list-media-width) - var(--wp--preset--spacing--20));
-    margin-block: auto 0;
-    margin-inline-start: calc(var(--strap-woo-product-list-media-width) + var(--wp--preset--spacing--20));
+    max-inline-size: 100%;
+    margin: 0;
     text-align: center;
 }
 
-@media (max-width: 900px) {
-    :is(.up-sells.upsells.products, .cross-sells.products) > ul.products:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) {
-        --strap-woo-legacy-product-columns: 1;
-    }
+/* Product-card typography and controls are treatment roles, not producer
+   defaults. Normalize modern blocks and classic loops to Related Products. */
+:is(.wp-block-woocommerce-product-template, .wc-block-product-template):is(.is-style-system-list-woo, .is-style-system-flat-list-woo) > li.wc-block-product > .wp-block-post-title,
+ul.products.strap-woo-product-loop:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) > li.product .woocommerce-loop-product__title {
+    font-family: var(--wp--preset--font-family--heading);
+    font-size: var(--wp--preset--font-size--medium) !important;
+    font-weight: var(--wp--custom--font-weight-heading);
+    line-height: 1.2;
+}
+
+:is(.wp-block-woocommerce-product-template, .wc-block-product-template):is(.is-style-system-list-woo, .is-style-system-flat-list-woo) > li.wc-block-product > .wp-block-woocommerce-product-price,
+ul.products.strap-woo-product-loop:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) > li.product .price {
+    font-family: var(--wp--preset--font-family--body);
+    font-size: var(--wp--preset--font-size--small) !important;
+    font-weight: var(--wp--custom--font-weight-body);
+    line-height: 1.5;
+}
+
+:is(.wp-block-woocommerce-product-template, .wc-block-product-template):is(.is-style-system-list-woo, .is-style-system-flat-list-woo) > li.wc-block-product > .wp-block-button.wc-block-components-product-button > .wc-block-components-product-button__button,
+ul.products.strap-woo-product-loop:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) > li.product > .button {
+    inline-size: fit-content;
+    padding-block: calc(var(--wp--preset--font-size--small) * .5);
+    padding-inline: var(--wp--preset--font-size--medium);
+    font-family: var(--wp--preset--font-family--button);
+    font-size: var(--wp--preset--font-size--small) !important;
+    font-weight: var(--wp--custom--font-weight-button);
+    letter-spacing: 0.03em;
+    line-height: 1.45;
+}
+
+:is(.wp-block-woocommerce-product-template, .wc-block-product-template):is(.is-style-system-list-woo, .is-style-system-flat-list-woo) > li.wc-block-product > .wp-block-button.wc-block-components-product-button > .wc-block-components-product-button__button {
+    max-inline-size: 100%;
 }
 
 /* Stack retains the System List root and row-shell relationship. */
@@ -316,22 +379,22 @@
     background-image: none;
 }
 
-/* System List media cards are width-sensitive: Woo's saved columns-* value is
-   retained, while List/Flat List normalize the rendered Grid geometry. */
-@media (min-width: 901px) {
-    :is(.wp-block-woocommerce-product-template, .wc-block-product-template).wc-block-product-template__responsive:is(.columns-4, .columns-5, .columns-6):not(.is-product-collection-layout-list, .is-product-collection-layout-carousel):is(.is-style-system-list-woo, .is-style-system-flat-list-woo) {
+/* System List media cards require a usable content lane, so List/Flat List own
+   Grid columns by Product Collection width rather than Woo's nominal count. */
+@container strap-woo-product-cards (min-width: 901px) {
+    :is(.wp-block-woocommerce-product-template, .wc-block-product-template).wc-block-product-template__responsive:not(.is-product-collection-layout-list, .is-product-collection-layout-carousel):is(.is-style-system-list-woo, .is-style-system-flat-list-woo) {
         grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
     }
 
-    :is(.wp-block-woocommerce-product-template, .wc-block-product-template).is-flex-container:is(.columns-4, .columns-5, .columns-6):not(.is-product-collection-layout-list, .is-product-collection-layout-carousel):is(.is-style-system-list-woo, .is-style-system-flat-list-woo) > li.wc-block-product {
+    :is(.wp-block-woocommerce-product-template, .wc-block-product-template).is-flex-container:not(.is-product-collection-layout-list, .is-product-collection-layout-carousel):is(.is-style-system-list-woo, .is-style-system-flat-list-woo) > li.wc-block-product {
         width: calc(33.33333% - .83333em) !important;
     }
 }
 
-/* Tablet retains a two-up media-object grid. Cap the media lane at the native
-   WordPress thumbnail setting so image growth cannot stretch the card, and
-   keep the action in the normal content flow. */
-@media (min-width: 601px) and (max-width: 900px) {
+/* Apply the accepted tablet/mobile contract against the Product Collection's
+   available inline size. This covers wide viewports with a narrow catalog
+   column while leaving Woo's Carousel track and slide geometry untouched. */
+@container strap-woo-product-cards (min-width: 601px) and (max-width: 900px) {
     :is(.wp-block-woocommerce-product-template, .wc-block-product-template).wc-block-product-template__responsive:not(.is-product-collection-layout-list, .is-product-collection-layout-carousel):is(.is-style-system-list-woo, .is-style-system-flat-list-woo) {
         grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     }
@@ -350,7 +413,7 @@
     }
 }
 
-@media (max-width: 600px) {
+@container strap-woo-product-cards (max-width: 600px) {
     :is(.wp-block-woocommerce-product-template, .wc-block-product-template).wc-block-product-template__responsive:not(.is-product-collection-layout-list, .is-product-collection-layout-carousel):is(.is-style-system-list-woo, .is-style-system-flat-list-woo) {
         grid-template-columns: minmax(0, 1fr) !important;
     }
@@ -372,5 +435,167 @@
         display: block;
         inline-size: var(--wp--custom--thumbnail-width);
         max-inline-size: var(--wp--custom--thumbnail-width);
+    }
+}
+
+/* Newest Products uses Woo's server-rendered block-grid roles. The block root
+   supplies the same container authority and its cards consume the accepted
+   List media-object tokens without changing Woo's query or content controls. */
+.wp-block-woocommerce-product-new.strap-woo-product-new:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) {
+    container: strap-woo-product-cards / inline-size;
+}
+
+.wp-block-woocommerce-product-new.strap-woo-product-new:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) > .wc-block-grid__products {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--wp--preset--spacing--30);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color: inherit;
+}
+
+.wp-block-woocommerce-product-new.strap-woo-product-new:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) > .wc-block-grid__products::before,
+.wp-block-woocommerce-product-new.strap-woo-product-new:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) > .wc-block-grid__products::after {
+    content: none;
+    display: none;
+}
+
+.wp-block-woocommerce-product-new.strap-woo-product-new:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) > .wc-block-grid__products > .wc-block-grid__product {
+    --strap-woo-product-list-media-width: var(--wp--custom--thumbnail-width);
+    box-sizing: border-box;
+    display: flex;
+    float: none;
+    flex: none;
+    flex-direction: column;
+    gap: var(--wp--preset--spacing--10);
+    inline-size: auto;
+    width: auto;
+    max-inline-size: none;
+    min-inline-size: 0;
+    min-block-size: calc(var(--wp--preset--spacing--20) + var(--strap-woo-product-list-media-width) + var(--wp--preset--spacing--20));
+    margin: 0;
+    padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
+    padding-inline-start: calc(var(--wp--preset--spacing--20) + var(--strap-woo-product-list-media-width) + var(--wp--preset--spacing--20));
+    position: relative;
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+    border-radius: var(--wp--custom--border-radius);
+    background-color: var(--wp--custom--system-ui-surface);
+    color: inherit;
+    overflow: hidden;
+    text-align: start;
+}
+
+.wp-block-woocommerce-product-new.strap-woo-product-new.is-style-system-list-woo > .wc-block-grid__products > .wc-block-grid__product {
+    background-image: var(--wp--custom--system-ui-background-image, none);
+    backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    box-shadow: var(--wp--custom--shadow);
+}
+
+.wp-block-woocommerce-product-new.strap-woo-product-new.is-style-system-flat-list-woo > .wc-block-grid__products > .wc-block-grid__product {
+    background-image: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: none;
+}
+
+.wp-block-woocommerce-product-new.strap-woo-product-new:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) .wc-block-grid__product-link {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wp--preset--spacing--10);
+    position: static;
+    color: inherit;
+}
+
+.wp-block-woocommerce-product-new.strap-woo-product-new:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) .wc-block-grid__product-image {
+    position: absolute;
+    inset-block-start: var(--wp--preset--spacing--20);
+    inset-inline-start: var(--wp--preset--spacing--20);
+    inline-size: var(--strap-woo-product-list-media-width);
+    max-inline-size: var(--strap-woo-product-list-media-width);
+    block-size: var(--strap-woo-product-list-media-width);
+    max-block-size: var(--strap-woo-product-list-media-width);
+    margin: 0;
+    overflow: hidden;
+    border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+    border-radius: calc(var(--wp--custom--border-radius) / 1.5);
+}
+
+.wp-block-woocommerce-product-new.strap-woo-product-new:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) .wc-block-grid__product-image img {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    margin: 0;
+    object-fit: cover;
+}
+
+.wp-block-woocommerce-product-new.strap-woo-product-new:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) :is(.wc-block-grid__product-title, .wc-block-grid__product-price, .wc-block-grid__product-rating) {
+    margin: 0;
+    padding: 0;
+    text-align: start;
+}
+
+.wp-block-woocommerce-product-new.strap-woo-product-new:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) .wc-block-grid__product-rating :is(.star-rating, .wc-block-grid__product-rating__stars) {
+    margin-inline: 0;
+}
+
+.wp-block-woocommerce-product-new.strap-woo-product-new:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) .wc-block-grid__product-title {
+    font-family: var(--wp--preset--font-family--heading);
+    font-size: var(--wp--preset--font-size--medium) !important;
+    font-weight: var(--wp--custom--font-weight-heading);
+    line-height: 1.2;
+}
+
+.wp-block-woocommerce-product-new.strap-woo-product-new:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) .wc-block-grid__product-price {
+    font-family: var(--wp--preset--font-family--body);
+    font-size: var(--wp--preset--font-size--small) !important;
+    font-weight: var(--wp--custom--font-weight-body);
+    line-height: 1.5;
+}
+
+.wp-block-woocommerce-product-new.strap-woo-product-new:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) .wc-block-grid__product-add-to-cart {
+    align-self: flex-start;
+    inline-size: fit-content;
+    max-inline-size: 100%;
+    margin: 0;
+    text-align: center;
+}
+
+.wp-block-woocommerce-product-new.strap-woo-product-new:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) .wc-block-grid__product-add-to-cart > .wp-block-button__link {
+    inline-size: fit-content;
+    max-inline-size: 100%;
+    padding-block: calc(var(--wp--preset--font-size--small) * .5);
+    padding-inline: var(--wp--preset--font-size--medium);
+    font-family: var(--wp--preset--font-family--button);
+    font-size: var(--wp--preset--font-size--small) !important;
+    font-weight: var(--wp--custom--font-weight-button);
+    letter-spacing: 0.03em;
+    line-height: 1.45;
+}
+
+.wp-block-woocommerce-product-new.strap-woo-product-new:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) .wc-block-grid__product-onsale {
+    inset-block-start: var(--wp--preset--spacing--20);
+    inset-inline-end: auto;
+    inset-inline-start: calc(var(--wp--preset--spacing--20) + var(--strap-woo-product-list-media-width) - var(--wp--preset--spacing--20));
+    z-index: 1;
+    transform: translateX(-100%) rotate(8deg);
+}
+
+@container strap-woo-product-cards (min-width: 901px) {
+    .wp-block-woocommerce-product-new.strap-woo-product-new:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) > .wc-block-grid__products {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@container strap-woo-product-cards (min-width: 601px) and (max-width: 900px) {
+    .wp-block-woocommerce-product-new.strap-woo-product-new:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) > .wc-block-grid__products {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@container strap-woo-product-cards (max-width: 600px) {
+    .wp-block-woocommerce-product-new.strap-woo-product-new:is(.is-style-system-list-woo, .is-style-system-flat-list-woo) > .wc-block-grid__products {
+        grid-template-columns: minmax(0, 1fr);
     }
 }

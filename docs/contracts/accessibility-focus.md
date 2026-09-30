@@ -63,7 +63,9 @@ The current focus-visibility layer is implemented through these files:
 - `wp-content/themes/systemstrap/assets/css/main-styles.css`
 - `wp-content/themes/systemstrap/assets/css/buddypress-theme-sync.css`
 - `wp-content/themes/systemstrap/assets/css/style-variations/core-details-system-details.css`
+- `wp-content/themes/systemstrap/assets/css/style-variations/core-details-system-flat-panel.css`
 - `wp-content/themes/systemstrap/assets/css/style-variations/core-accordion-system-accordion.css`
+- `wp-content/themes/systemstrap/assets/css/style-variations/core-accordion-system-flat-panel.css`
 - `wp-content/themes/systemstrap/assets/css/style-variations/core-accordion-system-tabs.css`
 - `wp-content/themes/systemstrap/assets/css/style-variations/core-accordion-system-tabs-vertical.css`
 - `wp-content/themes/systemstrap/assets/css/style-variations/core-navigation-system-nav-gen.css`
@@ -164,8 +166,8 @@ SystemStrap currently applies visible focus to the actual interactive subcontrol
 
 The current targeted surfaces include:
 
-- `summary` inside `core-details-system-details`
-- `.wp-block-accordion-heading__toggle` inside `core-accordion-system-accordion`
+- `summary` inside `core-details-system-details` or its `system-flat-panel` counterpart
+- `.wp-block-accordion-heading__toggle` inside `core-accordion-system-accordion` or its `system-flat-panel` counterpart
 - `.system-tabs__tab` inside `core-accordion-system-tabs`
 - `.system-tabs__tab` inside `core-accordion-system-tabs-vertical`
 - `.wp-block-navigation-item__content` and `.wp-block-navigation-submenu__toggle` inside the two current navigation variations
@@ -178,7 +180,7 @@ The theme MUST NOT move visible focus styling from the actual interactive target
 
 `assets/css/style-variations/core-details-system-details.css` currently defines keyboard-visible focus on:
 
-- `.wp-block-details.is-style-system-details summary:focus-visible`
+- `.wp-block-details:is(.is-style-system-details, .is-style-system-flat-panel) summary:focus-visible`
 
 The current behavior is:
 
@@ -193,7 +195,7 @@ This is part of the contract for theme-owned details styling.
 
 `assets/css/style-variations/core-accordion-system-accordion.css` currently defines keyboard-visible focus on:
 
-- `.wp-block-accordion.is-style-system-accordion .wp-block-accordion-heading__toggle:focus-visible`
+- `.wp-block-accordion:is(.is-style-system-accordion, .is-style-system-flat-panel) .wp-block-accordion-heading__toggle:focus-visible`
 
 The current behavior is:
 

@@ -273,6 +273,7 @@ The current variation filesystem shape is:
 │   ├── bp-primary-nav-system-nav-gen.css
 │   ├── bp-widget-system-panel-header.css
 │   ├── core-accordion-system-accordion.css
+│   ├── core-accordion-system-flat-panel.css
 │   ├── core-accordion-system-tabs-vertical.css
 │   ├── core-accordion-system-tabs.css
 │   ├── core-archives-system-list.css
@@ -281,6 +282,7 @@ The current variation filesystem shape is:
 │   ├── core-categories-system-list.css
 │   ├── core-comments-pagination-system-ui-pagination*.css
 │   ├── core-details-system-details.css
+│   ├── core-details-system-flat-panel.css
 │   ├── core-group-system-carousel.css
 │   ├── core-group-system-panel-footer.css
 │   ├── core-group-system-panel-header.css
@@ -505,6 +507,7 @@ Example:
 The following files are governed by this contract as of Version 3.0 and currently match the auto-registration rule:
 
 - `core-accordion-system-accordion.css`
+- `core-accordion-system-flat-panel.css`
 - `core-accordion-system-tabs-vertical.css`
 - `core-accordion-system-tabs.css`
 - `core-archives-system-list.css`
@@ -512,6 +515,7 @@ The following files are governed by this contract as of Version 3.0 and currentl
 - `core-categories-system-list.css`
 - `core-comments-pagination-system-ui-pagination*.css`
 - `core-details-system-details.css`
+- `core-details-system-flat-panel.css`
 - `core-group-system-panel-footer.css`
 - `core-group-system-panel-header.css`
 - `core-group-system-panel.css`
@@ -642,6 +646,7 @@ The current CSS block-style surfaces covered by this contract as of Version 3.0 
 
 - accordion and tabs
     - `core-accordion-system-accordion.css`
+    - `core-accordion-system-flat-panel.css`
     - `core-accordion-system-tabs.css`
     - `core-accordion-system-tabs-vertical.css`
 - list-family styles
@@ -669,6 +674,7 @@ The current CSS block-style surfaces covered by this contract as of Version 3.0 
     - `core-icon-dialog.css`
 - detail and tag surfaces
     - `core-details-system-details.css`
+    - `core-details-system-flat-panel.css`
     - `core-tag-cloud-system-tags.css`
 - pagination surfaces
     - `assets/css/system-ui-pagination.css`
@@ -884,6 +890,7 @@ Current variation-sensitive class and attribute signals include:
 - `carousel-prev`
 - `carousel-next`
 - `is-style-system-panel`
+- `is-style-system-flat-panel`
 - `is-style-system-panel-header`
 - `is-style-system-panel-footer`
 - `is-style-system-modal`

@@ -85,6 +85,10 @@ function strap_register_block_styles() {
 	}
 
 	$files_to_process = array_merge( $ordered_files, array_values( $file_map ) );
+	$flat_panel_structure_deps = array(
+		'core-details-system-flat-panel'   => 'core-details-system-details',
+		'core-accordion-system-flat-panel' => 'core-accordion-system-accordion',
+	);
 
 	// Auto-register and map stylesheets to specific blocks via wp_enqueue_block_style
 	// Expected filename format: [namespace]-[block]-[variation].css (e.g., core-details-system-details.css)
@@ -109,7 +113,9 @@ function strap_register_block_styles() {
 			$handle = $filename;
 			$deps   = array();
 
-
+			if ( isset( $flat_panel_structure_deps[ $filename ] ) ) {
+				$deps[] = $flat_panel_structure_deps[ $filename ];
+			}
 
 			if ( str_starts_with( $variation_name, 'system-ui-pagination' ) ) {
 				$deps[] = 'strap-system-ui-pagination';
@@ -144,7 +150,7 @@ function strap_register_block_styles() {
 			$variation_label = ucwords( str_replace( '-', ' ', $variation_name ) );
 
 			if ( 'system-flat-panel' === $variation_name ) {
-				$variation_label = 'System Flat';
+				$variation_label = in_array( $block_name, array( 'core/details', 'core/accordion' ), true ) ? 'System Flat Panel' : 'System Flat';
 			} elseif ( str_starts_with( $variation_name, 'system-ui-pagination' ) ) {
 				$variation_label = str_replace( 'System Ui', 'System UI', $variation_label );
 			}

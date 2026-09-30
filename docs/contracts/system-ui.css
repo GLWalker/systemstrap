@@ -214,7 +214,9 @@
  * Authority 3: System Panel/List subsets
  * Runtime:
  * - core-accordion-system-accordion.css
+ * - core-accordion-system-flat-panel.css (registration/dependency entry)
  * - core-details-system-details.css
+ * - core-details-system-flat-panel.css (registration/dependency entry)
  * - core-accordion-system-tabs.css
  * - core-accordion-system-tabs-vertical.css
  * - core-comments-system-list.css
@@ -225,6 +227,13 @@
  * - core-query-system-ui-query.css
  * - assets/css/system-ui-pagination.css
  * - core-*-pagination-system-ui-pagination*.css
+ *
+ * Details and Accordion expose `is-style-system-flat-panel` as the canonical
+ * Flat Panel counterpart to their accepted component Panel styles. Their
+ * existing Details/Accordion stylesheet remains the structural authority for
+ * both variants. System Panel retains shadow, background-image atmosphere,
+ * and backdrop filtering; System Flat Panel omits those enhancements while
+ * preserving geometry, seams, typography, focus, and disclosure behavior.
  */
 
 /*
@@ -237,16 +246,18 @@
  * then consume its Panel insets, compact content gap, and heading/body
  * typography roles in Stack, Grid, and Carousel modes. Flat Panel additionally
  * receives `.is-style-system-flat-panel`, retaining Panel structure without
- * shadow or atmosphere. Explicit authored Product Template typography controls
- * remain authoritative.
+ * shadow or atmosphere. Within the four Product Card treatments, the shared
+ * title, price, and action scale overrides producer-specific authored sizes.
  * System List Woo and System Flat List Woo share the standalone List shell,
  * media-object geometry, border, radius, seams, and responsive behavior. System
  * List consumes `--wp--custom--shadow` and System UI atmosphere; Flat List does
  * not consume shadow, background image, or backdrop filter.
- * From 601px through 900px, non-Carousel Grid/Flex templates retain two cards
- * per row, cap the media lane with `--wp--custom--thumbnail-width`, and keep the
- * Button in normal content flow. The token is emitted by `inc/dynamic-styles.php`
- * from WordPress `thumbnail_size_w`; desktop and mobile geometry remain separate.
+ * Native, Panel, and Flat Panel Grid presentations retain Woo's Columns,
+ * Responsive, and Fill/Fixed ownership. List and Flat List Grid presentations
+ * use Product Collection width: above 900px they use three cards, from 601px
+ * through 900px they use two, and at 600px or below they use one. Their media
+ * lane consumes `--wp--custom--thumbnail-width`, emitted by
+ * `inc/dynamic-styles.php` from WordPress `thumbnail_size_w`.
  * Carousel retains WooCommerce ownership of its Product Template root, track,
  * widths, overflow, scrolling, controls, and hydration. All four System
  * presentations may style direct Carousel cards without styling its track.
@@ -276,6 +287,11 @@
  * `main-styles.css` suppresses only those pseudo-elements when one of the four
  * supported System UI styles is active. Woo Product Categories must not enter the
  * PHP regex that removes literal count-parenthesis markup.
+ *
+ * List-family roots leave block-start spacing to the parent Flow/Constrained
+ * layout. Each structural `li` owns seams, while its direct category link owns
+ * the full padded interactive row and hover/focus surface; the count badge
+ * shares that row at the far edge without intercepting the category link.
  *
  * These canonical variation assets and shared System UI masters are loaded
  * through `wp_enqueue_block_style()` and use their physical file modification
@@ -329,10 +345,11 @@
  *
  * Product Cards expose `is-style-native-woo` as a real authored opt-out and
  * inherit their classless Default from Linked Products/Upsells. That shared
- * setting maps the stable legacy loop and every classless Product Template to
- * Native, Panel, Flat Panel, List, or Flat List. Legacy List-family cards use
- * the Product Template media-object adapter; Flat treatments remove depth and
- * atmosphere without changing family geometry. Account Navigation Panel
+ * setting maps classic Upsells, Related, Cross-sells, catalog loops, and every
+ * classless Product Template to Native, Panel, Flat Panel, List, or Flat List.
+ * Classic List-family cards use the Product Template media-object adapter and
+ * intrinsic grid sizing; Flat treatments remove depth and atmosphere without
+ * changing family geometry. Account Navigation Panel
  * and Flat Panel paint only the outer adapter; List variants map the existing
  * navigation rows, while Flat List assigns the canonical Page List Flat List
  * roles to Woo's existing list. Tables and Addresses expose Panel and Flat
@@ -2941,7 +2958,9 @@ body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[clas
  * - assets/css/style-variations/core-list-system-list.css
  * - assets/css/style-variations/core-query-system-ui-query.css
  * - assets/css/style-variations/core-accordion-system-accordion.css
+ * - assets/css/style-variations/core-accordion-system-flat-panel.css
  * - assets/css/style-variations/core-details-system-details.css
+ * - assets/css/style-variations/core-details-system-flat-panel.css
  * - assets/css/style-variations/core-accordion-system-tabs.css
  * - assets/css/style-variations/core-accordion-system-tabs-vertical.css
  * - assets/css/system-ui-pagination.css

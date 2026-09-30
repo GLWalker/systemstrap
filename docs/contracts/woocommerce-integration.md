@@ -6,7 +6,7 @@ This file is a CONTRACT.
 
 ## Contract Version
 
-Current Version: 2.4
+Current Version: 2.6
 
 Last Updated: 2026-09-28
 
@@ -59,22 +59,40 @@ share the Product Template Panel structure; Flat
 Panel adds the canonical `is-style-system-flat-panel` role to each direct card.
 List and Flat List share the Product Template media-object geometry; Flat List
 retains its borders, radius, and seams without shadow, background image, or
-backdrop filter. Between 601px and 900px, non-Carousel Grid presentations use
-two cards per row and cap their media lane at
-`--wp--custom--thumbnail-width`; below 601px they retain the accepted single-card
-mobile composition. Stack, Grid, and Carousel retain Woo layout ownership.
+backdrop filter. Product-card title, price, and action typography are treatment
+roles and override producer-specific authored sizes inside these four
+treatments. Native, Panel, and Flat Panel Grid presentations retain Woo's
+Columns, Responsive, Fill/Fixed, and responsive-layout ownership. List and Flat
+List Grid presentations instead use Product Collection width: above 900px they
+use three cards, from 601px through 900px they use two, and at 600px or below
+they use one. Their constrained media lane consumes
+`--wp--custom--thumbnail-width`. Stack and Carousel retain Woo layout ownership.
 Presentation may style direct `li.wc-block-product` cards, but MUST NOT set
-Carousel track alignment, slide basis or width, scrolling, controls,
-directives, or behavior.
+Carousel track alignment, slide basis or width, scrolling, controls, directives,
+or behavior.
 
-Linked Products maps Woo's stable legacy upsell loop and classless Product
-Templates to the selected Native, Panel, Flat Panel, List, or Flat List
-treatment. Panel and Flat Panel share the Product Template structural adapter;
-List and Flat List share the Product Template media-object adapter. Flat
-treatments retain their family geometry without shadow or atmosphere. Native
-is terminal. Block Cart cross-sells receive an explicit Native marker only when
+Linked Products maps Woo's stable classic Upsells, Related Products,
+Cross-sells, and catalog loop boundaries plus classless Product Templates to the
+selected Native, Panel, Flat Panel, List, or Flat List treatment. The classic
+adapter adds only `strap-woo-product-loop` and the selected treatment roles to
+Woo's existing `ul.products`; Woo retains `li.product`, its product link, sale
+state, image, title, price, and add-to-cart markup. Panel and Flat Panel share
+the Product Template structural adapter; List and Flat List share the Product
+Template media-object adapter. Classic loop grids use an intrinsic minimum card
+width so nominal `columns-*` output cannot collapse their contents. Flat
+treatments retain their family geometry without shadow or atmosphere. Native is
+terminal. Block Cart cross-sells receive an explicit Native marker only when
 Native is selected; every non-Native Default uses the same shared resolver as
 all other Product Templates.
+
+Woo's `woocommerce/product-new` (Newest Products) block has no authored style
+override and always resolves the same Linked Products / Upsells selection. Its
+server-rendered `wc-block-grid` roles consume the shared Product Panel or
+Product List physical adapter. Native, Panel, and Flat Panel preserve Woo's
+Rows and Columns ownership. List and Flat List use the same block-container
+width contract as Product Template Grid: three cards above 900px, two from
+601px through 900px, and one at 600px or below. No Gutenberg style selector is
+registered for Newest Products.
 
 Account Panel and Flat Panel apply their canonical Panel-family surface to the
 outer adapter. Existing Woo navigation and rows remain navigation, without
@@ -99,8 +117,12 @@ master. Neutral Panel and Table paint come from `strap-panel-surface` and
 `core-group-system-flat-panel` or `core-table-system-flat-panel` according to
 their semantic root. Product Cards Flat Panel shares the Product Template Panel
 adapter and consumes the canonical Group Flat Panel role. Product Cards Flat
-List and legacy Linked Products List-family treatments share the Product
-Template List adapter. Account Flat List consumes
+List and classic Product Loop List-family treatments share the Product Template
+List adapter. Newest Products consumes those same physical Panel and List
+adapters through its stable block-grid roles. The Panel and List physical assets
+each own one geometry contract for modern Product Templates, classic product
+loops, and Newest Products; route-specific archive, Upsells, Related Products,
+or Empty Cart copies are prohibited. Account Flat List consumes
 `core-page-list-system-flat-list`, including its canonical System List
 dependency.
 
