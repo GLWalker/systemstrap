@@ -1,0 +1,4 @@
+/* Site Editor parity for BuddyPress blocks; no frontend Nouveau reset is loaded here. */
+.editor-styles-wrapper :is(.wp-block-bp-online-members, .wp-block-bp-active-members, .wp-block-bp-friends, .wp-block-bp-dynamic-groups).is-style-system-panel {
+	box-sizing: border-box;
+}

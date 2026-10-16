@@ -57,7 +57,7 @@
     flex: 1 1 auto !important;
     min-width: 0 !important;
 
-    padding: var(--wp--preset--spacing--30, 1rem) var(--wp--preset--spacing--40, 1.5rem);
+    padding: var(--wp--custom--navigation-item-padding-block) var(--wp--custom--navigation-item-padding-inline);
 
     color: inherit;
     background: transparent;
@@ -79,7 +79,7 @@
     /* Prevent WP from hiding the button */
     visibility: visible !important;
 
-    padding: var(--wp--preset--spacing--30, 1rem) var(--wp--preset--spacing--30, 1rem);
+    padding: var(--wp--custom--navigation-item-padding-block) var(--wp--custom--navigation-item-padding-inline);
 
     color: inherit;
     background: transparent;
@@ -103,16 +103,24 @@
     stroke-width: 1.5 !important;
 }
 
-/* Hover/current state: top-level only */
+/* Top-level interaction wash preserves an authored background or gradient.
+ * It derives from the item's current foreground context rather than assuming
+ * a particular palette surface. */
 .wp-block-navigation.is-style-system-nav-gen>.wp-block-navigation__container>.wp-block-navigation-item:hover,
+.wp-block-navigation.is-style-system-nav-gen>.wp-block-navigation__container>.wp-block-navigation-item:has(> :is(.wp-block-navigation-item__content, .wp-block-navigation-submenu__toggle):focus-visible),
+.wp-block-navigation.is-style-system-nav-gen .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item:hover,
+.wp-block-navigation.is-style-system-nav-gen .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item:has(> :is(.wp-block-navigation-item__content, .wp-block-navigation-submenu__toggle):focus-visible) {
+	box-shadow: inset 0 0 0 9999px color-mix(in srgb, currentColor 15%, transparent) !important;
+}
+
+/* Current state uses SystemStrap's stronger contextual active wash. */
 .wp-block-navigation.is-style-system-nav-gen>.wp-block-navigation__container>.wp-block-navigation-item.current-menu-item,
 .wp-block-navigation.is-style-system-nav-gen>.wp-block-navigation__container>.wp-block-navigation-item.current-menu-ancestor,
 .wp-block-navigation.is-style-system-nav-gen>.wp-block-navigation__container>.wp-block-navigation-item:has(> a[aria-current="page"]),
-.wp-block-navigation.is-style-system-nav-gen .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item:hover,
 .wp-block-navigation.is-style-system-nav-gen .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item.current-menu-item,
 .wp-block-navigation.is-style-system-nav-gen .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item.current-menu-ancestor,
 .wp-block-navigation.is-style-system-nav-gen .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item:has(> a[aria-current="page"]) {
-    background-color: color-mix(in srgb, currentColor 8%, transparent) !important;
+	box-shadow: inset 0 0 0 9999px color-mix(in srgb, currentColor 25%, transparent) !important;
 }
 
 /* Accessibility: Keyboard Focus */
@@ -133,7 +141,7 @@
     min-width: 200px !important;
     max-width: 200px !important;
 
-    padding: var(--wp--preset--spacing--10, 0.5rem) 0 !important;
+    padding: var(--wp--custom--navigation-submenu-panel-padding-block) 0 !important;
     gap: 0 !important;
 
     color: inherit;
@@ -152,7 +160,7 @@
 
 .wp-block-navigation.is-style-system-nav-gen .wp-block-navigation__submenu-icon {
     width: unset !important;
-    margin-left: calc(var(--wp--preset--spacing--30, 1rem) * -1) !important;
+    margin-left: calc(var(--wp--custom--navigation-item-padding-inline) * -1) !important;
 }
 
 .wp-block-navigation.is-style-system-nav-gen .wp-block-navigation__submenu-container .wp-block-navigation-item__content {
@@ -160,7 +168,7 @@
     width: 100% !important;
     box-sizing: border-box !important;
 
-    padding: var(--wp--preset--spacing--20, .5rem) var(--wp--preset--spacing--40, 1.5rem);
+    padding: var(--wp--custom--navigation-submenu-item-padding-block) var(--wp--custom--navigation-submenu-item-padding-inline);
     font-size: var(--wp--preset--font-size--small, .875rem);
 
     color: inherit;

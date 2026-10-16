@@ -73,6 +73,11 @@ function strap_enqueue_query_directory_styles($block_content, $block)
 		wp_enqueue_style('strap-query-latest-posts-list');
 	}
 
+	// Query Media Object.
+	if (false !== strpos($block_content, 'query-media-object')) {
+		wp_enqueue_style('strap-query-media-object');
+	}
+
 	// Query Directory Image Grid.
 	if (false !== strpos($block_content, 'query-directory-image-grid')) {
 		wp_enqueue_style('strap-query-directory');

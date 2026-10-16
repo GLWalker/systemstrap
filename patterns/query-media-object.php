@@ -43,7 +43,7 @@
             </div>
             <!-- /wp:group -->
 
-            <!-- wp:search {"label":"<?php echo esc_attr_x('Search', 'Search block label', 'systemstrap'); ?>","showLabel":false,"width":100,"widthUnit":"%","buttonText":"<?php echo esc_attr_x('Search', 'Search button text', 'systemstrap'); ?>"} /-->
+            <!-- wp:search {"label":"Search","showLabel":false,"width":100,"widthUnit":"%","buttonText":"Search"} /-->
 
         </div>
         <!-- /wp:group -->
@@ -55,10 +55,10 @@
         <!-- wp:group {"className":"query-media-object__item is-style-system-panel","layout":{"type":"constrained"}} -->
         <div class="wp-block-group query-media-object__item is-style-system-panel">
 
-            <!-- wp:group {"className":"query-media-object__media-row","style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"flex","flexWrap":"wrap","verticalAlignment":"top","justifyContent":"left"}} -->
+            <!-- wp:group {"className":"query-media-object__media-row","style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top","justifyContent":"left"}} -->
             <div class="wp-block-group query-media-object__media-row">
 
-                <!-- wp:post-featured-image {"isLink":true,"aspectRatio":"1","width":"180px","sizeSlug":"medium","className":"query-media-object__image","style":{"border":{"radius":"var:preset|custom|border-radius"},"layout":{"selfStretch":"fixed","flexSize":"180px"}}} /-->
+                <!-- wp:post-featured-image {"isLink":true,"aspectRatio":"1","sizeSlug":"medium","className":"query-media-object__image","style":{"border":{"radius":"var:preset|custom|border-radius"}}} /-->
 
                 <!-- wp:group {"className":"query-media-object__body","style":{"spacing":{"blockGap":"var:preset|spacing|30"},"layout":{"selfStretch":"fill","flexSize":null}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
                 <div class="wp-block-group query-media-object__body">
@@ -84,7 +84,7 @@
                     <!-- wp:group {"className":"query-media-object__footer-row","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"right","verticalAlignment":"center"}} -->
                     <div class="wp-block-group query-media-object__footer-row">
 
-                        <!-- wp:read-more {"content":"<?php echo esc_attr_x('View Result', 'Search result link label', 'systemstrap'); ?>","className":"query-media-object__read-more","fontSize":"small"} /-->
+                        <!-- wp:read-more {"content":"View Result","className":"query-media-object__read-more wp-element-button","fontSize":"small"} /-->
 
                     </div>
                     <!-- /wp:group -->

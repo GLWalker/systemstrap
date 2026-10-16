@@ -3,25 +3,17 @@
    Owns query rows, footer, and query parts from a single core/query style.
    ========================================================================== */
 
-:is(
-    .query-directory-listing__query,
-    .query-directory-listing__query
-).is-style-system-ui-query :is(
+.query-directory-listing__query.is-style-system-ui-query :is(
     .query-directory-listing__row,
-    .query-directory-listing__row,
-    .query-directory-listing__empty,
     .query-directory-listing__empty
 ) {
     border-color: transparent;
     border-color: var(--wp--custom--system-ui-border-color);
 }
 
-.query-directory-listing:has(> :is(.query-directory-listing__query, .query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__pagination,
-.query-directory-listing:has(> :is(.query-directory-listing__query, .query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__pagination a,
-.query-directory-listing:has(> :is(.query-directory-listing__query, .query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__pagination span,
-.query-directory-listing:has(> :is(.query-directory-listing__query, .query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__pagination,
-.query-directory-listing:has(> :is(.query-directory-listing__query, .query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__pagination a,
-.query-directory-listing:has(> :is(.query-directory-listing__query, .query-directory-listing__query).is-style-system-ui-query) .query-directory-listing__pagination span {
+.query-directory-listing:has(> .query-directory-listing__query.is-style-system-ui-query) .query-directory-listing__pagination,
+.query-directory-listing:has(> .query-directory-listing__query.is-style-system-ui-query) .query-directory-listing__pagination a,
+.query-directory-listing:has(> .query-directory-listing__query.is-style-system-ui-query) .query-directory-listing__pagination span {
     color: inherit;
 }
 
@@ -39,7 +31,7 @@
     --strap-term-badge-hover-color: inherit;
 }
 
-:is(.query-directory-listing__query, .query-directory-listing__query).is-style-system-ui-query {
+.query-directory-listing__query.is-style-system-ui-query {
     margin: 0;
 }
 
@@ -184,17 +176,14 @@
     box-shadow: var(--wp--custom--shadow);
 }
 
-.query-directory-listing.is-style-system-panel > :is(.query-directory-listing__query, .query-directory-listing__query).has-global-padding,
-.query-directory-listing.is-style-system-panel > :is(.query-directory-listing__query, .query-directory-listing__query).has-global-padding,
+.query-directory-listing.is-style-system-panel > .query-directory-listing__query.has-global-padding,
 .query-latest-posts.is-style-system-panel > .query-latest-posts__query.has-global-padding,
 .query-directory-image-grid.is-style-system-panel.is-style-system-ui-query.has-global-padding,
 .wp-block-group.is-style-system-panel > .wp-block-query.is-style-system-ui-query.has-global-padding,
-.wp-block-group.is-style-system-panel > .query-directory-listing :is(.query-directory-listing__query, .query-directory-listing__query).has-global-padding,
-.wp-block-group.is-style-system-panel > .query-directory-listing :is(.query-directory-listing__query, .query-directory-listing__query).has-global-padding,
+.wp-block-group.is-style-system-panel > .query-directory-listing .query-directory-listing__query.has-global-padding,
 .wp-block-group.is-style-system-panel > .query-latest-posts .query-latest-posts__query.has-global-padding,
 .wp-block-group.is-style-system-panel > .query-directory-image-grid.is-style-system-ui-query.has-global-padding,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing :is(.query-directory-listing__query, .query-directory-listing__query).has-global-padding,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing :is(.query-directory-listing__query, .query-directory-listing__query).has-global-padding,
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing .query-directory-listing__query.has-global-padding,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-latest-posts .query-latest-posts__query.has-global-padding,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-query.is-style-system-ui-query.has-global-padding,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-image-grid.is-style-system-ui-query.has-global-padding {
@@ -348,8 +337,6 @@
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .wp-block-query.is-style-system-ui-query:not(:is(.query-directory-listing__query, .query-latest-posts__query, .query-directory-grid__query, .query-directory-image-grid__query)),
 .wp-block-group.is-style-system-panel > .query-directory-listing,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing,
-.wp-block-group.is-style-system-panel > .query-directory-listing,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing,
 .wp-block-group.is-style-system-panel > .query-latest-posts,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-latest-posts,
 .wp-block-group.is-style-system-panel > .query-directory-grid,
@@ -367,8 +354,6 @@
     max-width: none !important;
 }
 
-.wp-block-group.is-style-system-panel > .query-directory-listing.has-global-padding,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing.has-global-padding,
 .wp-block-group.is-style-system-panel > .query-directory-listing.has-global-padding,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing.has-global-padding,
 .wp-block-group.is-style-system-panel > .query-latest-posts.has-global-padding,
@@ -403,10 +388,6 @@
 .wp-block-group.is-style-system-panel > .query-directory-listing .query-directory-listing__footer,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing .query-directory-listing__header,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing .query-directory-listing__footer,
-.wp-block-group.is-style-system-panel > .query-directory-listing .query-directory-listing__header,
-.wp-block-group.is-style-system-panel > .query-directory-listing .query-directory-listing__footer,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing .query-directory-listing__header,
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing .query-directory-listing__footer,
 .wp-block-group.is-style-system-panel > .query-latest-posts .query-latest-posts__header,
 .wp-block-group.is-style-system-panel > .query-latest-posts .query-latest-posts__footer,
 .wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-latest-posts .query-latest-posts__header,
@@ -416,8 +397,8 @@
 }
 
 
-.wp-block-group.is-style-system-panel > :is(.query-directory-listing, .query-directory-listing) :is(.query-directory-listing__title, .query-directory-listing__title a, .query-directory-listing__excerpt, .query-directory-listing__excerpt p, .query-directory-listing__arrow, .query-directory-listing__item-icon, .query-directory-listing__footer, .query-directory-listing__footer .wp-block-query-total, .query-directory-listing__pagination, .query-directory-listing__pagination a, .query-directory-listing__pagination span, .query-directory-listing__empty, .query-directory-listing__title, .query-directory-listing__title a, .query-directory-listing__excerpt, .query-directory-listing__excerpt p, .query-directory-listing__arrow, .query-directory-listing__item-icon, .query-directory-listing__footer, .query-directory-listing__footer .wp-block-query-total, .query-directory-listing__pagination, .query-directory-listing__pagination a, .query-directory-listing__pagination span, .query-directory-listing__empty),
-.wp-block-group.is-style-system-panel .block-editor-block-list__layout > :is(.query-directory-listing, .query-directory-listing) :is(.query-directory-listing__title, .query-directory-listing__title a, .query-directory-listing__excerpt, .query-directory-listing__excerpt p, .query-directory-listing__arrow, .query-directory-listing__item-icon, .query-directory-listing__footer, .query-directory-listing__footer .wp-block-query-total, .query-directory-listing__pagination, .query-directory-listing__pagination a, .query-directory-listing__pagination span, .query-directory-listing__empty, .query-directory-listing__title, .query-directory-listing__title a, .query-directory-listing__excerpt, .query-directory-listing__excerpt p, .query-directory-listing__arrow, .query-directory-listing__item-icon, .query-directory-listing__footer, .query-directory-listing__footer .wp-block-query-total, .query-directory-listing__pagination, .query-directory-listing__pagination a, .query-directory-listing__pagination span, .query-directory-listing__empty) {
+.wp-block-group.is-style-system-panel > .query-directory-listing :is(.query-directory-listing__title, .query-directory-listing__title a, .query-directory-listing__excerpt, .query-directory-listing__excerpt p, .query-directory-listing__arrow, .query-directory-listing__item-icon, .query-directory-listing__footer, .query-directory-listing__footer .wp-block-query-total, .query-directory-listing__pagination, .query-directory-listing__pagination a, .query-directory-listing__pagination span, .query-directory-listing__empty),
+.wp-block-group.is-style-system-panel .block-editor-block-list__layout > .query-directory-listing :is(.query-directory-listing__title, .query-directory-listing__title a, .query-directory-listing__excerpt, .query-directory-listing__excerpt p, .query-directory-listing__arrow, .query-directory-listing__item-icon, .query-directory-listing__footer, .query-directory-listing__footer .wp-block-query-total, .query-directory-listing__pagination, .query-directory-listing__pagination a, .query-directory-listing__pagination span, .query-directory-listing__empty) {
     color: inherit;
 }
 

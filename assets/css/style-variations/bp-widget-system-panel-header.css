@@ -1,0 +1,115 @@
+/*
+ * BuddyPress System Panel adapter.
+ * The block root consumes the canonical Panel surface; BuddyPress keeps its
+ * native widget markup and interaction ownership.
+ */
+
+:is(.wp-block-bp-login-form, .wp-block-bp-online-members, .wp-block-bp-active-members, .wp-block-bp-dynamic-members, .wp-block-bp-friends, .wp-block-bp-dynamic-groups, .wp-block-bp-latest-activities, .wp-block-bp-sitewide-notices).is-style-system-panel {
+    box-sizing: border-box;
+    padding: var(--strap-system-panel-content-inset-y) var(--strap-system-panel-content-inset-x);
+}
+
+:is(.wp-block-bp-online-members, .wp-block-bp-active-members, .wp-block-bp-dynamic-members, .wp-block-bp-friends, .wp-block-bp-dynamic-groups, .wp-block-bp-latest-activities).is-style-system-panel .widget-title {
+    margin: 0 0 var(--wp--preset--spacing--20);
+    font-family: var(--strap-system-panel-heading-font-family);
+    font-size: var(--wp--preset--font-size--medium);
+    font-weight: var(--strap-system-panel-heading-font-weight);
+    line-height: var(--strap-system-panel-heading-line-height);
+}
+
+:is(.wp-block-bp-online-members, .wp-block-bp-active-members).is-style-system-panel .avatar-block {
+    display: flex;
+    flex-flow: row wrap;
+    gap: var(--wp--preset--spacing--10);
+}
+
+:is(.wp-block-bp-online-members, .wp-block-bp-active-members).is-style-system-panel .avatar-block img {
+    display: block;
+    margin: 0;
+}
+
+:is(.wp-block-bp-dynamic-members, .wp-block-bp-friends, .wp-block-bp-dynamic-groups).is-style-system-panel .item-options {
+    margin: 0 0 var(--wp--preset--spacing--20);
+    padding: 0;
+    font-size: var(--wp--preset--font-size--small);
+}
+
+:is(.wp-block-bp-dynamic-members, .wp-block-bp-friends, .wp-block-bp-dynamic-groups).is-style-system-panel .item-list {
+    margin: 0;
+    padding: 0;
+}
+
+:is(.wp-block-bp-dynamic-members, .wp-block-bp-friends, .wp-block-bp-dynamic-groups).is-style-system-panel .item-list > li {
+    display: flex;
+    gap: var(--wp--preset--spacing--20);
+    margin: 0;
+    padding: var(--wp--preset--spacing--20) 0;
+    border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+    background: transparent;
+}
+
+:is(.wp-block-bp-dynamic-members, .wp-block-bp-friends, .wp-block-bp-dynamic-groups).is-style-system-panel .item-list > li:first-child {
+    border-top: 0;
+}
+
+:is(.wp-block-bp-dynamic-members, .wp-block-bp-friends, .wp-block-bp-dynamic-groups).is-style-system-panel .item-list > li:hover {
+    background-color: var(--wp--custom--system-ui-list-hover-bg);
+}
+
+:is(.wp-block-bp-dynamic-members, .wp-block-bp-friends, .wp-block-bp-dynamic-groups).is-style-system-panel .item-list .item-avatar {
+    flex: 0 0 auto;
+    width: auto;
+}
+
+:is(.wp-block-bp-dynamic-members, .wp-block-bp-friends, .wp-block-bp-dynamic-groups).is-style-system-panel .item-list .item-avatar img {
+    display: block;
+    width: var(--wp--preset--spacing--50);
+    height: var(--wp--preset--spacing--50);
+    border-radius: var(--wp--custom--border-radius-sm);
+}
+
+:is(.wp-block-bp-dynamic-members, .wp-block-bp-friends, .wp-block-bp-dynamic-groups).is-style-system-panel .item-list .item {
+    min-width: 0;
+    margin-left: 0;
+}
+
+:is(.wp-block-bp-dynamic-members, .wp-block-bp-friends, .wp-block-bp-dynamic-groups).is-style-system-panel .item-list .item-meta {
+    font-size: var(--wp--preset--font-size--small);
+    opacity: 0.68;
+}
+
+.wp-block-bp-login-form.is-style-system-panel:has(.bp-login-widget-user-avatar) {
+    display: flex;
+    align-items: center;
+    gap: var(--wp--preset--spacing--20);
+}
+
+.wp-block-bp-login-form.is-style-system-panel .bp-login-widget-user-avatar {
+    float: none;
+    flex: 0 0 auto;
+}
+
+.wp-block-bp-login-form.is-style-system-panel .bp-login-widget-user-links {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--wp--preset--spacing--20);
+	flex: 1 1 auto;
+    min-width: 0;
+    margin-left: 0;
+}
+
+.wp-block-bp-login-form.is-style-system-panel .bp-login-widget-user-link {
+    font-size: var(--wp--preset--font-size--medium);
+    font-weight: var(--wp--custom--font-weight-heading);
+}
+
+.wp-block-bp-login-form.is-style-system-panel .bp-login-widget-user-logout {
+	flex: 0 0 auto;
+}
+
+.wp-block-bp-login-form.is-style-system-panel #bp-login-widget-form .strap-bp-button-full {
+	display: inline-flex;
+	width: 100%;
+}
+

@@ -98,7 +98,7 @@ function strap_register_block_styles() {
 		// Find where the variation name starts (assuming all our variations start with 'system-')
 		$var_pos = strpos( $filename, '-system-' );
 		
-		if ( 'core-button-system-icon' === $filename ) {
+		if ( in_array( $filename, array( 'core-button-system-icon', 'bp-widget-system-panel-header' ), true ) ) {
 			continue;
 		}
 		
@@ -150,7 +150,13 @@ function strap_register_block_styles() {
 			$variation_label = ucwords( str_replace( '-', ' ', $variation_name ) );
 
 			if ( 'system-flat-panel' === $variation_name ) {
-				$variation_label = in_array( $block_name, array( 'core/details', 'core/accordion' ), true ) ? 'System Flat Panel' : 'System Flat';
+				if ( 'core/details' === $block_name ) {
+					$variation_label = 'System Flat Details';
+				} elseif ( 'core/accordion' === $block_name ) {
+					$variation_label = 'System Flat Accordion';
+				} else {
+					$variation_label = 'System Flat';
+				}
 			} elseif ( str_starts_with( $variation_name, 'system-ui-pagination' ) ) {
 				$variation_label = str_replace( 'System Ui', 'System UI', $variation_label );
 			}
@@ -220,3 +226,55 @@ function strap_register_block_styles() {
 	// We now exclusively use Block Variations (strap-carousels.js) for carousels.
 }
 add_action( 'init', 'strap_register_block_styles' );
+
+/**
+ * Register the shared BuddyPress System Panel treatment.
+ *
+ * BuddyPress widget blocks own their Panel surface directly so sidebar
+ * patterns do not need wrapper Groups to provide that presentation.
+ */
+function strap_register_buddypress_block_styles() {
+	if ( ! function_exists( 'register_block_style' ) || ! function_exists( 'wp_enqueue_block_style' ) ) {
+		return;
+	}
+
+	$stylesheet = get_template_directory() . '/assets/css/style-variations/bp-widget-system-panel-header.css';
+
+	if ( ! file_exists( $stylesheet ) ) {
+		return;
+	}
+
+	$blocks = array(
+		'bp/login-form',
+		'bp/online-members',
+		'bp/active-members',
+		'bp/dynamic-members',
+		'bp/friends',
+		'bp/dynamic-groups',
+		'bp/latest-activities',
+		'bp/sitewide-notices',
+	);
+
+	foreach ( $blocks as $block_name ) {
+		wp_enqueue_block_style(
+			$block_name,
+			array(
+				'handle' => 'bp-widget-system-panel-header',
+				'src'    => get_template_directory_uri() . '/assets/css/style-variations/bp-widget-system-panel-header.css',
+				'path'   => $stylesheet,
+				'deps'   => array( 'strap-panel-surface', 'strap-panel-structure' ),
+				'ver'    => filemtime( $stylesheet ),
+			)
+		);
+
+		register_block_style(
+			$block_name,
+			array(
+				'name'         => 'system-panel',
+				'label'        => 'System Panel',
+				'style_handle' => 'bp-widget-system-panel-header',
+			)
+		);
+	}
+}
+add_action( 'init', 'strap_register_buddypress_block_styles', 20 );

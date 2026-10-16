@@ -1,0 +1,1009 @@
+/* BuddyPress Activity adapters. Nouveau owns DOM, AJAX, and responsive layout. */
+
+/*
+ * Nouveau selector mirror
+ *
+ * Nouveau: body #buddypress div, li, textarea (buddypress.css:64-74)
+ * SystemStrap: body #buddypress #activity-stream.strap-bp-treatment-* …
+ * Owner: Treatment-specific radius on the actual painted shell, row, or composer.
+ *
+ * Nouveau: .activity-list.bp-list (buddypress.css:1009-1012)
+ * SystemStrap: #activity-stream.strap-bp-treatment-* .activity-list.bp-list
+ * Owner: Activity list shell; canonical Comments List/Panel treatment re-applies it.
+ *
+ * Nouveau: .activity-list.bp-list .activity-item (buddypress.css:1014-1019)
+ * SystemStrap: #activity-stream.strap-bp-treatment-* .activity-list.bp-list > .activity-item
+ * Owner: List rows lose Nouveau card chrome; canonical treatment owns List seams or Panel cards.
+ *
+ * Nouveau: .activity-list .activity-item .activity-content .activity-inner
+ * SystemStrap: #activity-stream.strap-bp-treatment-* .activity-list > .activity-item .activity-content .activity-inner
+ * Owner: Feed content rhythm, not a second Nouveau surface.
+ *
+ * Nouveau: .activity-list .activity-item .activity-meta.action
+ * SystemStrap: #activity-stream.strap-bp-treatment-* .activity-list > .activity-item .activity-meta.action
+ * Owner: Utility-action wrapper; padding remains on clickable controls.
+ *
+ * Nouveau: .activity-update-form / .activity-update-form #whats-new-textarea textarea:focus (buddypress.css:1091-1136)
+ * SystemStrap: #bp-nouveau-activity-form.strap-panel-surface / descendant textarea:focus
+ * Owner: Canonical Panel surface and canonical form focus state.
+ */
+
+/* The Activity root consumes the canonical Comments List/Panel treatments. */
+#activity-stream:is(.strap-bp-treatment-system-flat-list, .strap-bp-treatment-system-list, .strap-bp-treatment-system-flat-panel, .strap-bp-treatment-system-panel) .activity-list > .activity-item > .activity-avatar img.avatar {
+	width: var(--wp--preset--spacing--50);
+	height: var(--wp--preset--spacing--50);
+	object-fit: cover;
+	border-radius: var(--wp--custom--border-radius-sm);
+}
+
+/* Nouveau's card stack becomes one clipped System List shell. */
+body #buddypress #activity-stream:is(.strap-bp-treatment-system-flat-list, .strap-bp-treatment-system-list) .activity-list.bp-list {
+	margin: 0;
+	padding: 0;
+	border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+	border-radius: var(--wp--custom--border-radius);
+	overflow: hidden;
+	background-color: var(--wp--custom--system-ui-surface);
+}
+
+body #buddypress #activity-stream.strap-bp-treatment-system-list .activity-list.bp-list {
+	background-image: var(--wp--custom--system-ui-background-image, none);
+	backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+	-webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+	box-shadow: var(--wp--custom--shadow);
+}
+
+body #buddypress #activity-stream.strap-bp-treatment-system-flat-list .activity-list.bp-list {
+	background-image: none;
+	box-shadow: none;
+	filter: none;
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+}
+
+body #buddypress #activity-stream:is(.strap-bp-treatment-system-flat-list, .strap-bp-treatment-system-list) .activity-list.bp-list > li.activity-item {
+	margin: 0;
+	padding: var(--strap-comments-row-padding-y) var(--strap-comments-row-padding-x);
+	border: 0;
+	border-radius: 0;
+	background: transparent;
+	box-shadow: none;
+}
+
+/* The load-more footer remains a functional row, without a trailing seam. */
+body #buddypress #activity-stream:is(.strap-bp-treatment-system-flat-list, .strap-bp-treatment-system-list) .activity-list.bp-list > li.load-more {
+	margin: 0;
+	border: 0;
+	border-radius: 0;
+	background: transparent;
+	box-shadow: none;
+}
+
+body #buddypress #activity-stream:is(.strap-bp-treatment-system-flat-list, .strap-bp-treatment-system-list) .activity-list.bp-list > li.activity-item + li.activity-item,
+body #buddypress #activity-stream:is(.strap-bp-treatment-system-flat-list, .strap-bp-treatment-system-list) .activity-list.bp-list > li.activity-item + li.load-more {
+	border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+}
+
+/* Panels leave the UL structural; each Activity entry owns its card surface. */
+body #buddypress #activity-stream:is(.strap-bp-treatment-system-flat-panel, .strap-bp-treatment-system-panel) .activity-list.bp-list {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	border-radius: 0;
+	overflow: visible;
+	background: transparent;
+	box-shadow: none;
+}
+
+body #buddypress #activity-stream:is(.strap-bp-treatment-system-flat-panel, .strap-bp-treatment-system-panel) .activity-list.bp-list > li.activity-item {
+	margin: 0;
+	padding: var(--strap-comments-row-padding-y) var(--strap-comments-row-padding-x);
+	border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+	border-radius: var(--wp--custom--border-radius);
+	background-color: var(--wp--custom--system-ui-surface);
+}
+
+body #buddypress #activity-stream:is(.strap-bp-treatment-system-flat-panel, .strap-bp-treatment-system-panel) .activity-list.bp-list > li.load-more {
+	margin: 0;
+	border: 0;
+	border-radius: 0;
+	background: transparent;
+	box-shadow: none;
+}
+
+body #buddypress #activity-stream.strap-bp-treatment-system-panel .activity-list.bp-list > li.activity-item {
+	background-image: var(--wp--custom--system-ui-background-image, none);
+	backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+	-webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+	box-shadow: var(--wp--custom--shadow);
+}
+
+body #buddypress #activity-stream.strap-bp-treatment-system-flat-panel .activity-list.bp-list > li.activity-item {
+	background-image: none;
+	box-shadow: none;
+	filter: none;
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+}
+
+/* Nouveau content regions become part of the shared Comment-row rhythm. */
+#activity-stream:is(.strap-bp-treatment-system-flat-list, .strap-bp-treatment-system-list, .strap-bp-treatment-system-flat-panel, .strap-bp-treatment-system-panel) .activity-list > .activity-item .activity-content .activity-header {
+	margin: 0 0 var(--wp--preset--spacing--20);
+	width: auto;
+}
+
+#activity-stream:is(.strap-bp-treatment-system-flat-list, .strap-bp-treatment-system-list, .strap-bp-treatment-system-flat-panel, .strap-bp-treatment-system-panel) .activity-list > .activity-item .activity-content .activity-inner {
+	margin: 0 0 var(--wp--preset--spacing--20);
+	padding: 0;
+	border: 0;
+	background: transparent;
+	box-shadow: none;
+}
+
+#activity-stream:is(.strap-bp-treatment-system-flat-list, .strap-bp-treatment-system-list, .strap-bp-treatment-system-flat-panel, .strap-bp-treatment-system-panel) .activity-list > .activity-item .activity-meta.action {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: transparent;
+}
+
+/* Activity previews remain compact media objects inside their feed row. */
+#activity-stream:is(.strap-bp-treatment-system-flat-list, .strap-bp-treatment-system-list, .strap-bp-treatment-system-flat-panel, .strap-bp-treatment-system-panel) :is(.bp-member-activity-preview, .bp-group-activity-preview) {
+	margin: var(--wp--preset--spacing--20) 0 0;
+	padding: var(--wp--preset--spacing--20);
+	border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+	border-radius: var(--wp--custom--border-radius);
+	background: transparent;
+	box-shadow: none;
+}
+
+#activity-stream:is(.strap-bp-treatment-system-flat-list, .strap-bp-treatment-system-list, .strap-bp-treatment-system-flat-panel, .strap-bp-treatment-system-panel) .bp-profile-button .button {
+	width: fit-content;
+	margin: 0;
+}
+
+#activity-stream:is(.strap-bp-treatment-system-flat-list, .strap-bp-treatment-system-list, .strap-bp-treatment-system-flat-panel, .strap-bp-treatment-system-panel) .activity-meta.action {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--wp--preset--spacing--10);
+}
+
+/* The comment count is action metadata, not a standalone badge. Nouveau sets
+   every action-row span to a fixed gray, so inherit the control foreground. */
+body #buddypress #activity-stream:is(.strap-bp-treatment-system-flat-list, .strap-bp-treatment-system-list, .strap-bp-treatment-system-flat-panel, .strap-bp-treatment-system-panel) .activity-meta.action .strap-bp-activity-comment-control .comment-count {
+	background: transparent !important;
+	border: 0 !important;
+	box-shadow: none !important;
+	color: inherit !important;
+	padding: 0 !important;
+}
+
+/* Top-level Activity Delete keeps Nouveau's lightweight icon/action contract.
+   Its confirmation behavior remains destructive without presenting a danger
+   button beside Comment and Favorite. */
+body #buddypress #activity-stream:is(.strap-bp-treatment-system-flat-list, .strap-bp-treatment-system-list, .strap-bp-treatment-system-flat-panel, .strap-bp-treatment-system-panel) .activity-meta.action .delete-activity:is(:hover, :focus, :focus-visible) {
+	color: inherit;
+}
+
+/* Nouveau renders direct Activity replies as `.activity-comments > .comment-item`.
+   Reserve one content-rhythm step for the compact Reply/Delete row. */
+body #buddypress #activity-stream:is(.strap-bp-treatment-system-flat-list, .strap-bp-treatment-system-list, .strap-bp-treatment-system-flat-panel, .strap-bp-treatment-system-panel) .activity-comments > .comment-item {
+	padding-bottom: var(--wp--preset--spacing--20);
+}
+
+#activity-stream:is(.strap-bp-treatment-system-flat-list, .strap-bp-treatment-system-list, .strap-bp-treatment-system-flat-panel, .strap-bp-treatment-system-panel) .activity-meta.action > :is(a.button, button, input[type="button"], input[type="submit"]):not(.strap-bp-default-button, .strap-bp-danger-button),
+#activity-stream:is(.strap-bp-treatment-system-flat-list, .strap-bp-treatment-system-list, .strap-bp-treatment-system-flat-panel, .strap-bp-treatment-system-panel) .activity-meta.action .generic-button > :is(a.button, button, input[type="button"], input[type="submit"]):not(.strap-bp-default-button, .strap-bp-danger-button) {
+	width: fit-content;
+	margin: 0;
+	padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--20);
+}
+
+/* Load More keeps Nouveau's link and AJAX ownership while consuming the
+   selected Button adapter at its intrinsic content width. */
+#activity-stream:is(.strap-bp-treatment-system-flat-list, .strap-bp-treatment-system-list, .strap-bp-treatment-system-flat-panel, .strap-bp-treatment-system-panel) .activity-list > li.load-more > .strap-bp-load-more-button {
+	display: inline-flex;
+	width: fit-content;
+}
+
+/* BuddyPress keeps the asynchronous filter state. The selected link alone
+   consumes this compact, contextual SystemStrap surface. */
+body :is(.wp-block-bp-dynamic-members, .wp-block-bp-friends, .wp-block-bp-dynamic-groups) .item-options > a.selected {
+	display: inline-flex;
+	padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--20);
+	border: var(--wp--custom--border-width, 1px) solid color-mix(in srgb, currentColor 20%, transparent);
+	border-radius: var(--wp--custom--btn-border-radius);
+	box-shadow: inset 0 0 0 9999px color-mix(in srgb, currentColor 15%, transparent);
+	font-family: var(--wp--preset--font-family--button);
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: var(--wp--custom--font-weight-button);
+	line-height: 1.3;
+	text-decoration: none;
+}
+
+/* Composer consumes the canonical Panel surface; the native form remains authoritative. */
+#bp-nouveau-activity-form.strap-panel-surface {
+	box-sizing: border-box;
+	margin: 0;
+	padding: var(--strap-system-panel-content-inset-y) var(--strap-system-panel-content-inset-x);
+}
+
+/* Mirror Nouveau's global DIV radius on the selected composer root only. */
+body #buddypress #bp-nouveau-activity-form.strap-panel-surface {
+	margin-bottom: var(--wp--preset--spacing--30);
+	border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+	border-radius: var(--wp--custom--border-radius);
+	overflow: hidden;
+	background-color: var(--wp--custom--system-ui-surface);
+}
+
+body #buddypress #bp-nouveau-activity-form.strap-panel-surface:not(.is-style-system-flat-panel) {
+	background-image: var(--wp--custom--system-ui-background-image, none);
+	backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+	-webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+	box-shadow: var(--wp--custom--shadow);
+}
+
+/* Flat Panel removes Nouveau's inset form shadow; Panel retains canonical depth. */
+body #buddypress #bp-nouveau-activity-form.strap-panel-surface.is-style-system-flat-panel {
+	background-image: none;
+	box-shadow: none;
+	filter: none;
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+}
+
+#bp-nouveau-activity-form.strap-panel-surface #whats-new-form {
+	margin: 0;
+	border: 0;
+	background: transparent;
+	box-shadow: none;
+}
+
+/* Mirror the Comments Form inset/gap rhythm without replacing Nouveau layout. */
+#bp-nouveau-activity-form.strap-panel-surface #whats-new-content {
+	padding: 0 0 var(--wp--preset--spacing--20);
+}
+
+#bp-nouveau-activity-form.strap-panel-surface #whats-new-textarea textarea {
+	box-sizing: border-box;
+	margin: 0;
+	padding: var(--wp--preset--spacing--20);
+	border-color: var(--wp--custom--form-border-color);
+	border-radius: var(--wp--custom--form-border-radius);
+	transition: var(--wp--custom--form-transition);
+}
+
+#bp-nouveau-activity-form.strap-panel-surface #whats-new-textarea textarea:focus {
+	border-color: var(--wp--custom--form-focus-border-color);
+	box-shadow: var(--wp--preset--shadow--form-focus, none);
+}
+
+#bp-nouveau-activity-form.strap-panel-surface #whats-new-buttons {
+	gap: var(--wp--preset--spacing--10);
+	padding: 0 0 var(--wp--preset--spacing--20);
+}
+
+#bp-nouveau-activity-form.strap-panel-surface #whats-new-submit {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--wp--preset--spacing--10);
+	margin-block: var(--wp--preset--spacing--20) var(--wp--preset--spacing--10);
+}
+
+/*
+ * Nouveau selector mirror — directory card surfaces
+ *
+ * Nouveau: .bp-list / .bp-list > li / .bp-list li (buddypress.css:836-884)
+ * SystemStrap: body #buddypress #members-dir-list|#groups-dir-list.strap-bp-treatment-* …
+ * Owner: The UL and LI remain structural; their grid/list layout remains Nouveau-owned.
+ *
+ * Nouveau: .grid > li .list-wrap (buddypress.css:4839-4856)
+ * SystemStrap: body #buddypress #members-dir-list|#groups-dir-list.strap-bp-treatment-* … > .list-wrap
+ * Owner: Each member/group card's canonical Panel or Flat Panel surface.
+ *
+ * Nouveau: .buddypress-wrap .members-list li .user-update (buddypress.css:2015-2024)
+ * Nouveau: .buddypress-wrap .groups-list li .group-desc (buddypress.css:1940-1949)
+ * Owner: Nested content remains structural; it must not become a second card.
+ */
+
+/* Preserve Nouveau's layout mechanics while removing its outer list seams. */
+body #buddypress :is(#members-dir-list, #groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) :is(.members-list.bp-list, .groups-list.bp-list) {
+	border-top: 0;
+	background: transparent;
+	box-shadow: none;
+}
+
+body #buddypress :is(#members-dir-list, #groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) :is(.members-list.bp-list, .groups-list.bp-list) > li.item-entry {
+	border-bottom: 0;
+	background: transparent;
+	box-shadow: none;
+}
+
+/* Member and Group cards share the canonical Panel geometry at .list-wrap. */
+body #buddypress #members-dir-list:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .members-list.bp-list > li.item-entry > .list-wrap,
+body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list > li.item-entry > .list-wrap {
+	box-sizing: border-box;
+	padding: var(--strap-system-panel-content-inset-y) var(--strap-system-panel-content-inset-x);
+	border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+	border-radius: var(--wp--custom--border-radius);
+	background-color: var(--wp--custom--system-ui-surface);
+	overflow: hidden;
+	transition: border-color 0.15s ease-in-out;
+}
+
+/* Mirror Nouveau's grid card padding owner without touching nested avatars. */
+body #buddypress #members-dir-list:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .members-list.bp-list.grid > li.item-entry > .list-wrap,
+body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list.grid > li.item-entry > .list-wrap {
+	padding-top: var(--wp--preset--spacing--40);
+}
+
+body #buddypress #members-dir-list.strap-bp-treatment-system-panel .members-list.bp-list > li.item-entry > .list-wrap,
+body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]).strap-bp-treatment-system-panel .groups-list.bp-list > li.item-entry > .list-wrap {
+	background-image: var(--wp--custom--system-ui-background-image, none);
+	backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+	-webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+	box-shadow: var(--wp--custom--shadow);
+}
+
+body #buddypress #members-dir-list.strap-bp-treatment-system-flat-panel .members-list.bp-list > li.item-entry > .list-wrap,
+body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]).strap-bp-treatment-system-flat-panel .groups-list.bp-list > li.item-entry > .list-wrap {
+	background-image: none;
+	box-shadow: none;
+	filter: none;
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+}
+
+/* Member update and Group description retain content rhythm, not card paint. */
+body #buddypress #members-dir-list:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .members-list.bp-list > li.item-entry > .list-wrap .user-update,
+body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list > li.item-entry > .list-wrap .group-desc {
+	border: 0;
+	border-radius: 0;
+	background: transparent;
+	box-shadow: none;
+}
+
+/*
+ * Nouveau: .grid > li.item-entry (buddypress.css:4921-4924),
+ * .grid.three > li (buddypress.css:4957-4974).
+ * SystemStrap: the selected Group Directory three-column grid only.
+ * Owner: Grid owns equal row tracks; the existing .list-wrap surface fills its item.
+ */
+body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list.grid.three {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: var(--wp--preset--spacing--20);
+}
+
+body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list.grid.three > li.item-entry {
+	float: none;
+	width: 100%;
+	min-width: 0;
+	display: flex;
+	align-self: stretch;
+	margin: 0;
+	padding: 0;
+}
+
+body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list.grid.three > li.item-entry > .list-wrap {
+	width: 100%;
+	height: auto;
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+@media screen and (min-width: 24em) {
+	body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list.grid.three {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media screen and (min-width: 46.8em) {
+	body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list.grid.three {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+}
+
+/* Nouveau's clearfix pseudo-elements become empty Grid items under the selected treatment. */
+body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list.grid.three::before,
+body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list.grid.three::after {
+	content: none;
+	display: none;
+}
+
+/* Theme-owned group cover content; it is independent of Panel atmosphere. */
+:is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]) .groups-list > li.item-entry > .list-wrap:has(.strap-bp-group-card-cover) {
+	position: relative;
+	overflow: hidden;
+	padding-top: calc(31.25% + var(--wp--preset--spacing--20));
+}
+
+:is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]) .strap-bp-group-card-cover {
+	position: absolute;
+	inset: 0 0 auto;
+	aspect-ratio: 16 / 5;
+	overflow: hidden;
+}
+
+:is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]) .strap-bp-group-card-cover img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+:is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]) .groups-list > li.item-entry > .list-wrap:has(.strap-bp-group-card-cover) .item-avatar {
+	position: relative;
+	z-index: 1;
+	margin-top: calc(-1 * var(--wp--preset--spacing--40));
+}
+
+/* Panel treatments keep the native avatar baseline while the cover sits behind it. */
+body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list > li.item-entry > .list-wrap:has(.strap-bp-group-card-cover) {
+	padding-top: var(--strap-system-panel-content-inset-y);
+}
+
+body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .strap-bp-group-card-cover {
+	height: var(--wp--preset--spacing--60);
+	aspect-ratio: auto;
+	z-index: 0;
+}
+
+body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .strap-bp-group-card-cover img {
+	object-fit: cover;
+	object-position: center;
+}
+
+body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list > li.item-entry > .list-wrap:has(.strap-bp-group-card-cover) .item-avatar {
+	margin-top: 0;
+}
+
+/* Main profile content only; Nouveau retains headers, cover imagery, and navigation. */
+#item-body.item-body.strap-panel-surface {
+	box-sizing: border-box;
+	padding: var(--strap-system-panel-content-inset-y) var(--strap-system-panel-content-inset-x);
+}
+
+/* Nouveau's desktop vertical layout outranks the neutral panel selector.
+ * Restore the accepted outer Panel radius without changing its content. */
+body.bp-user #buddypress.bp-single-vert-nav #item-body.item-body.strap-panel-surface:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) {
+	border-radius: var(--wp--custom--border-radius);
+}
+
+@media screen and (min-width: 46.8em) {
+	/* Nouveau's desktop item-body shell is structural on the Activity Part only. */
+	main.main-buddypress-activity #buddypress.buddypress-wrap.bp-single-vert-nav .item-body:not(#group-create-body) {
+		background: transparent;
+		background-color: transparent;
+		background-image: none;
+		border: 0;
+		border-radius: 0;
+		box-shadow: none;
+		backdrop-filter: none;
+		-webkit-backdrop-filter: none;
+		margin: 0;
+		padding: 0;
+		min-height: 0;
+	}
+
+	main.main-buddypress-activity #buddypress.buddypress-wrap.bp-single-vert-nav .item-body:not(#group-create-body) {
+		float: none;
+		width: 100%;
+	}
+
+	/* Delegated member directories retain Nouveau layout while their obsolete item-body paint is removed. */
+	main.main-buddypress #buddypress.buddypress-wrap.bp-single-vert-nav .item-body.strap-bp-delegated-directory-shell:not(#group-create-body) {
+		background: transparent;
+		background-color: transparent;
+		background-image: none;
+		border: 0;
+		border-radius: 0;
+		box-shadow: none;
+		backdrop-filter: none;
+		-webkit-backdrop-filter: none;
+		margin: 0;
+		padding: 0;
+		min-height: 0;
+	}
+
+	/* The member Groups Part owns its sidebar; its delegated directory fills the content column. */
+	main.main-buddypress-groups #buddypress.buddypress-wrap.bp-single-vert-nav .item-body.strap-bp-delegated-directory-shell:not(#group-create-body) {
+		float: none;
+		width: 100%;
+	}
+
+	/* Match the established SystemStrap application-column gap on full-width single screens. */
+	main.main-buddypress:not(.main-buddypress-activity):not(.main-buddypress-groups) #buddypress.buddypress-wrap.bp-single-vert-nav .bp-navs.vertical ul {
+		width: calc(25% - var(--wp--preset--spacing--40));
+		margin-right: 0;
+	}
+
+	main.main-buddypress:not(.main-buddypress-activity):not(.main-buddypress-groups) #buddypress.buddypress-wrap.bp-single-vert-nav .item-body:not(#group-create-body) {
+		width: 75%;
+	}
+}
+
+/* Delegated single-member directory mounts reuse the accepted directory cards. */
+body #buddypress :is(#members-group-list, .members.friends):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .members-list.bp-list {
+	border-top: 0;
+	background: transparent;
+	box-shadow: none;
+}
+
+body #buddypress :is(#members-group-list, .members.friends):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .members-list.bp-list > li.item-entry {
+	border-bottom: 0;
+	background: transparent;
+	box-shadow: none;
+}
+
+body #buddypress :is(#members-group-list, .members.friends):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .members-list.bp-list > li.item-entry > .list-wrap {
+	box-sizing: border-box;
+	padding: var(--strap-system-panel-content-inset-y) var(--strap-system-panel-content-inset-x);
+	border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+	border-radius: var(--wp--custom--border-radius);
+	background-color: var(--wp--custom--system-ui-surface);
+	overflow: hidden;
+	transition: border-color 0.15s ease-in-out;
+}
+
+body #buddypress :is(#members-group-list, .members.friends).strap-bp-treatment-system-panel .members-list.bp-list > li.item-entry > .list-wrap {
+	background-image: var(--wp--custom--system-ui-background-image, none);
+	backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+	-webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+	box-shadow: var(--wp--custom--shadow);
+}
+
+body #buddypress :is(#members-group-list, .members.friends).strap-bp-treatment-system-flat-panel .members-list.bp-list > li.item-entry > .list-wrap,
+body #buddypress :is(#members-group-list, .members.friends):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .members-list.bp-list > li.item-entry > .list-wrap .user-update {
+	background-image: none;
+	box-shadow: none;
+	filter: none;
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+}
+
+body #buddypress :is(#members-group-list, .members.friends):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .members-list.bp-list > li.item-entry > .list-wrap .user-update {
+	border: 0;
+	border-radius: 0;
+	background-color: transparent;
+}
+
+/* Shared Single Navigation role for Nouveau inline roots and bp/primary-nav blocks. */
+body #buddypress :is(#object-nav.strap-bp-navigation-treatment-system-nav, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-nav, .wp-block-bp-primary-nav.is-style-system-nav) > ul,
+body #buddypress :is(.wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-nav, .wp-block-bp-primary-nav.is-style-system-nav) .bp-navs > ul {
+	margin: 0;
+	padding: 0;
+}
+
+body #buddypress :is(#object-nav.strap-bp-navigation-treatment-system-nav, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-nav, .wp-block-bp-primary-nav.is-style-system-nav) li,
+body #buddypress :is(.wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-nav, .wp-block-bp-primary-nav.is-style-system-nav) .bp-navs li {
+	float: none;
+	margin: 0;
+}
+
+body #buddypress :is(#object-nav.strap-bp-navigation-treatment-system-nav, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-nav, .wp-block-bp-primary-nav.is-style-system-nav) li > a,
+body #buddypress :is(.wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-nav, .wp-block-bp-primary-nav.is-style-system-nav) .bp-navs li > a {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--wp--custom--navigation-compact-gap);
+	padding: var(--wp--custom--navigation-row-padding-block) var(--wp--custom--navigation-row-padding-inline);
+}
+
+body #buddypress :is(#object-nav.strap-bp-navigation-treatment-system-list, #object-nav.strap-bp-navigation-treatment-system-flat-list, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-list, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-flat-list, .wp-block-bp-primary-nav.is-style-system-list, .wp-block-bp-primary-nav.is-style-system-flat-list) > ul,
+body #buddypress :is(.wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-list, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-flat-list, .wp-block-bp-primary-nav.is-style-system-list, .wp-block-bp-primary-nav.is-style-system-flat-list) .bp-navs > ul {
+	margin: 0;
+	padding: 0;
+	border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+	border-radius: var(--wp--custom--border-radius);
+	overflow: hidden;
+	background-color: var(--wp--custom--system-ui-surface);
+}
+
+body #buddypress :is(#object-nav.strap-bp-navigation-treatment-system-list, #object-nav.strap-bp-navigation-treatment-system-flat-list, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-list, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-flat-list, .wp-block-bp-primary-nav.is-style-system-list, .wp-block-bp-primary-nav.is-style-system-flat-list) li,
+body #buddypress :is(.wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-list, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-flat-list, .wp-block-bp-primary-nav.is-style-system-list, .wp-block-bp-primary-nav.is-style-system-flat-list) .bp-navs li {
+	float: none;
+	margin: 0;
+}
+
+body #buddypress :is(#object-nav.strap-bp-navigation-treatment-system-list, #object-nav.strap-bp-navigation-treatment-system-flat-list, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-list, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-flat-list, .wp-block-bp-primary-nav.is-style-system-list, .wp-block-bp-primary-nav.is-style-system-flat-list) li + li,
+body #buddypress :is(.wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-list, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-flat-list, .wp-block-bp-primary-nav.is-style-system-list, .wp-block-bp-primary-nav.is-style-system-flat-list) .bp-navs li + li {
+	border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+}
+
+body #buddypress :is(#object-nav.strap-bp-navigation-treatment-system-list, #object-nav.strap-bp-navigation-treatment-system-flat-list, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-list, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-flat-list, .wp-block-bp-primary-nav.is-style-system-list, .wp-block-bp-primary-nav.is-style-system-flat-list) li > a,
+body #buddypress :is(.wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-list, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-flat-list, .wp-block-bp-primary-nav.is-style-system-list, .wp-block-bp-primary-nav.is-style-system-flat-list) .bp-navs li > a {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--wp--custom--navigation-compact-gap);
+	padding: var(--wp--custom--navigation-row-padding-block) var(--wp--custom--navigation-row-padding-inline);
+}
+
+body #buddypress :is(#object-nav.strap-bp-navigation-treatment-system-list, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-list, .wp-block-bp-primary-nav.is-style-system-list) > ul,
+body #buddypress :is(.wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-list, .wp-block-bp-primary-nav.is-style-system-list) .bp-navs > ul {
+	background-image: var(--wp--custom--system-ui-background-image, none);
+	backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+	-webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+	box-shadow: var(--wp--custom--shadow);
+}
+
+body #buddypress :is(#object-nav.strap-bp-navigation-treatment-system-flat-list, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-flat-list, .wp-block-bp-primary-nav.is-style-system-flat-list) > ul,
+body #buddypress :is(.wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-flat-list, .wp-block-bp-primary-nav.is-style-system-flat-list) .bp-navs > ul {
+	background-image: none;
+	box-shadow: none;
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+}
+
+/* Nouveau exposes an empty priority toggle with .is-empty. Its native hide rule
+ * is scoped to #buddypress, while a primary-nav block can render in the theme sidebar. */
+body :is(#object-nav.strap-bp-navigation-treatment-system-nav, #object-nav.strap-bp-navigation-treatment-system-list, #object-nav.strap-bp-navigation-treatment-system-flat-list, .bp-navs.strap-bp-navigation-treatment-system-nav, .bp-navs.strap-bp-navigation-treatment-system-list, .bp-navs.strap-bp-navigation-treatment-system-flat-list, .strap-bp-horizontal-navigation, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-nav, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-list, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-flat-list, .wp-block-bp-primary-nav.is-style-system-nav, .wp-block-bp-primary-nav.is-style-system-list, .wp-block-bp-primary-nav.is-style-system-flat-list) .bp-priority-nav-more-toggle.is-empty {
+	display: none;
+}
+
+/* Nouveau 14.5.2 assigns link decoration through body #buddypress * a and
+ * .bp-navs ul li a, and state paint through .bp-navs li.selected/current a
+ * plus non-current hover selectors. It also paints .bp-subnavs,
+ * .single-screen-navs, .bp-dir-hori-nav nav, and .tabbed-links. The C6
+ * bridge supplies this resolved treatment only on directory, subnav, and
+ * horizontal object-nav roots. */
+body #buddypress .strap-bp-horizontal-navigation-treatment-wp-default {
+	background: transparent !important;
+	border: 0 !important;
+	border-radius: 0;
+	box-shadow: none !important;
+	overflow: visible;
+}
+
+body #buddypress .strap-bp-horizontal-navigation-treatment-wp-default > .wp-block-navigation__container {
+	gap: var(--wp--custom--navigation-gap) !important;
+	margin: 0;
+	padding: 0;
+	background: transparent !important;
+	border: 0 !important;
+	border-radius: 0;
+	box-shadow: none !important;
+}
+
+body #buddypress .strap-bp-horizontal-navigation-treatment-wp-default > .wp-block-navigation__container > .wp-block-navigation-item {
+	/* Nouveau's desktop .bp-single-vert-nav inner subnav adds item margin
+	 * and font size; canonical WP Default owns the item underline geometry. */
+	margin: 0 !important;
+	font-size: inherit !important;
+	background: transparent !important;
+	border: 0 !important;
+	border-radius: 0;
+	box-shadow: none !important;
+	position: relative;
+}
+
+/* Preserve Nouveau's measured item widths while separating neighboring local
+ * underline tracks. */
+body #buddypress .strap-bp-horizontal-navigation-treatment-wp-default:is(.bp-subnavs, #object-nav.horizontal) > .wp-block-navigation__container > .wp-block-navigation-item::after {
+	inset-inline: calc(var(--wp--preset--spacing--10) / 2);
+}
+
+/* This matches Nouveau's direct item/link structure while retaining the
+ * theme navigation typography and native focus outline. */
+body #buddypress .strap-bp-horizontal-navigation-treatment-wp-default > .wp-block-navigation__container > .wp-block-navigation-item > .wp-block-navigation-item__content,
+body #buddypress .strap-bp-horizontal-navigation-treatment-wp-default > .wp-block-navigation__container > .wp-block-navigation-item > .wp-block-navigation-item__content:is(:hover, :focus, :focus-visible),
+body #buddypress .strap-bp-horizontal-navigation-treatment-wp-default > .wp-block-navigation__container > .wp-block-navigation-item:is(.current-menu-item, .current, .selected) > .wp-block-navigation-item__content {
+	display: inline-flex;
+	align-items: center;
+	/* Neutralize Nouveau's direct-link inset; canonical WP Default places
+	 * the shared item inset and underline geometry on the LI. */
+	padding: 0 !important;
+	background: transparent !important;
+	border: 0 !important;
+	border-inline-end: 0 !important;
+	border-radius: 0;
+	box-shadow: none !important;
+	color: inherit !important;
+	font: inherit;
+	letter-spacing: inherit;
+	text-decoration: none !important;
+}
+
+/* Nouveau 14.5.2's .bp-navs ul li .count and selected/current/dynamic count
+ * rules are neutralized only after C6 has assigned a non-Native horizontal
+ * treatment. Inline-flex makes the badge an atomic inline, keeping the
+ * item-owned generated underline beneath rather than through the counter. */
+body #buddypress .strap-bp-horizontal-navigation > .wp-block-navigation__container > .wp-block-navigation-item > .wp-block-navigation-item__content > .count {
+	display: inline-flex !important;
+	align-items: center;
+	justify-content: center;
+	flex: 0 0 auto;
+	margin-inline-start: var(--wp--preset--spacing--20) !important;
+	padding: var(--wp--custom--badge-padding-y) var(--wp--custom--badge-padding-x) !important;
+	background: var(--wp--custom--system-ui-surface) !important;
+	border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color) !important;
+	border-radius: var(--wp--custom--badge-border-radius) !important;
+	box-shadow: none !important;
+	color: inherit !important;
+	font-size: var(--wp--custom--badge-font-size) !important;
+	font-weight: var(--wp--custom--badge-font-weight) !important;
+	line-height: 1;
+	text-align: center;
+	text-decoration: none !important;
+	vertical-align: middle;
+	white-space: nowrap;
+	float: none !important;
+}
+
+/* The canonical System Nav Button asset owns the button object. This bridge
+ * clears only Nouveau's float-era layout, direct-item spacing, and link tab
+ * paint on the existing horizontal mounts. */
+body #buddypress .strap-bp-horizontal-navigation-treatment-system-nav-button > .wp-block-navigation__container {
+	display: flex !important;
+	flex-flow: row wrap !important;
+	align-items: center !important;
+	gap: var(--wp--custom--navigation-gap) !important;
+	margin: 0;
+	padding: 0;
+}
+
+/* Nouveau's desktop directory wrapper owns only this border/shadow strip. */
+@media screen and (min-width: 46.8em) {
+	body #buddypress.bp-dir-hori-nav:not(.bp-vertical-navs) .dir-navs.strap-bp-horizontal-navigation-treatment-system-nav-button:not(.tabbed-links) {
+		border-top: 0;
+		border-bottom: 0;
+		box-shadow: none;
+	}
+}
+
+/* Nouveau priority-nav measures this direct list's intrinsic width before it
+ * moves items into its existing ellipsis menu. Keep that measurement contract
+ * while retaining the canonical horizontal button presentation. */
+body #buddypress .strap-bp-horizontal-navigation-treatment-system-nav-button.bp-priority-nav > .wp-block-navigation__container {
+	display: inline-flex !important;
+	flex-wrap: nowrap !important;
+}
+
+body #buddypress .strap-bp-horizontal-navigation-treatment-system-nav-button > .wp-block-navigation__container > .wp-block-navigation-item {
+	float: none !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	font-size: inherit !important;
+}
+
+body #buddypress .strap-bp-horizontal-navigation-treatment-system-nav-button > .wp-block-navigation__container > .wp-block-navigation-item > .wp-block-navigation-item__content,
+body #buddypress .strap-bp-horizontal-navigation-treatment-system-nav-button > .wp-block-navigation__container > .wp-block-navigation-item > .wp-block-navigation-item__content:is(:hover, :focus, :focus-visible),
+body #buddypress .strap-bp-horizontal-navigation-treatment-system-nav-button > .wp-block-navigation__container > .wp-block-navigation-item:is(.current-menu-item, .current, .selected) > .wp-block-navigation-item__content {
+	background: transparent !important;
+	border: 0 !important;
+	border-inline-end: 0 !important;
+	box-shadow: none !important;
+	color: inherit !important;
+	text-decoration: none !important;
+}
+
+/* Nouveau's directory action links carry independent margin, float, and
+ * pale-link paint. The button item remains the canonical visual owner. */
+body #buddypress .strap-bp-horizontal-navigation-treatment-system-nav-button > .wp-block-navigation__container > .wp-block-navigation-item.create-button > .wp-block-navigation-item__content {
+	margin: 0 !important;
+}
+
+/* Only populated directory counts receive the compact end inset; Nouveau may
+ * retain an empty count element for an otherwise uncounted item. */
+body #buddypress .dir-navs.strap-bp-horizontal-navigation-treatment-system-nav-button > .wp-block-navigation__container > .wp-block-navigation-item:has(> .wp-block-navigation-item__content > .count:not(:empty)) > .wp-block-navigation-item__content {
+	padding-inline-end: var(--wp--custom--navigation-compact-padding-inline) !important;
+}
+
+/* Member and group local horizontal navigation shares the canonical button
+ * component at a compact scale; it remains a wrapping row of button items. */
+body #buddypress .strap-bp-horizontal-navigation-treatment-system-nav-button:is(.bp-subnavs, #object-nav.horizontal) > .wp-block-navigation__container {
+	gap: var(--wp--custom--navigation-compact-gap) !important;
+}
+
+body #buddypress .strap-bp-horizontal-navigation-treatment-system-nav-button:is(.bp-subnavs, #object-nav.horizontal) > .wp-block-navigation__container > .wp-block-navigation-item {
+	flex: 0 0 auto !important;
+}
+
+body #buddypress .strap-bp-horizontal-navigation-treatment-system-nav-button:is(.bp-subnavs, #object-nav.horizontal) > .wp-block-navigation__container > .wp-block-navigation-item > .wp-block-navigation-item__content {
+	padding: var(--wp--custom--navigation-compact-padding-block) var(--wp--custom--navigation-compact-padding-inline) !important;
+}
+
+/* System Nav Gen remains the canonical flat navigation component. This bridge
+ * only clears Nouveau's list-era paint so the component can own the direct
+ * horizontal mounts without introducing a BuddyPress-specific Gen visual. */
+body #buddypress .strap-bp-horizontal-navigation-treatment-system-nav-gen {
+	background: transparent !important;
+	border: 0 !important;
+	border-radius: 0;
+	box-shadow: none !important;
+	overflow: visible;
+}
+
+body #buddypress .strap-bp-horizontal-navigation-treatment-system-nav-gen > .wp-block-navigation__container {
+	display: flex !important;
+	flex-flow: row wrap !important;
+	align-items: stretch !important;
+	gap: 0 !important;
+	margin: 0;
+	padding: 0;
+	background: transparent !important;
+	border: 0 !important;
+	border-radius: 0;
+	box-shadow: none !important;
+}
+
+/* Nouveau's desktop directory wrapper owns only this border/shadow strip. */
+@media screen and (min-width: 46.8em) {
+	body #buddypress.bp-dir-hori-nav:not(.bp-vertical-navs) .dir-navs.strap-bp-horizontal-navigation-treatment-system-nav-gen:not(.tabbed-links) {
+		border-top: 0;
+		border-bottom: 0;
+		box-shadow: none;
+	}
+}
+
+/* Preserve Nouveau priority-nav's intrinsic direct-list measurement before it
+ * moves overflow items into its existing ellipsis menu. */
+body #buddypress .strap-bp-horizontal-navigation-treatment-system-nav-gen.bp-priority-nav > .wp-block-navigation__container {
+	display: inline-flex !important;
+	flex-wrap: nowrap !important;
+}
+
+body #buddypress .strap-bp-horizontal-navigation-treatment-system-nav-gen > .wp-block-navigation__container > .wp-block-navigation-item {
+	float: none !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	font-size: inherit !important;
+	background: transparent;
+	border: 0 !important;
+	border-inline-end: 0 !important;
+}
+
+body #buddypress .strap-bp-horizontal-navigation-treatment-system-nav-gen > .wp-block-navigation__container > .wp-block-navigation-item > .wp-block-navigation-item__content,
+body #buddypress .strap-bp-horizontal-navigation-treatment-system-nav-gen > .wp-block-navigation__container > .wp-block-navigation-item > .wp-block-navigation-item__content:is(:hover, :focus, :focus-visible),
+body #buddypress .strap-bp-horizontal-navigation-treatment-system-nav-gen > .wp-block-navigation__container > .wp-block-navigation-item:is(.current-menu-item, .current, .selected) > .wp-block-navigation-item__content {
+	background: transparent !important;
+	border: 0 !important;
+	border-inline-end: 0 !important;
+	box-shadow: none !important;
+	color: inherit !important;
+	text-decoration: none !important;
+}
+
+/* Nouveau's directory action links carry independent margin, float, and
+ * link paint. Every direct item remains a canonical Gen item first. */
+body #buddypress .strap-bp-horizontal-navigation-treatment-system-nav-gen > .wp-block-navigation__container > .wp-block-navigation-item.create-button > .wp-block-navigation-item__content {
+	margin: 0 !important;
+}
+
+/* Local Gen mounts retain a deliberate compact surface without changing
+ * inline spacing, gap, or canonical item-state paint. */
+body #buddypress .strap-bp-horizontal-navigation-treatment-system-nav-gen:is(.bp-subnavs, #object-nav.horizontal) > .wp-block-navigation__container > .wp-block-navigation-item > .wp-block-navigation-item__content {
+	padding-block: var(--wp--custom--navigation-compact-padding-block) !important;
+}
+
+/* Preserve Nouveau's empty-counter contract after the non-Native badge reset. */
+body #buddypress .strap-bp-horizontal-navigation > .wp-block-navigation__container > .wp-block-navigation-item > .wp-block-navigation-item__content > .count:empty {
+	display: none !important;
+}
+
+/* Member Profile content: non-Native treatments only. Local navigation and the
+ * outer item-body surface are intentionally left to their established contracts. */
+body.bp-user #item-body.item-body:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .standard-form :is(input[type="color"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="email"], input[type="month"], input[type="number"], input[type="password"], input[type="range"], input[type="search"], input[type="tel"], input[type="text"], input[type="time"], input[type="url"], input[type="week"], textarea, select) {
+	border-color: var(--wp--custom--form-border-color);
+	border-radius: var(--wp--custom--form-border-radius);
+	background-color: var(--wp--custom--form-bg-color);
+}
+
+body.bp-user #item-body.item-body:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .standard-form :is(input[type="color"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="email"], input[type="month"], input[type="number"], input[type="password"], input[type="range"], input[type="search"], input[type="tel"], input[type="text"], input[type="time"], input[type="url"], input[type="week"], textarea, select):focus {
+	outline: none;
+	border-color: var(--wp--custom--form-focus-border-color);
+	box-shadow: var(--wp--preset--shadow--form-focus, none);
+}
+
+body.bp-user #item-body.item-body:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .standard-form :is(input, textarea, select):disabled {
+	background-color: var(--wp--custom--disabled-bg);
+	opacity: var(--wp--custom--disabled-opacity);
+	filter: var(--wp--custom--disabled-filter);
+}
+
+body.bp-user #item-body.item-body:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .standard-form :is(input[type="checkbox"], input[type="radio"]) {
+	accent-color: var(--wp--preset--color--primary);
+}
+
+body.bp-user #item-body.item-body:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .standard-form :is(label, span.label) {
+	margin: var(--wp--preset--spacing--30) 0 var(--wp--preset--spacing--10);
+}
+
+body.bp-user #item-body.item-body:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .standard-form .description {
+	margin: var(--wp--preset--spacing--10) 0 0;
+	padding: 0;
+	background: transparent;
+}
+
+body.bp-user #item-body.item-body:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .profile.edit .editfield {
+	margin: var(--wp--preset--spacing--30) 0;
+	padding: 0;
+	border: 0;
+	background: transparent;
+}
+
+body.bp-user #item-body.item-body:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .profile.edit .editfield fieldset {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+body.bp-user #item-body.item-body:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) :is(.bp-feedback, .bp-template-notice, .bp-messages) {
+	border-color: var(--wp--custom--system-ui-border-color);
+	border-radius: var(--wp--custom--border-radius);
+	background-color: var(--wp--custom--system-ui-surface);
+	box-shadow: none;
+}
+
+body.bp-user #item-body.item-body:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) form.bp-messages-search-form {
+	border-color: var(--wp--custom--form-border-color);
+	border-radius: var(--wp--custom--form-border-radius);
+	background-color: var(--wp--custom--form-bg-color);
+}
+
+body.bp-user #item-body.item-body:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) form.bp-messages-search-form input[type="search"] {
+	border-radius: var(--wp--custom--form-border-radius);
+	background-color: transparent;
+}
+
+body.bp-user #item-body.item-body:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) :is(table.profile-fields, table.profile-settings, table.notifications, table.invitations, table.notification-settings, table#message-threads) {
+	border-collapse: collapse;
+	background: transparent;
+}
+
+body.bp-user #item-body.item-body:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) table.notification-settings :is(th.yes, th.no, td.yes, td.no) {
+	width: 1%;
+	white-space: nowrap;
+	text-align: center;
+}
+
+body.bp-user #item-body.item-body:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) :is(table.profile-fields, table.profile-settings, table.notifications, table.invitations, table.notification-settings, table#message-threads) > thead > tr > :is(th, td) {
+	padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
+	border-bottom: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+	background-color: var(--wp--custom--system-ui-surface-banner);
+}
+
+body.bp-user #item-body.item-body:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) :is(table.profile-fields, table.profile-settings, table.notifications, table.invitations, table.notification-settings, table#message-threads) > tbody > tr {
+	background: transparent;
+}
+
+body.bp-user #item-body.item-body:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) :is(table.profile-fields, table.profile-settings, table.notifications, table.invitations, table.notification-settings, table#message-threads) > tbody > tr > :is(th, td) {
+	padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
+	border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+}
+
+body.bp-user #item-body.item-body:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) :is(table.profile-fields, table.profile-settings, table.notifications, table.invitations, table.notification-settings, table#message-threads) > tbody > tr:first-child > :is(th, td) {
+	border-top: 0;
+}
+
+body.bp-user #item-body.item-body:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) table.profile-fields td.label {
+	border-right-color: var(--wp--custom--system-ui-border-color);
+}
+
+body.bp-user #item-body.item-body:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) :is(ul#message-threads, #bp-message-thread-list) {
+	border-top-color: var(--wp--custom--system-ui-border-color);
+}
+
+body.bp-user #item-body.item-body:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) ul#message-threads > li {
+	padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
+	border-bottom-color: var(--wp--custom--system-ui-border-color);
+	background: transparent;
+}
+
+body.bp-user #item-body.item-body:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) ul#message-threads > li.selected {
+	background-color: var(--wp--custom--system-ui-surface-nested);
+}
+
+body.bp-user #item-body.item-body:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) #bp-message-thread-list > li {
+	padding: var(--wp--preset--spacing--30) 0;
+}
+
+body.bp-user #item-body.item-body:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) #bp-message-thread-list .message-content {
+	background: transparent;
+}
+
+body.bp-user #item-body.item-body:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) #bp-message-thread-list .message-metadata {
+	border-bottom-color: var(--wp--custom--system-ui-border-color);
+	box-shadow: none;
+}

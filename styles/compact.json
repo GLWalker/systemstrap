@@ -9,6 +9,17 @@
 			"border-radius-sm": "0",
 			"border-radius-lg": "0",
 			"border-radius-xl": "0",
+			"navigation-gap": "1rem",
+			"navigation-item-padding-inline": "1.25rem",
+			"navigation-item-padding-block": "0.625rem",
+			"navigation-compact-gap": "0.75rem",
+			"navigation-compact-padding-inline": "0.875rem",
+			"navigation-compact-padding-block": "0.5rem",
+			"navigation-submenu-panel-padding-block": "0.5rem",
+			"navigation-submenu-item-padding-inline": "1.25rem",
+			"navigation-submenu-item-padding-block": "0.625rem",
+			"navigation-row-padding-inline": "1rem",
+			"navigation-row-padding-block": "0.5rem",
 			"shadow": "var:preset|shadow|sm"
 		},
 		"spacing": {

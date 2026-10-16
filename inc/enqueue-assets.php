@@ -40,6 +40,8 @@ if (! function_exists('strap_enqueue_assets')) {
 		$version                 = is_string($theme_version) ? $theme_version : false;
 		$main_stylesheet         = get_template_directory() . '/assets/css/main-styles.css';
 		$main_stylesheet_version = file_exists($main_stylesheet) ? filemtime($main_stylesheet) : $version;
+		$query_latest_stylesheet = get_template_directory() . '/assets/css/query-latest-posts-list.css';
+		$query_media_stylesheet  = get_template_directory() . '/assets/css/query-media-object.css';
 
 		// Main Styles
 		wp_enqueue_style(
@@ -67,7 +69,14 @@ if (! function_exists('strap_enqueue_assets')) {
 			'strap-query-latest-posts-list',
 			get_template_directory_uri() . '/assets/css/query-latest-posts-list.css',
 			array('strap-main-styles'),
-			$version
+			file_exists($query_latest_stylesheet) ? filemtime($query_latest_stylesheet) : $version
+		);
+
+		wp_register_style(
+			'strap-query-media-object',
+			get_template_directory_uri() . '/assets/css/query-media-object.css',
+			array('strap-main-styles'),
+			file_exists($query_media_stylesheet) ? filemtime($query_media_stylesheet) : $version
 		);
 
 		wp_register_style(
@@ -206,6 +215,9 @@ add_action( 'enqueue_block_editor_assets', 'strap_enqueue_woocommerce_editor_com
 
 function strap_enqueue_block_editor_assets()
 {
+	$query_latest_stylesheet = get_template_directory() . '/assets/css/query-latest-posts-list.css';
+	$query_media_stylesheet  = get_template_directory() . '/assets/css/query-media-object.css';
+
 	wp_enqueue_style(
 		'strap-query-directory',
 		get_template_directory_uri() . '/assets/css/query-directory.css',
@@ -224,7 +236,14 @@ function strap_enqueue_block_editor_assets()
 		'strap-query-latest-posts-list',
 		get_template_directory_uri() . '/assets/css/query-latest-posts-list.css',
 		array('wp-edit-blocks'),
-		wp_get_theme()->get('Version')
+		file_exists($query_latest_stylesheet) ? filemtime($query_latest_stylesheet) : wp_get_theme()->get('Version')
+	);
+
+	wp_enqueue_style(
+		'strap-query-media-object',
+		get_template_directory_uri() . '/assets/css/query-media-object.css',
+		array('wp-edit-blocks'),
+		file_exists($query_media_stylesheet) ? filemtime($query_media_stylesheet) : wp_get_theme()->get('Version')
 	);
 
 	wp_enqueue_style(

@@ -114,6 +114,12 @@ if (! function_exists('strap_generate_dynamic_colors')) {
 
 			$color_value = $color['color'];
 
+			$button_css .= "
+.wp-block-navigation.is-style-system-nav-button.has-{$slug}-background-color {
+    --strap-nav-button-surface: var(--wp--preset--color--{$slug});
+}
+";
+
 			if (strpos($color_value, 'var(') !== false) {
 				continue;
 			}
@@ -347,6 +353,7 @@ ul.wp-block-latest-posts.has-{$slug}-background-color > li:hover {
 .wp-block-button__link.has-{$slug}-background-color {
     --local-btn-shadow-rgb: var(--wp--preset--color--{$slug}-shadow-rgb);
 }
+
 .wp-block-button.is-style-outline .wp-block-button__link.has-{$slug}-color,
 .wp-block-button.is-style-button-pill-outline .wp-block-button__link.has-{$slug}-color,
 .wp-block-button.is-style-button-square-outline .wp-block-button__link.has-{$slug}-color,
@@ -554,6 +561,16 @@ ul.wp-block-latest-posts.has-{$slug}-gradient-background > li:hover {
 .wp-block-button__link.has-{$slug}-gradient-background:not(:disabled):active {
     filter: brightness(0.9);
     box-shadow: var(--wp--preset--shadow--btn-active, none);
+}
+
+/* System Nav Button consumes the same gradient interaction variables. */
+.wp-block-navigation.is-style-system-nav-button.has-{$slug}-gradient-background {
+    --strap-nav-button-surface-image: var(--wp--preset--gradient--{$slug});
+    --strap-nav-button-hover-surface-image: var(--wp--preset--gradient--{$slug}-hover, var(--wp--preset--gradient--{$slug}));
+    --strap-nav-button-hover-shadow: var(--wp--preset--shadow--btn-hover, none);
+    --strap-nav-button-current-shadow: var(--wp--preset--shadow--btn-active, none);
+    --strap-nav-button-hover-filter: brightness(1.15);
+    --strap-nav-button-current-filter: brightness(0.9);
 }
 ";
 			}

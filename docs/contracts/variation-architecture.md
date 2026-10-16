@@ -172,7 +172,6 @@ The variation architecture is currently implemented through these files and dire
 - `inc/dynamic-styles.php`
 - `inc/dialog-renderer.php`
 - `assets/css/main-styles.css`
-- `assets/css/buddypress-blocks.css`
 - `assets/css/style-variations/*.css`
 - `assets/js/variations/*.js`
 - `styles/`
@@ -553,27 +552,9 @@ These files MUST be loaded only through their explicit runtime loaders unless th
 The variation architecture currently uses these explicit CSS loading exceptions:
 
 - `inc/block-styles.php`
-- `inc/dynamic-styles.php`
-    - conditionally registers `assets/css/buddypress-blocks.css` through `wp_enqueue_block_style()`
-    - maps the same stylesheet to:
-        - `bp/primary-nav`
+    - explicitly skips `bp-widget-system-panel-header.css` from filename-derived auto-registration.
+    - registers `bp-widget-system-panel-header.css` as the shared `System Panel` stylesheet through `wp_enqueue_block_style()` for:
         - `bp/login-form`
-        - `bp/member`
-        - `bp/members`
-        - `bp/dynamic-members`
-        - `bp/online-members`
-        - `bp/active-members`
-        - `bp/latest-activities`
-        - `bp/friends`
-        - `bp/group`
-        - `bp/groups`
-        - `bp/dynamic-groups`
-        - `bp/sitewide-notices`
-    - assigns `strap-buddypress-sync` as the dependency for `strap-buddypress-blocks`
-    - assigns `strap-buddypress-blocks` as the dependency root for BuddyPress block style variation files
-    - assigns `strap-buddypress-variation-anchor` as an additional dependency for BuddyPress block style variation files so those variation handles print in the post-Core-style lane without depending directly on a frontend-only Core handle
-    - explicitly registers `assets/css/style-variations/bp-widget-system-panel-header.css` as a shared BuddyPress widget-heading variation across:
-        - `bp/primary-nav`
         - `bp/dynamic-members`
         - `bp/online-members`
         - `bp/active-members`
@@ -581,18 +562,12 @@ The variation architecture currently uses these explicit CSS loading exceptions:
         - `bp/friends`
         - `bp/dynamic-groups`
         - `bp/sitewide-notices`
-    - uses this file for editor/frontend parity on BuddyPress block-owned surfaces without routing those rules through the broader BuddyPress frontend sync stylesheet
+    - gives the shared stylesheet `strap-panel-surface` and `strap-panel-structure` dependencies.
+    - registers the `system-panel` block style for those blocks, with the label `System Panel`.
+    - uses physical-file `filemtime()` versioning for editor/frontend parity.
 
 - `inc/enqueue-assets.php`
     - enqueues `core-group-system-carousel.css` as `strap-carousel-styles`
-    - registers `strap-buddypress-sync` on `init`
-    - registers `strap-buddypress-variation-anchor` on `init`
-    - enqueues `strap-buddypress-sync` on `bp_enqueue_community_scripts` for BuddyPress frontend surfaces
-    - resolves `strap-buddypress-variation-anchor` against the first registered Core style lane among:
-        - `global-styles`
-        - `global-styles-css-custom-properties`
-        - `wp-block-library`
-    - enqueues the same `strap-buddypress-sync` handle on `enqueue_block_editor_assets` when BuddyPress is present so BuddyPress block-style dependencies remain valid in editor contexts
 - `inc/theme-setup.php`
     - includes `assets/css/style-variations/core-group-system-carousel.css` in `add_editor_style()`
 - `inc/dialog-renderer.php`
@@ -602,27 +577,25 @@ The variation architecture currently uses these explicit CSS loading exceptions:
 
 The shared `is-style-system-btn-icon` treatment is instead owned by `assets/css/main-styles.css` so carousel navigation buttons and dialog close buttons can continue to use the same class contract without exposing a `core/button` style variation in the editor.
 
-`assets/css/buddypress-blocks.css` is NOT part of the `assets/css/style-variations/*.css` parser.
+`bp-widget-system-panel-header.css` is NOT part of the filename-derived auto-registration path.
 
-It MUST remain on the explicit `wp_enqueue_block_style()` path unless the BuddyPress block loading contract is intentionally replaced.
+It MUST remain on the explicit `wp_enqueue_block_style()` path in `inc/block-styles.php` unless the BuddyPress block loading contract is intentionally replaced.
 
 ### BuddyPress block dependency chain
 
 The current BuddyPress block CSS stack is intentionally layered as:
 
 1. BuddyPress plugin/theme-pack CSS
-2. `strap-buddypress-sync`
-3. `strap-buddypress-blocks`
-4. `strap-buddypress-variation-anchor`
-5. BuddyPress block style variation CSS
+2. `strap-panel-surface`
+3. `strap-panel-structure`
+4. `bp-widget-system-panel-header`
 
 The current rationale is:
 
-- `strap-buddypress-sync` normalizes BuddyPress-owned baseline controls and nav surfaces
-- `strap-buddypress-sync` also carries broad non-block BuddyPress Nouveau polish such as generic tabbed-nav states, loop/list spacing, meta-tone defaults, and activity-card shell styling
-- `strap-buddypress-blocks` establishes token-aware block defaults shared by BuddyPress block widgets in frontend and editor contexts
-- BuddyPress block style variations such as nav and panel treatments MUST sit on top of that shared base rather than duplicating it independently
-- shared BuddyPress widget-heading chrome MAY be delivered through one CSS asset as long as each participating block still receives its own style variation registration
+- `strap-panel-surface` supplies the canonical Panel surface, border, radius, and enhancement layer to authored BuddyPress System Panel roots
+- `strap-panel-structure` remains available to the shared adapter for Panel composition parity
+- `bp-widget-system-panel-header` adds only BuddyPress-native child layout, compact list rows, and Login Form utility-action presentation
+- the shared BuddyPress widget stylesheet is delivered through one asset while each participating block receives its own `System Panel` style registration
 
 This dependency chain is part of the variation runtime and MUST remain explicit.
 

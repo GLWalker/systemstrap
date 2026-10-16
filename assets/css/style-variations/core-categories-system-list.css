@@ -178,8 +178,14 @@
 :is(.wp-block-categories, .wp-block-categories-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > ul > li,
 :is(.wp-block-categories, .wp-block-categories-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > ul > li {
     border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+}
+
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) > :is(.wp-block-categories, .wp-block-categories-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) > li,
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) .block-editor-block-list__layout > :is(.wp-block-categories, .wp-block-categories-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) > li {
     background-color: var(--wp--custom--system-ui-surface-nested, transparent);
     background-image: var(--wp--custom--system-ui-background-image-nested, none);
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
 }
 
 :is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) > .wp-block-woocommerce-product-categories:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) > .wc-block-product-categories-list > li,

@@ -19,8 +19,8 @@
 
 		<!-- wp:icon {"icon":"core/calendar","className":"query-latest-posts__header-icon"} /-->
 
-		<!-- wp:heading {"className":"query-directory-listing__heading","fontSize":"large"} -->
-		<h2 class="wp-block-heading query-directory-listing__heading has-large-font-size"><?php
+		<!-- wp:heading {"className":"query-latest-posts__heading","fontSize":"large"} -->
+		<h2 class="wp-block-heading query-latest-posts__heading has-large-font-size"><?php
 																							esc_html_e('Latest Posts', 'systemstrap');
 																							?></h2>
 		<!-- /wp:heading -->

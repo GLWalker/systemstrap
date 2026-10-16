@@ -6,7 +6,7 @@ This file is a CONTRACT.
 
 ## Contract Version
 
-Current Version: 1.1
+Current Version: 1.2
 
 Last Updated: 2026-06-18
 
@@ -20,6 +20,14 @@ Pagination variation aliases are classified immediately before the remaining
 theme variation layer. The callbacks are inert while the legacy SystemStrap
 WooCommerce companion is active, allowing that plugin to remain the sole
 enhanced-integration owner during coexistence.
+
+### 1.2
+
+Added the unconditional, typography-only BuddyPress layer. When BuddyPress is
+active and the companion is inactive, `buddypress-typography.css` follows the
+Nouveau stylesheet on every BuddyPress frontend route; optional component
+treatments load after it. Activity List and Panel treatments reuse the physical
+Comments variation assets rather than duplicating their visual contracts.
 
 ### 1.0
 
@@ -62,8 +70,8 @@ The current runtime style ownership layer is implemented through these files:
 - `inc/dialog-renderer.php`
 - `assets/css/strap-reset.css`
 - `assets/css/main-styles.css`
-- `assets/css/buddypress-theme-sync.css`
-- `assets/css/buddypress-blocks.css`
+- `assets/css/buddypress/buddypress-typography.css`
+- `assets/css/buddypress/buddypress-components.css`
 - `assets/css/style-variations/*.css`
 - `assets/js/main-scripts.js`
 
@@ -115,13 +123,21 @@ When BuddyPress is active, the following CSS is currently treated as plugin-owne
 - BuddyPress block inline styles emitted by block packages
 - BuddyPress admin bar extensions
 
-SystemStrap MAY normalize or restyle these surfaces through:
-
-- `assets/css/buddypress-theme-sync.css`
-- `assets/css/buddypress-blocks.css`
-- BuddyPress block style variation CSS
+SystemStrap MAY normalize or restyle these surfaces through its theme-owned
+BuddyPress typography, Nouveau adapter, component adapter, and block variation
+CSS. Typography is unconditional; component treatments are optional.
 
 SystemStrap MUST treat BuddyPress as an extension target, not as theme-authored base CSS.
+
+### Theme-owned Nouveau migration boundary
+
+When BuddyPress is active and the transitional `systemstrap-buddypress` companion
+is inactive, the theme owns a narrow Nouveau integration through
+`inc/buddypress-integration.php`. It registers only cache-versioned theme assets
+under `assets/css/buddypress/` and applies registry-driven presentation roles to
+stable public Nouveau roots. BuddyPress continues to own templates, AJAX,
+interaction, and responsive structure. The companion remains installed until
+the staged visual migration has been verified.
 
 ## SystemStrap-Owned Runtime Surface
 
@@ -129,8 +145,8 @@ SystemStrap currently owns these primary stylesheet lanes:
 
 - `strap-reset`
 - `strap-main-styles`
-- `strap-buddypress-sync`
-- `strap-buddypress-blocks`
+- `strap-buddypress-typography`
+- `strap-buddypress-components`
 - block style variation CSS under `assets/css/style-variations/`
 - explicit runtime exception handles such as `strap-carousel-styles` and dialog CSS
 - conditional Woo Review and Pagination aliases that reuse canonical theme
@@ -153,8 +169,8 @@ The current frontend queue contract is:
 1. `strap-reset`
 2. WooCommerce plugin CSS when the first-class Woo integration owns the request
 3. BuddyPress plugin/theme-pack CSS
-4. `strap-buddypress-sync`
-5. `strap-buddypress-blocks`
+4. `strap-buddypress-typography`
+5. optional `strap-buddypress-components` and canonical treatment assets
 6. Core block library styles
 7. `global-styles`
 8. `strap-main-styles`
@@ -210,8 +226,8 @@ frontend head
 │   └── BuddyPress block inline styles
 └── SystemStrap CSS
     ├── strap-reset
-    ├── strap-buddypress-sync
-    ├── strap-buddypress-blocks
+	├── strap-buddypress-typography
+	├── optional strap-buddypress-components and canonical treatment assets
     ├── strap-main-styles
     ├── BuddyPress block style variations
     ├── core block style variations
@@ -246,16 +262,19 @@ It MUST NOT be exposed through block-style auto-registration unless that behavio
 
 SystemStrap currently extends BuddyPress through three layers:
 
-1. `assets/css/buddypress-theme-sync.css`
-2. `assets/css/buddypress-blocks.css`
+1. `assets/css/buddypress/buddypress-typography.css`
+2. `assets/css/buddypress/buddypress-components.css`
 3. BuddyPress block style variation CSS
 
 The current responsibilities are:
 
-- `buddypress-theme-sync.css`
-  - broad BuddyPress Nouveau normalization and token-aware extension
-- `buddypress-blocks.css`
-  - BuddyPress block-owned base layout and editor/frontend parity
+- `buddypress-typography.css`
+  - unconditional typography-only adaptation after Nouveau on every
+    BuddyPress frontend route; its Nouveau-dependent registration runs on
+    `bp_enqueue_community_scripts` after Nouveau has registered its handles
+- `buddypress-components.css`
+  - optional registry-selected component adapters; Activity reuses canonical
+    Comments List and Panel assets rather than duplicating their surface rules
 - BuddyPress block style variation CSS
   - optional chrome treatments such as panel, nav, or heading variants
 

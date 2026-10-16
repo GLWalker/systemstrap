@@ -484,6 +484,17 @@
 			"font-weight-heading": "600",
 			"font-weight-nav": "500",
 			"font-weight-bold": "700",
+			"navigation-gap": "1rem",
+			"navigation-item-padding-inline": "1.25rem",
+			"navigation-item-padding-block": "0.625rem",
+			"navigation-compact-gap": "0.75rem",
+			"navigation-compact-padding-inline": "0.875rem",
+			"navigation-compact-padding-block": "0.5rem",
+			"navigation-submenu-panel-padding-block": "0.5rem",
+			"navigation-submenu-item-padding-inline": "1.25rem",
+			"navigation-submenu-item-padding-block": "0.625rem",
+			"navigation-row-padding-inline": "1rem",
+			"navigation-row-padding-block": "0.5rem",
 			"heading-color": "inherit",
 			"code-color": "#d63384",
 			"highlight-color": "var(--wp--preset--color--primary-text)",
@@ -1249,6 +1260,9 @@
 						}
 					}
 				},
+				"spacing": {
+					"blockGap": "var:custom|navigation-gap"
+				},
 				"typography": {
 					"fontFamily": "var:preset|font-family|button",
 					"fontSize": "var:preset|font-size|medium",
@@ -1451,6 +1465,7 @@
 				"border": {
 					"radius": "var:custom|border-radius-lg"
 				},
+				"css": "&:not(.is-style-solid-color) { border-top: var(--wp--custom--border-width, 1px) var(--wp--custom--border-style) var(--wp--preset--color--border-color, currentColor); border-bottom: var(--wp--custom--border-width, 1px) var(--wp--custom--border-style) var(--wp--preset--color--border-color, currentColor); }\n& blockquote { max-width: var(--wp--style--global--content-size); margin-inline: auto; }\n& p { margin-block: 0; }\n& cite { display: block; margin-top: var(--wp--preset--spacing--30); }",
 				"elements": {
 					"cite": {
 						"typography": {
@@ -1462,15 +1477,17 @@
 				},
 				"spacing": {
 					"padding": {
-						"bottom": "var:preset|spacing|30",
-						"top": "var:preset|spacing|30"
+						"bottom": "var:preset|spacing|50",
+						"left": "var:preset|spacing|40",
+						"right": "var:preset|spacing|40",
+						"top": "var:preset|spacing|50"
 					}
 				},
 				"typography": {
 					"fontFamily": "var:preset|font-family|heading",
-					"fontSize": "var:preset|font-size|x-large",
+					"fontSize": "var:preset|font-size|xx-large",
 					"fontStyle": "italic",
-					"lineHeight": "1.5"
+					"lineHeight": "1.4"
 				}
 			},
 			"core/query": {

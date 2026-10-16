@@ -27,6 +27,22 @@ if ( strap_should_load_woocommerce_integration() ) {
 }
 
 /**
+ * Return whether the theme-owned BuddyPress integration should initialize.
+ *
+ * The companion remains authoritative while it is active so its historical
+ * hooks cannot run beside the first-class theme bridge during migration.
+ *
+ * @return bool
+ */
+function strap_should_load_buddypress_integration() {
+	return class_exists( 'BuddyPress' ) && ! function_exists( 'strap_buddypress_init' );
+}
+
+if ( strap_should_load_buddypress_integration() ) {
+	require_once get_template_directory() . '/inc/buddypress-integration.php';
+}
+
+/**
  * Restore the SystemStrap content-width contract on WooCommerce page wrappers.
  */
 function strap_enqueue_woocommerce_width_compatibility() {

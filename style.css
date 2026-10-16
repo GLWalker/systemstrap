@@ -1,15 +1,15 @@
 /*
 Theme Name: SystemStrap
 Theme URI: https://github.com/GLWalker/systemstrap
-Author: Greg Walker
+Author: GL Walker
 Author URI: https://github.com/GLWalker
-Description: A classic-style dynamic theme system expressed through native block-theme composition.
-Version: 1.0.56
+Description: A classic-style dynamic theme system expressed through native block-theme composition. SystemStrap provides a token-driven design system, responsive layout variations, reusable block patterns and style variations, canonical navigation and button systems, dynamic color and spacing architecture, WooCommerce presentation and style integration, BuddyPress presentation and style integration, plugin-aware component styling, and developer-focused extension points while preserving native WordPress composition and plugin behavior.
+Version: 1.0.57
 Requires PHP: 8.0
 Tested up to: 7.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: systemstrap
-Tags: full-site-editing, block-patterns, custom-logo, featured-images, threaded-comments, translation-ready
+Tags: full-site-editing, block-patterns, block-styles, custom-logo, featured-images, threaded-comments, translation-ready, wide-blocks
 Copyright: 2026 SystemStrap contributors
 */

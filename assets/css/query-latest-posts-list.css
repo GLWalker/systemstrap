@@ -69,8 +69,10 @@
 .query-latest-posts__row {
     display: grid;
     grid-template-columns:
-        minmax(4.5rem, 5.5rem) minmax(10rem, 13rem) minmax(0, 1.35fr) minmax(10rem, 0.85fr) auto;
-    grid-template-areas: "date image content tags arrow";
+        minmax(4.5rem, 5.5rem) minmax(10rem, 13rem) minmax(0, 1fr) auto;
+    grid-template-areas:
+        "date image content arrow"
+        "date image tags arrow";
     gap: var(--wp--preset--spacing--30);
     align-items: start;
     width: 100%;
@@ -83,8 +85,10 @@
 
 .query-latest-posts__row:not(:has(.query-latest-posts__image)) {
     grid-template-columns:
-        minmax(4.5rem, 5.5rem) minmax(0, 1.35fr) minmax(10rem, 0.85fr) auto;
-    grid-template-areas: "date content tags arrow";
+        minmax(4.5rem, 5.5rem) minmax(0, 1fr) auto;
+    grid-template-areas:
+        "date content arrow"
+        "date tags arrow";
 }
 
 .query-latest-posts__date,

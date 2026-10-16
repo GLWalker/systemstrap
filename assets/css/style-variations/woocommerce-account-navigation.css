@@ -60,7 +60,7 @@
 	display: block;
 	flex-grow: 1;
 	min-width: 0;
-	padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
+	padding: var(--wp--custom--navigation-row-padding-block) var(--wp--custom--navigation-row-padding-inline);
 	position: relative;
 	z-index: 1;
 	color: inherit;

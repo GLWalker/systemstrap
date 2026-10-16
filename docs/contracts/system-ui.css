@@ -121,6 +121,7 @@
  * - Panel padding variables
  * - shell geometry
  * - direct-child normalization
+ * - plain Details to authored default-Group seam normalization
  * - ordinary body inset
  * - first/last-child boundary handling
  * - flush-child composition
@@ -191,6 +192,91 @@
  * for integrations. Integrations may adapt a stable public application
  * root to it and consume its exposed content variables; they must not
  * duplicate Panel paint or independent Panel typography.
+ *
+ * BuddyPress blocks with the authored `is-style-system-panel` class consume
+ * the same canonical surface directly. Their native widget markup remains
+ * structural; the BuddyPress root is the sole border, radius, surface, and
+ * enhancement owner.
+ *
+ * BuddyPress Activity runtime:
+ * - `systemstrap-buddypress/assets/css/buddypress-theme-sync.css` scopes the
+ *   Activity directory treatment to `.main-buddypress-activity`.
+ * - `.activity-list` owns the single feed surface; direct `.activity-item`
+ *   children are transparent content rows joined by seams.
+ * - Activity preview objects remain compact media objects with no shadow or
+ *   atmospheric surface.
+ * - The Activity directory controls are a horizontal, wrapping nav followed
+ *   by a shared search/filter row; native BuddyPress markup and behavior
+ *   remain authoritative.
+ * - The Activity composer surface owns a Spacing 30 lower margin before the
+ *   following Activity directory navigation, independent of navigation treatment.
+ * - A non-Native Horizontal Navigation treatment normalizes direct Nouveau
+ *   `ul > li > a` structure server-side to the core Navigation classes.
+ *   Its direct `.wp-block-navigation-item` owns the WP Default generated
+ *   underline across its label and count width, leaving the sibling `.count`
+ *   under the shared System UI badge contract.
+ *   The shared direct-item and direct-anchor geometry overrides Nouveau's
+ *   inner single-item margin, font-size, padding, and separator border.
+ *   Its direct navigation container owns the shared navigation-gap inter-item
+ *   geometry. Local `.bp-subnavs` and horizontal object-nav mounts preserve
+ *   Nouveau's measured widths and inset each item-owned underline by half of
+ *   spacing-10 on each inline edge.
+ *   BuddyPress Blogs/Sites uses the same directory mount:
+ *   `.sites-type-navs.main-navs.bp-navs.dir-navs >
+ *   .component-navigation.blogs-nav`; its `data-bp-object="blogs"` items
+ *   therefore enter this generic contract through directory-navigation
+ *   ownership without Blogs-specific selectors or count handling.
+ *   Canonical WP Default Navigation owns item block insets and the generated
+ *   underline geometry. This BuddyPress bridge neutralizes only Nouveau's
+ *   direct-link inset, so its horizontal mounts inherit that canonical model.
+ *   Server rendering applies item, anchor, and current-state semantics;
+ *   the event-driven Nouveau adapter repairs those same direct structures
+ *   after BuddyPress list-update events without changing priority-nav layout.
+ *   BuddyPress/Nouveau remains the sole owner of count values: the adapter
+ *   never reads, writes, or restores count text. Direct anchor label text and
+ *   count child nodes remain Nouveau markup. Populated count nodes use the
+ *   shared System UI badge contract, while empty Nouveau count nodes stay
+ *   visually absent.
+ * - The System Nav Button Horizontal Navigation treatment consumes the
+ *   canonical `core-navigation-system-nav-button.css` component through
+ *   `wp-block-navigation is-style-system-nav-button`. The canonical component
+ *   owns button geometry, current state, hover, focus, wrapping, and submenu
+ *   readiness. It consumes the shared Button current-color wash and shadow
+ *   contract: hover is the 15% wash and current is the stronger 25% active
+ *   wash. Dynamic palette and gradient routing preserves authored surfaces.
+ *   The BuddyPress bridge neutralizes only Nouveau float-era
+ *   layout, direct-link tab paint, and directory action-link margin. It adds
+ *   the resolved `strap-bp-horizontal-navigation-treatment-system-nav-button`
+ *   marker, uses navigation-gap for directory buttons, and uses the compact
+ *   navigation geometry on `.bp-subnavs` and
+ *   `#object-nav.horizontal`. Its `.bp-priority-nav` direct list remains
+ *   intrinsically sized for Nouveau overflow measurement. Counted directory
+ *   buttons with a populated direct `.count` use the compact inline end inset.
+ *   Its direct BuddyPress `.count` remains value-owned by Nouveau and uses
+ *   the shared opaque System UI badge surface, preserving contrast above its
+ *   parent button's default, hover, and current state. On desktop
+ *   directory mounts, the treatment neutralizes only Nouveau's outer
+ *   border/shadow wrapper paint. The non-Native Member Profile `#item-body`
+ *   Panel restores the canonical panel radius where Nouveau's vertical layout
+ *   otherwise outranks the neutral surface selector.
+ * - The System Nav Gen Horizontal Navigation treatment consumes the canonical
+ *   `core-navigation-system-nav-gen.css` component through
+ *   `wp-block-navigation is-style-system-nav-gen`. The canonical component
+ *   owns its flat, zero-gap item geometry and contextual item-state wash:
+ *   hover and focus-visible use `currentColor` at 15%, while current uses
+ *   the stronger 25% wash. The overlay preserves authored backgrounds,
+ *   text colors, and background images. The BuddyPress bridge adds the resolved
+ *   `strap-bp-horizontal-navigation-treatment-system-nav-gen` marker and
+ *   neutralizes only Nouveau's horizontal list layout, direct-link paint,
+ *   action-link margin, separators, and desktop directory wrapper paint.
+ *   Its direct priority-nav list remains intrinsically sized for Nouveau
+ *   overflow measurement. Local `.bp-subnavs` and horizontal object-nav
+ *   mounts use navigation-compact-padding-block on their direct links. Direct
+ *   BuddyPress `.count` nodes remain Nouveau-owned and consume the shared
+ *   opaque System UI badge treatment so they remain readable in idle, hover,
+ *   and current Gen states.
+ * - The native `bp/primary-nav` sidebar block owns one list surface with
+ *   title rhythm, row seams, active state, and count-badge alignment.
  */
 
 /*
@@ -292,6 +378,9 @@
  * layout. Each structural `li` owns seams, while its direct category link owns
  * the full padded interactive row and hover/focus surface; the count badge
  * shares that row at the far edge without intercepting the category link.
+ * Direct System Panel and Flat Panel children normalize Core Categories root
+ * rows to the nested surface without a backdrop filter, matching Archives and
+ * Page List in the same Panel context.
  *
  * These canonical variation assets and shared System UI masters are loaded
  * through `wp_enqueue_block_style()` and use their physical file modification
@@ -436,6 +525,23 @@
  * public button child, then consume these same canonical declarations and the
  * palette-aware outline routing from `inc/dynamic-styles.php`. Native remains
  * the default Product Button treatment.
+ *
+ * BuddyPress Default Button Style is a canonical Button adapter, not a second
+ * BuddyPress button taxonomy. `inc/buddypress-integration.php` resolves the
+ * selected style once per BuddyPress request into a
+ * `strap-bp-default-button-style-*` body class and maps ordinary controls
+ * through the BuddyPress Button API plus the Login Form block render filter.
+ * `.strap-bp-default-button` consumes the existing Primary, Secondary, Link,
+ * Pill, Pill Outline, Square, and Square Outline Button contracts for header,
+ * directory, block, and AJAX Button API output. Activity reply and embedded
+ * object controls use the existing small font-size scale; Login Form submit
+ * controls use the same selected class at full available width. Top-level
+ * Top-level Activity delete controls retain Nouveau's lightweight neutral action
+ * treatment; reply/comment delete controls consume the small semantic `danger`
+ * Button. The native activity comment count is plain action metadata and inherits
+ * its control foreground rather than consuming the standalone badge role. Icon,
+ * priority-nav, search, pagination, text, and role-management controls retain
+ * their BuddyPress-specific treatment and behavior.
  */
 
 /*
@@ -2098,13 +2204,27 @@ body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[clas
    10. QUERY LISTING SURFACES
    Runtime mirror:
    - assets/css/style-variations/core-query-system-ui-query.css
-   Base query layout files are intentionally not mirrored here.
+   Base query layout files are intentionally not mirrored here. Their runtime
+   owners include assets/css/query-latest-posts-list.css and
+   assets/css/query-media-object.css.
    Fine-detail query text is routed by the base query files through:
    - --query-directory-listing-muted-color
    - --directory-grid-card-muted-color
    - --query-latest-posts-muted-color
+   - --query-media-object-muted-color
    These default to --wp--preset--color--current-mix-color and remain
    color-routable through dynamic query wrapper exports.
+
+   Query Latest Posts owns four desktop lanes: date, image, flexible content,
+   and arrow. Tags occupy a second row beneath content and do not reserve a
+   permanent horizontal lane. Query Media Object owns a non-wrapping desktop
+   media row, a fixed thumbnail lane sourced from
+   --wp--custom--thumbnail-width, and a flexible min-width-zero body. It stacks
+   only at the 600px narrow breakpoint.
+
+   Selector lists in the runtime System UI Query variation must contain each
+   Query Directory selector once. Repeated aliases do not establish separate
+   behavior and are not part of the contract.
    ======================================================================== */
 
 /* ==========================================================================

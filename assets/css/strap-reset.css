@@ -341,7 +341,12 @@ figcaption,
     font-size: var(--wp--preset--font-size--small, .875rem);
     color: var(--wp--preset--color--secondary-color, #343a40);
     background-color: var(--wp--preset--color--secondary-bg, #f8f9fa);
+}
 
+caption,
+figcaption:not(.wp-block-gallery figcaption),
+.blocks-gallery-caption {
+    padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--20);
 }
 
 /* Screen Reader Accessibility Styles

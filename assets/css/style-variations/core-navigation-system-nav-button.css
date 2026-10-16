@@ -6,7 +6,7 @@
 /* Root */
 .wp-block-navigation.is-style-system-nav-button {
     width: 100%;
-    color: inherit;
+    color: var(--wp--preset--color--primary-text, #fff);
     background: transparent !important;
     box-shadow: none !important;
 }
@@ -14,7 +14,7 @@
 /* Top-level container */
 .wp-block-navigation.is-style-system-nav-button>.wp-block-navigation__container,
 .wp-block-navigation.is-style-system-nav-button .wp-block-navigation__responsive-container-content>.wp-block-navigation__container {
-    gap: var(--wp--preset--spacing--30, 1rem) !important;
+    gap: var(--wp--custom--navigation-gap) !important;
     align-items: center !important;
 }
 
@@ -42,11 +42,12 @@
     gap: 0 !important;
 
     /* Button Aesthetics */
-    border-radius: var(--wp--custom--btn-border-radius);
-    background-color: var(--wp--preset--color--primary, #0d6efd);
-    color: var(--wp--preset--color--primary-text, #fff);
-    box-shadow: var(--wp--preset--shadow--btn-resting, none);
-    border: var(--wp--custom--btn-border-width) solid var(--wp--custom--btn-border-color);
+    border-radius: var(--wp--custom--btn-border-radius) !important;
+    background-color: var(--strap-nav-button-surface, var(--wp--preset--color--primary, #0d6efd)) !important;
+    background-image: var(--strap-nav-button-surface-image, none) !important;
+    color: inherit;
+    box-shadow: var(--wp--preset--shadow--btn-resting, none) !important;
+    border: var(--wp--custom--btn-border-width) solid var(--wp--custom--btn-border-color) !important;
     transition: var(--wp--custom--btn-transition);
 }
 
@@ -66,10 +67,8 @@
     min-width: 0 !important;
 
     /* Native Button Padding */
-    padding-top: calc(var(--wp--preset--font-size--small, 0.875rem) * .5);
-    padding-bottom: calc(var(--wp--preset--font-size--small, 0.875rem) * .5);
-    padding-left: var(--wp--preset--spacing--30, 1rem);
-    padding-right: var(--wp--preset--spacing--30, 1rem);
+    padding-block: var(--wp--custom--navigation-item-padding-block);
+    padding-inline: var(--wp--custom--navigation-item-padding-inline);
 
     color: inherit;
     background: transparent;
@@ -97,10 +96,8 @@
     visibility: visible !important;
 
     /* Toggle Padding */
-    padding-top: calc(var(--wp--preset--font-size--small, 0.875rem) * .5);
-    padding-bottom: calc(var(--wp--preset--font-size--small, 0.875rem) * .5);
-    padding-left: calc(var(--wp--preset--spacing--30, 1rem) * .5);
-    padding-right: calc(var(--wp--preset--spacing--30, 1rem) * .5);
+    padding-block: var(--wp--custom--navigation-item-padding-block);
+    padding-inline: calc(var(--wp--custom--navigation-item-padding-inline) * .5);
 
     color: inherit;
     background: transparent;
@@ -109,7 +106,7 @@
     box-shadow: none;
     cursor: pointer !important;
     overflow: visible !important;
-    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    border-inline-start: var(--wp--custom--border-width, 1px) solid color-mix(in srgb, currentColor 20%, transparent);
     font-family: var(--wp--preset--font-family--button, var(--wp--preset--font-family--heading, inherit));
     font-size: var(--wp--preset--font-size--small, 0.875rem);
     font-weight: var(--wp--custom--font-weight-button);
@@ -130,28 +127,34 @@
     stroke-width: 1.5 !important;
 }
 
-/* Hover/current state: top-level only */
+/* Hover state reuses the canonical Button hover wash, shadow, and transform. */
 .wp-block-navigation.is-style-system-nav-button>.wp-block-navigation__container>.wp-block-navigation-item:hover,
+.wp-block-navigation.is-style-system-nav-button .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item:hover {
+    border-color: var(--wp--custom--btn-hover-border-color) !important;
+    box-shadow: var(--strap-nav-button-hover-shadow, var(--wp--custom--btn-hover-wash, inset 0 0 0 9999px color-mix(in srgb, currentColor 15%, transparent)), var(--wp--preset--shadow--btn-hover, none)) !important;
+    transform: var(--wp--custom--btn-hover-transform);
+    filter: var(--strap-nav-button-hover-filter, none);
+    background-image: var(--strap-nav-button-hover-surface-image, var(--strap-nav-button-surface-image, none)) !important;
+}
+
+/* Current state uses the canonical Button active treatment persistently. */
 .wp-block-navigation.is-style-system-nav-button>.wp-block-navigation__container>.wp-block-navigation-item.current-menu-item,
 .wp-block-navigation.is-style-system-nav-button>.wp-block-navigation__container>.wp-block-navigation-item.current-menu-ancestor,
 .wp-block-navigation.is-style-system-nav-button>.wp-block-navigation__container>.wp-block-navigation-item:has(> a[aria-current="page"]),
-.wp-block-navigation.is-style-system-nav-button .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item:hover,
 .wp-block-navigation.is-style-system-nav-button .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item.current-menu-item,
 .wp-block-navigation.is-style-system-nav-button .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item.current-menu-ancestor,
 .wp-block-navigation.is-style-system-nav-button .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item:has(> a[aria-current="page"]) {
-    /* Base default hover (Primary color darkened by 15%) */
-    background-color: color-mix(in srgb, var(--wp--preset--color--primary, #0d6efd) 85%, black) !important;
     border-color: var(--wp--custom--btn-hover-border-color) !important;
-    box-shadow: var(--wp--preset--shadow--btn-hover, none);
-    transform: var(--wp--custom--btn-hover-transform);
+    box-shadow: var(--strap-nav-button-current-shadow, var(--wp--custom--btn-active-wash, inset 0 0 0 9999px color-mix(in srgb, currentColor 25%, transparent)), var(--wp--preset--shadow--btn-active, none)) !important;
+    transform: var(--wp--custom--btn-transform);
+    filter: var(--strap-nav-button-current-filter, none);
 }
 
 .wp-block-navigation.is-style-system-nav-button>.wp-block-navigation__container>.wp-block-navigation-item:active,
 .wp-block-navigation.is-style-system-nav-button .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item:active {
-    background-color: color-mix(in srgb, var(--wp--preset--color--primary, #0d6efd) 75%, black) !important;
     border-color: var(--wp--custom--btn-hover-border-color) !important;
-    box-shadow: var(--wp--preset--shadow--btn-active, none);
-    transform: translateY(0);
+    box-shadow: var(--strap-nav-button-current-shadow, var(--wp--custom--btn-active-wash, inset 0 0 0 9999px color-mix(in srgb, currentColor 25%, transparent)), var(--wp--preset--shadow--btn-active, none)) !important;
+    filter: var(--strap-nav-button-current-filter, none);
 }
 
 /* Accessibility: Keyboard Focus */
@@ -175,7 +178,7 @@
     /* Space dropdown away from nav item */
     margin-top: var(--wp--preset--spacing--30, 30px) !important;
 
-    padding: var(--wp--preset--spacing--10, 0.5rem) 0 !important;
+    padding: var(--wp--custom--navigation-submenu-panel-padding-block) 0 !important;
     gap: 0 !important;
 
     background-color: var(--wp--preset--color--base);
@@ -240,7 +243,7 @@
 
 .wp-block-navigation.is-style-system-nav-button .wp-block-navigation__submenu-icon {
     width: unset !important;
-    margin-left: calc(var(--wp--preset--spacing--30, 1rem) * -1) !important;
+    margin-left: calc(var(--wp--custom--navigation-item-padding-inline) * -1) !important;
 }
 
 .wp-block-navigation.is-style-system-nav-button .wp-block-navigation__submenu-container .wp-block-navigation-item__content {
@@ -248,7 +251,7 @@
     width: 100% !important;
     box-sizing: border-box !important;
 
-    padding: var(--wp--preset--spacing--20, .5rem) var(--wp--preset--spacing--40, 1.5rem);
+    padding: var(--wp--custom--navigation-submenu-item-padding-block) var(--wp--custom--navigation-submenu-item-padding-inline);
     font-size: var(--wp--preset--font-size--small, .875rem);
 
     color: inherit;
@@ -267,180 +270,3 @@
     backdrop-filter: blur(4px);
 }
 
-/* ==========================================================================
-   Background Color Routing (Front-end Fix)
-   Strips the background from the wrapper and routes preset colors to the buttons.
-   ========================================================================== */
-
-/* Make parent transparent if a preset background is applied */
-.wp-block-navigation.is-style-system-nav-button.has-background {
-    background-color: transparent !important;
-}
-
-/* Route Base */
-.wp-block-navigation.is-style-system-nav-button.has-base-background-color>.wp-block-navigation__container>.wp-block-navigation-item,
-.wp-block-navigation.is-style-system-nav-button.has-base-background-color .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item {
-    background-color: var(--wp--preset--color--base) !important;
-    color: var(--wp--preset--color--contrast) !important;
-}
-
-.wp-block-navigation.is-style-system-nav-button.has-base-background-color>.wp-block-navigation__container>.wp-block-navigation-item:hover,
-.wp-block-navigation.is-style-system-nav-button.has-base-background-color .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item:hover {
-    background-color: color-mix(in srgb, var(--wp--preset--color--base) 85%, black) !important;
-}
-
-/* Route Contrast */
-.wp-block-navigation.is-style-system-nav-button.has-contrast-background-color>.wp-block-navigation__container>.wp-block-navigation-item,
-.wp-block-navigation.is-style-system-nav-button.has-contrast-background-color .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item {
-    background-color: var(--wp--preset--color--contrast) !important;
-    color: var(--wp--preset--color--base, #fff) !important;
-}
-
-.wp-block-navigation.is-style-system-nav-button.has-contrast-background-color>.wp-block-navigation__container>.wp-block-navigation-item:hover,
-.wp-block-navigation.is-style-system-nav-button.has-contrast-background-color .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item:hover {
-    background-color: color-mix(in srgb, var(--wp--preset--color--contrast) 85%, black) !important;
-}
-
-/* Route Secondary Background */
-.wp-block-navigation.is-style-system-nav-button.has-secondary-bg-background-color>.wp-block-navigation__container>.wp-block-navigation-item,
-.wp-block-navigation.is-style-system-nav-button.has-secondary-bg-background-color .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item {
-    background-color: var(--wp--preset--color--secondary-bg) !important;
-    color: var(--wp--preset--color--secondary-color) !important;
-}
-
-.wp-block-navigation.is-style-system-nav-button.has-secondary-bg-background-color>.wp-block-navigation__container>.wp-block-navigation-item:hover,
-.wp-block-navigation.is-style-system-nav-button.has-secondary-bg-background-color .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item:hover {
-    background-color: color-mix(in srgb, var(--wp--preset--color--secondary-bg) 85%, black) !important;
-}
-
-/* Route Secondary Contrast */
-.wp-block-navigation.is-style-system-nav-button.has-secondary-color-background-color>.wp-block-navigation__container>.wp-block-navigation-item,
-.wp-block-navigation.is-style-system-nav-button.has-secondary-color-background-color .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item {
-    background-color: var(--wp--preset--color--secondary-color) !important;
-    color: var(--wp--preset--color--secondary-bg) !important;
-}
-
-.wp-block-navigation.is-style-system-nav-button.has-secondary-color-background-color>.wp-block-navigation__container>.wp-block-navigation-item:hover,
-.wp-block-navigation.is-style-system-nav-button.has-secondary-color-background-color .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item:hover {
-    background-color: color-mix(in srgb, var(--wp--preset--color--secondary-color) 85%, black) !important;
-}
-
-/* Route Tertiary Background */
-.wp-block-navigation.is-style-system-nav-button.has-tertiary-bg-background-color>.wp-block-navigation__container>.wp-block-navigation-item,
-.wp-block-navigation.is-style-system-nav-button.has-tertiary-bg-background-color .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item {
-    background-color: var(--wp--preset--color--tertiary-bg) !important;
-    color: var(--wp--preset--color--tertiary-color) !important;
-}
-
-.wp-block-navigation.is-style-system-nav-button.has-tertiary-bg-background-color>.wp-block-navigation__container>.wp-block-navigation-item:hover,
-.wp-block-navigation.is-style-system-nav-button.has-tertiary-bg-background-color .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item:hover {
-    background-color: color-mix(in srgb, var(--wp--preset--color--tertiary-bg) 85%, black) !important;
-}
-
-/* Route Tertiary Contrast */
-.wp-block-navigation.is-style-system-nav-button.has-tertiary-color-background-color>.wp-block-navigation__container>.wp-block-navigation-item,
-.wp-block-navigation.is-style-system-nav-button.has-tertiary-color-background-color .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item {
-    background-color: var(--wp--preset--color--tertiary-color) !important;
-    color: var(--wp--preset--color--tertiary-bg) !important;
-}
-
-.wp-block-navigation.is-style-system-nav-button.has-tertiary-color-background-color>.wp-block-navigation__container>.wp-block-navigation-item:hover,
-.wp-block-navigation.is-style-system-nav-button.has-tertiary-color-background-color .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item:hover {
-    background-color: color-mix(in srgb, var(--wp--preset--color--tertiary-color) 85%, black) !important;
-}
-
-/* Route Primary */
-.wp-block-navigation.is-style-system-nav-button.has-primary-background-color>.wp-block-navigation__container>.wp-block-navigation-item,
-.wp-block-navigation.is-style-system-nav-button.has-primary-background-color .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item {
-    background-color: var(--wp--preset--color--primary) !important;
-    color: var(--wp--preset--color--primary-text, #fff) !important;
-}
-
-.wp-block-navigation.is-style-system-nav-button.has-primary-background-color>.wp-block-navigation__container>.wp-block-navigation-item:hover,
-.wp-block-navigation.is-style-system-nav-button.has-primary-background-color .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item:hover {
-    background-color: color-mix(in srgb, var(--wp--preset--color--primary) 85%, black) !important;
-}
-
-/* Route Secondary */
-.wp-block-navigation.is-style-system-nav-button.has-secondary-background-color>.wp-block-navigation__container>.wp-block-navigation-item,
-.wp-block-navigation.is-style-system-nav-button.has-secondary-background-color .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item {
-    background-color: var(--wp--preset--color--secondary) !important;
-    color: var(--wp--preset--color--secondary-text, #fff) !important;
-}
-
-.wp-block-navigation.is-style-system-nav-button.has-secondary-background-color>.wp-block-navigation__container>.wp-block-navigation-item:hover,
-.wp-block-navigation.is-style-system-nav-button.has-secondary-background-color .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item:hover {
-    background-color: color-mix(in srgb, var(--wp--preset--color--secondary) 85%, black) !important;
-}
-
-/* Route Success */
-.wp-block-navigation.is-style-system-nav-button.has-success-background-color>.wp-block-navigation__container>.wp-block-navigation-item,
-.wp-block-navigation.is-style-system-nav-button.has-success-background-color .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item {
-    background-color: var(--wp--preset--color--success) !important;
-    color: var(--wp--preset--color--success-text, #fff) !important;
-}
-
-.wp-block-navigation.is-style-system-nav-button.has-success-background-color>.wp-block-navigation__container>.wp-block-navigation-item:hover,
-.wp-block-navigation.is-style-system-nav-button.has-success-background-color .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item:hover {
-    background-color: color-mix(in srgb, var(--wp--preset--color--success) 85%, black) !important;
-}
-
-/* Route Info */
-.wp-block-navigation.is-style-system-nav-button.has-info-background-color>.wp-block-navigation__container>.wp-block-navigation-item,
-.wp-block-navigation.is-style-system-nav-button.has-info-background-color .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item {
-    background-color: var(--wp--preset--color--info) !important;
-    color: var(--wp--preset--color--info-text, #fff) !important;
-}
-
-.wp-block-navigation.is-style-system-nav-button.has-info-background-color>.wp-block-navigation__container>.wp-block-navigation-item:hover,
-.wp-block-navigation.is-style-system-nav-button.has-info-background-color .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item:hover {
-    background-color: color-mix(in srgb, var(--wp--preset--color--info) 85%, black) !important;
-}
-
-/* Route Warning */
-.wp-block-navigation.is-style-system-nav-button.has-warning-background-color>.wp-block-navigation__container>.wp-block-navigation-item,
-.wp-block-navigation.is-style-system-nav-button.has-warning-background-color .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item {
-    background-color: var(--wp--preset--color--warning) !important;
-    color: var(--wp--preset--color--warning-text, #000) !important;
-}
-
-.wp-block-navigation.is-style-system-nav-button.has-warning-background-color>.wp-block-navigation__container>.wp-block-navigation-item:hover,
-.wp-block-navigation.is-style-system-nav-button.has-warning-background-color .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item:hover {
-    background-color: color-mix(in srgb, var(--wp--preset--color--warning) 85%, black) !important;
-}
-
-/* Route Danger */
-.wp-block-navigation.is-style-system-nav-button.has-danger-background-color>.wp-block-navigation__container>.wp-block-navigation-item,
-.wp-block-navigation.is-style-system-nav-button.has-danger-background-color .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item {
-    background-color: var(--wp--preset--color--danger) !important;
-    color: var(--wp--preset--color--danger-text, #fff) !important;
-}
-
-.wp-block-navigation.is-style-system-nav-button.has-danger-background-color>.wp-block-navigation__container>.wp-block-navigation-item:hover,
-.wp-block-navigation.is-style-system-nav-button.has-danger-background-color .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item:hover {
-    background-color: color-mix(in srgb, var(--wp--preset--color--danger) 85%, black) !important;
-}
-
-/* Route Light */
-.wp-block-navigation.is-style-system-nav-button.has-light-background-color>.wp-block-navigation__container>.wp-block-navigation-item,
-.wp-block-navigation.is-style-system-nav-button.has-light-background-color .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item {
-    background-color: var(--wp--preset--color--light) !important;
-    color: #000 !important;
-}
-
-.wp-block-navigation.is-style-system-nav-button.has-light-background-color>.wp-block-navigation__container>.wp-block-navigation-item:hover,
-.wp-block-navigation.is-style-system-nav-button.has-light-background-color .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item:hover {
-    background-color: color-mix(in srgb, var(--wp--preset--color--light) 85%, black) !important;
-}
-
-/* Route Dark */
-.wp-block-navigation.is-style-system-nav-button.has-dark-background-color>.wp-block-navigation__container>.wp-block-navigation-item,
-.wp-block-navigation.is-style-system-nav-button.has-dark-background-color .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item {
-    background-color: var(--wp--preset--color--dark) !important;
-    color: #fff !important;
-}
-
-.wp-block-navigation.is-style-system-nav-button.has-dark-background-color>.wp-block-navigation__container>.wp-block-navigation-item:hover,
-.wp-block-navigation.is-style-system-nav-button.has-dark-background-color .wp-block-navigation__responsive-container-content>.wp-block-navigation__container>.wp-block-navigation-item:hover {
-    background-color: color-mix(in srgb, var(--wp--preset--color--dark) 85%, black) !important;
-}

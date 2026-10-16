@@ -178,6 +178,11 @@
 
 /* Plain Details blocks inside panels should keep their native look but inherit
    the same breathing room as other direct panel children. */
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.wp-block-details:not(.is-style-system-details):not(.is-style-system-flat-panel),
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.block-editor-block-list__layout>*>.wp-block-details:not(.is-style-system-details):not(.is-style-system-flat-panel) {
+    margin: 0 !important;
+}
+
 :is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.wp-block-details:not(.is-style-system-details):not(.is-style-system-flat-panel)>summary,
 :is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.block-editor-block-list__layout>*>.wp-block-details:not(.is-style-system-details):not(.is-style-system-flat-panel)>summary {
     padding: var(--strap-system-panel-padding-y) var(--strap-system-panel-padding-x);
@@ -187,11 +192,6 @@
 :is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.block-editor-block-list__layout>*>.wp-block-details:not(.is-style-system-details):not(.is-style-system-flat-panel)[open]>*:not(summary) {
     margin: 0 !important;
     padding: var(--wp--preset--spacing--10) var(--strap-system-panel-padding-x);
-}
-
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)-header+.wp-block-details:not(.is-style-system-details):not(.is-style-system-flat-panel),
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.block-editor-block-list__layout>*:has(> :is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)-header)+*>.wp-block-details:not(.is-style-system-details):not(.is-style-system-flat-panel) {
-    margin-block-start: 0;
 }
 
 /* Plain Accordion blocks inside panels should keep native behavior but inherit
@@ -259,11 +259,23 @@
 }
 
 /* Let nested panel footers fill edge-to-edge like direct-child panel headers. */
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>*:has(> :is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)-footer:only-child)>:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)-footer,
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.block-editor-block-list__layout>*:has(> :is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)-footer:only-child)>:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)-footer {
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>*:has(>.is-style-system-panel-footer:only-child)>.is-style-system-panel-footer,
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.block-editor-block-list__layout>*:has(>.is-style-system-panel-footer:only-child)>.is-style-system-panel-footer {
     margin: calc(var(--strap-system-panel-padding-y) * -1) calc(var(--strap-system-panel-padding-x) * -1) !important;
     width: calc(100% + (var(--strap-system-panel-padding-x) * 2));
     max-width: none !important;
+}
+
+/* A plain authored Group can serve as a native Details footer. It joins the
+   preceding plain Details row without inheriting Gutenberg blockGap. */
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.wp-block-details:not(.is-style-system-details):not(.is-style-system-flat-panel)+.wp-block-group:not(:is(.is-style-system-panel, .is-style-system-flat-panel)):not(.is-style-system-panel-header):not(.is-style-system-panel-footer),
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.block-editor-block-list__layout>*:has(>.wp-block-details:not(.is-style-system-details):not(.is-style-system-flat-panel))+*>.wp-block-group:not(:is(.is-style-system-panel, .is-style-system-flat-panel)):not(.is-style-system-panel-header):not(.is-style-system-panel-footer) {
+    margin-block-start: 0 !important;
+}
+
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>:is(.wp-block-details:not(.is-style-system-details):not(.is-style-system-flat-panel), .wp-block-accordion:not(.is-style-system-accordion):not(.is-style-system-flat-panel))+.is-style-system-panel-footer,
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.block-editor-block-list__layout>*:has(>:is(.wp-block-details:not(.is-style-system-details):not(.is-style-system-flat-panel), .wp-block-accordion:not(.is-style-system-accordion):not(.is-style-system-flat-panel)))+*>.is-style-system-panel-footer {
+    margin-block-start: 0 !important;
 }
 
 /* Force Image Caps to naturally span 100% without using dangerous .alignfull rules */

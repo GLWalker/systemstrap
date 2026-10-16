@@ -6,11 +6,35 @@ This file is a CONTRACT.
 
 ## Contract Version
 
-Current Version: 1.24
+Current Version: 1.25
 
-Last Updated: 2026-09-27
+Last Updated: 2026-09-30
 
 ## Change Log
+
+### 1.26
+
+BuddyPress Default Button Style now routes ordinary transactional Nouveau
+controls through the canonical Button contract. The request-level style marker
+and canonical element class preserve BuddyPress element choice, disabled state,
+and AJAX ownership, including controls injected after initial render. Primary,
+Secondary, Link, Pill, Pill Outline, Square, and Square Outline consume the
+existing Button tokens; icon, pagination, text, search, priority-navigation,
+and destructive controls retain their component-specific treatment.
+
+### 1.25
+
+Core Quote retains its established baseline while the native Large variation
+owns a roomier editorial inset, bounded text measure, larger decorative quote
+mark, and separated citation rhythm. Core Pullquote now owns the shared
+centered typography and spacing baseline; its default style adds restrained
+top and bottom seams, while Solid Color retains authored color ownership and
+omits those seams.
+
+Ordinary captions consume spacing-10 vertically and spacing-20 horizontally.
+Nested Gallery image overlays retain Core's overlay padding ownership. The
+legacy Core Button `is-style-squared` class maps only to the existing square
+corner geometry and does not register another Button style.
 
 ### 1.24
 
@@ -774,6 +798,12 @@ and inline custom `font-size`, preserving authored Button typography and leaving
 standalone/single-product actions outside the compatibility boundary.
 
 It also routes editor-selected palette backgrounds for Query and Comments Pagination away from their layout wrappers and onto their rendered controls. Wrapper-level colors fan out to previous, number, and next controls; nested block colors stay local to that selected control. Generated palette contrast remains the source color context; an explicitly selected System UI variation may then apply its own surface presentation above it.
+
+The same dynamic lane maps authored System Nav Button palette and gradient
+surfaces to `--strap-nav-button-*` variables on the Navigation root. The
+canonical component consumes those variables with the shared Button wash,
+shadow, and gradient interaction contract rather than substituting a Primary
+palette state.
 
 These rules exist so palette-selected tab backgrounds can force the active joining edge to the same preset color on the frontend, instead of relying only on transparent surface blending.
 

@@ -6,11 +6,22 @@ This file is a CONTRACT.
 
 ## Contract Version
 
-Current Version: 1.4
+Current Version: 1.5
 
-Last Updated: 2026-08-20
+Last Updated: 2026-09-30
 
 ## Change Log
+
+### 1.5
+
+- `patterns/query-media-object.php` MUST keep block-comment attributes as
+  literal valid JSON. PHP expressions MUST NOT appear inside serialized block
+  attributes.
+- The Query Media Object MUST retain its existing Query, featured-image,
+  title, post-meta, excerpt, read-more, result-total, and pagination semantics.
+- `query-media-object__media-row`, `query-media-object__image`, and
+  `query-media-object__body` remain stable presentation signals and do not
+  replace Core block semantics.
 
 ### 1.4
 

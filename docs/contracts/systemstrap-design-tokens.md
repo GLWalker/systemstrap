@@ -169,6 +169,33 @@ Authoritative source: `settings.custom`.
 
 ---
 
+## 6.1 Navigation Geometry
+
+Authoritative source: `settings.custom` in `theme.json`, with identical
+overrides in `styles/compact.json` and `styles/expanded.json`.
+
+| Role | CSS variable | Value |
+| --- | --- | --- |
+| Canonical item gap | `--wp--custom--navigation-gap` | `1rem` |
+| Canonical item inline padding | `--wp--custom--navigation-item-padding-inline` | `1.25rem` |
+| Canonical item block padding | `--wp--custom--navigation-item-padding-block` | `0.625rem` |
+| Compact item gap | `--wp--custom--navigation-compact-gap` | `0.75rem` |
+| Compact item inline padding | `--wp--custom--navigation-compact-padding-inline` | `0.875rem` |
+| Compact item block padding | `--wp--custom--navigation-compact-padding-block` | `0.5rem` |
+| Submenu panel block inset | `--wp--custom--navigation-submenu-panel-padding-block` | `0.5rem` |
+| Submenu item inline padding | `--wp--custom--navigation-submenu-item-padding-inline` | `1.25rem` |
+| Submenu item block padding | `--wp--custom--navigation-submenu-item-padding-block` | `0.625rem` |
+| Navigation row inline padding | `--wp--custom--navigation-row-padding-inline` | `1rem` |
+| Navigation row block padding | `--wp--custom--navigation-row-padding-block` | `0.5rem` |
+
+These tokens own navigation geometry independently of the generic layout
+spacing scale. Layout variations retain the same navigation values while
+continuing to own radius, shadow, color, border, and surface tokens.
+`core/navigation` consumes navigation-gap as its block gap; authored Header
+and Footer Navigation blocks repeat that same token explicitly.
+
+---
+
 # 7. Borders and Radius
 
 ## 7.1 Border primitives
@@ -256,7 +283,13 @@ This is composition-level page padding, not a general reusable spacing token.
 | Inline padding  | Spacing 30                                       | Shared standard button inset.               |
 | Block padding   | `calc(var(--wp--preset--font-size--small) * .5)` | Size-relative vertical inset.               |
 
-Color-bearing button tokens are intentionally excluded.
+Canonical System Nav Button reuses the shared Button interaction engine:
+hover uses the `--wp--custom--btn-hover-wash` current-color overlay (15%
+fallback) with the hover shadow, while current uses the
+`--wp--custom--btn-active-wash` overlay (25% fallback) with the active
+shadow. Dynamic palette and gradient output route an authored Navigation
+surface through `--strap-nav-button-*` variables so the authored foreground,
+surface, and gradient remain authoritative.
 
 ---
 
