@@ -1,0 +1,82 @@
+/* BuddyPress single-object inner shell.
+ *
+ * The theme pattern owns the shell and authored contextual sidebar.
+ * BuddyPress/Nouveau continues to own the identity header and #item-body.
+ * Layout wrappers are flattened only so those native children can participate
+ * in the SystemStrap 2:1 grid without moving or duplicating markup.
+ */
+
+body .strap-bp-inner-shell .strap-bp-inner-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+        "header"
+        "content"
+        "sidebar";
+    column-gap: var(--wp--preset--spacing--40);
+    row-gap: var(--wp--preset--spacing--40);
+    width: 100%;
+    max-width: none;
+    padding-right: var(--wp--style--root--padding-right);
+    padding-left: var(--wp--style--root--padding-left);
+
+}
+
+/* Let BuddyPress output participate directly in the shell grid. */
+body .strap-bp-inner-shell .strap-bp-inner-main,
+body .strap-bp-inner-shell .strap-bp-inner-main>#buddypress.buddypress-wrap,
+body .strap-bp-inner-shell .strap-bp-inner-main>#buddypress.buddypress-wrap>.bp-wrap {
+    display: contents;
+}
+
+body .strap-bp-inner-shell #item-header {
+    grid-area: header;
+    min-width: 0;
+    margin: 0;
+}
+
+body .strap-bp-inner-shell #item-body {
+    grid-area: content;
+    float: none;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    margin: 0;
+
+}
+
+/* The authored aside is layout-only. The BuddyPress blocks inside it remain
+ * their own surface owners through Default / System Panel / System Flat Panel. */
+body .strap-bp-inner-shell .strap-bp-inner-sidebar {
+    grid-area: sidebar;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    margin: 0;
+    align-self: start;
+}
+
+body .strap-bp-inner-shell .strap-bp-inner-sidebar .wp-block-bp-primary-nav,
+body .strap-bp-inner-shell .strap-bp-inner-sidebar .buddypress_object_nav,
+body .strap-bp-inner-shell .strap-bp-inner-sidebar #object-nav {
+    float: none;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    margin-inline: 0;
+}
+
+/* Nouveau's generic div radius otherwise outranks the selected Panel surface. */
+body .strap-bp-inner-shell .strap-bp-inner-sidebar .strap-bp-sidebar-panel.strap-panel-surface {
+    border-radius: var(--wp--custom--border-radius);
+}
+
+/* Match SystemStrap's existing Core Columns breakpoint and 2:1 composition. */
+@media (min-width: 782px) {
+    body .strap-bp-inner-shell .strap-bp-inner-layout {
+        grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+        grid-template-areas:
+            "header  header"
+            "content sidebar";
+    }
+}

@@ -2004,6 +2004,16 @@
 		},
 		{
 			"area": "uncategorized",
+			"name": "part-buddypress-member-inner",
+			"title": "BuddyPress Member Inner"
+		},
+		{
+			"area": "uncategorized",
+			"name": "part-buddypress-group-inner",
+			"title": "BuddyPress Group Inner"
+		},
+		{
+			"area": "uncategorized",
 			"name": "part-comments",
 			"title": "Comments Part"
 		},

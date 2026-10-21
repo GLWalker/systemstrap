@@ -29,7 +29,16 @@ if ($is_buddypress) {
     ? sanitize_key(bp_current_component())
     : '';
 
-  if ($component && isset($bp_parts[$component])) {
+  // Single-object layout is independent of its inner component treatment.
+  $inner_shell = function_exists('strap_buddypress_inner_shell') ? strap_buddypress_inner_shell() : '';
+  if ($inner_shell) {
+    $inner_part = 'parts/part-buddypress-' . $inner_shell . '-inner.html';
+    if (locate_template($inner_part, false, false)) {
+      $bp_template_file = $inner_part;
+    }
+  }
+
+  if (empty($bp_template_file) && $component && isset($bp_parts[$component])) {
     $bp_specific_part = 'parts/' . $bp_parts[$component] . '.html';
 
     if (locate_template($bp_specific_part, false, false)) {

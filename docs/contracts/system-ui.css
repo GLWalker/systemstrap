@@ -18,6 +18,52 @@
  * inc/dynamic-styles.php
  */
 
+/* C10.2 BuddyPress Sidebar Contract
+ * Runtime: inc/block-styles.php, inc/buddypress-integration.php,
+ * assets/css/style-variations/bp-widget-system-panel-header.css,
+ * assets/css/buddypress/buddypress-avatars.css, and
+ * assets/css/buddypress/buddypress-single-navigation.css.
+ * Eight widgets plus Primary Navigation expose Default, System Panel and
+ * System Flat Panel. Only selected containers receive .strap-bp-sidebar-panel
+ * and one canonical .strap-panel-surface. Existing complete roots are reused;
+ * omitted multi-root widgets receive one neutral shell. Block-aware assets
+ * cover ordinary pages and editor previews without the Nouveau screen bridge.
+ * Login titles span the identity/compact Logout grid; Login keeps its full
+ * Button role. Avatars wrap intrinsically. Dynamic identity lists share
+ * spacing-20 rows, spacing-10 wrapping filters, canonical seams, Medium names
+ * and Small current-mix metadata. Latest Activities loses only selected native
+ * bubble/tail paint. Notices consume notice tokens and .strap-icon-button.
+ * Native data, IDs, ARIA, empty wording/output, sorting and dismissal persist.
+ * Primary Navigation always inherits the Single Navigation registry/setting.
+ * Legacy authored menu classes have no runtime precedence and saved content
+ * remains unchanged. Any container supports any inherited menu, including
+ * Native. Default supplies no container chrome and does not disable a selected
+ * non-Native menu. Recent Posts and curated cards remain outside this pass.
+ * Single-member/group inner routes use dedicated member-inner/group-inner
+ * Parts, not the directory/sidebar widget-stack composition. Their dedicated
+ * navigation sidebar Parts default to the canonical Primary Navigation block. Native
+ * Nouveau home templates suppress only the inline primary mount through their
+ * supported active-sidebar ownership check, using the effective dedicated
+ * sidebar Part as a request-only scan sentinel. The sentinel is never rendered or
+ * saved. No duplicate menu declaration/HTML exists in the bridge. Displayed
+ * member/current group context stays with the native block callback; local
+ * subnavigation remains in the content area. .strap-bp-sidebar-navigation owns
+ * only the full main-column width after removing the inline primary lane,
+ * independently of Native/System menu treatment and container choice.
+ * C10.2b Revised: buddypress-inner-shell.css lays out the native #buddypress
+ * root without moving or duplicating native output. #item-header and other
+ * full-width root children span both columns. The native .bp-wrap and an
+ * authored aside.strap-bp-inner-sidebar share the lower 2:1 layout with existing
+ * spacing-30/40 gaps and the Core Columns 782px breakpoint. Native after-home
+ * hooks render the sidebar via core/template-part, never manual menu HTML.
+ * Lower widths stack in source order. The shell owns no component surface;
+ * Activity, directory cards, Messages and Group Profile retain their accepted
+ * treatment mapping. The embedded Primary Navigation subtree is excluded from
+ * Horizontal Navigation mapping. Legacy inline-nav width rules exclude sidebar
+ * ownership; the embedded Panel radius reasserts the canonical radius against
+ * Nouveau's generic div radius. Header appearance remains unchanged.
+ */
+
 /* ========================================================================
    TABLE OF CONTENTS
    ========================================================================
@@ -536,12 +582,211 @@
  * directory, block, and AJAX Button API output. Activity reply and embedded
  * object controls use the existing small font-size scale; Login Form submit
  * controls use the same selected class at full available width. Top-level
- * Top-level Activity delete controls retain Nouveau's lightweight neutral action
- * treatment; reply/comment delete controls consume the small semantic `danger`
- * Button. The native activity comment count is plain action metadata and inherits
- * its control foreground rather than consuming the standalone badge role. Icon,
- * priority-nav, search, pagination, text, and role-management controls retain
+ * Activity delete controls retain Nouveau's lightweight neutral action treatment.
+ * Reply/comment Delete controls consume the same selected small Button geometry
+ * as Reply without selected-style color utility classes; the semantic `danger`
+ * surface and foreground are applied afterward. Nouveau's reply-owned
+ * root list replaces Nouveau's literal margin with spacing-20; reply metadata,
+ * content, and `.comment-item > .activity-meta.action` share an avatar-aware
+ * content column. The content rail consumes the canonical System UI border color,
+ * while the action wrapper keeps the compact flex gap and spacing-20 lower rhythm
+ * and nested reply lists consume the Comments indentation and rail tokens. The
+ * native activity comment count is plain action
+ * metadata and inherits its control foreground rather than consuming the
+ * standalone badge role. Icon,
+ * priority-nav, pagination, text, and role-management controls retain
  * their BuddyPress-specific treatment and behavior.
+ * Top-level Favorite and Delete remain transparent, neutral icon actions; their
+ * flex alignment and compact padding match the Comment control's hit-area
+ * rhythm without adopting Button surfaces. The Comment control uses spacing-10
+ * between its icon and plain count metadata. The Activity composer hides
+ * vertical overflow only while Nouveau holds its intentional collapsed 50px
+ * state, then restores automatic overflow when `.activity-form-expanded` is
+ * present.
+ *
+ * `avatar_style` accepts `default`, `square`, `rounded`, or `circle` and emits a
+ * stable `strap-bp-avatar-*` body class. `default` supplies no radius override;
+ * the explicit styles apply only radius to BuddyPress member/group/site identity
+ * `img.avatar` output across Nouveau screens and BuddyPress blocks. `rounded`
+ * consumes `--wp--custom--border-radius`. Avatar dimensions, cover images,
+ * embedded media, attachments, and crop-source previews remain outside this
+ * presentation contract. An explicit non-default Avatar Style loads only the
+ * shared identity-shape stylesheet outside BuddyPress routes, so standalone
+ * blocks consume the same shape owner without the screen component bridge.
+ *
+ * Non-Native Activity, Member Profile, and Group Profile roots receive the
+ * local `strap-bp-controls-system-scope`; non-Native Activity, Member, Group,
+ * and Site Directory requests receive `strap-bp-controls-system-directory`
+ * because their search and filter controls sit outside the replaceable list
+ * root. Recurring Nouveau
+ * text-like inputs, textareas, selects, choice controls, validation states,
+ * disabled states, and search input groups then consume the canonical
+ * `theme.json` textInput/select paint plus the shared form transition and focus
+ * shadow. Directory search groups retain Nouveau's native submit, decorative
+ * Dashicon, and AJAX hooks. The shared group owns the outer radius/focus ring,
+ * while its stretched trailing end cap owns the logical seam and current-color
+ * wash; its search Dashicon restores the native unit line-height for optical
+ * centering within that flex end cap. Directory select wrappers retain their
+ * native Nouveau arrow and behavior while tokenized logical padding reserves
+ * its affordance space. The arrow is raised above the opaque canonical select
+ * surface without intercepting its hit area; enabled selects expose the pointer
+ * cursor while disabled controls retain native cursor behavior. The Activity RSS setting
+ * defaults to `show`; `hide`
+ * removes only `#activity-rss-feed` from presentation and does not alter feeds.
+ * The scopes remain stable when Nouveau replaces descendants by AJAX.
+ * The Login Form block uses its stable `#bp-login-widget-form` root as the
+ * equivalent local scope. Activity reply Post consumes the same
+ * selected Default Button Style as ordinary submits plus the canonical compact
+ * button geometry. The shared small-button contract normalizes native input
+ * appearance and intrinsic sizing as well as anchor/button consumers. Its
+ * width, height, display, compact font size, line height, and padding are
+ * exposed to the higher-specificity BuddyPress adapter through shared geometry
+ * properties, so Nouveau and the full-size adapter cannot displace explicit
+ * compact or full-width roles. Nouveau's supported
+ * submit-button registry filter attaches those canonical classes to the
+ * directly rendered Activity reply Post input, which does not use the
+ * BuddyPress Button API. The BuddyPress typography bridge consumes the same
+ * size properties and therefore cannot replace an explicit compact role with
+ * its default typography. Nouveau creates Activity composer controls in the
+ * browser; the non-Native composer bridge assigns its Post Update input the
+ * same compact role when that control is inserted. The
+ * Activity reply form retains Nouveau's AJAX-compatible avatar float while
+ * applying a spacing-20 media-object gap; its flow-root content column consumes
+ * the remaining width without a fixed calculation. The textarea wrapper uses
+ * spacing-20 before the action row and permits the canonical external focus
+ * shadow to paint without Nouveau overflow clipping; Cancel remains Nouveau's
+ * lightweight text action. Fully Native component treatments do not receive
+ * the request-level control scope.
+ *
+ * Site Directory reuses the existing Native, System Panel, and System Flat
+ * Panel directory treatments without introducing a separate card system.
+ * `#blogs-dir-list[data-bp-list="blogs"]` and member-owned
+ * `.blogs.myblogs[data-bp-list="blogs"]` retain Nouveau list/grid structure;
+ * their direct `.list-wrap` owns the selected canonical surface. BuddyPress
+ * `bp_blog_avatar()` output is an identity `img.avatar` and therefore consumes
+ * the global Avatar Style radius, while site cover/media output remains outside
+ * that contract. Visit Site remains an ordinary Button API action.
+ * Friendship requests remain Member Directory-owned. Their stable
+ * `[data-bp-list="friendship_requests"]` root receives the selected treatment;
+ * because Nouveau omits `.list-wrap` in that loop, each direct `#friend-list`
+ * item is the equivalent canonical card-surface owner.
+ * Nouveau's desktop single-member and single-group item body is structural but
+ * ships a fixed white background. Non-Native Profile treatments reassert the
+ * selected canonical Panel surface and border there so native tables, forms,
+ * Messages regions, and empty states inherit the active light or dark variation.
+ * The shared `#item-body.item-body.strap-panel-surface` owner reasserts the
+ * complete selected Member/Group Profile treatment above Nouveau's desktop
+ * background shorthand: contextual surface, inherited foreground, full border,
+ * radius, content insets, and enhanced image/backdrop/shadow or explicit Flat
+ * Panel resets. This applies to ordinary core and extension subroutes through
+ * existing profile ownership; Activity and directory delegation stays intact.
+ * The Activity Part's structural-shell reset excludes explicit profile panels.
+ * Native Profile selections add no panel classes and remain outside this rule.
+ * Native `.bp-feedback`, `.bp-template-notice`, and `.bp-messages` structure,
+ * semantics, icons, close controls, and AJAX replacement remain intact. Within
+ * established non-Native treatment scopes, one shared notice contract owns the
+ * System UI surface, border, radius, message rhythm, and canonical foreground;
+ * Info/Help, Error, Warning/Loading, and Success/Updated own only their semantic
+ * icon segment through the corresponding theme palette and foreground tokens.
+ * Recurring Nouveau fixed paint in message previews, thread headers, editor
+ * containers, field metadata, group descriptions, manage-member rows, and
+ * invite rows is reduced to canonical surfaces, borders, and muted foreground
+ * without introducing nested card surfaces. The global Avatar Style also recognizes the stable
+ * `.main-buddypress` application root used around delegated member loops, so
+ * their native `img.avatar` identity output consumes the same radius owner.
+ *
+ * All selected non-Native BuddyPress controls use the same native-select bridge.
+ * The actual select retains native behavior while consuming canonical form
+ * paint, typography, padding, focus, disabled state, and cursor behavior. Its
+ * Nouveau arrow is positioned inward with spacing-20, and the select reserves
+ * that logical end space so labels do not collide with the indicator.
+ * Notification, invitation, and Messages bulk-action rows own only a wrapping
+ * flex alignment contract with spacing-10; selects and adjacent buttons remain
+ * independent controls whose paint and geometry stay with their canonical
+ * component owners.
+ *
+ * Treated vertical `#object-nav` System List/System Flat List mounts mirror the
+ * canonical List row padding (spacing-20/spacing-30), surface and seam ownership,
+ * list-hover and persistent current surfaces, focus ring, and System UI badge
+ * presentation. Nouveau's `.current.selected` state remains authoritative; the
+ * current link retains the visible System List state surface and semibold state
+ * while hovered.
+ * BuddyPress retains navigation semantics and count values; fixed Nouveau gray
+ * hover/current paint is neutralized only on those selected list treatments.
+ * Empty Nouveau secondary priority-nav wrappers are removed from layout only
+ * while their native toggle retains `.is-empty`; usable overflow controls remain.
+ * Member, Friends, and Group Members loops under the Member Directory treatment
+ * share one `.list-wrap` Panel/Flat Panel contract, including grid top inset.
+ * Group Create's `#create-group-form` receives the shared control scope when
+ * Group Profile presentation is non-Native, including asset loading on the
+ * creation route. Its native ordered creation steps retain `.current`, linked
+ * available steps, and unlinked future spans; compact navigation tokens,
+ * a current underline, muted future text, and canonical focus supply state.
+ * Creation fields fill the available form width. Ordinary scoped text controls
+ * retain explicit form surface/foreground/border and focus values; read-only
+ * controls retain their surface, and native check/radio controls retain accent
+ * semantics with canonical surface/foreground/border declarations.
+ * Group Invite places native local navigation above search. Its existing
+ * chooser utility actions retain their hit area and focus paint; decorative
+ * `span.icons::before` uses the Large font preset and a centered unit line box.
+ * Native `.selected` add/remove controls and `.group-remove-invite-button`
+ * consume the Danger foreground in all states; only that action is colored.
+ * Member last-active labels use the Medium font preset; Group labels retain
+ * Small. Both use `--wp--preset--color--contrast`, at the direct header-content
+ * activity child or Member's native item-meta/activity wrapper respectively.
+ * Profile header scope follows the non-Native Profile setting on all single
+ * Member/Group routes, independently of delegated content-body ownership.
+ * Group Invite's existing
+ * `bp-invites-search-form` consumes the same flex, seam, end-cap, Dashicon
+ * alignment, focus-within, hover, and active contract as directory search.
+ * REST Manage Members retains functional previous/next pagination controls.
+ * Its direct role select uses the existing placeholder as its logical arrow
+ * owner; the redundant `.filter label::before` glyph is suppressed. Search
+ * occupies the next wrapping row. Member rows and REST behavior stay native.
+ * Group Directory `.list-wrap` retains its panel bottom inset; its static
+ * action container adds spacing-20 below actions without changing buttons.
+ * BuddyPress Pagination Style is stored at
+ * `strap_buddypress_component_mappings[pagination_style]`, defaulting to
+ * `system-ui-pagination`. Choices are read from the registered canonical
+ * `core/query-pagination` System UI styles; the adapter has no variant list.
+ * `buddypress-default` (BuddyPress Default) precedes those canonical choices.
+ * It leaves component treatments unchanged, skips the System UI pagination
+ * enqueue and `strap-bp-pagination-scope` / canonical style class, and emits
+ * only `strap-bp-pagination-default` to exclude pagination from the global
+ * typography bridge. Manage pagination-container layout also requires the
+ * System UI scope. The typography exclusions include numeric/count paragraphs
+ * and Backbone paging buttons while other controls retain their typography.
+ * Thus no adapter paging paint, geometry, states,
+ * count typography, or gaps remain on this choice; Nouveau retains presentation.
+ * The default and existing saved canonical choices remain unchanged; invalid
+ * selections continue to resolve to `system-ui-pagination`.
+ * Runtime source: `assets/css/system-ui-pagination.css` supplies the existing
+ * pagination geometry, paint, current inset ring, focus, disabled, and dots
+ * rules to stable Nouveau mounts under `body.strap-bp-pagination-scope`.
+ * The selected `is-style-*` class supplies canonical variables on that body.
+ * Eligibility follows the actual Member/Group/Site Directory or Member/Group
+ * Profile owner; Native owners receive no pagination scope. Activity ownership
+ * does not enable pagination. Group creation follows its Group Profile choice.
+ * Numeric mounts: `.bp-pagination-links > .pag-data` for standard Nouveau
+ * loops, `.bp-pagination > .pagination-links` for member Invitations. Both
+ * top and bottom mounts retain URLs, `data-bp-pagination`, aria-current,
+ * screen-reader labels, counts, and native AJAX/query ownership.
+ * Backbone mounts: Messages `.bp-messages-filters .last`, Group Invite
+ * `.bp-invites-filters .last`, and Manage Members
+ * `#group-members-pagination .bp-pagination`. Their existing links/buttons
+ * retain handlers and availability; omitted previous/next controls stay absent.
+ * Current `.page-numbers.current` / `[aria-current="page"]`, disabled
+ * `[aria-disabled="true"]` / `:disabled`, and noninteractive `.dots` consume
+ * canonical states. Previous/next retain BuddyPress labels and glyphs.
+ * Counts stay separate small/muted `.pag-count` metadata. The bridge supplies
+ * wrapping/gaps only; Default Button Style never owns pagination geometry.
+ * Request scope and stable descendants survive AJAX/Backbone replacement
+ * without JavaScript normalization or observers. Activity Load More, sidebar
+ * widgets, and bbPress are excluded from this pagination adapter.
+ * The Messages TinyMCE host chrome consumes the canonical form, secondary
+ * surface, border, and focus tokens. Its iframe body receives the resolved form
+ * surface and foreground at editor initialization because parent-document CSS
+ * custom properties do not cross the iframe boundary.
  */
 
 /*
@@ -3143,4 +3388,36 @@ body:not(.editor-styles-wrapper) .is-style-system-panel .wp-block-accordion[clas
 /*
  * Base query layouts are intentionally omitted from this document.
  * Those belong in separate base-style documentation work.
+ */
+
+/* C10.3 BuddyPress convergence
+ * - Selected sidebar .strap-bp-sidebar-panel .bp-dynamic-block-container
+ *   owns compact .item-options (small typography, spacing-10), identity rows
+ *   (spacing-20, canonical seams), and native refresh markup. Default is excluded.
+ * - Latest Activities retains native blockquote/activity-item/footer ordering;
+ *   medium reading text, small muted time, spacing-10/20 and transparent bubbles.
+ * - Treated Groups .groups-list.bp-list.grid.three is one column below 24em,
+ *   two columns thereafter (including 46.8em); its spacing-30 gap on both axes
+ *   matches theme.json core/post-template card rhythm. Members are unchanged.
+ * - #register-page.strap-bp-controls-system-scope reuses the shared controls and
+ *   feedback contracts when Member Profile is non-Native. Native Core password
+ *   scripts own state; the caps-warning defaults hidden until Core shows it,
+ *   with a font-relative, currentColor SVG rather than unsized admin artwork.
+ *   Strength states consume danger/warning/success foreground/surface tokens.
+ * - .strap-bp-site-image and .blogs-list .item-avatar img use theme media radius,
+ *   not Avatar Style. The marker is applied by bp_get_blog_avatar in any context.
+ */
+
+/* C10.3a Activity rail geometry (buddypress-components.css)
+ * Treated #activity-stream and #bp-nouveau-activity-form.strap-panel-surface
+ * share --strap-bp-activity-avatar-rail (spacing-50), --strap-bp-activity-gap
+ * (spacing-30), --strap-bp-activity-pad-inline (spacing-30). The last maps to
+ * Comments row padding-x and composer inline inset, independently of paint.
+ * At Nouveau's 46.8em breakpoint, direct feed avatar/content use Grid columns
+ * 1/2; sibling comments occupy column 2. Native actions stay inside content.
+ * Composer avatar/content/options use the same two columns. Other direct
+ * plugin/feedback regions span the form. Options wrap with Flex, and only
+ * #whats-new-submit uses an auto inline-start margin. Mobile remains stacked.
+ * Reply internals, avatar shape/physical size, textarea paint and button
+ * geometry are outside this contract. Native Activity has no matching scope.
  */

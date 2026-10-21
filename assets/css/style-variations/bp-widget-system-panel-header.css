@@ -1,115 +1,273 @@
 /*
- * BuddyPress System Panel adapter.
- * The block root consumes the canonical Panel surface; BuddyPress keeps its
- * native widget markup and interaction ownership.
+ * Selected BuddyPress sidebar adapter. Canonical .strap-panel-surface owns
+ * Panel/Flat Panel paint; native BuddyPress owns data, markup and interaction.
+ * BuddyPress Default has no matching adapter root.
  */
-
-:is(.wp-block-bp-login-form, .wp-block-bp-online-members, .wp-block-bp-active-members, .wp-block-bp-dynamic-members, .wp-block-bp-friends, .wp-block-bp-dynamic-groups, .wp-block-bp-latest-activities, .wp-block-bp-sitewide-notices).is-style-system-panel {
+.strap-bp-sidebar-panel {
     box-sizing: border-box;
     padding: var(--strap-system-panel-content-inset-y) var(--strap-system-panel-content-inset-x);
+    color: inherit;
+    overflow: visible;
 }
-
-:is(.wp-block-bp-online-members, .wp-block-bp-active-members, .wp-block-bp-dynamic-members, .wp-block-bp-friends, .wp-block-bp-dynamic-groups, .wp-block-bp-latest-activities).is-style-system-panel .widget-title {
+.strap-bp-sidebar-panel .widget-title {
     margin: 0 0 var(--wp--preset--spacing--20);
     font-family: var(--strap-system-panel-heading-font-family);
     font-size: var(--wp--preset--font-size--medium);
     font-weight: var(--strap-system-panel-heading-font-weight);
     line-height: var(--strap-system-panel-heading-line-height);
 }
+.strap-bp-sidebar-panel :is(.widget-error, .widget-error p) {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    color: var(--wp--preset--color--current-mix-color);
+}
+.strap-bp-sidebar-panel:not(.wp-block-bp-primary-nav) a:focus-visible {
+    outline: var(--wp--custom--focus-ring-width) solid var(--wp--custom--focus-ring-color);
+    outline-offset: calc(-1 * var(--wp--custom--focus-ring-width));
+}
+.strap-bp-sidebar-panel [data-bp-tooltip]::after {
+    background-color: var(--wp--preset--color--base);
+    color: var(--wp--preset--color--contrast);
+    border-color: var(--wp--custom--system-ui-border-color);
+    border-radius: var(--wp--custom--border-radius-sm);
+    box-shadow: var(--wp--preset--shadow--dropdown-menu);
+    font-family: var(--wp--preset--font-family--body);
+    font-size: var(--wp--preset--font-size--small);
+}
 
-:is(.wp-block-bp-online-members, .wp-block-bp-active-members).is-style-system-panel .avatar-block {
+/* Wrapping avatar collections: intrinsic columns, never viewport counts. */
+.strap-bp-sidebar-panel .avatar-block {
     display: flex;
     flex-flow: row wrap;
     gap: var(--wp--preset--spacing--10);
 }
-
-:is(.wp-block-bp-online-members, .wp-block-bp-active-members).is-style-system-panel .avatar-block img {
+.strap-bp-sidebar-panel .avatar-block .item-avatar {
+    float: none;
+    flex: 0 0 auto;
+    margin: 0;
+}
+.strap-bp-sidebar-panel :is(.avatar-block, .bp-login-widget-user-avatar) img.avatar {
     display: block;
     margin: 0;
 }
 
-:is(.wp-block-bp-dynamic-members, .wp-block-bp-friends, .wp-block-bp-dynamic-groups).is-style-system-panel .item-options {
+/* One identity-list rhythm for Members, Friends and Groups, including refreshes. */
+.strap-bp-sidebar-panel .bp-dynamic-block-container .item-options {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: var(--wp--preset--spacing--10);
     margin: 0 0 var(--wp--preset--spacing--20);
     padding: 0;
     font-size: var(--wp--preset--font-size--small);
+    line-height: var(--strap-system-panel-body-line-height);
 }
-
-:is(.wp-block-bp-dynamic-members, .wp-block-bp-friends, .wp-block-bp-dynamic-groups).is-style-system-panel .item-list {
+.strap-bp-sidebar-panel .item-options a {
+    font: inherit;
+    padding: 0 var(--wp--preset--spacing--10);
+    white-space: nowrap;
+}
+.strap-bp-sidebar-panel .item-options .bp-separator {
+    color: var(--wp--preset--color--current-mix-color);
+}
+.strap-bp-sidebar-panel .item-options a.selected {
+    background-color: var(--wp--custom--system-ui-list-hover-bg);
+    border-radius: var(--wp--custom--border-radius-sm);
+    color: inherit;
+    font-weight: var(--wp--custom--font-weight-heading);
+}
+.strap-bp-sidebar-panel .bp-dynamic-block-container ul.item-list {
     margin: 0;
     padding: 0;
+    list-style: none;
 }
-
-:is(.wp-block-bp-dynamic-members, .wp-block-bp-friends, .wp-block-bp-dynamic-groups).is-style-system-panel .item-list > li {
+.strap-bp-sidebar-panel .bp-dynamic-block-container ul.item-list > li {
     display: flex;
+    align-items: flex-start;
     gap: var(--wp--preset--spacing--20);
     margin: 0;
     padding: var(--wp--preset--spacing--20) 0;
-    border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
     background: transparent;
 }
-
-:is(.wp-block-bp-dynamic-members, .wp-block-bp-friends, .wp-block-bp-dynamic-groups).is-style-system-panel .item-list > li:first-child {
-    border-top: 0;
+.strap-bp-sidebar-panel ul.item-list > li + li {
+    border-top: var(--wp--custom--border-width) solid var(--wp--custom--system-ui-border-color);
 }
-
-:is(.wp-block-bp-dynamic-members, .wp-block-bp-friends, .wp-block-bp-dynamic-groups).is-style-system-panel .item-list > li:hover {
+.strap-bp-sidebar-panel ul.item-list > li:is(:hover, :focus-within) {
     background-color: var(--wp--custom--system-ui-list-hover-bg);
 }
-
-:is(.wp-block-bp-dynamic-members, .wp-block-bp-friends, .wp-block-bp-dynamic-groups).is-style-system-panel .item-list .item-avatar {
+.strap-bp-sidebar-panel ul.item-list > li::before,
+.strap-bp-sidebar-panel ul.item-list > li::after {
+    content: none;
+}
+.strap-bp-sidebar-panel .bp-dynamic-block-container ul.item-list .item-avatar {
+    float: none;
     flex: 0 0 auto;
     width: auto;
+    margin: 0;
 }
-
-:is(.wp-block-bp-dynamic-members, .wp-block-bp-friends, .wp-block-bp-dynamic-groups).is-style-system-panel .item-list .item-avatar img {
+.strap-bp-sidebar-panel ul.item-list .item-avatar img {
     display: block;
     width: var(--wp--preset--spacing--50);
     height: var(--wp--preset--spacing--50);
-    border-radius: var(--wp--custom--border-radius-sm);
+    object-fit: cover;
 }
-
-:is(.wp-block-bp-dynamic-members, .wp-block-bp-friends, .wp-block-bp-dynamic-groups).is-style-system-panel .item-list .item {
+.strap-bp-sidebar-panel .bp-dynamic-block-container ul.item-list .item {
+    flex: 1 1 auto;
     min-width: 0;
-    margin-left: 0;
+    margin: 0;
+    overflow-wrap: anywhere;
 }
-
-:is(.wp-block-bp-dynamic-members, .wp-block-bp-friends, .wp-block-bp-dynamic-groups).is-style-system-panel .item-list .item-meta {
+.strap-bp-sidebar-panel .item-title {
+    font-size: var(--wp--preset--font-size--medium);
+    line-height: var(--strap-system-panel-body-line-height);
+}
+.strap-bp-sidebar-panel :is(.item-meta, .activity-time-since) {
     font-size: var(--wp--preset--font-size--small);
-    opacity: 0.68;
+    color: var(--wp--preset--color--current-mix-color);
 }
 
-.wp-block-bp-login-form.is-style-system-panel:has(.bp-login-widget-user-avatar) {
-    display: flex;
+/* Account title spans the whole row; the native identity/Logout pair stays intact. */
+.strap-bp-sidebar-panel.wp-block-bp-login-form:has(.bp-login-widget-user-avatar) {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
     align-items: center;
     gap: var(--wp--preset--spacing--20);
 }
-
-.wp-block-bp-login-form.is-style-system-panel .bp-login-widget-user-avatar {
+.strap-bp-sidebar-panel.wp-block-bp-login-form > .widget-title {
+    grid-column: 1 / -1;
+    margin-bottom: 0;
+}
+.strap-bp-sidebar-panel .bp-login-widget-user-avatar {
     float: none;
-    flex: 0 0 auto;
 }
-
-.wp-block-bp-login-form.is-style-system-panel .bp-login-widget-user-links {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: var(--wp--preset--spacing--20);
-	flex: 1 1 auto;
+.strap-bp-sidebar-panel .bp-login-widget-user-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--wp--preset--spacing--20);
     min-width: 0;
-    margin-left: 0;
+    margin: 0;
 }
-
-.wp-block-bp-login-form.is-style-system-panel .bp-login-widget-user-link {
+.strap-bp-sidebar-panel .bp-login-widget-user-link {
     font-size: var(--wp--preset--font-size--medium);
     font-weight: var(--wp--custom--font-weight-heading);
+    overflow-wrap: anywhere;
+}
+.strap-bp-sidebar-panel .bp-login-widget-user-logout {
+    flex: 0 0 auto;
+}
+.strap-bp-sidebar-panel #bp-login-widget-form {
+    margin: 0;
+}
+.strap-bp-sidebar-panel #bp-login-widget-form label {
+    margin: var(--wp--preset--spacing--20) 0 var(--wp--preset--spacing--10);
+}
+.strap-bp-sidebar-panel #bp-login-widget-form :is(input[type="text"], input[type="password"]) {
+    box-sizing: border-box;
+    background-color: var(--wp--custom--form-bg-color);
+    color: var(--wp--custom--form-text-color);
+    border: var(--wp--custom--form-border-width) solid var(--wp--custom--form-border-color);
+    border-radius: var(--wp--custom--form-border-radius);
+    padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
+    font: inherit;
+    width: 100%;
+}
+.strap-bp-sidebar-panel #bp-login-widget-form :is(input[type="text"], input[type="password"]):focus {
+    border-color: var(--wp--custom--form-focus-border-color);
+    outline: none;
+    box-shadow: var(--wp--preset--shadow--form-focus);
+}
+.strap-bp-sidebar-panel #bp-login-widget-form .login-submit {
+    display: block;
+    width: 100%;
+    margin: var(--wp--preset--spacing--20) 0;
+}
+.strap-bp-sidebar-panel #bp-login-widget-form .bp-login-widget-register-link {
+    margin: 0;
+}
+.strap-bp-sidebar-panel #bp-login-widget-form .bp-login-widget-register-link a {
+    filter: none;
 }
 
-.wp-block-bp-login-form.is-style-system-panel .bp-login-widget-user-logout {
-	flex: 0 0 auto;
+/* Latest Activities: the outer Panel is the sole atmospheric surface. */
+.strap-bp-sidebar-panel .activity-list.item-list {
+    margin: 0;
+    padding: 0;
+}
+.strap-bp-sidebar-panel .activity-list.item-list blockquote {
+    margin: 0;
+    padding: var(--wp--preset--spacing--20) 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    font: inherit;
+    color: inherit;
+    overflow-wrap: anywhere;
+    font-size: var(--wp--preset--font-size--medium);
+    line-height: var(--strap-system-panel-body-line-height);
+}
+.strap-bp-sidebar-panel .activity-list.item-list blockquote + blockquote {
+    border-top: var(--wp--custom--border-width) solid var(--wp--custom--system-ui-border-color);
+}
+.strap-bp-sidebar-panel.wp-block-bp-latest-activities .activity-list.item-list blockquote .activity-item,
+.strap-bp-sidebar-panel.wp-block-bp-latest-activities .activity-list.item-list blockquote .activity-item:not(.mini) {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    color: inherit;
+}
+.strap-bp-sidebar-panel.wp-block-bp-latest-activities .activity-list.item-list blockquote .activity-item:not(.mini)::before,
+.strap-bp-sidebar-panel.wp-block-bp-latest-activities .activity-list.item-list blockquote .activity-item:not(.mini)::after {
+    content: none;
+}
+.strap-bp-sidebar-panel .activity-list.item-list blockquote p {
+    margin: 0 0 var(--wp--preset--spacing--10);
+}
+.strap-bp-sidebar-panel .activity-list.item-list footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--wp--preset--spacing--10);
+    margin-top: var(--wp--preset--spacing--20);
+    color: var(--wp--preset--color--current-mix-color);
+}
+.strap-bp-sidebar-panel .activity-list.item-list footer :is(cite, img.avatar) {
+    margin: 0;
+}
+.strap-bp-sidebar-panel .activity-list.item-list footer .activity-time-since {
+    font-size: var(--wp--preset--font-size--small);
+    color: var(--wp--preset--color--current-mix-color);
+}
+.strap-bp-sidebar-panel .activity-list.item-list footer img.avatar {
+    display: block;
 }
 
-.wp-block-bp-login-form.is-style-system-panel #bp-login-widget-form .strap-bp-button-full {
-	display: inline-flex;
-	width: 100%;
+/* Notices reuse the canonical notice tokens and the shared icon-button utility. */
+:is(.strap-bp-sidebar-panel.bp-sitewide-notice-block, .strap-bp-sidebar-panel .bp-sitewide-notice-block) {
+    border: 0;
+    padding: 0;
+}
+.strap-bp-sidebar-panel .bp-sitewide-notice-message {
+    display: flow-root;
+    border: 0;
+    background: transparent;
+    color: inherit;
+}
+.strap-bp-sidebar-panel .bp-sitewide-notice-message > strong {
+    color: var(--wp--preset--color--info);
+}
+.strap-bp-sidebar-panel .bp-sitewide-notice-block .dismiss-notice,
+.strap-bp-sidebar-panel.bp-sitewide-notice-block .dismiss-notice {
+    position: relative;
+    inset: auto;
+    float: inline-end;
+    margin-inline-start: var(--wp--preset--spacing--10);
+    color: var(--wp--preset--color--secondary-color);
 }
 

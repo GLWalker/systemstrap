@@ -233,8 +233,15 @@ add_action( 'init', 'strap_register_block_styles' );
  * BuddyPress widget blocks own their Panel surface directly so sidebar
  * patterns do not need wrapper Groups to provide that presentation.
  */
+function strap_buddypress_sidebar_blocks() {
+	return array( 'bp/login-form', 'bp/online-members', 'bp/active-members', 'bp/dynamic-members', 'bp/friends', 'bp/dynamic-groups', 'bp/latest-activities', 'bp/sitewide-notices', 'bp/primary-nav' );
+}
+
 function strap_register_buddypress_block_styles() {
 	if ( ! function_exists( 'register_block_style' ) || ! function_exists( 'wp_enqueue_block_style' ) ) {
+		return;
+	}
+	if ( ! function_exists( 'strap_should_load_buddypress_integration' ) || ! strap_should_load_buddypress_integration() ) {
 		return;
 	}
 
@@ -244,37 +251,30 @@ function strap_register_buddypress_block_styles() {
 		return;
 	}
 
-	$blocks = array(
-		'bp/login-form',
-		'bp/online-members',
-		'bp/active-members',
-		'bp/dynamic-members',
-		'bp/friends',
-		'bp/dynamic-groups',
-		'bp/latest-activities',
-		'bp/sitewide-notices',
-	);
+	foreach ( array( 'avatars', 'single-navigation' ) as $asset ) {
+		$path = get_template_directory() . '/assets/css/buddypress/buddypress-' . $asset . '.css';
+		wp_register_style( 'strap-buddypress-' . $asset, get_template_directory_uri() . '/assets/css/buddypress/buddypress-' . $asset . '.css', array(), filemtime( $path ) );
+	}
+	// The Group's on-demand enqueue may not have run when a BP block needs
+	// its canonical Flat Panel context. Register that same asset/handle now.
+	$flat_path = get_template_directory() . '/assets/css/style-variations/core-group-system-flat-panel.css';
+	wp_register_style( 'core-group-system-flat-panel', get_template_directory_uri() . '/assets/css/style-variations/core-group-system-flat-panel.css', array( 'strap-panel-surface', 'strap-panel-structure' ), filemtime( $flat_path ) );
 
-	foreach ( $blocks as $block_name ) {
+	foreach ( strap_buddypress_sidebar_blocks() as $block_name ) {
 		wp_enqueue_block_style(
 			$block_name,
 			array(
 				'handle' => 'bp-widget-system-panel-header',
 				'src'    => get_template_directory_uri() . '/assets/css/style-variations/bp-widget-system-panel-header.css',
 				'path'   => $stylesheet,
-				'deps'   => array( 'strap-panel-surface', 'strap-panel-structure' ),
+				'deps'   => array( 'strap-panel-surface', 'core-group-system-flat-panel', 'strap-buddypress-avatars' ),
 				'ver'    => filemtime( $stylesheet ),
 			)
 		);
 
-		register_block_style(
-			$block_name,
-			array(
-				'name'         => 'system-panel',
-				'label'        => 'System Panel',
-				'style_handle' => 'bp-widget-system-panel-header',
-			)
-		);
+		foreach ( array( 'default' => __( 'BuddyPress Default', 'systemstrap' ), 'system-panel' => __( 'System Panel', 'systemstrap' ), 'system-flat-panel' => __( 'System Flat Panel', 'systemstrap' ) ) as $name => $label ) {
+			register_block_style( $block_name, array( 'name' => $name, 'label' => $label, 'is_default' => 'default' === $name, 'style_handle' => 'bp-widget-system-panel-header' ) );
+		}
 	}
 }
 add_action( 'init', 'strap_register_buddypress_block_styles', 20 );

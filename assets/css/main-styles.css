@@ -303,15 +303,24 @@ header.wp-block-template-part {
    contract through the request-level default-style class. Nouveau keeps DOM,
    action semantics, disabled state, and AJAX ownership. */
 body:is(.strap-bp-default-button-style-primary, .strap-bp-default-button-style-secondary, .strap-bp-default-button-style-link, .strap-bp-default-button-style-pill, .strap-bp-default-button-style-pill-outline, .strap-bp-default-button-style-square, .strap-bp-default-button-style-square-outline) .main-buddypress .buddypress-wrap :is(a.button, button.button, input[type="button"], input[type="submit"]):not(.dashicons, .text-button, .button-small, .bp-icons, .bp-priority-nav-more-toggle, .submenu-expand, .wp-hide-pw, .wp-cancel-pw, .bp-remove-item, .messages-button, .group-members-paginate-button, .bp-search, .nouveau-search-submit, .bp-secondary-action, .leave-group, .unfriend, .member-ban, .member-unban, .member-promote-to-mod, .member-promote-to-admin, .mod-promote-to-admin, .mod-demote-to-member, .admin-demote-to-member, .delete-activity, .spam-activity, .message-action-delete, .message-action-exit, .message-action-star, .message-action-unstar, .group-remove-invite-button, #delete-account-button, #delete-group-button) {
+    -webkit-appearance: none;
+    appearance: none;
+    box-sizing: border-box;
+    display: var(--strap-bp-button-display, inline-flex);
+    align-items: center;
+    justify-content: center;
+    width: var(--strap-bp-button-width, fit-content);
+    min-height: var(--strap-bp-button-min-height, 0);
+    height: var(--strap-bp-button-height, auto);
     border-width: var(--wp--custom--border-width, 1px);
     border-style: var(--wp--custom--border-style, solid);
     border-radius: var(--wp--custom--btn-border-radius);
     font-family: var(--wp--preset--font-family--button);
-    font-size: var(--wp--preset--font-size--medium);
+    font-size: var(--strap-bp-button-font-size, var(--wp--preset--font-size--medium));
     font-weight: var(--wp--custom--font-weight-button);
     letter-spacing: .03em;
-    line-height: 1.45;
-    padding: calc(var(--wp--preset--font-size--small) * .5) var(--wp--preset--font-size--medium);
+    line-height: var(--strap-bp-button-line-height, 1.45);
+    padding: var(--strap-bp-button-padding, calc(var(--wp--preset--font-size--small) * .5) var(--wp--preset--font-size--medium));
     text-decoration: none;
     transition: var(--wp--custom--btn-transition);
 }
@@ -368,15 +377,24 @@ body:is(.strap-bp-default-button-style-pill-outline, .strap-bp-default-button-st
    style outside the post-content wrapper. The mapper adds this explicit class
    only to semantically classified controls. */
 body:is(.strap-bp-default-button-style-primary, .strap-bp-default-button-style-secondary, .strap-bp-default-button-style-link, .strap-bp-default-button-style-pill, .strap-bp-default-button-style-pill-outline, .strap-bp-default-button-style-square, .strap-bp-default-button-style-square-outline) :is(.strap-bp-default-button, #activity-stream .activity-list > li.load-more > a) {
+    -webkit-appearance: none;
+    appearance: none;
+    box-sizing: border-box;
+    display: var(--strap-bp-button-display, inline-flex);
+    align-items: center;
+    justify-content: center;
+    width: var(--strap-bp-button-width, fit-content);
+    min-height: var(--strap-bp-button-min-height, 0);
+    height: var(--strap-bp-button-height, auto);
     border-width: var(--wp--custom--border-width, 1px);
     border-style: var(--wp--custom--border-style, solid);
     border-radius: var(--wp--custom--btn-border-radius);
     font-family: var(--wp--preset--font-family--button);
-    font-size: var(--wp--preset--font-size--medium);
+    font-size: var(--strap-bp-button-font-size, var(--wp--preset--font-size--medium));
     font-weight: var(--wp--custom--font-weight-button);
     letter-spacing: .03em;
-    line-height: 1.45;
-    padding: calc(var(--wp--preset--font-size--small) * .5) var(--wp--preset--font-size--medium);
+    line-height: var(--strap-bp-button-line-height, 1.45);
+    padding: var(--strap-bp-button-padding, calc(var(--wp--preset--font-size--small) * .5) var(--wp--preset--font-size--medium));
     text-decoration: none;
     transition: var(--wp--custom--btn-transition);
 }
@@ -390,13 +408,13 @@ body:is(.strap-bp-default-button-style-primary, .strap-bp-default-button-style-s
     box-shadow: var(--wp--custom--btn-active-wash, inset 0 0 0 9999px color-mix(in srgb, currentColor 25%, transparent)), var(--wp--preset--shadow--btn-active, none) !important;
 }
 
-body:is(.strap-bp-default-button-style-primary, .strap-bp-default-button-style-pill, .strap-bp-default-button-style-square) :is(.strap-bp-default-button, #activity-stream .activity-list > li.load-more > a) {
+body:is(.strap-bp-default-button-style-primary, .strap-bp-default-button-style-pill, .strap-bp-default-button-style-square) :is(.strap-bp-default-button:not(.strap-bp-danger-button), #activity-stream .activity-list > li.load-more > a) {
     background-color: var(--wp--preset--color--primary) !important;
     border-color: var(--wp--custom--btn-border-color) !important;
     color: var(--wp--preset--color--primary-text) !important;
 }
 
-body.strap-bp-default-button-style-secondary :is(.strap-bp-default-button, #activity-stream .activity-list > li.load-more > a) {
+body.strap-bp-default-button-style-secondary :is(.strap-bp-default-button:not(.strap-bp-danger-button), #activity-stream .activity-list > li.load-more > a) {
     background-color: var(--wp--preset--color--secondary) !important;
     border-color: var(--wp--custom--btn-border-color) !important;
     color: var(--wp--preset--color--secondary-text) !important;
@@ -423,15 +441,28 @@ body:is(.strap-bp-default-button-style-square, .strap-bp-default-button-style-sq
     border-radius: 0 !important;
 }
 
-body:is(.strap-bp-default-button-style-pill-outline, .strap-bp-default-button-style-square-outline) :is(.strap-bp-default-button, #activity-stream .activity-list > li.load-more > a) {
+body:is(.strap-bp-default-button-style-pill-outline, .strap-bp-default-button-style-square-outline) :is(.strap-bp-default-button:not(.strap-bp-danger-button), #activity-stream .activity-list > li.load-more > a) {
     background-color: transparent !important;
     border-color: var(--wp--preset--color--primary) !important;
     color: var(--wp--preset--color--primary) !important;
 }
 
 .strap-bp-default-button.strap-bp-button-small {
-    font-size: var(--wp--preset--font-size--small);
-    line-height: 1.3;
+    --strap-bp-button-font-size: var(--wp--preset--font-size--small);
+    --strap-bp-button-line-height: 1.3;
+    --strap-bp-button-padding: calc(var(--wp--preset--font-size--small) * .5) var(--wp--preset--spacing--20);
+    -webkit-appearance: none;
+    appearance: none;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    min-height: 0;
+    height: auto;
+    font-size: var(--strap-bp-button-font-size);
+    line-height: var(--strap-bp-button-line-height);
+    padding: var(--strap-bp-button-padding);
 }
 
 body #activity-stream .strap-bp-default-button.strap-bp-button-small {
@@ -440,6 +471,7 @@ body #activity-stream .strap-bp-default-button.strap-bp-button-small {
 }
 
 .strap-bp-default-button.strap-bp-button-full {
+    --strap-bp-button-width: 100%;
     display: inline-flex;
     justify-content: center;
     width: 100%;
@@ -458,13 +490,13 @@ body #activity-stream .strap-bp-default-button.strap-bp-button-small {
 /* Activity reply-thread actions use the canonical compact button geometry;
    directory and object-card small controls retain their existing dimensions. */
 body:is(.strap-bp-default-button-style-primary, .strap-bp-default-button-style-secondary, .strap-bp-default-button-style-pill, .strap-bp-default-button-style-pill-outline, .strap-bp-default-button-style-square, .strap-bp-default-button-style-square-outline) #buddypress .activity-comments .strap-bp-default-button.strap-bp-button-small {
-    padding: calc(var(--wp--preset--font-size--small) * .5) var(--wp--preset--spacing--20);
     box-shadow: var(--wp--preset--shadow--btn-resting, none);
 }
 
-/* Reply-thread Delete retains the canonical Button construction. Danger only
-   supplies its semantic surface and foreground after that base mapping. */
-body #buddypress .activity-comments .strap-bp-default-button.strap-bp-danger-button {
+/* BuddyPress Danger controls retain canonical Button construction. Danger
+   supplies semantic color after that base mapping; selected styles still own
+   shape while Danger wins surface, border, and foreground. */
+body #buddypress .strap-bp-default-button.strap-bp-danger-button {
     background-color: var(--wp--preset--color--danger) !important;
     border-color: var(--wp--preset--color--danger) !important;
     color: var(--wp--preset--color--danger-text) !important;

@@ -435,6 +435,20 @@ A future generator should parse spacing presets, typography, stable custom geome
 
 ## Source snapshot
 
+### BuddyPress Activity rail consumer aliases (C10.3a)
+
+Authoritative source: `assets/css/buddypress/buddypress-components.css`.
+These aliases MUST apply only to treated Activity stream/composer roots.
+
+| Consumer alias | Existing token | Role |
+| --- | --- | --- |
+| `--strap-bp-activity-avatar-rail` | Spacing 50 | Shared identity column, matching the existing Activity avatar width. |
+| `--strap-bp-activity-gap` | Spacing 30 | Avatar/content separation and wrapping composer options gap. |
+| `--strap-bp-activity-pad-inline` | Spacing 30 | Shared feed-row and composer horizontal inset. |
+
+The inline inset MUST feed `--strap-comments-row-padding-x` for treated Activity
+and MUST NOT change the canonical Comments component outside Activity.
+
 Prepared from the current `main` branch `theme.json` in the SystemStrap repository on 2026-09-03.
 
 Primary authority:

@@ -26,7 +26,7 @@
 
     <!-- wp:bp/active-members {"maxMembers":12,"className":"is-style-system-panel"} /-->
 
-    <!-- wp:bp/friends {"linkTitle":true,"postId":"systemstrap//part-buddypress-activity","className":"is-style-system-panel"} /-->
+    <!-- wp:bp/friends {"linkTitle":true,"className":"is-style-system-panel"} /-->
 
     <!-- wp:bp/dynamic-groups {"linkTitle":true,"className":"is-style-system-panel"} /-->
 

@@ -218,7 +218,7 @@ The design-system layer is currently implemented through these files:
 - `wp-content/themes/systemstrap/inc/enqueue-assets.php`
 - `wp-content/themes/systemstrap/inc/block-styles.php`
 - `wp-content/themes/systemstrap/assets/css/main-styles.css`
-- `wp-content/themes/systemstrap/assets/css/buddypress-blocks.css`
+- `wp-content/themes/systemstrap/assets/css/style-variations/bp-widget-system-panel-header.css`
 - `wp-content/themes/systemstrap/assets/css/strap-reset.css`
 - `wp-content/themes/systemstrap/assets/css/system-ui-table-surface.css`
 - `wp-content/themes/systemstrap/assets/css/style-variations/*.css`
@@ -665,6 +665,10 @@ The current `templateParts` registry includes:
 - `part-buddypress-members`
 - `part-buddypress-groups`
 - `part-buddypress-blogs`
+- `part-buddypress-member-inner`
+- `part-buddypress-group-inner`
+- `sidebar-buddypress-member-inner`
+- `sidebar-buddypress-group-inner`
 - `part-page`
 - `part-comments`
 - `part-index`
@@ -897,18 +901,46 @@ Pagination uses a text-only baseline in `theme.json` for Query Pagination, Comme
 
 The supported suffixes are `pagination`, `pagination-outline`, `pagination-pill`, `pagination-pill-outline`, `pagination-square`, `pagination-square-outline`, and `pagination-badge`. The shared stylesheet MUST remain conditional on an explicit style selection; default pagination MUST remain text-only.
 
-`inc/block-styles.php` also conditionally maps `assets/css/buddypress-blocks.css` to BuddyPress block surfaces through `wp_enqueue_block_style()`.
+### BuddyPress sidebar styles (C10.2)
 
-That BuddyPress stylesheet is part of the current design-system implementation because it consumes canonical tokens while preserving frontend/editor parity for BuddyPress block-owned UI.
+The dedicated single-member/group inner shell and navigation sidebar parts
+MUST be registered in `templateParts` with their existing uncategorized area.
+Their metadata MUST NOT change tokens or directory compositions. The inner
+shell CSS MUST reuse spacing-30/40, the established 2:1 sidebar proportion and
+Core Columns breakpoint; existing System UI components MUST retain paint
+ownership. The navigation-only default sidebars MUST remain independently
+authorable through Core template parts.
 
-It is a conditional block stylesheet, not a global reset and not a style-variation choice.
+`inc/block-styles.php` MUST expose BuddyPress Default (`default`), System Panel
+(`system-panel`) and System Flat Panel (`system-flat-panel`) for the eight
+supported widgets and Primary Navigation. Default MUST receive no SystemStrap
+container paint or internal row adapter.
 
-The current BuddyPress block base-style contract includes:
+`assets/css/style-variations/bp-widget-system-panel-header.css` MUST load through
+`wp_enqueue_block_style()` on ordinary pages and editor previews. Its selected
+`strap-bp-sidebar-panel` root MUST consume the canonical `strap-panel-surface`
+master and existing Flat Panel context asset. The adapter MUST NOT copy Panel
+paint. It MUST own only compact composition, Medium headings/names, Small muted
+metadata, spacing-10/20/30 rhythm, seams, focus and scoped native-paint cleanup.
+Avatar radius and Button geometry MUST remain with their shared authorities.
 
-- widget body copy generally stepping down to the small typography scale
-- widget titles and key member/group names retaining the medium typography scale
-- widget-scoped button and meta text stepping down to the x-small scale where the current sidebar density requires it
-- base navigation typography living in the BuddyPress sync/base layer so BuddyPress nav style variations inherit from a stable tokenized baseline
+`assets/css/buddypress/buddypress-avatars.css` and
+`assets/css/buddypress/buddypress-single-navigation.css` MUST serve both main
+screens and standalone blocks without requiring the full screen bridge.
+Physical assets MUST use file-modification versions. The canonical Flat Panel
+context asset MUST register before sidebar dependencies resolve, even when no
+Core Group has rendered.
+
+Primary Navigation MUST inherit the existing `single_navigation` selection and
+Native fallback. No per-block override or duplicate choices registry is allowed.
+Legacy menu style classes MUST have no runtime precedence. All three containers
+MUST support all four inherited menu treatments independently.
+
+Selected Latest Activities MUST have transparent seamed rows without native
+bubble shadows/tails. Selected Notices MUST use canonical notice tokens and
+`strap-icon-button` without altering dismissal or empty output. Shared assets
+MUST supply recognizable editor-rendered previews without Nouveau screen CSS.
+Recent Networkwide Posts and curated member/group blocks remain out of scope.
 
 `wp_enqueue_block_style()` loads the selected pagination variation and its shared `strap-system-ui-pagination` dependency. Runtime filters MUST NOT force every pagination variation onto a page.
 

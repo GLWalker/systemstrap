@@ -447,7 +447,8 @@
     .is-style-system-ui-pagination-pill-outline,
     .is-style-system-ui-pagination-square,
     .is-style-system-ui-pagination-square-outline,
-    .is-style-system-ui-pagination-badge) .woocommerce-pagination .page-numbers > li > :is(a, span:not(.dots)) {
+    .is-style-system-ui-pagination-badge) .woocommerce-pagination .page-numbers > li > :is(a, span:not(.dots)),
+body.strap-bp-pagination-scope #buddypress :is(.bp-pagination-links > .pag-data, .bp-pagination > .pagination-links, .bp-messages-filters .last, .bp-invites-filters .last, #group-members-pagination .bp-pagination) > :is(a, button, span:not(.dots)) {
     align-items: center;
     background-color: var(--strap-pagination-bg) !important;
     background-image: var(--strap-pagination-surface-layer), var(--strap-pagination-background-image) !important;
@@ -471,7 +472,8 @@
     .is-style-system-ui-pagination-pill-outline,
     .is-style-system-ui-pagination-square,
     .is-style-system-ui-pagination-square-outline,
-    .is-style-system-ui-pagination-badge) .woocommerce-pagination .page-numbers > li > a:is(:hover, :focus-visible) {
+    .is-style-system-ui-pagination-badge) .woocommerce-pagination .page-numbers > li > a:is(:hover, :focus-visible),
+body.strap-bp-pagination-scope #buddypress :is(.bp-pagination-links > .pag-data, .bp-pagination > .pagination-links, .bp-messages-filters .last, .bp-invites-filters .last, #group-members-pagination .bp-pagination) > :is(a, button):is(:hover, :focus-visible) {
     background-color: var(--strap-pagination-hover-bg) !important;
     background-image: var(--strap-pagination-hover-layer), var(--strap-pagination-background-image) !important;
     border-color: var(--strap-pagination-hover-border-color) !important;
@@ -486,7 +488,8 @@
     .is-style-system-ui-pagination-pill-outline,
     .is-style-system-ui-pagination-square,
     .is-style-system-ui-pagination-square-outline,
-    .is-style-system-ui-pagination-badge) .woocommerce-pagination .page-numbers > li > a:focus-visible {
+    .is-style-system-ui-pagination-badge) .woocommerce-pagination .page-numbers > li > a:focus-visible,
+body.strap-bp-pagination-scope #buddypress :is(.bp-pagination-links > .pag-data, .bp-pagination > .pagination-links, .bp-messages-filters .last, .bp-invites-filters .last, #group-members-pagination .bp-pagination) > :is(a, button):focus-visible {
     outline: var(--wp--custom--focus-ring-width) solid var(--wp--custom--focus-ring-color);
     outline-offset: 2px;
 }
@@ -497,7 +500,8 @@
     .is-style-system-ui-pagination-pill-outline,
     .is-style-system-ui-pagination-square,
     .is-style-system-ui-pagination-square-outline,
-    .is-style-system-ui-pagination-badge) :is(.dots, .page-numbers.dots) {
+    .is-style-system-ui-pagination-badge) :is(.dots, .page-numbers.dots),
+body.strap-bp-pagination-scope #buddypress .bp-pagination :is(.bp-pagination-links, .pagination-links) .dots {
     background-color: transparent !important;
     background-image: none !important;
     border: 0 !important;
@@ -515,7 +519,8 @@
     .is-style-system-ui-pagination-pill-outline,
     .is-style-system-ui-pagination-square,
     .is-style-system-ui-pagination-square-outline,
-    .is-style-system-ui-pagination-badge) :is(.page-numbers.current, [aria-current="page"]) {
+    .is-style-system-ui-pagination-badge) :is(.page-numbers.current, [aria-current="page"]),
+body.strap-bp-pagination-scope #buddypress :is(.bp-pagination-links > .pag-data, .bp-pagination > .pagination-links, .bp-messages-filters .last, .bp-invites-filters .last, #group-members-pagination .bp-pagination) > :is(.page-numbers.current, [aria-current="page"]) {
     background-color: var(--strap-pagination-current-bg) !important;
     background-image: var(--strap-pagination-current-layer), var(--strap-pagination-background-image) !important;
     border-color: var(--strap-pagination-current-border-color) !important;
@@ -530,7 +535,8 @@
     .is-style-system-ui-pagination-pill-outline,
     .is-style-system-ui-pagination-square,
     .is-style-system-ui-pagination-square-outline,
-    .is-style-system-ui-pagination-badge) :is([aria-disabled="true"], :disabled) {
+    .is-style-system-ui-pagination-badge) :is([aria-disabled="true"], :disabled),
+body.strap-bp-pagination-scope #buddypress :is(.bp-pagination-links > .pag-data, .bp-pagination > .pagination-links, .bp-messages-filters .last, .bp-invites-filters .last, #group-members-pagination .bp-pagination) > :is([aria-disabled="true"], :disabled) {
     background-color: var(--wp--custom--disabled-bg) !important;
     background-image: none !important;
     cursor: default;

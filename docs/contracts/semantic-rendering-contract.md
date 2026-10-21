@@ -248,6 +248,10 @@ Direct templates that do not use the Content Router MUST retain landmark ownersh
 
 BuddyPress routing MUST use the following deterministic fallback order:
 
+- `part-buddypress-member-inner` for displayed-member routes and
+  `part-buddypress-group-inner` for current-group routes when the theme-owned
+  integration and corresponding part are available; inner component/action
+  slugs MUST NOT change the single object's shell owner;
 - a mapped component part for `activity`, `blogs`, `groups`, or `members` when available;
 - `part-buddypress` for an unknown or empty BuddyPress component, or when the mapped part is unavailable;
 - `part-page` when the generic BuddyPress part is unavailable;
@@ -682,6 +686,78 @@ The first rendered tag for BuddyPress pattern wrappers MUST be labeled from clas
 
 ### BuddyPress dynamic directory block contract
 
+#### Sidebar presentation adapter (C10.2)
+
+`inc/buddypress-integration.php` MUST retain native render callbacks for
+Login, Online, Active, Dynamic Members, Friends, Dynamic Groups, Latest
+Activities, Sitewide Notices and Primary Navigation. Block-specific render
+filters MUST change only presentation classes and add one neutral `div` only
+when a selected wrapper-omitted widget lacks a complete root. Existing native
+wrappers and dynamic/latest-activity/notice roots MUST be reused. Empty output
+MUST remain empty. Default containers MUST remain unchanged except for Primary
+Navigation's inherited menu treatment and conflicting legacy-class removal.
+
+The selected root MUST receive `strap-bp-sidebar-panel` and
+`strap-panel-surface`. Native heading levels, content, links, list IDs,
+live-region attributes, sorting data, current state, notice dismiss URLs/data,
+accessible names and event targets MUST be preserved. Selected notice dismiss
+links MUST replace only generic `button` with `strap-icon-button`.
+
+Primary Navigation MUST resolve its menu only through the existing
+`single_navigation` registry/setting and Native fallback, independently of its
+container. Rendered legacy menu-style classes and previous registry markers
+MUST be removed before that selection is applied. Saved content and historical
+revisions MUST NOT be rewritten. Empty navigation MUST NOT be fabricated.
+Friends patterns MUST omit invalid string `postId` attributes; native member
+context and legitimate empty output MUST remain BuddyPress-owned.
+
+All single-member and single-group routes MUST reuse the Primary Navigation
+block in their dedicated authored sidebar Part. Core's template-part/pattern
+pipeline MUST render that block through `render_block()` and Nouveau's
+`bp_nouveau_render_primary_nav_block()` callback. The callback MUST retain
+displayed-user/current-group context, native permission checks, counts and
+current item state. No post-author context or manual menu HTML is permitted.
+
+The existing request-only widget/active-sidebar bridge MUST expose the
+effective dedicated sidebar part content to Nouveau's
+`bp_nouveau_is_object_nav_in_sidebar()` check. This ownership sentinel MUST NOT
+be separately rendered or stored. Native `members/single/home.php` and
+`groups/single/home.php` MUST then omit only their redundant primary mount.
+Local/subnavigation MUST remain native and MUST NOT be suppressed. This
+ownership MUST apply even when Single Navigation is Native. The
+`strap-bp-sidebar-navigation` body marker MUST normalize only main-column width
+after the inline primary lane is removed; it MUST NOT add content-area paint.
+
+#### Dedicated inner shells (C10.2b Revised)
+
+`parts/part-buddypress-member-inner.html` and
+`parts/part-buddypress-group-inner.html` MUST each render one Core Post Content
+block, preserving Nouveau's single native header and body output. They MUST NOT
+render the directory/sidebar widget-stack patterns. Their corresponding
+`sidebar-buddypress-member-inner.html` and
+`sidebar-buddypress-group-inner.html` parts MUST default to `bp/primary-nav`
+only. Core template-part rendering MUST preserve authored sidebar container
+choice and native displayed-member/current-group context.
+
+`bp_after_member_home_content` and `bp_after_group_home_content` MUST render
+the dedicated sidebar through `core/template-part` with an `aside` tag and
+`strap-bp-inner-sidebar` class, after Nouveau's `.bp-wrap` closes and before
+its outer `#buddypress` closes. Native headers MUST NOT be buffered separately,
+copied, relocated, or rendered twice. No Nouveau template fork is permitted.
+
+`assets/css/buddypress/buddypress-inner-shell.css` MUST position the existing
+`#item-header` and other full-width native root children above the lower native
+`.bp-wrap` and dedicated sidebar. The shell MUST use the existing 2:1 sidebar
+proportion, spacing-30 row / spacing-40 column gaps, and Core Columns' 782px
+breakpoint. Below that breakpoint, source order MUST remain header, content,
+sidebar. The shell MUST NOT own component paint, identity styling, data or
+permissions. Existing content treatment resolution MUST remain unchanged.
+
+The horizontal/local-navigation adapter MUST skip the complete rendered
+`wp-block-bp-primary-nav` subtree. Embedded Primary Navigation MUST NOT acquire
+the separate Horizontal Navigation treatment. Local subnavigation outside that
+subtree MUST continue through its existing adapter.
+
 `render_block_bp/dynamic-members` and `render_block_bp/dynamic-groups` are intercepted in `inc/block-filters.php`.
 
 - `bp/dynamic-members`
@@ -861,6 +937,27 @@ Changes affecting this contract SHOULD be manually verified against:
 - AJAX search rendering
 
 ## Current Expansion Queue
+
+### C10.3 presentation boundaries
+
+The `bp_get_add_friend_button` filter MUST change only `link_text` and
+`link_title` for treated Member Directory/Friends or Member Profile owners:
+`is_friend` becomes Remove, `pending` becomes Cancel. Native and all other
+states MUST remain unchanged. IDs, URLs, nonces, classes and permissions MUST
+remain BuddyPress-owned.
+
+The `bp_get_blog_avatar` filter MUST add only `strap-bp-site-image` to HTML
+images; URL-only results MUST remain unchanged. Site media MUST NOT consume
+member/group Avatar Style geometry.
+
+Registration MUST reuse the Member Profile non-Native choice solely to add
+the existing control scope to `#register-page` and map native submit controls
+through the existing Button engine. Native registration MUST remain outside
+that scope. Registration markup, XProfile visibility, validation, password
+strength and Caps Lock visibility MUST remain BuddyPress/Core-owned.
+
+Sidebar presentation MUST retain the native Friends/Groups live lists and
+Latest Activities content/footer ordering without rebuilding activity HTML.
 
 The following surface remains a later expansion target and is not part of the current page-level WooCommerce template contract:
 

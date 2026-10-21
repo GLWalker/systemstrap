@@ -18,7 +18,8 @@ body .main-buddypress .buddypress-wrap :is(h1, h2, h3, h4, h5, h6, .bp-screen-ti
 	line-height: var(--strap-system-panel-heading-line-height, 1.2);
 }
 
-body .main-buddypress .buddypress-wrap :is(.bp-navs li a, .bp-pagination, .activity-header, .activity-header .time-since, .item-meta, .subnav-filters) {
+body .main-buddypress .buddypress-wrap :is(.bp-navs li a, .activity-header, .activity-header .time-since, .item-meta, .subnav-filters),
+body:not(:where(.strap-bp-pagination-default)) .main-buddypress .buddypress-wrap .bp-pagination {
 	font-size: var(--wp--preset--font-size--small);
 }
 
@@ -28,12 +29,12 @@ body .main-buddypress .buddypress-wrap .bp-navs li a {
 	letter-spacing: 0.03em;
 }
 
-body .main-buddypress :is(.button, button, input[type="submit"], input[type="button"], input[type="reset"]) {
+body .main-buddypress :is(.button, button, input[type="submit"], input[type="button"], input[type="reset"]):not(:where(body.strap-bp-pagination-default :is(#bp-messages-prev-page, #bp-messages-next-page, #bp-invites-prev-page, #bp-invites-next-page, .group-members-paginate-button))) {
 	font-family: var(--wp--preset--font-family--button, var(--wp--preset--font-family--heading));
-	font-size: var(--wp--preset--font-size--medium);
+	font-size: var(--strap-bp-button-font-size, var(--wp--preset--font-size--medium));
 	font-weight: var(--wp--custom--font-weight-button);
 	letter-spacing: 0.03em;
-	line-height: 1.45;
+	line-height: var(--strap-bp-button-line-height, 1.45);
 }
 
 body .main-buddypress :is(label, legend) {
@@ -48,7 +49,35 @@ body .main-buddypress :is(input[type="search"], input[type="text"], input[type="
 	line-height: var(--wp--custom--line-height-body, 1.6);
 }
 
-body .main-buddypress :is(.bp-navs .count, .bp-pagination .count, .activity-meta .count) {
+/* Nouveau retains plugin-era 12–14px literals in member forms, tables, and
+ * message metadata. Normalize only the SystemStrap-owned inner application
+ * shell while preserving normal-content and secondary-text hierarchy. */
+body .main-buddypress .strap-bp-controls-system-scope :is(
+	p:not(:where(body.strap-bp-pagination-default .bp-pagination p)),
+	.bp-tables-user th,
+	.bp-tables-user td,
+	#message-threads .thread-content :is(.thread-from, .thread-to, .thread-subject),
+	#bp-message-thread-list .message-metadata .user-link
+) {
+	font-size: var(--wp--preset--font-size--medium);
+}
+
+body .main-buddypress .strap-bp-controls-system-scope :is(
+	.bp-help-text,
+	.standard-form .description,
+	.standard-form .field-visibility-settings-close,
+	.standard-form .field-visibility-settings-header,
+	.standard-form .field-visibility-settings :is(legend, label),
+	.bp-messages-content time,
+	#message-threads .num-recipients,
+	#message-threads .excerpt,
+	table#message-threads .thread-excerpt
+) {
+	font-size: var(--wp--preset--font-size--small);
+}
+
+body .main-buddypress :is(.bp-navs .count, .activity-meta .count),
+body:not(:where(.strap-bp-pagination-default)) .main-buddypress .bp-pagination .count {
 	font-size: var(--wp--preset--font-size--x-small);
 	font-weight: var(--wp--custom--badge-font-weight, var(--wp--custom--font-weight-button));
 	line-height: 1;

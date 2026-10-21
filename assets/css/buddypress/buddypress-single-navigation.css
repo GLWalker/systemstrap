@@ -1,0 +1,137 @@
+/* Shared Single Navigation role for Nouveau inline roots and bp/primary-nav blocks. */
+/* Sidebar placement does not sit beneath #buddypress. Only registry-assigned
+ * treatment markers opt these rows in; authored legacy style classes never do. */
+body .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-nav .bp-navs li > a {
+	background: transparent;
+	color: inherit;
+}
+body .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-nav .bp-navs li > a:is(:hover, :focus-visible),
+body .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-nav .bp-navs li:is(.current, .selected) > a {
+	background-color: var(--wp--custom--system-ui-list-hover-bg);
+	color: inherit;
+}
+body .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-nav .bp-navs li > a:focus-visible {
+	outline: var(--wp--custom--focus-ring-width) solid var(--wp--custom--focus-ring-color);
+	outline-offset: calc(-1 * var(--wp--custom--focus-ring-width));
+}
+body :is(#buddypress #object-nav.strap-bp-navigation-treatment-system-nav, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-nav) > ul,
+body :is(.wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-nav) .bp-navs > ul {
+	margin: 0;
+	padding: 0;
+}
+
+body :is(#buddypress #object-nav.strap-bp-navigation-treatment-system-nav, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-nav) li,
+body :is(.wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-nav) .bp-navs li {
+	float: none;
+	margin: 0;
+}
+
+body :is(#buddypress #object-nav.strap-bp-navigation-treatment-system-nav, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-nav) li > a,
+body :is(.wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-nav) .bp-navs li > a {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--wp--custom--navigation-compact-gap);
+	padding: var(--wp--custom--navigation-row-padding-block) var(--wp--custom--navigation-row-padding-inline);
+}
+
+body :is(#buddypress #object-nav.strap-bp-navigation-treatment-system-list, #buddypress #object-nav.strap-bp-navigation-treatment-system-flat-list, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-list, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-flat-list) > ul,
+body :is(.wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-list, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-flat-list) .bp-navs > ul {
+	margin: 0;
+	padding: 0;
+	border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+	border-radius: var(--wp--custom--border-radius);
+	overflow: hidden;
+	background-color: var(--wp--custom--system-ui-surface);
+}
+
+body :is(#buddypress #object-nav.strap-bp-navigation-treatment-system-list, #buddypress #object-nav.strap-bp-navigation-treatment-system-flat-list, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-list, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-flat-list) li,
+body :is(.wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-list, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-flat-list) .bp-navs li {
+	float: none;
+	margin: 0;
+}
+
+body :is(#buddypress #object-nav.strap-bp-navigation-treatment-system-list, #buddypress #object-nav.strap-bp-navigation-treatment-system-flat-list, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-list, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-flat-list) li + li,
+body :is(.wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-list, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-flat-list) .bp-navs li + li {
+	border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+}
+
+body :is(#buddypress #object-nav.strap-bp-navigation-treatment-system-list, #buddypress #object-nav.strap-bp-navigation-treatment-system-flat-list, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-list, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-flat-list) li > a,
+body :is(.wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-list, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-flat-list) .bp-navs li > a {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--wp--custom--navigation-compact-gap);
+	padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
+	background: transparent;
+	color: inherit;
+	line-height: 1.6;
+	text-decoration: none;
+}
+
+/* Treated vertical BuddyPress navigation consumes the canonical System List
+ * interaction states instead of Nouveau's fixed gray rows. */
+body :is(#buddypress #object-nav.strap-bp-navigation-treatment-system-list, #buddypress #object-nav.strap-bp-navigation-treatment-system-flat-list, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-list .bp-navs, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-flat-list .bp-navs) > ul > li {
+	background-color: var(--wp--custom--system-ui-surface);
+}
+
+body :is(#buddypress #object-nav.strap-bp-navigation-treatment-system-list, #buddypress #object-nav.strap-bp-navigation-treatment-system-flat-list, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-list .bp-navs, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-flat-list .bp-navs) > ul > li:is(:hover, :focus) {
+	background-color: var(--wp--custom--system-ui-surface);
+}
+
+body :is(#buddypress #object-nav.strap-bp-navigation-treatment-system-list, #buddypress #object-nav.strap-bp-navigation-treatment-system-flat-list, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-list .bp-navs, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-flat-list .bp-navs) > ul > li:not(.current, .selected) > a:is(:hover, :focus) {
+	background-color: var(--wp--custom--system-ui-list-hover-bg);
+	color: inherit;
+}
+
+body :is(#buddypress #object-nav.strap-bp-navigation-treatment-system-list, #buddypress #object-nav.strap-bp-navigation-treatment-system-flat-list, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-list .bp-navs, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-flat-list .bp-navs) > ul > li:is(.current, .selected) > a,
+body :is(#buddypress #object-nav.strap-bp-navigation-treatment-system-list, #buddypress #object-nav.strap-bp-navigation-treatment-system-flat-list, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-list .bp-navs, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-flat-list .bp-navs) > ul > li:is(.current, .selected) > a:is(:hover, :focus) {
+	background-color: var(--wp--custom--system-ui-list-hover-bg);
+	color: inherit;
+	font-weight: var(--wp--custom--font-weight-heading);
+}
+
+body :is(#buddypress #object-nav.strap-bp-navigation-treatment-system-list, #buddypress #object-nav.strap-bp-navigation-treatment-system-flat-list, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-list .bp-navs, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-flat-list .bp-navs) > ul > li > a:focus-visible {
+	position: relative;
+	z-index: 1;
+	outline: var(--wp--custom--focus-ring-width) solid var(--wp--custom--focus-ring-color);
+	outline-offset: calc(-1 * var(--wp--custom--focus-ring-width));
+}
+
+body :is(#buddypress #object-nav.strap-bp-navigation-treatment-system-list, #buddypress #object-nav.strap-bp-navigation-treatment-system-flat-list, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-list .bp-navs, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-flat-list .bp-navs) > ul > li > a > .count {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex: 0 0 auto;
+	margin: 0;
+	padding: var(--wp--custom--badge-padding-y) var(--wp--custom--badge-padding-x);
+	border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
+	border-radius: var(--wp--custom--badge-border-radius);
+	background-color: var(--wp--custom--system-ui-surface);
+	color: inherit;
+	font-size: var(--wp--custom--badge-font-size);
+	font-weight: var(--wp--custom--badge-font-weight);
+	line-height: 1;
+}
+
+body :is(#buddypress #object-nav.strap-bp-navigation-treatment-system-list, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-list) > ul,
+body :is(.wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-list) .bp-navs > ul {
+	background-image: var(--wp--custom--system-ui-background-image, none);
+	backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+	-webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+	box-shadow: var(--wp--custom--shadow);
+}
+
+body :is(#buddypress #object-nav.strap-bp-navigation-treatment-system-flat-list, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-flat-list) > ul,
+body :is(.wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-flat-list) .bp-navs > ul {
+	background-image: none;
+	box-shadow: none;
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+}
+
+/* Nouveau exposes an empty priority toggle with .is-empty. Its native hide rule
+ * is scoped to #buddypress, while a primary-nav block can render in the theme sidebar. */
+body :is(#object-nav.strap-bp-navigation-treatment-system-nav, #object-nav.strap-bp-navigation-treatment-system-list, #object-nav.strap-bp-navigation-treatment-system-flat-list, .bp-navs.strap-bp-navigation-treatment-system-nav, .bp-navs.strap-bp-navigation-treatment-system-list, .bp-navs.strap-bp-navigation-treatment-system-flat-list, .strap-bp-horizontal-navigation, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-nav, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-list, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-flat-list) .bp-priority-nav-more-toggle.is-empty {
+	display: none;
+}

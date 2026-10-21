@@ -1,0 +1,23 @@
+/* Global member/group identity shape. The Default setting emits no matching
+ * rule, leaving BuddyPress presentation untouched. Crop-source previews are
+ * editing controls rather than presented identity images. */
+body:is(.strap-bp-avatar-square, .strap-bp-avatar-rounded, .strap-bp-avatar-circle) :is(#buddypress, .buddypress, .main-buddypress, [class*="wp-block-bp-"], .bp-dynamic-block-container) .item-avatar > a {
+	text-decoration: none;
+}
+
+body.strap-bp-avatar-square :is(#buddypress, .buddypress, .main-buddypress, [class*="wp-block-bp-"], .bp-dynamic-block-container) img.avatar:not(#avatar-to-crop, #avatar-crop-preview, .strap-bp-site-image, .blogs-list .item-avatar img) {
+	border-radius: 0 !important;
+}
+
+body.strap-bp-avatar-rounded :is(#buddypress, .buddypress, .main-buddypress, [class*="wp-block-bp-"], .bp-dynamic-block-container) img.avatar:not(#avatar-to-crop, #avatar-crop-preview, .strap-bp-site-image, .blogs-list .item-avatar img) {
+	border-radius: var(--wp--custom--border-radius) !important;
+}
+
+body.strap-bp-avatar-circle :is(#buddypress, .buddypress, .main-buddypress, [class*="wp-block-bp-"], .bp-dynamic-block-container) img.avatar:not(#avatar-to-crop, #avatar-crop-preview, .strap-bp-site-image, .blogs-list .item-avatar img) {
+	border-radius: 50% !important;
+}
+
+/* Nouveau calls site icons/screenshots avatars; their shape is media-owned. */
+body :is(#buddypress .blogs-list .item-avatar img, img.strap-bp-site-image) {
+	border-radius: var(--wp--custom--border-radius);
+}

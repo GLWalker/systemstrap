@@ -10,7 +10,7 @@
    Panels consume context inherited from their ancestors.
    ========================================================= */
 
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel, .strap-panel-surface, :is(.wp-block-bp-login-form, .wp-block-bp-online-members, .wp-block-bp-active-members, .wp-block-bp-dynamic-members, .wp-block-bp-friends, .wp-block-bp-dynamic-groups, .wp-block-bp-latest-activities, .wp-block-bp-sitewide-notices).is-style-system-panel) {
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel, .strap-panel-surface) {
     /* Neutral Panel content contract. Consumers may use these values without
        inheriting Group-specific child composition. */
     --strap-system-panel-content-inset-x: var(--wp--preset--spacing--30);
@@ -32,11 +32,11 @@
     transition: border-color 0.15s ease-in-out;
 }
 
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel, .strap-panel-surface, :is(.wp-block-bp-login-form, .wp-block-bp-online-members, .wp-block-bp-active-members, .wp-block-bp-dynamic-members, .wp-block-bp-friends, .wp-block-bp-dynamic-groups, .wp-block-bp-latest-activities, .wp-block-bp-sitewide-notices).is-style-system-panel):not(.has-background):not([style*="background-color"]) {
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel, .strap-panel-surface):not(.has-background):not([style*="background-color"]) {
     background-color: var(--strap-system-panel-context-surface, var(--wp--custom--system-ui-surface));
 }
 
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel, .strap-panel-surface, :is(.wp-block-bp-login-form, .wp-block-bp-online-members, .wp-block-bp-active-members, .wp-block-bp-dynamic-members, .wp-block-bp-friends, .wp-block-bp-dynamic-groups, .wp-block-bp-latest-activities, .wp-block-bp-sitewide-notices).is-style-system-panel).has-background {
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel, .strap-panel-surface).has-background {
     border-color: var(--wp--custom--system-ui-border-color);
 }
 
@@ -46,7 +46,7 @@
    enclosing panel context.
    ========================================================= */
 
-:is(.wp-block-group.is-style-system-panel, .strap-panel-surface:not(.is-style-system-flat-panel), :is(.wp-block-bp-login-form, .wp-block-bp-online-members, .wp-block-bp-active-members, .wp-block-bp-dynamic-members, .wp-block-bp-friends, .wp-block-bp-dynamic-groups, .wp-block-bp-latest-activities, .wp-block-bp-sitewide-notices).is-style-system-panel) {
+:is(.wp-block-group.is-style-system-panel, .strap-panel-surface:not(.is-style-system-flat-panel)) {
     background-image: var(--strap-system-panel-context-background-image, var(--wp--custom--system-ui-background-image, none));
     backdrop-filter: var(--strap-system-panel-context-backdrop-filter, var(--wp--custom--system-ui-backdrop-filter, none));
     -webkit-backdrop-filter: var(--strap-system-panel-context-backdrop-filter, var(--wp--custom--system-ui-backdrop-filter, none));
@@ -59,7 +59,7 @@
    for their descendant subtree.
    ========================================================= */
 
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel, .strap-panel-surface, :is(.wp-block-bp-login-form, .wp-block-bp-online-members, .wp-block-bp-active-members, .wp-block-bp-dynamic-members, .wp-block-bp-friends, .wp-block-bp-dynamic-groups, .wp-block-bp-latest-activities, .wp-block-bp-sitewide-notices).is-style-system-panel) > * {
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel, .strap-panel-surface) > * {
     --strap-system-panel-context-surface: var(--wp--custom--system-ui-surface-nested, transparent);
 }
 
@@ -69,7 +69,7 @@
    backdrop blur, preventing double haze.
    ========================================================= */
 
-:is(.wp-block-group.is-style-system-panel, .strap-panel-surface:not(.is-style-system-flat-panel), :is(.wp-block-bp-login-form, .wp-block-bp-online-members, .wp-block-bp-active-members, .wp-block-bp-dynamic-members, .wp-block-bp-friends, .wp-block-bp-dynamic-groups, .wp-block-bp-latest-activities, .wp-block-bp-sitewide-notices).is-style-system-panel) > * {
+:is(.wp-block-group.is-style-system-panel, .strap-panel-surface:not(.is-style-system-flat-panel)) > * {
     --strap-system-panel-context-background-image: var(--wp--custom--system-ui-background-image-nested, none);
     --strap-system-panel-context-backdrop-filter: none;
 }

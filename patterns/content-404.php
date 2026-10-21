@@ -17,8 +17,8 @@
 	<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"constrained"}} -->
 	<div class="wp-block-group">
 
-		<!-- wp:group {"align":"wide","className":"is-style-system-flat-panel","style":{"background":{"gradient":"var:preset|gradient|pattern-42"}},"backgroundColor":"tertiary-bg","layout":{"type":"constrained"}} -->
-		<div class="wp-block-group alignwide is-style-system-flat-panel has-tertiary-bg-background-color has-background">
+		<!-- wp:group {"align":"wide","className":"is-style-system-flat-panel has-tertiary-bg-background-color","gradient":"pattern-42","layout":{"type":"constrained"}} -->
+		<div class="wp-block-group alignwide is-style-system-flat-panel has-tertiary-bg-background-color has-pattern-42-gradient-background has-background">
 
 			<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|40"}}},"layout":{"type":"constrained","justifyContent":"left"}} -->
 			<div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--40)">
@@ -28,11 +28,11 @@
 				<!-- /wp:paragraph -->
 
 				<!-- wp:heading {"level":1,"style":{"spacing":{"margin":{"top":"0","bottom":"0"}}}} -->
-				<h1 class="wp-block-heading" style="margin-top:0;margin-bottom:0"><?php esc_html_e( 'You took a wrong turn.', 'systemstrap' ); ?></h1>
+				<h1 class="wp-block-heading" style="margin-top:0;margin-bottom:0"><?php esc_html_e('You took a wrong turn.', 'systemstrap'); ?></h1>
 				<!-- /wp:heading -->
 
 				<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"0","bottom":"0"}}},"fontSize":"large"} -->
-				<p class="has-large-font-size" style="margin-top:0;margin-bottom:0"><?php esc_html_e( 'That page isn’t here, but you still have options. Search the site or head back home.', 'systemstrap' ); ?></p>
+				<p class="has-large-font-size" style="margin-top:0;margin-bottom:0"><?php esc_html_e('That page isn’t here, but you still have options. Search the site or head back home.', 'systemstrap'); ?></p>
 				<!-- /wp:paragraph -->
 
 			</div>
@@ -44,7 +44,7 @@
 				<!-- wp:group {"style":{"layout":{"selfStretch":"fill","flexSize":"640px"}},"layout":{"type":"constrained"}} -->
 				<div class="wp-block-group">
 
-					<!-- wp:search {"label":"<?php echo esc_attr_x( 'Search', '404 search label', 'systemstrap' ); ?>","showLabel":false,"placeholder":"<?php echo esc_attr_x( 'Search the site…', '404 search placeholder', 'systemstrap' ); ?>","width":100,"widthUnit":"%","buttonText":"<?php echo esc_attr_x( 'Search', '404 search button text', 'systemstrap' ); ?>","buttonUseIcon":true} /-->
+					<!-- wp:search {"label":"<?php echo esc_attr_x('Search', '404 search label', 'systemstrap'); ?>","showLabel":false,"placeholder":"<?php echo esc_attr_x('Search the site…', '404 search placeholder', 'systemstrap'); ?>","width":100,"widthUnit":"%","buttonText":"<?php echo esc_attr_x('Search', '404 search button text', 'systemstrap'); ?>","buttonUseIcon":true} /-->
 
 				</div>
 				<!-- /wp:group -->
@@ -54,7 +54,7 @@
 
 					<!-- wp:button -->
 					<div class="wp-block-button">
-						<a class="wp-block-button__link wp-element-button" href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Return Home', 'systemstrap' ); ?></a>
+						<a class="wp-block-button__link wp-element-button" href="<?php echo esc_url(home_url('/')); ?>"><?php esc_html_e('Return Home', 'systemstrap'); ?></a>
 					</div>
 					<!-- /wp:button -->
 
@@ -67,8 +67,8 @@
 		</div>
 		<!-- /wp:group -->
 
-		<!-- wp:group {"align":"wide","className":"is-style-system-flat-panel","style":{"background":{"gradient":"var:preset|gradient|absolute-03"}},"backgroundColor":"base","layout":{"type":"constrained"}} -->
-		<div class="wp-block-group alignwide is-style-system-flat-panel has-base-background-color has-background">
+		<!-- wp:group {"align":"wide","className":"is-style-system-flat-panel has-base-background-color","gradient":"absolute-03","layout":{"type":"constrained"}} -->
+		<div class="wp-block-group alignwide is-style-system-flat-panel has-base-background-color has-absolute-03-gradient-background has-background">
 
 			<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}}},"layout":{"type":"constrained"}} -->
 			<div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50)">
@@ -82,15 +82,15 @@
 					<div class="wp-block-group">
 
 						<!-- wp:paragraph {"style":{"typography":{"fontWeight":"800","letterSpacing":"0.12em","textTransform":"uppercase"},"spacing":{"margin":{"top":"0","bottom":"0"}}},"fontSize":"small"} -->
-						<p class="has-small-font-size" style="margin-top:0;margin-bottom:0;font-weight:800;letter-spacing:0.12em;text-transform:uppercase"><?php esc_html_e( 'Another Route', 'systemstrap' ); ?></p>
+						<p class="has-small-font-size" style="margin-top:0;margin-bottom:0;font-weight:800;letter-spacing:0.12em;text-transform:uppercase"><?php esc_html_e('Another Route', 'systemstrap'); ?></p>
 						<!-- /wp:paragraph -->
 
 						<!-- wp:heading {"style":{"spacing":{"margin":{"top":"0","bottom":"0"}}}} -->
-						<h2 class="wp-block-heading" style="margin-top:0;margin-bottom:0"><?php esc_html_e( 'Explore the archive.', 'systemstrap' ); ?></h2>
+						<h2 class="wp-block-heading" style="margin-top:0;margin-bottom:0"><?php esc_html_e('Explore the archive.', 'systemstrap'); ?></h2>
 						<!-- /wp:heading -->
 
 						<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"0","bottom":"0"}}}} -->
-						<p style="margin-top:0;margin-bottom:0"><?php esc_html_e( 'Browse by year and see where the site has been.', 'systemstrap' ); ?></p>
+						<p style="margin-top:0;margin-bottom:0"><?php esc_html_e('Browse by year and see where the site has been.', 'systemstrap'); ?></p>
 						<!-- /wp:paragraph -->
 
 					</div>
