@@ -1,0 +1,11 @@
+/* Enhanced Panel surface for the complete core/tab-panels region. */
+.wp-block-tab-panels.is-style-system-panel {
+    padding: 0;
+}
+
+.wp-block-tab-panels.is-style-system-panel > .wp-block-tab-panel {
+    padding: var(--strap-tabs-shell-padding-y, var(--strap-system-panel-content-inset-y)) var(--strap-tabs-shell-padding-x, var(--strap-system-panel-content-inset-x));
+}
+
+.wp-block-tab-panels.is-style-system-panel > .wp-block-tab-panel > *:first-child { margin-top: 0 !important; }
+.wp-block-tab-panels.is-style-system-panel > .wp-block-tab-panel > *:last-child { margin-bottom: 0 !important; }

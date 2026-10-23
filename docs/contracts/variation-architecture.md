@@ -273,8 +273,9 @@ The current variation filesystem shape is:
 │   ├── bp-widget-system-panel-header.css
 │   ├── core-accordion-system-accordion.css
 │   ├── core-accordion-system-flat-panel.css
-│   ├── core-accordion-system-tabs-vertical.css
-│   ├── core-accordion-system-tabs.css
+│   ├── core-tab-list-system-nav-*.css
+│   ├── core-tab-panels-system-*.css
+│   ├── core-tabs-system-*.css
 │   ├── core-archives-system-list.css
 │   ├── core-button-system-icon.css
 │   ├── core-calendar-system-panel.css
@@ -301,7 +302,6 @@ The current variation filesystem shape is:
 │   ├── core-table-system-panel.css
 │   └── core-tag-cloud-system-tags.css
 └── assets/js/variations/
-    ├── strap-accordion-tabs.js
     ├── strap-action-hook.js
     ├── strap-buttons.js
     ├── strap-carousel.js
@@ -507,8 +507,9 @@ The following files are governed by this contract as of Version 3.0 and currentl
 
 - `core-accordion-system-accordion.css`
 - `core-accordion-system-flat-panel.css`
-- `core-accordion-system-tabs-vertical.css`
-- `core-accordion-system-tabs.css`
+- `core-tab-list-system-nav-*.css`
+- `core-tab-panels-system-*.css`
+- `core-tabs-system-*.css`
 - `core-archives-system-list.css`
 - `core-calendar-system-panel.css`
 - `core-categories-system-list.css`
@@ -601,27 +602,22 @@ This dependency chain is part of the variation runtime and MUST remain explicit.
 
 ## Render-Time Asset Safeguards
 
-The following render-time safeguards are part of the variation runtime:
-
-- `strap_enqueue_accordion_tabs()`
-    - hooked to `render_block`
-    - detects `is-style-system-tabs` and `is-style-system-tabs-vertical`
-    - enqueues `accordion-tabs.js`
-    - transforms rendered accordion items into tab buttons and tab panels on the frontend
-    - preserves accordion-derived heading and panel hooks on generated tab controls through `.wp-block-accordion-heading__toggle` and `.wp-block-accordion-panel`
-    - copies presentation classes and inline styles from source accordion items, headings, heading controls, and panels into the generated tab structure while excluding structural accordion wrapper classes
-    - copies border presentation from the first valid source accordion item onto the surviving accordion shell so item-level border settings remain visible after transformation
 Selected pagination variations load through the ordinary `wp_enqueue_block_style()` path. `strap-system-ui-pagination` is registered by `inc/block-styles.php` and supplied only as a dependency of `system-ui-pagination*` variation handles.
 
 ## CSS Variation Surface Registry
 
 The current CSS block-style surfaces covered by this contract as of Version 3.0 are:
 
-- accordion and tabs
+- accordion styles
     - `core-accordion-system-accordion.css`
     - `core-accordion-system-flat-panel.css`
-    - `core-accordion-system-tabs.css`
-    - `core-accordion-system-tabs-vertical.css`
+- tabs styles
+    - `core-tabs-system-classic.css`
+    - `core-tabs-system-vertical.css`
+    - `core-tabs-system-panel.css`
+    - `core-tabs-system-flat-panel.css`
+    - `core-tab-list-system-nav-*.css`
+    - `core-tab-panels-system-*.css`
 - list-family styles
     - `core-archives-system-list.css`
     - `core-categories-system-list.css`
@@ -659,19 +655,24 @@ The current CSS block-style surfaces covered by this contract as of Version 3.0 
 
 ## System Tabs CSS Surface Contract
 
-The System Tabs CSS runtime is split across:
+The System Tabs presentation is split by ownership:
 
-- `core-accordion-system-tabs.css`
-- `core-accordion-system-tabs-vertical.css`
+- `core-tabs-system-*.css` owns composition, relationship, outer surfaces, and complete List treatments
+- `core-tab-list-system-nav-*.css` owns optional Nav Button or Nav Gen treatment
+- `core-tab-panels-system-*.css` owns pane-region surfaces
 
-These two files are CSS-only variation surfaces and MUST remain responsible for:
+The parent styles are Classic, Vertical, System Panel, System Flat Panel,
+System List, and System Flat List. Tab List styles are System Nav Button and
+System Nav Gen. Tab Panels styles are System Panel and System Flat Panel. No
+SystemStrap style replaces Core Default.
 
-- tab root token setup
-- frontend tablist and panel layout
-- resting, hover, active, and focus visual deltas on generated tabs
-- generated panel surface presentation
-- seam-mask presentation on the panel pseudo-element
-- accordion-like editor fallback presentation for tab variations
+Explicit child style presentation MUST override parent fallback cosmetics
+without relying on stylesheet order. Parent fallback cosmetics MUST use low
+specificity and MUST apply only when the child does not carry an explicit
+System style. Parent System List and System Flat List own their navigation
+appearance completely and structurally suppress Tab List Nav treatments.
+Parent styles MAY continue to own grid, orientation, joins, component
+relationship, and responsive stacking.
 
 These files MUST consume the System UI authority tokens directly:
 
@@ -683,7 +684,7 @@ These files MUST consume the System UI authority tokens directly:
 - `--wp--custom--system-ui-background-image`
 - `--wp--custom--system-ui-backdrop-filter`
 
-Nested tab overrides MAY exist only where they directly mirror existing System UI authority behavior for nested surfaces. They MUST NOT introduce new runtime responsibilities, duplicate transform logic, or replace the editor fallback with frontend tab rendering inside the editor.
+Nested tab overrides MAY exist only where they directly mirror existing System UI authority behavior for nested surfaces. WordPress Core exclusively owns Tabs ARIA, active state, keyboard behavior, relationships, panel visibility, and editor interaction. SystemStrap MUST NOT add a Tabs runtime, DOM transform, generated controls, custom keyboard logic, custom ARIA, or seam measurement.
 
 ## JavaScript Variation Contract
 
@@ -710,23 +711,6 @@ These categories MUST NOT be conflated.
 The following JavaScript files are governed by this contract as of Version 3.0.
 
 ## Registered Block Variation Registry
-
-### `strap-accordion-tabs.js`
-
-Registers two `core/accordion` variations:
-
-- `strap-accordion-tabs`
-- `strap-accordion-tabs-vertical`
-
-These variations currently inject:
-
-- `className: "is-style-system-tabs"`
-- `className: "is-style-system-tabs-vertical"`
-- three preconfigured `core/accordion-item` children
-- `core/accordion-heading` children with Base-preset backgrounds and starter titles
-- `core/accordion-panel` children with Base-preset backgrounds and placeholder paragraph content
-
-These variations are starter-content registrations only. They MUST continue to rely on the existing System Tabs runtime and CSS block-style surfaces rather than introducing duplicate accordion-tab behavior in the editor variation layer.
 
 ### `strap-action-hook.js`
 

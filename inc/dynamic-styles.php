@@ -40,7 +40,8 @@ if (! function_exists('strap_generate_dynamic_colors')) {
 		];
 		$css            = ":root, body, .editor-styles-wrapper {\n";
 		$button_css     = "\n/* Dynamic Button Hover Shadows */\n";
-		$tabs_css       = "\n/* Dynamic System Tabs Active Join Color Routing */\n";
+		$tabs_css       = "\n/* Dynamic Core Tabs Color Routing */\n";
+		$tabs_border_css = "\n/* Dynamic Core Tabs Explicit Border Color Routing */\n";
 		$directory_css    = "\n/* Dynamic Query Directory Header-to-Badge Color Routing */\n";
 		$latest_posts_css = "\n/* Dynamic Latest Posts Header-to-Badge Color Routing */\n";
 		$same_element_contrast_css = "\n/* Same-Element Preset Contrast Routing */\n";
@@ -120,6 +121,39 @@ if (! function_exists('strap_generate_dynamic_colors')) {
 }
 ";
 
+			$tabs_css .= "
+.wp-block-tabs.is-style-system-classic:has(> .wp-block-tab-list:not([class*=\"is-style-system-\"]) > button.has-{$slug}-color) {
+    --strap-tabs-classic-border-color: var(--wp--preset--color--{$slug});
+}
+
+.wp-block-tabs.is-style-system-vertical:has(> .wp-block-tab-list:not([class*=\"is-style-system-\"]) > button.has-{$slug}-color) {
+    --strap-tabs-vertical-border-color: var(--wp--preset--color--{$slug});
+}
+
+.wp-block-tabs:is(.is-style-system-list, .is-style-system-flat-list):has(> .wp-block-tab-list > button.has-{$slug}-color) {
+    --strap-tabs-list-border-color: var(--wp--preset--color--{$slug});
+}
+
+.wp-block-tabs.is-style-system-classic .wp-block-tab-list.is-style-system-nav-gen > button.has-{$slug}-background-color[aria-selected=\"true\"] {
+    --strap-tabs-active-join-color: color-mix(in srgb, currentColor 25%, var(--wp--preset--color--{$slug}));
+    background-color: var(--strap-tabs-active-join-color);
+}
+";
+
+			$tabs_border_css .= "
+.wp-block-tabs.is-style-system-classic:has(> .wp-block-tab-list:not([class*=\"is-style-system-\"]) > button.has-{$slug}-border-color) {
+    --strap-tabs-classic-border-color: var(--wp--preset--color--{$slug});
+}
+
+.wp-block-tabs.is-style-system-vertical:has(> .wp-block-tab-list:not([class*=\"is-style-system-\"]) > button.has-{$slug}-border-color) {
+    --strap-tabs-vertical-border-color: var(--wp--preset--color--{$slug});
+}
+
+.wp-block-tabs:is(.is-style-system-list, .is-style-system-flat-list):has(> .wp-block-tab-list > button.has-{$slug}-border-color) {
+    --strap-tabs-list-border-color: var(--wp--preset--color--{$slug});
+}
+";
+
 			if (strpos($color_value, 'var(') !== false) {
 				continue;
 			}
@@ -180,13 +214,6 @@ if (! function_exists('strap_generate_dynamic_colors')) {
 
 :is(.wp-block-query-pagination-numbers, .wp-block-comments-pagination-numbers).has-{$slug}-background-color > :is(.dots, .page-numbers.dots) {
     color: inherit !important;
-}
-";
-
-			$tabs_css .= "
-body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs .system-tabs__tab.has-{$slug}-background-color[aria-selected=\"true\"],
-body:not(.editor-styles-wrapper) .wp-block-accordion.is-style-system-tabs-vertical .system-tabs__tab.has-{$slug}-background-color[aria-selected=\"true\"] {
-    --system-tabs-active-join-color: var(--wp--preset--color--{$slug}) !important;
 }
 ";
 
@@ -481,6 +508,7 @@ ul.wp-block-latest-posts.has-{$slug}-background-color > li:hover {
 		$css .= "}\n";
 		$css .= $button_css;
 		$css .= $tabs_css;
+		$css .= $tabs_border_css;
 		$css .= $directory_css;
 		$css .= $latest_posts_css;
 		$css .= $same_element_contrast_css;

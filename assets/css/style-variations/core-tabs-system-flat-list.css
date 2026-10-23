@@ -1,0 +1,7 @@
+/* Flat delta for the parent-owned System List Tabs composition. */
+.wp-block-tabs.is-style-system-flat-list .wp-block-tab-list {
+    background-image: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}

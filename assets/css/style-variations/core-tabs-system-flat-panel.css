@@ -1,0 +1,8 @@
+/* Outer System Flat Panel shortcut for core/tabs. */
+.wp-block-tabs.is-style-system-flat-panel {
+    padding: var(--strap-tabs-shell-padding-y, var(--strap-system-panel-content-inset-y)) var(--strap-tabs-shell-padding-x, var(--strap-system-panel-content-inset-x));
+    background-image: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}

@@ -66,8 +66,9 @@ The current focus-visibility layer is implemented through these files:
 - `wp-content/themes/systemstrap/assets/css/style-variations/core-details-system-flat-panel.css`
 - `wp-content/themes/systemstrap/assets/css/style-variations/core-accordion-system-accordion.css`
 - `wp-content/themes/systemstrap/assets/css/style-variations/core-accordion-system-flat-panel.css`
-- `wp-content/themes/systemstrap/assets/css/style-variations/core-accordion-system-tabs.css`
-- `wp-content/themes/systemstrap/assets/css/style-variations/core-accordion-system-tabs-vertical.css`
+- `wp-content/themes/systemstrap/assets/css/style-variations/core-tabs-system-classic.css`
+- `wp-content/themes/systemstrap/assets/css/style-variations/core-tabs-system-vertical.css`
+- `wp-content/themes/systemstrap/assets/css/style-variations/core-tab-list-system-nav-*.css`
 - `wp-content/themes/systemstrap/assets/css/style-variations/core-navigation-system-nav-gen.css`
 - `wp-content/themes/systemstrap/assets/css/style-variations/core-navigation-system-nav-button.css`
 
@@ -168,8 +169,9 @@ The current targeted surfaces include:
 
 - `summary` inside `core-details-system-details` or its `system-flat-panel` counterpart
 - `.wp-block-accordion-heading__toggle` inside `core-accordion-system-accordion` or its `system-flat-panel` counterpart
-- `.system-tabs__tab` inside `core-accordion-system-tabs`
-- `.system-tabs__tab` inside `core-accordion-system-tabs-vertical`
+- `.wp-block-tab-list > button` inside the `core/tabs` Classic and Vertical fallback treatments
+- `.wp-block-tab-list > button` inside both explicit `core/tab-list` Nav treatments
+- `.wp-block-tab-list > button` inside the parent-owned `core/tabs` List treatments
 - `.wp-block-navigation-item__content` and `.wp-block-navigation-submenu__toggle` inside the two current navigation variations
 
 This targeting behavior is part of the accessibility contract.
@@ -206,15 +208,20 @@ The current behavior is:
 
 This is part of the contract for theme-owned accordion styling.
 
-## Accordion Tabs Variation Contract
+## Core Tabs Variation Contract
 
-`assets/css/style-variations/core-accordion-system-tabs.css` currently defines keyboard-visible focus on:
+`assets/css/style-variations/core-tabs-system-classic.css` and `core-tabs-system-vertical.css` define fallback keyboard-visible focus on:
 
-- `.wp-block-accordion.is-style-system-tabs .system-tabs__tab:focus-visible`
+- `.wp-block-tab-list:not([class*="is-style-system-"]) > button:focus-visible`
 
-`assets/css/style-variations/core-accordion-system-tabs-vertical.css` currently defines keyboard-visible focus on:
+`assets/css/system-ui-tabs.css` defines the equivalent fallback for Core
+Default Tab Lists inside the Default-family parent compositions.
 
-- `.wp-block-accordion.is-style-system-tabs-vertical .system-tabs__tab:focus-visible`
+The two `core-tab-list-system-nav-*.css` adapters define keyboard-visible focus on:
+
+- `.wp-block-tab-list.is-style-system-* > button:focus-visible`
+
+`core-tabs-system-list.css` defines keyboard-visible focus for both parent-owned List treatments.
 
 The current behavior is:
 

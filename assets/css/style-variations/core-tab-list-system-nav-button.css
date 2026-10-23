@@ -1,0 +1,51 @@
+/* Button Navigation treatment for core/tab-list. */
+:where(.wp-block-tabs:not(.is-style-system-list):not(.is-style-system-flat-list)) .wp-block-tab-list.is-style-system-nav-button {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--wp--custom--navigation-gap);
+}
+
+:where(.wp-block-tabs:not(.is-style-system-list):not(.is-style-system-flat-list)) .wp-block-tab-list.is-style-system-nav-button > button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-block-size: 2.5rem;
+    padding-block: var(--wp--custom--navigation-item-padding-block);
+    padding-inline: var(--wp--custom--navigation-item-padding-inline);
+    color: var(--wp--preset--color--primary-text, #fff);
+    background-color: var(--strap-nav-button-surface, var(--wp--preset--color--primary, #0d6efd));
+    background-image: var(--strap-nav-button-surface-image, none);
+    border: var(--wp--custom--btn-border-width) solid var(--wp--custom--btn-border-color);
+    border-radius: var(--wp--custom--btn-border-radius);
+    box-shadow: var(--wp--preset--shadow--btn-resting, none);
+    font-family: var(--wp--preset--font-family--button, var(--wp--preset--font-family--heading, inherit));
+    font-size: var(--wp--preset--font-size--small, .875rem);
+    font-weight: var(--wp--custom--font-weight-button);
+    line-height: 1.3;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    transition: var(--wp--custom--btn-transition);
+}
+
+:where(.wp-block-tabs:not(.is-style-system-list):not(.is-style-system-flat-list)) .wp-block-tab-list.is-style-system-nav-button > button[aria-selected="true"]::before {
+    content: none;
+}
+
+:where(.wp-block-tabs:not(.is-style-system-list):not(.is-style-system-flat-list)) .wp-block-tab-list.is-style-system-nav-button > button:hover {
+    border-color: var(--wp--custom--btn-hover-border-color);
+    box-shadow: var(--strap-nav-button-hover-shadow, var(--wp--custom--btn-hover-wash, inset 0 0 0 9999px color-mix(in srgb, currentColor 15%, transparent)), var(--wp--preset--shadow--btn-hover, none));
+    transform: var(--wp--custom--btn-hover-transform);
+}
+
+:where(.wp-block-tabs:not(.is-style-system-list):not(.is-style-system-flat-list)) .wp-block-tab-list.is-style-system-nav-button > button[aria-selected="true"] {
+    border-color: var(--wp--custom--btn-hover-border-color);
+    box-shadow: var(--strap-nav-button-current-shadow, var(--wp--custom--btn-active-wash, inset 0 0 0 9999px color-mix(in srgb, currentColor 25%, transparent)), var(--wp--preset--shadow--btn-active, none));
+    filter: var(--strap-nav-button-current-filter, none);
+    transform: var(--wp--custom--btn-transform);
+}
+
+:where(.wp-block-tabs:not(.is-style-system-list):not(.is-style-system-flat-list)) .wp-block-tab-list.is-style-system-nav-button > button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: -2px;
+}

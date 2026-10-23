@@ -783,10 +783,21 @@ The dynamic background text-color contrast mapping includes:
 - slug remapping for `base`, `contrast`, `secondary-bg`, and `tertiary-bg`
 - accent background text-color fallback for `primary`, `secondary`, `success`, `info`, `warning`, `danger`, `light`, and `dark`
 
-The current global-styles extension also includes palette-driven active join-color routing for:
-
-- `.wp-block-accordion.is-style-system-tabs .system-tabs__tab.has-*-background-color[aria-selected="true"]`
-- `.wp-block-accordion.is-style-system-tabs-vertical .system-tabs__tab.has-*-background-color[aria-selected="true"]`
+Core Tab List serializes authored Background and Text classes or inline styles
+onto each tab button. Classic Default retains that resolved button background;
+its transparent selected bottom border uses border-box background painting to
+cover the aligned baseline with the same Base, preset, or custom inline surface.
+Authored solid backgrounds consume the canonical Button hover and active wash
+strengths as background-image layers without replacing the authored surface;
+the active layer paints through the transparent selected lower border. The
+palette loop routes preset Tab List text and border classes into
+`--strap-tabs-classic-border-color`, with
+all border routing emitted in a separate pass after all text routing so explicit
+Border Color wins regardless of palette order. The selected Default lower edge
+remains a surface-colored state exception to Core's authored border declaration.
+The same loop routes the Nav Gen contextual preset mix into
+`--strap-tabs-active-join-color`. Classic System Nav Button is excluded from
+Default state routing.
 
 When WooCommerce is active, the same native `global-styles` append lane also
 provides baseline Product Template presentation compatibility. It neutralizes

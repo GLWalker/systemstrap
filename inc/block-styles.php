@@ -19,6 +19,7 @@ function strap_register_block_styles() {
 	$panel_surface_stylesheet = "{$theme_dir}assets/css/system-ui-panel-surface.css";
 	$panel_structure_stylesheet = "{$theme_dir}assets/css/system-ui-panel-structure.css";
 	$table_surface_stylesheet = "{$theme_dir}assets/css/system-ui-table-surface.css";
+	$tabs_stylesheet = "{$theme_dir}assets/css/system-ui-tabs.css";
 
 	if ( file_exists( $pagination_stylesheet ) ) {
 		wp_register_style(
@@ -56,7 +57,35 @@ function strap_register_block_styles() {
 		);
 	}
 
+	if ( file_exists( $tabs_stylesheet ) ) {
+		wp_enqueue_block_style(
+			'core/tabs',
+			array(
+				'handle' => 'strap-system-ui-tabs',
+				'src'    => $theme_uri . 'assets/css/system-ui-tabs.css',
+				'path'   => $tabs_stylesheet,
+				'ver'    => filemtime( $tabs_stylesheet ),
+			)
+		);
+	}
+
 	$variation_order = array(
+		'core/tabs' => array(
+			'system-classic',
+			'system-vertical',
+			'system-panel',
+			'system-flat-panel',
+			'system-list',
+			'system-flat-list',
+		),
+		'core/tab-list' => array(
+			'system-nav-button',
+			'system-nav-gen',
+		),
+		'core/tab-panels' => array(
+			'system-panel',
+			'system-flat-panel',
+		),
 		'core/group' => array(
 			'system-flat-panel',
 			'system-panel',
@@ -154,9 +183,15 @@ function strap_register_block_styles() {
 					$variation_label = 'System Flat Details';
 				} elseif ( 'core/accordion' === $block_name ) {
 					$variation_label = 'System Flat Accordion';
+				} elseif ( in_array( $block_name, array( 'core/tabs', 'core/tab-panels' ), true ) ) {
+					$variation_label = 'System Flat Panel';
 				} else {
 					$variation_label = 'System Flat';
 				}
+			} elseif ( 'core/tabs' === $block_name && 'system-classic' === $variation_name ) {
+				$variation_label = 'Classic';
+			} elseif ( 'core/tabs' === $block_name && 'system-vertical' === $variation_name ) {
+				$variation_label = 'Vertical';
 			} elseif ( str_starts_with( $variation_name, 'system-ui-pagination' ) ) {
 				$variation_label = str_replace( 'System Ui', 'System UI', $variation_label );
 			}
@@ -200,7 +235,7 @@ function strap_register_block_styles() {
 			}
 
 			// 3. Auto-register a Flush variation for any System List component
-			if ( str_starts_with( $variation_name, 'system-list' ) && ! in_array( $block_name, array( 'core/comments', 'core/latest-comments' ), true ) ) {
+			if ( str_starts_with( $variation_name, 'system-list' ) && ! in_array( $block_name, array( 'core/comments', 'core/latest-comments', 'core/tabs', 'core/tab-list' ), true ) ) {
 				register_block_style(
 					$block_name,
 					array(

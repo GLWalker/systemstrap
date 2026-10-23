@@ -1,0 +1,95 @@
+/* Parent-owned System List Tabs composition. */
+.wp-block-tabs:is(.is-style-system-list, .is-style-system-flat-list) {
+    display: grid;
+    grid-template-columns: minmax(10rem, 16rem) minmax(0, 1fr);
+    align-items: start;
+    gap: var(--wp--preset--spacing--30, 1rem);
+    --strap-tabs-list-border-width: var(--wp--custom--border-width, 1px);
+    --strap-tabs-list-border-color: var(--wp--custom--system-ui-border-color);
+    --strap-tabs-list-surface: var(--wp--custom--system-ui-surface, var(--wp--preset--color--base));
+}
+
+.wp-block-tabs:is(.is-style-system-list, .is-style-system-flat-list):has(> .wp-block-tab-panels:not([class*="is-style-system-"])) {
+    column-gap: var(--wp--preset--spacing--40);
+}
+
+.wp-block-tabs:is(.is-style-system-list, .is-style-system-flat-list) .wp-block-tab-list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 0;
+    min-width: 0;
+    align-self: start;
+    overflow: hidden;
+    color: inherit;
+    background-color: var(--strap-tabs-list-surface);
+    background-image: var(--wp--custom--system-ui-background-image, none);
+    backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
+    border: var(--strap-tabs-list-border-width) solid var(--strap-tabs-list-border-color);
+    border-radius: var(--wp--custom--border-radius);
+    box-shadow: var(--wp--custom--shadow);
+}
+
+.wp-block-tabs:is(.is-style-system-list, .is-style-system-flat-list) .wp-block-tab-list > button {
+    width: 100%;
+    min-block-size: 2.5rem;
+    padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--20);
+    color: inherit;
+    text-align: start;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    background-image: none;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    transform: none;
+}
+
+.wp-block-tabs:is(.is-style-system-list, .is-style-system-flat-list) .wp-block-tab-list > button:not(.has-background):not([style*="background-color"]) {
+    background-color: var(--strap-tabs-list-surface);
+}
+
+.wp-block-tabs:is(.is-style-system-list, .is-style-system-flat-list) .wp-block-tab-list > button + button {
+    border-top: var(--strap-tabs-list-border-width) solid var(--strap-tabs-list-border-color);
+}
+
+.wp-block-tabs:is(.is-style-system-list, .is-style-system-flat-list) .wp-block-tab-list > button:hover {
+    background-image: linear-gradient(var(--wp--custom--system-ui-list-hover-bg, color-mix(in srgb, currentColor 10%, transparent)), var(--wp--custom--system-ui-list-hover-bg, color-mix(in srgb, currentColor 10%, transparent)));
+    box-shadow: none;
+    transform: none;
+}
+
+.wp-block-tabs:is(.is-style-system-list, .is-style-system-flat-list) .wp-block-tab-list > button[aria-selected="true"] {
+    background-image: linear-gradient(color-mix(in srgb, currentColor 25%, transparent), color-mix(in srgb, currentColor 25%, transparent));
+    box-shadow: none;
+    transform: none;
+}
+
+.wp-block-tabs:is(.is-style-system-list, .is-style-system-flat-list) .wp-block-tab-list > button[aria-selected="true"]::before {
+    content: none;
+}
+
+.wp-block-tabs:is(.is-style-system-list, .is-style-system-flat-list) .wp-block-tab-list > button:focus-visible {
+    outline: none;
+    box-shadow: inset 0 0 0 var(--wp--custom--border-width, 1px) var(--wp--preset--color--primary), 0 0 0 var(--wp--custom--focus-ring-width, .25rem) var(--wp--custom--focus-ring-color, rgba(13, 110, 253, .25));
+    position: relative;
+    z-index: 1;
+}
+
+.wp-block-tabs:is(.is-style-system-list, .is-style-system-flat-list) .wp-block-tab-panels {
+    min-width: 0;
+    margin-block-start: 0;
+}
+
+@media (max-width: 700px) {
+    .wp-block-tabs:is(.is-style-system-list, .is-style-system-flat-list) {
+        grid-template-columns: minmax(0, 1fr);
+        column-gap: var(--wp--preset--spacing--30, 1rem);
+    }
+
+    .wp-block-tabs:is(.is-style-system-list, .is-style-system-flat-list) .wp-block-tab-list {
+        inline-size: 100%;
+    }
+}

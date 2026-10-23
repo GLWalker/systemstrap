@@ -333,6 +333,45 @@ Consumers may define a compact semantic heading size appropriate to their
 component only when the authored block has not selected a font size. Authored
 block attributes and Global Styles remain authoritative over these defaults.
 
+## 12.1 Default Tabs Spacing Aliases
+
+Authoritative runtime source: `assets/css/system-ui-tabs.css`.
+
+| Role | Consumer alias | Authoritative value | Definition |
+| --- | --- | --- | --- |
+| Wrapped list row gap | `--strap-tabs-list-gap` | Spacing 20 | Compact separation between wrapped rows of tab controls. |
+| List-to-content gap | `--strap-tabs-content-gap` | Spacing 30 | Standard relationship between the Tab List and plain or surfaced content. |
+| Shell inline padding | `--strap-tabs-shell-padding-x` | Spacing 30 | Default-family outer and pane Panel inline inset. |
+| Shell block padding | `--strap-tabs-shell-padding-y` | Spacing 30 | Default-family outer and pane Panel block inset. |
+
+These aliases apply only to the Default-family Tabs compositions. Classic,
+Vertical, System List, and System Flat List retain their independent layout
+contracts.
+
+## 12.2 Classic Tabs Color Aliases
+
+Authoritative runtime sources:
+`assets/css/style-variations/core-tabs-system-classic.css` and
+`inc/dynamic-styles.php`.
+
+| Role | Consumer alias | Authoritative value | Definition |
+| --- | --- | --- | --- |
+| Classic structural border color | `--strap-tabs-classic-border-color` | Authored Tab List preset border color, authored preset text color, then System UI border color | Paints Default tab borders, the shared baseline, and joined System Panel or Flat Panel borders without affecting pane text. |
+| Nav Gen selected join color | `--strap-tabs-active-join-color` | Selected Classic Nav Gen surface | Paints both the Nav Gen selected background and bottom border. Palette background utilities route the contextual preset mix into this alias. |
+
+This alias applies only to Classic System Nav Gen. Classic Default retains its
+resolved button background and paints it through a transparent bottom-border
+area; Classic System Nav Button does not consume the joined-tab contract.
+
+Classic Default and Classic System Nav Gen use the Base preset for unauthored
+resting buttons. The Classic System Nav Button track uses the Tertiary
+Background preset. Core-authored button Background and Text values remain
+authoritative over these fallback surfaces. Authored Classic Default background
+surfaces retain their Core value and consume the canonical Button 15% hover and
+25% active current-color wash strengths as background-image layers. The selected
+Default lower edge therefore exposes the resolved active tab surface rather than
+the resting surface or structural border color.
+
 ---
 
 # 13. Badge Constants

@@ -1,0 +1,4 @@
+/* Outer System Panel shortcut for core/tabs. */
+.wp-block-tabs.is-style-system-panel {
+    padding: var(--strap-tabs-shell-padding-y, var(--strap-system-panel-content-inset-y)) var(--strap-tabs-shell-padding-x, var(--strap-system-panel-content-inset-x));
+}

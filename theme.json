@@ -1964,6 +1964,21 @@
 		},
 		{
 			"area": "uncategorized",
+			"name": "modal-part",
+			"title": "Modal Part"
+		},
+		{
+			"area": "uncategorized",
+			"name": "modal-search",
+			"title": "Modal Search"
+		},
+		{
+			"area": "uncategorized",
+			"name": "offcanvas-part",
+			"title": "Offcanvas Part"
+		},
+		{
+			"area": "uncategorized",
 			"name": "part-404",
 			"title": "404 Part"
 		},

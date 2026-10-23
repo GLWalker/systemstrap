@@ -1,0 +1,151 @@
+/* Classic joined composition for core/tabs. */
+.wp-block-tabs.is-style-system-classic {
+    --system-tabs-border-width: var(--wp--custom--border-width, 1px);
+    --strap-tabs-classic-border-color: var(--wp--custom--system-ui-border-color);
+    --system-tabs-radius: var(--wp--custom--border-radius, .375rem);
+    --system-tabs-tab-padding-y: var(--wp--preset--spacing--10, .5rem);
+    --system-tabs-tab-padding-x: var(--wp--preset--spacing--20, 1rem);
+    --system-tabs-banner: var(--wp--preset--color--base);
+    --system-tabs-hover: var(--wp--custom--system-ui-list-hover-bg, color-mix(in srgb, currentColor 8%, transparent));
+    --system-tabs-active: var(--wp--custom--system-ui-active-bg, var(--wp--custom--system-ui-surface, transparent));
+    --strap-tabs-active-join-color: var(--system-tabs-active);
+}
+
+.wp-block-tabs.is-style-system-classic .wp-block-tab-list {
+    margin: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.wp-block-tabs.is-style-system-classic .wp-block-tab-list:not([class*="is-style-system-"]) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    column-gap: 0;
+    row-gap: var(--wp--preset--spacing--10, .25rem);
+    border-bottom: var(--system-tabs-border-width) solid var(--strap-tabs-classic-border-color);
+}
+
+:where(.wp-block-tabs.is-style-system-classic .wp-block-tab-list:not([class*="is-style-system-"])) > button {
+    position: relative;
+    top: var(--system-tabs-border-width);
+    min-block-size: 2.5rem;
+    max-inline-size: 100%;
+    padding: var(--system-tabs-tab-padding-y) var(--system-tabs-tab-padding-x);
+    color: inherit;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    margin-block-end: calc(var(--system-tabs-border-width) * -1);
+    border: var(--system-tabs-border-width) solid var(--strap-tabs-classic-border-color);
+    border-radius: var(--system-tabs-radius) var(--system-tabs-radius) 0 0;
+    font-weight: var(--wp--custom--font-weight-heading);
+}
+
+:where(.wp-block-tabs.is-style-system-classic .wp-block-tab-list:not([class*="is-style-system-"])) > button:not(.has-background):not([style*="background-color"]) {
+    background-color: var(--system-tabs-banner);
+    background-image: none;
+}
+
+:where(.wp-block-tabs.is-style-system-classic .wp-block-tab-list:not([class*="is-style-system-"])) > button:hover:not([aria-selected="true"]):not(.has-background):not([style*="background-color"]) {
+    background-color: var(--system-tabs-hover);
+    border-color: var(--strap-tabs-classic-border-color) var(--strap-tabs-classic-border-color) var(--system-tabs-hover);
+}
+
+:where(.wp-block-tabs.is-style-system-classic .wp-block-tab-list:not([class*="is-style-system-"])) > button:is(.has-background, [style*="background-color"]):hover:not([aria-selected="true"]) {
+    background-image: linear-gradient(color-mix(in srgb, currentColor 15%, transparent), color-mix(in srgb, currentColor 15%, transparent));
+    box-shadow: var(--wp--preset--shadow--btn-hover, none);
+}
+
+:where(.wp-block-tabs.is-style-system-classic .wp-block-tab-list:not([class*="is-style-system-"])) > button:is(.has-background, [style*="background-color"])[aria-selected="true"] {
+    background-image: linear-gradient(color-mix(in srgb, currentColor 25%, transparent), color-mix(in srgb, currentColor 25%, transparent));
+    box-shadow: var(--wp--preset--shadow--btn-active, none);
+}
+
+:where(.wp-block-tabs.is-style-system-classic .wp-block-tab-list:not([class*="is-style-system-"])) > button[aria-selected="true"] {
+    z-index: 2;
+    background-clip: border-box;
+    border-color: var(--strap-tabs-classic-border-color);
+    border-bottom-color: transparent !important;
+}
+
+:where(.wp-block-tabs.is-style-system-classic .wp-block-tab-list:not([class*="is-style-system-"])) > button[aria-selected="true"]::before {
+    content: none;
+}
+
+:where(.wp-block-tabs.is-style-system-classic .wp-block-tab-list:not([class*="is-style-system-"])) > button:focus-visible {
+    outline: none;
+    box-shadow: inset 0 0 0 var(--system-tabs-border-width) var(--wp--preset--color--primary), 0 0 0 var(--wp--custom--focus-ring-width, .25rem) var(--wp--custom--focus-ring-color, rgba(13, 110, 253, .25));
+}
+
+.wp-block-tabs.is-style-system-classic .wp-block-tab-list.is-style-system-nav-button {
+    box-sizing: border-box;
+    inline-size: 100%;
+    max-inline-size: 100%;
+    padding: var(--wp--preset--spacing--10, .25rem);
+    background-color: var(--wp--preset--color--tertiary-bg);
+    background-image: none;
+    border: var(--system-tabs-border-width) solid var(--strap-tabs-classic-border-color);
+    border-radius: var(--system-tabs-radius);
+}
+
+.wp-block-tabs.is-style-system-classic .wp-block-tab-list.is-style-system-nav-gen > button {
+    position: relative;
+    top: var(--system-tabs-border-width);
+    margin-block-end: calc(var(--system-tabs-border-width) * -1);
+    border: var(--system-tabs-border-width) solid var(--strap-tabs-classic-border-color);
+    border-radius: 0;
+}
+
+.wp-block-tabs.is-style-system-classic .wp-block-tab-list.is-style-system-nav-gen > button:not(.has-background):not([style*="background-color"]) {
+    background-color: var(--system-tabs-banner);
+}
+
+.wp-block-tabs.is-style-system-classic .wp-block-tab-list.is-style-system-nav-gen > button + button {
+    margin-inline-start: calc(var(--system-tabs-border-width) * -1);
+}
+
+.wp-block-tabs.is-style-system-classic .wp-block-tab-list.is-style-system-nav-gen > button[aria-selected="true"] {
+    z-index: 2;
+    border-bottom-color: var(--strap-tabs-active-join-color);
+    box-shadow: none;
+}
+
+.wp-block-tabs.is-style-system-classic .wp-block-tab-list.is-style-system-nav-gen > button[aria-selected="true"]:not(.has-background):not([style*="background-color"]) {
+    --strap-tabs-active-join-color: color-mix(in srgb, currentColor 25%, var(--system-tabs-banner));
+    background-color: var(--strap-tabs-active-join-color);
+}
+
+.wp-block-tabs.is-style-system-classic .wp-block-tab-list.is-style-system-nav-gen > button[aria-selected="true"]::before {
+    content: none;
+}
+
+.wp-block-tabs.is-style-system-classic .wp-block-tab-panels:not([class*="is-style-system-"]) {
+    color: inherit;
+    margin-block-start: var(--wp--preset--spacing--20, .5rem);
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+}
+
+.wp-block-tabs.is-style-system-classic .wp-block-tab-panels:not([class*="is-style-system-"]) > .wp-block-tab-panel {
+    padding: 0;
+}
+
+.wp-block-tabs.is-style-system-classic .wp-block-tab-panels:not([class*="is-style-system-"]) > .wp-block-tab-panel > *:first-child {
+    margin-block-start: 0;
+}
+
+.wp-block-tabs.is-style-system-classic .wp-block-tab-panels:not([class*="is-style-system-"]) > .wp-block-tab-panel > *:last-child {
+    margin-block-end: 0;
+}
+
+.wp-block-tabs.is-style-system-classic > .wp-block-tab-list:not([class*="is-style-system-"]) + .wp-block-tab-panels:is(.is-style-system-panel, .is-style-system-flat-panel) {
+    margin-block-start: 0;
+    border-color: var(--strap-tabs-classic-border-color);
+    border-top: 0;
+    border-radius: 0 0 var(--system-tabs-radius) var(--system-tabs-radius);
+}
+
+.wp-block-tabs.is-style-system-classic > .wp-block-tab-list.is-style-system-nav-button + .wp-block-tab-panels {
+    margin-block-start: var(--wp--preset--spacing--30);
+}
