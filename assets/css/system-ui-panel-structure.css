@@ -12,21 +12,21 @@
     overflow: visible;
 }
 
-/* Zero out border radius globally for all direct children (prevents inward curves on flush elements) */
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>*,
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.block-editor-block-list__layout>* {
+/* Flatten direct shell participants, but leave nested Panel surfaces independent. */
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>:not(.wp-block-group.is-style-system-panel):not(.wp-block-group.is-style-system-flat-panel),
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.block-editor-block-list__layout>:not(.wp-block-group.is-style-system-panel):not(.wp-block-group.is-style-system-flat-panel) {
     border-radius: 0;
 }
 
 /* Rounded corner containment for direct children without overflow: hidden */
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>*:first-child,
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.block-editor-block-list__layout>*:first-child {
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>:not(.wp-block-group.is-style-system-panel):not(.wp-block-group.is-style-system-flat-panel):first-child,
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.block-editor-block-list__layout>:not(.wp-block-group.is-style-system-panel):not(.wp-block-group.is-style-system-flat-panel):first-child {
     border-top-left-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px));
     border-top-right-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px));
 }
 
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>*:last-child,
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.block-editor-block-list__layout>*:last-child {
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>:not(.wp-block-group.is-style-system-panel):not(.wp-block-group.is-style-system-flat-panel):last-child,
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.block-editor-block-list__layout>:not(.wp-block-group.is-style-system-panel):not(.wp-block-group.is-style-system-flat-panel):last-child {
     border-bottom-left-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px));
     border-bottom-right-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px));
 }
@@ -112,6 +112,27 @@
     .wp-block-list:not(.is-style-system-list):not(.is-style-system-flat-list):not(.is-style-system-list-flush),
     .wp-block-columns) {
     padding-inline: var(--strap-system-panel-padding-x);
+}
+
+/* Default Quote and List blocks keep their internal indent inside the Panel
+   content rail without requiring an ordinary Group wrapper. */
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)> :is(.wp-block-quote:is(.is-style-default, :not([class*="is-style-"])):not(.has-background), .wp-block-list:not(.is-style-system-list):not(.is-style-system-flat-list):not(.is-style-system-list-flush):not(.has-background)),
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.block-editor-block-list__layout> :is(.wp-block-quote:is(.is-style-default, :not([class*="is-style-"])):not(.has-background), .wp-block-list:not(.is-style-system-list):not(.is-style-system-flat-list):not(.is-style-system-list-flush):not(.has-background)) {
+    margin-inline: var(--strap-system-panel-padding-x) !important;
+    max-width: calc(100% - var(--strap-system-panel-padding-x) - var(--strap-system-panel-padding-x)) !important;
+    box-sizing: border-box;
+}
+
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)> .wp-block-quote:is(.is-style-default, :not([class*="is-style-"])):not(.has-background),
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.block-editor-block-list__layout> .wp-block-quote:is(.is-style-default, :not([class*="is-style-"])):not(.has-background) {
+    padding-inline-start: calc(var(--wp--preset--spacing--40) + var(--wp--preset--spacing--20));
+    padding-inline-end: var(--wp--preset--spacing--30);
+}
+
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)> .wp-block-list:not(.is-style-system-list):not(.is-style-system-flat-list):not(.is-style-system-list-flush):not(.has-background),
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.block-editor-block-list__layout> .wp-block-list:not(.is-style-system-list):not(.is-style-system-flat-list):not(.is-style-system-list-flush):not(.has-background) {
+    padding-inline-start: var(--wp--preset--spacing--40);
+    padding-inline-end: 0;
 }
 
 :is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.wp-block-group:not(:is(.is-style-system-panel, .is-style-system-flat-panel)):not(.is-style-system-panel-header):not(.is-style-system-panel-footer),

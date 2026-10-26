@@ -6,11 +6,18 @@ This file is a CONTRACT.
 
 ## Contract Version
 
-Current Version: 1.25
+Current Version: 1.27
 
-Last Updated: 2026-09-30
+Last Updated: 2026-10-24
 
 ## Change Log
+
+### 1.27
+
+Added the background-ownership invariant for components that establish their
+own foreground or contrast context. Defined transparent structural inheritance,
+nested contrast boundaries, pattern/gradient backing surfaces, and the limits
+of class-based runtime contrast routing without changing the color engine.
 
 ### 1.26
 
@@ -320,6 +327,37 @@ The current palette includes named slugs for:
 These slugs are part of the contract because runtime CSS, patterns, and global-styles extension consume them directly.
 
 Palette slug renames MUST be treated as breaking design-system changes.
+
+### Background ownership and contrast-boundary contract
+
+A block or component that intentionally establishes its own foreground or
+contrast context MUST also establish an explicit background surface. An authored
+foreground MUST NOT be treated as self-sufficient when the component is expected
+to participate in SystemStrap automatic contrast routing.
+
+Plain structural Groups MAY remain transparent. Ordinary descendants MAY inherit
+their parent's foreground, and `currentColor` MAY continue to drive borders,
+separators, highlights, badges, and list structure within that context.
+
+A nested region that intentionally establishes a different foreground context
+from its parent MUST own its own foreground/background pair. Border ownership
+alone does not establish a contrast surface.
+
+The local background MUST be represented by the same authored WordPress preset
+class that the runtime can route. Base and Contrast form a fixed pair;
+Secondary Background/Color and Tertiary Background/Color form fixed pairs;
+semantic backgrounds consume their generated accessible `-text` value when no
+explicit authored text color exists. Explicit same-element semantic foreground
+and background classes remain subject to the documented WCAG correction route.
+
+Pattern and gradient presentation MUST retain an explicit backing background
+when the visual layer does not provide documented deterministic foreground
+routing. The backing surface owns contrast; the pattern or gradient owns the
+expressive visual layer.
+
+The runtime does not discover arbitrary ancestor surfaces and does not
+dynamically pair custom inline foreground/background colors. Authors using
+custom inline values own that pair's accessibility.
 
 ### Duotone contract
 
@@ -896,6 +934,13 @@ versioning rule. A changed variation or shared master MUST receive a changed
 asset URL so editor parity cannot depend on a stale browser copy. Theme version
 or WordPress core version alone is not a valid cache identity for these files.
 
+`assets/css/system-ui-equal-heights.css` is a shared, block-scoped layout master
+registered explicitly on `core/columns` and `core/group`. Both blocks expose the
+same `equal-heights` style and physical-file version. The explicit registration
+precedes the file-driven Group Panel family so the Group style order remains
+Default, Equal Heights, System Flat Panel, System Panel, System Panel Header,
+and System Panel Footer.
+
 Woo Product Categories is a dynamic-block compatibility consumer of this lane.
 `inc/plugin-compatibility.php` registers `system-badge`, `system-flat-list`,
 `system-list`, and `system-list-flush` against the existing Core Categories
@@ -1009,6 +1054,20 @@ Theme patterns currently consume the token system extensively through:
 Patterns are design-system consumers, not independent token registries.
 
 Patterns MUST use the token families already present in `theme.json` when those tokens satisfy the need.
+
+## Panel Wrapper Token Consumption
+
+The developer-authored `.wp-block-group.is-panel-wrapper` class in
+`assets/css/main-styles.css` consumes `--wp--custom--border-radius` as its only
+visual design token. It is not a registered block style and does not create a
+new token family. Default, Compact, and Expanded therefore control its shell
+radius through the same canonical value used by the Panel family.
+
+The wrapper neutralizes its own border, padding, and internal block gap while
+leaving external margins and authored Group color, background, and gradient
+paint untouched. It does not consume Panel surface, shadow, backdrop, spacing,
+or semantic Header/Footer contracts. The same stylesheet is loaded for the
+frontend and editor, so this structural behavior must remain in parity.
 
 ## Prohibited Regressions
 

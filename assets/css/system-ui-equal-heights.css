@@ -1,0 +1,75 @@
+/*
+ * Equal Heights parent layout utility.
+ * Panel surfaces retain ownership of their own presentation and content flow.
+ */
+
+/* Columns carry direct Panel surfaces through their immediate Column. */
+.wp-block-columns:is(.is-style-equal-heights, .has-equal-heights) {
+    align-items: stretch !important;
+}
+
+.wp-block-columns:is(.is-style-equal-heights, .has-equal-heights) > .wp-block-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.wp-block-columns:is(.is-style-equal-heights, .has-equal-heights) > .wp-block-column > :is(.is-style-system-panel, .is-style-system-flat-panel):not(.is-not-equal-height) {
+    flex: 1 1 auto;
+}
+
+.wp-block-columns:is(.is-style-equal-heights, .has-equal-heights) > .wp-block-column > :is(.is-style-system-panel, .is-style-system-flat-panel).is-not-equal-height {
+    align-self: flex-start;
+    flex: 0 0 auto;
+}
+
+/* A horizontal Group owns only the cross-axis relationship between direct Panels. */
+.wp-block-group:is(.is-style-equal-heights, .has-equal-heights).is-layout-flex:not(.is-vertical) {
+    align-items: stretch;
+}
+
+.wp-block-group:is(.is-style-equal-heights, .has-equal-heights).is-layout-flex:not(.is-vertical) > :is(.is-style-system-panel, .is-style-system-flat-panel):not(.is-not-equal-height) {
+    align-self: stretch;
+}
+
+.wp-block-group:is(.is-style-equal-heights, .has-equal-heights).is-layout-flex:not(.is-vertical) > :is(.is-style-system-panel, .is-style-system-flat-panel).is-not-equal-height {
+    align-self: flex-start;
+}
+
+/* Pin a logical direct Footer only while its Panel participates in equalization. */
+:is(
+    .wp-block-columns:is(.is-style-equal-heights, .has-equal-heights) > .wp-block-column,
+    .wp-block-group:is(.is-style-equal-heights, .has-equal-heights).is-layout-flex:not(.is-vertical)
+) > :is(.is-style-system-panel, .is-style-system-flat-panel):not(.is-not-equal-height):has(> .is-style-system-panel-footer) {
+    display: flex;
+    flex-direction: column;
+}
+
+:is(
+    .wp-block-columns:is(.is-style-equal-heights, .has-equal-heights) > .wp-block-column,
+    .wp-block-group:is(.is-style-equal-heights, .has-equal-heights).is-layout-flex:not(.is-vertical)
+) > :is(.is-style-system-panel, .is-style-system-flat-panel):not(.is-not-equal-height) > .is-style-system-panel-footer {
+    margin-block-start: auto !important;
+}
+
+/* Core Columns stack here unless the author explicitly disables stacking. */
+@media (max-width: 781px) {
+    .wp-block-columns:is(.is-style-equal-heights, .has-equal-heights):not(.is-not-stacked-on-mobile) {
+        align-items: initial !important;
+    }
+
+    .wp-block-columns:is(.is-style-equal-heights, .has-equal-heights):not(.is-not-stacked-on-mobile) > .wp-block-column {
+        display: block;
+    }
+
+    .wp-block-columns:is(.is-style-equal-heights, .has-equal-heights):not(.is-not-stacked-on-mobile) > .wp-block-column > :is(.is-style-system-panel, .is-style-system-flat-panel) {
+        flex: 0 1 auto;
+    }
+
+    .wp-block-columns:is(.is-style-equal-heights, .has-equal-heights):not(.is-not-stacked-on-mobile) > .wp-block-column > :is(.is-style-system-panel, .is-style-system-flat-panel):not(.is-not-equal-height):has(> .is-style-system-panel-footer) {
+        display: block;
+    }
+
+    .wp-block-columns:is(.is-style-equal-heights, .has-equal-heights):not(.is-not-stacked-on-mobile) > .wp-block-column > :is(.is-style-system-panel, .is-style-system-flat-panel):not(.is-not-equal-height) > .is-style-system-panel-footer {
+        margin-block-start: 0 !important;
+    }
+}

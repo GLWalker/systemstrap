@@ -3,7 +3,7 @@ Theme Name: SystemStrap
 Theme URI: https://github.com/GLWalker/systemstrap
 Author: GL Walker
 Author URI: https://github.com/GLWalker
-Description: A classic-style dynamic theme system expressed through native block-theme composition. SystemStrap provides a token-driven design system, responsive layout variations, reusable block patterns and style variations, canonical navigation and button systems, dynamic color and spacing architecture, WooCommerce presentation and style integration, BuddyPress presentation and style integration, plugin-aware component styling, and developer-focused extension points while preserving native WordPress composition and plugin behavior.
+Description: A classic-style dynamic theme system expressed through native block-theme composition. SystemStrap provides a token-driven design system, dynamic accessible color and contrast resolution, semantic color families, responsive layout variations, reusable block patterns and style variations, canonical navigation, button, panel, list, table, and form systems, WooCommerce and BuddyPress presentation integration, plugin-aware component styling, and developer-focused extension points while preserving native WordPress composition, editor control, and plugin behavior.
 Version: 1.0.58
 Requires PHP: 8.0
 Tested up to: 7.0

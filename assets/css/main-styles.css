@@ -20,10 +20,26 @@ header.wp-block-template-part {
 
 /* Bare authored Groups without a WordPress layout class need the same
    sibling rhythm that Core supplies for Flow and Constrained layouts. */
-.wp-block-group:not(.is-layout-flow):not(.is-layout-constrained):not(.is-layout-flex):not(.is-layout-grid):not(.is-style-system-panel):not(.is-style-system-panel-header):not(.is-style-system-panel-footer)>*+*,
-.wp-block-group:not(.is-layout-flow):not(.is-layout-constrained):not(.is-layout-flex):not(.is-layout-grid):not(.is-style-system-panel):not(.is-style-system-panel-header):not(.is-style-system-panel-footer)>.block-editor-block-list__layout> :not(.block-list-appender)+ :not(.block-list-appender) {
+.wp-block-group:not(.is-layout-flow):not(.is-layout-constrained):not(.is-layout-flex):not(.is-layout-grid):not(.is-style-system-panel):not(.is-style-system-panel-header):not(.is-style-system-panel-footer):not(.is-panel-wrapper)>*+*,
+.wp-block-group:not(.is-layout-flow):not(.is-layout-constrained):not(.is-layout-flex):not(.is-layout-grid):not(.is-style-system-panel):not(.is-style-system-panel-header):not(.is-style-system-panel-footer):not(.is-panel-wrapper)>.block-editor-block-list__layout> :not(.block-list-appender)+ :not(.block-list-appender) {
     margin-block-start: var(--wp--preset--spacing--30);
     margin-block-end: 0;
+}
+
+/* Panel Wrapper is a paint-neutral Group composition primitive. It shares the
+   canonical Panel radius without acquiring Panel spacing or enhancement. */
+.wp-block-group.is-panel-wrapper {
+    --wp--style--block-gap: 0;
+
+    border: 0;
+    border-radius: var(--wp--custom--border-radius);
+    gap: 0;
+    padding: 0;
+}
+
+.wp-block-group.is-panel-wrapper>*+*,
+.wp-block-group.is-panel-wrapper>.block-editor-block-list__layout> :not(.block-list-appender)+ :not(.block-list-appender) {
+    margin-block-start: 0;
 }
 
 /* Adjacent System Details roots intentionally share one joined stack. */
@@ -214,10 +230,7 @@ header.wp-block-template-part {
 .wp-block-quote.is-style-large:not(.is-style-plain),
 .wp-block-quote.is-large:not(.is-style-plain) {
     padding:
-        var(--wp--preset--spacing--40)
-        var(--wp--preset--spacing--40)
-        var(--wp--preset--spacing--40)
-        calc(var(--wp--preset--spacing--40) + clamp(2.25rem, 6vw, 3rem));
+        var(--wp--preset--spacing--40) var(--wp--preset--spacing--40) var(--wp--preset--spacing--40) calc(var(--wp--preset--spacing--40) + clamp(2.25rem, 6vw, 3rem));
 }
 
 .wp-block-quote.is-style-large:not(.is-style-plain)::before,
@@ -482,7 +495,7 @@ body #activity-stream .strap-bp-default-button.strap-bp-button-small {
     width: fit-content;
 }
 
-.main-buddypress #activity-stream .bp-profile-button > .button {
+.main-buddypress #activity-stream .bp-profile-button>.button {
     font-size: var(--wp--preset--font-size--small);
     line-height: 1.3;
 }
@@ -806,7 +819,7 @@ select:focus {
 
 /* Block-level Badges and Inline Highlights */
 .system-badge,
-.has-system-badge mark.has-inline-color {
+:is(.has-system-badge, .is-style-system-badge) mark.has-inline-color {
     display: inline-block;
     padding: var(--wp--custom--badge-padding-y) var(--wp--custom--badge-padding-x);
     font-size: var(--wp--custom--badge-font-size);
@@ -826,7 +839,7 @@ select:focus {
 
 /* Ensure empty badges collapse nicely */
 .system-badge:empty,
-.has-system-badge mark.has-inline-color:empty {
+:is(.has-system-badge, .is-style-system-badge) mark.has-inline-color:empty {
     display: none;
 }
 

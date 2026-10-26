@@ -55,6 +55,23 @@ var(--wp--preset--shadow--md)
 
 Use the generated CSS custom property in authored CSS rather than repeating the source literal.
 
+### 1.6 Background ownership for semantic foregrounds
+
+A component that intentionally owns a semantic foreground or contrast context
+MUST also own an explicit background surface. Semantic color token names do not
+carry enough information to resolve an unowned or arbitrarily inherited surface.
+
+Transparent structural Groups and ordinary descendants MAY inherit foreground.
+A nested region that intentionally changes foreground MUST establish its own
+foreground/background pair. Borders, separators, highlights, and other
+`currentColor` consumers MAY inherit from that owned foreground.
+
+Pattern and gradient tokens do not automatically establish a deterministic
+contrast surface. Where their documented routing does not own foreground, they
+MUST be layered over an explicit semantic background. No new token family is
+introduced by this rule; authors MUST use the existing semantic background and
+foreground token names defined by `theme.json` and the color-runtime contract.
+
 ---
 
 # 2. Spacing Scale
@@ -375,6 +392,10 @@ the resting surface or structural border color.
 ---
 
 # 13. Badge Constants
+
+Badges are contrast-owning components. Badge geometry tokens MUST be consumed
+with the canonical badge surface/foreground contract; a badge MUST NOT rely on
+an arbitrary ancestor background for readable text.
 
 | Role                 | CSS variable                        |             Value | Definition                            |
 | -------------------- | ----------------------------------- | ----------------: | ------------------------------------- |

@@ -6,11 +6,19 @@ This file is a CONTRACT.
 
 ## Contract Version
 
-Current Version: 1.2
+Current Version: 1.3
 
-Last Updated: 2026-07-13
+Last Updated: 2026-10-24
 
 ## Change Log
+
+### 1.3
+
+Formalized background ownership and contrast-boundary requirements. Documented
+that runtime routing is class-based on the painted element, does not discover an
+arbitrary ancestor surface, and cannot pair custom inline colors dynamically.
+Added the explicit surface requirement for semantic foreground owners, nested
+contrast regions, badges, and pattern/gradient-backed compositions.
 
 ### 1.2
 
@@ -314,6 +322,68 @@ For literal theme palette values, `inc/dynamic-styles.php` compares the six sema
 
 This routing applies only when both WordPress preset classes belong to the same element. SystemStrap MUST NOT emit a broad `.has-{slug}-color` rewrite derived only from the page Base background, because nested and composited surfaces are not deterministically knowable from PHP.
 
+## Background and Contrast Boundary Ownership Contract
+
+A component that intentionally owns its foreground or contrast context MUST
+also own an explicit background surface.
+
+The required ownership chain is:
+
+```text
+authored background surface
+→ contrast routing for that surface
+→ accessible foreground token or authored value
+→ inherited and currentColor relationships
+```
+
+This requirement applies only to contrast-owning components. Transparent
+structural Groups and ordinary descendants MAY inherit their parent foreground
+without establishing another surface.
+
+A nested region that intentionally establishes a foreground different from its
+parent MUST establish its own foreground/background pair. Descendant borders,
+separators, highlights, list structure, and other `currentColor` consumers MAY
+continue to inherit from that owned foreground.
+
+### Resolver boundary
+
+The runtime does not inspect rendered paint, walk ancestors, sample gradients,
+or infer a background from the page body. It emits CSS for recognized WordPress
+preset classes on the element that owns the surface:
+
+- `base` background routes to `contrast`;
+- `contrast` background routes to `base`;
+- `secondary-bg` and `secondary-color` route to one another;
+- `tertiary-bg` and `tertiary-color` route to one another;
+- semantic and `light`/`dark` backgrounds route to their generated `-text`
+  foreground when no explicit text-color class is present;
+- an explicit `.has-text-color` remains author-owned, subject only to the
+  documented same-element semantic preset correction;
+- custom inline background and foreground values are not dynamically paired by
+  the PHP generator.
+
+When a component owns no recognized background, normal CSS inheritance applies.
+That inheritance MUST NOT be described as automatic local contrast resolution.
+
+### Pattern and gradient surfaces
+
+A pattern or gradient MAY provide presentation without providing a deterministic
+solid contrast basis. A contrast-owning pattern/gradient region MUST therefore
+retain an explicit backing background whenever its gradient family does not own
+documented foreground routing.
+
+Pattern gradients use `currentColor` for pattern tone and do not receive the
+accent-gradient foreground mapping. A composition such as Base background plus
+pattern plus resolved foreground is valid; pattern-only paint MUST NOT be
+treated as a deterministic contrast boundary.
+
+### Badge surfaces
+
+System Badge and badge-like status treatments MUST preserve their canonical
+owned surface/foreground pair. For semantic preset backgrounds, dynamic badge
+routing uses the matching generated `-text` token. A badge MUST NOT depend on
+an arbitrary surrounding surface for its readable foreground.
+
 ## Global Styles Extension Contract
 
 `inc/dynamic-styles.php` extends generated WordPress Global Styles without replacing Core's lifecycle.
@@ -421,6 +491,12 @@ The theme MUST NOT introduce any of the following regressions into the covered c
 - generating a second independent color registry outside `theme.json` plus the documented derived runtime variables
 - breaking frontend/editor parity for derived runtime variables without documenting the split
 - silently removing the `global-styles` handle availability guarantee used by dynamic color injection
+- assigning a semantic foreground to a contrast-owning component without an
+  explicit local background surface
+- describing inherited ancestor color as though the runtime had resolved an
+  unowned local surface
+- treating a pattern-only gradient as a deterministic contrast basis when its
+  foreground routing is not documented
 
 ## Expansion Rule
 

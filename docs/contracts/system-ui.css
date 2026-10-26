@@ -83,6 +83,7 @@
    13. Editor Fallback Rules
    14. Dynamic Color Runtime
    15. Known Edge Cases
+   16. Equal Heights Layout Utility
 */
 
 /* ========================================================================
@@ -187,7 +188,10 @@
  * )
  *
  * A child Panel-family member is excluded from ordinary body inset and
- * receives the dedicated nested-panel geometry instead.
+ * receives the dedicated nested-panel geometry instead. A direct nested
+ * System Panel or System Flat Panel is an independent surface: the parent may
+ * apply canonical outer separation, but its generic flush-child radius and
+ * first/last corner rules MUST NOT flatten or reshape the nested shell.
  *
  * This produces the complete structural nesting matrix:
  *
@@ -558,6 +562,50 @@
  * - shadows
  * - background images
  * - blur/backdrop filters
+ */
+
+/*
+ * Background and contrast-boundary ownership
+ * Runtime: inc/dynamic-styles.php, inc/class-color-generator.php,
+ * theme.json, and assets/css/main-styles.css
+ *
+ * A System UI component that intentionally owns its foreground or contrast
+ * context MUST also own an explicit background surface. The runtime routes a
+ * recognized authored background on that element to its fixed or generated
+ * accessible foreground; it does not inspect arbitrary ancestor paint.
+ *
+ * Transparent structural Groups and ordinary descendants may inherit their
+ * parent's foreground. Borders, separators, highlights, list structure, and
+ * other currentColor relationships may inherit from that owned context.
+ * A nested region that intentionally changes foreground must own a new
+ * foreground/background pair.
+ *
+ * Base pairs with Contrast. Secondary Background pairs with Secondary Color.
+ * Tertiary Background pairs with Tertiary Color. Semantic surfaces consume
+ * their generated -text foreground unless an explicit text class owns color;
+ * same-element semantic preset pairs remain subject to WCAG shade correction.
+ * Custom inline color pairs remain author-owned because the PHP generator does
+ * not resolve them dynamically.
+ *
+ * Pattern and gradient presentation must retain an explicit backing surface
+ * when no deterministic foreground route is documented. Pattern paint is the
+ * expressive layer; the backing background is the contrast owner.
+ *
+ * System Badge and badge-like status treatments retain their canonical owned
+ * surface/foreground pair and must not inherit an arbitrary surrounding
+ * background as their contrast basis.
+ *
+ * Inline System Badge discoverability
+ * Runtime: inc/block-styles.php, assets/css/main-styles.css, and
+ * inc/dynamic-styles.php
+ *
+ * Paragraph, Heading, List Item, Preformatted, and Verse expose the
+ * `system-badge` block style. The emitted `.is-style-system-badge` class is a
+ * strict alias of `.has-system-badge`: only descendant highlighted
+ * `mark.has-inline-color` content receives the canonical badge presentation
+ * and palette-derived contrast routing. The style does not create highlight
+ * markup or promote the containing block itself. Core List remains the owner
+ * of List composition and does not expose this inline treatment.
  */
 
 /*
@@ -1146,6 +1194,13 @@
  * Pagination, and WooCommerce retain ownership of their own internal
  * presentation. The Panel family owns only the relationship between those
  * components and the Panel shell where explicitly defined.
+ *
+ * Direct default Quote and List blocks occupy the standard Panel content rail
+ * and retain internal inline indentation. Default Quotes add one Spacing 20
+ * step beyond the native start inset so quotation text remains clear of the
+ * background quote mark. They must not require an ordinary Group wrapper to
+ * align with other Panel content. Painted blocks and explicit System List
+ * variations retain their independent ownership.
  */
 
 /* 
@@ -2793,6 +2848,8 @@ ol.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) > li {
  * - other runtime-generated color helpers layered onto System UI selectors
  * - Universal accessible text contrast routing
  * - Universal button, badge, and interaction hover washes using `color-mix()` via box-shadow
+ * - Local background ownership: automatic contrast routing is class-based on
+ *   the painted element and is not an ancestor/background-sampling engine
  * - Query and Comments Pagination background routing: editor-selected palette
  *   backgrounds move from native layout wrappers to rendered controls, while the
  *   existing contrast class remains the text-color authority
@@ -2851,4 +2908,64 @@ ol.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) > li {
  * #whats-new-submit uses an auto inline-start margin. Mobile remains stacked.
  * Reply internals, avatar shape/physical size, textarea paint and button
  * geometry are outside this contract. Native Activity has no matching scope.
+ */
+
+/* ========================================================================
+   16. EQUAL HEIGHTS LAYOUT UTILITY
+   ======================================================================== */
+
+/*
+ * Runtime: assets/css/system-ui-equal-heights.css and inc/block-styles.php
+ *
+ * Equal Heights is a parent layout treatment registered on Core Columns and
+ * Core Group. `.is-style-equal-heights` and `.has-equal-heights` are equivalent
+ * opt-ins. The utility equalizes only direct System Panel and System Flat Panel
+ * participants while they share a horizontal layout.
+ *
+ * In Columns, the direct Column carries an immediately nested Panel surface.
+ * Core's native 782px stacking boundary returns ordinary stacked Columns to
+ * natural Panel height. Columns explicitly authored not to stack remain
+ * horizontal and retain equalization.
+ *
+ * In horizontal flex Groups, only direct Panel surfaces participate. Flex-line
+ * wrapping remains Core-owned; a Panel alone on a wrapped line keeps its
+ * intrinsic height. Vertical Group layouts do not participate.
+ *
+ * `.is-not-equal-height` is the developer-only, per-Panel escape hatch. It has
+ * effect only beneath an opted-in Equal Heights parent and has no editor style.
+ * The utility is non-recursive, does not affect arbitrary children, adds no
+ * surface presentation, and requires no JavaScript.
+ *
+ * A participating Panel with a direct System Panel Footer becomes a vertical
+ * flex container and pins that Footer to its block-end edge. The Footer retains
+ * its own paint, border, spacing, and contrast ownership. Opted-out Panels and
+ * stacked Columns retain ordinary Panel and Footer document flow.
+ */
+
+/* ========================================================================
+   17. PANEL WRAPPER COMPOSITION PRIMITIVE
+   ======================================================================== */
+
+/*
+ * Runtime: assets/css/main-styles.css
+ *
+ * `.wp-block-group.is-panel-wrapper` is a developer-authored structural class,
+ * not a registered Group style. It is a neutral surface carrier for authored
+ * backgrounds, gradients, patterns, and nested Panel geometry.
+ *
+ * The wrapper owns only:
+ * - zero border
+ * - zero padding
+ * - zero internal block gap
+ * - the canonical `--wp--custom--border-radius`
+ *
+ * Its own WordPress layout margins remain untouched. It does not set color,
+ * background paint, overflow, shadow, backdrop treatment, Panel enhancement,
+ * Header/Footer semantics, or Panel body spacing. Authored Group paint remains
+ * authoritative. Because its radius consumes the canonical Panel token, the
+ * wrapper follows Default, Compact, and Expanded radius changes automatically.
+ *
+ * Panel Wrapper is not a substitute for System Panel or System Flat Panel.
+ * Content requiring canonical Panel padding, borders, enhancement, or joined
+ * Header/Footer composition must use the registered Panel family.
  */

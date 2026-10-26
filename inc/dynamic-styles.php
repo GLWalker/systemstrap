@@ -373,7 +373,7 @@ ul.wp-block-latest-posts.has-{$slug}-background-color > li:hover {
 
 /* System Badge Contrast Routing */
 .system-badge.has-{$slug}-background-color,
-.has-system-badge mark.has-{$slug}-background-color {
+:is(.has-system-badge, .is-style-system-badge) mark.has-{$slug}-background-color {
     color: var(--wp--preset--color--{$slug}-text) !important;
 }
 

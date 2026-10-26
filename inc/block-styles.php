@@ -20,6 +20,7 @@ function strap_register_block_styles() {
 	$panel_structure_stylesheet = "{$theme_dir}assets/css/system-ui-panel-structure.css";
 	$table_surface_stylesheet = "{$theme_dir}assets/css/system-ui-table-surface.css";
 	$tabs_stylesheet = "{$theme_dir}assets/css/system-ui-tabs.css";
+	$equal_heights_stylesheet = "{$theme_dir}assets/css/system-ui-equal-heights.css";
 
 	if ( file_exists( $pagination_stylesheet ) ) {
 		wp_register_style(
@@ -67,6 +68,29 @@ function strap_register_block_styles() {
 				'ver'    => filemtime( $tabs_stylesheet ),
 			)
 		);
+	}
+
+	if ( file_exists( $equal_heights_stylesheet ) ) {
+		foreach ( array( 'core/columns', 'core/group' ) as $block_name ) {
+			wp_enqueue_block_style(
+				$block_name,
+				array(
+					'handle' => 'strap-system-ui-equal-heights',
+					'src'    => $theme_uri . 'assets/css/system-ui-equal-heights.css',
+					'path'   => $equal_heights_stylesheet,
+					'ver'    => filemtime( $equal_heights_stylesheet ),
+				)
+			);
+
+			register_block_style(
+				$block_name,
+				array(
+					'name'         => 'equal-heights',
+					'label'        => __( 'Equal Heights', 'systemstrap' ),
+					'style_handle' => 'strap-system-ui-equal-heights',
+				)
+			);
+		}
 	}
 
 	$variation_order = array(
@@ -246,6 +270,17 @@ function strap_register_block_styles() {
 				);
 			}
 		}
+	}
+
+	// Expose the existing inline System Badge helper through eligible text blocks.
+	foreach ( array( 'core/paragraph', 'core/heading', 'core/list-item', 'core/preformatted', 'core/verse' ) as $block_name ) {
+		register_block_style(
+			$block_name,
+			array(
+				'name'  => 'system-badge',
+				'label' => __( 'System Badge', 'systemstrap' ),
+			)
+		);
 	}
 
 	// 4. Force core/table to use our custom tables.css override mapping
