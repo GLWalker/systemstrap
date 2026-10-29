@@ -35,6 +35,54 @@
     align-self: flex-start;
 }
 
+/* A direct Panel Wrapper transfers equalized height to its direct Panel without
+ * becoming a Panel surface itself. The editor's non-block layout wrapper is
+ * transparent to the same ownership relationship. */
+:is(
+    .wp-block-columns:is(.is-style-equal-heights, .has-equal-heights) > .wp-block-column,
+    .wp-block-group:is(.is-style-equal-heights, .has-equal-heights).is-layout-flex:not(.is-vertical)
+) > .wp-block-group.is-panel-wrapper:has(> :is(.is-style-system-panel, .is-style-system-flat-panel):not(.is-not-equal-height)),
+:is(
+    .wp-block-columns:is(.is-style-equal-heights, .has-equal-heights) > .wp-block-column,
+    .wp-block-group:is(.is-style-equal-heights, .has-equal-heights).is-layout-flex:not(.is-vertical)
+) > .wp-block-group.is-panel-wrapper:has(> .block-editor-block-list__layout:not(.wp-block) > :is(.is-style-system-panel, .is-style-system-flat-panel):not(.is-not-equal-height)) {
+    display: flex;
+    flex-direction: column;
+}
+
+.wp-block-columns:is(.is-style-equal-heights, .has-equal-heights) > .wp-block-column > .wp-block-group.is-panel-wrapper:has(> :is(.is-style-system-panel, .is-style-system-flat-panel):not(.is-not-equal-height)),
+.wp-block-columns:is(.is-style-equal-heights, .has-equal-heights) > .wp-block-column > .wp-block-group.is-panel-wrapper:has(> .block-editor-block-list__layout:not(.wp-block) > :is(.is-style-system-panel, .is-style-system-flat-panel):not(.is-not-equal-height)) {
+    flex: 1 1 auto;
+}
+
+.wp-block-group:is(.is-style-equal-heights, .has-equal-heights).is-layout-flex:not(.is-vertical) > .wp-block-group.is-panel-wrapper:has(> :is(.is-style-system-panel, .is-style-system-flat-panel):not(.is-not-equal-height)),
+.wp-block-group:is(.is-style-equal-heights, .has-equal-heights).is-layout-flex:not(.is-vertical) > .wp-block-group.is-panel-wrapper:has(> .block-editor-block-list__layout:not(.wp-block) > :is(.is-style-system-panel, .is-style-system-flat-panel):not(.is-not-equal-height)) {
+    align-self: stretch;
+}
+
+:is(
+    .wp-block-columns:is(.is-style-equal-heights, .has-equal-heights) > .wp-block-column,
+    .wp-block-group:is(.is-style-equal-heights, .has-equal-heights).is-layout-flex:not(.is-vertical)
+) > .wp-block-group.is-panel-wrapper > :is(.is-style-system-panel, .is-style-system-flat-panel):not(.is-not-equal-height) {
+    flex: 1 1 auto;
+}
+
+:is(
+    .wp-block-columns:is(.is-style-equal-heights, .has-equal-heights) > .wp-block-column,
+    .wp-block-group:is(.is-style-equal-heights, .has-equal-heights).is-layout-flex:not(.is-vertical)
+) > .wp-block-group.is-panel-wrapper > .block-editor-block-list__layout:not(.wp-block):has(> :is(.is-style-system-panel, .is-style-system-flat-panel):not(.is-not-equal-height)) {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+}
+
+:is(
+    .wp-block-columns:is(.is-style-equal-heights, .has-equal-heights) > .wp-block-column,
+    .wp-block-group:is(.is-style-equal-heights, .has-equal-heights).is-layout-flex:not(.is-vertical)
+) > .wp-block-group.is-panel-wrapper > .block-editor-block-list__layout:not(.wp-block) > :is(.is-style-system-panel, .is-style-system-flat-panel):not(.is-not-equal-height) {
+    flex: 1 1 auto;
+}
+
 /* Pin a logical direct Footer only while its Panel participates in equalization. */
 :is(
     .wp-block-columns:is(.is-style-equal-heights, .has-equal-heights) > .wp-block-column,
@@ -48,6 +96,29 @@
     .wp-block-columns:is(.is-style-equal-heights, .has-equal-heights) > .wp-block-column,
     .wp-block-group:is(.is-style-equal-heights, .has-equal-heights).is-layout-flex:not(.is-vertical)
 ) > :is(.is-style-system-panel, .is-style-system-flat-panel):not(.is-not-equal-height) > .is-style-system-panel-footer {
+    margin-block-start: auto !important;
+}
+
+:is(
+    .wp-block-columns:is(.is-style-equal-heights, .has-equal-heights) > .wp-block-column,
+    .wp-block-group:is(.is-style-equal-heights, .has-equal-heights).is-layout-flex:not(.is-vertical)
+) > .wp-block-group.is-panel-wrapper > :is(.is-style-system-panel, .is-style-system-flat-panel):not(.is-not-equal-height):has(> .is-style-system-panel-footer),
+:is(
+    .wp-block-columns:is(.is-style-equal-heights, .has-equal-heights) > .wp-block-column,
+    .wp-block-group:is(.is-style-equal-heights, .has-equal-heights).is-layout-flex:not(.is-vertical)
+) > .wp-block-group.is-panel-wrapper > .block-editor-block-list__layout:not(.wp-block) > :is(.is-style-system-panel, .is-style-system-flat-panel):not(.is-not-equal-height):has(> .is-style-system-panel-footer) {
+    display: flex;
+    flex-direction: column;
+}
+
+:is(
+    .wp-block-columns:is(.is-style-equal-heights, .has-equal-heights) > .wp-block-column,
+    .wp-block-group:is(.is-style-equal-heights, .has-equal-heights).is-layout-flex:not(.is-vertical)
+) > .wp-block-group.is-panel-wrapper > :is(.is-style-system-panel, .is-style-system-flat-panel):not(.is-not-equal-height) > .is-style-system-panel-footer,
+:is(
+    .wp-block-columns:is(.is-style-equal-heights, .has-equal-heights) > .wp-block-column,
+    .wp-block-group:is(.is-style-equal-heights, .has-equal-heights).is-layout-flex:not(.is-vertical)
+) > .wp-block-group.is-panel-wrapper > .block-editor-block-list__layout:not(.wp-block) > :is(.is-style-system-panel, .is-style-system-flat-panel):not(.is-not-equal-height) > .is-style-system-panel-footer {
     margin-block-start: auto !important;
 }
 
@@ -70,6 +141,28 @@
     }
 
     .wp-block-columns:is(.is-style-equal-heights, .has-equal-heights):not(.is-not-stacked-on-mobile) > .wp-block-column > :is(.is-style-system-panel, .is-style-system-flat-panel):not(.is-not-equal-height) > .is-style-system-panel-footer {
+        margin-block-start: 0 !important;
+    }
+
+    .wp-block-columns:is(.is-style-equal-heights, .has-equal-heights):not(.is-not-stacked-on-mobile) > .wp-block-column > .wp-block-group.is-panel-wrapper:has(> :is(.is-style-system-panel, .is-style-system-flat-panel):not(.is-not-equal-height)),
+    .wp-block-columns:is(.is-style-equal-heights, .has-equal-heights):not(.is-not-stacked-on-mobile) > .wp-block-column > .wp-block-group.is-panel-wrapper:has(> .block-editor-block-list__layout:not(.wp-block) > :is(.is-style-system-panel, .is-style-system-flat-panel):not(.is-not-equal-height)) {
+        display: block;
+        flex: 0 1 auto;
+    }
+
+    .wp-block-columns:is(.is-style-equal-heights, .has-equal-heights):not(.is-not-stacked-on-mobile) > .wp-block-column > .wp-block-group.is-panel-wrapper > .block-editor-block-list__layout:not(.wp-block):has(> :is(.is-style-system-panel, .is-style-system-flat-panel):not(.is-not-equal-height)) {
+        display: block;
+        flex: 0 1 auto;
+    }
+
+    .wp-block-columns:is(.is-style-equal-heights, .has-equal-heights):not(.is-not-stacked-on-mobile) > .wp-block-column > .wp-block-group.is-panel-wrapper > :is(.is-style-system-panel, .is-style-system-flat-panel),
+    .wp-block-columns:is(.is-style-equal-heights, .has-equal-heights):not(.is-not-stacked-on-mobile) > .wp-block-column > .wp-block-group.is-panel-wrapper > .block-editor-block-list__layout:not(.wp-block) > :is(.is-style-system-panel, .is-style-system-flat-panel) {
+        display: block;
+        flex: 0 1 auto;
+    }
+
+    .wp-block-columns:is(.is-style-equal-heights, .has-equal-heights):not(.is-not-stacked-on-mobile) > .wp-block-column > .wp-block-group.is-panel-wrapper > :is(.is-style-system-panel, .is-style-system-flat-panel):not(.is-not-equal-height) > .is-style-system-panel-footer,
+    .wp-block-columns:is(.is-style-equal-heights, .has-equal-heights):not(.is-not-stacked-on-mobile) > .wp-block-column > .wp-block-group.is-panel-wrapper > .block-editor-block-list__layout:not(.wp-block) > :is(.is-style-system-panel, .is-style-system-flat-panel):not(.is-not-equal-height) > .is-style-system-panel-footer {
         margin-block-start: 0 !important;
     }
 }

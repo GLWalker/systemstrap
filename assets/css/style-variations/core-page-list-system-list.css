@@ -10,7 +10,6 @@
 
 
 /* ROOT LIs */
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) > li,
 .wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) > li {
     background-color: var(--wp--custom--system-ui-surface);
 }/* 
@@ -25,14 +24,12 @@
 
 
 /* ROOT LIs */
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) > li,
 .wp-block-page-list:is(.is-style-system-list, .is-style-system-list-flush) > li {    background-image: var(--wp--custom--system-ui-background-image, none);
     backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
 }
 
 /* ALL LIs (including nested) */
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li,
 .wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li {
     display: flex;
     flex-wrap: wrap;
@@ -45,7 +42,6 @@
 }
 
 /* Anchor tags inside LIs */
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > a,
 .wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > a {
     display: block;
     padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
@@ -60,7 +56,6 @@
 }
 
 /* Hover States on Anchor */
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush):not(.is-not-action) li:hover:not(:has(li:hover)) > a,
 .wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush):not(.is-not-action) li:hover:not(:has(li:hover)) > a {
     background: var(--wp--custom--system-ui-list-hover-bg);
 }
@@ -68,15 +63,11 @@
 /* Active State on Anchor */
 .wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li.current_page_item > a,
 .wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li.current_page_ancestor > a,
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li:has(> a[aria-current="page"]) > a,
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li.current_page_item > a,
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li.current_page_ancestor > a,
 .wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li:has(> a[aria-current="page"]) > a {
     background: var(--wp--custom--system-ui-list-hover-bg);
 }
 
 /* Nested ULs (Kill SystemPress bleeds) */
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > ul,
 .wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > ul {
     flex-basis: 100%;
     margin: 0 !important;
@@ -90,7 +81,6 @@
 }
 
 /* Nested LIs */
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > ul > li,
 .wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > ul > li {
     border: 0; /* Reset any bleeding borders */
     border-radius: 0 !important;
@@ -124,14 +114,12 @@
 
 
 /* Premium System Borders between ROOT items */
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) > li + li,
 .wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) > li + li {
     border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
 }
 
 
 /* Premium System Borders between NESTED items */
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > ul > li,
 .wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > ul > li {
     border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
     background-color: var(--wp--custom--system-ui-surface-nested, transparent);
@@ -153,7 +141,6 @@
     -webkit-backdrop-filter: none !important;
 }
 
-.wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush),
 .wp-block-page-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) {
     list-style: none;
     margin: 0;

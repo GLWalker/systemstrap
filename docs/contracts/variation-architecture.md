@@ -265,50 +265,42 @@ The current variation filesystem shape is:
 │       ├── slab.json
 │       └── twenty.json
 ├── assets/css/style-variations/
-│   ├── bp-login-form-system-panel.css
-│   ├── bp-member-system-panel.css
-│   ├── bp-members-system-panel.css
-│   ├── bp-primary-nav-system-nav-button.css
-│   ├── bp-primary-nav-system-nav-gen.css
 │   ├── bp-widget-system-panel-header.css
 │   ├── core-accordion-system-accordion.css
 │   ├── core-accordion-system-flat-panel.css
+│   ├── core-archives-system-*.css
+│   ├── core-calendar-system-*.css
+│   ├── core-categories-system-*.css
+│   ├── core-comments-pagination-system-ui-pagination*.css
+│   ├── core-comments-system-*.css
+│   ├── core-details-system-*.css
+│   ├── core-group-system-*.css
+│   ├── core-icon-dialog.css
+│   ├── core-latest-comments-system-*.css
+│   ├── core-latest-posts-system-*.css
+│   ├── core-list-system-*.css
+│   ├── core-navigation-system-*.css
+│   ├── core-page-list-system-*.css
+│   ├── core-post-navigation-link-system-ui-pagination*.css
+│   ├── core-post-terms-system-badge.css
+│   ├── core-query-pagination-system-ui-pagination*.css
+│   ├── core-query-system-ui-query.css
+│   ├── core-rss-system-*.css
 │   ├── core-tab-list-system-nav-*.css
 │   ├── core-tab-panels-system-*.css
 │   ├── core-tabs-system-*.css
-│   ├── core-archives-system-list.css
-│   ├── core-button-system-icon.css
-│   ├── core-calendar-system-panel.css
-│   ├── core-categories-system-list.css
-│   ├── core-comments-pagination-system-ui-pagination*.css
-│   ├── core-details-system-details.css
-│   ├── core-details-system-flat-panel.css
-│   ├── core-group-system-carousel.css
-│   ├── core-group-system-panel-footer.css
-│   ├── core-group-system-panel-header.css
-│   ├── core-group-system-panel.css
-│   ├── core-icon-dialog.css
-│   ├── core-latest-comments-system-list.css
-│   ├── core-latest-posts-system-list.css
-│   ├── core-latest-posts-system-panel.css
-│   ├── core-list-system-list.css
-│   ├── core-navigation-system-nav-button.css
-│   ├── core-navigation-system-nav-gen.css
-│   ├── core-page-list-system-list.css
-│   ├── core-post-terms-system-list.css
-│   ├── core-post-navigation-link-system-ui-pagination*.css
-│   ├── core-query-pagination-system-ui-pagination*.css
-│   ├── core-rss-system-list.css
-│   ├── core-table-system-panel.css
-│   └── core-tag-cloud-system-tags.css
+│   ├── core-table-system-*.css
+│   ├── core-tag-cloud-system-*.css
+│   ├── core-terms-query-system-*.css
+│   └── woocommerce-*.css
 └── assets/js/variations/
     ├── strap-action-hook.js
     ├── strap-buttons.js
-    ├── strap-carousel.js
-    ├── strap-controls.js
     ├── strap-icon-controls.js
     ├── strap-panels.js
-    └── strap-style-sync.js
+    ├── strap-style-sync.js
+    ├── strap-woocommerce-editor-compatibility.js
+    └── strap-woocommerce-product-template-compatibility.js
 ```
 
 The `styles/` directory currently contains active filesystem variation JSON files in the root, `colors/`, and `typography/` lanes.
@@ -526,7 +518,7 @@ The following files are governed by this contract as of Version 3.0 and currentl
 - `core-navigation-system-nav-button.css`
 - `core-navigation-system-nav-gen.css`
 - `core-page-list-system-list.css`
-- `core-post-terms-system-list.css`
+- `core-post-terms-system-badge.css`
 - `core-post-navigation-link-system-ui-pagination*.css`
 - `core-query-pagination-system-ui-pagination*.css`
 - `core-rss-system-list.css`
@@ -537,10 +529,6 @@ The following files are governed by this contract as of Version 3.0 and currentl
 
 The following files in `assets/css/style-variations/` are NOT governed by the default auto-registration path:
 
-- `core-group-system-carousel.css`
-    - explicitly skipped by `strap_register_block_styles()`
-- `core-button-system-icon.css`
-    - explicitly skipped by `strap_register_block_styles()`
 - `bp-widget-system-panel-header.css`
     - explicitly skipped by `strap_register_block_styles()`
 - `core-icon-dialog.css`
@@ -567,16 +555,10 @@ The variation architecture currently uses these explicit CSS loading exceptions:
     - registers the `system-panel` block style for those blocks, with the label `System Panel`.
     - uses physical-file `filemtime()` versioning for editor/frontend parity.
 
-- `inc/enqueue-assets.php`
-    - enqueues `core-group-system-carousel.css` as `strap-carousel-styles`
-- `inc/theme-setup.php`
-    - includes `assets/css/style-variations/core-group-system-carousel.css` in `add_editor_style()`
 - `inc/dialog-renderer.php`
     - enqueues `assets/css/style-variations/core-icon-dialog.css` when dialog runtime is active
 
-`core-button-system-icon.css` is no longer part of the active block-style registration or explicit frontend enqueue path.
-
-The shared `is-style-system-btn-icon` treatment is instead owned by `assets/css/main-styles.css` so carousel navigation buttons and dialog close buttons can continue to use the same class contract without exposing a `core/button` style variation in the editor.
+The shared `is-style-system-btn-icon` treatment is owned by `assets/css/main-styles.css`. No physical `core-button-system-icon.css` variation asset is shipped, and the class is not exposed as a `core/button` style variation in the editor.
 
 `bp-widget-system-panel-header.css` is NOT part of the filename-derived auto-registration path.
 
@@ -623,7 +605,7 @@ The current CSS block-style surfaces covered by this contract as of Version 3.0 
     - `core-categories-system-list.css`
     - `core-list-system-list.css`
     - `core-page-list-system-list.css`
-    - `core-post-terms-system-list.css`
+    - `core-post-terms-system-badge.css`
     - `core-rss-system-list.css`
     - `core-latest-posts-system-list.css`
     - `core-latest-comments-system-list.css`
@@ -650,8 +632,6 @@ The current CSS block-style surfaces covered by this contract as of Version 3.0 
     - `core-query-pagination-system-ui-pagination*.css`
     - `core-comments-pagination-system-ui-pagination*.css`
     - `core-post-navigation-link-system-ui-pagination*.css`
-- carousel surface
-    - `core-group-system-carousel.css`
 
 ## System Tabs CSS Surface Contract
 
@@ -724,36 +704,6 @@ This variation injects:
 
 This JS registration is coupled to the semantic action-hook contract in `inc/block-filters.php`.
 
-### `strap-carousel.js`
-
-Registers three `core/group` variations:
-
-- `strap-carousel-media`
-- `strap-carousel-banner`
-- `strap-carousel-thumb`
-
-These variations currently inject class-bearing structures including:
-
-- `system-carousel-wrapper`
-- `system-carousel-nav-buttons`
-- `carousel-prev is-style-system-btn-icon`
-- `carousel-next is-style-system-btn-icon`
-- `is-style-system-carousel`
-- `is-style-system-carousel-auto`
-- `is-style-system-panel`
-
-These class names are part of the carousel variation contract.
-
-The current carousel runtime also depends on these post-mount state classes:
-
-- `splide`
-- `is-initialized`
-- `is-system-carousel-mounted`
-- `is-system-thumbnail-carousel`
-- `is-system-thumb-thumbnail`
-- `is-system-thumb-medium`
-- `is-thumbs-underflow`
-
 ### `strap-panels.js`
 
 Registers seven `core/group` variations:
@@ -806,17 +756,6 @@ These button styles are variation behavior even though they are not part of the 
 
 ## Editor Extensions and Inspector Extension Contract
 
-### `strap-controls.js`
-
-This file extends `core/group` in the editor by:
-
-- adding the custom attribute `systemNavPosition`
-- adding inspector controls for carousel groups identified through `metadata.name`
-- injecting editor wrapper classes such as `has-nav-top`, `has-nav-center`, `has-nav-center-out`, and `has-nav-bottom`
-- adding the same classes to saved frontend markup through `blocks.getSaveContent.extraProps`
-
-This file is an editor extension and save-output extension, not a block variation registration.
-
 ### `strap-icon-controls.js`
 
 This file extends these blocks:
@@ -842,10 +781,6 @@ Variation architecture in SystemStrap is coupled to pattern and runtime classes.
 Current variation-sensitive class and attribute signals include:
 
 - `strap-action-hook`
-- `system-carousel-wrapper`
-- `system-carousel-nav-buttons`
-- `carousel-prev`
-- `carousel-next`
 - `is-style-system-panel`
 - `is-style-system-flat-panel`
 - `is-style-system-panel-header`
@@ -853,57 +788,15 @@ Current variation-sensitive class and attribute signals include:
 - `is-style-system-modal`
 - `is-style-system-list`
 - `is-style-system-details`
-- `is-style-system-carousel`
-- `is-style-system-carousel-auto`
-- `is-style-system-carousel-multi`
-- `is-system-carousel-mounted`
-- `is-system-thumbnail-carousel`
-- `is-system-thumb-thumbnail`
-- `is-system-thumb-medium`
-- `is-thumbs-underflow`
-- `has-nav-top`
-- `has-nav-center`
-- `has-nav-center-out`
-- `has-nav-bottom`
 - `systemDialogAction`
 - `systemDialogPattern`
 - `systemDialogPosition`
-- `systemNavPosition`
 
 Renaming any of these without updating the relevant JS, CSS, PHP, and contract files in the same change set MUST be treated as a breaking variation behavior change.
 
-## Carousel Runtime Contract
+## Carousel Companion Boundary
 
-The current carousel runtime is split across these files:
-
-- `assets/js/variations/strap-carousel.js`
-- `assets/js/variations/strap-controls.js`
-- `assets/js/carousel-nav.js`
-- `assets/js/carousel-editor-preview.js`
-- `assets/css/style-variations/core-group-system-carousel.css`
-- `inc/enqueue-assets.php`
-- `inc/dynamic-styles.php`
-
-The saved block contract remains:
-
-- outer `core/group` variation wrapper
-- nested `system-carousel-wrapper`
-- nested `system-carousel-nav-buttons`
-- nested carousel Group using one of:
-  - `is-style-system-carousel`
-  - `is-style-system-carousel-auto`
-  - `is-style-system-carousel-multi`
-
-The runtime contract is:
-
-- saved Gutenberg slide blocks remain the authored source of truth
-- Splide wrappers are injected only at runtime
-- `core-group-system-carousel.css` is explicitly enqueued as `strap-carousel-styles`
-- `core-group-system-carousel.css` MUST NOT be auto-registered through the generic block-style scanner
-- thumbnail carousel width is measured from the rendered track, not re-derived from `theme.json` layout math
-- thumbnail mode defaults to thumbnail and promotes to medium only when every direct image slide is explicitly `size-medium`
-- `size-full`, undefined size, mixed sizes, and non-image direct slides all resolve to thumbnail mode
-- editor preview remains an unmounted horizontal fallback and mirrors the same thumbnail-mode rule
+Carousel variations, saved carousel class contracts, runtime JavaScript, editor preview, Splide dependencies, and carousel presentation CSS are owned by the `systemstrap-carousel` companion plugin. The SystemStrap theme ships no Carousel variation, runtime, or Carousel stylesheet. The authoritative ownership contract is `docs/contracts/carousel-runtime.md`.
 
 ## Gutenberg Serialization Contract
 
@@ -938,6 +831,6 @@ The following regressions are prohibited:
 - renaming variation files in `assets/css/style-variations/` without preserving or intentionally replacing the filename parsing contract
 - moving editor extension files out of `assets/js/variations/` without updating the glob loader in `strap_enqueue_block_editor_assets()`
 - treating all JS files in `assets/js/variations/` as `registerBlockVariation()` files when some are editor extensions or `registerBlockStyle()` registrations
-- assuming every CSS file in `assets/css/style-variations/` is auto-registered when `core-group-system-carousel.css` and `core-icon-dialog.css` currently are not
+- assuming every CSS file in `assets/css/style-variations/` is auto-registered when `bp-widget-system-panel-header.css` and `core-icon-dialog.css` currently are not
 - adding new class-bearing `InnerBlocks` templates without updating the class coupling documented here when those classes are consumed by runtime CSS or PHP
 - modifying saved variation markup in a way that breaks Gutenberg reload fidelity

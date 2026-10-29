@@ -117,7 +117,18 @@
 /*
  * Focus Tokens
  * --wp--custom--focus-ring-width
+ * --wp--custom--focus-ring-offset
  * --wp--custom--focus-ring-color
+ */
+
+/*
+ * Form Surface Token
+ * --wp--custom--form-bg-color
+ *
+ * Every editable control and composite editable-control shell MUST resolve its
+ * resting background through the form surface token, with Base as its fallback.
+ * System UI surface tokens are reserved for explicit System UI component
+ * surfaces and MUST NOT provide ordinary form-control paint.
  */
 
 /* ========================================================================
@@ -238,6 +249,12 @@
  *
  * without the variation suppressing that authored presentation.
  *
+ * Panel Header and Panel Footer route their optional atmosphere through
+ * `--strap-system-panel-context-background-image`. A directly owned Header
+ * or Footer inside System Flat receives a neutral context, including through
+ * the transparent editor layout wrapper. Native authored background colors,
+ * gradients, and patterns remain authoritative over that neutral default.
+ *
  * `.strap-panel-surface` remains the neutral reusable application surface
  * for integrations. Integrations may adapt a stable public application
  * root to it and consume its exposed content variables; they must not
@@ -249,8 +266,8 @@
  * enhancement owner.
  *
  * BuddyPress Activity runtime:
- * - `systemstrap-buddypress/assets/css/buddypress-theme-sync.css` scopes the
- *   Activity directory treatment to `.main-buddypress-activity`.
+ * - `assets/css/buddypress/buddypress-components.css` scopes the selected
+ *   Activity directory treatment to stable Nouveau roots.
  * - `.activity-list` owns the single feed surface; direct `.activity-item`
  *   children are transparent content rows joined by seams.
  * - Activity preview objects remain compact media objects with no shadow or
@@ -1863,10 +1880,12 @@ ol.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) > li {
    color, then the canonical System UI border color. It paints Default tab
    borders, the shared baseline, and joined Panel borders without changing pane
    text. Hover strengthens the unauthored Base surface without changing
-   geometry. Selection retains that resting surface; its transparent bottom
-   border is the state exception to Core's authored structural border and uses
-   border-box background painting so Base visually absorbs the aligned
-   baseline. Authored solid backgrounds retain their Core surface and receive
+   geometry. Every unpainted Default button and unpainted Classic Tab Panels
+   surface resolves to Base. An unpainted System Panel pane retains the canonical
+   Panel enhancement image and supplies that same image to the unpainted selected
+   Default tab; Flat Panel and plain panes retain no enhancement image. The selected button and bottom border consume
+   `--strap-tabs-active-join-color`, which also resolves to Base. Authored solid
+   backgrounds retain their Core surface and receive
    the canonical Button hover and active current-color wash strengths as
    background-image layers. Those layers paint through the transparent selected
    border, so the active lower edge resolves to the active surface rather than
@@ -1897,7 +1916,9 @@ ol.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) > li {
    System UI border; selection opens the inline-end edge into the pane without
    elevation or transform. Authored row backgrounds retain their Core surface
    and consume the canonical hover and active washes without selected-state
-   depth. Every direct pane begins on the navigation column's top border plane.
+   depth. When the direct pane is an unpainted System Panel, its canonical Panel
+   enhancement image also paints the unpainted selected Default row; Flat Panel
+   rows remain unenhanced. Every direct pane begins on the navigation column's top border plane.
    A Default Tab List overlaps the desktop shared seam by one canonical border
    width. Unstyled adjacent panes omit their inline-start border. System Panel
    and System Flat Panel panes retain a continuous inline-start border beneath
@@ -2922,19 +2943,23 @@ ol.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) > li {
  * opt-ins. The utility equalizes only direct System Panel and System Flat Panel
  * participants while they share a horizontal layout.
  *
- * In Columns, the direct Column carries an immediately nested Panel surface.
+ * In Columns, the direct Column carries an immediately nested Panel surface or
+ * a direct Panel Wrapper whose direct Panel receives the equalized height.
  * Core's native 782px stacking boundary returns ordinary stacked Columns to
  * natural Panel height. Columns explicitly authored not to stack remain
  * horizontal and retain equalization.
  *
- * In horizontal flex Groups, only direct Panel surfaces participate. Flex-line
- * wrapping remains Core-owned; a Panel alone on a wrapped line keeps its
- * intrinsic height. Vertical Group layouts do not participate.
+ * In horizontal flex Groups, direct Panel surfaces and direct Panel Wrappers
+ * carrying a direct Panel participate. The wrapper transfers cross-axis height
+ * while the nested Panel remains the equalized component. Flex-line wrapping
+ * remains Core-owned; a Panel alone on a wrapped line keeps its intrinsic
+ * height. Vertical Group layouts do not participate.
  *
  * `.is-not-equal-height` is the developer-only, per-Panel escape hatch. It has
  * effect only beneath an opted-in Equal Heights parent and has no editor style.
- * The utility is non-recursive, does not affect arbitrary children, adds no
- * surface presentation, and requires no JavaScript.
+ * The utility is otherwise non-recursive, does not affect arbitrary children,
+ * adds no surface presentation, and requires no JavaScript. A transparent
+ * editor layout wrapper does not interrupt direct Panel Wrapper ownership.
  *
  * A participating Panel with a direct System Panel Footer becomes a vertical
  * flex container and pins that Footer to its block-end edge. The Footer retains

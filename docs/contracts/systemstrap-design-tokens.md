@@ -322,6 +322,7 @@ surface, and gradient remain authoritative.
 | Text weight      | Body / `400`                                | Frozen generic form baseline.      |
 | Text line height | `1.6`                                       | Frozen generic form baseline.      |
 | Focus ring width | `--wp--custom--focus-ring-width` = `.25rem` | Standard focus halo width.         |
+| Focus ring offset | `--wp--custom--focus-ring-offset` = `.125rem` | Standard outward focus-ring offset. |
 
 ---
 
@@ -374,11 +375,12 @@ Authoritative runtime sources:
 | Role | Consumer alias | Authoritative value | Definition |
 | --- | --- | --- | --- |
 | Classic structural border color | `--strap-tabs-classic-border-color` | Authored Tab List preset border color, authored preset text color, then System UI border color | Paints Default tab borders, the shared baseline, and joined System Panel or Flat Panel borders without affecting pane text. |
-| Nav Gen selected join color | `--strap-tabs-active-join-color` | Selected Classic Nav Gen surface | Paints both the Nav Gen selected background and bottom border. Palette background utilities route the contextual preset mix into this alias. |
+| Classic selected join color | `--strap-tabs-active-join-color` | Base, or selected Classic Nav Gen surface | Paints both the unpainted selected tab background and its bottom border. Unpainted Classic Tab Panels use the same Base surface; Nav Gen and its palette utilities retain their contextual selected mix. |
 
-This alias applies only to Classic System Nav Gen. Classic Default retains its
-resolved button background and paints it through a transparent bottom-border
-area; Classic System Nav Button does not consume the joined-tab contract.
+Classic Default consumes this alias only for unpainted selected tabs. Authored
+button backgrounds and gradients retain their Core surface and transparent
+bottom-border painting. Classic System Nav Button does not consume the
+joined-tab contract.
 
 Classic Default and Classic System Nav Gen use the Base preset for unauthored
 resting buttons. The Classic System Nav Button track uses the Tertiary
@@ -412,6 +414,7 @@ an arbitrary ancestor background for readable text.
 | Role              | CSS variable/value                                               | Definition                            |
 | ----------------- | ---------------------------------------------------------------- | ------------------------------------- |
 | Focus ring width  | `--wp--custom--focus-ring-width: .25rem`                         | Standard keyboard-focus ring width.   |
+| Focus ring offset | `--wp--custom--focus-ring-offset: .125rem`                       | Standard outward keyboard-focus offset. |
 | Disabled opacity  | `--wp--custom--disabled-opacity: .75`                            | Standard disabled visual opacity.     |
 | Disabled filter   | `--wp--custom--disabled-filter: grayscale(75%) brightness(100%)` | Standard disabled-state filter.       |
 | Button transition | `--wp--custom--btn-transition`                                   | Shared interactive button transition. |

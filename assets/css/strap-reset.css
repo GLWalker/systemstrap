@@ -294,7 +294,7 @@ legend+* {
 
 [type=search] {
     -webkit-appearance: textfield;
-    outline-offset: -2px;
+	outline-offset: var(--wp--custom--focus-ring-offset);
 }
 
 ::-webkit-search-decoration {
@@ -384,7 +384,7 @@ figcaption:not(.wp-block-gallery figcaption),
 
     /* Windows High Contrast Mode Fallback */
     outline: 2px solid var(--wp--preset--color--primary, #2D4054);
-    outline-offset: 2px;
+	outline-offset: var(--wp--custom--focus-ring-offset);
 
     padding: 0.75rem 1rem;
     font-weight: var(--wp--custom--font-weight-bold);

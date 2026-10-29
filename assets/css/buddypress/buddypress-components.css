@@ -964,7 +964,7 @@ body #buddypress .strap-bp-horizontal-navigation :is(.primary-nav-more, .seconda
 
 body #buddypress .strap-bp-horizontal-navigation :is(.primary-nav-more, .secondary-nav-more) .bp-priority-nav-more-toggle:focus-visible {
 	outline: var(--wp--custom--focus-ring-width) solid var(--wp--custom--focus-ring-color);
-	outline-offset: var(--wp--custom--border-width, 1px);
+	outline-offset: var(--wp--custom--focus-ring-offset);
 }
 
 body #buddypress .strap-bp-horizontal-navigation :is(.primary-nav-more, .secondary-nav-more) .sub-menu.hidden-items {
@@ -1835,7 +1835,7 @@ body.strap-bp-pagination-scope .strap-bp-controls-system-scope #group-manage-mem
 
 .strap-bp-controls-system-scope #group-members-list-table .group-member-actions a:focus-visible {
 	outline: var(--wp--custom--border-width, 1px) solid currentColor;
-	outline-offset: var(--wp--custom--border-width, 1px);
+	outline-offset: var(--wp--custom--focus-ring-offset);
 }
 
 .strap-bp-controls-system-scope #group-members-list-table :is(small, .group-member-edit label) {
@@ -2064,7 +2064,7 @@ body.single-item.group-members .strap-bp-controls-system-scope .filters:not(.no-
 
 :is(.strap-bp-controls-system-scope, body.strap-bp-controls-system-directory #buddypress, #bp-login-widget-form) :is(input[type="checkbox"], input[type="radio"]):focus-visible {
 	outline: var(--wp--custom--focus-ring-width) solid var(--wp--custom--focus-ring-color);
-	outline-offset: var(--wp--custom--border-width, 1px);
+	outline-offset: var(--wp--custom--focus-ring-offset);
 }
 
 :is(.strap-bp-controls-system-scope, body.strap-bp-controls-system-directory #buddypress, #bp-login-widget-form) .standard-form :is(input, textarea, select)[required]:invalid,

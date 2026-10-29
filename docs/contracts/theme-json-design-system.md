@@ -740,16 +740,16 @@ If the theme is a child theme, `style.css` is added to that editor style list.
 
 These files are part of editor parity and MUST remain design-system-aware.
 
-When BuddyPress is active, `inc/enqueue-assets.php` also enqueues `strap-buddypress-sync` on `enqueue_block_editor_assets`.
+When BuddyPress is active, `inc/buddypress-integration.php` enqueues `strap-buddypress-editor` on `enqueue_block_editor_assets`.
 
-This editor-side enqueue exists so the BuddyPress block base stylesheet dependency graph remains valid inside the Site Editor and block editor.
+This editor-side enqueue supplies the narrow BuddyPress block compatibility layer inside the Site Editor and block editor.
 
 The current editor BuddyPress contract is:
 
-- register `strap-buddypress-sync` early on `init`
-- enqueue `strap-buddypress-sync` in the editor only when BuddyPress exists
+- register `strap-buddypress-editor` from `assets/css/buddypress/buddypress-editor.css`
+- enqueue `strap-buddypress-editor` in the editor when BuddyPress integration is active
 - keep BuddyPress frontend theme-pack dependencies out of the editor path
-- preserve the same handle name across frontend and editor so `wp_enqueue_block_style()` dependencies remain stable
+- keep the editor compatibility layer separate from frontend Nouveau component CSS
 
 `assets/css/main-styles.css` remains the shared foundational layer. Its
 frontend handle uses the physical file modification time as its asset version;
@@ -761,8 +761,6 @@ the editor receives the same file through `add_editor_style()`.
 
 - `strap-reset`
 - `strap-main-styles`
-- `splide-core`
-- `strap-carousel-styles`
 
 If the theme is a child theme, `strap-child-style` is enqueued after `strap-main-styles`.
 
@@ -771,16 +769,16 @@ This load order is part of the current design-system runtime because the token l
 When BuddyPress is active on the frontend, the current stylesheet runtime also includes:
 
 - BuddyPress plugin/theme-pack CSS such as `bp-nouveau` or `bp-legacy-css`
-- `strap-buddypress-sync`
-- `strap-buddypress-blocks`
+- `strap-buddypress-typography`
+- optional `strap-buddypress-components`
 - BuddyPress block style variations registered through `wp_enqueue_block_style()`
 
 The current frontend queue contract in `strap_reorder_frontend_style_queue()` is:
 
 1. `strap-reset`
 2. BuddyPress plugin/theme-pack CSS
-3. `strap-buddypress-sync`
-4. `strap-buddypress-blocks`
+3. `strap-buddypress-typography`
+4. optional `strap-buddypress-components`
 5. Core block library styles
 6. `global-styles`
 7. `strap-main-styles`
@@ -822,9 +820,13 @@ The dynamic background text-color contrast mapping includes:
 - accent background text-color fallback for `primary`, `secondary`, `success`, `info`, `warning`, `danger`, `light`, and `dark`
 
 Core Tab List serializes authored Background and Text classes or inline styles
-onto each tab button. Classic Default retains that resolved button background;
-its transparent selected bottom border uses border-box background painting to
-cover the aligned baseline with the same Base, preset, or custom inline surface.
+onto each tab button. Unpainted Classic Default buttons and unpainted Classic
+Tab Panels use Base. An unpainted System Panel pane retains the canonical Panel
+enhancement image and applies that same image to the unpainted selected Classic
+or Vertical Default tab; Flat Panel and plain panes do not. The selected Classic tab resolves its background and bottom border
+through `--strap-tabs-active-join-color`, which also uses Base. Authored buttons retain their resolved Core
+background; their transparent selected bottom border uses border-box background
+painting to cover the aligned baseline with the same preset or custom surface.
 Authored solid backgrounds consume the canonical Button hover and active wash
 strengths as background-image layers without replacing the authored surface;
 the active layer paints through the transparent selected lower border. The
@@ -925,7 +927,8 @@ The current contract behavior is:
 - the variation is registered through `register_block_style()`
 - the physical file modification time is the asset version used by both the
   frontend and the editor iframe
-- `core-group-system-carousel.css` is explicitly skipped from auto-registration
+- `bp-widget-system-panel-header.css` is explicitly skipped from auto-registration and registered through its BuddyPress block loader
+- `core-icon-dialog.css` is loaded by the dialog runtime rather than the filename-derived scanner
 
 This file naming and registration behavior is part of the current design-system runtime and MUST remain stable until replaced explicitly.
 
@@ -940,6 +943,12 @@ same `equal-heights` style and physical-file version. The explicit registration
 precedes the file-driven Group Panel family so the Group style order remains
 Default, Equal Heights, System Flat Panel, System Panel, System Panel Header,
 and System Panel Footer.
+
+Equal Heights also recognizes a direct `.is-panel-wrapper` child whose direct
+System Panel or System Flat Panel receives the equalized height. The wrapper is
+only the height-transfer carrier and retains its neutral paint contract. The
+same direct relationship passes through the editor's non-block layout wrapper;
+opt-out and stacked-Columns resets remain owned by the nested Panel.
 
 Woo Product Categories is a dynamic-block compatibility consumer of this lane.
 `inc/plugin-compatibility.php` registers `system-badge`, `system-flat-list`,
@@ -1000,7 +1009,7 @@ Recent Networkwide Posts and curated member/group blocks remain out of scope.
 
 `wp_enqueue_block_style()` loads the selected pagination variation and its shared `strap-system-ui-pagination` dependency. Runtime filters MUST NOT force every pagination variation onto a page.
 
-## Carousel Image Width Token Contract
+## Media Width Token Contract
 
 `inc/dynamic-styles.php` currently appends these frontend/editor variables to the global runtime token surface:
 
@@ -1016,17 +1025,13 @@ The current contract is:
 
 - both values MUST be treated as positive integer pixel widths
 - malformed, zero, or negative values MUST fall back to `150px` for thumbnail and `300px` for medium
-- the carousel runtime MAY shrink below those preferred widths when the rendered track is narrower
-- the thumbnail variation MUST NOT upscale beyond the active preferred width
-- thumbnail mode is the safe default for the thumbnail variation
-- medium mode applies only when every direct image slide in the thumbnail variation is explicitly `size-medium`
-- `size-full`, undefined size classes, mixed size classes, and non-image direct slides remain thumbnail mode
+- consumers MAY shrink below those preferred widths when their rendered container is narrower
 
 These variables are currently consumed by:
 
-- `assets/js/carousel-nav.js`
-- `assets/js/carousel-editor-preview.js`
-- `assets/css/style-variations/core-group-system-carousel.css`
+- `assets/css/query-media-object.css`
+- `assets/css/style-variations/woocommerce-product-template-list.css`
+- `assets/css/style-variations/woocommerce-product-template-panel.css`
 
 ## Variation Script Loading Contract
 

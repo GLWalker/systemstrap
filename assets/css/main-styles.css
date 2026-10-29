@@ -38,7 +38,7 @@ header.wp-block-template-part {
 }
 
 .wp-block-group.is-panel-wrapper>*+*,
-.wp-block-group.is-panel-wrapper>.block-editor-block-list__layout> :not(.block-list-appender)+ :not(.block-list-appender) {
+.wp-block-group.is-panel-wrapper>.block-editor-block-list__layout:not(.wp-block)> :not(.block-list-appender)+ :not(.block-list-appender) {
     margin-block-start: 0;
 }
 
@@ -917,7 +917,7 @@ select:focus {
     padding-right: var(--wp--preset--font-size--small);
     border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--form-border-color);
     border-radius: var(--wp--custom--border-radius, 4px);
-    background-color: var(--wp--custom--system-ui-surface, #fff);
+    background-color: var(--wp--custom--form-bg-color, var(--wp--preset--color--base));
     color: inherit;
     font-family: inherit;
     font-size: inherit;
@@ -934,7 +934,7 @@ select:focus {
 .wp-block-search__button-inside .wp-block-search__inside-wrapper {
     border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--form-border-color);
     border-radius: var(--wp--custom--border-radius, 4px);
-    background-color: var(--wp--custom--system-ui-surface, #fff);
+    background-color: var(--wp--custom--form-bg-color, var(--wp--preset--color--base));
     overflow: hidden;
     transition: var(--wp--custom--form-transition);
 }

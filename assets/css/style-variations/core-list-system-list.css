@@ -87,7 +87,7 @@ ol.wp-block-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style
 }
 
 :is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) > .wp-block-list:is(.is-style-system-list, .is-style-system-flat-list),
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) .block-editor-block-list__layout > .wp-block-list:is(.is-style-system-list, .is-style-system-flat-list) {
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) > .block-editor-block-list__layout:not(.wp-block) > .wp-block-list:is(.is-style-system-list, .is-style-system-flat-list) {
     border-left: 0;
     border-right: 0;
     border-radius: 0;
@@ -95,35 +95,35 @@ ol.wp-block-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style
 }
 
 :is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) > .wp-block-list:is(.is-style-system-list, .is-style-system-flat-list):first-child,
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) .block-editor-block-list__layout > .wp-block-list:is(.is-style-system-list, .is-style-system-flat-list):first-child {
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) > .block-editor-block-list__layout:not(.wp-block) > .wp-block-list:is(.is-style-system-list, .is-style-system-flat-list):first-child {
     border-top: 0;
 }
 
 :is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) > .wp-block-group.is-style-system-panel-header + .wp-block-list:is(.is-style-system-list, .is-style-system-flat-list),
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) > .block-editor-block-list__layout > .wp-block-group.is-style-system-panel-header + .wp-block-list:is(.is-style-system-list, .is-style-system-flat-list) {
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) > .block-editor-block-list__layout:not(.wp-block) > .wp-block-group.is-style-system-panel-header + .wp-block-list:is(.is-style-system-list, .is-style-system-flat-list) {
     border-top: 0;
 }
 
 :is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) > .wp-block-list:is(.is-style-system-list, .is-style-system-flat-list):last-child,
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) .block-editor-block-list__layout > .wp-block-list:is(.is-style-system-list, .is-style-system-flat-list):last-child,
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) .block-editor-block-list__layout > .wp-block-list:is(.is-style-system-list, .is-style-system-flat-list):has(+ .block-list-appender) {
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) > .block-editor-block-list__layout:not(.wp-block) > .wp-block-list:is(.is-style-system-list, .is-style-system-flat-list):last-child,
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) > .block-editor-block-list__layout:not(.wp-block) > .wp-block-list:is(.is-style-system-list, .is-style-system-flat-list):has(+ .block-list-appender) {
     border-bottom: 0;
 }
 
 :is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) > .wp-block-list:is(.is-style-system-list, .is-style-system-flat-list):has(+ .wp-block-group.is-style-system-panel-footer),
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) > .block-editor-block-list__layout > .wp-block-list:is(.is-style-system-list, .is-style-system-flat-list):has(+ .wp-block-group.is-style-system-panel-footer) {
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) > .block-editor-block-list__layout:not(.wp-block) > .wp-block-list:is(.is-style-system-list, .is-style-system-flat-list):has(+ .wp-block-group.is-style-system-panel-footer) {
     border-bottom: 0;
 }
 
 :is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) > .wp-block-list.is-style-system-list-flush,
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) .block-editor-block-list__layout > .wp-block-list.is-style-system-list-flush {
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) > .block-editor-block-list__layout:not(.wp-block) > .wp-block-list.is-style-system-list-flush {
     border: 0;
     border-radius: inherit;
     overflow: hidden;
 }
 
 :is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) > .wp-block-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) > li,
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) .block-editor-block-list__layout > .wp-block-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) > li {
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) > .block-editor-block-list__layout:not(.wp-block) > .wp-block-list:is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) > li {
     background-color: var(--wp--custom--system-ui-surface-nested, transparent);
     background-image: var(--wp--custom--system-ui-background-image-nested, none);
     backdrop-filter: none !important;

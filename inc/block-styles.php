@@ -151,7 +151,7 @@ function strap_register_block_styles() {
 		// Find where the variation name starts (assuming all our variations start with 'system-')
 		$var_pos = strpos( $filename, '-system-' );
 		
-		if ( in_array( $filename, array( 'core-button-system-icon', 'bp-widget-system-panel-header' ), true ) ) {
+		if ( 'bp-widget-system-panel-header' === $filename ) {
 			continue;
 		}
 		
@@ -292,8 +292,7 @@ function strap_register_block_styles() {
 		)
 	);
 
-	// Removed Carousel style registrations to clean up the UI.
-	// We now exclusively use Block Variations (strap-carousels.js) for carousels.
+	// Carousel variations and runtime presentation are owned by the companion plugin.
 }
 add_action( 'init', 'strap_register_block_styles' );
 

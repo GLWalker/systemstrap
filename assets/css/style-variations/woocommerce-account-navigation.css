@@ -79,8 +79,13 @@
 
 .strap-woocommerce-account-navigation:is(.is-style-system-list-woo, .is-style-system-list-flush-woo) > .woocommerce-MyAccount-navigation a:focus-visible {
 	outline: 2px solid currentColor;
-	outline-offset: -2px;
+	outline-offset: var(--wp--custom--focus-ring-offset);
 	z-index: 2;
+}
+
+.strap-woocommerce-account-navigation.is-style-system-list-woo > .woocommerce-MyAccount-navigation a:focus-visible,
+.wp-block-group.is-style-system-panel > .strap-woocommerce-account-navigation.is-style-system-list-flush-woo > .woocommerce-MyAccount-navigation a:focus-visible {
+	outline-offset: calc(-1 * var(--wp--custom--focus-ring-width));
 }
 
 /* A mapped List directly inside a System Panel inherits the composed nested

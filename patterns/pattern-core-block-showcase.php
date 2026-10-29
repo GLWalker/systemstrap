@@ -1,8 +1,9 @@
 <?php
+
 /**
  * Title: Core Block Showcase
  * Slug: systemstrap/core-block-showcase
- * Categories: featured, systemstrap
+ * Categories: systemstrap
  * Description: A large WordPress-native showcase of default Core blocks, organized as complete editable units.
  * Keywords: blocks, showcase, typography, media, widgets, query
  */
@@ -25,19 +26,19 @@
 		<!-- /wp:paragraph -->
 
 		<!-- wp:navigation {"overlayMenu":"mobile","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left"}} -->
-			<!-- wp:navigation-link {"label":"Overview","url":"#overview","kind":"custom"} /-->
-			<!-- wp:navigation-link {"label":"Typography","url":"#typography","kind":"custom"} /-->
-			<!-- wp:navigation-link {"label":"Buttons","url":"#buttons","kind":"custom"} /-->
-			<!-- wp:navigation-link {"label":"Media","url":"#media","kind":"custom"} /-->
-			<!-- wp:navigation-link {"label":"Layout","url":"#layout","kind":"custom"} /-->
-			<!-- wp:navigation-link {"label":"Widgets","url":"#widgets","kind":"custom"} /-->
-			<!-- wp:navigation-link {"label":"Queries","url":"#queries","kind":"custom"} /-->
-			<!-- wp:navigation-submenu {"label":"More","url":"#more","kind":"custom"} -->
-				<!-- wp:navigation-link {"label":"Tables","url":"#tables","kind":"custom"} /-->
-				<!-- wp:navigation-link {"label":"Details","url":"#details","kind":"custom"} /-->
-				<!-- wp:navigation-link {"label":"Comments","url":"#comments","kind":"custom"} /-->
-				<!-- wp:navigation-link {"label":"Back to top","url":"#overview","kind":"custom"} /-->
-			<!-- /wp:navigation-submenu -->
+		<!-- wp:navigation-link {"label":"Overview","url":"#overview","kind":"custom"} /-->
+		<!-- wp:navigation-link {"label":"Typography","url":"#typography","kind":"custom"} /-->
+		<!-- wp:navigation-link {"label":"Buttons","url":"#buttons","kind":"custom"} /-->
+		<!-- wp:navigation-link {"label":"Media","url":"#media","kind":"custom"} /-->
+		<!-- wp:navigation-link {"label":"Layout","url":"#layout","kind":"custom"} /-->
+		<!-- wp:navigation-link {"label":"Widgets","url":"#widgets","kind":"custom"} /-->
+		<!-- wp:navigation-link {"label":"Queries","url":"#queries","kind":"custom"} /-->
+		<!-- wp:navigation-submenu {"label":"More","url":"#more","kind":"custom"} -->
+		<!-- wp:navigation-link {"label":"Tables","url":"#tables","kind":"custom"} /-->
+		<!-- wp:navigation-link {"label":"Details","url":"#details","kind":"custom"} /-->
+		<!-- wp:navigation-link {"label":"Comments","url":"#comments","kind":"custom"} /-->
+		<!-- wp:navigation-link {"label":"Back to top","url":"#overview","kind":"custom"} /-->
+		<!-- /wp:navigation-submenu -->
 		<!-- /wp:navigation -->
 	</header>
 	<!-- /wp:group -->
@@ -88,7 +89,7 @@
 	<!-- /wp:group -->
 
 	<!-- wp:separator {"align":"wide","className":"is-style-wide"} -->
-	<hr class="wp-block-separator alignwide has-alpha-channel-opacity is-style-wide"/>
+	<hr class="wp-block-separator alignwide has-alpha-channel-opacity is-style-wide" />
 	<!-- /wp:separator -->
 
 	<!-- wp:group {"anchor":"typography","align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|30","margin":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
@@ -154,13 +155,18 @@
 				<!-- /wp:heading -->
 				<!-- wp:list -->
 				<ul class="wp-block-list">
-					<!-- wp:list-item --><li>Clear hierarchy</li><!-- /wp:list-item -->
-					<!-- wp:list-item --><li>Comfortable line length</li><!-- /wp:list-item -->
-					<!-- wp:list-item --><li>Predictable spacing
+					<!-- wp:list-item -->
+					<li>Clear hierarchy</li><!-- /wp:list-item -->
+					<!-- wp:list-item -->
+					<li>Comfortable line length</li><!-- /wp:list-item -->
+					<!-- wp:list-item -->
+					<li>Predictable spacing
 						<!-- wp:list -->
 						<ul class="wp-block-list">
-							<!-- wp:list-item --><li>Nested items remain distinct</li><!-- /wp:list-item -->
-							<!-- wp:list-item --><li>Markers align consistently</li><!-- /wp:list-item -->
+							<!-- wp:list-item -->
+							<li>Nested items remain distinct</li><!-- /wp:list-item -->
+							<!-- wp:list-item -->
+							<li>Markers align consistently</li><!-- /wp:list-item -->
 						</ul>
 						<!-- /wp:list -->
 					</li><!-- /wp:list-item -->
@@ -176,9 +182,12 @@
 				<!-- /wp:heading -->
 				<!-- wp:list {"ordered":true} -->
 				<ol class="wp-block-list">
-					<!-- wp:list-item --><li>Start with semantic content.</li><!-- /wp:list-item -->
-					<!-- wp:list-item --><li>Apply the smallest useful style.</li><!-- /wp:list-item -->
-					<!-- wp:list-item --><li>Test it at narrow and wide viewports.</li><!-- /wp:list-item -->
+					<!-- wp:list-item -->
+					<li>Start with semantic content.</li><!-- /wp:list-item -->
+					<!-- wp:list-item -->
+					<li>Apply the smallest useful style.</li><!-- /wp:list-item -->
+					<!-- wp:list-item -->
+					<li>Test it at narrow and wide viewports.</li><!-- /wp:list-item -->
 				</ol>
 				<!-- /wp:list -->
 			</div>
@@ -188,12 +197,17 @@
 
 		<!-- wp:quote -->
 		<blockquote class="wp-block-quote"><!-- wp:paragraph -->
-		<p>A theme should support the story without standing in front of it.</p>
-		<!-- /wp:paragraph --><cite>SystemStrap design principle</cite></blockquote>
+			<p>A theme should support the story without standing in front of it.</p>
+			<!-- /wp:paragraph --><cite>SystemStrap design principle</cite>
+		</blockquote>
 		<!-- /wp:quote -->
 
 		<!-- wp:pullquote -->
-		<figure class="wp-block-pullquote"><blockquote><p>Default blocks. Endless possibilities.</p><cite>SystemStrap</cite></blockquote></figure>
+		<figure class="wp-block-pullquote">
+			<blockquote>
+				<p>Default blocks. Endless possibilities.</p><cite>SystemStrap</cite>
+			</blockquote>
+		</figure>
 		<!-- /wp:pullquote -->
 
 		<!-- wp:columns {"align":"wide"} -->
@@ -234,13 +248,15 @@ extend only where the project decides.</pre>
 		<!-- /wp:paragraph -->
 
 		<!-- wp:footnotes -->
-		<ol class="wp-block-footnotes"><li id="footnote-1">Footnotes provide supporting context without interrupting the main reading flow. <a href="#overview">Return to overview</a>.</li></ol>
+		<ol class="wp-block-footnotes">
+			<li id="footnote-1">Footnotes provide supporting context without interrupting the main reading flow. <a href="#overview">Return to overview</a>.</li>
+		</ol>
 		<!-- /wp:footnotes -->
 	</div>
 	<!-- /wp:group -->
 
 	<!-- wp:separator {"align":"wide","className":"is-style-wide"} -->
-	<hr class="wp-block-separator alignwide has-alpha-channel-opacity is-style-wide"/>
+	<hr class="wp-block-separator alignwide has-alpha-channel-opacity is-style-wide" />
 	<!-- /wp:separator -->
 
 	<!-- wp:group {"anchor":"buttons","align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|30","margin":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
@@ -291,18 +307,18 @@ extend only where the project decides.</pre>
 		<!-- /wp:paragraph -->
 
 		<!-- wp:navigation {"overlayMenu":"never","layout":{"type":"flex","justifyContent":"left"}} -->
-			<!-- wp:navigation-submenu {"label":"Button Dropdown","url":"#buttons","kind":"custom"} -->
-				<!-- wp:navigation-link {"label":"Primary action","url":"#buttons","kind":"custom"} /-->
-				<!-- wp:navigation-link {"label":"Media examples","url":"#media","kind":"custom"} /-->
-				<!-- wp:navigation-link {"label":"Widget examples","url":"#widgets","kind":"custom"} /-->
-				<!-- wp:navigation-link {"label":"Back to top","url":"#overview","kind":"custom"} /-->
-			<!-- /wp:navigation-submenu -->
+		<!-- wp:navigation-submenu {"label":"Button Dropdown","url":"#buttons","kind":"custom"} -->
+		<!-- wp:navigation-link {"label":"Primary action","url":"#buttons","kind":"custom"} /-->
+		<!-- wp:navigation-link {"label":"Media examples","url":"#media","kind":"custom"} /-->
+		<!-- wp:navigation-link {"label":"Widget examples","url":"#widgets","kind":"custom"} /-->
+		<!-- wp:navigation-link {"label":"Back to top","url":"#overview","kind":"custom"} /-->
+		<!-- /wp:navigation-submenu -->
 		<!-- /wp:navigation -->
 	</div>
 	<!-- /wp:group -->
 
 	<!-- wp:separator {"align":"wide","className":"is-style-wide"} -->
-	<hr class="wp-block-separator alignwide has-alpha-channel-opacity is-style-wide"/>
+	<hr class="wp-block-separator alignwide has-alpha-channel-opacity is-style-wide" />
 	<!-- /wp:separator -->
 
 	<!-- wp:group {"anchor":"media","align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|40","margin":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
@@ -312,55 +328,63 @@ extend only where the project decides.</pre>
 		<!-- /wp:heading -->
 
 		<!-- wp:image {"align":"wide","sizeSlug":"full","linkDestination":"none"} -->
-		<figure class="wp-block-image alignwide size-full"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/media/hero-1280x720.webp" alt="A wide demonstration image"/><figcaption class="wp-element-caption">Image block with a caption and no link.</figcaption></figure>
+		<figure class="wp-block-image alignwide size-full"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/hero-1280x720.webp" alt="A wide demonstration image" />
+			<figcaption class="wp-element-caption">Image block with a caption and no link.</figcaption>
+		</figure>
 		<!-- /wp:image -->
 
 		<!-- wp:gallery {"columns":3,"linkTo":"none","sizeSlug":"large"} -->
 		<figure class="wp-block-gallery has-nested-images columns-3 is-cropped">
 			<!-- wp:image {"sizeSlug":"large","linkDestination":"none"} -->
-			<figure class="wp-block-image size-large"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/media/blog-1200x800.webp" alt="Editorial demonstration image"/></figure>
+			<figure class="wp-block-image size-large"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/blog-1200x800.webp" alt="Editorial demonstration image" /></figure>
 			<!-- /wp:image -->
 			<!-- wp:image {"sizeSlug":"large","linkDestination":"none"} -->
-			<figure class="wp-block-image size-large"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/media/banner-1200x400.webp" alt="Banner demonstration image"/></figure>
+			<figure class="wp-block-image size-large"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/banner-1200x400.webp" alt="Banner demonstration image" /></figure>
 			<!-- /wp:image -->
 			<!-- wp:image {"sizeSlug":"large","linkDestination":"none"} -->
-			<figure class="wp-block-image size-large"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/media/thumbnail-300x300.webp" alt="Square demonstration image"/></figure>
+			<figure class="wp-block-image size-large"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/thumbnail-300x300.webp" alt="Square demonstration image" /></figure>
 			<!-- /wp:image -->
 		</figure>
 		<!-- /wp:gallery -->
 
-		<!-- wp:cover {"url":"<?php echo esc_url( get_template_directory_uri() ); ?>/assets/media/background-2560x1400.webp","dimRatio":60,"overlayColor":"primary","minHeight":420,"align":"wide","layout":{"type":"constrained"}} -->
-		<div class="wp-block-cover alignwide" style="min-height:420px"><span aria-hidden="true" class="wp-block-cover__background has-primary-background-color has-background-dim-60 has-background-dim"></span><img class="wp-block-cover__image-background" alt="" src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/media/background-2560x1400.webp" data-object-fit="cover"/><div class="wp-block-cover__inner-container">
-			<!-- wp:heading {"textAlign":"center","level":3,"textColor":"base"} -->
-			<h3 class="wp-block-heading has-text-align-center has-base-color has-text-color">Cover blocks combine media and content</h3>
-			<!-- /wp:heading -->
-			<!-- wp:paragraph {"align":"center","textColor":"base"} -->
-			<p class="has-text-align-center has-base-color has-text-color">Use a complete message with a heading, supporting copy, and a clear action.</p>
-			<!-- /wp:paragraph -->
-			<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
-			<div class="wp-block-buttons">
-				<!-- wp:button {"backgroundColor":"base","textColor":"contrast"} -->
-				<div class="wp-block-button"><a class="wp-block-button__link has-contrast-color has-base-background-color has-text-color has-background wp-element-button" href="#layout">Explore layout blocks</a></div>
-				<!-- /wp:button -->
+		<!-- wp:cover {"url":"<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/background-2560x1400.webp","dimRatio":60,"overlayColor":"primary","minHeight":420,"align":"wide","layout":{"type":"constrained"}} -->
+		<div class="wp-block-cover alignwide" style="min-height:420px"><span aria-hidden="true" class="wp-block-cover__background has-primary-background-color has-background-dim-60 has-background-dim"></span><img class="wp-block-cover__image-background" alt="" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/background-2560x1400.webp" data-object-fit="cover" />
+			<div class="wp-block-cover__inner-container">
+				<!-- wp:heading {"textAlign":"center","level":3,"textColor":"base"} -->
+				<h3 class="wp-block-heading has-text-align-center has-base-color has-text-color">Cover blocks combine media and content</h3>
+				<!-- /wp:heading -->
+				<!-- wp:paragraph {"align":"center","textColor":"base"} -->
+				<p class="has-text-align-center has-base-color has-text-color">Use a complete message with a heading, supporting copy, and a clear action.</p>
+				<!-- /wp:paragraph -->
+				<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
+				<div class="wp-block-buttons">
+					<!-- wp:button {"backgroundColor":"base","textColor":"contrast"} -->
+					<div class="wp-block-button"><a class="wp-block-button__link has-contrast-color has-base-background-color has-text-color has-background wp-element-button" href="#layout">Explore layout blocks</a></div>
+					<!-- /wp:button -->
+				</div>
+				<!-- /wp:buttons -->
 			</div>
-			<!-- /wp:buttons -->
-		</div></div>
+		</div>
 		<!-- /wp:cover -->
 
-		<!-- wp:media-text {"mediaPosition":"left","mediaType":"image","mediaUrl":"<?php echo esc_url( get_template_directory_uri() ); ?>/assets/media/female-360x480.webp","mediaWidth":35,"verticalAlignment":"center"} -->
-		<div class="wp-block-media-text is-stacked-on-mobile is-vertically-aligned-center" style="grid-template-columns:35% auto"><figure class="wp-block-media-text__media"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/media/female-360x480.webp" alt="Portrait demonstration image"/></figure><div class="wp-block-media-text__content">
-			<!-- wp:heading {"level":3} -->
-			<h3 class="wp-block-heading">Media and text belong together</h3>
-			<!-- /wp:heading -->
-			<!-- wp:paragraph -->
-			<p>This block is useful for profiles, services, case studies, product introductions, and any story where an image needs a clear relationship to supporting content.</p>
-			<!-- /wp:paragraph -->
-			<!-- wp:buttons -->
-			<div class="wp-block-buttons"><!-- wp:button -->
-			<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="#widgets">Continue to widgets</a></div>
-			<!-- /wp:button --></div>
-			<!-- /wp:buttons -->
-		</div></div>
+		<!-- wp:media-text {"mediaPosition":"left","mediaType":"image","mediaUrl":"<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/female-360x480.webp","mediaWidth":35,"verticalAlignment":"center"} -->
+		<div class="wp-block-media-text is-stacked-on-mobile is-vertically-aligned-center" style="grid-template-columns:35% auto">
+			<figure class="wp-block-media-text__media"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/female-360x480.webp" alt="Portrait demonstration image" /></figure>
+			<div class="wp-block-media-text__content">
+				<!-- wp:heading {"level":3} -->
+				<h3 class="wp-block-heading">Media and text belong together</h3>
+				<!-- /wp:heading -->
+				<!-- wp:paragraph -->
+				<p>This block is useful for profiles, services, case studies, product introductions, and any story where an image needs a clear relationship to supporting content.</p>
+				<!-- /wp:paragraph -->
+				<!-- wp:buttons -->
+				<div class="wp-block-buttons"><!-- wp:button -->
+					<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="#widgets">Continue to widgets</a></div>
+					<!-- /wp:button -->
+				</div>
+				<!-- /wp:buttons -->
+			</div>
+		</div>
 		<!-- /wp:media-text -->
 
 		<!-- wp:columns {"align":"wide"} -->
@@ -371,7 +395,9 @@ extend only where the project decides.</pre>
 				<h3 class="wp-block-heading">Audio</h3>
 				<!-- /wp:heading -->
 				<!-- wp:audio -->
-				<figure class="wp-block-audio"><audio controls src=""></audio><figcaption class="wp-element-caption">Select an audio file to test the player.</figcaption></figure>
+				<figure class="wp-block-audio"><audio controls src=""></audio>
+					<figcaption class="wp-element-caption">Select an audio file to test the player.</figcaption>
+				</figure>
 				<!-- /wp:audio -->
 			</div>
 			<!-- /wp:column -->
@@ -382,27 +408,31 @@ extend only where the project decides.</pre>
 				<h3 class="wp-block-heading">Video</h3>
 				<!-- /wp:heading -->
 				<!-- wp:video -->
-				<figure class="wp-block-video"><video controls poster="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/media/hero-1280x720.webp" src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/media/pexels-digital-projection-of-abstract-geometrical-lines-3129671.mp4"></video><figcaption class="wp-element-caption">Video block with a local theme asset.</figcaption></figure>
+				<figure class="wp-block-video"><video controls poster="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/hero-1280x720.webp" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/pexels-digital-projection-of-abstract-geometrical-lines-3129671.mp4"></video>
+					<figcaption class="wp-element-caption">Video block with a local theme asset.</figcaption>
+				</figure>
 				<!-- /wp:video -->
 			</div>
 			<!-- /wp:column -->
 		</div>
 		<!-- /wp:columns -->
 
-		<!-- wp:file {"href":"<?php echo esc_url( get_template_directory_uri() ); ?>/readme.txt","displayPreview":false} -->
-		<div class="wp-block-file"><a id="wp-block-file--media-showcase" href="<?php echo esc_url( get_template_directory_uri() ); ?>/readme.txt">SystemStrap readme.txt</a><a href="<?php echo esc_url( get_template_directory_uri() ); ?>/readme.txt" class="wp-block-file__button wp-element-button" download>Download</a></div>
+		<!-- wp:file {"href":"<?php echo esc_url(get_template_directory_uri()); ?>/readme.txt","displayPreview":false} -->
+		<div class="wp-block-file"><a id="wp-block-file--media-showcase" href="<?php echo esc_url(get_template_directory_uri()); ?>/readme.txt">SystemStrap readme.txt</a><a href="<?php echo esc_url(get_template_directory_uri()); ?>/readme.txt" class="wp-block-file__button wp-element-button" download>Download</a></div>
 		<!-- /wp:file -->
 
 		<!-- wp:embed {"url":"https://www.youtube.com/watch?v=JHHEVn4tQbI","type":"video","providerNameSlug":"youtube","responsive":true} -->
-		<figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube"><div class="wp-block-embed__wrapper">
-		https://www.youtube.com/watch?v=JHHEVn4tQbI
-		</div></figure>
+		<figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube">
+			<div class="wp-block-embed__wrapper">
+				https://www.youtube.com/watch?v=JHHEVn4tQbI
+			</div>
+		</figure>
 		<!-- /wp:embed -->
 	</div>
 	<!-- /wp:group -->
 
 	<!-- wp:separator {"align":"wide","className":"is-style-wide"} -->
-	<hr class="wp-block-separator alignwide has-alpha-channel-opacity is-style-wide"/>
+	<hr class="wp-block-separator alignwide has-alpha-channel-opacity is-style-wide" />
 	<!-- /wp:separator -->
 
 	<!-- wp:group {"anchor":"layout","align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|40","margin":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
@@ -421,8 +451,9 @@ extend only where the project decides.</pre>
 			<!-- /wp:paragraph -->
 			<!-- wp:buttons -->
 			<div class="wp-block-buttons"><!-- wp:button -->
-			<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="#tables">View the table</a></div>
-			<!-- /wp:button --></div>
+				<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="#tables">View the table</a></div>
+				<!-- /wp:button -->
+			</div>
 			<!-- /wp:buttons -->
 		</div>
 		<!-- /wp:group -->
@@ -464,8 +495,10 @@ extend only where the project decides.</pre>
 
 		<!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
 		<div class="wp-block-group">
-			<!-- wp:paragraph --><p><strong>Row layout:</strong> items share one horizontal lane.</p><!-- /wp:paragraph -->
-			<!-- wp:paragraph --><p><a href="#overview">Back to overview</a></p><!-- /wp:paragraph -->
+			<!-- wp:paragraph -->
+			<p><strong>Row layout:</strong> items share one horizontal lane.</p><!-- /wp:paragraph -->
+			<!-- wp:paragraph -->
+			<p><a href="#overview">Back to overview</a></p><!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:group -->
 
@@ -474,7 +507,7 @@ extend only where the project decides.</pre>
 		<!-- /wp:spacer -->
 
 		<!-- wp:separator {"className":"is-style-dots"} -->
-		<hr class="wp-block-separator has-alpha-channel-opacity is-style-dots"/>
+		<hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" />
 		<!-- /wp:separator -->
 	</div>
 	<!-- /wp:group -->
@@ -486,7 +519,50 @@ extend only where the project decides.</pre>
 		<!-- /wp:heading -->
 
 		<!-- wp:table {"hasFixedLayout":true} -->
-		<figure class="wp-block-table"><table class="has-fixed-layout"><thead><tr><th>Block family</th><th>Primary use</th><th>Editor context</th><th>Status</th></tr></thead><tbody><tr><td>Text</td><td>Writing and hierarchy</td><td>Posts and pages</td><td>Ready</td></tr><tr><td>Media</td><td>Images, audio, and video</td><td>Posts, pages, templates</td><td>Ready</td></tr><tr><td>Design</td><td>Layout and visual structure</td><td>All editors</td><td>Ready</td></tr><tr><td>Theme</td><td>Dynamic site content</td><td>Site Editor and queries</td><td>Contextual</td></tr></tbody><tfoot><tr><td colspan="4">Core blocks remain editable and portable across style variations.</td></tr></tfoot></table><figcaption class="wp-element-caption">A complete table with header, body, footer, and caption.</figcaption></figure>
+		<figure class="wp-block-table">
+			<table class="has-fixed-layout">
+				<thead>
+					<tr>
+						<th>Block family</th>
+						<th>Primary use</th>
+						<th>Editor context</th>
+						<th>Status</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Text</td>
+						<td>Writing and hierarchy</td>
+						<td>Posts and pages</td>
+						<td>Ready</td>
+					</tr>
+					<tr>
+						<td>Media</td>
+						<td>Images, audio, and video</td>
+						<td>Posts, pages, templates</td>
+						<td>Ready</td>
+					</tr>
+					<tr>
+						<td>Design</td>
+						<td>Layout and visual structure</td>
+						<td>All editors</td>
+						<td>Ready</td>
+					</tr>
+					<tr>
+						<td>Theme</td>
+						<td>Dynamic site content</td>
+						<td>Site Editor and queries</td>
+						<td>Contextual</td>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="4">Core blocks remain editable and portable across style variations.</td>
+					</tr>
+				</tfoot>
+			</table>
+			<figcaption class="wp-element-caption">A complete table with header, body, footer, and caption.</figcaption>
+		</figure>
 		<!-- /wp:table -->
 	</div>
 	<!-- /wp:group -->
@@ -498,9 +574,11 @@ extend only where the project decides.</pre>
 		<!-- /wp:heading -->
 
 		<!-- wp:details -->
-		<details class="wp-block-details"><summary>What makes a useful block showcase?</summary><!-- wp:paragraph {"placeholder":"Type / to add a hidden block"} -->
-		<p>A useful showcase uses realistic content, preserves complete component relationships, and gives editors enough material to judge typography, spacing, interaction, and responsive behavior.</p>
-		<!-- /wp:paragraph --></details>
+		<details class="wp-block-details">
+			<summary>What makes a useful block showcase?</summary><!-- wp:paragraph {"placeholder":"Type / to add a hidden block"} -->
+			<p>A useful showcase uses realistic content, preserves complete component relationships, and gives editors enough material to judge typography, spacing, interaction, and responsive behavior.</p>
+			<!-- /wp:paragraph -->
+		</details>
 		<!-- /wp:details -->
 
 		<!-- wp:accordion -->
@@ -512,8 +590,9 @@ extend only where the project decides.</pre>
 				<!-- /wp:accordion-heading -->
 				<!-- wp:accordion-panel -->
 				<div class="wp-block-accordion-panel"><!-- wp:paragraph -->
-				<p>Test the same content under every variation so color, type, border, and spacing differences can be compared without changing the underlying page.</p>
-				<!-- /wp:paragraph --></div>
+					<p>Test the same content under every variation so color, type, border, and spacing differences can be compared without changing the underlying page.</p>
+					<!-- /wp:paragraph -->
+				</div>
 				<!-- /wp:accordion-panel -->
 			</div>
 			<!-- /wp:accordion-item -->
@@ -524,8 +603,9 @@ extend only where the project decides.</pre>
 				<!-- /wp:accordion-heading -->
 				<!-- wp:accordion-panel -->
 				<div class="wp-block-accordion-panel"><!-- wp:paragraph -->
-				<p>Parent and child blocks often share layout, context, and interaction behavior. Testing them together reveals problems that isolated child blocks cannot show.</p>
-				<!-- /wp:paragraph --></div>
+					<p>Parent and child blocks often share layout, context, and interaction behavior. Testing them together reveals problems that isolated child blocks cannot show.</p>
+					<!-- /wp:paragraph -->
+				</div>
 				<!-- /wp:accordion-panel -->
 			</div>
 			<!-- /wp:accordion-item -->
@@ -535,7 +615,7 @@ extend only where the project decides.</pre>
 	<!-- /wp:group -->
 
 	<!-- wp:separator {"align":"wide","className":"is-style-wide"} -->
-	<hr class="wp-block-separator alignwide has-alpha-channel-opacity is-style-wide"/>
+	<hr class="wp-block-separator alignwide has-alpha-channel-opacity is-style-wide" />
 	<!-- /wp:separator -->
 
 	<!-- wp:group {"anchor":"widgets","align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|40","margin":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
@@ -550,19 +630,22 @@ extend only where the project decides.</pre>
 		<div class="wp-block-columns alignwide">
 			<!-- wp:column -->
 			<div class="wp-block-column">
-				<!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Archives</h3><!-- /wp:heading -->
+				<!-- wp:heading {"level":3} -->
+				<h3 class="wp-block-heading">Archives</h3><!-- /wp:heading -->
 				<!-- wp:archives {"showPostCounts":true} /-->
 			</div>
 			<!-- /wp:column -->
 			<!-- wp:column -->
 			<div class="wp-block-column">
-				<!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Terms</h3><!-- /wp:heading -->
+				<!-- wp:heading {"level":3} -->
+				<h3 class="wp-block-heading">Terms</h3><!-- /wp:heading -->
 				<!-- wp:categories {"showPostCounts":true,"showHierarchy":true} /-->
 			</div>
 			<!-- /wp:column -->
 			<!-- wp:column -->
 			<div class="wp-block-column">
-				<!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Tag cloud</h3><!-- /wp:heading -->
+				<!-- wp:heading {"level":3} -->
+				<h3 class="wp-block-heading">Tag cloud</h3><!-- /wp:heading -->
 				<!-- wp:tag-cloud {"numberOfTags":15,"showTagCounts":true} /-->
 			</div>
 			<!-- /wp:column -->
@@ -573,13 +656,15 @@ extend only where the project decides.</pre>
 		<div class="wp-block-columns alignwide">
 			<!-- wp:column -->
 			<div class="wp-block-column">
-				<!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Latest posts</h3><!-- /wp:heading -->
+				<!-- wp:heading {"level":3} -->
+				<h3 class="wp-block-heading">Latest posts</h3><!-- /wp:heading -->
 				<!-- wp:latest-posts {"postsToShow":5,"displayPostDate":true,"displayAuthor":true,"displayPostContent":true,"excerptLength":18} /-->
 			</div>
 			<!-- /wp:column -->
 			<!-- wp:column -->
 			<div class="wp-block-column">
-				<!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Latest comments</h3><!-- /wp:heading -->
+				<!-- wp:heading {"level":3} -->
+				<h3 class="wp-block-heading">Latest comments</h3><!-- /wp:heading -->
 				<!-- wp:latest-comments {"commentsToShow":5,"displayAvatar":true,"displayDate":true,"displayExcerpt":true} /-->
 			</div>
 			<!-- /wp:column -->
@@ -590,19 +675,22 @@ extend only where the project decides.</pre>
 		<div class="wp-block-columns alignwide">
 			<!-- wp:column -->
 			<div class="wp-block-column">
-				<!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Calendar</h3><!-- /wp:heading -->
+				<!-- wp:heading {"level":3} -->
+				<h3 class="wp-block-heading">Calendar</h3><!-- /wp:heading -->
 				<!-- wp:calendar /-->
 			</div>
 			<!-- /wp:column -->
 			<!-- wp:column -->
 			<div class="wp-block-column">
-				<!-- wp:heading {"level":3} --><h3 class="wp-block-heading">RSS feed</h3><!-- /wp:heading -->
+				<!-- wp:heading {"level":3} -->
+				<h3 class="wp-block-heading">RSS feed</h3><!-- /wp:heading -->
 				<!-- wp:rss {"feedURL":"https://wordpress.org/news/feed/","itemsToShow":4,"displayExcerpt":true,"displayDate":true,"displayAuthor":false} /-->
 			</div>
 			<!-- /wp:column -->
 			<!-- wp:column -->
 			<div class="wp-block-column">
-				<!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Account and social</h3><!-- /wp:heading -->
+				<!-- wp:heading {"level":3} -->
+				<h3 class="wp-block-heading">Account and social</h3><!-- /wp:heading -->
 				<!-- wp:loginout {"displayLoginAsForm":false} /-->
 				<!-- wp:social-links {"showLabels":true,"className":"is-style-logos-only"} -->
 				<ul class="wp-block-social-links has-visible-labels is-style-logos-only">
@@ -623,7 +711,7 @@ extend only where the project decides.</pre>
 	<!-- /wp:group -->
 
 	<!-- wp:separator {"align":"wide","className":"is-style-wide"} -->
-	<hr class="wp-block-separator alignwide has-alpha-channel-opacity is-style-wide"/>
+	<hr class="wp-block-separator alignwide has-alpha-channel-opacity is-style-wide" />
 	<!-- /wp:separator -->
 
 	<!-- wp:group {"anchor":"queries","align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|40","margin":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
@@ -639,32 +727,32 @@ extend only where the project decides.</pre>
 		<!-- wp:query {"queryId":71,"query":{"perPage":3,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false},"align":"wide"} -->
 		<div class="wp-block-query alignwide">
 			<!-- wp:post-template {"layout":{"type":"grid","columnCount":3}} -->
-				<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"constrained"}} -->
+			<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"constrained"}} -->
+			<div class="wp-block-group">
+				<!-- wp:post-featured-image {"isLink":true,"aspectRatio":"4/3"} /-->
+				<!-- wp:post-title {"isLink":true,"level":3} /-->
+				<!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap"}} -->
 				<div class="wp-block-group">
-					<!-- wp:post-featured-image {"isLink":true,"aspectRatio":"4/3"} /-->
-					<!-- wp:post-title {"isLink":true,"level":3} /-->
-					<!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap"}} -->
-					<div class="wp-block-group">
-						<!-- wp:post-date /-->
-						<!-- wp:post-terms {"term":"category"} /-->
-					</div>
-					<!-- /wp:group -->
-					<!-- wp:post-excerpt {"moreText":"Continue reading"} /-->
-					<!-- wp:read-more {"content":"Read the full post"} /-->
+					<!-- wp:post-date /-->
+					<!-- wp:post-terms {"term":"category"} /-->
 				</div>
 				<!-- /wp:group -->
+				<!-- wp:post-excerpt {"moreText":"Continue reading"} /-->
+				<!-- wp:read-more {"content":"Read the full post"} /-->
+			</div>
+			<!-- /wp:group -->
 			<!-- /wp:post-template -->
 
 			<!-- wp:query-no-results -->
-				<!-- wp:paragraph -->
-				<p>No posts matched this query. Publish a post or adjust the Query Loop settings.</p>
-				<!-- /wp:paragraph -->
+			<!-- wp:paragraph -->
+			<p>No posts matched this query. Publish a post or adjust the Query Loop settings.</p>
+			<!-- /wp:paragraph -->
 			<!-- /wp:query-no-results -->
 
 			<!-- wp:query-pagination {"className":"is-style-system-ui-pagination","layout":{"type":"flex","justifyContent":"space-between"}} -->
-				<!-- wp:query-pagination-previous {"label":"Previous"} /-->
-				<!-- wp:query-pagination-numbers /-->
-				<!-- wp:query-pagination-next {"label":"Next"} /-->
+			<!-- wp:query-pagination-previous {"label":"Previous"} /-->
+			<!-- wp:query-pagination-numbers /-->
+			<!-- wp:query-pagination-next {"label":"Next"} /-->
 			<!-- /wp:query-pagination -->
 		</div>
 		<!-- /wp:query -->
@@ -685,37 +773,37 @@ extend only where the project decides.</pre>
 		<div class="wp-block-comments comments use-form-control use-validation use-form-check use-form-label">
 			<!-- wp:comments-title {"level":3} /-->
 			<!-- wp:comment-template -->
-				<!-- wp:group {"tagName":"article","metadata":{"name":"Comment Body"},"className":"comment-body","style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"default"}} -->
-				<article class="wp-block-group comment-body">
-					<!-- wp:group {"className":"comment-stack","style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"flex","orientation":"vertical"}} -->
-					<div class="wp-block-group comment-stack">
-						<!-- wp:group {"tagName":"footer","className":"comment-meta","style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-						<footer class="wp-block-group comment-meta">
-							<!-- wp:avatar {"size":60} /-->
-							<!-- wp:group {"className":"comment-author-info","style":{"spacing":{"blockGap":"var:preset|spacing|10"},"layout":{"selfStretch":"fill","flexSize":null}},"layout":{"type":"flex","orientation":"vertical"}} -->
-							<div class="wp-block-group comment-author-info">
-								<!-- wp:comment-author-name {"style":{"elements":{"link":{"color":{"text":"var:preset|color|current"}}}},"backgroundColor":"base"} /-->
-								<!-- wp:comment-date {"style":{"elements":{"link":{"color":{"text":"var:preset|color|current"}}}}} /-->
-							</div>
-							<!-- /wp:group -->
-						</footer>
-						<!-- /wp:group -->
-						<!-- wp:comment-content /-->
-						<!-- wp:group {"className":"comment-actions","style":{"spacing":{"blockGap":"var:preset|spacing|20"},"margin":{"bottom":"var:preset|spacing|20"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center","justifyContent":"left"}} -->
-						<div class="wp-block-group comment-actions" style="margin-bottom:var(--wp--preset--spacing--20)">
-							<!-- wp:comment-edit-link /-->
-							<!-- wp:comment-reply-link /-->
+			<!-- wp:group {"tagName":"article","metadata":{"name":"Comment Body"},"className":"comment-body","style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"default"}} -->
+			<article class="wp-block-group comment-body">
+				<!-- wp:group {"className":"comment-stack","style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"flex","orientation":"vertical"}} -->
+				<div class="wp-block-group comment-stack">
+					<!-- wp:group {"tagName":"footer","className":"comment-meta","style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+					<footer class="wp-block-group comment-meta">
+						<!-- wp:avatar {"size":60} /-->
+						<!-- wp:group {"className":"comment-author-info","style":{"spacing":{"blockGap":"var:preset|spacing|10"},"layout":{"selfStretch":"fill","flexSize":null}},"layout":{"type":"flex","orientation":"vertical"}} -->
+						<div class="wp-block-group comment-author-info">
+							<!-- wp:comment-author-name {"style":{"elements":{"link":{"color":{"text":"var:preset|color|current"}}}},"backgroundColor":"base"} /-->
+							<!-- wp:comment-date {"style":{"elements":{"link":{"color":{"text":"var:preset|color|current"}}}}} /-->
 						</div>
 						<!-- /wp:group -->
+					</footer>
+					<!-- /wp:group -->
+					<!-- wp:comment-content /-->
+					<!-- wp:group {"className":"comment-actions","style":{"spacing":{"blockGap":"var:preset|spacing|20"},"margin":{"bottom":"var:preset|spacing|20"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center","justifyContent":"left"}} -->
+					<div class="wp-block-group comment-actions" style="margin-bottom:var(--wp--preset--spacing--20)">
+						<!-- wp:comment-edit-link /-->
+						<!-- wp:comment-reply-link /-->
 					</div>
 					<!-- /wp:group -->
-				</article>
+				</div>
 				<!-- /wp:group -->
+			</article>
+			<!-- /wp:group -->
 			<!-- /wp:comment-template -->
 			<!-- wp:comments-pagination {"paginationArrow":"chevron","layout":{"type":"flex","justifyContent":"space-between"}} -->
-				<!-- wp:comments-pagination-previous /-->
-				<!-- wp:comments-pagination-numbers /-->
-				<!-- wp:comments-pagination-next /-->
+			<!-- wp:comments-pagination-previous /-->
+			<!-- wp:comments-pagination-numbers /-->
+			<!-- wp:comments-pagination-next /-->
 			<!-- /wp:comments-pagination -->
 			<!-- wp:post-comments-form /-->
 		</div>

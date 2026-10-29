@@ -148,7 +148,7 @@ SystemStrap currently owns these primary stylesheet lanes:
 - `strap-buddypress-typography`
 - `strap-buddypress-components`
 - block style variation CSS under `assets/css/style-variations/`
-- explicit runtime exception handles such as `strap-carousel-styles` and dialog CSS
+- explicit runtime exception handles such as dialog CSS
 - conditional Woo Review and Pagination aliases that reuse canonical theme
   assets without duplicating them
 

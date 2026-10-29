@@ -74,6 +74,10 @@
     background-color: var(--system-tabs-banner);
 }
 
+.wp-block-tabs.is-style-system-vertical:has(> .wp-block-tab-panels.is-style-system-panel:not(.has-background):not([style*="background-color"])) > .wp-block-tab-list:not([class*="is-style-system-"]) > button[aria-selected="true"]:not(.has-background):not([style*="background-color"]) {
+    background-image: var(--strap-system-panel-context-background-image, var(--wp--custom--system-ui-background-image, none));
+}
+
 :where(.wp-block-tabs.is-style-system-vertical .wp-block-tab-list:not([class*="is-style-system-"])) > button[aria-selected="true"]::before {
     content: none;
 }

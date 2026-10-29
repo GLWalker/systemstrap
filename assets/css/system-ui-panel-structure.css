@@ -14,19 +14,19 @@
 
 /* Flatten direct shell participants, but leave nested Panel surfaces independent. */
 :is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>:not(.wp-block-group.is-style-system-panel):not(.wp-block-group.is-style-system-flat-panel),
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.block-editor-block-list__layout>:not(.wp-block-group.is-style-system-panel):not(.wp-block-group.is-style-system-flat-panel) {
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.block-editor-block-list__layout:not(.wp-block)>:not(.wp-block-group.is-style-system-panel):not(.wp-block-group.is-style-system-flat-panel) {
     border-radius: 0;
 }
 
 /* Rounded corner containment for direct children without overflow: hidden */
 :is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>:not(.wp-block-group.is-style-system-panel):not(.wp-block-group.is-style-system-flat-panel):first-child,
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.block-editor-block-list__layout>:not(.wp-block-group.is-style-system-panel):not(.wp-block-group.is-style-system-flat-panel):first-child {
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.block-editor-block-list__layout:not(.wp-block)>:not(.wp-block-group.is-style-system-panel):not(.wp-block-group.is-style-system-flat-panel):first-child {
     border-top-left-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px));
     border-top-right-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px));
 }
 
 :is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>:not(.wp-block-group.is-style-system-panel):not(.wp-block-group.is-style-system-flat-panel):last-child,
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.block-editor-block-list__layout>:not(.wp-block-group.is-style-system-panel):not(.wp-block-group.is-style-system-flat-panel):last-child {
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.block-editor-block-list__layout:not(.wp-block)>:not(.wp-block-group.is-style-system-panel):not(.wp-block-group.is-style-system-flat-panel):last-child {
     border-bottom-left-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px));
     border-bottom-right-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px));
 }
@@ -327,10 +327,10 @@
 :is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)> :is(.wp-block-archives-list, .wp-block-categories-list):is(.is-style-system-list, .is-style-system-flat-list),
 :is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.wp-block-terms-query:is(.is-style-system-list, .is-style-system-flat-list)>.wp-block-term-template,
 :is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.wp-block-comments:is(.is-style-system-list, .is-style-system-flat-list) .wp-block-comment-template,
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) .block-editor-block-list__layout> :is(.wp-block-list, .wp-block-archives, .wp-block-categories, .wp-block-page-list, .wp-block-rss, .wp-block-latest-posts, .wp-block-latest-comments):is(.is-style-system-list, .is-style-system-flat-list),
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) .block-editor-block-list__layout> :is(.wp-block-archives-list, .wp-block-categories-list):is(.is-style-system-list, .is-style-system-flat-list),
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) .block-editor-block-list__layout>.wp-block-terms-query:is(.is-style-system-list, .is-style-system-flat-list)>.wp-block-term-template,
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) .block-editor-block-list__layout>.wp-block-comments:is(.is-style-system-list, .is-style-system-flat-list) .wp-block-comment-template {
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.block-editor-block-list__layout:not(.wp-block)> :is(.wp-block-list, .wp-block-archives, .wp-block-categories, .wp-block-page-list, .wp-block-rss, .wp-block-latest-posts, .wp-block-latest-comments):is(.is-style-system-list, .is-style-system-flat-list),
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.block-editor-block-list__layout:not(.wp-block)> :is(.wp-block-archives-list, .wp-block-categories-list):is(.is-style-system-list, .is-style-system-flat-list),
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.block-editor-block-list__layout:not(.wp-block)>.wp-block-terms-query:is(.is-style-system-list, .is-style-system-flat-list)>.wp-block-term-template,
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.block-editor-block-list__layout:not(.wp-block)>.wp-block-comments:is(.is-style-system-list, .is-style-system-flat-list) .wp-block-comment-template {
     box-shadow: none !important;
 }
 
@@ -413,7 +413,7 @@
 /* Flush Logic for System Details                            */
 /* ========================================================= */
 :is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>:is(.wp-block-details.is-style-system-details, .wp-block-details.is-style-system-flat-panel),
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.block-editor-block-list__layout>*>:is(.wp-block-details.is-style-system-details, .wp-block-details.is-style-system-flat-panel) {
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.block-editor-block-list__layout:not(.wp-block)>*>:is(.wp-block-details.is-style-system-details, .wp-block-details.is-style-system-flat-panel) {
     border-left: 0 !important;
     border-right: 0 !important;
     border-radius: 0 !important;
@@ -423,7 +423,7 @@
 }
 
 :is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>:is(.wp-block-details.is-style-system-details, .wp-block-details.is-style-system-flat-panel) summary,
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.block-editor-block-list__layout>*>:is(.wp-block-details.is-style-system-details, .wp-block-details.is-style-system-flat-panel) summary {
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.block-editor-block-list__layout:not(.wp-block)>*>:is(.wp-block-details.is-style-system-details, .wp-block-details.is-style-system-flat-panel) summary {
     border-radius: 0 !important;
     padding: var(--wp--preset--spacing--20) calc(var(--wp--preset--spacing--30) + var(--wp--preset--spacing--40)) var(--wp--preset--spacing--20) var(--wp--preset--spacing--40) !important;
     min-height: calc(var(--wp--preset--spacing--40) + var(--wp--preset--spacing--30));
@@ -431,17 +431,17 @@
 
 /* If details is the first child of the panel, round its top corners */
 :is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>:is(.wp-block-details.is-style-system-details, .wp-block-details.is-style-system-flat-panel):first-child,
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) .block-editor-block-list__layout>*:first-child>:is(.wp-block-details.is-style-system-details, .wp-block-details.is-style-system-flat-panel),
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.block-editor-block-list__layout:not(.wp-block)>*:first-child>:is(.wp-block-details.is-style-system-details, .wp-block-details.is-style-system-flat-panel),
 :is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>:is(.wp-block-details.is-style-system-details, .wp-block-details.is-style-system-flat-panel):first-child summary,
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) .block-editor-block-list__layout>*:first-child>:is(.wp-block-details.is-style-system-details, .wp-block-details.is-style-system-flat-panel) summary {
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.block-editor-block-list__layout:not(.wp-block)>*:first-child>:is(.wp-block-details.is-style-system-details, .wp-block-details.is-style-system-flat-panel) summary {
     border-top-left-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
     border-top-right-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
 }
 
 /* If details is the last child of the panel, kill its bottom border and round its corners */
 :is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>:is(.wp-block-details.is-style-system-details, .wp-block-details.is-style-system-flat-panel):last-child,
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) .block-editor-block-list__layout>*:last-child>:is(.wp-block-details.is-style-system-details, .wp-block-details.is-style-system-flat-panel),
-:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel) .block-editor-block-list__layout>*:has(+ .block-list-appender)>:is(.wp-block-details.is-style-system-details, .wp-block-details.is-style-system-flat-panel) {
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.block-editor-block-list__layout:not(.wp-block)>*:last-child>:is(.wp-block-details.is-style-system-details, .wp-block-details.is-style-system-flat-panel),
+:is(.wp-block-group.is-style-system-panel, .wp-block-group.is-style-system-flat-panel)>.block-editor-block-list__layout:not(.wp-block)>*:has(+ .block-list-appender)>:is(.wp-block-details.is-style-system-details, .wp-block-details.is-style-system-flat-panel) {
     border-bottom: 0 !important;
     border-bottom-left-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;
     border-bottom-right-radius: calc(var(--wp--custom--border-radius) - var(--wp--custom--border-width, 1px)) !important;

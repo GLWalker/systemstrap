@@ -26,7 +26,7 @@
 }
 .strap-bp-sidebar-panel:not(.wp-block-bp-primary-nav) a:focus-visible {
     outline: var(--wp--custom--focus-ring-width) solid var(--wp--custom--focus-ring-color);
-    outline-offset: calc(-1 * var(--wp--custom--focus-ring-width));
+    outline-offset: var(--wp--custom--focus-ring-offset);
 }
 .strap-bp-sidebar-panel [data-bp-tooltip]::after {
     background-color: var(--wp--preset--color--base);

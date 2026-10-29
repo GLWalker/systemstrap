@@ -61,7 +61,8 @@ The current focus-visibility layer is implemented through these files:
 - `wp-content/themes/systemstrap/theme.json`
 - `wp-content/themes/systemstrap/assets/css/strap-reset.css`
 - `wp-content/themes/systemstrap/assets/css/main-styles.css`
-- `wp-content/themes/systemstrap/assets/css/buddypress-theme-sync.css`
+- `wp-content/themes/systemstrap/assets/css/buddypress/buddypress-components.css`
+- `wp-content/themes/systemstrap/assets/css/buddypress/buddypress-single-navigation.css`
 - `wp-content/themes/systemstrap/assets/css/style-variations/core-details-system-details.css`
 - `wp-content/themes/systemstrap/assets/css/style-variations/core-details-system-flat-panel.css`
 - `wp-content/themes/systemstrap/assets/css/style-variations/core-accordion-system-accordion.css`
@@ -87,6 +88,7 @@ The focus system is currently tokenized through `theme.json.settings.custom` and
 The current theme-owned focus tokens include:
 
 - `focus-ring-width`
+- `focus-ring-offset`
 - `focus-ring-color`
 - `focus-ring-opacity`
 - `form-focus-border-color`
@@ -96,6 +98,11 @@ The current focus-related shadow preset includes:
 - `form-focus`
 
 These tokens are part of the accessibility contract because runtime CSS consumes them directly.
+
+The standard theme-owned outline offset is `var(--wp--custom--focus-ring-offset)`.
+Inset offsets are geometry exceptions only: they are retained for interactive
+targets inside clipped System List shells or zero-gap joined navigation rows,
+where an outward outline would be clipped or would cross an adjacent control.
 
 ## Current Selector Strategy Contract
 
@@ -119,7 +126,7 @@ The current reset layer enforces these behaviors:
 - native control surfaces in the reset layer currently receive theme-aware background, text color, box-shadow, and outline fallback rules
 - the reset layer retains a high-contrast fallback through:
   - `outline: 2px solid var(--wp--preset--color--primary, #2D4054)`
-  - `outline-offset: 2px`
+  - `outline-offset: var(--wp--custom--focus-ring-offset)`
 
 This means the reset layer is not purely removing focus affordances. It is actively redefining them.
 
@@ -246,7 +253,7 @@ The current navigation variations use a different visible-focus treatment than t
 The current behavior is:
 
 - `outline: 2px solid currentColor !important`
-- `outline-offset: -2px !important`
+- `outline-offset: calc(-1 * var(--wp--custom--focus-ring-width)) !important`
 - `border-radius: inherit`
 
 ### `core-navigation-system-nav-button`
@@ -259,14 +266,23 @@ The current behavior is:
 The current behavior is:
 
 - `outline: 2px solid currentColor !important`
-- `outline-offset: -2px !important`
+- `outline-offset: calc(-1 * var(--wp--custom--focus-ring-width)) !important`
 - `border-radius: inherit`
 
 These navigation treatments are part of the current contract and MUST NOT be described as outer-halo focus rings.
 
+The complete retained geometry-exception set is:
+
+- Core Navigation System Nav Gen and System Nav Button interactive targets: inset because each navigation item is a zero-gap joined row containing content and, where present, its submenu toggle.
+- Core Tab List System Nav Gen buttons: inset because the compact buttons form a zero-gap joined row.
+- BuddyPress System List and System Flat List row links: inset because the bordered list shell clips overflow to its radius.
+- WooCommerce System List account-navigation links, plus Flush links when nested directly in a System Panel: inset because those shells clip overflow; standalone Flush links use the standard outward offset.
+
+No other theme-owned `outline-offset` may differ from `var(--wp--custom--focus-ring-offset)` without adding a demonstrated clipping or joined-geometry exception here.
+
 ## BuddyPress Sync Contract
 
-`assets/css/buddypress-theme-sync.css` currently extends focus styling into BuddyPress-rendered controls.
+`assets/css/buddypress/buddypress-components.css` and `assets/css/buddypress/buddypress-single-navigation.css` currently extend focus styling into BuddyPress-rendered controls.
 
 The current BuddyPress focus surfaces include:
 

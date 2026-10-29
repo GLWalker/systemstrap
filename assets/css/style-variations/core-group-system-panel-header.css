@@ -10,7 +10,7 @@
     width: 100%;
     font-family: var(--wp--preset--font-family--heading, inherit);
     font-weight: var(--wp--custom--font-weight-heading, inherit);
-    background-image: var(--wp--custom--system-ui-background-image, none);
+    background-image: var(--strap-system-panel-context-background-image, var(--wp--custom--system-ui-background-image, none));
 }
 
 .wp-block-group.is-style-system-panel-header:not(.has-background):not([style*="background"]) {

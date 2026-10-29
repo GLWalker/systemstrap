@@ -9,7 +9,7 @@
     border-radius: 0 !important; /* Auto-clipped perfectly by outer panel overflow: hidden */
     width: 100%;
     font-size: var(--wp--preset--font-size--small);
-    background-image: var(--wp--custom--system-ui-background-image, none);
+    background-image: var(--strap-system-panel-context-background-image, var(--wp--custom--system-ui-background-image, none));
 }
 
 .wp-block-group.is-style-system-panel-footer:not(.has-background):not([style*="background"]) {

@@ -161,7 +161,7 @@
 .wp-block-navigation.is-style-system-nav-button .wp-block-navigation-item__content:focus-visible,
 .wp-block-navigation.is-style-system-nav-button .wp-block-navigation-submenu__toggle:focus-visible {
     outline: 2px solid currentColor !important;
-    outline-offset: -2px !important;
+    outline-offset: calc(-1 * var(--wp--custom--focus-ring-width)) !important;
     border-radius: inherit;
 }
 

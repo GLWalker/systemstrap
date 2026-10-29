@@ -10,7 +10,6 @@
 
 
 /* ROOT LIs */
-:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) > li,
 :is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) > li {
     background-color: var(--wp--custom--system-ui-surface);
 }/*
@@ -25,14 +24,12 @@
 
 
 /* ROOT LIs */
-:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-list-flush) > li,
 :is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-list-flush) > li {    background-image: var(--wp--custom--system-ui-background-image, none);
     backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
     -webkit-backdrop-filter: var(--wp--custom--system-ui-backdrop-filter, none);
 }
 
 /* ALL LIs (including nested) */
-:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li,
 :is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li {
     display: flex;
     flex-wrap: wrap;
@@ -45,7 +42,6 @@
 }
 
 /* Anchor tags inside LIs */
-:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > a,
 :is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > a {
     display: block;
     padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
@@ -76,7 +72,6 @@
 }
 
 /* System Badge Styling */
-:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > .wp-block-archives__count,
 :is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > .wp-block-archives__count {
     align-self: center;
     line-height: 1;
@@ -86,7 +81,6 @@
 }
 
 /* Nested ULs (Kill SystemPress bleeds) */
-:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > ul,
 :is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > ul {
     flex-basis: 100%;
     margin: 0 !important;
@@ -100,7 +94,6 @@
 }
 
 /* Nested LIs */
-:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > ul > li,
 :is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > ul > li {
     border: 0; /* Reset any bleeding borders */
     border-radius: 0 !important;
@@ -136,14 +129,12 @@
 
 
 /* Premium System Borders between ROOT items */
-:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) > li + li,
 :is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) > li + li {
     border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
 }
 
 
 /* Premium System Borders between NESTED items */
-:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > ul > li,
 :is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) li > ul > li {
     border-top: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
     background-color: var(--wp--custom--system-ui-surface-nested, transparent);
@@ -165,7 +156,6 @@
     -webkit-backdrop-filter: none !important;
 }
 
-:is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush),
 :is(.wp-block-archives, .wp-block-archives-list):is(.is-style-system-list, .is-style-system-flat-list, .is-style-system-list-flush) {
     list-style: none;
     margin: 0;

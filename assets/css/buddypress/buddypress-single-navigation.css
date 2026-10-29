@@ -12,7 +12,7 @@ body .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-nav .bp-navs 
 }
 body .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-nav .bp-navs li > a:focus-visible {
 	outline: var(--wp--custom--focus-ring-width) solid var(--wp--custom--focus-ring-color);
-	outline-offset: calc(-1 * var(--wp--custom--focus-ring-width));
+	outline-offset: var(--wp--custom--focus-ring-offset);
 }
 body :is(#buddypress #object-nav.strap-bp-navigation-treatment-system-nav, .wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-nav) > ul,
 body :is(.wp-block-bp-primary-nav.strap-bp-navigation-treatment-system-nav) .bp-navs > ul {

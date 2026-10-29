@@ -259,7 +259,7 @@
     .is-style-system-ui-pagination-square-outline,
     .is-style-system-ui-pagination-badge) > a:focus-visible {
     outline: var(--wp--custom--focus-ring-width) solid var(--wp--custom--focus-ring-color);
-    outline-offset: 2px;
+    outline-offset: var(--wp--custom--focus-ring-offset);
 }
 
 :is(.wp-block-query-pagination,
@@ -353,7 +353,7 @@
     .wp-block-woocommerce-product-reviews-pagination-numbers > a,
     a):focus-visible {
     outline: var(--wp--custom--focus-ring-width) solid var(--wp--custom--focus-ring-color);
-    outline-offset: 2px;
+    outline-offset: var(--wp--custom--focus-ring-offset);
 }
 
 :is(.wp-block-query-pagination-previous,
@@ -378,7 +378,7 @@
     .is-style-system-ui-pagination-square-outline,
     .is-style-system-ui-pagination-badge)>a:focus-visible {
     outline: var(--wp--custom--focus-ring-width) solid var(--wp--custom--focus-ring-color);
-    outline-offset: 2px;
+    outline-offset: var(--wp--custom--focus-ring-offset);
 }
 
 :is(.wp-block-query-pagination,
@@ -491,7 +491,7 @@ body.strap-bp-pagination-scope #buddypress :is(.bp-pagination-links > .pag-data,
     .is-style-system-ui-pagination-badge) .woocommerce-pagination .page-numbers > li > a:focus-visible,
 body.strap-bp-pagination-scope #buddypress :is(.bp-pagination-links > .pag-data, .bp-pagination > .pagination-links, .bp-messages-filters .last, .bp-invites-filters .last, #group-members-pagination .bp-pagination) > :is(a, button):focus-visible {
     outline: var(--wp--custom--focus-ring-width) solid var(--wp--custom--focus-ring-color);
-    outline-offset: 2px;
+    outline-offset: var(--wp--custom--focus-ring-offset);
 }
 
 .strap-woo-reviews-pagination:is(.is-style-system-ui-pagination,

@@ -345,7 +345,7 @@ function strap_get_woocommerce_account_compatibility_css() {
 .woocommerce-account .woocommerce-MyAccount-content :is(th, td) { padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30); border-color: var(--wp--preset--color--border-color); border-style: var(--wp--custom--border-style); border-width: 0 0 var(--wp--custom--border-width); text-align: start; }
 .woocommerce-account .woocommerce-MyAccount-content th { font-weight: var(--wp--custom--font-weight-heading); }
 .woocommerce-account :is(.woocommerce-error, .woocommerce-info, .woocommerce-message) { margin: 0 0 var(--wp--preset--spacing--30); font-size: var(--wp--preset--font-size--small); line-height: 1.5; }
-.woocommerce-account :is(a, button, input, select, textarea):focus-visible { outline: 2px solid var(--wp--custom--form-focus-border-color); outline-offset: 2px; }
+		.woocommerce-account :is(a, button, input, select, textarea):focus-visible { outline: 2px solid var(--wp--custom--form-focus-border-color); outline-offset: var(--wp--custom--focus-ring-offset); }
 @media (max-width: 600px) {
 	.woocommerce-account .woocommerce-MyAccount-content :is(th, td) { padding-inline: var(--wp--preset--spacing--20); }
 }

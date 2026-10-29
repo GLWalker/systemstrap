@@ -24,7 +24,7 @@
 
 .wp-block-tabs:not(.is-style-system-classic):not(.is-style-system-vertical):not(.is-style-system-list):not(.is-style-system-flat-list) > .wp-block-tab-list:not([class*="is-style-system-"]) > button:focus-visible {
     outline: 2px solid currentColor;
-    outline-offset: -2px;
+    outline-offset: var(--wp--custom--focus-ring-offset);
 }
 
 .wp-block-tabs:not(.is-style-system-classic):not(.is-style-system-vertical):not(.is-style-system-list):not(.is-style-system-flat-list) > .wp-block-tab-panels {
