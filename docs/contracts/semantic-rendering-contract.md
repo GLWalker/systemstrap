@@ -6,11 +6,18 @@ This file is a CONTRACT.
 
 ## Contract Version
 
-Current Version: 1.5
+Current Version: 1.6
 
-Last Updated: 2026-09-30
+Last Updated: 2026-10-31
 
 ## Change Log
+
+### 1.6
+
+- Rendered `core/tabs` roots with an authored `style.spacing.blockGap` MUST
+  expose that sanitized value through `--strap-tabs-composition-gap` so the
+  theme's grid-based Vertical and List compositions preserve Core spacing
+  intent without changing saved block markup.
 
 ### 1.5
 
@@ -122,6 +129,10 @@ SystemStrap currently uses these mechanisms to alter WordPress output.
 SystemStrap MAY intercept rendered core blocks with `render_block_*` filters when the theme needs to append or replace semantics without rebuilding the entire block.
 
 SystemStrap currently does this in `inc/block-filters.php`.
+
+The `core/tabs` render filter may append the authored Core block-gap value as
+the `--strap-tabs-composition-gap` custom property on the existing Tabs root.
+It MUST NOT add wrappers, reorder children, or alter Tabs behavior or ARIA.
 
 ### 2. Core block server-side replacement callbacks
 

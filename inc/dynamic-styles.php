@@ -122,11 +122,24 @@ if (! function_exists('strap_generate_dynamic_colors')) {
 ";
 
 			$tabs_css .= "
+.wp-block-tabs.has-{$slug}-background-color:has(> .wp-block-tab-list:is(.is-style-system-nav-button, .is-style-system-nav-gen)) {
+    --strap-tabs-composition-surface: var(--wp--preset--color--{$slug});
+    background-color: transparent !important;
+}
+
 .wp-block-tabs.is-style-system-classic:has(> .wp-block-tab-list:not([class*=\"is-style-system-\"]) > button.has-{$slug}-color) {
     --strap-tabs-classic-border-color: var(--wp--preset--color--{$slug});
 }
 
 .wp-block-tabs.is-style-system-vertical:has(> .wp-block-tab-list:not([class*=\"is-style-system-\"]) > button.has-{$slug}-color) {
+    --strap-tabs-vertical-border-color: var(--wp--preset--color--{$slug});
+}
+
+.wp-block-tabs.is-style-system-classic:has(> .wp-block-tab-list.is-style-system-nav-gen > button.has-{$slug}-color) {
+    --strap-tabs-classic-border-color: var(--wp--preset--color--{$slug});
+}
+
+.wp-block-tabs.is-style-system-vertical:has(> .wp-block-tab-list.is-style-system-nav-gen > button.has-{$slug}-color) {
     --strap-tabs-vertical-border-color: var(--wp--preset--color--{$slug});
 }
 
@@ -149,6 +162,14 @@ if (! function_exists('strap_generate_dynamic_colors')) {
     --strap-tabs-vertical-border-color: var(--wp--preset--color--{$slug});
 }
 
+.wp-block-tabs.is-style-system-classic:has(> .wp-block-tab-list.is-style-system-nav-gen > button.has-{$slug}-border-color) {
+    --strap-tabs-classic-border-color: var(--wp--preset--color--{$slug});
+}
+
+.wp-block-tabs.is-style-system-vertical:has(> .wp-block-tab-list.is-style-system-nav-gen > button.has-{$slug}-border-color) {
+    --strap-tabs-vertical-border-color: var(--wp--preset--color--{$slug});
+}
+
 .wp-block-tabs:is(.is-style-system-list, .is-style-system-flat-list):has(> .wp-block-tab-list > button.has-{$slug}-border-color) {
     --strap-tabs-list-border-color: var(--wp--preset--color--{$slug});
 }
@@ -159,21 +180,20 @@ if (! function_exists('strap_generate_dynamic_colors')) {
 			}
 
 			$pagination_text_color = 'inherit';
-			$pagination_contrast_color = '';
 			if (isset($fixed_contrast_map[$slug])) {
 				$pagination_text_color = "var(--wp--preset--color--{$fixed_contrast_map[$slug]})";
 			} elseif (in_array($slug, $target_slugs, true)) {
 				$pagination_text_color = "var(--wp--preset--color--{$slug}-text)";
-				$pagination_contrast_color = "\n    --strap-pagination-contrast-color: var(--wp--preset--color--{$slug}-text);";
 			}
 
 			$pagination_css .= "
 .wp-block-query-pagination.has-{$slug}-background-color,
 .wp-block-comments-pagination.has-{$slug}-background-color {
-    --strap-pagination-user-accent: var(--wp--preset--color--{$slug});
+    --strap-pagination-user-accent: {$pagination_text_color};
     --strap-pagination-user-background: var(--wp--preset--color--{$slug});
-{$pagination_contrast_color}
-    --strap-pagination-user-color: inherit;
+    --strap-pagination-direct-bg: var(--wp--preset--color--{$slug});
+    --strap-pagination-contrast-color: {$pagination_text_color};
+    --strap-pagination-user-color: {$pagination_text_color};
     background-color: transparent !important;
 }
 
@@ -181,18 +201,20 @@ if (! function_exists('strap_generate_dynamic_colors')) {
 .wp-block-query-pagination-next.has-{$slug}-background-color,
 .wp-block-comments-pagination-previous.has-{$slug}-background-color,
 .wp-block-comments-pagination-next.has-{$slug}-background-color {
-    --strap-pagination-user-accent: var(--wp--preset--color--{$slug});
+    --strap-pagination-user-accent: {$pagination_text_color};
     --strap-pagination-user-background: var(--wp--preset--color--{$slug});
-{$pagination_contrast_color}
+    --strap-pagination-direct-bg: var(--wp--preset--color--{$slug});
+    --strap-pagination-contrast-color: {$pagination_text_color};
     --strap-pagination-user-color: {$pagination_text_color};
     background-color: transparent !important;
 }
 
 .wp-block-query-pagination-numbers.has-{$slug}-background-color,
 .wp-block-comments-pagination-numbers.has-{$slug}-background-color {
-    --strap-pagination-user-accent: var(--wp--preset--color--{$slug});
+    --strap-pagination-user-accent: {$pagination_text_color};
     --strap-pagination-user-background: var(--wp--preset--color--{$slug});
-{$pagination_contrast_color}
+    --strap-pagination-direct-bg: var(--wp--preset--color--{$slug});
+    --strap-pagination-contrast-color: {$pagination_text_color};
     --strap-pagination-user-color: {$pagination_text_color};
     background-color: transparent !important;
     color: inherit !important;
@@ -309,8 +331,13 @@ ul.wp-block-latest-posts.has-{$slug}-background-color {
 }
 ul.wp-block-latest-posts.has-{$slug}-background-color > li {
     background-color: var(--wp--preset--color--{$slug}) !important;
-    color: {$widget_text_color} !important;
     transition: var(--wp--custom--btn-transition, background-color 0.2s ease, box-shadow 0.2s ease);
+}
+ul.wp-block-latest-posts.has-{$slug}-background-color:not(.has-text-color) > li {
+    color: {$widget_text_color} !important;
+}
+ul.wp-block-latest-posts.has-{$slug}-background-color.has-text-color > li {
+    color: inherit !important;
 }
 ul.wp-block-latest-posts.has-{$slug}-background-color > li:hover {
     box-shadow: inset 0 0 0 9999px color-mix(in srgb, currentColor 15%, transparent) !important;
@@ -420,7 +447,7 @@ ul.wp-block-latest-posts.has-{$slug}-background-color > li:hover {
 			}
 		}
 
-		$semantic_text_slugs = array('primary', 'secondary', 'success', 'info', 'warning', 'danger');
+		$semantic_text_slugs = array('primary', 'secondary', 'success', 'info', 'warning', 'danger', 'light', 'dark');
 		$background_slugs    = array_merge(array('base', 'secondary-bg', 'tertiary-bg'), $semantic_text_slugs);
 		$suffixes            = array(10, 20, 30, 40, 50, 60, 70, 80, 90);
 
@@ -433,27 +460,55 @@ ul.wp-block-latest-posts.has-{$slug}-background-color > li:hover {
 			$text_palette   = $text_generator->createExtendedPalette(10.0);
 
 			foreach ($background_slugs as $background_slug) {
-				if ($text_slug === $background_slug || empty($palette_by_slug[$background_slug])) {
+				if (empty($palette_by_slug[$background_slug])) {
 					continue;
 				}
 
 				$background_color = $palette_by_slug[$background_slug];
-				if ($text_generator->passes_wcag_contrast($palette_by_slug[$text_slug], $background_color, 4.5)) {
-					continue;
-				}
+				$pagination_foreground = "var(--wp--preset--color--{$text_slug})";
+				$text_passes_contrast  = $text_generator->passes_wcag_contrast($palette_by_slug[$text_slug], $background_color, 4.5);
 
-				$check_order = $text_generator->passes_wcag_contrast('#ffffff', $background_color, 4.5)
-					? array(5, 6, 7, 8, 3, 2, 1, 0)
-					: array(3, 2, 1, 0, 5, 6, 7, 8);
+				if (! $text_passes_contrast) {
+					$check_order = $text_generator->passes_wcag_contrast('#ffffff', $background_color, 4.5)
+						? array(5, 6, 7, 8, 3, 2, 1, 0)
+						: array(3, 2, 1, 0, 5, 6, 7, 8);
+					$passing_index = null;
 
-				foreach ($check_order as $index) {
-					if (! isset($text_palette[$index]) || ! $text_generator->passes_wcag_contrast($text_palette[$index], $background_color, 4.5)) {
-						continue;
+					foreach ($check_order as $index) {
+						if (! isset($text_palette[$index]) || ! $text_generator->passes_wcag_contrast($text_palette[$index], $background_color, 4.5)) {
+							continue;
+						}
+
+						$passing_index = $index;
+						break;
 					}
 
-					$same_element_contrast_css .= ".has-{$background_slug}-background-color.has-{$text_slug}-color { color: var(--wp--preset--color--{$text_slug}-{$suffixes[$index]}) !important; }\n";
-					break;
+					if (null !== $passing_index) {
+						$pagination_foreground = "var(--wp--preset--color--{$text_slug}-{$suffixes[$passing_index]})";
+
+						if ($text_slug !== $background_slug) {
+							$same_element_contrast_css .= ".has-{$background_slug}-background-color.has-{$text_slug}-color { color: {$pagination_foreground} !important; }\n";
+						}
+					} else {
+							$pagination_foreground = $text_generator->find_accessible_foreground(
+								$background_color,
+								$palette_by_slug[$text_slug],
+								4.5
+							);
+					}
 				}
+
+				$pagination_css .= "
+:is(.wp-block-query-pagination, .wp-block-comments-pagination, .wp-block-woocommerce-product-reviews-pagination, .wp-block-post-navigation-link).has-{$background_slug}-background-color.has-{$text_slug}-color,
+:is(.wp-block-query-pagination-previous, .wp-block-query-pagination-next, .wp-block-comments-pagination-previous, .wp-block-comments-pagination-next, .wp-block-woocommerce-product-reviews-pagination-previous, .wp-block-woocommerce-product-reviews-pagination-next).has-{$background_slug}-background-color.has-{$text_slug}-color,
+:is(.wp-block-query-pagination-numbers, .wp-block-comments-pagination-numbers, .wp-block-woocommerce-product-reviews-pagination-numbers).has-{$background_slug}-background-color.has-{$text_slug}-color {
+    --strap-pagination-user-accent: {$pagination_foreground};
+    --strap-pagination-user-background: var(--wp--preset--color--{$background_slug});
+    --strap-pagination-direct-bg: var(--wp--preset--color--{$background_slug});
+    --strap-pagination-contrast-color: {$pagination_foreground};
+    --strap-pagination-user-color: {$pagination_foreground};
+}
+";
 			}
 		}
 

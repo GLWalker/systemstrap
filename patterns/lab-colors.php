@@ -236,42 +236,42 @@
                 </div>
                 <!-- /wp:group -->
 
-                <!-- wp:group {"style":{"spacing":{"blockGap":"0"},"dimensions":{"minWidth":"3.5rem"},"css":"flex:0 0 3.5rem;width:3.5rem;"},"layout":{"type":"flex","orientation":"vertical","flexWrap":"nowrap"}} -->
-                <div class="wp-block-group has-custom-css" style="min-width:3.5rem"><!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dprimary-10);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                <!-- wp:group {"className":"strap-color-ladder","layout":{"type":"flex","orientation":"vertical","flexWrap":"nowrap"}} -->
+                <div class="wp-block-group strap-color-ladder"><!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-primary-10-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-primary-10-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dprimary-20);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-primary-20-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-primary-20-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dprimary-30);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-primary-30-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-primary-30-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dprimary-40);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-primary-40-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-primary-40-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dprimary-50);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-primary-50-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-primary-50-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dprimary-60);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-primary-60-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-primary-60-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dprimary-70);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-primary-70-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-primary-70-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dprimary-80);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-primary-80-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-primary-80-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dprimary-90);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-primary-90-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-primary-90-background-color"></div>
+                    <!-- /wp:spacer -->
                 </div>
                 <!-- /wp:group -->
             </div>
@@ -292,42 +292,42 @@
                 </div>
                 <!-- /wp:group -->
 
-                <!-- wp:group {"style":{"spacing":{"blockGap":"0"},"dimensions":{"minWidth":"3.5rem"},"css":"flex:0 0 3.5rem;width:3.5rem;"},"layout":{"type":"flex","orientation":"vertical","flexWrap":"nowrap"}} -->
-                <div class="wp-block-group has-custom-css" style="min-width:3.5rem"><!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dsecondary-10);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                <!-- wp:group {"className":"strap-color-ladder","layout":{"type":"flex","orientation":"vertical","flexWrap":"nowrap"}} -->
+                <div class="wp-block-group strap-color-ladder"><!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-secondary-10-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-secondary-10-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dsecondary-20);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-secondary-20-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-secondary-20-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dsecondary-30);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-secondary-30-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-secondary-30-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dsecondary-40);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-secondary-40-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-secondary-40-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dsecondary-50);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-secondary-50-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-secondary-50-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dsecondary-60);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-secondary-60-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-secondary-60-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dsecondary-70);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-secondary-70-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-secondary-70-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dsecondary-80);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-secondary-80-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-secondary-80-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dsecondary-90);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-secondary-90-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-secondary-90-background-color"></div>
+                    <!-- /wp:spacer -->
                 </div>
                 <!-- /wp:group -->
             </div>
@@ -348,42 +348,42 @@
                 </div>
                 <!-- /wp:group -->
 
-                <!-- wp:group {"style":{"spacing":{"blockGap":"0"},"dimensions":{"minWidth":"3.5rem"},"css":"flex:0 0 3.5rem;width:3.5rem;"},"layout":{"type":"flex","orientation":"vertical","flexWrap":"nowrap"}} -->
-                <div class="wp-block-group has-custom-css" style="min-width:3.5rem"><!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dsuccess-10);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                <!-- wp:group {"className":"strap-color-ladder","layout":{"type":"flex","orientation":"vertical","flexWrap":"nowrap"}} -->
+                <div class="wp-block-group strap-color-ladder"><!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-success-10-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-success-10-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dsuccess-20);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-success-20-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-success-20-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dsuccess-30);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-success-30-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-success-30-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dsuccess-40);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-success-40-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-success-40-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dsuccess-50);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-success-50-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-success-50-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dsuccess-60);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-success-60-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-success-60-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dsuccess-70);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-success-70-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-success-70-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dsuccess-80);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-success-80-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-success-80-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dsuccess-90);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-success-90-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-success-90-background-color"></div>
+                    <!-- /wp:spacer -->
                 </div>
                 <!-- /wp:group -->
             </div>
@@ -404,42 +404,42 @@
                 </div>
                 <!-- /wp:group -->
 
-                <!-- wp:group {"style":{"spacing":{"blockGap":"0"},"dimensions":{"minWidth":"3.5rem"},"css":"flex:0 0 3.5rem;width:3.5rem;"},"layout":{"type":"flex","orientation":"vertical","flexWrap":"nowrap"}} -->
-                <div class="wp-block-group has-custom-css" style="min-width:3.5rem"><!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dinfo-10);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                <!-- wp:group {"className":"strap-color-ladder","layout":{"type":"flex","orientation":"vertical","flexWrap":"nowrap"}} -->
+                <div class="wp-block-group strap-color-ladder"><!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-info-10-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-info-10-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dinfo-20);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-info-20-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-info-20-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dinfo-30);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-info-30-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-info-30-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dinfo-40);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-info-40-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-info-40-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dinfo-50);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-info-50-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-info-50-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dinfo-60);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-info-60-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-info-60-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dinfo-70);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-info-70-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-info-70-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dinfo-80);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-info-80-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-info-80-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dinfo-90);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-info-90-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-info-90-background-color"></div>
+                    <!-- /wp:spacer -->
                 </div>
                 <!-- /wp:group -->
             </div>
@@ -463,42 +463,42 @@
                 </div>
                 <!-- /wp:group -->
 
-                <!-- wp:group {"style":{"spacing":{"blockGap":"0"},"dimensions":{"minWidth":"3.5rem"},"css":"flex:0 0 3.5rem;width:3.5rem;"},"layout":{"type":"flex","orientation":"vertical","flexWrap":"nowrap"}} -->
-                <div class="wp-block-group has-custom-css" style="min-width:3.5rem"><!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dwarning-10);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                <!-- wp:group {"className":"strap-color-ladder","layout":{"type":"flex","orientation":"vertical","flexWrap":"nowrap"}} -->
+                <div class="wp-block-group strap-color-ladder"><!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-warning-10-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-warning-10-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dwarning-20);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-warning-20-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-warning-20-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dwarning-30);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-warning-30-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-warning-30-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dwarning-40);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-warning-40-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-warning-40-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dwarning-50);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-warning-50-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-warning-50-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dwarning-60);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-warning-60-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-warning-60-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dwarning-70);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-warning-70-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-warning-70-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dwarning-80);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-warning-80-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-warning-80-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dwarning-90);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-warning-90-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-warning-90-background-color"></div>
+                    <!-- /wp:spacer -->
                 </div>
                 <!-- /wp:group -->
             </div>
@@ -519,42 +519,42 @@
                 </div>
                 <!-- /wp:group -->
 
-                <!-- wp:group {"style":{"spacing":{"blockGap":"0"},"dimensions":{"minWidth":"3.5rem"},"css":"flex:0 0 3.5rem;width:3.5rem;"},"layout":{"type":"flex","orientation":"vertical","flexWrap":"nowrap"}} -->
-                <div class="wp-block-group has-custom-css" style="min-width:3.5rem"><!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002ddanger-10);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                <!-- wp:group {"className":"strap-color-ladder","layout":{"type":"flex","orientation":"vertical","flexWrap":"nowrap"}} -->
+                <div class="wp-block-group strap-color-ladder"><!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-danger-10-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-danger-10-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002ddanger-20);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-danger-20-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-danger-20-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002ddanger-30);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-danger-30-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-danger-30-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002ddanger-40);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-danger-40-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-danger-40-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002ddanger-50);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-danger-50-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-danger-50-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002ddanger-60);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-danger-60-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-danger-60-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002ddanger-70);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-danger-70-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-danger-70-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002ddanger-80);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-danger-80-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-danger-80-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002ddanger-90);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-danger-90-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-danger-90-background-color"></div>
+                    <!-- /wp:spacer -->
                 </div>
                 <!-- /wp:group -->
             </div>
@@ -575,42 +575,42 @@
                 </div>
                 <!-- /wp:group -->
 
-                <!-- wp:group {"style":{"spacing":{"blockGap":"0"},"dimensions":{"minWidth":"3.5rem"},"css":"flex:0 0 3.5rem;width:3.5rem;"},"layout":{"type":"flex","orientation":"vertical","flexWrap":"nowrap"}} -->
-                <div class="wp-block-group has-custom-css" style="min-width:3.5rem"><!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dlight-10);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                <!-- wp:group {"className":"strap-color-ladder","layout":{"type":"flex","orientation":"vertical","flexWrap":"nowrap"}} -->
+                <div class="wp-block-group strap-color-ladder"><!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-light-10-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-light-10-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dlight-20);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-light-20-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-light-20-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dlight-30);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-light-30-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-light-30-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dlight-40);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-light-40-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-light-40-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dlight-50);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-light-50-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-light-50-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dlight-60);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-light-60-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-light-60-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dlight-70);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-light-70-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-light-70-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dlight-80);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-light-80-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-light-80-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dlight-90);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-light-90-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-light-90-background-color"></div>
+                    <!-- /wp:spacer -->
                 </div>
                 <!-- /wp:group -->
             </div>
@@ -631,42 +631,42 @@
                 </div>
                 <!-- /wp:group -->
 
-                <!-- wp:group {"style":{"spacing":{"blockGap":"0"},"dimensions":{"minWidth":"3.5rem"},"css":"flex:0 0 3.5rem;width:3.5rem;"},"layout":{"type":"flex","orientation":"vertical","flexWrap":"nowrap"}} -->
-                <div class="wp-block-group has-custom-css" style="min-width:3.5rem"><!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002ddark-10);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                <!-- wp:group {"className":"strap-color-ladder","layout":{"type":"flex","orientation":"vertical","flexWrap":"nowrap"}} -->
+                <div class="wp-block-group strap-color-ladder"><!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-dark-10-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-dark-10-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002ddark-20);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-dark-20-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-dark-20-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002ddark-30);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-dark-30-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-dark-30-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002ddark-40);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-dark-40-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-dark-40-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002ddark-50);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-dark-50-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-dark-50-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002ddark-60);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-dark-60-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-dark-60-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002ddark-70);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-dark-70-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-dark-70-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002ddark-80);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-dark-80-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-dark-80-background-color"></div>
+                    <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"dimensions":{"minHeight":"1rem","minWidth":"3.5rem"},"css":"background-color:var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002ddark-90);"}} -->
-                    <div class="wp-block-group has-custom-css" style="min-height:1rem;min-width:3.5rem"></div>
-                    <!-- /wp:group -->
+                    <!-- wp:spacer {"height":"1rem","className":"strap-color-ladder__swatch has-dark-90-background-color"} -->
+                    <div style="height:1rem" aria-hidden="true" class="wp-block-spacer strap-color-ladder__swatch has-dark-90-background-color"></div>
+                    <!-- /wp:spacer -->
                 </div>
                 <!-- /wp:group -->
             </div>
@@ -788,8 +788,8 @@
 
     <!-- wp:columns {"className":"is-style-equal-heights"} -->
     <div class="wp-block-columns is-style-equal-heights"><!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"},"background":{"gradient":"var:preset|gradient|absolute-01"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:10rem"><!-- wp:heading {"level":3} -->
+        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"}},"gradient":"absolute-01"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-absolute-01-gradient-background has-background" style="min-height:10rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Absolute: Gradient</h3>
                 <!-- /wp:heading -->
 
@@ -802,8 +802,8 @@
         <!-- /wp:column -->
 
         <!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"},"background":{"gradient":"var:preset|gradient|absolute-02"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:10rem"><!-- wp:heading {"level":3} -->
+        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"}},"gradient":"absolute-02"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-absolute-02-gradient-background has-background" style="min-height:10rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Absolute: Gradient Alt</h3>
                 <!-- /wp:heading -->
 
@@ -816,8 +816,8 @@
         <!-- /wp:column -->
 
         <!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"},"background":{"gradient":"var:preset|gradient|absolute-03"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:10rem"><!-- wp:heading {"level":3} -->
+        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"}},"gradient":"absolute-03"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-absolute-03-gradient-background has-background" style="min-height:10rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Absolute: Body</h3>
                 <!-- /wp:heading -->
 
@@ -830,8 +830,8 @@
         <!-- /wp:column -->
 
         <!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"},"background":{"gradient":"var:preset|gradient|absolute-04"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:10rem"><!-- wp:heading {"level":3} -->
+        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"}},"gradient":"absolute-04"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-absolute-04-gradient-background has-background" style="min-height:10rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Absolute: Element</h3>
                 <!-- /wp:heading -->
 
@@ -855,8 +855,8 @@
             <h3 class="wp-block-heading">Primary</h3>
             <!-- /wp:heading -->
 
-            <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"},"background":{"gradient":"var:preset|gradient|accent-10"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:10rem"><!-- wp:heading {"level":3} -->
+            <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"}},"gradient":"accent-10"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-accent-10-gradient-background has-background" style="min-height:10rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Accent: Primary</h3>
                 <!-- /wp:heading -->
 
@@ -866,8 +866,8 @@
             </div>
             <!-- /wp:group -->
 
-            <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"},"background":{"gradient":"var:preset|gradient|accent-20"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:10rem"><!-- wp:heading {"level":3} -->
+            <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"}},"gradient":"accent-20"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-accent-20-gradient-background has-background" style="min-height:10rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Accent: Primary Alt</h3>
                 <!-- /wp:heading -->
 
@@ -884,8 +884,8 @@
             <h3 class="wp-block-heading">Secondary</h3>
             <!-- /wp:heading -->
 
-            <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"},"background":{"gradient":"var:preset|gradient|accent-30"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:10rem"><!-- wp:heading {"level":3} -->
+            <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"}},"gradient":"accent-30"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-accent-30-gradient-background has-background" style="min-height:10rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Accent: Secondary</h3>
                 <!-- /wp:heading -->
 
@@ -895,8 +895,8 @@
             </div>
             <!-- /wp:group -->
 
-            <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"},"background":{"gradient":"var:preset|gradient|accent-40"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:10rem"><!-- wp:heading {"level":3} -->
+            <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"}},"gradient":"accent-40"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-accent-40-gradient-background has-background" style="min-height:10rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Accent: Secondary Alt</h3>
                 <!-- /wp:heading -->
 
@@ -913,8 +913,8 @@
             <h3 class="wp-block-heading">Success</h3>
             <!-- /wp:heading -->
 
-            <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"},"background":{"gradient":"var:preset|gradient|accent-50"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:10rem"><!-- wp:heading {"level":3} -->
+            <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"}},"gradient":"accent-50"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-accent-50-gradient-background has-background" style="min-height:10rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Accent: Success</h3>
                 <!-- /wp:heading -->
 
@@ -924,8 +924,8 @@
             </div>
             <!-- /wp:group -->
 
-            <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"},"background":{"gradient":"var:preset|gradient|accent-60"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:10rem"><!-- wp:heading {"level":3} -->
+            <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"}},"gradient":"accent-60"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-accent-60-gradient-background has-background" style="min-height:10rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Accent: Success Alt</h3>
                 <!-- /wp:heading -->
 
@@ -942,8 +942,8 @@
             <h3 class="wp-block-heading">Info</h3>
             <!-- /wp:heading -->
 
-            <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"},"background":{"gradient":"var:preset|gradient|accent-70"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:10rem"><!-- wp:heading {"level":3} -->
+            <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"}},"gradient":"accent-70"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-accent-70-gradient-background has-background" style="min-height:10rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Accent: Info</h3>
                 <!-- /wp:heading -->
 
@@ -953,8 +953,8 @@
             </div>
             <!-- /wp:group -->
 
-            <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"},"background":{"gradient":"var:preset|gradient|accent-80"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:10rem"><!-- wp:heading {"level":3} -->
+            <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"}},"gradient":"accent-80"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-accent-80-gradient-background has-background" style="min-height:10rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Accent: Info Alt</h3>
                 <!-- /wp:heading -->
 
@@ -974,8 +974,8 @@
             <h3 class="wp-block-heading">Warning</h3>
             <!-- /wp:heading -->
 
-            <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"},"background":{"gradient":"var:preset|gradient|accent-90"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:10rem"><!-- wp:heading {"level":3} -->
+            <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"}},"gradient":"accent-90"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-accent-90-gradient-background has-background" style="min-height:10rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Accent: Warning</h3>
                 <!-- /wp:heading -->
 
@@ -985,8 +985,8 @@
             </div>
             <!-- /wp:group -->
 
-            <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"},"background":{"gradient":"var:preset|gradient|accent-100"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:10rem"><!-- wp:heading {"level":3} -->
+            <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"}},"gradient":"accent-100"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-accent-100-gradient-background has-background" style="min-height:10rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Accent: Warning Alt</h3>
                 <!-- /wp:heading -->
 
@@ -1003,8 +1003,8 @@
             <h3 class="wp-block-heading">Danger</h3>
             <!-- /wp:heading -->
 
-            <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"},"background":{"gradient":"var:preset|gradient|accent-110"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:10rem"><!-- wp:heading {"level":3} -->
+            <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"}},"gradient":"accent-110"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-accent-110-gradient-background has-background" style="min-height:10rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Accent: Danger</h3>
                 <!-- /wp:heading -->
 
@@ -1014,8 +1014,8 @@
             </div>
             <!-- /wp:group -->
 
-            <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"},"background":{"gradient":"var:preset|gradient|accent-120"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:10rem"><!-- wp:heading {"level":3} -->
+            <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"}},"gradient":"accent-120"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-accent-120-gradient-background has-background" style="min-height:10rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Accent: Danger Alt</h3>
                 <!-- /wp:heading -->
 
@@ -1032,8 +1032,8 @@
             <h3 class="wp-block-heading">Light</h3>
             <!-- /wp:heading -->
 
-            <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"},"background":{"gradient":"var:preset|gradient|accent-130"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:10rem"><!-- wp:heading {"level":3} -->
+            <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"}},"gradient":"accent-130"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-accent-130-gradient-background has-background" style="min-height:10rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Accent: Light</h3>
                 <!-- /wp:heading -->
 
@@ -1043,8 +1043,8 @@
             </div>
             <!-- /wp:group -->
 
-            <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"},"background":{"gradient":"var:preset|gradient|accent-140"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:10rem"><!-- wp:heading {"level":3} -->
+            <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"}},"gradient":"accent-140"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-accent-140-gradient-background has-background" style="min-height:10rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Accent: Light Alt</h3>
                 <!-- /wp:heading -->
 
@@ -1061,8 +1061,8 @@
             <h3 class="wp-block-heading">Dark</h3>
             <!-- /wp:heading -->
 
-            <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"},"background":{"gradient":"var:preset|gradient|accent-150"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:10rem"><!-- wp:heading {"level":3} -->
+            <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"}},"gradient":"accent-150"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-accent-150-gradient-background has-background" style="min-height:10rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Accent: Dark</h3>
                 <!-- /wp:heading -->
 
@@ -1072,8 +1072,8 @@
             </div>
             <!-- /wp:group -->
 
-            <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"},"background":{"gradient":"var:preset|gradient|accent-160"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:10rem"><!-- wp:heading {"level":3} -->
+            <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"}},"gradient":"accent-160"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-accent-160-gradient-background has-background" style="min-height:10rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Accent: Dark Alt</h3>
                 <!-- /wp:heading -->
 
@@ -1105,8 +1105,8 @@
 
     <!-- wp:columns {"className":"is-style-equal-heights"} -->
     <div class="wp-block-columns is-style-equal-heights"><!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"12rem"},"background":{"gradient":"var:preset|gradient|pattern-10"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:12rem"><!-- wp:heading {"level":3} -->
+        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"12rem"}},"gradient":"pattern-10"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-pattern-10-gradient-background has-background" style="min-height:12rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Pattern: Starburst</h3>
                 <!-- /wp:heading -->
 
@@ -1119,8 +1119,8 @@
         <!-- /wp:column -->
 
         <!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"12rem"},"background":{"gradient":"var:preset|gradient|pattern-20"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:12rem"><!-- wp:heading {"level":3} -->
+        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"12rem"}},"gradient":"pattern-20"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-pattern-20-gradient-background has-background" style="min-height:12rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Pattern: Starburst Alt</h3>
                 <!-- /wp:heading -->
 
@@ -1133,8 +1133,8 @@
         <!-- /wp:column -->
 
         <!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"12rem"},"background":{"gradient":"var:preset|gradient|pattern-30"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:12rem"><!-- wp:heading {"level":3} -->
+        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"12rem"}},"gradient":"pattern-30"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-pattern-30-gradient-background has-background" style="min-height:12rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Pattern: Spiral Ring</h3>
                 <!-- /wp:heading -->
 
@@ -1147,8 +1147,8 @@
         <!-- /wp:column -->
 
         <!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"12rem"},"background":{"gradient":"var:preset|gradient|pattern-40"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:12rem"><!-- wp:heading {"level":3} -->
+        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"12rem"}},"gradient":"pattern-40"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-pattern-40-gradient-background has-background" style="min-height:12rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Pattern: Spiral Ring Alt</h3>
                 <!-- /wp:heading -->
 
@@ -1164,8 +1164,8 @@
 
     <!-- wp:columns {"className":"is-style-equal-heights"} -->
     <div class="wp-block-columns is-style-equal-heights"><!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"12rem"},"background":{"gradient":"var:preset|gradient|pattern-41"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:12rem"><!-- wp:heading {"level":3} -->
+        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"12rem"}},"gradient":"pattern-41"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-pattern-41-gradient-background has-background" style="min-height:12rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Pattern: Compass</h3>
                 <!-- /wp:heading -->
 
@@ -1178,8 +1178,8 @@
         <!-- /wp:column -->
 
         <!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"12rem"},"background":{"gradient":"var:preset|gradient|pattern-42"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:12rem"><!-- wp:heading {"level":3} -->
+        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"12rem"}},"gradient":"pattern-42"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-pattern-42-gradient-background has-background" style="min-height:12rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Pattern: Compass Alt</h3>
                 <!-- /wp:heading -->
 
@@ -1192,8 +1192,8 @@
         <!-- /wp:column -->
 
         <!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"12rem"},"background":{"gradient":"var:preset|gradient|pattern-50"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:12rem"><!-- wp:heading {"level":3} -->
+        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"12rem"}},"gradient":"pattern-50"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-pattern-50-gradient-background has-background" style="min-height:12rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Pattern: Topographic Lines</h3>
                 <!-- /wp:heading -->
 
@@ -1206,8 +1206,8 @@
         <!-- /wp:column -->
 
         <!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"12rem"},"background":{"gradient":"var:preset|gradient|pattern-60"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:12rem"><!-- wp:heading {"level":3} -->
+        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"12rem"}},"gradient":"pattern-60"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-pattern-60-gradient-background has-background" style="min-height:12rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Pattern: Topographic Lines Alt</h3>
                 <!-- /wp:heading -->
 
@@ -1223,8 +1223,8 @@
 
     <!-- wp:columns {"className":"is-style-equal-heights"} -->
     <div class="wp-block-columns is-style-equal-heights"><!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"6rem"},"background":{"gradient":"var:preset|gradient|pattern-70"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:6rem"><!-- wp:heading {"level":3} -->
+        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"6rem"}},"gradient":"pattern-70"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-pattern-70-gradient-background has-background" style="min-height:6rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Pattern: Wood Grain</h3>
                 <!-- /wp:heading -->
 
@@ -1237,8 +1237,8 @@
         <!-- /wp:column -->
 
         <!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"6rem"},"background":{"gradient":"var:preset|gradient|pattern-80"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:6rem"><!-- wp:heading {"level":3} -->
+        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"6rem"}},"gradient":"pattern-80"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-pattern-80-gradient-background has-background" style="min-height:6rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Pattern: Wood Grain Alt</h3>
                 <!-- /wp:heading -->
 
@@ -1258,8 +1258,8 @@
 
     <!-- wp:columns {"className":"is-style-equal-heights"} -->
     <div class="wp-block-columns is-style-equal-heights"><!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"},"background":{"gradient":"var:preset|gradient|pattern-90"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:10rem"><!-- wp:heading {"level":3} -->
+        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"}},"gradient":"pattern-90"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-pattern-90-gradient-background has-background" style="min-height:10rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Texture: Fine Grain</h3>
                 <!-- /wp:heading -->
 
@@ -1272,8 +1272,8 @@
         <!-- /wp:column -->
 
         <!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"},"background":{"gradient":"var:preset|gradient|pattern-100"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:10rem"><!-- wp:heading {"level":3} -->
+        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"}},"gradient":"pattern-100"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-pattern-100-gradient-background has-background" style="min-height:10rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Texture: Pressed Paper</h3>
                 <!-- /wp:heading -->
 
@@ -1286,8 +1286,8 @@
         <!-- /wp:column -->
 
         <!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"},"background":{"gradient":"var:preset|gradient|pattern-110"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:10rem"><!-- wp:heading {"level":3} -->
+        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"}},"gradient":"pattern-110"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-pattern-110-gradient-background has-background" style="min-height:10rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Texture: Woven Linen</h3>
                 <!-- /wp:heading -->
 
@@ -1300,8 +1300,8 @@
         <!-- /wp:column -->
 
         <!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"},"background":{"gradient":"var:preset|gradient|pattern-120"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:10rem"><!-- wp:heading {"level":3} -->
+        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"}},"gradient":"pattern-120"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-pattern-120-gradient-background has-background" style="min-height:10rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Texture: Blueprint Grid</h3>
                 <!-- /wp:heading -->
 
@@ -1317,8 +1317,8 @@
 
     <!-- wp:columns {"className":"is-style-equal-heights"} -->
     <div class="wp-block-columns is-style-equal-heights"><!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"},"background":{"gradient":"var:preset|gradient|pattern-130"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:10rem"><!-- wp:heading {"level":3} -->
+        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"}},"gradient":"pattern-130"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-pattern-130-gradient-background has-background" style="min-height:10rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Texture: Carbon Fiber</h3>
                 <!-- /wp:heading -->
 
@@ -1331,8 +1331,8 @@
         <!-- /wp:column -->
 
         <!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"},"background":{"gradient":"var:preset|gradient|pattern-140"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:10rem"><!-- wp:heading {"level":3} -->
+        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"}},"gradient":"pattern-140"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-pattern-140-gradient-background has-background" style="min-height:10rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Texture: Low Poly</h3>
                 <!-- /wp:heading -->
 
@@ -1345,8 +1345,8 @@
         <!-- /wp:column -->
 
         <!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"},"background":{"gradient":"var:preset|gradient|pattern-150"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:10rem"><!-- wp:heading {"level":3} -->
+        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"}},"gradient":"pattern-150"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-pattern-150-gradient-background has-background" style="min-height:10rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Texture: Terrazzo</h3>
                 <!-- /wp:heading -->
 
@@ -1359,8 +1359,8 @@
         <!-- /wp:column -->
 
         <!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"},"background":{"gradient":"var:preset|gradient|pattern-160"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:10rem"><!-- wp:heading {"level":3} -->
+        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"}},"gradient":"pattern-160"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-pattern-160-gradient-background has-background" style="min-height:10rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Texture: Dark Brushed Metal</h3>
                 <!-- /wp:heading -->
 
@@ -1376,8 +1376,8 @@
 
     <!-- wp:columns {"className":"is-style-equal-heights"} -->
     <div class="wp-block-columns is-style-equal-heights"><!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"},"background":{"gradient":"var:preset|gradient|pattern-170"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:10rem"><!-- wp:heading {"level":3} -->
+        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"}},"gradient":"pattern-170"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-pattern-170-gradient-background has-background" style="min-height:10rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Texture: Dot Matrix</h3>
                 <!-- /wp:heading -->
 
@@ -1390,8 +1390,8 @@
         <!-- /wp:column -->
 
         <!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"},"background":{"gradient":"var:preset|gradient|pattern-180"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:10rem"><!-- wp:heading {"level":3} -->
+        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"}},"gradient":"pattern-180"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-pattern-180-gradient-background has-background" style="min-height:10rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Texture: Honeycomb</h3>
                 <!-- /wp:heading -->
 
@@ -1404,8 +1404,8 @@
         <!-- /wp:column -->
 
         <!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"},"background":{"gradient":"var:preset|gradient|pattern-190"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:10rem"><!-- wp:heading {"level":3} -->
+        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"}},"gradient":"pattern-190"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-pattern-190-gradient-background has-background" style="min-height:10rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Texture: Cabinet Mesh</h3>
                 <!-- /wp:heading -->
 
@@ -1418,8 +1418,8 @@
         <!-- /wp:column -->
 
         <!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"},"background":{"gradient":"var:preset|gradient|pattern-200"}}} -->
-            <div class="wp-block-group is-style-system-flat-panel has-base-background-color" style="min-height:10rem"><!-- wp:heading {"level":3} -->
+        <div class="wp-block-column"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"10rem"}},"gradient":"pattern-200"} -->
+            <div class="wp-block-group is-style-system-flat-panel has-base-background-color has-pattern-200-gradient-background has-background" style="min-height:10rem"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">Texture: Brickwork</h3>
                 <!-- /wp:heading -->
 
@@ -1443,9 +1443,9 @@
 
     <!-- wp:columns {"className":"is-style-equal-heights"} -->
     <div class="wp-block-columns is-style-equal-heights"><!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-panel-wrapper has-tertiary-bg-background-color is-style-default","style":{"background":{"gradient":"var:preset|gradient|pattern-200"},"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"textColor":"contrast","layout":{"type":"constrained"}} -->
-            <div class="wp-block-group is-panel-wrapper has-tertiary-bg-background-color is-style-default has-contrast-color has-text-color has-link-color"><!-- wp:group {"className":"is-style-system-flat-panel","style":{"background":{"gradient":"var:preset|gradient|pattern-90"},"elements":{"link":{"color":{"text":"var:preset|color|danger"}}}},"textColor":"danger","layout":{"type":"constrained"}} -->
-                <div class="wp-block-group is-style-system-flat-panel has-danger-color has-text-color has-link-color"><!-- wp:heading {"level":4,"className":"is-style-system-badge","style":{"elements":{"link":{"color":{"text":"var:preset|color|current-mix-color"}}}},"textColor":"current-mix-color"} -->
+        <div class="wp-block-column"><!-- wp:group {"className":"is-panel-wrapper has-tertiary-bg-background-color is-style-default","style":{"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"textColor":"contrast","layout":{"type":"constrained"},"gradient":"pattern-200"} -->
+            <div class="wp-block-group is-panel-wrapper has-tertiary-bg-background-color is-style-default has-contrast-color has-text-color has-link-color has-pattern-200-gradient-background has-background"><!-- wp:group {"className":"is-style-system-flat-panel","style":{"elements":{"link":{"color":{"text":"var:preset|color|danger"}}}},"textColor":"danger","layout":{"type":"constrained"},"gradient":"pattern-90"} -->
+                <div class="wp-block-group is-style-system-flat-panel has-danger-color has-text-color has-link-color has-pattern-90-gradient-background has-background"><!-- wp:heading {"level":4,"className":"is-style-system-badge","style":{"elements":{"link":{"color":{"text":"var:preset|color|current-mix-color"}}}},"textColor":"current-mix-color"} -->
                     <h4 class="wp-block-heading is-style-system-badge has-current-mix-color-color has-text-color has-link-color"><mark style="background-color:#C1403B" class="has-inline-color has-light-color">Brick</mark> <mark style="background-color:#fcb900" class="has-inline-color has-dark-color">Stack</mark></h4>
                     <!-- /wp:heading -->
 
@@ -1460,9 +1460,9 @@
         <!-- /wp:column -->
 
         <!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-panel-wrapper has-base-background-color","style":{"background":{"gradient":"var:preset|gradient|pattern-90"},"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"textColor":"contrast","layout":{"type":"constrained"}} -->
-            <div class="wp-block-group is-panel-wrapper has-base-background-color has-contrast-color has-text-color has-link-color"><!-- wp:group {"className":"is-style-system-panel","style":{"background":{"gradient":"var:preset|gradient|pattern-30"},"elements":{"link":{"color":{"text":"var:preset|color|info"}}}},"textColor":"info","layout":{"type":"constrained"}} -->
-                <div class="wp-block-group is-style-system-panel has-info-color has-text-color has-link-color"><!-- wp:heading {"level":4} -->
+        <div class="wp-block-column"><!-- wp:group {"className":"is-panel-wrapper has-base-background-color","style":{"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"textColor":"contrast","layout":{"type":"constrained"},"gradient":"pattern-90"} -->
+            <div class="wp-block-group is-panel-wrapper has-base-background-color has-contrast-color has-text-color has-link-color has-pattern-90-gradient-background has-background"><!-- wp:group {"className":"is-style-system-panel","style":{"elements":{"link":{"color":{"text":"var:preset|color|info"}}}},"textColor":"info","layout":{"type":"constrained"},"gradient":"pattern-30"} -->
+                <div class="wp-block-group is-style-system-panel has-info-color has-text-color has-link-color has-pattern-30-gradient-background has-background"><!-- wp:heading {"level":4} -->
                     <h4 class="wp-block-heading">Pattern + Atmosphere</h4>
                     <!-- /wp:heading -->
 
@@ -1477,9 +1477,9 @@
         <!-- /wp:column -->
 
         <!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-panel-wrapper has-base-background-color","style":{"background":{"gradient":"var:preset|gradient|pattern-70"},"elements":{"link":{"color":{"text":"var:preset|color|danger"}}}},"textColor":"danger","layout":{"type":"constrained"}} -->
-            <div class="wp-block-group is-panel-wrapper has-base-background-color has-danger-color has-text-color has-link-color"><!-- wp:group {"className":"is-style-system-flat-panel","style":{"background":{"gradient":"var:preset|gradient|pattern-120"},"elements":{"link":{"color":{"text":"var:preset|color|tertiary-color"}}}},"textColor":"tertiary-color","layout":{"type":"constrained"}} -->
-                <div class="wp-block-group is-style-system-flat-panel has-tertiary-color-color has-text-color has-link-color"><!-- wp:heading {"level":4} -->
+        <div class="wp-block-column"><!-- wp:group {"className":"is-panel-wrapper has-base-background-color","style":{"elements":{"link":{"color":{"text":"var:preset|color|danger"}}}},"textColor":"danger","layout":{"type":"constrained"},"gradient":"pattern-70"} -->
+            <div class="wp-block-group is-panel-wrapper has-base-background-color has-danger-color has-text-color has-link-color has-pattern-70-gradient-background has-background"><!-- wp:group {"className":"is-style-system-flat-panel","style":{"elements":{"link":{"color":{"text":"var:preset|color|tertiary-color"}}}},"textColor":"tertiary-color","layout":{"type":"constrained"},"gradient":"pattern-120"} -->
+                <div class="wp-block-group is-style-system-flat-panel has-tertiary-color-color has-text-color has-link-color has-pattern-120-gradient-background has-background"><!-- wp:heading {"level":4} -->
                     <h4 class="wp-block-heading">currentColor Layer</h4>
                     <!-- /wp:heading -->
 
@@ -1497,11 +1497,11 @@
 
     <!-- wp:columns {"className":"is-style-equal-heights"} -->
     <div class="wp-block-columns is-style-equal-heights"><!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-panel-wrapper has-secondary-bg-background-color","style":{"background":{"gradient":"var:preset|gradient|pattern-20"},"elements":{"link":{"color":{"text":"var:preset|color|secondary-color"}}}},"textColor":"secondary-color","layout":{"type":"constrained"}} -->
-            <div class="wp-block-group is-panel-wrapper has-secondary-bg-background-color has-secondary-color-color has-text-color has-link-color"><!-- wp:group {"className":"is-panel-wrapper","style":{"background":{"gradient":"var:preset|gradient|pattern-120"},"elements":{"link":{"color":{"text":"var:preset|color|tertiary-color"}}}},"textColor":"tertiary-color","layout":{"type":"constrained"}} -->
-                <div class="wp-block-group is-panel-wrapper has-tertiary-color-color has-text-color has-link-color"><!-- wp:group {"className":"is-panel-wrapper","style":{"background":{"gradient":"var:preset|gradient|pattern-90"},"elements":{"link":{"color":{"text":"var:preset|color|info"}}}},"textColor":"info","layout":{"type":"constrained"}} -->
-                    <div class="wp-block-group is-panel-wrapper has-info-color has-text-color has-link-color"><!-- wp:group {"className":"is-style-system-panel","style":{"background":{"gradient":"var:preset|gradient|pattern-30"},"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"textColor":"contrast","layout":{"type":"constrained"}} -->
-                        <div class="wp-block-group is-style-system-panel has-contrast-color has-text-color has-link-color"><!-- wp:heading {"level":4} -->
+        <div class="wp-block-column"><!-- wp:group {"className":"is-panel-wrapper has-secondary-bg-background-color","style":{"elements":{"link":{"color":{"text":"var:preset|color|secondary-color"}}}},"textColor":"secondary-color","layout":{"type":"constrained"},"gradient":"pattern-20"} -->
+            <div class="wp-block-group is-panel-wrapper has-secondary-bg-background-color has-secondary-color-color has-text-color has-link-color has-pattern-20-gradient-background has-background"><!-- wp:group {"className":"is-panel-wrapper","style":{"elements":{"link":{"color":{"text":"var:preset|color|tertiary-color"}}}},"textColor":"tertiary-color","layout":{"type":"constrained"},"gradient":"pattern-120"} -->
+                <div class="wp-block-group is-panel-wrapper has-tertiary-color-color has-text-color has-link-color has-pattern-120-gradient-background has-background"><!-- wp:group {"className":"is-panel-wrapper","style":{"elements":{"link":{"color":{"text":"var:preset|color|info"}}}},"textColor":"info","layout":{"type":"constrained"},"gradient":"pattern-90"} -->
+                    <div class="wp-block-group is-panel-wrapper has-info-color has-text-color has-link-color has-pattern-90-gradient-background has-background"><!-- wp:group {"className":"is-style-system-panel","style":{"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"textColor":"contrast","layout":{"type":"constrained"},"gradient":"pattern-30"} -->
+                        <div class="wp-block-group is-style-system-panel has-contrast-color has-text-color has-link-color has-pattern-30-gradient-background has-background"><!-- wp:heading {"level":4} -->
                             <h4 class="wp-block-heading">Four-Layer Signal Stack</h4>
                             <!-- /wp:heading -->
 
@@ -1524,12 +1524,12 @@
         <!-- /wp:column -->
 
         <!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-panel-wrapper has-tertiary-bg-background-color","style":{"background":{"gradient":"var:preset|gradient|pattern-200"},"elements":{"link":{"color":{"text":"var:preset|color|tertiary-color"}}}},"textColor":"tertiary-color","layout":{"type":"constrained"}} -->
-            <div class="wp-block-group is-panel-wrapper has-tertiary-bg-background-color has-tertiary-color-color has-text-color has-link-color"><!-- wp:group {"className":"is-panel-wrapper","style":{"background":{"gradient":"var:preset|gradient|pattern-70"},"elements":{"link":{"color":{"text":"var:preset|color|vivid-cyan-blue"}}}},"textColor":"vivid-cyan-blue","layout":{"type":"constrained"}} -->
-                <div class="wp-block-group is-panel-wrapper has-vivid-cyan-blue-color has-text-color has-link-color"><!-- wp:group {"className":"is-panel-wrapper","style":{"background":{"gradient":"var:preset|gradient|pattern-90"},"elements":{"link":{"color":{"text":"var:preset|color|vivid-purple"}}}},"textColor":"vivid-purple","layout":{"type":"constrained"}} -->
-                    <div class="wp-block-group is-panel-wrapper has-vivid-purple-color has-text-color has-link-color"><!-- wp:group {"className":"is-panel-wrapper","style":{"background":{"gradient":"var:preset|gradient|pattern-120"},"elements":{"link":{"color":{"text":"var:preset|color|info"}}}},"textColor":"info","layout":{"type":"constrained"}} -->
-                        <div class="wp-block-group is-panel-wrapper has-info-color has-text-color has-link-color"><!-- wp:group {"className":"is-style-system-flat-panel","style":{"background":{"gradient":"var:preset|gradient|pattern-30"},"elements":{"link":{"color":{"text":"var:preset|color|tertiary-color"}}}},"textColor":"tertiary-color","layout":{"type":"constrained"}} -->
-                            <div class="wp-block-group is-style-system-flat-panel has-tertiary-color-color has-text-color has-link-color"><!-- wp:heading {"level":4} -->
+        <div class="wp-block-column"><!-- wp:group {"className":"is-panel-wrapper has-tertiary-bg-background-color","style":{"elements":{"link":{"color":{"text":"var:preset|color|tertiary-color"}}}},"textColor":"tertiary-color","layout":{"type":"constrained"},"gradient":"pattern-200"} -->
+            <div class="wp-block-group is-panel-wrapper has-tertiary-bg-background-color has-tertiary-color-color has-text-color has-link-color has-pattern-200-gradient-background has-background"><!-- wp:group {"className":"is-panel-wrapper","style":{"elements":{"link":{"color":{"text":"var:preset|color|vivid-cyan-blue"}}}},"textColor":"vivid-cyan-blue","layout":{"type":"constrained"},"gradient":"pattern-70"} -->
+                <div class="wp-block-group is-panel-wrapper has-vivid-cyan-blue-color has-text-color has-link-color has-pattern-70-gradient-background has-background"><!-- wp:group {"className":"is-panel-wrapper","style":{"elements":{"link":{"color":{"text":"var:preset|color|vivid-purple"}}}},"textColor":"vivid-purple","layout":{"type":"constrained"},"gradient":"pattern-90"} -->
+                    <div class="wp-block-group is-panel-wrapper has-vivid-purple-color has-text-color has-link-color has-pattern-90-gradient-background has-background"><!-- wp:group {"className":"is-panel-wrapper","style":{"elements":{"link":{"color":{"text":"var:preset|color|info"}}}},"textColor":"info","layout":{"type":"constrained"},"gradient":"pattern-120"} -->
+                        <div class="wp-block-group is-panel-wrapper has-info-color has-text-color has-link-color has-pattern-120-gradient-background has-background"><!-- wp:group {"className":"is-style-system-flat-panel","style":{"elements":{"link":{"color":{"text":"var:preset|color|tertiary-color"}}}},"textColor":"tertiary-color","layout":{"type":"constrained"},"gradient":"pattern-30"} -->
+                            <div class="wp-block-group is-style-system-flat-panel has-tertiary-color-color has-text-color has-link-color has-pattern-30-gradient-background has-background"><!-- wp:heading {"level":4} -->
                                 <h4 class="wp-block-heading">Maximum Layer Stress Test</h4>
                                 <!-- /wp:heading -->
 
@@ -1537,9 +1537,9 @@
                                 <p class="has-small-font-size">Tertiary backing + Brickwork / Tertiary text → Topographic / WP Blue text → Fine Grain / WP Purple text → Blueprint / Info text → Spiral Flat Panel / Tertiary text → Fine Grain Footer / Light Green text → Fine Grain inner Group / Amber text → Paragraph / Tertiary text.</p>
                                 <!-- /wp:paragraph -->
 
-                                <!-- wp:group {"className":"is-style-system-panel-footer","style":{"elements":{"link":{"color":{"text":"var:preset|color|light-green-cyan"}}},"background":{"gradient":"var:preset|gradient|pattern-90"}},"textColor":"light-green-cyan","layout":{"type":"constrained"}} -->
-                                <div class="wp-block-group is-style-system-panel-footer has-light-green-cyan-color has-text-color has-link-color"><!-- wp:group {"style":{"elements":{"link":{"color":{"text":"var:preset|color|luminous-vivid-amber"}}},"background":{"gradient":"var:preset|gradient|pattern-90"}},"textColor":"luminous-vivid-amber","layout":{"type":"constrained"}} -->
-                                    <div class="wp-block-group has-luminous-vivid-amber-color has-text-color has-link-color"><!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|tertiary-color"}}}},"textColor":"tertiary-color"} -->
+                                <!-- wp:group {"className":"is-style-system-panel-footer","style":{"elements":{"link":{"color":{"text":"var:preset|color|light-green-cyan"}}}},"textColor":"light-green-cyan","layout":{"type":"constrained"},"gradient":"pattern-90"} -->
+                                <div class="wp-block-group is-style-system-panel-footer has-light-green-cyan-color has-text-color has-link-color has-pattern-90-gradient-background has-background"><!-- wp:group {"style":{"elements":{"link":{"color":{"text":"var:preset|color|luminous-vivid-amber"}}}},"textColor":"luminous-vivid-amber","layout":{"type":"constrained"},"gradient":"pattern-90"} -->
+                                    <div class="wp-block-group has-luminous-vivid-amber-color has-text-color has-link-color has-pattern-90-gradient-background has-background"><!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|tertiary-color"}}}},"textColor":"tertiary-color"} -->
                                         <p class="has-tertiary-color-color has-text-color has-link-color">One backing surface carries the stack. Every layer above it contributes transparent pattern paint and a new foreground context without covering the layers beneath.</p>
                                         <!-- /wp:paragraph -->
                                     </div>
@@ -1578,8 +1578,8 @@
     <!-- /wp:paragraph -->
 
     <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"wrap"}} -->
-    <div class="wp-block-group"><!-- wp:group {"className":"is-style-system-flat-panel has-primary-background-color","style":{"dimensions":{"minHeight":"9rem"},"css":"flex:1 1 calc(25% - var(--wp--preset--spacing--10));min-width:9rem;","background":{"gradient":"var:preset|gradient|pattern-10"}}} -->
-        <div class="wp-block-group is-style-system-flat-panel has-custom-css has-primary-background-color" style="min-height:9rem"><!-- wp:heading {"level":3} -->
+    <div class="wp-block-group"><!-- wp:group {"className":"is-style-system-flat-panel has-primary-background-color","style":{"dimensions":{"minHeight":"9rem"},"css":"flex:1 1 calc(25% - var(--wp--preset--spacing--10));min-width:9rem;"},"gradient":"pattern-10"} -->
+        <div class="wp-block-group is-style-system-flat-panel has-custom-css has-primary-background-color has-pattern-10-gradient-background has-background" style="min-height:9rem"><!-- wp:heading {"level":3} -->
             <h3 class="wp-block-heading">Starburst / Primary</h3>
             <!-- /wp:heading -->
 
@@ -1593,8 +1593,8 @@
         </div>
         <!-- /wp:group -->
 
-        <!-- wp:group {"className":"is-style-system-flat-panel has-secondary-background-color","style":{"dimensions":{"minHeight":"9rem"},"css":"flex:1 1 calc(25% - var(--wp--preset--spacing--10));min-width:9rem;","background":{"gradient":"var:preset|gradient|pattern-10"}}} -->
-        <div class="wp-block-group is-style-system-flat-panel has-custom-css has-secondary-background-color" style="min-height:9rem"><!-- wp:heading {"level":3} -->
+        <!-- wp:group {"className":"is-style-system-flat-panel has-secondary-background-color","style":{"dimensions":{"minHeight":"9rem"},"css":"flex:1 1 calc(25% - var(--wp--preset--spacing--10));min-width:9rem;"},"gradient":"pattern-10"} -->
+        <div class="wp-block-group is-style-system-flat-panel has-custom-css has-secondary-background-color has-pattern-10-gradient-background has-background" style="min-height:9rem"><!-- wp:heading {"level":3} -->
             <h3 class="wp-block-heading">Starburst / Secondary</h3>
             <!-- /wp:heading -->
 
@@ -1608,8 +1608,8 @@
         </div>
         <!-- /wp:group -->
 
-        <!-- wp:group {"className":"is-style-system-flat-panel has-success-background-color","style":{"dimensions":{"minHeight":"9rem"},"css":"flex:1 1 calc(25% - var(--wp--preset--spacing--10));min-width:9rem;","background":{"gradient":"var:preset|gradient|pattern-10"}}} -->
-        <div class="wp-block-group is-style-system-flat-panel has-custom-css has-success-background-color" style="min-height:9rem"><!-- wp:heading {"level":3} -->
+        <!-- wp:group {"className":"is-style-system-flat-panel has-success-background-color","style":{"dimensions":{"minHeight":"9rem"},"css":"flex:1 1 calc(25% - var(--wp--preset--spacing--10));min-width:9rem;"},"gradient":"pattern-10"} -->
+        <div class="wp-block-group is-style-system-flat-panel has-custom-css has-success-background-color has-pattern-10-gradient-background has-background" style="min-height:9rem"><!-- wp:heading {"level":3} -->
             <h3 class="wp-block-heading">Starburst / Success</h3>
             <!-- /wp:heading -->
 
@@ -1623,8 +1623,8 @@
         </div>
         <!-- /wp:group -->
 
-        <!-- wp:group {"className":"is-style-system-flat-panel has-info-background-color","style":{"dimensions":{"minHeight":"9rem"},"css":"flex:1 1 calc(25% - var(--wp--preset--spacing--10));min-width:9rem;","background":{"gradient":"var:preset|gradient|pattern-10"}}} -->
-        <div class="wp-block-group is-style-system-flat-panel has-custom-css has-info-background-color" style="min-height:9rem"><!-- wp:heading {"level":3} -->
+        <!-- wp:group {"className":"is-style-system-flat-panel has-info-background-color","style":{"dimensions":{"minHeight":"9rem"},"css":"flex:1 1 calc(25% - var(--wp--preset--spacing--10));min-width:9rem;"},"gradient":"pattern-10"} -->
+        <div class="wp-block-group is-style-system-flat-panel has-custom-css has-info-background-color has-pattern-10-gradient-background has-background" style="min-height:9rem"><!-- wp:heading {"level":3} -->
             <h3 class="wp-block-heading">Starburst / Info</h3>
             <!-- /wp:heading -->
 
@@ -1638,8 +1638,8 @@
         </div>
         <!-- /wp:group -->
 
-        <!-- wp:group {"className":"is-style-system-flat-panel has-warning-background-color","style":{"dimensions":{"minHeight":"9rem"},"css":"flex:1 1 calc(25% - var(--wp--preset--spacing--10));min-width:9rem;","background":{"gradient":"var:preset|gradient|pattern-10"}}} -->
-        <div class="wp-block-group is-style-system-flat-panel has-custom-css has-warning-background-color" style="min-height:9rem"><!-- wp:heading {"level":3} -->
+        <!-- wp:group {"className":"is-style-system-flat-panel has-warning-background-color","style":{"dimensions":{"minHeight":"9rem"},"css":"flex:1 1 calc(25% - var(--wp--preset--spacing--10));min-width:9rem;"},"gradient":"pattern-10"} -->
+        <div class="wp-block-group is-style-system-flat-panel has-custom-css has-warning-background-color has-pattern-10-gradient-background has-background" style="min-height:9rem"><!-- wp:heading {"level":3} -->
             <h3 class="wp-block-heading">Starburst / Warning</h3>
             <!-- /wp:heading -->
 
@@ -1653,8 +1653,8 @@
         </div>
         <!-- /wp:group -->
 
-        <!-- wp:group {"className":"is-style-system-flat-panel has-danger-background-color","style":{"dimensions":{"minHeight":"9rem"},"css":"flex:1 1 calc(25% - var(--wp--preset--spacing--10));min-width:9rem;","background":{"gradient":"var:preset|gradient|pattern-10"}}} -->
-        <div class="wp-block-group is-style-system-flat-panel has-custom-css has-danger-background-color" style="min-height:9rem"><!-- wp:heading {"level":3} -->
+        <!-- wp:group {"className":"is-style-system-flat-panel has-danger-background-color","style":{"dimensions":{"minHeight":"9rem"},"css":"flex:1 1 calc(25% - var(--wp--preset--spacing--10));min-width:9rem;"},"gradient":"pattern-10"} -->
+        <div class="wp-block-group is-style-system-flat-panel has-custom-css has-danger-background-color has-pattern-10-gradient-background has-background" style="min-height:9rem"><!-- wp:heading {"level":3} -->
             <h3 class="wp-block-heading">Starburst / Danger</h3>
             <!-- /wp:heading -->
 
@@ -1668,8 +1668,8 @@
         </div>
         <!-- /wp:group -->
 
-        <!-- wp:group {"className":"is-style-system-flat-panel has-light-background-color","style":{"dimensions":{"minHeight":"9rem"},"css":"flex:1 1 calc(25% - var(--wp--preset--spacing--10));min-width:9rem;","background":{"gradient":"var:preset|gradient|pattern-10"}}} -->
-        <div class="wp-block-group is-style-system-flat-panel has-custom-css has-light-background-color" style="min-height:9rem"><!-- wp:heading {"level":3} -->
+        <!-- wp:group {"className":"is-style-system-flat-panel has-light-background-color","style":{"dimensions":{"minHeight":"9rem"},"css":"flex:1 1 calc(25% - var(--wp--preset--spacing--10));min-width:9rem;"},"gradient":"pattern-10"} -->
+        <div class="wp-block-group is-style-system-flat-panel has-custom-css has-light-background-color has-pattern-10-gradient-background has-background" style="min-height:9rem"><!-- wp:heading {"level":3} -->
             <h3 class="wp-block-heading">Starburst / Light</h3>
             <!-- /wp:heading -->
 
@@ -1683,8 +1683,8 @@
         </div>
         <!-- /wp:group -->
 
-        <!-- wp:group {"className":"is-style-system-flat-panel has-dark-background-color","style":{"dimensions":{"minHeight":"9rem"},"css":"flex:1 1 calc(25% - var(--wp--preset--spacing--10));min-width:9rem;","background":{"gradient":"var:preset|gradient|pattern-10"}}} -->
-        <div class="wp-block-group is-style-system-flat-panel has-custom-css has-dark-background-color" style="min-height:9rem"><!-- wp:heading {"level":3} -->
+        <!-- wp:group {"className":"is-style-system-flat-panel has-dark-background-color","style":{"dimensions":{"minHeight":"9rem"},"css":"flex:1 1 calc(25% - var(--wp--preset--spacing--10));min-width:9rem;"},"gradient":"pattern-10"} -->
+        <div class="wp-block-group is-style-system-flat-panel has-custom-css has-dark-background-color has-pattern-10-gradient-background has-background" style="min-height:9rem"><!-- wp:heading {"level":3} -->
             <h3 class="wp-block-heading">Starburst / Dark</h3>
             <!-- /wp:heading -->
 
@@ -1709,8 +1709,8 @@
     <!-- /wp:paragraph -->
 
     <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"wrap"}} -->
-    <div class="wp-block-group"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"9rem"},"css":"flex:1 1 calc(25% - var(--wp--preset--spacing--10));min-width:9rem;","background":{"gradient":"var:preset|gradient|pattern-30"}},"textColor":"primary"} -->
-        <div class="wp-block-group is-style-system-flat-panel has-custom-css has-primary-color has-base-background-color has-text-color" style="min-height:9rem"><!-- wp:heading {"level":3} -->
+    <div class="wp-block-group"><!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"9rem"},"css":"flex:1 1 calc(25% - var(--wp--preset--spacing--10));min-width:9rem;"},"textColor":"primary","gradient":"pattern-30"} -->
+        <div class="wp-block-group is-style-system-flat-panel has-custom-css has-primary-color has-base-background-color has-text-color has-pattern-30-gradient-background has-background" style="min-height:9rem"><!-- wp:heading {"level":3} -->
             <h3 class="wp-block-heading">Spiral Ring / Primary</h3>
             <!-- /wp:heading -->
 
@@ -1724,8 +1724,8 @@
         </div>
         <!-- /wp:group -->
 
-        <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"9rem"},"css":"flex:1 1 calc(25% - var(--wp--preset--spacing--10));min-width:9rem;","background":{"gradient":"var:preset|gradient|pattern-30"}},"textColor":"secondary"} -->
-        <div class="wp-block-group is-style-system-flat-panel has-custom-css has-secondary-color has-base-background-color has-text-color" style="min-height:9rem"><!-- wp:heading {"level":3} -->
+        <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"9rem"},"css":"flex:1 1 calc(25% - var(--wp--preset--spacing--10));min-width:9rem;"},"textColor":"secondary","gradient":"pattern-30"} -->
+        <div class="wp-block-group is-style-system-flat-panel has-custom-css has-secondary-color has-base-background-color has-text-color has-pattern-30-gradient-background has-background" style="min-height:9rem"><!-- wp:heading {"level":3} -->
             <h3 class="wp-block-heading">Spiral Ring / Secondary</h3>
             <!-- /wp:heading -->
 
@@ -1739,8 +1739,8 @@
         </div>
         <!-- /wp:group -->
 
-        <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"9rem"},"css":"flex:1 1 calc(25% - var(--wp--preset--spacing--10));min-width:9rem;","background":{"gradient":"var:preset|gradient|pattern-30"}},"textColor":"success"} -->
-        <div class="wp-block-group is-style-system-flat-panel has-custom-css has-success-color has-base-background-color has-text-color" style="min-height:9rem"><!-- wp:heading {"level":3} -->
+        <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"9rem"},"css":"flex:1 1 calc(25% - var(--wp--preset--spacing--10));min-width:9rem;"},"textColor":"success","gradient":"pattern-30"} -->
+        <div class="wp-block-group is-style-system-flat-panel has-custom-css has-success-color has-base-background-color has-text-color has-pattern-30-gradient-background has-background" style="min-height:9rem"><!-- wp:heading {"level":3} -->
             <h3 class="wp-block-heading">Spiral Ring / Success</h3>
             <!-- /wp:heading -->
 
@@ -1754,8 +1754,8 @@
         </div>
         <!-- /wp:group -->
 
-        <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"9rem"},"css":"flex:1 1 calc(25% - var(--wp--preset--spacing--10));min-width:9rem;","background":{"gradient":"var:preset|gradient|pattern-30"}},"textColor":"info"} -->
-        <div class="wp-block-group is-style-system-flat-panel has-custom-css has-info-color has-base-background-color has-text-color" style="min-height:9rem"><!-- wp:heading {"level":3} -->
+        <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"9rem"},"css":"flex:1 1 calc(25% - var(--wp--preset--spacing--10));min-width:9rem;"},"textColor":"info","gradient":"pattern-30"} -->
+        <div class="wp-block-group is-style-system-flat-panel has-custom-css has-info-color has-base-background-color has-text-color has-pattern-30-gradient-background has-background" style="min-height:9rem"><!-- wp:heading {"level":3} -->
             <h3 class="wp-block-heading">Spiral Ring / Info</h3>
             <!-- /wp:heading -->
 
@@ -1769,8 +1769,8 @@
         </div>
         <!-- /wp:group -->
 
-        <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"9rem"},"css":"flex:1 1 calc(25% - var(--wp--preset--spacing--10));min-width:9rem;","background":{"gradient":"var:preset|gradient|pattern-30"}},"textColor":"warning"} -->
-        <div class="wp-block-group is-style-system-flat-panel has-custom-css has-warning-color has-base-background-color has-text-color" style="min-height:9rem"><!-- wp:heading {"level":3} -->
+        <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"9rem"},"css":"flex:1 1 calc(25% - var(--wp--preset--spacing--10));min-width:9rem;"},"textColor":"warning","gradient":"pattern-30"} -->
+        <div class="wp-block-group is-style-system-flat-panel has-custom-css has-warning-color has-base-background-color has-text-color has-pattern-30-gradient-background has-background" style="min-height:9rem"><!-- wp:heading {"level":3} -->
             <h3 class="wp-block-heading">Spiral Ring / Warning</h3>
             <!-- /wp:heading -->
 
@@ -1784,8 +1784,8 @@
         </div>
         <!-- /wp:group -->
 
-        <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"9rem"},"css":"flex:1 1 calc(25% - var(--wp--preset--spacing--10));min-width:9rem;","background":{"gradient":"var:preset|gradient|pattern-30"}},"textColor":"danger"} -->
-        <div class="wp-block-group is-style-system-flat-panel has-custom-css has-danger-color has-base-background-color has-text-color" style="min-height:9rem"><!-- wp:heading {"level":3} -->
+        <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"9rem"},"css":"flex:1 1 calc(25% - var(--wp--preset--spacing--10));min-width:9rem;"},"textColor":"danger","gradient":"pattern-30"} -->
+        <div class="wp-block-group is-style-system-flat-panel has-custom-css has-danger-color has-base-background-color has-text-color has-pattern-30-gradient-background has-background" style="min-height:9rem"><!-- wp:heading {"level":3} -->
             <h3 class="wp-block-heading">Spiral Ring / Danger</h3>
             <!-- /wp:heading -->
 
@@ -1799,8 +1799,8 @@
         </div>
         <!-- /wp:group -->
 
-        <!-- wp:group {"className":"is-style-system-flat-panel","style":{"dimensions":{"minHeight":"9rem"},"css":"flex:1 1 calc(25% - var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dspacing\u002d\u002d10));min-width:9rem;","background":{"gradient":"var:preset|gradient|pattern-30"}},"backgroundColor":"base","textColor":"light"} -->
-        <div class="wp-block-group is-style-system-flat-panel has-custom-css has-light-color has-base-background-color has-text-color has-background" style="min-height:9rem"><!-- wp:heading {"level":3} -->
+        <!-- wp:group {"className":"is-style-system-flat-panel","style":{"dimensions":{"minHeight":"9rem"},"css":"flex:1 1 calc(25% - var(--wp--preset--spacing--10));min-width:9rem;"},"backgroundColor":"base","textColor":"light","gradient":"pattern-30"} -->
+        <div class="wp-block-group is-style-system-flat-panel has-custom-css has-light-color has-base-background-color has-text-color has-background has-pattern-30-gradient-background" style="min-height:9rem"><!-- wp:heading {"level":3} -->
             <h3 class="wp-block-heading">Spiral Ring / Light</h3>
             <!-- /wp:heading -->
 
@@ -1814,8 +1814,8 @@
         </div>
         <!-- /wp:group -->
 
-        <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"9rem"},"css":"flex:1 1 calc(25% - var(--wp--preset--spacing--10));min-width:9rem;","background":{"gradient":"var:preset|gradient|pattern-30"}},"textColor":"dark"} -->
-        <div class="wp-block-group is-style-system-flat-panel has-custom-css has-dark-color has-base-background-color has-text-color" style="min-height:9rem"><!-- wp:heading {"level":3} -->
+        <!-- wp:group {"className":"is-style-system-flat-panel has-base-background-color","style":{"dimensions":{"minHeight":"9rem"},"css":"flex:1 1 calc(25% - var(--wp--preset--spacing--10));min-width:9rem;"},"textColor":"dark","gradient":"pattern-30"} -->
+        <div class="wp-block-group is-style-system-flat-panel has-custom-css has-dark-color has-base-background-color has-text-color has-pattern-30-gradient-background has-background" style="min-height:9rem"><!-- wp:heading {"level":3} -->
             <h3 class="wp-block-heading">Spiral Ring / Dark</h3>
             <!-- /wp:heading -->
 
@@ -2450,7 +2450,7 @@
     <!-- /wp:heading -->
 
     <!-- wp:paragraph -->
-    <p>Registry swatches use System Flat so WordPress presets remain the visual source of truth. Generated 10–90 ladder tokens are demonstrated through Core Group custom CSS and stay paired with their semantic parent as a single responsive specimen. Composition Lab panels combine only existing preset gradients, semantic colors, generated ladder variables, and their shadow RGB companions. Map Trails placeholders remain intentionally omitted.</p>
+    <p>Registry swatches use System Flat so WordPress presets remain the visual source of truth. Generated 10–90 ladder tokens are demonstrated through persistent theme classes on Core Spacer blocks and stay paired with their semantic parent as a single responsive specimen. Composition Lab panels combine only existing preset gradients, semantic colors, generated ladder variables, and their shadow RGB companions. Map Trails placeholders remain intentionally omitted.</p>
     <!-- /wp:paragraph -->
 </div>
 <!-- /wp:group -->

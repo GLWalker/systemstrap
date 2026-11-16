@@ -93,6 +93,47 @@ if (! function_exists('strap_html_processor_add_classes')) {
 	}
 }
 
+if (! function_exists('strap_get_tabs_composition_gap')) {
+	/**
+	 * Resolve an authored Core Tabs block gap to a CSS value.
+	 *
+	 * @param mixed $gap_value Raw spacing.blockGap value.
+	 * @return string
+	 */
+	function strap_get_tabs_composition_gap($gap_value): string
+	{
+		if (is_array($gap_value)) {
+			$gap_value = $gap_value['top'] ?? null;
+		}
+
+		if (! is_scalar($gap_value)) {
+			return '';
+		}
+
+		$gap_value = trim((string) $gap_value);
+
+		if ('' === $gap_value) {
+			return '';
+		}
+
+		if (str_starts_with($gap_value, 'var:preset|spacing|')) {
+			$slug = _wp_to_kebab_case(substr($gap_value, strrpos($gap_value, '|') + 1));
+
+			if ('0' === $slug) {
+				return '0';
+			}
+
+			return '' !== $slug ? "var(--wp--preset--spacing--{$slug})" : '';
+		}
+
+		if (preg_match('%[\\(&=};:{}<>"\'`\x00-\x1F\x7F]|/\*%', $gap_value)) {
+			return '';
+		}
+
+		return $gap_value;
+	}
+}
+
 if (! function_exists('strap_do_block_action')) {
 	/**
 	 * Execute a WordPress action hook inside block content.
@@ -1656,4 +1697,36 @@ function strap_latest_comments_block_filter(string $block_content, array $block)
 	}, $block_content);
 
 	return $block_content;
+}
+
+/**
+ * Expose an authored Core Tabs block gap to grid-based Tabs compositions.
+ */
+add_filter('render_block_core/tabs', 'strap_tabs_composition_gap_filter', 10, 2);
+function strap_tabs_composition_gap_filter(string $block_content, array $block): string
+{
+	$gap_value = strap_get_tabs_composition_gap($block['attrs']['style']['spacing']['blockGap'] ?? null);
+
+	if ('' === $gap_value) {
+		return $block_content;
+	}
+
+	$processor = strap_get_html_processor($block_content);
+
+	if (! $processor || ! $processor->next_tag(array('class_name' => 'wp-block-tabs'))) {
+		return $block_content;
+	}
+
+	$style       = trim((string) $processor->get_attribute('style'));
+	$declaration = '--strap-tabs-composition-gap:' . $gap_value . ';';
+
+	if (preg_match('/(?:^|;)\s*--strap-tabs-composition-gap\s*:/', $style)) {
+		$style = preg_replace('/(?:^|;)\s*--strap-tabs-composition-gap\s*:[^;]*(?:;|$)/', ';' . $declaration, $style, 1);
+	} else {
+		$style = ('' !== $style ? rtrim($style, ';') . ';' : '') . $declaration;
+	}
+
+	$processor->set_attribute('style', ltrim((string) $style, ';'));
+
+	return $processor->get_updated_html();
 }

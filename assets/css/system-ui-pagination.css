@@ -6,7 +6,7 @@
     --strap-pagination-border-color: var(--wp--custom--system-ui-border-color);
     --strap-pagination-color: var(--strap-pagination-user-color, var(--wp--preset--color--primary-text));
     --strap-pagination-current-bg: color-mix(in srgb, var(--strap-pagination-surface-color) 70%, var(--strap-pagination-contrast-color, color-mix(in srgb, currentColor 60%, var(--strap-pagination-surface-color))));
-    --strap-pagination-current-border-color: var(--wp--custom--system-ui-border-color);
+    --strap-pagination-current-border-color: currentColor;
     --strap-pagination-current-color: var(--strap-pagination-user-color, var(--wp--preset--color--primary-text));
     --strap-pagination-hover-bg: var(--strap-pagination-surface-color);
     --strap-pagination-hover-border-color: var(--wp--custom--system-ui-border-color);
@@ -33,13 +33,13 @@
 :is(.is-style-system-ui-pagination-outline, .is-style-system-ui-pagination-pill-outline, .is-style-system-ui-pagination-square-outline) {
     --strap-pagination-accent: var(--strap-pagination-user-accent, currentColor);
     --strap-pagination-surface-color: var(--strap-pagination-user-background, var(--strap-pagination-accent));
-    --strap-pagination-bg: color-mix(in srgb, var(--strap-pagination-user-background, transparent) 14%, transparent);
+    --strap-pagination-bg: var(--strap-pagination-direct-bg, color-mix(in srgb, var(--strap-pagination-surface-color) 14%, transparent));
     --strap-pagination-border-color: var(--wp--custom--system-ui-border-color);
     --strap-pagination-color: var(--strap-pagination-user-accent, inherit);
-    --strap-pagination-current-bg: color-mix(in srgb, color-mix(in srgb, var(--strap-pagination-surface-color) 40%, var(--strap-pagination-contrast-color, var(--strap-pagination-surface-color))) 18%, transparent);
-    --strap-pagination-current-border-color: var(--wp--custom--system-ui-border-color);
+    --strap-pagination-current-bg: var(--strap-pagination-direct-bg, color-mix(in srgb, var(--strap-pagination-surface-color) 32%, transparent));
+    --strap-pagination-current-border-color: currentColor;
     --strap-pagination-current-color: var(--strap-pagination-user-accent, inherit);
-    --strap-pagination-hover-bg: color-mix(in srgb, var(--strap-pagination-user-background, transparent) 18%, transparent);
+    --strap-pagination-hover-bg: var(--strap-pagination-direct-bg, color-mix(in srgb, var(--strap-pagination-surface-color) 18%, transparent));
     --strap-pagination-hover-border-color: var(--wp--custom--system-ui-border-color);
     --strap-pagination-hover-color: var(--strap-pagination-user-accent, inherit);
     --strap-pagination-control-size: calc(var(--wp--preset--font-size--medium) * 2.35);
@@ -67,8 +67,8 @@
     --strap-pagination-bg: color-mix(in srgb, var(--strap-pagination-surface-color) 10%, transparent);
     --strap-pagination-border-color: var(--wp--custom--system-ui-border-color);
     --strap-pagination-color: var(--strap-pagination-user-accent, inherit);
-    --strap-pagination-current-bg: color-mix(in srgb, var(--strap-pagination-surface-color) 18%, transparent);
-    --strap-pagination-current-border-color: var(--wp--custom--system-ui-border-color);
+    --strap-pagination-current-bg: color-mix(in srgb, var(--strap-pagination-surface-color) 26%, transparent);
+    --strap-pagination-current-border-color: currentColor;
     --strap-pagination-current-color: var(--strap-pagination-user-accent, inherit);
     --strap-pagination-hover-bg: color-mix(in srgb, var(--strap-pagination-surface-color) 14%, transparent);
     --strap-pagination-hover-border-color: var(--wp--custom--system-ui-border-color);
@@ -97,7 +97,7 @@
     --strap-pagination-font-weight: inherit;
     /* Keep an opaque variation surface from obscuring an editor-selected color. */
     --strap-pagination-surface-layer: linear-gradient(color-mix(in srgb, var(--wp--custom--system-ui-surface) 18%, transparent), color-mix(in srgb, var(--wp--custom--system-ui-surface) 18%, transparent));
-    --strap-pagination-current-layer: linear-gradient(var(--wp--custom--system-ui-active-bg), var(--wp--custom--system-ui-active-bg));
+    --strap-pagination-current-layer: linear-gradient(color-mix(in srgb, currentColor 6%, transparent), color-mix(in srgb, currentColor 6%, transparent));
     --strap-pagination-hover-layer: linear-gradient(var(--wp--custom--system-ui-list-hover-bg), var(--wp--custom--system-ui-list-hover-bg));
     --strap-pagination-transition: color .15s ease-in-out, background-color .15s ease-in-out, background-image .15s ease-in-out, border-color .15s ease-in-out;
 }

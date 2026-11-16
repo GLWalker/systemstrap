@@ -90,7 +90,7 @@
     inline-size: 100%;
     max-inline-size: 100%;
     padding: var(--wp--preset--spacing--10, .25rem);
-    background-color: var(--wp--preset--color--tertiary-bg);
+    background-color: var(--strap-tabs-nav-button-track-background);
     background-image: none;
     border: var(--system-tabs-border-width) solid var(--strap-tabs-classic-border-color);
     border-radius: var(--system-tabs-radius);
@@ -129,7 +129,7 @@
 
 .wp-block-tabs.is-style-system-classic .wp-block-tab-panels:not([class*="is-style-system-"]) {
     color: inherit;
-    margin-block-start: var(--wp--preset--spacing--20, .5rem);
+    margin-block-start: var(--strap-tabs-composition-gap, var(--wp--preset--spacing--20, .5rem));
     background: transparent;
     border: 0;
     border-radius: 0;
@@ -164,5 +164,5 @@
 }
 
 .wp-block-tabs.is-style-system-classic > .wp-block-tab-list.is-style-system-nav-button + .wp-block-tab-panels {
-    margin-block-start: var(--wp--preset--spacing--30);
+    margin-block-start: var(--strap-tabs-composition-gap, var(--wp--preset--spacing--30));
 }

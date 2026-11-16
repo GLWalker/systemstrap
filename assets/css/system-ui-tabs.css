@@ -2,6 +2,11 @@
  * Shared rhythm for the Default-family core/tabs compositions.
  * Classic, Vertical, and parent-owned List treatments retain their own layout.
  */
+.wp-block-tabs {
+    --strap-tabs-composition-surface: initial;
+    --strap-tabs-composition-gap: initial;
+}
+
 .wp-block-tabs:not(.is-style-system-classic):not(.is-style-system-vertical):not(.is-style-system-list):not(.is-style-system-flat-list) {
     --strap-tabs-list-gap: var(--wp--preset--spacing--20);
     --strap-tabs-content-gap: var(--wp--preset--spacing--30);
@@ -29,7 +34,7 @@
 
 .wp-block-tabs:not(.is-style-system-classic):not(.is-style-system-vertical):not(.is-style-system-list):not(.is-style-system-flat-list) > .wp-block-tab-panels {
     width: 100%;
-    margin-block-start: var(--strap-tabs-content-gap);
+    margin-block-start: var(--strap-tabs-composition-gap, var(--strap-tabs-content-gap));
     margin-block-end: 0;
 }
 
@@ -39,4 +44,18 @@
 
 .wp-block-tabs:not(.is-style-system-classic):not(.is-style-system-vertical):not(.is-style-system-list):not(.is-style-system-flat-list) > .wp-block-tab-panels > .wp-block-tab-panel > *:last-child {
     margin-block-end: 0;
+}
+
+/* Preset parent surfaces belong to the direct navigation and pane regions,
+ * not to the Tabs layout grid between them. */
+.wp-block-tabs:has(> .wp-block-tab-list:is(.is-style-system-nav-button, .is-style-system-nav-gen)) > .wp-block-tab-list:is(.is-style-system-nav-button, .is-style-system-nav-gen) {
+    background-color: var(--strap-tabs-composition-surface);
+}
+
+.wp-block-tabs:has(> .wp-block-tab-list:is(.is-style-system-nav-button, .is-style-system-nav-gen)) > .wp-block-tab-panels:not(.has-background):not([style*="background-color"]) {
+    background-color: var(--strap-tabs-composition-surface);
+}
+
+.wp-block-tabs:has(> .wp-block-tab-list:is(.is-style-system-nav-button, .is-style-system-nav-gen)) > .wp-block-tab-panels:is(.is-style-system-panel, .is-style-system-flat-panel):not(.has-background):not([style*="background-color"]) {
+    --strap-system-panel-context-surface: var(--strap-tabs-composition-surface);
 }

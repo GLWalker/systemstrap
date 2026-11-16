@@ -17,6 +17,7 @@ require_once get_template_directory() . '/inc/enqueue-assets.php';
 require_once get_template_directory() . '/inc/plugin-compatibility.php';
 require_once get_template_directory() . '/inc/theme-setup.php';
 require_once get_template_directory() . '/inc/class-color-generator.php';
+require_once get_template_directory() . '/inc/color-contexts.php';
 require_once get_template_directory() . '/inc/dynamic-styles.php';
 require_once get_template_directory() . '/inc/style-variations.php';
 require_once get_template_directory() . '/inc/block-filters.php';

@@ -6,11 +6,35 @@ This file is a CONTRACT.
 
 ## Contract Version
 
-Current Version: 1.3
+Current Version: 1.6
 
-Last Updated: 2026-10-24
+Last Updated: 2026-10-31
 
 ## Change Log
+
+### 1.6
+
+Extended the existing Tabs structural-color routing to explicit System Nav Gen
+children. An authored Tab List Text Color now controls the Classic or Vertical
+Nav Gen structural border system; an explicit Border Color is emitted in the
+later border pass and remains authoritative.
+
+### 1.5
+
+Added preset background routing for Tabs compositions using explicit System Nav
+Button or System Nav Gen children. The authored parent preset becomes a context
+surface for the direct navigation and unpainted Tab Panels regions while the
+Tabs layout root becomes transparent. An authored Tab List preset remains
+button-owned and does not repaint the navigation rail. Custom inline colors and
+gradients remain outside this class-based route.
+
+### 1.4
+
+Added persistent shade-ladder background utility classes for the existing
+semantic `-10` through `-90` runtime variables. `main-styles.css` maps these
+classes to the variables emitted by Dynamic Styles, allowing theme patterns to
+consume derived shades without Block Custom CSS or adding the derived shades to
+WordPress's authorable preset registry.
 
 ### 1.3
 
@@ -98,6 +122,12 @@ The theme currently defines editor-facing restrictions through:
 These flags currently govern editor availability, not runtime deletion of Core preset registries.
 
 Derived runtime variables are consumers of this registry and MUST NOT become independent authorable sources.
+
+Derived shade utilities use
+`.has-{semantic-slug}-{10…90}-background-color` and MUST resolve through the
+matching `--wp--preset--color--{semantic-slug}-{10…90}` runtime variable. They
+are persistent theme helpers owned by `main-styles.css`, not registered editor
+palette presets or dynamically injected selector rules.
 
 SystemStrap MUST NOT depend on PHP-side stripping of Core default palette, gradient, or duotone arrays for normal runtime behavior.
 

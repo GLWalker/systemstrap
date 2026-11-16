@@ -42,6 +42,311 @@ header.wp-block-template-part {
     margin-block-start: 0;
 }
 
+/* Color Lab shade ladders use persistent theme classes so generated runtime
+   shades survive pattern insertion without Block Custom CSS support. */
+.wp-block-group.strap-color-ladder {
+    align-items: stretch;
+    flex: 0 0 3.5rem;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 0;
+    min-width: 3.5rem;
+    width: 3.5rem;
+}
+
+.wp-block-group.strap-color-ladder>.strap-color-ladder__swatch {
+    min-height: 1rem;
+    width: 100%;
+}
+
+.strap-color-ladder__swatch.has-primary-10-background-color {
+    background-color: var(--wp--preset--color--primary-10);
+}
+
+.strap-color-ladder__swatch.has-primary-20-background-color {
+    background-color: var(--wp--preset--color--primary-20);
+}
+
+.strap-color-ladder__swatch.has-primary-30-background-color {
+    background-color: var(--wp--preset--color--primary-30);
+}
+
+.strap-color-ladder__swatch.has-primary-40-background-color {
+    background-color: var(--wp--preset--color--primary-40);
+}
+
+.strap-color-ladder__swatch.has-primary-50-background-color {
+    background-color: var(--wp--preset--color--primary-50);
+}
+
+.strap-color-ladder__swatch.has-primary-60-background-color {
+    background-color: var(--wp--preset--color--primary-60);
+}
+
+.strap-color-ladder__swatch.has-primary-70-background-color {
+    background-color: var(--wp--preset--color--primary-70);
+}
+
+.strap-color-ladder__swatch.has-primary-80-background-color {
+    background-color: var(--wp--preset--color--primary-80);
+}
+
+.strap-color-ladder__swatch.has-primary-90-background-color {
+    background-color: var(--wp--preset--color--primary-90);
+}
+
+.strap-color-ladder__swatch.has-secondary-10-background-color {
+    background-color: var(--wp--preset--color--secondary-10);
+}
+
+.strap-color-ladder__swatch.has-secondary-20-background-color {
+    background-color: var(--wp--preset--color--secondary-20);
+}
+
+.strap-color-ladder__swatch.has-secondary-30-background-color {
+    background-color: var(--wp--preset--color--secondary-30);
+}
+
+.strap-color-ladder__swatch.has-secondary-40-background-color {
+    background-color: var(--wp--preset--color--secondary-40);
+}
+
+.strap-color-ladder__swatch.has-secondary-50-background-color {
+    background-color: var(--wp--preset--color--secondary-50);
+}
+
+.strap-color-ladder__swatch.has-secondary-60-background-color {
+    background-color: var(--wp--preset--color--secondary-60);
+}
+
+.strap-color-ladder__swatch.has-secondary-70-background-color {
+    background-color: var(--wp--preset--color--secondary-70);
+}
+
+.strap-color-ladder__swatch.has-secondary-80-background-color {
+    background-color: var(--wp--preset--color--secondary-80);
+}
+
+.strap-color-ladder__swatch.has-secondary-90-background-color {
+    background-color: var(--wp--preset--color--secondary-90);
+}
+
+.strap-color-ladder__swatch.has-success-10-background-color {
+    background-color: var(--wp--preset--color--success-10);
+}
+
+.strap-color-ladder__swatch.has-success-20-background-color {
+    background-color: var(--wp--preset--color--success-20);
+}
+
+.strap-color-ladder__swatch.has-success-30-background-color {
+    background-color: var(--wp--preset--color--success-30);
+}
+
+.strap-color-ladder__swatch.has-success-40-background-color {
+    background-color: var(--wp--preset--color--success-40);
+}
+
+.strap-color-ladder__swatch.has-success-50-background-color {
+    background-color: var(--wp--preset--color--success-50);
+}
+
+.strap-color-ladder__swatch.has-success-60-background-color {
+    background-color: var(--wp--preset--color--success-60);
+}
+
+.strap-color-ladder__swatch.has-success-70-background-color {
+    background-color: var(--wp--preset--color--success-70);
+}
+
+.strap-color-ladder__swatch.has-success-80-background-color {
+    background-color: var(--wp--preset--color--success-80);
+}
+
+.strap-color-ladder__swatch.has-success-90-background-color {
+    background-color: var(--wp--preset--color--success-90);
+}
+
+.strap-color-ladder__swatch.has-info-10-background-color {
+    background-color: var(--wp--preset--color--info-10);
+}
+
+.strap-color-ladder__swatch.has-info-20-background-color {
+    background-color: var(--wp--preset--color--info-20);
+}
+
+.strap-color-ladder__swatch.has-info-30-background-color {
+    background-color: var(--wp--preset--color--info-30);
+}
+
+.strap-color-ladder__swatch.has-info-40-background-color {
+    background-color: var(--wp--preset--color--info-40);
+}
+
+.strap-color-ladder__swatch.has-info-50-background-color {
+    background-color: var(--wp--preset--color--info-50);
+}
+
+.strap-color-ladder__swatch.has-info-60-background-color {
+    background-color: var(--wp--preset--color--info-60);
+}
+
+.strap-color-ladder__swatch.has-info-70-background-color {
+    background-color: var(--wp--preset--color--info-70);
+}
+
+.strap-color-ladder__swatch.has-info-80-background-color {
+    background-color: var(--wp--preset--color--info-80);
+}
+
+.strap-color-ladder__swatch.has-info-90-background-color {
+    background-color: var(--wp--preset--color--info-90);
+}
+
+.strap-color-ladder__swatch.has-warning-10-background-color {
+    background-color: var(--wp--preset--color--warning-10);
+}
+
+.strap-color-ladder__swatch.has-warning-20-background-color {
+    background-color: var(--wp--preset--color--warning-20);
+}
+
+.strap-color-ladder__swatch.has-warning-30-background-color {
+    background-color: var(--wp--preset--color--warning-30);
+}
+
+.strap-color-ladder__swatch.has-warning-40-background-color {
+    background-color: var(--wp--preset--color--warning-40);
+}
+
+.strap-color-ladder__swatch.has-warning-50-background-color {
+    background-color: var(--wp--preset--color--warning-50);
+}
+
+.strap-color-ladder__swatch.has-warning-60-background-color {
+    background-color: var(--wp--preset--color--warning-60);
+}
+
+.strap-color-ladder__swatch.has-warning-70-background-color {
+    background-color: var(--wp--preset--color--warning-70);
+}
+
+.strap-color-ladder__swatch.has-warning-80-background-color {
+    background-color: var(--wp--preset--color--warning-80);
+}
+
+.strap-color-ladder__swatch.has-warning-90-background-color {
+    background-color: var(--wp--preset--color--warning-90);
+}
+
+.strap-color-ladder__swatch.has-danger-10-background-color {
+    background-color: var(--wp--preset--color--danger-10);
+}
+
+.strap-color-ladder__swatch.has-danger-20-background-color {
+    background-color: var(--wp--preset--color--danger-20);
+}
+
+.strap-color-ladder__swatch.has-danger-30-background-color {
+    background-color: var(--wp--preset--color--danger-30);
+}
+
+.strap-color-ladder__swatch.has-danger-40-background-color {
+    background-color: var(--wp--preset--color--danger-40);
+}
+
+.strap-color-ladder__swatch.has-danger-50-background-color {
+    background-color: var(--wp--preset--color--danger-50);
+}
+
+.strap-color-ladder__swatch.has-danger-60-background-color {
+    background-color: var(--wp--preset--color--danger-60);
+}
+
+.strap-color-ladder__swatch.has-danger-70-background-color {
+    background-color: var(--wp--preset--color--danger-70);
+}
+
+.strap-color-ladder__swatch.has-danger-80-background-color {
+    background-color: var(--wp--preset--color--danger-80);
+}
+
+.strap-color-ladder__swatch.has-danger-90-background-color {
+    background-color: var(--wp--preset--color--danger-90);
+}
+
+.strap-color-ladder__swatch.has-light-10-background-color {
+    background-color: var(--wp--preset--color--light-10);
+}
+
+.strap-color-ladder__swatch.has-light-20-background-color {
+    background-color: var(--wp--preset--color--light-20);
+}
+
+.strap-color-ladder__swatch.has-light-30-background-color {
+    background-color: var(--wp--preset--color--light-30);
+}
+
+.strap-color-ladder__swatch.has-light-40-background-color {
+    background-color: var(--wp--preset--color--light-40);
+}
+
+.strap-color-ladder__swatch.has-light-50-background-color {
+    background-color: var(--wp--preset--color--light-50);
+}
+
+.strap-color-ladder__swatch.has-light-60-background-color {
+    background-color: var(--wp--preset--color--light-60);
+}
+
+.strap-color-ladder__swatch.has-light-70-background-color {
+    background-color: var(--wp--preset--color--light-70);
+}
+
+.strap-color-ladder__swatch.has-light-80-background-color {
+    background-color: var(--wp--preset--color--light-80);
+}
+
+.strap-color-ladder__swatch.has-light-90-background-color {
+    background-color: var(--wp--preset--color--light-90);
+}
+
+.strap-color-ladder__swatch.has-dark-10-background-color {
+    background-color: var(--wp--preset--color--dark-10);
+}
+
+.strap-color-ladder__swatch.has-dark-20-background-color {
+    background-color: var(--wp--preset--color--dark-20);
+}
+
+.strap-color-ladder__swatch.has-dark-30-background-color {
+    background-color: var(--wp--preset--color--dark-30);
+}
+
+.strap-color-ladder__swatch.has-dark-40-background-color {
+    background-color: var(--wp--preset--color--dark-40);
+}
+
+.strap-color-ladder__swatch.has-dark-50-background-color {
+    background-color: var(--wp--preset--color--dark-50);
+}
+
+.strap-color-ladder__swatch.has-dark-60-background-color {
+    background-color: var(--wp--preset--color--dark-60);
+}
+
+.strap-color-ladder__swatch.has-dark-70-background-color {
+    background-color: var(--wp--preset--color--dark-70);
+}
+
+.strap-color-ladder__swatch.has-dark-80-background-color {
+    background-color: var(--wp--preset--color--dark-80);
+}
+
+.strap-color-ladder__swatch.has-dark-90-background-color {
+    background-color: var(--wp--preset--color--dark-90);
+}
+
 /* Adjacent System Details roots intentionally share one joined stack. */
 .wp-block-group:not(.is-layout-flow):not(.is-layout-constrained):not(.is-layout-flex):not(.is-layout-grid):not(.is-style-system-panel):not(.is-style-system-panel-header):not(.is-style-system-panel-footer)>.wp-block-details.is-style-system-details+.wp-block-details.is-style-system-details,
 .wp-block-group:not(.is-layout-flow):not(.is-layout-constrained):not(.is-layout-flex):not(.is-layout-grid):not(.is-style-system-panel):not(.is-style-system-panel-header):not(.is-style-system-panel-footer)>.block-editor-block-list__layout>.wp-block-details.is-style-system-details+.wp-block-details.is-style-system-details {

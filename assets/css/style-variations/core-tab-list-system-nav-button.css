@@ -1,5 +1,6 @@
 /* Button Navigation treatment for core/tab-list. */
 :where(.wp-block-tabs:not(.is-style-system-list):not(.is-style-system-flat-list)) .wp-block-tab-list.is-style-system-nav-button {
+    --strap-tabs-nav-button-track-background: var(--strap-tabs-composition-surface, rgba(var(--wp--preset--color--tertiary-bg-rgb), .5));
     display: flex;
     flex-wrap: wrap;
     align-items: center;

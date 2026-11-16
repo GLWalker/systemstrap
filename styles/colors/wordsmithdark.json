@@ -405,12 +405,12 @@
 					"slug": "danger"
 				},
 				{
-					"color": "#34342F",
+					"color": "#EEE8DC",
 					"name": "Light",
 					"slug": "light"
 				},
 				{
-					"color": "#EEE8DC",
+					"color": "#34342F",
 					"name": "Dark",
 					"slug": "dark"
 				},

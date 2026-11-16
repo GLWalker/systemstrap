@@ -249,6 +249,44 @@ class Strap_ColorGenerator
     }
 
     /**
+     * Move a selected foreground toward the background's safe contrast color
+     * until it reaches the requested contrast ratio.
+     *
+     * @param string $background Background color in hex format.
+     * @param string $foreground Selected foreground color in hex format.
+     * @param float  $minContrast Minimum contrast ratio.
+     * @param int    $step Blend step percentage.
+     * @return string Accessible foreground color in hex format.
+     */
+    public function find_accessible_foreground(string $background, string $foreground, float $minContrast = 4.5, int $step = 5): string
+    {
+        $background = '#' . $this->validate_hex($background);
+        $foreground = '#' . $this->validate_hex($foreground);
+
+        if ($this->passes_wcag_contrast($foreground, $background, $minContrast)) {
+            return $foreground;
+        }
+
+        $safe_color     = $this->get_best_contrast_color($background, '#000000', '#ffffff');
+        $foreground_hsl = $this->rgb_to_hsl($this->parse_rgb($this->hex_to_rgb($foreground)));
+        $target_lightness = '#ffffff' === strtolower($safe_color) ? 100.0 : 0.0;
+        $step             = max(1, min(100, $step));
+
+        for ($amount = $step; $amount <= 100; $amount += $step) {
+            $ratio = $amount / 100;
+            $candidate_hsl = $foreground_hsl;
+            $candidate_hsl['l'] = $foreground_hsl['l'] + (($target_lightness - $foreground_hsl['l']) * $ratio);
+            $candidate = $this->hsl_to_hex($candidate_hsl);
+
+            if ($this->passes_wcag_contrast($candidate, $background, $minContrast)) {
+                return $candidate;
+            }
+        }
+
+        return $safe_color;
+    }
+
+    /**
      * Creates a palette of colors based on the initial color.
      *
      * @param int $colorCount Number of colors in the palette (default 5).

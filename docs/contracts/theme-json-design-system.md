@@ -6,11 +6,108 @@ This file is a CONTRACT.
 
 ## Contract Version
 
-Current Version: 1.27
+Current Version: 1.38
 
-Last Updated: 2026-10-24
+Last Updated: 2026-11-15
 
 ## Change Log
+
+### 1.38
+
+Explicit System UI pagination now uses a stronger shared active-state ladder.
+Outline current-page surfaces use a 32% accent tint after the 14% resting and
+18% hover states; Badge uses 26% after its 10% resting and 14% hover states.
+All pagination families add a local 6% current-color overlay and a one-pixel
+inset ring in the resolved current foreground. The active distinction applies
+through the shared Query, Comments, Woo reviews, BuddyPress, and child-style
+pagination contract without changing authored colors or control geometry.
+
+### 1.37
+
+Pagination background-plus-text contrast routing now includes the generated
+Light and Dark palette families alongside Primary, Secondary, Success, Info,
+Warning, and Danger. Authored Light or Dark text therefore receives the same
+exact-color, ladder, and accessible extended-fallback treatment against an
+authored pagination background.
+
+### 1.36
+
+When pagination exhausts a selected semantic text family's existing ladder
+without reaching 4.5:1 against an authored background, the color generator now
+preserves that foreground's hue and saturation while moving its lightness
+toward the background's strongest black/white contrast endpoint in five-percent
+increments. The first passing result becomes the pagination foreground. Pure
+background contrast remains only the terminal fallback.
+
+### 1.35
+
+Pagination with both an authored preset background and semantic text color now
+keeps the exact selected background while giving the selected text family
+foreground authority. The exact text preset is retained when it reaches 4.5:1;
+otherwise the nearest passing shade from that text family is used. Only when
+that ladder has no passing shade does pagination fall back to the background's
+generated contrast color. The combined route follows background-only routing
+and applies to pagination roots and locally colored child controls.
+
+### 1.34
+
+Outline System UI pagination keeps an authored text color as its accent and
+uses a translucent tint of that same palette color for its control surface.
+An authored background color instead paints the exact selected palette color
+on each control and routes its foreground through the existing generated
+contrast token. Text-plus-background selections retain the exact background
+while the background contrast route remains authoritative for legibility.
+Uncolored pagination retains its inherited/default behavior.
+
+### 1.33
+
+Column color contexts now resolve the prescribed typography companion from
+`assets/typography-pairing-manifest.json` and locally override the canonical
+Body, Heading, Display, Button, and Monospace font-family preset variables. The
+context changes no font picker options, typography JSON, font sizes, weights,
+spacing, global variation state, or saved markup beyond its existing native
+block-style class.
+
+### 1.32
+
+Each filesystem color variation under `styles/colors/` now registers a matching
+`core/column` color-context style through `inc/color-contexts.php`. The selected
+Column scopes that variation's complete palette, generated semantic ladders and
+RGB helpers, and gradient presets as local custom-property overrides. Descendant
+blocks continue to consume the canonical preset variable names, nested contexts
+override through normal CSS inheritance, and no typography or global variation
+state is changed.
+
+### 1.31
+
+Every Core Tabs root now resets the composition-gap alias before authored
+Block Spacing is resolved. Default-family and Classic independent-pane spacing
+consume that authored value while preserving their established fallbacks;
+joined Classic Panel geometry remains zero-gap.
+
+### 1.30
+
+Core Tabs Block Spacing now routes through
+`--strap-tabs-composition-gap` on the rendered root and editor wrapper. The
+grid-based Vertical explicit-navigation and List compositions consume that
+authored value while retaining their existing Spacing 30 and Spacing 40
+fallbacks when no value is authored.
+
+### 1.29
+
+System Nav Gen now participates in the existing preset structural-color route.
+Tab List Text Color paints its Classic or Vertical borders and separators, while
+an explicit Tab List Border Color retains higher priority through the later
+dynamic border pass.
+
+### 1.28
+
+Dynamic preset routing now treats a colored Core Tabs block with an explicit
+System Nav Button or System Nav Gen child as a composition source rather than a
+painted layout grid. The preset surface routes to the direct navigation and
+unpainted Tab Panels regions. An explicit Tab List preset remains local to its
+buttons, while an explicit Tab Panels background remains authoritative over the
+pane. The route does not reinterpret custom inline colors or gradients.
 
 ### 1.27
 
@@ -224,6 +321,7 @@ The design-system layer is currently implemented through these files:
 - `wp-content/themes/systemstrap/functions.php`
 - `wp-content/themes/systemstrap/inc/enqueue-assets.php`
 - `wp-content/themes/systemstrap/inc/block-styles.php`
+- `wp-content/themes/systemstrap/inc/color-contexts.php`
 - `wp-content/themes/systemstrap/assets/css/main-styles.css`
 - `wp-content/themes/systemstrap/assets/css/style-variations/bp-widget-system-panel-header.css`
 - `wp-content/themes/systemstrap/assets/css/strap-reset.css`
@@ -949,6 +1047,9 @@ System Panel or System Flat Panel receives the equalized height. The wrapper is
 only the height-transfer carrier and retains its neutral paint contract. The
 same direct relationship passes through the editor's non-block layout wrapper;
 opt-out and stacked-Columns resets remain owned by the nested Panel.
+Horizontal Flex/Row Groups and Grid Groups participate; Core continues to own
+flex wrapping, Grid columns, and Grid row formation. Vertical Group layouts do
+not participate.
 
 Woo Product Categories is a dynamic-block compatibility consumer of this lane.
 `inc/plugin-compatibility.php` registers `system-badge`, `system-flat-list`,

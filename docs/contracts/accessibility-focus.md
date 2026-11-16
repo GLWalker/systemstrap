@@ -6,15 +6,23 @@ This file is a CONTRACT.
 
 ## Contract Version
 
-Current Version: 1.1
+Current Version: 1.2
 
-Last Updated: 2026-06-26
+Last Updated: 2026-10-31
 
 ## Change Log
 
+### 1.2
+
+Core Tabs owns Tabs behavior, focus targets, and ARIA. SystemStrap applies
+visible focus directly to real `core/tab-list` buttons through the Classic,
+Vertical, System List, System Flat List, System Nav Button, and System Nav Gen
+presentation contracts. No generated Accordion Tabs controls remain.
+
 ### 1.1
 
-Added the generated System Tabs accordion controls to the focus contract. The horizontal and vertical tab accordion style variations now define keyboard-visible focus on `.system-tabs__tab:focus-visible` while preserving the accordion-derived `.wp-block-accordion-heading__toggle` hook on generated tab buttons.
+Historical generated Accordion Tabs focus ownership was retired when the theme
+migrated to Core Tabs.
 
 ### 1.0
 

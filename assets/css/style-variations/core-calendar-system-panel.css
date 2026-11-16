@@ -72,9 +72,11 @@
     background-color: rgba(var(--wp--preset--color--contrast-rgb), .05) !important;
     font-weight: var(--wp--custom--font-weight-heading) !important;
     font-size: var(--wp--preset--font-size--small) !important;
-    color: var(--wp--preset--color--contrast) !important;
+    color: inherit !important;
     padding: var(--wp--preset--spacing--20) !important;
     border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color) !important;
+    border-top: 0 !important;
+    border-bottom: 0 !important;
     text-align: center !important;
 }
 

@@ -17,29 +17,5 @@
 
         <!-- wp:pattern {"slug":"systemstrap/query-media-object"} /-->
 
-        <!-- wp:paragraph {"className":" "} -->
-        <p class="">query-latest-posts-list</p>
-        <!-- /wp:paragraph -->
-
-        <!-- wp:pattern {"slug":"systemstrap/query-latest-posts-list"} /-->
-
-        <!-- wp:paragraph {"className":" "} -->
-        <p class="">query-directory-listing</p>
-        <!-- /wp:paragraph -->
-
-        <!-- wp:pattern {"slug":"systemstrap/query-directory-listing"} /-->
-
-        <!-- wp:paragraph {"className":" "} -->
-        <p class="">query-directory-grid</p>
-        <!-- /wp:paragraph -->
-
-        <!-- wp:pattern {"slug":"systemstrap/query-directory-grid"} /-->
-
-        <!-- wp:paragraph {"className":" "} -->
-        <p class="">query-directory-image-grid</p>
-        <!-- /wp:paragraph -->
-
-        <!-- wp:pattern {"slug":"systemstrap/query-directory-image-grid"} /-->
-
     </div> <!-- /wp:group -->
 </div> <!-- /wp:group -->

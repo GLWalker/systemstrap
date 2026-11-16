@@ -6,11 +6,37 @@ This file is a CONTRACT.
 
 ## Contract Version
 
-Current Version: 3.25
+Current Version: 3.28
 
-Last Updated: 2026-07-30
+Last Updated: 2026-11-07
 
 ## Change Log
+
+### 3.28
+
+The filesystem-derived Column color-context lane now consumes the existing
+typography pairing manifest as a second source. Each color context appends the
+five semantic font-family variables from its paired typography variation to the
+same scoped inline style; the global editor recommendation remains one-way and
+the manifest does not activate or merge a global style variation.
+
+### 3.27
+
+Added the filesystem-derived Column color-context lane. Every valid
+`styles/colors/*.json` source registers a native `core/column` block style named
+`color-{filename}` whose inline stylesheet locally exposes that variation's
+palette, generated semantic helpers, and gradients. Registration is cached for
+the request and malformed sources are skipped without altering the global Site
+Editor variation state.
+
+### 3.26
+
+Core Tabs is the sole Tabs behavior owner. SystemStrap registers parent styles
+for Classic, Vertical, System Panel, System Flat Panel, System List, and System
+Flat List; child styles for System Nav Button and System Nav Gen; and Tab Panels
+styles for System Panel and System Flat Panel. The retired Accordion Tabs
+variations, generated controls, seam-measurement runtime, and fake-Tabs asset
+contracts are no longer part of the variation architecture.
 
 ### 3.25
 
@@ -44,46 +70,6 @@ Delegated the detailed Splide and carousel runtime behavior to `docs/contracts/c
 ### 3.20
 
 Documented the current SystemStrap carousel runtime contract more explicitly. The carousel variations continue to save the same Group-based variation markup and class names, while `assets/js/carousel-nav.js` now owns direct-slide discovery, runtime Splide markup injection, normalized thumbnail-mode classes, underflow state, wrapper-scoped navigation binding, and thumbnail measurement from the rendered track width. The carousel CSS remains explicitly enqueued rather than auto-registered, and the editor preview keeps an unmounted horizontal fallback while mirroring the frontend medium-versus-thumbnail detection rule.
-
-### 3.19
-
-Rewrote `core-accordion-system-tabs.css` and `core-accordion-system-tabs-vertical.css` into explicit token, layout, state, panel, seam, editor-fallback, and nested-override lanes so both tab styles now align to the System UI authority surfaces. The tabs CSS now consumes `system-ui-surface-banner`, `system-ui-list-hover-bg`, `system-ui-active-bg`, `system-ui-surface`, and `system-ui-border-color` directly, keeps the panel-owned seam mask contract intact, preserves the accordion-like editor fallback with tab labels, and leaves `accordion-tabs.js` as the unchanged transform and geometry layer.
-
-### 3.18
-
-Added `assets/js/variations/strap-accordion-tabs.js` as an editor-only block-variation registration surface for `core/accordion`. The file registers two inserter variations, `strap-accordion-tabs` and `strap-accordion-tabs-vertical`, that preconfigure the existing System Tabs and System Vertical Tabs styles with three starter accordion items and Base-preset heading/panel backgrounds without changing the frontend tabs runtime.
-
-### 3.17
-
-Updated the System Tabs seam contract so the panel now owns the seam mask that hides its joining border beneath the active tab. `accordion-tabs.js` now writes active-tab geometry onto the active panel, while the horizontal and vertical tab variation styles paint the seam cover from the panel pseudo-element and leave the tab pseudo-element responsible only for active-state depth styling.
-
-### 3.16
-
-Updated the System Tabs active-state presentation so the selected tab keeps its joining edge transparent while a higher-layer inherited-background seam strip covers the panel join. Added a shared active-state depth overlay to the tab surface so selection remains visually obvious even when user styling changes background, border, or panel values independently.
-
-### 3.15
-
-Updated the System Tabs seam behavior so the active joining edge is covered by a tab-owned inherited-background pseudo-element instead of relying on color-matched border overrides. Horizontal tabs now mask the panel join from the active tab bottom edge, and vertical tabs do the same from the active right edge on desktop plus the bottom edge on the mobile fallback layout.
-
-### 3.14
-
-Updated the System Tabs seam behavior so the active joining border now consumes the measured active tab background color directly. The runtime keeps `accordion-tabs.js` seam measurement, but the horizontal and vertical variations no longer paint the seam from `.system-tabs__panels::after`.
-
-### 3.13
-
-Updated the System Tabs seam runtime so `accordion-tabs.js` measures the active tab and writes seam geometry plus background values onto the accordion root. The horizontal and vertical tab variations now paint the seam cover from `.system-tabs__panels::after` instead of relying on a tab-owned pseudo-element.
-
-### 3.12
-
-Updated the System Tabs CSS seam behavior so the active tab paints a small inherited-background mask over the panel join. The horizontal variation uses a bottom mask strip, the desktop vertical variation uses a right-edge mask strip, and the mobile vertical fallback reuses the bottom mask behavior.
-
-### 3.11
-
-Updated the System Tabs transform so the first valid source accordion item supplies border classes, inline border settings, resolved border style, and resolved radius to the surviving accordion shell. Updated horizontal and vertical tab seams so the panel border remains authoritative while active tabs mask only their joining edge.
-
-### 3.10
-
-Updated the System Tabs accordion runtime contract so `accordion-tabs.js` remains the transform layer for `is-style-system-tabs` and `is-style-system-tabs-vertical` while preserving accordion-derived heading and panel styling hooks on the generated tab buttons and panels. Confirmed the horizontal and vertical tab styles remain CSS block-style variation surfaces and consume System UI tokens for surface, border, radius, focus, and spacing behavior.
 
 ### 3.9
 
@@ -169,6 +155,7 @@ The variation architecture is currently implemented through these files and dire
 - `functions.php`
 - `inc/enqueue-assets.php`
 - `inc/block-styles.php`
+- `inc/color-contexts.php`
 - `inc/dynamic-styles.php`
 - `inc/dialog-renderer.php`
 - `assets/css/main-styles.css`
@@ -188,14 +175,25 @@ Any removal, rename, or loading-path change affecting a variation surface listed
 
 ## Variation Surface Taxonomy
 
-SystemStrap currently uses four distinct variation surfaces:
+SystemStrap currently uses five distinct variation surfaces:
 
 1. Base `theme.json` styles and inline block variations.
 2. Filesystem global-style variation directories under `styles/`.
 3. CSS block style variations and CSS runtime exceptions under `assets/css/style-variations/`.
 4. Editor-side JavaScript registrations under `assets/js/variations/`.
+5. Filesystem-derived `core/column` color-context styles registered by
+   `inc/color-contexts.php`.
 
 These surfaces are related, but they are NOT interchangeable.
+
+The Column color-context lane discovers `styles/colors/*.json` at registration
+time and exposes each file as `color-{filename}` on `core/column`. Its inline
+style scopes the source palette, the same generated semantic ladder/RGB/contrast
+helpers used by `inc/dynamic-styles.php`, and the source gradient registry to the
+selected Column. It also scopes the five paired semantic font-family variables
+from the typography pairing manifest. It MUST NOT change global variation state,
+font picker options, saved markup beyond the native block-style class, or
+descendant component ownership.
 
 SystemStrap also ships explicit conditional block stylesheets that are not style variations.
 
@@ -391,7 +389,14 @@ Future filesystem global variations SHOULD prefer changing token slugs and prese
 
 `assets/typography-pairing-manifest.json` is the data-only recommendation registry for matching each retained color presentation to one suggested typography presentation. It uses canonical relative filenames so the editor sync consumer can resolve existing source files without relying on display titles. A child theme may supply its own manifest at the same relative path; its referenced files resolve from the child first and then from SystemStrap.
 
-The manifest is the canonical recommendation source for the editor sync layer. It does not select colors, alter layout settings, or merge color partials. Root `theme.json` is the Default color and typography target.
+The manifest is the canonical recommendation source for the editor sync layer
+and the local Column color-context lane. The editor sync consumer applies its
+recommended typography globally after a recognized color selection. The Column
+consumer reads only the paired `settings.typography.fontFamilies` values and
+scopes them to that Column's existing color-context selector. Neither consumer
+selects colors or merges a color partial, and the local consumer does not
+activate a global typography variation. Root `theme.json` is the Default color
+and typography target.
 
 ## Body/Admin Variation Class Contract
 

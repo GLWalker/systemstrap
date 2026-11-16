@@ -1865,7 +1865,10 @@ ol.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) > li {
    treatments, child Panel surfaces, and the two outer Panel shortcuts. It
    exposes spacing aliases for wrapped-list row gap, list-to-content gap, and
    shell padding. Classic, Vertical, System List, and System Flat List are
-   explicitly outside that shared layout scope.
+   explicitly outside that shared layout scope. Default-family list-to-content
+   spacing consumes authored Tabs Block Spacing through
+   `--strap-tabs-composition-gap` and retains the canonical content-gap alias
+   when no value is authored.
 
    Explicit child style presentation MUST override parent fallback cosmetics
    without relying on stylesheet order. Parent fallback button rules use
@@ -1893,9 +1896,14 @@ ol.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) > li {
    buttons use a relative block offset of one canonical border width so their
    bottom edges occupy the Tab List baseline plane without changing flow.
    Classic System Nav Button replaces that baseline with a full-content-width,
-   Tertiary preset bordered track around intrinsic wrapping buttons. The track
+   translucent Tertiary bordered track around intrinsic wrapping buttons. The
+   track surface resolves through `--strap-tabs-nav-button-track-background`,
+   whose default is the active Tertiary RGB preset at fifty-percent opacity. The track
    uses the compact Spacing 10 inset and canonical radius, remains separate from the pane border,
-   and uses the canonical Tabs list-to-content gap before Tab Panels.
+   and uses authored Tabs Block Spacing, with the canonical Tabs
+   list-to-content gap as its fallback, before Tab Panels. Classic plain panes
+   likewise consume authored Block Spacing with their compact fallback; joined
+   System Panel and System Flat Panel geometry remains zero-gap.
    Classic System Nav Gen replaces it with contiguous square-edged bordered
    tabs, retains the compact contextual washes, suppresses Core's selected
    underline, and resolves its selected surface and bottom border from the
@@ -1914,7 +1922,10 @@ ol.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) > li {
    relationship: Base fallback rows share a resolved structural color sourced
    from authored preset Border, then authored preset Text, then the canonical
    System UI border; selection opens the inline-end edge into the pane without
-   elevation or transform. Authored row backgrounds retain their Core surface
+   elevation or transform. Default rows retain square inline-end corners
+   against the joined pane while the outer first and last inline-start corners
+   retain the canonical radius. The desktop overlap and pane radii use logical
+   inline directions so the join remains correct in LTR and RTL. Authored row backgrounds retain their Core surface
    and consume the canonical hover and active washes without selected-state
    depth. When the direct pane is an unpainted System Panel, its canonical Panel
    enhancement image also paints the unpainted selected Default row; Flat Panel
@@ -1923,13 +1934,31 @@ ol.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) > li {
    width. Unstyled adjacent panes omit their inline-start border. System Panel
    and System Flat Panel panes retain a continuous inline-start border beneath
    tall navigation content while the overlapping Tab List masks that border
-   beside its rows; pane typography remains independent. Vertical System Nav Button
-   owns a natural-height, full-column compact Tertiary track with full-width
-   wrapping buttons and an independent column gap. Vertical System Nav Gen owns
-   natural-height, full-width compact contextual rows, flat background washes,
-   and the same independent gap. At 700px all three
-   navigation families become horizontal, wrapping treatments and panes recover
-   their complete perimeter and radius.
+   beside its rows; pane typography remains independent. When a Tabs parent
+   with an explicit System Nav Button or System Nav Gen child owns a preset
+   background, that preset paints the direct navigation and unpainted pane
+   regions while the layout grid remains transparent. A preset background
+   authored on the Tab List remains local to its buttons and does not repaint
+   the rail; a direct Tab Panels background remains authoritative over the pane. This
+   class-based route does not reinterpret custom inline colors or gradients.
+   Every nested Tabs root resets the composition surface and gap aliases before
+   resolving its own authored context, preventing outer Tabs spacing or paint
+   from leaking into an unconfigured nested Tabs composition.
+   Vertical System Nav Button
+   owns a natural-height, full-column compact translucent Tertiary track with full-width
+   wrapping buttons and an independent column gap. Both explicit navigation
+   treatments consume authored Tabs Block Spacing through
+   `--strap-tabs-composition-gap`; without an authored value they retain
+   Spacing 30. Vertical System Nav Gen owns
+   a natural-height, full-width translucent Tertiary rail with the canonical
+   square perimeter, row separators, flat contextual row washes, and the same
+   independent gap. At 700px its separators switch to the inline axis as the
+   rows become horizontal. All three navigation families become horizontal and
+   wrapping; panes recover their complete perimeter and radius, while Nav Gen
+   remains square. Classic and Vertical System Nav Gen
+   resolve structural border color from an explicit Tab List preset Border,
+   then preset Text, then the canonical System UI border. The resolved value
+   paints the Nav Gen perimeter and separators without changing its surfaces.
    System List and System Flat List own a complete, independent two-column
    dashboard-navigation composition and suppress Tab List Nav Button and Nav Gen
    cosmetics even when those child classes remain in saved markup. Their
@@ -1943,8 +1972,10 @@ ol.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) > li {
    perimeter and separators only. System Flat List removes enhancement without
    changing geometry or states. Every pane remains independently bordered.
    Default Tab Panels use a desktop Spacing 40 inline gap; System Panel and
-   System Flat Panel retain Spacing 30. At 700px every combination uses the
-   existing Spacing 30 stack gap and the navigation remains a full-width
+   System Flat Panel retain Spacing 30. An authored Tabs Block Spacing value
+   replaces those defaults through `--strap-tabs-composition-gap`, including
+   zero for intentionally touching borders. At 700px every combination uses
+   the authored value or the existing Spacing 30 stack gap, and the navigation remains a full-width
    vertical list above the independent pane. Vertical and List
    compositions stack at 700px.
    No Tabs style may require JavaScript, DOM rewriting, generated controls,
@@ -2762,6 +2793,20 @@ ol.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) > li {
  *
  * The shared runtime owns only surfaces and interaction. Typography remains
  * inherited from theme.json. Page-break navigation is baseline-only. The
+ * An authored text color remains the outline accent and supplies its own
+ * translucent surface tint. An authored background color supplies the exact
+ * opaque control surface through --strap-pagination-direct-bg and routes the
+ * foreground through that palette color's generated contrast token. When both
+ * are authored, the selected text family becomes authoritative: its exact
+ * preset is retained at 4.5:1, its nearest passing ladder shade is used when
+ * required, and an exhausted ladder preserves that family's hue and saturation
+ * while moving lightness toward the background's strongest black/white
+ * contrast endpoint in five-percent increments until 4.5:1 is met. The route
+ * covers Primary, Secondary, Success, Info, Warning, Danger, Light, and Dark.
+ * Current-page distinction is shared across every family: Outline progresses
+ * from 14% resting to 18% hover and 32% current tint, Badge progresses from
+ * 10% to 14% and 26%, and all families add a local 6% current-color overlay
+ * plus a one-pixel inset ring in the resolved current foreground.
  * The first-class SystemStrap WooCommerce integration consumes this exact
  * token contract through normal modern parent/child block styles. Its narrow
  * label adapter changes only visible text when an authored arrow remains;
@@ -2949,11 +2994,12 @@ ol.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) > li {
  * natural Panel height. Columns explicitly authored not to stack remain
  * horizontal and retain equalization.
  *
- * In horizontal flex Groups, direct Panel surfaces and direct Panel Wrappers
- * carrying a direct Panel participate. The wrapper transfers cross-axis height
- * while the nested Panel remains the equalized component. Flex-line wrapping
- * remains Core-owned; a Panel alone on a wrapped line keeps its intrinsic
- * height. Vertical Group layouts do not participate.
+ * In horizontal flex Groups and Grid Groups, direct Panel surfaces and direct
+ * Panel Wrappers carrying a direct Panel participate. The wrapper transfers
+ * cross-axis height while the nested Panel remains the equalized component.
+ * Flex-line wrapping and Grid row formation remain Core-owned; a Panel alone
+ * on a wrapped flex line keeps its intrinsic height. Vertical Group layouts do
+ * not participate.
  *
  * `.is-not-equal-height` is the developer-only, per-Panel escape hatch. It has
  * effect only beneath an opted-in Equal Heights parent and has no editor style.

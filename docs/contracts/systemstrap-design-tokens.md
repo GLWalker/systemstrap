@@ -383,13 +383,34 @@ bottom-border painting. Classic System Nav Button does not consume the
 joined-tab contract.
 
 Classic Default and Classic System Nav Gen use the Base preset for unauthored
-resting buttons. The Classic System Nav Button track uses the Tertiary
-Background preset. Core-authored button Background and Text values remain
+resting buttons. The Classic System Nav Button track uses the translucent
+Tertiary track alias documented below. Core-authored button Background and Text values remain
 authoritative over these fallback surfaces. Authored Classic Default background
 surfaces retain their Core value and consume the canonical Button 15% hover and
 25% active current-color wash strengths as background-image layers. The selected
 Default lower edge therefore exposes the resolved active tab surface rather than
 the resting surface or structural border color.
+
+## 12.3 Tabs Composition Surface Aliases
+
+Authoritative runtime sources:
+`assets/css/system-ui-tabs.css`, the parent Tabs style assets, the two
+`core/tab-list` System navigation styles, `inc/block-filters.php`,
+`assets/js/variations/strap-tabs-composition-gap.js`, and
+`inc/dynamic-styles.php`.
+
+| Role | Consumer alias | Authoritative value | Definition |
+| --- | --- | --- | --- |
+| Parent composition surface | `--strap-tabs-composition-surface` | Authored Tabs preset background | Routes a recognized parent preset to direct navigation and unpainted Tab Panels regions without painting the Tabs layout grid. |
+| Parent composition gap | `--strap-tabs-composition-gap` | Authored Tabs Block Spacing; existing composition fallback when absent | Routes the Core Tabs `spacing.blockGap` value into Default-family, Classic independent-pane, Vertical Nav Button/Nav Gen, and System List/System Flat List list-to-pane spacing. Each Tabs root resets the alias before resolving its own authored value. |
+| Nav Button track | `--strap-tabs-nav-button-track-background` | Parent composition surface, then Tertiary Background RGB at 50% opacity | Paints the track around Nav Button controls. |
+| Nav Gen track | `--strap-tabs-nav-gen-track-background` | Parent composition surface, then Tertiary Background RGB at 50% opacity | Paints the square bordered Vertical Nav Gen rail. |
+
+These aliases route registered preset classes only. They do not extract custom
+inline colors or gradients from the Tabs root. Every Tabs root resets inherited
+composition surface and gap aliases so a nested component resolves only its own authored
+surface context. A Tab List preset background remains button-owned and does not
+feed either track alias.
 
 ---
 

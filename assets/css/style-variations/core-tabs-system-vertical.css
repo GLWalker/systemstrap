@@ -14,7 +14,7 @@
 }
 
 .wp-block-tabs.is-style-system-vertical:has(> .wp-block-tab-list:is(.is-style-system-nav-button, .is-style-system-nav-gen)) {
-    column-gap: var(--wp--preset--spacing--30);
+    column-gap: var(--strap-tabs-composition-gap, var(--wp--preset--spacing--30));
 }
 
 .wp-block-tabs.is-style-system-vertical .wp-block-tab-list {
@@ -24,7 +24,8 @@
     align-content: stretch;
     gap: 0;
     min-width: 0;
-    margin: 0 calc(var(--system-tabs-border-width) * -1) 0 0;
+    margin: 0;
+    margin-inline-end: calc(var(--system-tabs-border-width) * -1);
     position: relative;
     z-index: 1;
 }
@@ -38,7 +39,9 @@
     white-space: normal;
     overflow-wrap: anywhere;
     border: var(--system-tabs-border-width) solid var(--strap-tabs-vertical-border-color);
-    border-radius: 0;
+    border-radius: var(--system-tabs-radius);
+    border-start-end-radius: 0;
+    border-end-end-radius: 0;
 }
 
 :where(.wp-block-tabs.is-style-system-vertical .wp-block-tab-list:not([class*="is-style-system-"])) > button:not(.has-background):not([style*="background-color"]) {
@@ -96,7 +99,9 @@
     color: inherit;
     background-color: var(--system-tabs-panel);
     border: var(--system-tabs-border-width) solid var(--strap-tabs-vertical-border-color);
-    border-radius: 0 var(--system-tabs-radius) var(--system-tabs-radius) 0;
+    border-radius: 0;
+    border-start-end-radius: var(--system-tabs-radius);
+    border-end-end-radius: var(--system-tabs-radius);
 }
 
 .wp-block-tabs.is-style-system-vertical > .wp-block-tab-panels {
@@ -106,7 +111,9 @@
 .wp-block-tabs.is-style-system-vertical .wp-block-tab-panels:not([class*="is-style-system-"]) > .wp-block-tab-panel { padding: var(--system-tabs-panel-padding); }
 
 .wp-block-tabs.is-style-system-vertical > .wp-block-tab-list:not([class*="is-style-system-"]) + .wp-block-tab-panels {
-    border-radius: 0 var(--system-tabs-radius) var(--system-tabs-radius) 0;
+    border-radius: 0;
+    border-start-end-radius: var(--system-tabs-radius);
+    border-end-end-radius: var(--system-tabs-radius);
 }
 
 .wp-block-tabs.is-style-system-vertical > .wp-block-tab-list:not([class*="is-style-system-"]) + .wp-block-tab-panels:not([class*="is-style-system-"]) {
@@ -126,7 +133,7 @@
     gap: var(--wp--preset--spacing--10);
     margin: 0;
     padding: var(--wp--preset--spacing--10);
-    background-color: var(--wp--preset--color--tertiary-bg);
+    background-color: var(--strap-tabs-nav-button-track-background);
     background-image: none;
     border: var(--system-tabs-border-width) solid var(--strap-tabs-vertical-border-color);
     border-radius: var(--system-tabs-radius);
@@ -141,6 +148,11 @@
     align-content: flex-start;
     align-items: stretch;
     margin: 0;
+    background-color: var(--strap-tabs-nav-gen-track-background);
+    background-image: none;
+    border: var(--system-tabs-border-width) solid var(--strap-tabs-vertical-border-color);
+    border-radius: 0;
+    overflow: hidden;
     align-self: start;
 }
 
@@ -151,8 +163,8 @@
     transform: none;
 }
 
-.wp-block-tabs.is-style-system-vertical .wp-block-tab-list.is-style-system-nav-gen > button:not(.has-background):not([style*="background-color"]) {
-    background-color: var(--system-tabs-banner);
+.wp-block-tabs.is-style-system-vertical .wp-block-tab-list.is-style-system-nav-gen > button + button {
+    border-block-start: var(--system-tabs-border-width) solid var(--strap-tabs-vertical-border-color);
 }
 
 .wp-block-tabs.is-style-system-vertical .wp-block-tab-list.is-style-system-nav-gen > button[aria-selected="true"]::before {
@@ -176,7 +188,7 @@
     .wp-block-tabs.is-style-system-vertical:has(> .wp-block-tab-list:is(.is-style-system-nav-button, .is-style-system-nav-gen)) {
         grid-template-columns: minmax(0, 1fr);
         column-gap: 0;
-        row-gap: var(--wp--preset--spacing--30);
+        row-gap: var(--strap-tabs-composition-gap, var(--wp--preset--spacing--30));
     }
 
     .wp-block-tabs.is-style-system-vertical .wp-block-tab-list {
@@ -223,5 +235,10 @@
     .wp-block-tabs.is-style-system-vertical .wp-block-tab-list.is-style-system-nav-gen > button {
         width: auto;
         flex: 0 1 auto;
+    }
+
+    .wp-block-tabs.is-style-system-vertical .wp-block-tab-list.is-style-system-nav-gen > button + button {
+        border-block-start: 0;
+        border-inline-start: var(--system-tabs-border-width) solid var(--strap-tabs-vertical-border-color);
     }
 }

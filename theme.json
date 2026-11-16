@@ -1965,6 +1965,11 @@
 		},
 		{
 			"area": "uncategorized",
+			"name": "modal-colors",
+			"title": "Modal Colors"
+		},
+		{
+			"area": "uncategorized",
 			"name": "modal-part",
 			"title": "Modal Part"
 		},

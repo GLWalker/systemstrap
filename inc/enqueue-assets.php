@@ -276,6 +276,10 @@ function strap_enqueue_block_editor_assets()
 				$deps = array('wp-compose', 'wp-element', 'wp-hooks');
 			}
 
+			if ('strap-tabs-composition-gap' === $basename) {
+				$deps = array('wp-compose', 'wp-element', 'wp-hooks');
+			}
+
 			wp_enqueue_script(
 				'strap-variation-' . $basename,
 				get_template_directory_uri() . '/assets/js/variations/' . basename($file),

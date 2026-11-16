@@ -3,14 +3,14 @@
     display: grid;
     grid-template-columns: minmax(10rem, 16rem) minmax(0, 1fr);
     align-items: start;
-    gap: var(--wp--preset--spacing--30, 1rem);
+    gap: var(--strap-tabs-composition-gap, var(--wp--preset--spacing--30, 1rem));
     --strap-tabs-list-border-width: var(--wp--custom--border-width, 1px);
     --strap-tabs-list-border-color: var(--wp--custom--system-ui-border-color);
     --strap-tabs-list-surface: var(--wp--custom--system-ui-surface, var(--wp--preset--color--base));
 }
 
 .wp-block-tabs:is(.is-style-system-list, .is-style-system-flat-list):has(> .wp-block-tab-panels:not([class*="is-style-system-"])) {
-    column-gap: var(--wp--preset--spacing--40);
+    column-gap: var(--strap-tabs-composition-gap, var(--wp--preset--spacing--40));
 }
 
 .wp-block-tabs:is(.is-style-system-list, .is-style-system-flat-list) .wp-block-tab-list {
@@ -86,7 +86,8 @@
 @media (max-width: 700px) {
     .wp-block-tabs:is(.is-style-system-list, .is-style-system-flat-list) {
         grid-template-columns: minmax(0, 1fr);
-        column-gap: var(--wp--preset--spacing--30, 1rem);
+        column-gap: 0;
+        row-gap: var(--strap-tabs-composition-gap, var(--wp--preset--spacing--30, 1rem));
     }
 
     .wp-block-tabs:is(.is-style-system-list, .is-style-system-flat-list) .wp-block-tab-list {
