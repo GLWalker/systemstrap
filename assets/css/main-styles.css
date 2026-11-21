@@ -14,6 +14,17 @@
     width: 100%;
 }
 
+.wp-site-blocks {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+
+.wp-site-blocks>.site-main {
+    flex: 1 0 auto;
+}
+
 header.wp-block-template-part {
     margin-top: 0 !important;
 }

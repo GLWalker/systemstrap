@@ -32,6 +32,22 @@ This contract governs architecture and ownership.
 Plugin-specific implementation details belong in their respective
 integration documents and companion-plugin documentation.
 
+## Integration settings ownership
+
+SystemStrap MUST expose one Appearance → SystemStrap administration page to
+users with the `edit_theme_options` capability. The page MUST always expose an
+Overview tab and MUST expose WooCommerce or BuddyPress mapping tabs only while
+the corresponding first-class integration is active.
+
+Component mappings MUST be stored in the single prefixed array option
+`systemstrap_component_mappings`, separated by `woocommerce` and `buddypress`
+namespaces. Saving one active integration tab MUST preserve the other
+namespace. The historical per-integration options MUST remain read-only
+fallbacks when their corresponding shared namespace has not yet been saved.
+
+The Overview tab MAY link to the project owner's GitHub Sponsors profile. It
+MUST NOT collect or process payment information inside WordPress.
+
 ------------------------------------------------------------------------
 
 # 1. Core Principle

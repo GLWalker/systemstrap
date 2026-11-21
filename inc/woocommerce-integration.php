@@ -13,6 +13,43 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Exclude WooCommerce application pages from ordinary frontend searches.
+ *
+ * WooCommerce resolves these assignments per site. Existing query exclusions
+ * remain authoritative and are merged with the assigned application page IDs.
+ *
+ * @param WP_Query $query Main WordPress query.
+ */
+function strap_woocommerce_exclude_application_pages_from_search( $query ) {
+	if ( is_admin() || ! $query instanceof WP_Query || ! $query->is_main_query() || ! $query->is_search() ) {
+		return;
+	}
+
+	if ( 'product' === $query->get( 'post_type' ) || ! function_exists( 'wc_get_page_id' ) ) {
+		return;
+	}
+
+	$page_ids = array();
+
+	foreach ( array( 'cart', 'checkout', 'myaccount' ) as $page_name ) {
+		$page_id = (int) wc_get_page_id( $page_name );
+
+		if ( 0 < $page_id ) {
+			$page_ids[] = $page_id;
+		}
+	}
+
+	if ( empty( $page_ids ) ) {
+		return;
+	}
+
+	$excluded_ids = array_map( 'absint', (array) $query->get( 'post__not_in' ) );
+
+	$query->set( 'post__not_in', array_values( array_unique( array_merge( $excluded_ids, $page_ids ) ) ) );
+}
+add_action( 'pre_get_posts', 'strap_woocommerce_exclude_application_pages_from_search', 20 );
+
+/**
  * Return the authoritative WooCommerce component treatment registry.
  *
  * @return array<string, array<string, mixed>>
@@ -254,8 +291,7 @@ function strap_woocommerce_get_component_treatment( $component_id ) {
 		return $default;
 	}
 
-	$stored_mappings = get_option( 'strap_woocommerce_component_mappings', array() );
-	$stored_mappings = is_array( $stored_mappings ) ? $stored_mappings : array();
+	$stored_mappings = strap_get_component_mappings( 'woocommerce' );
 	$value           = array_key_exists( $component_id, $stored_mappings ) && is_string( $stored_mappings[ $component_id ] )
 		? sanitize_key( $stored_mappings[ $component_id ] )
 		: $default;
@@ -294,51 +330,14 @@ function strap_woocommerce_sanitize_component_mappings( $mappings ) {
 }
 
 /**
- * Register the existing WooCommerce component mapping option.
+ * Render the WooCommerce component mapping fields.
  */
-function strap_woocommerce_register_component_mapping_settings() {
-	register_setting(
-		'systemstrap_woocommerce_mappings',
-		'strap_woocommerce_component_mappings',
-		array(
-			'type'              => 'array',
-			'sanitize_callback' => 'strap_woocommerce_sanitize_component_mappings',
-			'default'           => array(),
-		)
-	);
-}
-add_action( 'admin_init', 'strap_woocommerce_register_component_mapping_settings' );
-
-/**
- * Register the existing SystemStrap WooCommerce settings location.
- */
-function strap_woocommerce_register_component_mapping_page() {
-	add_options_page(
-		__( 'SystemStrap WooCommerce', 'systemstrap' ),
-		__( 'SystemStrap WooCommerce', 'systemstrap' ),
-		'manage_options',
-		'systemstrap-woocommerce',
-		'strap_woocommerce_render_component_mapping_page'
-	);
-}
-add_action( 'admin_menu', 'strap_woocommerce_register_component_mapping_page' );
-
-/**
- * Render the component mapping settings page.
- */
-function strap_woocommerce_render_component_mapping_page() {
-	if ( ! current_user_can( 'manage_options' ) ) {
-		return;
-	}
-
+function strap_woocommerce_render_component_mapping_fields() {
 	$registry = strap_woocommerce_component_registry();
 	?>
-	<div class="wrap">
-		<h1><?php esc_html_e( 'SystemStrap WooCommerce', 'systemstrap' ); ?></h1>
-		<p><?php esc_html_e( 'Choose the active presentation for each supported WooCommerce component. Fresh and missing settings use System Panel.', 'systemstrap' ); ?></p>
-		<form action="options.php" method="post">
-			<?php settings_fields( 'systemstrap_woocommerce_mappings' ); ?>
-			<table class="form-table" role="presentation">
+	<h2><?php esc_html_e( 'WooCommerce', 'systemstrap' ); ?></h2>
+	<p><?php esc_html_e( 'Choose the active presentation for each supported WooCommerce component. Fresh and missing settings use System Panel.', 'systemstrap' ); ?></p>
+	<table class="form-table" role="presentation">
 				<tbody>
 					<?php foreach ( $registry as $component_id => $component ) : ?>
 						<?php if ( 'admin_mapping' !== ( $component['application'] ?? '' ) ) : ?>
@@ -347,7 +346,7 @@ function strap_woocommerce_render_component_mapping_page() {
 					<tr>
 							<th scope="row"><label for="strap-woocommerce-<?php echo esc_attr( $component_id ); ?>"><?php echo esc_html( $component['label'] ); ?></label></th>
 							<td>
-								<select class="regular-text" id="strap-woocommerce-<?php echo esc_attr( $component_id ); ?>" name="strap_woocommerce_component_mappings[<?php echo esc_attr( $component_id ); ?>]">
+								<select class="regular-text" id="strap-woocommerce-<?php echo esc_attr( $component_id ); ?>" name="systemstrap_component_mappings[woocommerce][<?php echo esc_attr( $component_id ); ?>]">
 								<?php foreach ( $component['treatments'] as $treatment_id => $treatment ) : ?>
 									<option value="<?php echo esc_attr( $treatment_id ); ?>" <?php echo selected( strap_woocommerce_get_component_treatment( $component_id ), $treatment_id, false ); ?>><?php echo esc_html( $treatment['label'] ); ?></option>
 									<?php endforeach; ?>
@@ -356,10 +355,7 @@ function strap_woocommerce_render_component_mapping_page() {
 						</tr>
 					<?php endforeach; ?>
 				</tbody>
-			</table>
-			<?php submit_button(); ?>
-		</form>
-	</div>
+	</table>
 	<?php
 }
 

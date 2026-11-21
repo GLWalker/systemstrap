@@ -6,11 +6,18 @@ This file is a CONTRACT.
 
 ## Contract Version
 
-Current Version: 1.38
+Current Version: 1.39
 
-Last Updated: 2026-11-15
+Last Updated: 2026-11-21
 
 ## Change Log
+
+### 1.39
+
+The frontend site shell uses a viewport-height column layout. Its top-level
+`site-main` landmark absorbs unused vertical space so the site footer remains
+at the bottom of short pages without imposing content-height breakpoints or
+changing the natural height of longer documents.
 
 ### 1.38
 

@@ -2929,6 +2929,128 @@
     </div>
     <!-- /wp:group -->
 
+    <!-- wp:group {"align":"full","anchor":"systemstrap-by-the-numbers","backgroundColor":"secondary-bg","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|30","right":"var:preset|spacing|30"},"blockGap":"var:preset|spacing|30"}},"layout":{"type":"constrained"}} -->
+    <div class="wp-block-group alignfull has-secondary-bg-background-color has-background" id="systemstrap-by-the-numbers" style="padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--30)">
+        <!-- wp:paragraph {"textColor":"secondary-color","fontSize":"small"} -->
+        <p class="has-secondary-color-color has-text-color has-small-font-size"><strong>SYSTEMSTRAP / BY THE NUMBERS</strong></p>
+        <!-- /wp:paragraph -->
+
+        <!-- wp:heading {"level":2,"fontSize":"xx-large"} -->
+        <h2 class="wp-block-heading has-xx-large-font-size">Default Blocks. Endless Possibilities.</h2>
+        <!-- /wp:heading -->
+
+        <!-- wp:paragraph {"textColor":"secondary-color"} -->
+        <p class="has-secondary-color-color has-text-color">A complete system. Down to the details.</p>
+        <!-- /wp:paragraph -->
+
+        <!-- wp:separator {"className":"is-style-wide","backgroundColor":"border-color"} -->
+        <hr class="wp-block-separator has-text-color has-border-color-color has-alpha-channel-opacity has-border-color-background-color has-background is-style-wide" />
+        <!-- /wp:separator -->
+
+        <!-- wp:columns {"className":"is-style-equal-heights","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|30","left":"var:preset|spacing|40"}}}} -->
+        <div class="wp-block-columns is-style-equal-heights">
+            <!-- wp:column -->
+            <div class="wp-block-column">
+                <!-- wp:paragraph {"textColor":"secondary-color","fontSize":"small"} -->
+                <p class="has-secondary-color-color has-text-color has-small-font-size">01 / DESIGN FREEDOM</p>
+                <!-- /wp:paragraph -->
+                <!-- wp:heading {"level":3,"fontSize":"xx-large"} -->
+                <h3 class="wp-block-heading has-xx-large-font-size">468</h3>
+                <!-- /wp:heading -->
+                <!-- wp:paragraph {"fontSize":"small"} -->
+                <p class="has-small-font-size">Possible design combinations</p>
+                <!-- /wp:paragraph -->
+                <!-- wp:paragraph {"textColor":"secondary-color","fontSize":"small"} -->
+                <p class="has-secondary-color-color has-text-color has-small-font-size">26 color × 6 typography × 3 layout styles</p>
+                <!-- /wp:paragraph -->
+            </div>
+            <!-- /wp:column -->
+
+            <!-- wp:column -->
+            <div class="wp-block-column">
+                <!-- wp:paragraph {"textColor":"secondary-color","fontSize":"small"} -->
+                <p class="has-secondary-color-color has-text-color has-small-font-size">02 / BLOCK SYSTEM</p>
+                <!-- /wp:paragraph -->
+                <!-- wp:heading {"level":3,"fontSize":"xx-large"} -->
+                <h3 class="wp-block-heading has-xx-large-font-size">24</h3>
+                <!-- /wp:heading -->
+                <!-- wp:paragraph {"fontSize":"small"} -->
+                <p class="has-small-font-size">Unique block styles</p>
+                <!-- /wp:paragraph -->
+                <!-- wp:paragraph {"textColor":"secondary-color","fontSize":"small"} -->
+                <p class="has-secondary-color-color has-text-color has-small-font-size">Native blocks. Reusable treatments.</p>
+                <!-- /wp:paragraph -->
+            </div>
+            <!-- /wp:column -->
+
+            <!-- wp:column -->
+            <div class="wp-block-column">
+                <!-- wp:paragraph {"textColor":"secondary-color","fontSize":"small"} -->
+                <p class="has-secondary-color-color has-text-color has-small-font-size">03 / DEVELOPER EXTENSIBILITY</p>
+                <!-- /wp:paragraph -->
+                <!-- wp:heading {"level":3,"fontSize":"xx-large"} -->
+                <h3 class="wp-block-heading has-xx-large-font-size">69</h3>
+                <!-- /wp:heading -->
+                <!-- wp:paragraph {"fontSize":"small"} -->
+                <p class="has-small-font-size">Named action hooks</p>
+                <!-- /wp:paragraph -->
+                <!-- wp:paragraph {"textColor":"secondary-color","fontSize":"small"} -->
+                <p class="has-secondary-color-color has-text-color has-small-font-size">PHP extension points embedded in block content.</p>
+                <!-- /wp:paragraph -->
+            </div>
+            <!-- /wp:column -->
+        </div>
+        <!-- /wp:columns -->
+
+        <!-- wp:group {"style":{"border":{"top":{"color":"var:preset|color|border-color","width":"1px"}},"spacing":{"padding":{"top":"var:preset|spacing|30"},"blockGap":"var:preset|spacing|20"}},"layout":{"type":"constrained"}} -->
+        <div class="wp-block-group" style="border-top-color:var(--wp--preset--color--border-color);border-top-width:1px;padding-top:var(--wp--preset--spacing--30)">
+            <!-- wp:paragraph {"fontSize":"small"} -->
+            <p class="has-small-font-size"><strong>EVERY COLOR STYLE SHIPS WITH A COMPLETE PALETTE</strong></p>
+            <!-- /wp:paragraph -->
+
+            <!-- wp:columns {"isStackedOnMobile":false,"style":{"spacing":{"blockGap":{"top":"var:preset|spacing|20","left":"var:preset|spacing|30"}}}} -->
+            <div class="wp-block-columns is-not-stacked-on-mobile">
+                <!-- wp:column -->
+                <div class="wp-block-column">
+                    <!-- wp:heading {"level":3,"fontSize":"x-large"} -->
+                    <h3 class="wp-block-heading has-x-large-font-size">20</h3>
+                    <!-- /wp:heading -->
+                    <!-- wp:paragraph {"textColor":"secondary-color","fontSize":"small"} -->
+                    <p class="has-secondary-color-color has-text-color has-small-font-size">Color presets</p>
+                    <!-- /wp:paragraph -->
+                </div>
+                <!-- /wp:column -->
+                <!-- wp:column -->
+                <div class="wp-block-column">
+                    <!-- wp:heading {"level":3,"fontSize":"x-large"} -->
+                    <h3 class="wp-block-heading has-x-large-font-size">42</h3>
+                    <!-- /wp:heading -->
+                    <!-- wp:paragraph {"textColor":"secondary-color","fontSize":"small"} -->
+                    <p class="has-secondary-color-color has-text-color has-small-font-size">Gradients</p>
+                    <!-- /wp:paragraph -->
+                </div>
+                <!-- /wp:column -->
+                <!-- wp:column -->
+                <div class="wp-block-column">
+                    <!-- wp:heading {"level":3,"fontSize":"x-large"} -->
+                    <h3 class="wp-block-heading has-x-large-font-size">18</h3>
+                    <!-- /wp:heading -->
+                    <!-- wp:paragraph {"textColor":"secondary-color","fontSize":"small"} -->
+                    <p class="has-secondary-color-color has-text-color has-small-font-size">Duotones</p>
+                    <!-- /wp:paragraph -->
+                </div>
+                <!-- /wp:column -->
+            </div>
+            <!-- /wp:columns -->
+
+            <!-- wp:paragraph {"textColor":"secondary-color","fontSize":"small"} -->
+            <p class="has-secondary-color-color has-text-color has-small-font-size">GRADIENT MAP / 04 core · 16 accent · 10 pattern · 12 texture <strong>— in each of 26 color styles.</strong></p>
+            <!-- /wp:paragraph -->
+        </div>
+        <!-- /wp:group -->
+    </div>
+    <!-- /wp:group -->
+
     <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}},"background":{"backgroundImage":{"url":"<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/front-page/prefooter-wave-right-transparent.png","source":"file","title":"prefooter-wave-right-transparent"},"backgroundSize":"cover"}},"backgroundColor":"dark","layout":{"type":"constrained"},"anchor":"real-sites"} -->
     <div class="wp-block-group alignfull has-dark-background-color has-background" id="real-sites" style="padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50)"><!-- wp:group {"layout":{"type":"default"}} -->
         <div class="wp-block-group"><!-- wp:paragraph {"textColor":"light","fontSize":"small"} -->

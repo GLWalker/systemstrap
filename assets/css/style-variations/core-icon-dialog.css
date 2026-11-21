@@ -309,16 +309,28 @@ dialog.strap-dialog::backdrop {
     right: var(--wp--preset--spacing--30, 1rem) !important;
 }
 
-/* Compact pagination chrome for modal AJAX search controls */
-.strap-ajax-search-wrapper .wp-block-buttons {
+/* Modal AJAX search composition and compact pagination controls */
+.strap-ajax-search-modal .strap-ajax-search-title {
+    display: none;
+    margin-top: var(--wp--preset--spacing--30);
+}
+
+.strap-ajax-search-modal .strap-ajax-search-footer-row {
+    align-items: center;
+    gap: var(--wp--preset--spacing--20, 1rem);
+    width: 100%;
+}
+
+.strap-ajax-search-modal .strap-ajax-search-footer-row .wp-block-buttons {
+    flex-shrink: 0;
     gap: var(--wp--preset--spacing--10, 0.5rem);
 }
 
-.strap-ajax-search-wrapper .wp-block-button {
+.strap-ajax-search-modal .strap-ajax-search-footer-row .wp-block-button {
     margin: 0;
 }
 
-.strap-ajax-search-wrapper .wp-block-button__link {
+.strap-ajax-search-modal .strap-ajax-search-footer-row .wp-block-button__link {
     --strap-modal-pagination-control-size: 2.4rem;
 
     align-items: center;
@@ -327,6 +339,7 @@ dialog.strap-dialog::backdrop {
     border-radius: 999px;
     box-shadow: 0 0.2rem 0.65rem rgba(15, 23, 42, 0.06);
     color: inherit;
+    cursor: pointer;
     display: inline-flex;
     font-size: var(--wp--preset--font-size--small);
     font-weight: var(--wp--custom--font-weight-button, 600);
@@ -339,7 +352,7 @@ dialog.strap-dialog::backdrop {
     transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
-.strap-ajax-search-wrapper .wp-block-button__link:hover {
+.strap-ajax-search-modal .strap-ajax-search-footer-row .wp-block-button__link:hover {
     background: color-mix(in srgb, var(--wp--preset--color--primary) 8%, var(--wp--preset--color--base));
     border-color: rgba(var(--wp--preset--color--primary-rgb, 0, 0, 0), 0.22);
     box-shadow: 0 0.35rem 0.85rem rgba(15, 23, 42, 0.09);
@@ -347,13 +360,13 @@ dialog.strap-dialog::backdrop {
     transform: translateY(-1px);
 }
 
-.strap-ajax-search-wrapper .wp-block-button__link:focus-visible {
+.strap-ajax-search-modal .strap-ajax-search-footer-row .wp-block-button__link:focus-visible {
     box-shadow: 0 0 0 0.2rem rgba(var(--wp--preset--color--primary-rgb, 37, 99, 235), 0.18), 0 0.35rem 0.85rem rgba(15, 23, 42, 0.09);
     outline: none;
 }
 
-.strap-ajax-search-wrapper .wp-block-button.is-disabled .wp-block-button__link,
-.strap-ajax-search-wrapper .wp-block-button__link[aria-disabled="true"] {
+.strap-ajax-search-modal .strap-ajax-search-footer-row .wp-block-button.is-disabled .wp-block-button__link,
+.strap-ajax-search-modal .strap-ajax-search-footer-row .wp-block-button__link[aria-disabled="true"] {
     background: rgba(var(--wp--preset--color--contrast-rgb, 0, 0, 0), 0.08);
     border-color: rgba(var(--wp--preset--color--contrast-rgb, 0, 0, 0), 0.08);
     box-shadow: none;

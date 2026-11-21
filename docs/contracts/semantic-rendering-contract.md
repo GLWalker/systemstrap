@@ -6,11 +6,17 @@ This file is a CONTRACT.
 
 ## Contract Version
 
-Current Version: 1.6
+Current Version: 1.7
 
-Last Updated: 2026-10-31
+Last Updated: 2026-11-19
 
 ## Change Log
+
+### 1.7
+
+- The modal AJAX search pattern MUST preserve valid Core block serialization for its wrapper, results heading, footer row, and pagination controls.
+- Modal AJAX pagination MUST use native Button block buttons and MUST retain script-controlled disabled states.
+- `patterns/modal-search-content.php` owns the AJAX search class signals composed by `parts/modal-search.html`.
 
 ### 1.6
 
@@ -105,6 +111,8 @@ The class and pattern signals consumed by that layer are defined in these conten
 - `patterns/posts-meta.php`
 - `patterns/query-posts-grid.php`
 - `patterns/query-media-object.php`
+- `patterns/modal-part-content.php`
+- `patterns/modal-search-content.php`
 - `parts/offcanvas-part.html`
 - `parts/modal-part.html`
 - `parts/modal-search.html`
@@ -881,6 +889,7 @@ Output rules:
 - result headings MUST be real heading elements.
 - result dates MUST be rendered as separate text nodes.
 - result excerpts MUST be rendered as separate paragraph elements.
+- pagination controls MUST be native Button block buttons.
 - pagination controls MUST reflect disabled state through script behavior.
 
 ## Pattern and Part Coupling
@@ -909,8 +918,10 @@ The following class-bearing content files are coupled to the semantic layer and 
     - source of `entry-summary`
 - `patterns/query-media-object.php`
     - source of `entry-summary`
-- `parts/modal-search.html`
+- `patterns/modal-search-content.php`
     - source of `strap-ajax-search-wrapper`
+- `parts/modal-search.html`
+    - composes `systemstrap/modal-search-content`
 - `parts/*.html`
     - source of theme hook separators using `strap-action-hook`
 

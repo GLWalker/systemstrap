@@ -22,6 +22,12 @@
 		var(--wp--preset--color--current-mix-color, currentColor);
 }
 
+.query-media-object__items {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--30);
+}
+
 .query-media-object__items,
 .query-media-object__items > li {
 	width: 100%;

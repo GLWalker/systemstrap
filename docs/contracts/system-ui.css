@@ -815,8 +815,9 @@
  * Group Directory `.list-wrap` retains its panel bottom inset; its static
  * action container adds spacing-20 below actions without changing buttons.
  * BuddyPress Pagination Style is stored at
- * `strap_buddypress_component_mappings[pagination_style]`, defaulting to
- * `system-ui-pagination`. Choices are read from the registered canonical
+ * `systemstrap_component_mappings[buddypress][pagination_style]`, with the
+ * historical per-integration option retained as a read-only fallback, and
+ * defaults to `system-ui-pagination`. Choices are read from the registered canonical
  * `core/query-pagination` System UI styles; the adapter has no variant list.
  * `buddypress-default` (BuddyPress Default) precedes those canonical choices.
  * It leaves component treatments unchanged, skips the System UI pagination
@@ -3040,3 +3041,81 @@ ol.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush) > li {
  * Content requiring canonical Panel padding, borders, enhancement, or joined
  * Header/Footer composition must use the registered Panel family.
  */
+
+/* ========================================================================
+   18. MODAL AJAX SEARCH COMPOSITION
+   Runtime mirror: assets/css/style-variations/core-icon-dialog.css
+   ======================================================================== */
+
+/*
+ * `.strap-ajax-search-modal` owns the modal-search composition boundary.
+ * `.strap-ajax-search-title` begins hidden and is revealed by the search
+ * runtime. `.strap-ajax-search-footer-row` keeps the result count and native
+ * pagination buttons aligned across the System Panel Footer.
+ */
+
+.strap-ajax-search-modal .strap-ajax-search-title {
+    display: none;
+    margin-top: var(--wp--preset--spacing--30);
+}
+
+.strap-ajax-search-modal .strap-ajax-search-footer-row {
+    align-items: center;
+    gap: var(--wp--preset--spacing--20, 1rem);
+    width: 100%;
+}
+
+.strap-ajax-search-modal .strap-ajax-search-footer-row .wp-block-buttons {
+    flex-shrink: 0;
+    gap: var(--wp--preset--spacing--10, 0.5rem);
+}
+
+.strap-ajax-search-modal .strap-ajax-search-footer-row .wp-block-button {
+    margin: 0;
+}
+
+.strap-ajax-search-modal .strap-ajax-search-footer-row .wp-block-button__link {
+    --strap-modal-pagination-control-size: 2.4rem;
+
+    align-items: center;
+    background: color-mix(in srgb, var(--wp--preset--color--base) 91%, rgba(var(--wp--preset--color--contrast-rgb, 0, 0, 0), 0.03));
+    border: 1px solid rgba(var(--wp--preset--color--contrast-rgb, 0, 0, 0), 0.12);
+    border-radius: 999px;
+    box-shadow: 0 0.2rem 0.65rem rgba(15, 23, 42, 0.06);
+    color: inherit;
+    cursor: pointer;
+    display: inline-flex;
+    font-size: var(--wp--preset--font-size--small);
+    font-weight: var(--wp--custom--font-weight-button, 600);
+    justify-content: center;
+    line-height: 1;
+    min-height: var(--strap-modal-pagination-control-size);
+    min-width: var(--strap-modal-pagination-control-size);
+    padding: 0.55rem 0.8rem;
+    text-decoration: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.strap-ajax-search-modal .strap-ajax-search-footer-row .wp-block-button__link:hover {
+    background: color-mix(in srgb, var(--wp--preset--color--primary) 8%, var(--wp--preset--color--base));
+    border-color: rgba(var(--wp--preset--color--primary-rgb, 0, 0, 0), 0.22);
+    box-shadow: 0 0.35rem 0.85rem rgba(15, 23, 42, 0.09);
+    color: inherit;
+    transform: translateY(-1px);
+}
+
+.strap-ajax-search-modal .strap-ajax-search-footer-row .wp-block-button__link:focus-visible {
+    box-shadow: 0 0 0 0.2rem rgba(var(--wp--preset--color--primary-rgb, 37, 99, 235), 0.18), 0 0.35rem 0.85rem rgba(15, 23, 42, 0.09);
+    outline: none;
+}
+
+.strap-ajax-search-modal .strap-ajax-search-footer-row .wp-block-button.is-disabled .wp-block-button__link,
+.strap-ajax-search-modal .strap-ajax-search-footer-row .wp-block-button__link[aria-disabled="true"] {
+    background: rgba(var(--wp--preset--color--contrast-rgb, 0, 0, 0), 0.08);
+    border-color: rgba(var(--wp--preset--color--contrast-rgb, 0, 0, 0), 0.08);
+    box-shadow: none;
+    color: rgba(var(--wp--preset--color--contrast-rgb, 0, 0, 0), 0.45);
+    cursor: default;
+    pointer-events: none;
+    transform: none;
+}

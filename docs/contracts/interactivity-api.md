@@ -6,11 +6,15 @@ This file is a CONTRACT.
 
 ## Contract Version
 
-Current Version: 1.0
+Current Version: 1.1
 
-Last Updated: 2026-06-15
+Last Updated: 2026-11-18
 
 ## Change Log
+
+### 1.1
+
+Moved the shipped dialog and offcanvas example compositions into namespaced patterns while retaining template-part action-hook boundaries.
 
 ### 1.0
 
@@ -62,8 +66,13 @@ The current interactive-surface layer is implemented through these files:
 - `wp-content/themes/systemstrap/inc/enqueue-assets.php`
 - `wp-content/themes/systemstrap/theme.json`
 - `wp-content/themes/systemstrap/parts/offcanvas-part.html`
+- `wp-content/themes/systemstrap/parts/modal-colors.html`
 - `wp-content/themes/systemstrap/parts/modal-part.html`
 - `wp-content/themes/systemstrap/parts/modal-search.html`
+- `wp-content/themes/systemstrap/patterns/offcanvas-part-content.php`
+- `wp-content/themes/systemstrap/patterns/modal-colors-content.php`
+- `wp-content/themes/systemstrap/patterns/modal-part-content.php`
+- `wp-content/themes/systemstrap/patterns/modal-search-content.php`
 - `wp-content/themes/systemstrap/patterns/header.php`
 - `wp-content/themes/systemstrap/patterns/header-alt.php`
 
@@ -114,6 +123,10 @@ The theme intercepts rendered block output in `inc/dialog-renderer.php` for allo
 ### 4. Template-part-backed dialog composition
 
 The theme renders selected template parts into dialog shells at runtime instead of embedding a separate custom dialog block frontend runtime.
+
+The shipped dialog template parts MUST retain their opening and closing action-hook separators and MUST compose their default example content through one namespaced pattern reference between those hooks.
+
+The default example patterns MUST own the supplied modal or offcanvas content markup. Users MAY replace that pattern reference with another pattern or with blocks authored directly in the selected template part.
 
 For offcanvas positions, the rendered dialog shell MUST remain a transport layer for dimensions, visibility, animation, and close-button overlay behavior.
 
@@ -367,9 +380,17 @@ The current interaction layer is coupled to dialog template part families and he
 The current interactive dialog template part surfaces include:
 
 - `parts/offcanvas-part.html`
+- `parts/modal-colors.html`
 - `parts/modal-part.html`
 - `parts/modal-search.html`
 - trigger-bearing header patterns such as `patterns/header.php` and `patterns/header-alt.php`
+
+The shipped template parts compose these default example-content patterns:
+
+- `parts/offcanvas-part.html` references `systemstrap/offcanvas-part-content`
+- `parts/modal-colors.html` references `systemstrap/modal-colors-content`
+- `parts/modal-part.html` references `systemstrap/modal-part-content`
+- `parts/modal-search.html` references `systemstrap/modal-search-content`
 
 Template part slug naming is part of the current architecture because editor-side selection filters on `modal-` and `offcanvas-` prefixes.
 

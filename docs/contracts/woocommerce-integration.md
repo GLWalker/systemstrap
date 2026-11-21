@@ -6,9 +6,9 @@ This file is a CONTRACT.
 
 ## Contract Version
 
-Current Version: 2.6
+Current Version: 2.8
 
-Last Updated: 2026-09-28
+Last Updated: 2026-11-21
 
 ## Ownership and bootstrap
 
@@ -26,16 +26,33 @@ registered presentation treatments and narrow adapters in this contract.
 Product Categories is a frozen, independently verified compatibility surface.
 The consolidated integration MUST NOT change its markup or CSS contract.
 
+## Search visibility
+
+Ordinary frontend main-query searches MUST exclude WooCommerce's assigned Cart,
+Checkout, and My Account pages. The integration MUST resolve those assignments
+through `wc_get_page_id()` for the current site, discard missing assignments,
+and merge valid IDs into the query's existing `post__not_in` value.
+
+The exclusion MUST NOT run for administration requests, secondary queries, or
+WooCommerce product searches. Shop, products, and other public searchable
+content MUST retain their existing search visibility.
+
 ## Component mappings
 
-The option name remains `strap_woocommerce_component_mappings`.
+WooCommerce mappings MUST be stored under
+`systemstrap_component_mappings[woocommerce]`. Existing values in
+`strap_woocommerce_component_mappings` MUST remain readable when the shared
+WooCommerce namespace has not yet been saved.
 
 - Valid explicit stored values override registry defaults.
 - Missing or invalid keys resolve to the registry default in memory.
 - Defaults are not prepopulated into the option.
-- The settings page displays real choices only; it has no selectable
+- The Appearance → SystemStrap → WooCommerce tab MUST be available only while
+  the first-class WooCommerce integration is active.
+- The settings tab displays real choices only; it has no selectable
   “Theme default” pseudo-choice.
-- Saving the page stores the selected valid treatment for every mapped row.
+- Saving the tab stores the selected valid treatment for every mapped row and
+  MUST preserve mappings for other integration namespaces.
 
 | Component | Valid choices | Default |
 | --- | --- | --- |

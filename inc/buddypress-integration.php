@@ -115,8 +115,7 @@ function strap_buddypress_get_component_treatment($component_id)
 
 	$component = $registry[$component_id];
 	$default   = sanitize_key($component['default'] ?? '');
-	$stored    = get_option('strap_buddypress_component_mappings', array());
-	$stored    = is_array($stored) ? $stored : array();
+	$stored    = strap_get_component_mappings('buddypress');
 	$value     = isset($stored[$component_id]) && is_string($stored[$component_id]) ? sanitize_key($stored[$component_id]) : $default;
 	$legacy    = $component['legacy_treatments'] ?? array();
 
@@ -277,30 +276,15 @@ function strap_buddypress_sanitize_component_mappings($mappings)
 	return $valid;
 }
 
-function strap_buddypress_register_component_mapping_settings()
+/**
+ * Render the BuddyPress component mapping fields.
+ */
+function strap_buddypress_render_component_mapping_fields()
 {
-	register_setting('systemstrap_buddypress_mappings', 'strap_buddypress_component_mappings', array('type' => 'array', 'sanitize_callback' => 'strap_buddypress_sanitize_component_mappings', 'default' => array()));
-}
-add_action('admin_init', 'strap_buddypress_register_component_mapping_settings');
-
-function strap_buddypress_register_component_mapping_page()
-{
-	add_options_page(__('SystemStrap BuddyPress', 'systemstrap'), __('SystemStrap BuddyPress', 'systemstrap'), 'manage_options', 'systemstrap-buddypress', 'strap_buddypress_render_component_mapping_page');
-}
-add_action('admin_menu', 'strap_buddypress_register_component_mapping_page');
-
-function strap_buddypress_render_component_mapping_page()
-{
-	if (! current_user_can('manage_options')) {
-		return;
-	}
 ?>
-	<div class="wrap">
-		<h1><?php esc_html_e('SystemStrap BuddyPress', 'systemstrap'); ?></h1>
-		<p><?php esc_html_e('Choose the active presentation for each supported BuddyPress component. Missing settings resolve to the declared SystemStrap default.', 'systemstrap'); ?></p>
-		<form action="options.php" method="post">
-			<?php settings_fields('systemstrap_buddypress_mappings'); ?>
-			<table class="form-table" role="presentation">
+	<h2><?php esc_html_e('BuddyPress', 'systemstrap'); ?></h2>
+	<p><?php esc_html_e('Choose the active presentation for each supported BuddyPress component. Missing settings resolve to the declared SystemStrap default.', 'systemstrap'); ?></p>
+	<table class="form-table" role="presentation">
 				<tbody>
 					<?php foreach (strap_buddypress_component_registry() as $component_id => $component) : ?>
 						<?php if ('admin_mapping' !== ($component['application'] ?? '')) : ?>
@@ -309,7 +293,7 @@ function strap_buddypress_render_component_mapping_page()
 						<tr>
 							<th scope="row"><label for="strap-buddypress-<?php echo esc_attr($component_id); ?>"><?php echo esc_html($component['label']); ?></label></th>
 							<td>
-								<select class="regular-text" id="strap-buddypress-<?php echo esc_attr($component_id); ?>" name="strap_buddypress_component_mappings[<?php echo esc_attr($component_id); ?>]">
+								<select class="regular-text" id="strap-buddypress-<?php echo esc_attr($component_id); ?>" name="systemstrap_component_mappings[buddypress][<?php echo esc_attr($component_id); ?>]">
 									<?php foreach ($component['treatments'] as $treatment_id => $treatment) : ?>
 										<option value="<?php echo esc_attr($treatment_id); ?>" <?php selected(strap_buddypress_get_component_treatment($component_id), $treatment_id); ?>><?php echo esc_html($treatment['label']); ?></option>
 									<?php endforeach; ?>
@@ -318,10 +302,7 @@ function strap_buddypress_render_component_mapping_page()
 						</tr>
 					<?php endforeach; ?>
 				</tbody>
-			</table>
-			<?php submit_button(); ?>
-		</form>
-	</div>
+	</table>
 <?php
 }
 
