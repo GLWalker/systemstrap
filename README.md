@@ -1,37 +1,61 @@
-# SystemStrap: A Modern FSE Foundation
+# SystemStrap
 
-Welcome to **SystemStrap**—a high-performance WordPress Block Theme designed for developers who want a predictable, modular, and scalable foundation for Full Site Editing (FSE).
+SystemStrap is a classic-style dynamic theme system expressed through native WordPress block-theme composition. It combines a coordinated design system, accessible color intelligence, reusable block treatments, semantic rendering, and developer extension points without replacing the Site Editor or locking content into a proprietary builder.
 
-SystemStrap focuses on a strict **Structural UI Architecture** to ensure visual consistency and robust child-theme compatibility.
+## Design freedom without lock-in
 
-## Key Features
+SystemStrap starts native blocks from a dependable baseline. A block can retain its familiar native appearance, use a flat structural treatment, or adopt a more expressive System Panel treatment. Those choices can be combined with the theme's color styles, typography pairings, gradients, layouts, and patterns without changing the content underneath.
 
-### 1. Modular CSS Variation Routing
-Instead of a monolithic `style.css`, SystemStrap leverages block-level CSS variations (`assets/css/style-variations/`). The browser only loads the CSS for the specific blocks rendered on the page, resulting in highly scoped and performant code that natively integrates with the Gutenberg canvas via `add_editor_style()`.
+The current design system includes:
 
-### 2. Unified "Structural System UI"
-We’ve established a strict global design contract (`main-styles.css`) that unifies cards, accordions, panels, and lists:
-* **Frosted Surfaces:** A calibrated `rgba(.1)` base token powers all structural blocks.
-* **Calm Interaction Model:** Unified `.15` hover states across all components for a consistent, premium feel.
-* **Context-Aware Logic:** Blocks natively detect when they are placed inside colored containers and seamlessly adapt their borders and hovers.
+- 26 color styles, 6 typography styles, and 3 layout styles
+- 468 possible top-level design combinations
+- 24 reusable block styles
+- 69 named PHP action hooks
+- 20 color presets, 42 gradients, and 18 duotones in each color style
 
-### 3. Bulletproof Child Theme Architecture
-SystemStrap is built to ensure parent-child theme stability:
-* Core system variables are locked into `main-styles.css` and explicitly enqueued by the parent. 
-* Child theme `style.css` files are dynamically detected and automatically routed into both the front-end and the Gutenberg Editor.
-* Child themes can safely override colors and typography without accidentally destroying the underlying Structural UI logic.
+## Features
 
-### 4. Appended Global Styles
-SystemStrap appends custom layout and dynamic palette styles directly to the native `global-styles` handle, avoiding destructive runtime mutations while ensuring consistent color palette overrides and rendering order.
+- Token-driven color, typography, spacing, layout, border, radius, and shadow roles
+- Automatic color shade generation and contrast-aware foreground resolution
+- Responsive layouts, patterns, and reusable native-block compositions
+- Navigation, button, panel, list, table, form, pagination, tab, and query treatments
+- Accessibility-focused landmarks, ARIA definitions, focus treatment, and dialog behavior
+- Semantic and machine-readable page rendering
+- Conditional WooCommerce and BuddyPress presentation integration
+- Editor and frontend styling that preserves native WordPress controls and plugin behavior
+- PHP extension points embedded throughout block composition
 
-***
+## Requirements
 
-**SystemStrap provides a predictable, highly-optimized foundation for modern WordPress development.**
+- WordPress 6.6 or later
+- Tested through WordPress 7.1
+- PHP 7.4 or later
 
-## Third-Party Resources & Attributions
+The authoritative release metadata is maintained in [`style.css`](style.css).
 
-SystemStrap is built on the shoulders of open-source giants:
+## Installation
 
-* **Splide.js:** A lightweight, accessible, and flexible slider/carousel script ([MIT License](https://github.com/Splidejs/splide/blob/master/LICENSE)). Version 4.1.4, included unmodified.
-* **Placeholder Images:** Structural UI placeholder graphics provided via [BetterPlaceholder](https://betterplaceholder.com/) and Wikimedia Commons ([CC0 Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)).
-* **Fonts (Porting Soon):** Utilizing [SIL Open Font Licensed](https://scripts.sil.org/OFL) typography families to ensure compliance and pristine typography.
+1. Download the current release ZIP.
+2. In WordPress, go to **Appearance → Themes → Add New**.
+3. Upload the ZIP and activate SystemStrap.
+4. Open **Appearance → Editor** to customize styles, templates, template parts, and patterns.
+5. Open **Appearance → SystemStrap** for optional integration settings when supported plugins are active.
+
+## Native WordPress foundation
+
+SystemStrap uses WordPress blocks, templates, patterns, global styles, and the Site Editor. WooCommerce and BuddyPress are optional; the theme remains functional without either plugin, and their integration controls appear only when the corresponding integration is active.
+
+Theme-specific presentation may change if SystemStrap is deactivated, but the underlying native block content remains portable.
+
+## Supporting development
+
+Sponsorship helps fund continued development, compatibility testing, accessibility work, documentation, child themes, design extensions, and presentation support for additional WordPress plugins.
+
+[Support SystemStrap through GitHub Sponsors](https://github.com/sponsors/GLWalker)
+
+## License
+
+SystemStrap is licensed under the [GNU General Public License v2.0 or later](LICENSE.md).
+
+SystemStrap WordPress Theme, Copyright 2026 SystemStrap contributors.

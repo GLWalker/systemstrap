@@ -1,37 +1,68 @@
 === SystemStrap ===
 Contributors: system
 Requires at least: 6.6
-Tested up to: 7.0
-Requires PHP: 8.0
-Stable tag: 1.0.56
+Tested up to: 7.1
+Requires PHP: 7.4
+Stable tag: 1.0.59
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Tags: full-site-editing, block-patterns, custom-logo, featured-images, threaded-comments, translation-ready
+Tags: full-site-editing, block-patterns, block-styles, custom-logo, featured-images, threaded-comments, translation-ready, wide-blocks
 
-A lightweight block theme that extends native WordPress blocks with SystemStrap semantic rendering, accessibility, and scoped style variations.
+A classic-style dynamic theme system expressed through native block-theme composition.
 
 == Description ==
 
-SystemStrap is a modern WordPress block theme built as a clean Full Site Editing foundation.
+SystemStrap is a native WordPress block theme built for design freedom without a proprietary builder or locked-in content.
 
-The theme keeps WordPress core blocks at the center, then layers in:
+The theme provides:
 
-* semantic rendering enhancements for machine-readable content
-* accessibility-focused focus and dialog behavior
-* scoped block style variations and editor/front-end parity
-* modular assets that load only when the related surfaces are present
+* A token-driven design system with coordinated color, typography, spacing, layout, border, radius, and shadow roles.
+* Dynamic accessible color shades and contrast-aware foreground resolution.
+* Semantic color families, gradients, duotones, typography pairings, and responsive layout variations.
+* Reusable patterns and block styles for navigation, buttons, panels, lists, tables, forms, pagination, tabs, and queries.
+* Accessibility-focused landmarks, ARIA definitions, focus treatment, dialog behavior, and semantic rendering.
+* First-class presentation integration for WooCommerce and BuddyPress when those plugins are active.
+* Named PHP action hooks and theme-owned extension points embedded throughout block composition.
+* Editor and frontend styling designed to preserve native WordPress controls, content portability, and plugin behavior.
+
+SystemStrap starts native blocks from a dependable baseline. Blocks may remain visually native, use familiar flat structural treatments, or adopt more expressive System Panel treatments. Color styles, typography styles, gradients, layouts, patterns, and block treatments can then be combined without changing the content underneath.
 
 == Installation ==
 
-1. Upload the theme to `/wp-content/themes/systemstrap/`.
-2. Activate SystemStrap from the WordPress admin.
-3. Open the Site Editor to work with templates, patterns, and variations.
+1. In the WordPress administration area, go to Appearance > Themes > Add New.
+2. Upload the SystemStrap theme ZIP file and activate the theme.
+3. Open Appearance > Editor to customize templates, template parts, styles, and patterns.
+4. Open Appearance > SystemStrap to review optional integration settings when supported plugins are active.
+
+== Frequently Asked Questions ==
+
+= Does SystemStrap require a page builder? =
+
+No. SystemStrap uses native WordPress blocks, templates, patterns, global styles, and the Site Editor.
+
+= Does SystemStrap require WooCommerce or BuddyPress? =
+
+No. The theme works without either plugin. Their integration settings and presentation adapters are loaded only when the corresponding plugin integration is active.
+
+= Will changing themes lock my content into SystemStrap? =
+
+SystemStrap compositions use native WordPress block content. Theme-specific presentation may change when the theme is switched, but the underlying block content remains portable.
+
+= Where are the integration settings? =
+
+Go to Appearance > SystemStrap. WooCommerce and BuddyPress tabs appear only while their supported integrations are active.
 
 == Changelog ==
 
-= 1.0.56 =
-* Current development snapshot.
+= 1.0.59 =
 
-== Notes ==
+* Added the consolidated Appearance > SystemStrap integration settings page and GitHub Sponsors project support link.
+* Reworked modal and off-canvas examples into editable template-part shells backed by patterns.
+* Refined search-result presentation, short-page footer placement, pagination states, and front-page demonstrations.
+* Updated WooCommerce and BuddyPress presentation integration and documentation contracts.
+* Updated compatibility declarations for WordPress 7.1 and PHP 7.4.
 
-SystemStrap ships block patterns through the standard block-theme `patterns/` directory.
+== Copyright ==
+
+SystemStrap WordPress Theme, Copyright 2026 SystemStrap contributors.
+SystemStrap is distributed under the terms of the GNU GPL.
