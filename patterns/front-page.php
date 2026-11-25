@@ -804,6 +804,16 @@
                 flex-basis: auto !important;
             }
 
+            .systemstrap-theme-style-grid>.wp-block-column .is-style-system-flat-panel {
+                display: grid;
+                grid-template-rows: minmax(0, 1fr) auto;
+                row-gap: var(--wp--preset--spacing--30);
+            }
+
+            .systemstrap-theme-style-grid>.wp-block-column .is-style-system-flat-panel>*+* {
+                margin-block-start: 0;
+            }
+
             .systemstrap-theme-style-aa {
                 margin: 0;
                 font-size: clamp(4rem, 6vw, 5.5rem);
@@ -873,8 +883,8 @@
                         </div>
                         <!-- /wp:group -->
 
-                        <!-- wp:heading {"level":3,"style":{"spacing":{"margin":{"top":"-30px"}}},"fontSize":"large"} -->
-                        <h3 class="wp-block-heading has-large-font-size" style="margin-top:-30px">WordSmith Dark</h3>
+                        <!-- wp:heading {"level":3,"fontSize":"large"} -->
+                        <h3 class="wp-block-heading has-large-font-size">WordSmith Dark</h3>
                         <!-- /wp:heading -->
                     </div>
                     <!-- /wp:group -->
@@ -901,8 +911,8 @@
                         </div>
                         <!-- /wp:group -->
 
-                        <!-- wp:heading {"level":3,"style":{"spacing":{"margin":{"top":"-30px"}}},"fontSize":"large"} -->
-                        <h3 class="wp-block-heading has-large-font-size" style="margin-top:-30px">Cobalt</h3>
+                        <!-- wp:heading {"level":3,"fontSize":"large"} -->
+                        <h3 class="wp-block-heading has-large-font-size">Cobalt</h3>
                         <!-- /wp:heading -->
                     </div>
                     <!-- /wp:group -->
@@ -929,8 +939,8 @@
                         </div>
                         <!-- /wp:group -->
 
-                        <!-- wp:heading {"level":3,"style":{"spacing":{"margin":{"top":"-30px"}}},"fontSize":"large"} -->
-                        <h3 class="wp-block-heading has-large-font-size" style="margin-top:-30px">Neon Pop Dark</h3>
+                        <!-- wp:heading {"level":3,"fontSize":"large"} -->
+                        <h3 class="wp-block-heading has-large-font-size">Neon Pop Dark</h3>
                         <!-- /wp:heading -->
                     </div>
                     <!-- /wp:group -->
@@ -957,8 +967,8 @@
                         </div>
                         <!-- /wp:group -->
 
-                        <!-- wp:heading {"level":3,"style":{"spacing":{"margin":{"top":"-30px"}}},"fontSize":"large"} -->
-                        <h3 class="wp-block-heading has-large-font-size" style="margin-top:-30px">Rosewood</h3>
+                        <!-- wp:heading {"level":3,"fontSize":"large"} -->
+                        <h3 class="wp-block-heading has-large-font-size">Rosewood</h3>
                         <!-- /wp:heading -->
                     </div>
                     <!-- /wp:group -->
@@ -985,8 +995,8 @@
                         </div>
                         <!-- /wp:group -->
 
-                        <!-- wp:heading {"level":3,"style":{"spacing":{"margin":{"top":"-30px"}}},"fontSize":"large"} -->
-                        <h3 class="wp-block-heading has-large-font-size" style="margin-top:-30px">Forest Dark</h3>
+                        <!-- wp:heading {"level":3,"fontSize":"large"} -->
+                        <h3 class="wp-block-heading has-large-font-size">Forest Dark</h3>
                         <!-- /wp:heading -->
                     </div>
                     <!-- /wp:group -->
@@ -1013,8 +1023,8 @@
                         </div>
                         <!-- /wp:group -->
 
-                        <!-- wp:heading {"level":3,"style":{"spacing":{"margin":{"top":"-30px"}}},"fontSize":"large"} -->
-                        <h3 class="wp-block-heading has-large-font-size" style="margin-top:-30px">Aurora</h3>
+                        <!-- wp:heading {"level":3,"fontSize":"large"} -->
+                        <h3 class="wp-block-heading has-large-font-size">Aurora</h3>
                         <!-- /wp:heading -->
                     </div>
                     <!-- /wp:group -->
@@ -1041,8 +1051,8 @@
                         </div>
                         <!-- /wp:group -->
 
-                        <!-- wp:heading {"level":3,"style":{"spacing":{"margin":{"top":"-30px"}}},"fontSize":"large"} -->
-                        <h3 class="wp-block-heading has-large-font-size" style="margin-top:-30px">Radioactive Cactus Dark</h3>
+                        <!-- wp:heading {"level":3,"fontSize":"large"} -->
+                        <h3 class="wp-block-heading has-large-font-size">Radioactive Cactus Dark</h3>
                         <!-- /wp:heading -->
                     </div>
                     <!-- /wp:group -->
@@ -1070,8 +1080,8 @@
                             </div>
                             <!-- /wp:group -->
 
-                            <!-- wp:heading {"level":3,"style":{"spacing":{"margin":{"top":"-30px"}}},"fontSize":"large"} -->
-                            <h3 class="wp-block-heading has-large-font-size" style="margin-top:-30px">Wylde</h3>
+                            <!-- wp:heading {"level":3,"fontSize":"large"} -->
+                            <h3 class="wp-block-heading has-large-font-size">Wylde</h3>
                             <!-- /wp:heading -->
                         </div>
                         <!-- /wp:group -->
@@ -1100,8 +1110,8 @@
                         </div>
                         <!-- /wp:group -->
 
-                        <!-- wp:heading {"level":3,"style":{"spacing":{"margin":{"top":"-30px"}}},"fontSize":"large"} -->
-                        <h3 class="wp-block-heading has-large-font-size" style="margin-top:-30px">Coffee Dark</h3>
+                        <!-- wp:heading {"level":3,"fontSize":"large"} -->
+                        <h3 class="wp-block-heading has-large-font-size">Coffee Dark</h3>
                         <!-- /wp:heading -->
                     </div>
                     <!-- /wp:group -->

@@ -224,15 +224,23 @@ function strap_get_color_context_variations()
 	}
 
 	$variations = [];
-	$directory  = get_template_directory() . '/styles/colors';
-	$files      = glob($directory . '/*.json');
+	$files      = [];
 	$typography = strap_get_color_context_typography_map();
+	$theme_dirs = array_unique([get_template_directory(), get_stylesheet_directory()]);
 
-	if (! is_array($files)) {
-		return $variations;
+	foreach ($theme_dirs as $theme_dir) {
+		$discovered_files = glob($theme_dir . '/styles/colors/*.json');
+		if (! is_array($discovered_files)) {
+			continue;
+		}
+
+		sort($discovered_files, SORT_STRING);
+		foreach ($discovered_files as $file) {
+			$files[pathinfo($file, PATHINFO_FILENAME)] = $file;
+		}
 	}
 
-	sort($files, SORT_STRING);
+	ksort($files, SORT_STRING);
 	foreach ($files as $file) {
 		if (! is_readable($file)) {
 			continue;
@@ -276,6 +284,102 @@ function strap_get_color_context_variations()
 
 	return $variations;
 }
+
+/**
+ * Stores the color-context styles found on rendered frontend Columns.
+ *
+ * @param string $style_name Optional registered block-style name to store.
+ * @return array
+ */
+function strap_rendered_color_contexts($style_name = '')
+{
+	static $rendered_contexts = [];
+
+	if ('' !== $style_name) {
+		$rendered_contexts[$style_name] = true;
+	}
+
+	return array_keys($rendered_contexts);
+}
+
+/**
+ * Records exact registered color-context classes while Columns render.
+ *
+ * @param string $block_content Rendered Column markup.
+ * @param array  $block         Parsed Column block.
+ * @return string
+ */
+function strap_track_rendered_color_contexts($block_content, $block)
+{
+	if (is_admin()) {
+		return $block_content;
+	}
+
+	$class_name = $block['attrs']['className'] ?? '';
+	if (! is_string($class_name) || '' === trim($class_name)) {
+		return $block_content;
+	}
+
+	$classes = preg_split('/\s+/', trim($class_name));
+	if (! is_array($classes)) {
+		return $block_content;
+	}
+
+	foreach (strap_get_color_context_variations() as $variation) {
+		$style_name = $variation['name'] ?? '';
+		if ('' === $style_name || ! in_array('is-style-' . $style_name, $classes, true)) {
+			continue;
+		}
+
+		strap_rendered_color_contexts($style_name);
+	}
+
+	return $block_content;
+}
+add_filter('render_block_core/column', 'strap_track_rendered_color_contexts', 10, 2);
+
+/**
+ * Keeps only rendered SystemStrap color contexts on the frontend Column handle.
+ */
+function strap_limit_frontend_color_context_styles()
+{
+	if (is_admin()) {
+		return;
+	}
+
+	$handle       = 'wp-block-column';
+	$after_styles = wp_styles()->get_data($handle, 'after');
+	if (! is_array($after_styles) || empty($after_styles)) {
+		return;
+	}
+
+	$variations = strap_get_color_context_variations();
+	$owned_css  = [];
+	$used       = array_flip(strap_rendered_color_contexts());
+
+	foreach ($variations as $variation) {
+		if (! empty($variation['inline_style'])) {
+			$owned_css[$variation['inline_style']] = true;
+		}
+	}
+
+	$filtered_styles = [];
+	foreach ($after_styles as $after_style) {
+		if (! isset($owned_css[$after_style])) {
+			$filtered_styles[] = $after_style;
+		}
+	}
+
+	foreach ($variations as $variation) {
+		$style_name = $variation['name'] ?? '';
+		if ('' !== $style_name && isset($used[$style_name]) && ! empty($variation['inline_style'])) {
+			$filtered_styles[] = $variation['inline_style'];
+		}
+	}
+
+	wp_styles()->add_data($handle, 'after', $filtered_styles);
+}
+add_action('wp_enqueue_scripts', 'strap_limit_frontend_color_context_styles', 100);
 
 /**
  * Registers filesystem color variations as Column color contexts.

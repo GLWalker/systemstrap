@@ -6,11 +6,21 @@ This file is a CONTRACT.
 
 ## Contract Version
 
-Current Version: 1.39
+Current Version: 1.40
 
-Last Updated: 2026-11-21
+Last Updated: 2026-11-22
 
 ## Change Log
+
+### 1.40
+
+Column color contexts remain fully registered in the block editor. On the
+frontend, SystemStrap records exact registered color-context classes while the
+resolved block template renders, removes only its own color-context entries
+from the shared Core Column style handle, and restores only the contexts used
+by rendered Columns. Context discovery includes parent and child theme
+`styles/colors/*.json` files, with same-named child files overriding their
+parent counterpart. Other styles attached to the Core handle remain intact.
 
 ### 1.39
 

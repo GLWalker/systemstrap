@@ -62,6 +62,30 @@ Go to Appearance > SystemStrap. WooCommerce and BuddyPress tabs appear only whil
 * Updated WooCommerce and BuddyPress presentation integration and documentation contracts.
 * Updated compatibility declarations for WordPress 7.1 and PHP 7.4.
 
+== Resources and Credits ==
+
+= AI-generated media =
+
+Except where separately identified below, image files under assets/media/ and its subdirectories were generated with ChatGPT at the direction of the SystemStrap theme author.
+
+Source: ChatGPT by OpenAI
+https://chatgpt.com/
+Copyright: 2026 SystemStrap contributors
+License: GPL-2.0-or-later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+
+= BetterPlaceholder media =
+
+The following placeholder images were generated with BetterPlaceholder, created and maintained by Dylan Smith:
+
+* assets/media/hero-1280x720.webp
+* assets/media/thumbnail-300x300.webp
+
+Source: BetterPlaceholder
+https://betterplaceholder.com/
+License: CC0 1.0 Universal
+License URI: https://creativecommons.org/publicdomain/zero/1.0/
+
 == Copyright ==
 
 SystemStrap WordPress Theme, Copyright 2026 SystemStrap contributors.

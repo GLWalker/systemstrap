@@ -487,10 +487,127 @@ The runtime rule is:
 - the first dash separates namespace from block name
 - the block name is converted from `core-group` style to `core/group`
 - the variation segment is normalized around `-system-`
-- the file is registered through `wp_enqueue_block_style()`
+- discovered variation CSS uses the centralized variation asset loader described below.
 - the variation is registered through `register_block_style()`
 
 This logic is implemented by `strap_register_block_styles()` on `init`.
+
+#### SystemStrap-owned variation CSS delivery
+
+SystemStrap MUST deliver its own variation CSS to the frontend only when an
+actual consumer requires it. A selected variation, a declared dependency, or
+an explicit integration or extension enqueue can establish demand. This is the
+governing contract for migration of the existing variation library.
+
+- Variation registration declares the block, slug, and label. The existing
+  filename discovery remains authoritative. Migrated definitions omit
+  `style_handle` consistently across frontend, editor, and REST.
+- Asset registration preserves the handle, URL, version, media, local path,
+  RTL treatment, and dependencies. Participating assets register at the
+  first render of their block, including a plain block. The canonical
+  Navigation, Page List, Group Flat Panel, and Table Flat Panel integration
+  assets are available after integration registration, without requiring the
+  corresponding Core block to render.
+- `strap_load_conditional_variation_assets()` derives selection from the
+  discovered block name and exact parsed class token. Its generic
+  `render_block` callback enqueues matched handles and returns the HTML
+  unchanged. Explicit consumers may enqueue handles through WordPress.
+- WordPress owns dependency resolution, deduplication, inlining, and stylesheet
+  output. The active block-editor screen receives all migrated assets through
+  `enqueue_block_assets`, including iframe asset collection. The migrated
+  frontend path selects assets independently of Core's on-demand setting.
+  Admin, feed, and REST rendering do not trigger frontend selection.
+
+Migration MUST preserve full `theme.json` processing, Global Styles, Core
+block styles, shared stylesheets, third-party variations, integration assets,
+and the separate Columns color-context path.
+
+#### Calendar pilot evidence
+
+The migrated handles are `core-calendar-system-panel` and
+`core-calendar-system-flat-panel`. Both retain the shared Panel Surface and
+Panel Structure dependencies. The missing `style_handle` fields in their
+public definitions are intentional.
+
+The five reported frontend HTML comparisons found the following head output:
+
+| Fixture | Calendar variation CSS |
+| --- | --- |
+| Plain Calendar | Neither handle |
+| System Panel Calendar | Panel only |
+| System Flat Panel Calendar | Flat Panel only |
+| Both styled Calendars | Both handles |
+| Panel Calendar nested in Group | Panel only |
+
+The reported comparison found matching unrelated stylesheet output across
+these captures, including the 1,369,433-byte Global Styles payload and 2,840
+`:has()` occurrences. Isolated queue tests verified explicit enqueueing
+around registration, alternate registration precedence, and eager collection
+on a fresh queue. Live editor and Site Editor previews, REST responses,
+computed cascade equivalence, and performance remain separate verification
+items. Render-time enqueues after the final stylesheet print pass have no
+guaranteed output.
+
+#### Batch A participation
+
+Batch A adds six handles to the same loader:
+
+- `core-tag-cloud-system-tags`
+- `core-post-terms-system-badge`
+- `core-latest-posts-system-panel`
+- `core-latest-posts-system-flat-panel`
+- `core-latest-comments-system-panel`
+- `core-latest-comments-system-flat-panel`
+
+The four panel handles retain Panel Surface and Panel Structure dependencies,
+in that order. The Tag Cloud and Post Terms handles have no declared stylesheet
+dependencies. The public definitions retain their slugs and labels and omit
+`style_handle` in every context. Calendar and Batch A together cover eight
+handles across five block families.
+
+PHP lint and isolated queue checks passed for plain blocks, exact matches,
+mixed and reversed selection, deduplication, dependencies, explicit enqueues,
+alternate registration precedence, and eager collection on a fresh queue.
+The later reported Hello World capture confirmed omission of unused Batch A
+styles and retention of the selected Tag Cloud style. Editor previews, REST
+responses, computed styles, and performance remain separate checks.
+
+#### Shared variation migration
+
+The loader covers all 76 filename-discovered variation files. Query and
+Comments Pagination Previous, Numbers, and Next use their parent family's
+handles. Existing Flush registrations share the List handle. Flat List,
+Flat Details, and Flat Accordion retain their structural dependencies.
+Tabs, Tab List, Tab Panels, and Group selections collected before the head
+are queued in the declared discovery order after ordinary block enqueues.
+Late selections use the normal remaining WordPress stylesheet print pass.
+Tabs base and the Table base stylesheet retain block-level ownership.
+
+Equal Heights shares one explicitly registered stylesheet across Columns
+and Group. Both the saved style token and the `has-equal-heights` utility
+token select it. The separate Column color-context registrations remain
+outside this lookup.
+
+Integrations contribute consumers to the same lookup. Woo Product Categories
+shares Core Categories assets, including the Flush alias. Woo review blocks
+retain their product-template, archive, and pagination handles and use the
+corresponding Comments assets. A selected BuddyPress widget Panel or Flat
+Panel uses the shared widget stylesheet and its existing dependencies.
+BuddyPress navigation and activity continue using their effective-treatments
+enqueues. Woo account navigation, address, table, and application adapters
+continue using their mapped route or rendered-component consumers. Woo
+product-card adapters are requested by the resolved Product Template,
+Newest Products, or classic loop treatment. Their editor copies are queued
+through block-editor asset collection.
+
+Query UI can be selected on Query itself or requested by a System Panel
+Group with a direct parsed Query Directory child. The latter supplies the
+panel-context rules even when the Query block has no style token.
+
+The full migration passed PHP lint and isolated queue checks across Core
+and integration mappings. Final frontend output, plugin and editor visual
+parity, and runtime performance have not been established for the full
+migration.
 
 Example:
 
@@ -547,7 +664,7 @@ The variation architecture currently uses these explicit CSS loading exceptions:
 
 - `inc/block-styles.php`
     - explicitly skips `bp-widget-system-panel-header.css` from filename-derived auto-registration.
-    - registers `bp-widget-system-panel-header.css` as the shared `System Panel` stylesheet through `wp_enqueue_block_style()` for:
+    - maps `bp-widget-system-panel-header.css` as the shared stylesheet for selected Panel and Flat Panel treatments on:
         - `bp/login-form`
         - `bp/dynamic-members`
         - `bp/online-members`
@@ -567,7 +684,7 @@ The shared `is-style-system-btn-icon` treatment is owned by `assets/css/main-sty
 
 `bp-widget-system-panel-header.css` is NOT part of the filename-derived auto-registration path.
 
-It MUST remain on the explicit `wp_enqueue_block_style()` path in `inc/block-styles.php` unless the BuddyPress block loading contract is intentionally replaced.
+Its selected widget treatments MUST use the centralized consumer lookup in `inc/block-styles.php`.
 
 ### BuddyPress block dependency chain
 
@@ -589,7 +706,7 @@ This dependency chain is part of the variation runtime and MUST remain explicit.
 
 ## Render-Time Asset Safeguards
 
-Selected pagination variations load through the ordinary `wp_enqueue_block_style()` path. `strap-system-ui-pagination` is registered by `inc/block-styles.php` and supplied only as a dependency of `system-ui-pagination*` variation handles.
+Selected pagination variations use the centralized consumer lookup. `strap-system-ui-pagination` is registered by `inc/block-styles.php` and supplied as a dependency of `system-ui-pagination*` handles or requested by the native BuddyPress treatment.
 
 ## CSS Variation Surface Registry
 

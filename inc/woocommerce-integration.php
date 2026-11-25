@@ -425,103 +425,67 @@ add_action( 'init', 'strap_woocommerce_register_product_button_styles', 20 );
 /**
  * Register Woo review styles against the canonical Comments assets.
  */
-function strap_woocommerce_register_review_styles() {
-	$theme_dir = get_template_directory() . '/';
-	$theme_uri = get_template_directory_uri() . '/';
-	$styles    = array(
-		'system-list'  => array( 'label' => __( 'System List', 'systemstrap' ), 'file' => 'core-comments-system-list.css', 'deps' => array() ),
-		'system-panel' => array( 'label' => __( 'System Panel', 'systemstrap' ), 'file' => 'core-comments-system-panel.css', 'deps' => array( 'strap-panel-surface', 'strap-panel-structure' ) ),
+function strap_woocommerce_register_review_styles( $assets ) {
+	$styles = array(
+		'system-list'  => __( 'System List', 'systemstrap' ),
+		'system-panel' => __( 'System Panel', 'systemstrap' ),
 	);
-	$archives  = array( 'woocommerce/all-reviews', 'woocommerce/reviews-by-product', 'woocommerce/reviews-by-category' );
-
-	foreach ( $styles as $name => $style ) {
-		$file = $theme_dir . 'assets/css/style-variations/' . $style['file'];
-
-		if ( ! file_exists( $file ) ) {
+	$blocks = array(
+		'woocommerce/product-review-template',
+		'woocommerce/all-reviews',
+		'woocommerce/reviews-by-product',
+		'woocommerce/reviews-by-category',
+	);
+	foreach ( $styles as $name => $label ) {
+		$token = 'is-style-' . $name;
+		$asset = $assets['core/comments'][ $token ][ 'core-comments-' . $name ] ?? null;
+		if ( ! $asset ) {
 			continue;
 		}
 
-		$template_handle = 'strap-woocommerce-product-review-template-' . $name;
-		wp_enqueue_block_style(
-			'woocommerce/product-review-template',
-			array(
-				'handle' => $template_handle,
-				'src'    => $theme_uri . 'assets/css/style-variations/' . $style['file'],
-				'path'   => $file,
-				'deps'   => $style['deps'],
-				'ver'    => filemtime( $file ),
-			)
-		);
-		register_block_style( 'woocommerce/product-review-template', array( 'name' => $name, 'label' => $style['label'], 'style_handle' => $template_handle ) );
-
-		$archive_handle = 'strap-woocommerce-archive-reviews-' . $name;
-		foreach ( $archives as $block_name ) {
-			wp_enqueue_block_style(
-				$block_name,
-				array(
-					'handle' => $archive_handle,
-					'src'    => $theme_uri . 'assets/css/style-variations/' . $style['file'],
-					'path'   => $file,
-					'deps'   => $style['deps'],
-					'ver'    => filemtime( $file ),
-				)
-			);
-			register_block_style( $block_name, array( 'name' => $name, 'label' => $style['label'], 'style_handle' => $archive_handle ) );
+		foreach ( $blocks as $block_name ) {
+			$handle = ( 'woocommerce/product-review-template' === $block_name
+				? 'strap-woocommerce-product-review-template-'
+				: 'strap-woocommerce-archive-reviews-' ) . $name;
+			$asset['handle'] = $handle;
+			$assets[ $block_name ][ $token ][ $handle ] = $asset;
+			register_block_style( $block_name, array( 'name' => $name, 'label' => $label ) );
 		}
 	}
+
+	return $assets;
 }
-add_action( 'init', 'strap_woocommerce_register_review_styles', 21 );
+add_filter( 'strap_variation_asset_consumers', 'strap_woocommerce_register_review_styles' );
 
 /**
  * Register Woo Reviews Pagination against the canonical pagination master.
  */
-function strap_woocommerce_register_reviews_pagination_styles() {
+function strap_woocommerce_register_reviews_pagination_styles( $assets ) {
 	if ( ! wp_style_is( 'strap-system-ui-pagination', 'registered' ) ) {
-		return;
+		return $assets;
 	}
 
-	$theme_dir = get_template_directory() . '/';
-	$theme_uri = get_template_directory_uri() . '/';
-	$styles    = array(
-		'system-ui-pagination'                => __( 'System UI Pagination', 'systemstrap' ),
-		'system-ui-pagination-outline'        => __( 'System UI Pagination Outline', 'systemstrap' ),
-		'system-ui-pagination-pill'           => __( 'System UI Pagination Pill', 'systemstrap' ),
-		'system-ui-pagination-pill-outline'   => __( 'System UI Pagination Pill Outline', 'systemstrap' ),
-		'system-ui-pagination-square'         => __( 'System UI Pagination Square', 'systemstrap' ),
-		'system-ui-pagination-square-outline' => __( 'System UI Pagination Square Outline', 'systemstrap' ),
-		'system-ui-pagination-badge'          => __( 'System UI Pagination Badge', 'systemstrap' ),
-	);
-	$blocks    = array(
+	$blocks = array(
 		'woocommerce/product-reviews-pagination',
 		'woocommerce/product-reviews-pagination-previous',
 		'woocommerce/product-reviews-pagination-numbers',
 		'woocommerce/product-reviews-pagination-next',
 	);
-
-	foreach ( $styles as $name => $label ) {
-		$file = $theme_dir . 'assets/css/style-variations/core-comments-pagination-' . $name . '.css';
-
-		if ( ! file_exists( $file ) ) {
-			continue;
-		}
-
+	foreach ( $assets['core/comments-pagination'] ?? array() as $token => $styles ) {
+		$name = substr( $token, strlen( 'is-style-' ) );
+		$asset = $styles['core-comments-pagination-' . $name ];
 		$handle = 'strap-woocommerce-product-reviews-pagination-' . $name;
+		$asset['handle'] = $handle;
+		$label = str_replace( 'System Ui', 'System UI', ucwords( str_replace( '-', ' ', $name ) ) );
 		foreach ( $blocks as $block_name ) {
-			wp_enqueue_block_style(
-				$block_name,
-				array(
-					'handle' => $handle,
-					'src'    => $theme_uri . 'assets/css/style-variations/' . basename( $file ),
-					'path'   => $file,
-					'deps'   => array( 'strap-system-ui-pagination' ),
-					'ver'    => filemtime( $file ),
-				)
-			);
-			register_block_style( $block_name, array( 'name' => $name, 'label' => $label, 'style_handle' => $handle ) );
+			$assets[ $block_name ][ $token ][ $handle ] = $asset;
+			register_block_style( $block_name, array( 'name' => $name, 'label' => $label ) );
 		}
 	}
+
+	return $assets;
 }
-add_action( 'init', 'strap_woocommerce_register_reviews_pagination_styles', 23 );
+add_filter( 'strap_variation_asset_consumers', 'strap_woocommerce_register_reviews_pagination_styles' );
 
 /**
  * Map an explicitly selected Product Review Template style to Comments roles.
@@ -770,6 +734,7 @@ function strap_woocommerce_render_product_template_presentation( $block_content,
 		$processor = new WP_HTML_Tag_Processor( $block_content );
 
 		if ( $processor->next_tag( array( 'tag_name' => 'ul' ) ) ) {
+			strap_woocommerce_enqueue_product_card_treatment( $contract['treatment'] );
 			$classes = (string) $processor->get_attribute( 'class' );
 
 			if ( in_array( $contract['selection_source'], array( 'admin', 'default' ), true ) ) {
@@ -825,6 +790,7 @@ function strap_woocommerce_render_newest_products_presentation( $block_content )
 	}
 
 	$processor->add_class( 'strap-woo-product-new' );
+	strap_woocommerce_enqueue_product_card_treatment( $treatment );
 
 	foreach ( explode( ' ', $definition['class'] ?? '' ) as $class_name ) {
 		if ( '' !== $class_name ) {
@@ -886,6 +852,7 @@ function strap_woocommerce_add_upsells_system_panel_class( $loop_start ) {
 	$processor = new WP_HTML_Tag_Processor( $loop_start );
 
 	if ( $processor->next_tag( array( 'tag_name' => 'ul' ) ) ) {
+		strap_woocommerce_enqueue_product_card_treatment( $treatment );
 		$processor->add_class( 'strap-woo-product-loop' );
 
 		foreach ( explode( ' ', $registry['linked_products_upsells']['treatments'][ $treatment ]['class'] ) as $class_name ) {
@@ -1450,7 +1417,6 @@ function strap_woocommerce_get_selected_application_panel_blocks() {
 function strap_woocommerce_register_presentation_assets() {
 	$theme_dir = get_template_directory() . '/assets/css/style-variations/';
 	$theme_uri = get_template_directory_uri() . '/assets/css/style-variations/';
-	$registry  = strap_woocommerce_component_registry();
 	$assets    = array(
 		'product-panel' => array( 'file' => 'woocommerce-product-template-panel.css', 'deps' => array( 'strap-panel-surface' ) ),
 		'product-list'  => array( 'file' => 'woocommerce-product-template-list.css', 'deps' => array() ),
@@ -1488,50 +1454,11 @@ function strap_woocommerce_register_presentation_assets() {
 		wp_register_style( $handle, $theme_uri . $asset['file'], $asset['deps'], filemtime( $file ) );
 	}
 
+	// Keep block adapter files available to the selected product-card consumer.
 	foreach ( array( 'product-panel', 'product-list' ) as $key ) {
-		$file = $theme_dir . $assets[ $key ]['file'];
-
-		if ( ! file_exists( $file ) ) {
-			continue;
-		}
-
-		wp_enqueue_block_style(
-			'woocommerce/product-template',
-			array(
-				'handle' => 'strap-woocommerce-' . $key,
-				'src'    => $theme_uri . $assets[ $key ]['file'],
-				'path'   => $file,
-				'deps'   => $assets[ $key ]['deps'],
-				'ver'    => filemtime( $file ),
-			)
-		);
-	}
-
-	/* Newest Products has no authored style selector. Register only the physical
-	 * adapter selected by Linked Products / Upsells for this exact block. */
-	$newest_products_treatment = strap_woocommerce_get_component_treatment( 'linked_products_upsells' );
-
-	if ( 'native' !== $newest_products_treatment ) {
-		$key  = in_array( $newest_products_treatment, array( 'system-list-woo', 'system-flat-list-woo' ), true ) ? 'product-list' : 'product-panel';
-		$file = $theme_dir . $assets[ $key ]['file'];
-
-		if ( file_exists( $file ) ) {
-			wp_enqueue_block_style(
-				'woocommerce/product-new',
-				array(
-					'handle' => 'strap-woocommerce-' . $key,
-					'src'    => $theme_uri . $assets[ $key ]['file'],
-					'path'   => $file,
-					'deps'   => $assets[ $key ]['deps'],
-					'ver'    => filemtime( $file ),
-				)
-			);
-		}
-
-		$master = $registry['linked_products_upsells']['treatments'][ $newest_products_treatment ]['theme_style_handle'] ?? '';
-
-		if ( '' !== $master && ! in_array( $master, $assets[ $key ]['deps'], true ) ) {
-			wp_enqueue_block_style( 'woocommerce/product-new', array( 'handle' => $master ) );
+		$path = $theme_dir . $assets[ $key ]['file'];
+		if ( file_exists( $path ) ) {
+			wp_style_add_data( 'strap-woocommerce-' . $key, 'path', $path );
 		}
 	}
 
@@ -1552,6 +1479,33 @@ function strap_woocommerce_register_presentation_assets() {
 add_action( 'init', 'strap_woocommerce_register_presentation_assets', 19 );
 
 /**
+ * Request the assets for an effective, rendered product-card treatment.
+ */
+function strap_woocommerce_enqueue_product_card_treatment( $treatment ) {
+	if ( is_admin() || wp_is_rest_endpoint() ) {
+		return;
+	}
+
+	if ( in_array( $treatment, array( 'system-panel-woo', 'system-flat-panel-woo' ), true ) ) {
+		if ( 'system-flat-panel-woo' === $treatment ) {
+			wp_enqueue_style( 'core-group-system-flat-panel' );
+		}
+		wp_enqueue_style( 'strap-woocommerce-product-panel' );
+	} elseif ( in_array( $treatment, array( 'system-list-woo', 'system-flat-list-woo' ), true ) ) {
+		wp_enqueue_style( 'strap-woocommerce-product-list' );
+	}
+}
+
+add_action( 'enqueue_block_assets', static function () {
+	$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+	if ( $screen && $screen->is_block_editor() && ! wp_is_rest_endpoint() ) {
+		wp_enqueue_style( 'strap-woocommerce-product-panel' );
+		wp_enqueue_style( 'strap-woocommerce-product-list' );
+		wp_enqueue_style( 'core-group-system-flat-panel' );
+	}
+} );
+
+/**
  * Register Product Template presentation styles, including explicit Native.
  */
 function strap_woocommerce_register_product_template_styles() {
@@ -1563,14 +1517,6 @@ function strap_woocommerce_register_product_template_styles() {
 			'name'  => $treatment['style_name'] ?? $treatment_id,
 			'label' => $treatment['label'],
 		);
-
-		if ( 'system-panel-woo' === $treatment_id ) {
-			$style['style_handle'] = 'strap-woocommerce-product-panel';
-		} elseif ( 'system-flat-panel-woo' === $treatment_id ) {
-			$style['style_handle'] = 'core-group-system-flat-panel';
-		} elseif ( in_array( $treatment_id, array( 'system-list-woo', 'system-flat-list-woo' ), true ) ) {
-			$style['style_handle'] = 'strap-woocommerce-product-list';
-		}
 
 		register_block_style( 'woocommerce/product-template', $style );
 	}
@@ -1587,18 +1533,6 @@ function strap_woocommerce_enqueue_mapped_presentation_styles() {
 
 	$registry        = strap_woocommerce_component_registry();
 	$requests        = array();
-	$linked_products = strap_woocommerce_get_component_treatment( 'linked_products_upsells' );
-
-	$has_classic_product_cards = ( function_exists( 'is_product' ) && is_product() )
-		|| ( function_exists( 'is_cart' ) && is_cart() )
-		|| ( function_exists( 'is_shop' ) && is_shop() )
-		|| ( function_exists( 'is_product_taxonomy' ) && is_product_taxonomy() )
-		|| ( is_search() && 'product' === get_query_var( 'post_type' ) );
-
-	if ( $has_classic_product_cards && 'native' !== $linked_products ) {
-		$asset_key              = in_array( $linked_products, array( 'system-list-woo', 'system-flat-list-woo' ), true ) ? 'product-list' : 'product-panel';
-		$requests[ $asset_key ] = $registry['linked_products_upsells']['treatments'][ $linked_products ]['theme_style_handle'] ?? '';
-	}
 
 	if ( function_exists( 'is_account_page' ) && is_account_page() && is_user_logged_in() ) {
 		$account_navigation = strap_woocommerce_get_component_treatment( 'account_navigation' );

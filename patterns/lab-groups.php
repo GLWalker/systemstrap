@@ -195,7 +195,7 @@
             <!-- wp:column -->
             <div class="wp-block-column"><!-- wp:group {"metadata":{"name":"System Panel"},"className":"is-style-system-panel","layout":{"type":"default"}} -->
                 <div class="wp-block-group is-style-system-panel"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","metadata":{"name":"Panel Img"}} -->
-                    <figure class="wp-block-image size-full"><img src="https://system.local/wp-content/themes/systemstrap/assets/media/hero-1280x720.webp" alt="Panel Featured Image" /></figure>
+                    <figure class="wp-block-image size-full"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/media/hero-1280x720.webp" alt="Panel Featured Image" /></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:heading {"level":5,"metadata":{"name":"Panel Heading"},"style":{"typography":{"textAlign":"left"}}} -->

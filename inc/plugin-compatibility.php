@@ -27,6 +27,90 @@ if ( strap_should_load_woocommerce_integration() ) {
 }
 
 /**
+ * Return whether the current frontend request needs WooCommerce legacy layout CSS.
+ *
+ * @return bool
+ */
+function strap_is_woocommerce_legacy_layout_context() {
+	if ( is_admin() ) {
+		return true;
+	}
+
+	$conditionals = array( 'is_woocommerce', 'is_cart', 'is_checkout', 'is_account_page', 'is_wc_endpoint_url' );
+
+	foreach ( $conditionals as $conditional ) {
+		if ( function_exists( $conditional ) && call_user_func( $conditional ) ) {
+			return true;
+		}
+	}
+
+	$post_type = get_query_var( 'post_type' );
+
+	if ( 'product' === $post_type || ( is_array( $post_type ) && in_array( 'product', $post_type, true ) ) ) {
+		return true;
+	}
+
+	$post = get_queried_object();
+
+	if ( ! $post instanceof WP_Post || '' === $post->post_content ) {
+		return false;
+	}
+
+	if ( false !== strpos( $post->post_content, '<!-- wp:woocommerce/' ) ) {
+		return true;
+	}
+
+	$shortcodes = array(
+		'add_to_cart',
+		'add_to_cart_url',
+		'best_selling_products',
+		'featured_products',
+		'order_tracking',
+		'product',
+		'product_attribute',
+		'product_categories',
+		'product_category',
+		'product_page',
+		'products',
+		'recent_products',
+		'sale_products',
+		'shop_messages',
+		'top_rated_products',
+		'woocommerce_cart',
+		'woocommerce_checkout',
+		'woocommerce_my_account',
+	);
+
+	foreach ( $shortcodes as $shortcode ) {
+		if ( has_shortcode( $post->post_content, $shortcode ) ) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+/**
+ * Keep WooCommerce's legacy layout styles off unrelated frontend requests.
+ *
+ * WooCommerce block assets remain authoritative for the Customer Account and
+ * Mini-Cart blocks in the global header.
+ *
+ * @param array $styles WooCommerce frontend stylesheet definitions.
+ * @return array
+ */
+function strap_filter_woocommerce_legacy_layout_styles( $styles ) {
+	if ( strap_is_woocommerce_legacy_layout_context() ) {
+		return $styles;
+	}
+
+	unset( $styles['woocommerce-layout'], $styles['woocommerce-smallscreen'] );
+
+	return $styles;
+}
+add_filter( 'woocommerce_enqueue_styles', 'strap_filter_woocommerce_legacy_layout_styles' );
+
+/**
  * Return whether the theme-owned BuddyPress integration should initialize.
  *
  * The companion remains authoritative while it is active so its historical
@@ -375,20 +459,16 @@ function strap_register_woocommerce_product_categories_compatibility() {
 
 	$styles = array(
 		'system-badge'      => array(
-			'label'        => 'System Badge',
-			'style_handle' => 'core-categories-system-badge'
+			'label' => 'System Badge',
 		),
 		'system-flat-list'  => array(
-			'label'        => 'System Flat List',
-			'style_handle' => 'core-categories-system-flat-list'
+			'label' => 'System Flat List',
 		),
 		'system-list'       => array(
-			'label'        => 'System List',
-			'style_handle' => 'core-categories-system-list'
+			'label' => 'System List',
 		),
 		'system-list-flush' => array(
-			'label'        => 'System List Flush',
-			'style_handle' => 'core-categories-system-list'
+			'label' => 'System List Flush',
 		),
 	);
 
@@ -396,48 +476,20 @@ function strap_register_woocommerce_product_categories_compatibility() {
 		register_block_style(
 			'woocommerce/product-categories',
 			array(
-				'name'         => $name,
-				'label'        => $args['label'],
-				'style_handle' => $args['style_handle'],
+				'name'  => $name,
+				'label' => $args['label'],
 			)
 		);
 	}
 }
 add_action( 'init', 'strap_register_woocommerce_product_categories_compatibility', 20 );
 
-/**
- * Enqueue Product Categories System UI compatibility CSS.
- */
-function strap_enqueue_woocommerce_product_categories_compatibility() {
-	if ( ! class_exists( 'WooCommerce' ) || ! function_exists( 'wp_enqueue_block_style' ) ) {
-		return;
+add_filter( 'strap_variation_asset_consumers', static function ( $assets ) {
+	if ( class_exists( 'WooCommerce' ) && isset( $assets['core/categories'] ) ) {
+		$assets['woocommerce/product-categories'] = $assets['core/categories'];
 	}
-
-	$theme_uri  = get_template_directory_uri() . '/';
-	$theme_path = get_template_directory() . '/';
-
-	$files = array(
-		'core-categories-system-badge'      => array(),
-		'core-categories-system-flat-list'  => array( 'core-categories-system-list' ),
-		'core-categories-system-list'       => array(),
-	);
-
-	foreach ( $files as $file_handle => $deps ) {
-		$file_path = $theme_path . 'assets/css/style-variations/' . $file_handle . '.css';
-
-		wp_enqueue_block_style(
-			'woocommerce/product-categories',
-			array(
-				'handle' => $file_handle,
-				'src'    => $theme_uri . 'assets/css/style-variations/' . $file_handle . '.css',
-				'path'   => $file_path,
-				'deps'   => $deps,
-				'ver'    => filemtime( $file_path ),
-			)
-		);
-	}
-}
-add_action( 'init', 'strap_enqueue_woocommerce_product_categories_compatibility', 20 );
+	return $assets;
+} );
 
 /**
  * Map Woo Product Categories list roles to the canonical Categories System UI.
