@@ -1,10 +1,12 @@
 <?php
+
 /**
  * Title: Offcanvas Part Content
  * Slug: systemstrap/offcanvas-part-content
  * Categories: systemstrap
  */
 ?>
+<!-- wp:site-title {"level":0,"isLink":false,"style":{"spacing":{"margin":{"top":"var:preset|spacing|0","bottom":"var:preset|spacing|0"}}}} /-->
 <!-- wp:search {"label":"Search","showLabel":false,"width":100,"widthUnit":"%","buttonText":"Search","buttonPosition":"button-inside","buttonUseIcon":true,"align":"center","className":"is-style-system-search-minimal"} /-->
 
 <!-- wp:group {"metadata":{"name":"System Panel"},"className":"is-style-system-panel","layout":{"type":"default"}} -->

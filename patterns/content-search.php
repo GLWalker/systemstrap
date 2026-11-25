@@ -17,14 +17,17 @@
 	<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"constrained"}} -->
 	<div class="wp-block-group">
 
-		<!-- wp:group {"tagName":"header","align":"wide","className":"is-style-system-flat-panel has-tertiary-bg-background-color","gradient":"pattern-42","layout":{"type":"constrained"}} -->
-		<header class="wp-block-group alignwide is-style-system-flat-panel has-tertiary-bg-background-color has-pattern-42-gradient-background has-background">
+		<!-- wp:group {"tagName":"header","align":"wide","className":"is-style-system-flat-panel has-tertiary-bg-background-color","gradient":"pattern-100","layout":{"type":"constrained"}} -->
+		<header class="wp-block-group alignwide is-style-system-flat-panel has-tertiary-bg-background-color has-pattern-100-gradient-background has-background">
 
 			<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|50"},"blockGap":"var:preset|spacing|30"}},"layout":{"type":"constrained"}} -->
 			<div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--50)">
 
 				<!-- wp:paragraph {"style":{"typography":{"fontWeight":"800","letterSpacing":"0.12em","textTransform":"uppercase"},"spacing":{"margin":{"top":"0","bottom":"0"}}},"fontSize":"small"} -->
-				<p class="has-small-font-size" style="margin-top:0;margin-bottom:0;font-weight:800;letter-spacing:0.12em;text-transform:uppercase"><?php esc_html_e('Search SystemStrap', 'systemstrap'); ?></p>
+				<p class="has-small-font-size" style="margin-top:0;margin-bottom:0;font-weight:800;letter-spacing:0.12em;text-transform:uppercase"><?php
+																																					/* translators: %s: Site title. */
+																																					echo esc_html(sprintf(__('Search %s', 'systemstrap'), get_bloginfo('name', 'raw')));
+																																					?></p>
 				<!-- /wp:paragraph -->
 
 				<!-- wp:query-title {"type":"search","showPrefix":false,"level":1,"style":{"spacing":{"margin":{"top":"0","bottom":"0"}}}} /-->

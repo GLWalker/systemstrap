@@ -19,8 +19,8 @@
 
         <!-- wp:query-no-results -->
 
-        <!-- wp:group {"className":"query-media-object__empty is-style-system-panel","style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"constrained"}} -->
-        <div class="wp-block-group query-media-object__empty is-style-system-panel">
+        <!-- wp:group {"className":"query-media-object__empty","style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"constrained"}} -->
+        <div class="wp-block-group query-media-object__empty">
 
             <!-- wp:group {"className":"query-media-object__empty-content","style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"constrained"}} -->
             <div class="wp-block-group query-media-object__empty-content">
@@ -34,7 +34,7 @@
                 <!-- wp:paragraph -->
                 <p><?php
                     esc_html_e(
-                        'Try another search term or browse from a different starting point.',
+                        'We\'re sorry; The term you search for isn\'t available. Please revise your query, and try your search again.',
                         'systemstrap'
                     );
                     ?></p>
@@ -42,8 +42,6 @@
 
             </div>
             <!-- /wp:group -->
-
-            <!-- wp:search {"label":"Search","showLabel":false,"width":100,"widthUnit":"%","buttonText":"Search"} /-->
 
         </div>
         <!-- /wp:group -->

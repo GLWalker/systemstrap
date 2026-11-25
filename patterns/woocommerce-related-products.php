@@ -9,7 +9,7 @@
 <!-- wp:woocommerce/product-collection {"align":"wide","queryId":0,"query":{"perPage":5,"pages":1,"offset":0,"postType":"product","order":"asc","orderBy":"title","search":"","exclude":[],"inherit":false,"taxQuery":{},"isProductCollectionBlock":true,"featured":false,"woocommerceOnSale":false,"woocommerceStockStatus":["instock","onbackorder"],"woocommerceAttributes":[],"woocommerceHandPickedProducts":[],"filterable":false,"relatedBy":{"categories":true,"tags":true}},"tagName":"div","displayLayout":{"type":"flex","columns":5,"shrinkColumns":false},"dimensions":{"widthType":"fill"},"collection":"woocommerce/product-collection/related","hideControls":["inherit"],"queryContextIncludes":["collection"]} -->
 	<div class="wp-block-woocommerce-product-collection alignwide">
 		<!-- wp:heading -->
-		<h2 class="wp-block-heading"><?php esc_html_e( 'Related products', 'woocommerce' ); ?></h2>
+		<h2 class="wp-block-heading"><?php esc_html_e( 'Related products', 'systemstrap' ); ?></h2>
 		<!-- /wp:heading -->
 
 		<!-- wp:woocommerce/product-template {"className":"is-style-system-list-woo"} -->

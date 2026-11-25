@@ -562,7 +562,7 @@ function strap_woocommerce_render_reviews_pagination_hidden_label( $block_conten
 	}
 
 	$is_previous = 'woocommerce/product-reviews-pagination-previous' === ( $parsed_block['blockName'] ?? '' );
-	$default     = $is_previous ? __( 'Older Reviews', 'woocommerce' ) : __( 'Newer Reviews', 'woocommerce' );
+	$default     = $is_previous ? __( 'Older Reviews', 'systemstrap' ) : __( 'Newer Reviews', 'systemstrap' );
 	$attributes  = isset( $parsed_block['attrs'] ) && is_array( $parsed_block['attrs'] ) ? $parsed_block['attrs'] : array();
 	$label       = isset( $attributes['label'] ) && '' !== trim( (string) $attributes['label'] ) ? wp_strip_all_tags( (string) $attributes['label'] ) : $default;
 	$processor   = new WP_HTML_Tag_Processor( $block_content );

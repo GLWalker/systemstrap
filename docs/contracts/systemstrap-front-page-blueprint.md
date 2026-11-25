@@ -251,7 +251,7 @@ Section 2 — WordPress Native
 Purpose
 Explain that SystemStrap extends Gutenberg rather than replacing it.
 Heading
-WORDPRESS NATIVE
+WordPress Native
 
 Start with WordPress.
 Suggested supporting message:

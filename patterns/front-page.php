@@ -404,7 +404,7 @@
         <div class="wp-block-group"><!-- wp:columns {"verticalAlignment":"top","align":"wide","className":"is-style-default systemstrap-native-layout"} -->
             <div class="wp-block-columns alignwide are-vertically-aligned-top is-style-default systemstrap-native-layout"><!-- wp:column {"verticalAlignment":"top","width":"36%","className":"systemstrap-native-copy"} -->
                 <div class="wp-block-column is-vertically-aligned-top systemstrap-native-copy" style="flex-basis:36%"><!-- wp:paragraph {"fontSize":"small"} -->
-                    <p class="has-small-font-size"><strong>WORDPRESS NATIVE</strong></p>
+                    <p class="has-small-font-size"><strong>WordPress Native</strong></p>
                     <!-- /wp:paragraph -->
 
                     <!-- wp:heading {"fontSize":"xxx-large"} -->

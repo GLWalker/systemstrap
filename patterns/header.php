@@ -45,13 +45,13 @@
 
 				<!-- wp:home-link {"label":"<?php echo esc_attr_x( 'Home', 'header navigation label', 'systemstrap' ); ?>"} /-->
 
-				<!-- wp:navigation-link {"label":"<?php echo esc_attr_x( 'Patterns', 'header navigation label', 'systemstrap' ); ?>","url":"<?php echo esc_url( home_url( '/patterns/' ) ); ?>","kind":"custom","isTopLevelLink":true} /-->
+				<!-- wp:navigation-link {"label":"<?php echo esc_attr_x( 'Colors', 'header navigation label', 'systemstrap' ); ?>","url":"<?php echo esc_url( home_url( '/#colors' ) ); ?>","kind":"custom","isTopLevelLink":true} /-->
 
-				<!-- wp:navigation-link {"label":"<?php echo esc_attr_x( 'Components', 'header navigation label', 'systemstrap' ); ?>","url":"<?php echo esc_url( home_url( '/components/' ) ); ?>","kind":"custom","isTopLevelLink":true} /-->
+				<!-- wp:navigation-link {"label":"<?php echo esc_attr_x( 'Styles', 'header navigation label', 'systemstrap' ); ?>","url":"<?php echo esc_url( home_url( '/#theme-styles' ) ); ?>","kind":"custom","isTopLevelLink":true} /-->
 
-				<!-- wp:navigation-link {"label":"<?php echo esc_attr_x( 'Sites', 'header navigation label', 'systemstrap' ); ?>","url":"<?php echo esc_url( home_url( '/sites/' ) ); ?>","kind":"custom","isTopLevelLink":true} /-->
+				<!-- wp:navigation-link {"label":"<?php echo esc_attr_x( 'Type', 'header navigation label', 'systemstrap' ); ?>","url":"<?php echo esc_url( home_url( '/#typography' ) ); ?>","kind":"custom","isTopLevelLink":true} /-->
 
-				<!-- wp:navigation-link {"label":"<?php echo esc_attr_x( 'Docs', 'header navigation label', 'systemstrap' ); ?>","url":"<?php echo esc_url( home_url( '/docs/' ) ); ?>","kind":"custom","isTopLevelLink":true} /-->
+				<!-- wp:navigation-link {"label":"<?php echo esc_attr_x( 'Publish', 'header navigation label', 'systemstrap' ); ?>","url":"<?php echo esc_url( home_url( '/#publishing' ) ); ?>","kind":"custom","isTopLevelLink":true} /-->
 
 			<!-- /wp:navigation -->
 
@@ -62,9 +62,11 @@
 
 				<!-- wp:icon {"icon":"core/drawer-left","style":{"dimensions":{"width":"32px"}},"systemDialogAction":true,"systemDialogTemplatePart":"offcanvas-part"} /-->
 
-				<!-- wp:woocommerce/customer-account {"displayStyle":"icon_only","hasDropdownNavigation":true} /-->
+				<?php if ( class_exists( 'WooCommerce' ) ) : ?>
+					<!-- wp:woocommerce/customer-account {"displayStyle":"icon_only","hasDropdownNavigation":true} /-->
 
-				<!-- wp:woocommerce/mini-cart /-->
+					<!-- wp:woocommerce/mini-cart /-->
+				<?php endif; ?>
 
 			</div>
 			<!-- /wp:group -->
