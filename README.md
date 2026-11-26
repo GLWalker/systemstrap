@@ -1,7 +1,7 @@
 === SystemStrap ===
 Contributors: system
 Requires at least: 7.1
-Tested up to: 7.1.5
+Tested up to: 7.1
 Requires PHP: 7.4
 Stable tag: 1.1.0
 License: GPL-2.0-or-later
