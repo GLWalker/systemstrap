@@ -2939,9 +2939,9 @@
     </div>
     <!-- /wp:group -->
 
-    <!-- wp:group {"align":"full","anchor":"systemstrap-by-the-numbers","backgroundColor":"secondary-bg","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|30","right":"var:preset|spacing|30"},"blockGap":"var:preset|spacing|30"}},"layout":{"type":"constrained"}} -->
-    <div class="wp-block-group alignfull has-secondary-bg-background-color has-background" id="systemstrap-by-the-numbers" style="padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--30)">
-        <!-- wp:paragraph {"textColor":"secondary-color","fontSize":"small"} -->
+    <!-- wp:group {"align":"full","anchor":"systemstrap-by-the-numbers","backgroundColor":"base","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|30","right":"var:preset|spacing|30"},"blockGap":"var:preset|spacing|30"}},"layout":{"type":"constrained"}} -->
+    <div class="wp-block-group alignfull has-base-background-color has-background" id="systemstrap-by-the-numbers" style="padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--30)">
+        <!-- wp:paragraph {"fontSize":"small"} -->
         <p class="has-secondary-color-color has-text-color has-small-font-size"><strong>SYSTEMSTRAP / BY THE NUMBERS</strong></p>
         <!-- /wp:paragraph -->
 
@@ -2961,7 +2961,7 @@
         <div class="wp-block-columns is-style-equal-heights">
             <!-- wp:column -->
             <div class="wp-block-column">
-                <!-- wp:paragraph {"textColor":"secondary-color","fontSize":"small"} -->
+                <!-- wp:paragraph {"fontSize":"small"} -->
                 <p class="has-secondary-color-color has-text-color has-small-font-size">01 / DESIGN FREEDOM</p>
                 <!-- /wp:paragraph -->
                 <!-- wp:heading {"level":3,"fontSize":"xx-large"} -->
@@ -2970,7 +2970,7 @@
                 <!-- wp:paragraph {"fontSize":"small"} -->
                 <p class="has-small-font-size">Possible design combinations</p>
                 <!-- /wp:paragraph -->
-                <!-- wp:paragraph {"textColor":"secondary-color","fontSize":"small"} -->
+                <!-- wp:paragraph {"fontSize":"small"} -->
                 <p class="has-secondary-color-color has-text-color has-small-font-size">26 color × 6 typography × 3 layout styles</p>
                 <!-- /wp:paragraph -->
             </div>
@@ -2978,7 +2978,7 @@
 
             <!-- wp:column -->
             <div class="wp-block-column">
-                <!-- wp:paragraph {"textColor":"secondary-color","fontSize":"small"} -->
+                <!-- wp:paragraph {"fontSize":"small"} -->
                 <p class="has-secondary-color-color has-text-color has-small-font-size">02 / BLOCK SYSTEM</p>
                 <!-- /wp:paragraph -->
                 <!-- wp:heading {"level":3,"fontSize":"xx-large"} -->
@@ -2987,7 +2987,7 @@
                 <!-- wp:paragraph {"fontSize":"small"} -->
                 <p class="has-small-font-size">Unique block styles</p>
                 <!-- /wp:paragraph -->
-                <!-- wp:paragraph {"textColor":"secondary-color","fontSize":"small"} -->
+                <!-- wp:paragraph {"fontSize":"small"} -->
                 <p class="has-secondary-color-color has-text-color has-small-font-size">Native blocks. Reusable treatments.</p>
                 <!-- /wp:paragraph -->
             </div>
@@ -2995,7 +2995,7 @@
 
             <!-- wp:column -->
             <div class="wp-block-column">
-                <!-- wp:paragraph {"textColor":"secondary-color","fontSize":"small"} -->
+                <!-- wp:paragraph {"fontSize":"small"} -->
                 <p class="has-secondary-color-color has-text-color has-small-font-size">03 / DEVELOPER EXTENSIBILITY</p>
                 <!-- /wp:paragraph -->
                 <!-- wp:heading {"level":3,"fontSize":"xx-large"} -->
@@ -3004,7 +3004,7 @@
                 <!-- wp:paragraph {"fontSize":"small"} -->
                 <p class="has-small-font-size">Named action hooks</p>
                 <!-- /wp:paragraph -->
-                <!-- wp:paragraph {"textColor":"secondary-color","fontSize":"small"} -->
+                <!-- wp:paragraph {"fontSize":"small"} -->
                 <p class="has-secondary-color-color has-text-color has-small-font-size">PHP extension points embedded in block content.</p>
                 <!-- /wp:paragraph -->
             </div>
@@ -3025,7 +3025,7 @@
                     <!-- wp:heading {"level":3,"fontSize":"x-large"} -->
                     <h3 class="wp-block-heading has-x-large-font-size">20</h3>
                     <!-- /wp:heading -->
-                    <!-- wp:paragraph {"textColor":"secondary-color","fontSize":"small"} -->
+                    <!-- wp:paragraph {"fontSize":"small"} -->
                     <p class="has-secondary-color-color has-text-color has-small-font-size">Color presets</p>
                     <!-- /wp:paragraph -->
                 </div>
@@ -3035,7 +3035,7 @@
                     <!-- wp:heading {"level":3,"fontSize":"x-large"} -->
                     <h3 class="wp-block-heading has-x-large-font-size">42</h3>
                     <!-- /wp:heading -->
-                    <!-- wp:paragraph {"textColor":"secondary-color","fontSize":"small"} -->
+                    <!-- wp:paragraph {"fontSize":"small"} -->
                     <p class="has-secondary-color-color has-text-color has-small-font-size">Gradients</p>
                     <!-- /wp:paragraph -->
                 </div>
@@ -3045,7 +3045,7 @@
                     <!-- wp:heading {"level":3,"fontSize":"x-large"} -->
                     <h3 class="wp-block-heading has-x-large-font-size">18</h3>
                     <!-- /wp:heading -->
-                    <!-- wp:paragraph {"textColor":"secondary-color","fontSize":"small"} -->
+                    <!-- wp:paragraph {"fontSize":"small"} -->
                     <p class="has-secondary-color-color has-text-color has-small-font-size">Duotones</p>
                     <!-- /wp:paragraph -->
                 </div>
@@ -3053,7 +3053,7 @@
             </div>
             <!-- /wp:columns -->
 
-            <!-- wp:paragraph {"textColor":"secondary-color","fontSize":"small"} -->
+            <!-- wp:paragraph {"fontSize":"small"} -->
             <p class="has-secondary-color-color has-text-color has-small-font-size">GRADIENT MAP / 04 core · 16 accent · 10 pattern · 12 texture <strong>— in each of 26 color styles.</strong></p>
             <!-- /wp:paragraph -->
         </div>
