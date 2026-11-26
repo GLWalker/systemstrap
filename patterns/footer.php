@@ -48,13 +48,13 @@
 
 					<!-- wp:home-link {"label":"<?php echo esc_attr_x( 'Home', 'footer navigation label', 'systemstrap' ); ?>"} /-->
 
-					<!-- wp:navigation-link {"label":"<?php echo esc_attr_x( 'Patterns', 'footer navigation label', 'systemstrap' ); ?>","url":"<?php echo esc_url( home_url( '/patterns/' ) ); ?>","kind":"custom","isTopLevelLink":true} /-->
+					<!-- wp:navigation-link {"label":"<?php echo esc_attr_x( 'Colors', 'footer navigation label', 'systemstrap' ); ?>","url":"<?php echo esc_url( home_url( '/#colors' ) ); ?>","kind":"custom","isTopLevelLink":true} /-->
 
-					<!-- wp:navigation-link {"label":"<?php echo esc_attr_x( 'Components', 'footer navigation label', 'systemstrap' ); ?>","url":"<?php echo esc_url( home_url( '/components/' ) ); ?>","kind":"custom","isTopLevelLink":true} /-->
+					<!-- wp:navigation-link {"label":"<?php echo esc_attr_x( 'Styles', 'footer navigation label', 'systemstrap' ); ?>","url":"<?php echo esc_url( home_url( '/#theme-styles' ) ); ?>","kind":"custom","isTopLevelLink":true} /-->
 
-					<!-- wp:navigation-link {"label":"<?php echo esc_attr_x( 'Sites', 'footer navigation label', 'systemstrap' ); ?>","url":"<?php echo esc_url( home_url( '/sites/' ) ); ?>","kind":"custom","isTopLevelLink":true} /-->
+					<!-- wp:navigation-link {"label":"<?php echo esc_attr_x( 'Type', 'footer navigation label', 'systemstrap' ); ?>","url":"<?php echo esc_url( home_url( '/#typography' ) ); ?>","kind":"custom","isTopLevelLink":true} /-->
 
-					<!-- wp:navigation-link {"label":"<?php echo esc_attr_x( 'Docs', 'footer navigation label', 'systemstrap' ); ?>","url":"<?php echo esc_url( home_url( '/docs/' ) ); ?>","kind":"custom","isTopLevelLink":true} /-->
+					<!-- wp:navigation-link {"label":"<?php echo esc_attr_x( 'Publish', 'footer navigation label', 'systemstrap' ); ?>","url":"<?php echo esc_url( home_url( '/#publishing' ) ); ?>","kind":"custom","isTopLevelLink":true} /-->
 
 				<!-- /wp:navigation -->
 
