@@ -533,16 +533,16 @@ body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):
 /*
  * Nouveau: .grid > li.item-entry (buddypress.css:4921-4924),
  * .grid.three > li (buddypress.css:4957-4974).
- * SystemStrap: the selected Group Directory three-column grid only.
+ * SystemStrap: the selected Group Directory multi-column grid.
  * Owner: Grid owns equal row tracks; the existing .list-wrap surface fills its item.
  */
-body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list.grid.three {
+body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list {
 	display: grid;
 	grid-template-columns: minmax(0, 1fr);
 	gap: var(--wp--preset--spacing--30);
 }
 
-body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list.grid.three > li.item-entry {
+body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list > li.item-entry {
 	float: none;
 	width: 100%;
 	min-width: 0;
@@ -552,7 +552,7 @@ body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):
 	padding: 0;
 }
 
-body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list.grid.three > li.item-entry > .list-wrap {
+body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list > li.item-entry > .list-wrap {
 	width: 100%;
 	height: auto;
 	flex: 1 1 auto;
@@ -565,7 +565,7 @@ body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):
  * SystemStrap: treated group cards use one tokenized column rhythm while the
  * existing Grid remains the equal-row and responsive-width owner.
  */
-body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list.grid > li.item-entry > .list-wrap {
+body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list > li.item-entry > .list-wrap {
 	display: flex;
 	flex-direction: column;
 	gap: var(--wp--preset--spacing--20);
@@ -573,7 +573,7 @@ body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):
 	padding-block-end: calc(var(--strap-system-panel-content-inset-y) + var(--wp--preset--spacing--30));
 }
 
-body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list.grid > li.item-entry > .list-wrap > .item {
+body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list > li.item-entry > .list-wrap > .item {
 	display: flex;
 	flex: 1 1 auto;
 	flex-direction: column;
@@ -581,20 +581,20 @@ body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):
 	min-width: 0;
 }
 
-body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list.grid > li.item-entry > .list-wrap .item-block {
+body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list > li.item-entry > .list-wrap .item-block {
 	display: contents;
 	min-height: 0;
 }
 
-body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list.grid > li.item-entry :is(.groups-title, .last-activity, .group-desc, .group-desc > p) {
+body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list > li.item-entry :is(.groups-title, .last-activity, .group-desc, .group-desc > p) {
 	margin-block: 0;
 }
 
-body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list.grid > li.item-entry .groups-title {
+body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list > li.item-entry .groups-title {
 	order: 1;
 }
 
-body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list.grid > li.item-entry .strap-bp-group-meta-badges {
+body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list > li.item-entry .strap-bp-group-meta-badges {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
@@ -602,24 +602,24 @@ body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):
 	gap: var(--wp--preset--spacing--10);
 }
 
-body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list.grid > li.item-entry .strap-bp-group-meta-badge {
+body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list > li.item-entry .strap-bp-group-meta-badge {
 	color: inherit;
 	background-color: var(--wp--custom--system-ui-active-bg);
 	border: var(--wp--custom--border-width, 1px) solid var(--wp--custom--system-ui-border-color);
 }
 
-body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list.grid > li.item-entry .last-activity {
+body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list > li.item-entry .last-activity {
 	order: 3;
 }
 
-body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list.grid > li.item-entry .group-desc {
+body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list > li.item-entry .group-desc {
 	order: 4;
 	min-height: 0;
 	overflow: visible;
 	line-height: var(--wp--custom--line-height-body, 1.6);
 }
 
-body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list.grid > li.item-entry .action {
+body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list > li.item-entry .action {
 	position: static;
 	order: 5;
 	width: auto;
@@ -631,27 +631,29 @@ body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):
 	justify-content: center;
 }
 
-body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list.grid > li.item-entry .action .generic-button,
-body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list.grid > li.item-entry .action .generic-button :is(a, button) {
+body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list > li.item-entry .action .generic-button,
+body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list > li.item-entry .action .generic-button :is(a, button) {
 	width: auto;
 	margin: 0;
 }
 
-@media screen and (min-width: 24em) {
-	body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list.grid.three {
+@media screen and (min-width: 46.8em) {
+	body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list.grid {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
-}
 
-@media screen and (min-width: 46.8em) {
 	body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list.grid.three {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list.grid.four {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
 	}
 }
 
 /* Nouveau's clearfix pseudo-elements become empty Grid items under the selected treatment. */
-body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list.grid.three::before,
-body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list.grid.three::after {
+body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list.grid::before,
+body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list.grid::after {
 	content: none;
 	display: none;
 }
@@ -701,6 +703,144 @@ body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):
 
 body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list > li.item-entry > .list-wrap:has(.strap-bp-group-card-cover) .item-avatar {
 	margin-top: 0;
+}
+
+
+
+/* Main Members directory: stacked on mobile, compact rows for explicit one-column layouts. */
+@media screen and (width < 46.8em) {
+	body #buddypress :is(#members-dir-list, #members-group-list, .members.friends):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .members-list.bp-list.grid > li.item-entry {
+		float: none;
+		width: 100%;
+		margin-inline: 0;
+		padding-inline: 0;
+	}
+
+	body #buddypress #members-dir-list:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .members-list.bp-list:not(.grid) > li.item-entry > .list-wrap {
+		padding-top: var(--wp--preset--spacing--40);
+		text-align: center;
+	}
+
+	body #buddypress #members-dir-list:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .members-list.bp-list:not(.grid) > li.item-entry :is(.item-avatar, .item, .item-block, .member-name, .last-activity) {
+		float: none;
+		width: auto;
+		margin-inline: 0;
+		text-align: center;
+	}
+
+	body #buddypress #members-dir-list:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .members-list.bp-list:not(.grid) > li.item-entry .item-avatar img.avatar {
+		display: inline-block;
+		width: 50%;
+		height: auto;
+	}
+}
+
+body #buddypress #members-dir-list:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .members-list.bp-list:not(.grid) > li.item-entry .action {
+	position: static;
+	float: none;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: var(--wp--preset--spacing--10);
+	width: auto;
+	height: auto;
+	margin: 0;
+	padding: 0;
+}
+
+@media screen and (min-width: 46.8em) {
+	body #buddypress #members-dir-list:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .members-list.bp-list:not(.grid) > li.item-entry > .list-wrap {
+		display: grid;
+		grid-template-columns: auto minmax(0, 1fr);
+		align-items: start;
+		gap: var(--wp--preset--spacing--20);
+		padding: var(--wp--preset--spacing--30);
+	}
+
+	body #buddypress #members-dir-list:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .members-list.bp-list:not(.grid) > li.item-entry :is(.item-avatar, .item, .item-block, .member-name, .last-activity) {
+		float: none;
+		width: auto;
+		margin-inline: 0;
+		text-align: start;
+	}
+
+	body #buddypress #members-dir-list:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .members-list.bp-list:not(.grid) > li.item-entry .item-avatar img.avatar {
+		width: var(--wp--preset--spacing--60);
+		height: auto;
+	}
+
+	body #buddypress #members-dir-list:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .members-list.bp-list:not(.grid) > li.item-entry .item {
+		display: flex;
+		flex-direction: column;
+		gap: var(--wp--preset--spacing--20);
+	}
+
+	body #buddypress #members-dir-list:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .members-list.bp-list:not(.grid) > li.item-entry .item-block {
+		display: contents;
+	}
+
+	body #buddypress #members-dir-list:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .members-list.bp-list:not(.grid) > li.item-entry :is(.member-name, .last-activity, .user-update, .user-update > p) {
+		margin: 0;
+		overflow-wrap: anywhere;
+	}
+
+	body #buddypress #members-dir-list:is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .members-list.bp-list:not(.grid) > li.item-entry .item-block > .action {
+		order: 1;
+		justify-content: flex-start;
+	}
+}
+
+/* Stacked group cards share the same layout at small widths. */
+body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list:not(.grid) > li.item-entry > .list-wrap {
+	align-items: stretch;
+	text-align: center;
+	padding-top: var(--wp--preset--spacing--40);
+}
+
+body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list:not(.grid) > li.item-entry :is(.item-avatar, .item, .group-desc) {
+	float: none;
+	width: auto;
+	margin-inline: 0;
+}
+
+body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list:not(.grid) > li.item-entry .item-avatar img {
+	width: 50%;
+	height: auto;
+}
+
+@media screen and (min-width: 46.8em) {
+	body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list:not(.grid) > li.item-entry > .list-wrap {
+		display: grid;
+		grid-template-columns: auto minmax(0, 1fr);
+		align-items: start;
+		text-align: start;
+		padding: var(--wp--preset--spacing--30);
+	}
+
+	body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list:not(.grid) > li.item-entry > .list-wrap > :is(.strap-bp-group-card-cover, .item) {
+		grid-column: 1 / -1;
+	}
+
+	body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list:not(.grid) > li.item-entry > .list-wrap:has(> .item-avatar) > .item {
+		grid-column: 2;
+	}
+
+	body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list:not(.grid) > li.item-entry .strap-bp-group-card-cover {
+		position: static;
+		border-radius: var(--wp--custom--border-radius);
+	}
+
+	body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list:not(.grid) > li.item-entry .groups-title {
+		text-align: start;
+	}
+
+	body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list:not(.grid) > li.item-entry .item-avatar img {
+		width: var(--wp--preset--spacing--60);
+	}
+
+	body #buddypress :is(#groups-dir-list, .groups.mygroups[data-bp-list="groups"]):is(.strap-bp-treatment-system-panel, .strap-bp-treatment-system-flat-panel) .groups-list.bp-list:not(.grid) > li.item-entry :is(.strap-bp-group-meta-badges, .action) {
+		justify-content: flex-start;
+	}
 }
 
 /*

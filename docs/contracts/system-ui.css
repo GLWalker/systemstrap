@@ -2949,9 +2949,13 @@ ol.wp-block-list:is(.is-style-system-list, .is-style-system-list-flush)>li {
  *   (spacing-20, canonical seams), and native refresh markup. Default is excluded.
  * - Latest Activities retains native blockquote/activity-item/footer ordering;
  *   medium reading text, small muted time, spacing-10/20 and transparent bubbles.
- * - Treated Groups .groups-list.bp-list.grid.three is one column below 24em,
- *   two columns thereafter (including 46.8em); its spacing-30 gap on both axes
- *   matches theme.json core/post-template card rhythm. Members are unchanged.
+ * - Treated Groups use stacked cards with a shared top inset below 46.8em. From 46.8em,
+ *   grids use the selected count and explicit one-column cards use compact
+ *   rows with a rounded, in-flow cover and start-aligned headings. The spacing-30 gap on both axes
+ *   matches theme.json core/post-template card rhythm.
+ * - Treated Members, Friends, and Group Members grids stack one card per row below 46.8em.
+ *   From 46.8em, explicit one-column cards use the Groups card inset and
+ *   place actions below member details. Multi-column layouts retain Nouveau's grid.
  * - #register-page.strap-bp-controls-system-scope reuses the shared controls and
  *   feedback contracts when Member Profile is non-Native. Native Core password
  *   scripts own state; the caps-warning defaults hidden until Core shows it,

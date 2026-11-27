@@ -269,12 +269,13 @@ SystemStrap currently extends BuddyPress through three layers:
 The current responsibilities are:
 
 - `buddypress-typography.css`
-  - unconditional typography-only adaptation after Nouveau on every
-    BuddyPress frontend route; its Nouveau-dependent registration runs on
+  - typography-only adaptation whenever BuddyPress queues Nouveau; its
+    Nouveau-dependent registration runs on
     `bp_enqueue_community_scripts` after Nouveau has registered its handles
 - `buddypress-components.css`
-  - optional registry-selected component adapters; Activity reuses canonical
-    Comments List and Panel assets rather than duplicating their surface rules
+  - enqueued alongside Nouveau with the avatar and single-navigation dependencies
+    and the separately queued inner-shell stylesheet; selectors scope each
+    treatment. Activity reuses canonical Comments List and Panel assets.
 - BuddyPress block style variation CSS
   - optional chrome treatments such as panel, nav, or heading variants
 

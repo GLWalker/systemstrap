@@ -39,6 +39,7 @@ function strap_buddypress_component_registry()
 		'system-flat-panel-bp' => array('label' => __('System Flat Panel', 'systemstrap'), 'class' => 'strap-bp-treatment-system-flat-panel', 'stylesheet' => 'buddypress-components.css', 'theme_style_handle' => 'strap-panel-surface'),
 	);
 	$navigation_treatments = array(
+		'system-panel-bp'  => array('label' => __('System Panel', 'systemstrap'), 'class' => 'is-style-system-panel strap-panel-surface strap-bp-navigation-treatment-system-nav'),
 		'native'           => array('label' => __('Native BuddyPress', 'systemstrap')),
 		'system-nav'       => array('label' => __('System Navigation', 'systemstrap'), 'class' => 'strap-bp-navigation-treatment-system-nav'),
 		'system-list'      => array('label' => __('System List', 'systemstrap'), 'class' => 'strap-bp-navigation-treatment-system-list'),
@@ -52,20 +53,20 @@ function strap_buddypress_component_registry()
 	);
 
 	return array(
-		'pagination_style'      => array('label' => __('Pagination Style', 'systemstrap'), 'default' => 'system-ui-pagination', 'application' => 'admin_mapping', 'targets' => array('non-Native BuddyPress pagination'), 'treatments' => strap_buddypress_get_pagination_styles()),
-		'activity_stream'       => array('label' => __('Activity Stream', 'systemstrap'), 'default' => 'native', 'application' => 'admin_mapping', 'targets' => array('#activity-stream', '.activity-list.bp-list', '.activity-list > .activity-item'), 'treatments' => $activity_stream_treatments),
-		'activity_composer'     => array('label' => __('Activity Composer', 'systemstrap'), 'default' => 'native', 'application' => 'admin_mapping', 'targets' => array('.activity-update-form', '#bp-nouveau-activity-form', '#whats-new-form'), 'treatments' => $panel_treatments),
-		'member_directory'      => array('label' => __('Member Directory', 'systemstrap'), 'default' => 'native', 'application' => 'admin_mapping', 'targets' => array('#members-dir-list[data-bp-list="members"]', '#members-group-list[data-bp-list="group_members"]', '.members.friends[data-bp-list="friends"]', '[data-bp-list="friendship_requests"]'), 'treatments' => $directory_treatments),
-		'group_directory'       => array('label' => __('Group Directory', 'systemstrap'), 'default' => 'native', 'application' => 'admin_mapping', 'targets' => array('#groups-dir-list[data-bp-list="groups"]', '.groups.mygroups[data-bp-list="groups"]'), 'treatments' => $directory_treatments),
-		'site_directory'        => array('label' => __('Site Directory', 'systemstrap'), 'default' => 'native', 'application' => 'admin_mapping', 'targets' => array('#blogs-dir-list[data-bp-list="blogs"]', '.blogs.myblogs[data-bp-list="blogs"]'), 'treatments' => $directory_treatments),
-		'member_profile'        => array('label' => __('Member Profile', 'systemstrap'), 'default' => 'native', 'application' => 'admin_mapping', 'targets' => array('#item-body.item-body'), 'treatments' => $panel_treatments),
-		'group_profile'         => array('label' => __('Group Profile', 'systemstrap'), 'default' => 'native', 'application' => 'admin_mapping', 'targets' => array('#item-body.item-body'), 'treatments' => $panel_treatments),
-		'directory_navigation'  => array('label' => __('Horizontal Navigation', 'systemstrap'), 'default' => 'native', 'application' => 'admin_mapping', 'targets' => array('.main-navs.dir-navs', '.bp-subnavs', '#object-nav.horizontal'), 'legacy_treatments' => array('system-nav' => 'system-nav-gen', 'system-list' => 'wp-default', 'system-flat-list' => 'wp-default'), 'treatments' => $horizontal_navigation_treatments),
-		'single_navigation'     => array('label' => __('Single Navigation', 'systemstrap'), 'default' => 'native', 'application' => 'admin_mapping', 'targets' => array('#object-nav.vertical', '.wp-block-bp-primary-nav'), 'treatments' => $navigation_treatments),
+		'pagination_style'      => array('label' => __('Pagination Style', 'systemstrap'), 'default' => 'system-ui-pagination-pill-outline', 'application' => 'admin_mapping', 'targets' => array('non-Native BuddyPress pagination'), 'treatments' => strap_buddypress_get_pagination_styles()),
+		'activity_stream'       => array('label' => __('Activity Stream', 'systemstrap'), 'default' => 'system-panel-bp', 'application' => 'admin_mapping', 'targets' => array('#activity-stream', '.activity-list.bp-list', '.activity-list > .activity-item'), 'treatments' => $activity_stream_treatments),
+		'activity_composer'     => array('label' => __('Activity Composer', 'systemstrap'), 'default' => 'system-panel-bp', 'application' => 'admin_mapping', 'targets' => array('.activity-update-form', '#bp-nouveau-activity-form', '#whats-new-form'), 'treatments' => $panel_treatments),
+		'member_directory'      => array('label' => __('Member Directory', 'systemstrap'), 'default' => 'system-panel-bp', 'application' => 'admin_mapping', 'targets' => array('#members-dir-list[data-bp-list="members"]', '#members-group-list[data-bp-list="group_members"]', '.members.friends[data-bp-list="friends"]', '[data-bp-list="friendship_requests"]'), 'treatments' => $directory_treatments),
+		'group_directory'       => array('label' => __('Group Directory', 'systemstrap'), 'default' => 'system-panel-bp', 'application' => 'admin_mapping', 'targets' => array('#groups-dir-list[data-bp-list="groups"]', '.groups.mygroups[data-bp-list="groups"]'), 'treatments' => $directory_treatments),
+		'site_directory'        => array('label' => __('Site Directory', 'systemstrap'), 'default' => 'system-panel-bp', 'application' => 'admin_mapping', 'targets' => array('#blogs-dir-list[data-bp-list="blogs"]', '.blogs.myblogs[data-bp-list="blogs"]'), 'treatments' => $directory_treatments),
+		'member_profile'        => array('label' => __('Member Profile', 'systemstrap'), 'default' => 'system-panel-bp', 'application' => 'admin_mapping', 'targets' => array('#item-body.item-body'), 'treatments' => $panel_treatments),
+		'group_profile'         => array('label' => __('Group Profile', 'systemstrap'), 'default' => 'system-panel-bp', 'application' => 'admin_mapping', 'targets' => array('#item-body.item-body'), 'treatments' => $panel_treatments),
+		'directory_navigation'  => array('label' => __('Horizontal Navigation', 'systemstrap'), 'default' => 'system-nav-button', 'application' => 'admin_mapping', 'targets' => array('.main-navs.dir-navs', '.bp-subnavs', '#object-nav.horizontal'), 'legacy_treatments' => array('system-nav' => 'system-nav-gen', 'system-list' => 'wp-default', 'system-flat-list' => 'wp-default'), 'treatments' => $horizontal_navigation_treatments),
+		'single_navigation'     => array('label' => __('Single Navigation', 'systemstrap'), 'default' => 'system-list', 'application' => 'admin_mapping', 'targets' => array('#object-nav.vertical', '.wp-block-bp-primary-nav'), 'treatments' => $navigation_treatments),
 		'feedback_notices'      => array('label' => __('Feedback Notices', 'systemstrap'), 'default' => 'native', 'application' => 'fixed', 'targets' => array('.bp-feedback', '.bp-template-notice', '.bp-messages'), 'treatments' => array('native' => array('label' => __('Native BuddyPress', 'systemstrap')))),
-		'default_button_style'  => array('label' => __('Default Button Style', 'systemstrap'), 'default' => 'primary', 'application' => 'admin_mapping', 'targets' => array('primary transactional BuddyPress buttons'), 'treatments' => array('primary' => array('label' => __('Primary', 'systemstrap')), 'secondary' => array('label' => __('Secondary', 'systemstrap')), 'link' => array('label' => __('Link', 'systemstrap')), 'pill' => array('label' => __('Pill', 'systemstrap')), 'pill-outline' => array('label' => __('Pill Outline', 'systemstrap')), 'square' => array('label' => __('Square', 'systemstrap')), 'square-outline' => array('label' => __('Square Outline', 'systemstrap')))),
-		'avatar_style'          => array('label' => __('Avatar Style', 'systemstrap'), 'default' => 'default', 'application' => 'admin_mapping', 'targets' => array('BuddyPress member and group identity images'), 'treatments' => array('default' => array('label' => __('Default BuddyPress', 'systemstrap')), 'square' => array('label' => __('Square', 'systemstrap')), 'rounded' => array('label' => __('Rounded', 'systemstrap')), 'circle' => array('label' => __('Circle', 'systemstrap')))),
-		'activity_rss_icon'     => array('label' => __('Activity RSS Icon', 'systemstrap'), 'default' => 'show', 'application' => 'admin_mapping', 'targets' => array('#activity-rss-feed'), 'treatments' => array('show' => array('label' => __('Show', 'systemstrap')), 'hide' => array('label' => __('Hide', 'systemstrap')))),
+		'default_button_style'  => array('label' => __('Default Button Style', 'systemstrap'), 'default' => 'pill-outline', 'application' => 'admin_mapping', 'targets' => array('primary transactional BuddyPress buttons'), 'treatments' => array('primary' => array('label' => __('Primary', 'systemstrap')), 'secondary' => array('label' => __('Secondary', 'systemstrap')), 'link' => array('label' => __('Link', 'systemstrap')), 'pill' => array('label' => __('Pill', 'systemstrap')), 'pill-outline' => array('label' => __('Pill Outline', 'systemstrap')), 'square' => array('label' => __('Square', 'systemstrap')), 'square-outline' => array('label' => __('Square Outline', 'systemstrap')))),
+		'avatar_style'          => array('label' => __('Avatar Style', 'systemstrap'), 'default' => 'rounded', 'application' => 'admin_mapping', 'targets' => array('BuddyPress member and group identity images'), 'treatments' => array('default' => array('label' => __('Default BuddyPress', 'systemstrap')), 'square' => array('label' => __('Square', 'systemstrap')), 'rounded' => array('label' => __('Rounded', 'systemstrap')), 'circle' => array('label' => __('Circle', 'systemstrap')))),
+		'activity_rss_icon'     => array('label' => __('Activity RSS Icon', 'systemstrap'), 'default' => 'hide', 'application' => 'admin_mapping', 'targets' => array('#activity-rss-feed'), 'treatments' => array('show' => array('label' => __('Show', 'systemstrap')), 'hide' => array('label' => __('Hide', 'systemstrap')))),
 	);
 }
 
@@ -273,35 +274,105 @@ function strap_buddypress_sanitize_component_mappings($mappings)
 		}
 	}
 
+	foreach (strap_buddypress_directory_layout_controls() as $key => $control) {
+		if (isset($mappings[$key]) && in_array($mappings[$key], array('native', '1', '2', '3', '4'), true)) {
+			$valid[$key] = $mappings[$key];
+		}
+	}
+
 	return $valid;
 }
+
+function strap_buddypress_directory_layout_controls()
+{
+	return array(
+		'members_layout'         => array('label' => __('Members Directory Columns', 'systemstrap'), 'default' => '3', 'treatment' => 'member_directory'),
+		'groups_layout'          => array('label' => __('Groups Directory Columns', 'systemstrap'), 'default' => '2', 'treatment' => 'group_directory'),
+		'members_friends_layout' => array('label' => __('Friends Columns', 'systemstrap'), 'default' => '3', 'treatment' => 'member_directory'),
+		'members_group_layout'   => array('label' => __('Group Members Columns', 'systemstrap'), 'default' => '3', 'treatment' => 'member_directory'),
+	);
+}
+
+function strap_buddypress_directory_layouts($appearance)
+{
+	$saved = strap_get_component_mappings('buddypress');
+	foreach (strap_buddypress_directory_layout_controls() as $key => $control) {
+		$count = $saved[$key] ?? $control['default'];
+		if ('native' !== strap_buddypress_get_component_treatment($control['treatment']) && in_array($count, array('1', '2', '3', '4'), true)) {
+			$appearance[$key] = $count;
+		}
+	}
+
+	if ('native' !== strap_buddypress_get_component_treatment('single_navigation')) {
+		$appearance['user_nav_display'] = 1;
+		$appearance['group_nav_display'] = 1;
+		$appearance['user_nav_tabs'] = 0;
+		$appearance['group_nav_tabs'] = 0;
+	}
+	if ('native' !== strap_buddypress_get_component_treatment('directory_navigation')) {
+		foreach (array('members', 'groups', 'activity', 'sites') as $directory) {
+			$appearance[$directory . '_dir_layout'] = 0;
+			$appearance[$directory . '_dir_tabs'] = 0;
+		}
+		$appearance['user_subnav_tabs'] = 0;
+		$appearance['group_subnav_tabs'] = 0;
+	}
+	return $appearance;
+}
+add_filter('bp_before_nouveau_appearance_settings_parse_args', 'strap_buddypress_directory_layouts');
 
 /**
  * Render the BuddyPress component mapping fields.
  */
 function strap_buddypress_render_component_mapping_fields()
 {
+	$fields = array();
+	$layouts = function_exists('bp_nouveau_customizer_grid_choices') ? strap_buddypress_directory_layout_controls() : array();
+	$saved = strap_get_component_mappings('buddypress');
+	foreach (strap_buddypress_component_registry() as $key => $component) {
+		if ('admin_mapping' === ($component['application'] ?? '')) {
+			$fields[$key] = array(
+				'label' => $component['label'],
+				'value' => strap_buddypress_get_component_treatment($key),
+				'choices' => array_map(static function ($treatment) { return $treatment['label']; }, $component['treatments']),
+			);
+		}
+		foreach ($layouts as $layout_key => $layout) {
+			if ($key === $layout['treatment']) {
+				$fields[$layout_key] = array(
+					'label' => $layout['label'],
+					'value' => $saved[$layout_key] ?? $layout['default'],
+					'choices' => array('native' => __('Native BuddyPress', 'systemstrap')) + bp_nouveau_customizer_grid_choices(),
+				);
+			}
+		}
+	}
+	// Group the presentation controls and their related layouts in the form.
+	$order = array(
+		'member_directory', 'members_layout', 'members_friends_layout', 'member_profile',
+		'group_directory', 'groups_layout', 'members_group_layout', 'group_profile',
+		'site_directory', 'activity_stream', 'activity_composer', 'activity_rss_icon',
+		'directory_navigation', 'single_navigation', 'pagination_style', 'default_button_style', 'avatar_style',
+	);
+	$fields = array_replace(array_intersect_key(array_fill_keys($order, null), $fields), $fields);
 ?>
 	<h2><?php esc_html_e('BuddyPress', 'systemstrap'); ?></h2>
 	<p><?php esc_html_e('Choose the active presentation for each supported BuddyPress component. Missing settings resolve to the declared SystemStrap default.', 'systemstrap'); ?></p>
 	<table class="form-table" role="presentation">
-				<tbody>
-					<?php foreach (strap_buddypress_component_registry() as $component_id => $component) : ?>
-						<?php if ('admin_mapping' !== ($component['application'] ?? '')) : ?>
-							<?php continue; ?>
-						<?php endif; ?>
-						<tr>
-							<th scope="row"><label for="strap-buddypress-<?php echo esc_attr($component_id); ?>"><?php echo esc_html($component['label']); ?></label></th>
-							<td>
-								<select class="regular-text" id="strap-buddypress-<?php echo esc_attr($component_id); ?>" name="systemstrap_component_mappings[buddypress][<?php echo esc_attr($component_id); ?>]">
-									<?php foreach ($component['treatments'] as $treatment_id => $treatment) : ?>
-										<option value="<?php echo esc_attr($treatment_id); ?>" <?php selected(strap_buddypress_get_component_treatment($component_id), $treatment_id); ?>><?php echo esc_html($treatment['label']); ?></option>
-									<?php endforeach; ?>
-								</select>
-							</td>
-						</tr>
-					<?php endforeach; ?>
-				</tbody>
+		<tbody>
+			<?php foreach ($fields as $key => $field) : ?>
+				<tr>
+					<th scope="row"><label for="strap-buddypress-<?php echo esc_attr($key); ?>"><?php echo esc_html($field['label']); ?></label></th>
+					<td>
+						<select class="regular-text" style="width: 25em; max-width: 100%;" id="strap-buddypress-<?php echo esc_attr($key); ?>" name="systemstrap_component_mappings[buddypress][<?php echo esc_attr($key); ?>]">
+							<?php foreach ($field['choices'] as $value => $label) : ?>
+								<option value="<?php echo esc_attr($value); ?>" <?php selected($field['value'], $value); ?>><?php echo esc_html($label); ?></option>
+							<?php endforeach; ?>
+						</select>
+					</td>
+				</tr>
+			<?php endforeach; ?>
+		</tbody>
 	</table>
 <?php
 }
@@ -320,6 +391,8 @@ function strap_buddypress_register_assets()
 	$variation_uri       = get_template_directory_uri() . '/assets/css/style-variations/';
 	$assets    = array(
 		'strap-buddypress-typography'          => array('file' => 'buddypress-typography.css', 'deps' => array('bp-nouveau')),
+		'strap-buddypress-avatars'             => array('file' => 'buddypress-avatars.css', 'deps' => array()),
+		'strap-buddypress-single-navigation'  => array('file' => 'buddypress-single-navigation.css', 'deps' => array()),
 		'strap-buddypress-components'          => array('file' => 'buddypress-components.css', 'deps' => array('strap-buddypress-typography', 'strap-panel-surface', 'strap-buddypress-avatars', 'strap-buddypress-single-navigation')),
 		'strap-buddypress-inner-shell'         => array('file' => 'buddypress-inner-shell.css', 'deps' => array()),
 	);
@@ -1163,29 +1236,18 @@ add_filter('bp_nouveau_prepare_group_potential_invites_for_js', 'strap_buddypres
 
 function strap_buddypress_enqueue_nouveau_assets()
 {
-	$is_buddypress_request = function_exists('is_buddypress') && is_buddypress();
-	$has_avatar_treatment  = 'default' !== strap_buddypress_get_component_treatment('avatar_style');
-
-	if (! $is_buddypress_request) {
-		if ($has_avatar_treatment) {
-			wp_enqueue_style('strap-buddypress-avatars');
-		}
+	if (! wp_style_is('bp-nouveau', 'enqueued')) {
 		return;
 	}
 
 	$ownership = strap_buddypress_get_screen_component_ownership();
 
 	wp_enqueue_style('strap-buddypress-typography');
-	if (strap_buddypress_has_sidebar_primary_navigation()) {
-		wp_enqueue_style('strap-buddypress-inner-shell');
-	}
+	wp_enqueue_style('strap-buddypress-inner-shell');
 	if (strap_buddypress_has_system_pagination()) {
 		wp_enqueue_style('strap-system-ui-pagination');
 	}
-	$is_treated_group_create = function_exists('bp_is_group_create') && bp_is_group_create() && 'native' !== strap_buddypress_get_component_treatment('group_profile');
-	if ($has_avatar_treatment || array_filter($ownership) || $is_treated_group_create || strap_buddypress_has_registration_treatment()) {
-		wp_enqueue_style('strap-buddypress-components');
-	}
+	wp_enqueue_style('strap-buddypress-components');
 
 	if ($ownership['activity_stream']) {
 		strap_buddypress_enqueue_component_treatment_asset('activity_stream');
